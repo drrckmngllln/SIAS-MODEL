@@ -14,6 +14,7 @@ namespace school_management_system_model.Classes
         public int id { get; set; }
         public string semester { get; set; }
         public string id_number { get; set; }
+        public string sy_enrolled { get; set; }
         public string school_year { get; set; }
         public string full_name { get; set; }
         public string last_name { get; set; }
@@ -55,7 +56,7 @@ namespace school_management_system_model.Classes
         public int countStudent(string schoolYear)
         {
             var con = new MySqlConnection (connection.con());
-            var da = new MySqlDataAdapter("select * from student_accounts where school_year='" + schoolYear + "'", con);
+            var da = new MySqlDataAdapter("select * from student_accounts where sy_enrolled='" + schoolYear + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt.Rows.Count;
@@ -74,7 +75,7 @@ namespace school_management_system_model.Classes
             con.Open();
             var cmd = new MySqlCommand("insert into student_accounts(id_number, school_year, fullname, last_name, " +
                 "first_name, middle_name, gender, civil_status, date_of_birth, place_of_birth, nationality, " +
-                "religion, status) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13)", con);
+                "religion, status, sy_enrolled) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14)", con);
             cmd.Parameters.AddWithValue("@1", id_number);
             cmd.Parameters.AddWithValue("@2", school_year);
             cmd.Parameters.AddWithValue("@3", full_name);
@@ -88,6 +89,7 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@11", nationality);
             cmd.Parameters.AddWithValue("@12", religion);
             cmd.Parameters.AddWithValue("@13", status);
+            cmd.Parameters.AddWithValue("@14", sy_enrolled);
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -97,7 +99,7 @@ namespace school_management_system_model.Classes
             con.Open();
             var cmd = new MySqlCommand("update student_accounts set id_number=@1, school_year=@2, fullname=@3, " +
                 "last_name=@4, first_name=@5, middle_name=@6, gender=@7, civil_status=@8, date_of_birth=@9, " +
-                "place_of_birth=@10, nationality=@11, religion=@12, status=@13 where id_number='"+ idNumber +"'", con);
+                "place_of_birth=@10, nationality=@11, religion=@12, status=@13, sy_enrolled=@14 where id_number='"+ idNumber +"'", con);
             cmd.Parameters.AddWithValue("@1", id_number);
             cmd.Parameters.AddWithValue("@2", school_year);
             cmd.Parameters.AddWithValue("@3", full_name);
@@ -111,6 +113,7 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@11", nationality);
             cmd.Parameters.AddWithValue("@12", religion);
             cmd.Parameters.AddWithValue("@13", status);
+            cmd.Parameters.AddWithValue("@14", sy_enrolled);
             cmd.ExecuteNonQuery();
             con.Close();
         }

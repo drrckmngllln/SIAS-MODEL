@@ -39,6 +39,7 @@ namespace school_management_system_model.Forms.transactions
             dgv.DataSource = data.loadRecords(tSchoolYear.Text);
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].HeaderText = "Student Number";
+            dgv.Columns["sy_enrolled"].Visible = false;
             dgv.Columns["school_year"].Visible = false;
             dgv.Columns["fullname"].HeaderText = "Student Name";
             dgv.Columns["fullname"].Width = 300;
