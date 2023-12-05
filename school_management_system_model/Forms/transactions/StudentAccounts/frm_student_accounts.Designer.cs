@@ -46,8 +46,8 @@
             this.btnReset = new Krypton.Toolkit.KryptonButton();
             this.btnEnroll = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            this.btnPromoteStudent = new Krypton.Toolkit.KryptonButton();
+            this.btnCancelEnrollment = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -302,55 +302,56 @@
             this.kryptonButton1.Values.Text = "View Subjects Enrolled";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
-            // kryptonButton2
+            // btnPromoteStudent
             // 
-            this.kryptonButton2.CornerRoundingRadius = 10F;
-            this.kryptonButton2.Location = new System.Drawing.Point(652, 90);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(154, 34);
-            this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.kryptonButton2.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.kryptonButton2.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.kryptonButton2.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.kryptonButton2.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnPromoteStudent.CornerRoundingRadius = 10F;
+            this.btnPromoteStudent.Location = new System.Drawing.Point(652, 90);
+            this.btnPromoteStudent.Name = "btnPromoteStudent";
+            this.btnPromoteStudent.Size = new System.Drawing.Size(154, 34);
+            this.btnPromoteStudent.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.btnPromoteStudent.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.btnPromoteStudent.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.btnPromoteStudent.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.btnPromoteStudent.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton2.StateCommon.Border.Rounding = 10F;
-            this.kryptonButton2.StateCommon.Border.Width = 2;
-            this.kryptonButton2.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
-            this.kryptonButton2.StateCommon.Content.ShortText.Color2 = System.Drawing.SystemColors.Control;
-            this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton2.TabIndex = 112;
-            this.kryptonButton2.Values.Text = "Promote Student";
+            this.btnPromoteStudent.StateCommon.Border.Rounding = 10F;
+            this.btnPromoteStudent.StateCommon.Border.Width = 2;
+            this.btnPromoteStudent.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
+            this.btnPromoteStudent.StateCommon.Content.ShortText.Color2 = System.Drawing.SystemColors.Control;
+            this.btnPromoteStudent.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPromoteStudent.TabIndex = 112;
+            this.btnPromoteStudent.Values.Text = "Promote Student";
+            this.btnPromoteStudent.Click += new System.EventHandler(this.btnPromoteStudent_Click);
             // 
-            // kryptonButton3
+            // btnCancelEnrollment
             // 
-            this.kryptonButton3.CornerRoundingRadius = 10F;
-            this.kryptonButton3.Location = new System.Drawing.Point(812, 90);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Size = new System.Drawing.Size(154, 34);
-            this.kryptonButton3.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton3.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton3.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton3.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton3.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnCancelEnrollment.CornerRoundingRadius = 10F;
+            this.btnCancelEnrollment.Location = new System.Drawing.Point(812, 90);
+            this.btnCancelEnrollment.Name = "btnCancelEnrollment";
+            this.btnCancelEnrollment.Size = new System.Drawing.Size(154, 34);
+            this.btnCancelEnrollment.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelEnrollment.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelEnrollment.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelEnrollment.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCancelEnrollment.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton3.StateCommon.Border.Rounding = 10F;
-            this.kryptonButton3.StateCommon.Border.Width = 2;
-            this.kryptonButton3.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
-            this.kryptonButton3.StateCommon.Content.ShortText.Color2 = System.Drawing.SystemColors.Control;
-            this.kryptonButton3.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton3.TabIndex = 113;
-            this.kryptonButton3.Values.Text = "Cancel Enrollment";
+            this.btnCancelEnrollment.StateCommon.Border.Rounding = 10F;
+            this.btnCancelEnrollment.StateCommon.Border.Width = 2;
+            this.btnCancelEnrollment.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
+            this.btnCancelEnrollment.StateCommon.Content.ShortText.Color2 = System.Drawing.SystemColors.Control;
+            this.btnCancelEnrollment.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelEnrollment.TabIndex = 113;
+            this.btnCancelEnrollment.Values.Text = "Cancel Enrollment";
             // 
             // frm_student_accounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 620);
-            this.Controls.Add(this.kryptonButton3);
-            this.Controls.Add(this.kryptonButton2);
+            this.Controls.Add(this.btnCancelEnrollment);
+            this.Controls.Add(this.btnPromoteStudent);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.btnEnroll);
             this.Controls.Add(this.btnReset);
@@ -394,7 +395,7 @@
         private Krypton.Toolkit.KryptonButton btnReset;
         private Krypton.Toolkit.KryptonButton btnEnroll;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonButton kryptonButton2;
-        private Krypton.Toolkit.KryptonButton kryptonButton3;
+        private Krypton.Toolkit.KryptonButton btnPromoteStudent;
+        private Krypton.Toolkit.KryptonButton btnCancelEnrollment;
     }
 }

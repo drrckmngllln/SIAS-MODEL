@@ -167,5 +167,22 @@ namespace school_management_system_model.Forms.transactions
             frm_view_subjects.instance.school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString();
             frm.ShowDialog();
         }
+
+        private void promoteStudent()
+        {
+            
+        }
+
+        private void btnPromoteStudent_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_student_promotion
+            {
+                id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
+                fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString(),
+                school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString()
+            };
+            frm.ShowDialog();
+            loadRecords();
+        }
     }
 }
