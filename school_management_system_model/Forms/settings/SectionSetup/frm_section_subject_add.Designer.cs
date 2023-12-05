@@ -42,7 +42,14 @@
             this.tDay = new Krypton.Toolkit.KryptonTextBox();
             this.tRoom = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnFilter = new Krypton.Toolkit.KryptonButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tSemester = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tYearLevel = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv
@@ -72,13 +79,13 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv.Location = new System.Drawing.Point(12, 123);
+            this.dgv.Location = new System.Drawing.Point(12, 166);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv.RowTemplate.Height = 40;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1057, 371);
+            this.dgv.Size = new System.Drawing.Size(1057, 328);
             this.dgv.TabIndex = 52;
             // 
             // label1
@@ -103,6 +110,7 @@
             // 
             // kryptonButton1
             // 
+            this.kryptonButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonButton1.CornerRoundingRadius = 10F;
             this.kryptonButton1.Location = new System.Drawing.Point(865, 500);
             this.kryptonButton1.Name = "kryptonButton1";
@@ -118,9 +126,10 @@
             // 
             // tsearch
             // 
+            this.tsearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tsearch.CueHint.CueHintText = "Search";
             this.tsearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.tsearch.Location = new System.Drawing.Point(735, 94);
+            this.tsearch.Location = new System.Drawing.Point(735, 137);
             this.tsearch.Name = "tsearch";
             this.tsearch.Size = new System.Drawing.Size(334, 23);
             this.tsearch.TabIndex = 56;
@@ -179,6 +188,7 @@
             // 
             // kryptonButton2
             // 
+            this.kryptonButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonButton2.CornerRoundingRadius = 10F;
             this.kryptonButton2.Location = new System.Drawing.Point(970, 500);
             this.kryptonButton2.Name = "kryptonButton2";
@@ -192,11 +202,85 @@
             this.kryptonButton2.Values.Text = "Select All";
             this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnFilter);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.tSemester);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.tYearLevel);
+            this.groupBox1.Location = new System.Drawing.Point(735, 9);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(330, 122);
+            this.groupBox1.TabIndex = 64;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filter";
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.CornerRoundingRadius = 10F;
+            this.btnFilter.Location = new System.Drawing.Point(225, 73);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(99, 34);
+            this.btnFilter.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnFilter.StateCommon.Border.Rounding = 10F;
+            this.btnFilter.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilter.TabIndex = 65;
+            this.btnFilter.Values.Text = "Filter";
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Semester:";
+            // 
+            // tSemester
+            // 
+            this.tSemester.FormattingEnabled = true;
+            this.tSemester.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.tSemester.Location = new System.Drawing.Point(108, 46);
+            this.tSemester.Name = "tSemester";
+            this.tSemester.Size = new System.Drawing.Size(216, 21);
+            this.tSemester.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Year Level:";
+            // 
+            // tYearLevel
+            // 
+            this.tYearLevel.FormattingEnabled = true;
+            this.tYearLevel.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.tYearLevel.Location = new System.Drawing.Point(108, 19);
+            this.tYearLevel.Name = "tYearLevel";
+            this.tYearLevel.Size = new System.Drawing.Size(216, 21);
+            this.tYearLevel.TabIndex = 0;
+            // 
             // frm_section_subject_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1081, 545);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.tRoom);
             this.Controls.Add(this.tDay);
@@ -221,6 +305,8 @@
             this.Load += new System.EventHandler(this.frm_section_subject_add_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_section_subject_add_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,5 +326,11 @@
         private Krypton.Toolkit.KryptonTextBox tDay;
         private Krypton.Toolkit.KryptonTextBox tRoom;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox tSemester;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox tYearLevel;
+        private Krypton.Toolkit.KryptonButton btnFilter;
     }
 }

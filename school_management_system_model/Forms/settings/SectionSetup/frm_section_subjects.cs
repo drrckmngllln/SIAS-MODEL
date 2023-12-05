@@ -71,6 +71,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     tCurriculum.Items.Add(row["code"]);
                 }
+                tCurriculum.Text = curriculum.Rows[0]["code"].ToString();
             }
             else
             {
