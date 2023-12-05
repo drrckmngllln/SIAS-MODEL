@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>school_management_system_model</RootNamespace>
+    <AssemblyName>school_management_system_model</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Untitled design.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.21.9.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.21.9\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.3.5\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.3.5\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Krypton.Toolkit, Version=70.22.11.312, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Toolkit.70.22.11.312\lib\net48\Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.1.0\lib\net48\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZstdSharp, Version=0.7.1.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZstdSharp.Port.0.7.1\lib\net461\ZstdSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\add_course.cs" />
+    <Compile Include="Classes\add_section.cs" />
+    <Compile Include="Classes\add_subjects.cs" />
+    <Compile Include="Classes\course_fees.cs" />
+    <Compile Include="Classes\Curriculums.cs" />
+    <Compile Include="Classes\DiscountSetup.cs" />
+    <Compile Include="Classes\Instructors.cs" />
+    <Compile Include="Classes\LabFeeSetup.cs" />
+    <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
+    <Compile Include="Classes\proceed_to_enrollment.cs" />
+    <Compile Include="Classes\SchoolYearSetup.cs" />
+    <Compile Include="Classes\sections.cs" />
+    <Compile Include="Classes\section_subject.cs" />
+    <Compile Include="Classes\StudentAccount.cs" />
+    <Compile Include="Classes\StudentDiscount.cs" />
+    <Compile Include="Classes\student_assessment.cs" />
+    <Compile Include="Classes\student_course.cs" />
+    <Compile Include="Classes\TuitionFeeSetup.cs" />
+    <Compile Include="Data\connection.cs" />
+    <Compile Include="Controls\session.cs" />
+    <Compile Include="Forms\main\main_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\main\main_form.Designer.cs">
+      <DependentUpon>main_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\Curriculum\frm_curriculum_subjects_excel_import.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\Curriculum\frm_curriculum_subjects_excel_import.Designer.cs">
+      <DependentUpon>frm_curriculum_subjects_excel_import.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_add_curriculum_subjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_add_curriculum_subjects.Designer.cs">
+      <DependentUpon>frm_add_curriculum_subjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_campuses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_campuses.Designer.cs">
+      <DependentUpon>frm_campuses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_courses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_courses.Designer.cs">
+      <DependentUpon>frm_courses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\Curriculum\frm_curriculum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\Curriculum\frm_curriculum.Designer.cs">
+      <DependentUpon>frm_curriculum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\Curriculum\frm_curriculum_subjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\Curriculum\frm_curriculum_subjects.Designer.cs">
+      <DependentUpon>frm_curriculum_subjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_departments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_departments.Designer.cs">
+      <DependentUpon>frm_departments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_discount_setup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_discount_setup.Designer.cs">
+      <DependentUpon>frm_discount_setup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_instructors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_instructors.Designer.cs">
+      <DependentUpon>frm_instructors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_lab_fee_setup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_lab_fee_setup.Designer.cs">
+      <DependentUpon>frm_lab_fee_setup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_miscellaneous_setup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_miscellaneous_setup.Designer.cs">
+      <DependentUpon>frm_miscellaneous_setup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_levels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_levels.Designer.cs">
+      <DependentUpon>frm_levels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_school_year.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_school_year.Designer.cs">
+      <DependentUpon>frm_school_year.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\SectionSetup\frm_sections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\SectionSetup\frm_sections.Designer.cs">
+      <DependentUpon>frm_sections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\SectionSetup\frm_section_subjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\SectionSetup\frm_section_subjects.Designer.cs">
+      <DependentUpon>frm_section_subjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\SectionSetup\frm_section_subject_add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\SectionSetup\frm_section_subject_add.Designer.cs">
+      <DependentUpon>frm_section_subject_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_select_instructor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_select_instructor.Designer.cs">
+      <DependentUpon>frm_select_instructor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_subjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_subjects.Designer.cs">
+      <DependentUpon>frm_subjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\student_accounts.cs" />
+    <Compile Include="Forms\settings\frm_tuition_fee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_tuition_fee.Designer.cs">
+      <DependentUpon>frm_tuition_fee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\frm_add_courses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\frm_add_courses.Designer.cs">
+      <DependentUpon>frm_add_courses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_create_account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_create_account.Designer.cs">
+      <DependentUpon>frm_create_account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_select_school_year.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_select_school_year.Designer.cs">
+      <DependentUpon>frm_select_school_year.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\frm_select_section.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\frm_select_section.Designer.cs">
+      <DependentUpon>frm_select_section.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_view_subjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_view_subjects.Designer.cs">
+      <DependentUpon>frm_view_subjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAssessment\frm_select_student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAssessment\frm_select_student.Designer.cs">
+      <DependentUpon>frm_select_student.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAssessment\frm_view_subjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAssessment\frm_view_subjects.Designer.cs">
+      <DependentUpon>frm_view_subjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_select_subject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_select_subject.Designer.cs">
+      <DependentUpon>frm_select_subject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_student_accounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_student_accounts.Designer.cs">
+      <DependentUpon>frm_student_accounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\frm_student_application.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\frm_student_application.Designer.cs">
+      <DependentUpon>frm_student_application.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAssessment\frm_student_assessment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAssessment\frm_student_assessment.Designer.cs">
+      <DependentUpon>frm_student_assessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_student_enrollment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_student_enrollment.Designer.cs">
+      <DependentUpon>frm_student_enrollment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentDiscounts\frm_select_discount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentDiscounts\frm_select_discount.Designer.cs">
+      <DependentUpon>frm_select_discount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentDiscounts\frm_select_student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentDiscounts\frm_select_student.Designer.cs">
+      <DependentUpon>frm_select_student.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentDiscounts\frm_student_discounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentDiscounts\frm_student_discounts.Designer.cs">
+      <DependentUpon>frm_student_discounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\main\main_form.resx">
+      <DependentUpon>main_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\Curriculum\frm_curriculum_subjects_excel_import.resx">
+      <DependentUpon>frm_curriculum_subjects_excel_import.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_add_curriculum_subjects.resx">
+      <DependentUpon>frm_add_curriculum_subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_campuses.resx">
+      <DependentUpon>frm_campuses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_courses.resx">
+      <DependentUpon>frm_courses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\Curriculum\frm_curriculum.resx">
+      <DependentUpon>frm_curriculum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\Curriculum\frm_curriculum_subjects.resx">
+      <DependentUpon>frm_curriculum_subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_departments.resx">
+      <DependentUpon>frm_departments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_discount_setup.resx">
+      <DependentUpon>frm_discount_setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_instructors.resx">
+      <DependentUpon>frm_instructors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_lab_fee_setup.resx">
+      <DependentUpon>frm_lab_fee_setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_miscellaneous_setup.resx">
+      <DependentUpon>frm_miscellaneous_setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_levels.resx">
+      <DependentUpon>frm_levels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_school_year.resx">
+      <DependentUpon>frm_school_year.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\SectionSetup\frm_sections.resx">
+      <DependentUpon>frm_sections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\SectionSetup\frm_section_subjects.resx">
+      <DependentUpon>frm_section_subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\SectionSetup\frm_section_subject_add.resx">
+      <DependentUpon>frm_section_subject_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_select_instructor.resx">
+      <DependentUpon>frm_select_instructor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_subjects.resx">
+      <DependentUpon>frm_subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_tuition_fee.resx">
+      <DependentUpon>frm_tuition_fee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\frm_add_courses.resx">
+      <DependentUpon>frm_add_courses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_create_account.resx">
+      <DependentUpon>frm_create_account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_select_school_year.resx">
+      <DependentUpon>frm_select_school_year.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\frm_select_section.resx">
+      <DependentUpon>frm_select_section.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_view_subjects.resx">
+      <DependentUpon>frm_view_subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAssessment\frm_select_student.resx">
+      <DependentUpon>frm_select_student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAssessment\frm_view_subjects.resx">
+      <DependentUpon>frm_view_subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_subject.resx">
+      <DependentUpon>frm_select_subject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_student_accounts.resx">
+      <DependentUpon>frm_student_accounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\frm_student_application.resx">
+      <DependentUpon>frm_student_application.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAssessment\frm_student_assessment.resx">
+      <DependentUpon>frm_student_assessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_student_enrollment.resx">
+      <DependentUpon>frm_student_enrollment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentDiscounts\frm_select_discount.resx">
+      <DependentUpon>frm_select_discount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentDiscounts\frm_select_student.resx">
+      <DependentUpon>frm_select_student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentDiscounts\frm_student_discounts.resx">
+      <DependentUpon>frm_student_discounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1ICT LOGO black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamborghini-Revuelto-2023-4K-Wallpaper-jpeg.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Untitled design.png" />
+    <Content Include="Untitled design.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

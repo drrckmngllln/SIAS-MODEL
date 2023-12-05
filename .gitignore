@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/school_management_system_model/FileContentIndex/5d9e9693-0058-40b6-b661-9243388f4bdb.vsidx
+/.vs/school_management_system_model/FileContentIndex/5fdc1406-a98c-469b-9604-0410e9e535e4.vsidx
+/.vs/school_management_system_model/FileContentIndex/9b49bf56-e388-4858-be18-9fdc3efcff88.vsidx
+*.vsidx
+
+# Ignore obj folders
+obj/
+
+# Ingnore bin folders
+bin/
+*.cache
