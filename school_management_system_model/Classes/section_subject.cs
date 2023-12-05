@@ -63,37 +63,31 @@ namespace school_management_system_model.Classes
 
         public void saveSectionSubjects()
         {
-            try
-            {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("insert into section_subjects(unique_id, section_code, curriculum, course, year_level, semester, " +
-                    "subject_code, descriptive_title, total_units, lecture_units, lab_units, " +
-                    "pre_requisite, time, day, room, status, instructor) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)", con);
-                cmd.Parameters.AddWithValue("@1", unique_id);
-                cmd.Parameters.AddWithValue("@2", section_code);
-                cmd.Parameters.AddWithValue("@3", curriculum);
-                cmd.Parameters.AddWithValue("@4", course);
-                cmd.Parameters.AddWithValue("@5", year_level);
-                cmd.Parameters.AddWithValue("@6", semester);
-                cmd.Parameters.AddWithValue("@7", subject_code);
-                cmd.Parameters.AddWithValue("@8", descriptive_title);
-                cmd.Parameters.AddWithValue("@9", total_units);
-                cmd.Parameters.AddWithValue("@10", lecture_units);
-                cmd.Parameters.AddWithValue("@11", lab_units);
-                cmd.Parameters.AddWithValue("@12", pre_requisite);
-                cmd.Parameters.AddWithValue("@13", time);
-                cmd.Parameters.AddWithValue("@14", day);
-                cmd.Parameters.AddWithValue("@15", room);
-                cmd.Parameters.AddWithValue("@16", status);
-                cmd.Parameters.AddWithValue("@17", instructor);
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch
-            {
-                MessageBox.Show("Duplicate Entry", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("insert into section_subjects(unique_id, section_code, curriculum, course, year_level, semester, " +
+                "subject_code, descriptive_title, total_units, lecture_units, lab_units, " +
+                "pre_requisite, time, day, room, status, instructor) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)", con);
+            cmd.Parameters.AddWithValue("@1", unique_id);
+            cmd.Parameters.AddWithValue("@2", section_code);
+            cmd.Parameters.AddWithValue("@3", curriculum);
+            cmd.Parameters.AddWithValue("@4", course);
+            cmd.Parameters.AddWithValue("@5", year_level);
+            cmd.Parameters.AddWithValue("@6", semester);
+            cmd.Parameters.AddWithValue("@7", subject_code);
+            cmd.Parameters.AddWithValue("@8", descriptive_title);
+            cmd.Parameters.AddWithValue("@9", total_units);
+            cmd.Parameters.AddWithValue("@10", lecture_units);
+            cmd.Parameters.AddWithValue("@11", lab_units);
+            cmd.Parameters.AddWithValue("@12", pre_requisite);
+            cmd.Parameters.AddWithValue("@13", time);
+            cmd.Parameters.AddWithValue("@14", day);
+            cmd.Parameters.AddWithValue("@15", room);
+            cmd.Parameters.AddWithValue("@16", status);
+            cmd.Parameters.AddWithValue("@17", instructor);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            
         }
 
         public void updateSectionSubject()
