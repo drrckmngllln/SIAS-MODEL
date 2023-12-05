@@ -67,7 +67,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         {
             // Incrementing Year Level
             int yearLevel = 0;
-            yearLevel = Convert.ToInt32(tYearLevel.ToString());
+            yearLevel = Convert.ToInt32(tYearLevel.Text);
             yearLevel++;
             var con = new MySqlConnection(connection.con());
             con.Open();
@@ -77,7 +77,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
             // Incrementing School Year
             string schoolYear = dgv.CurrentRow.Cells["code"].Value.ToString();
-            if (school_year == tSchoolYear.Text)
+            if (tSchoolYear.Text == schoolYear)
             {
                 MessageBox.Show("Error, School Year");
             }
@@ -85,7 +85,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             {
                 con = new MySqlConnection(connection.con());
                 con.Open();
-                cmd = new MySqlCommand("update student_account set school_year='" + schoolYear + "', status='For Enrollment'", con);
+                cmd = new MySqlCommand("update student_accounts set school_year='" + schoolYear + "', status='For Enrollment' where id_number='"+ idNumber +"'", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("Student Promoted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -106,7 +106,13 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void btnPromoteStudent_Click(object sender, EventArgs e)
         {
-            promoteStudent(id_number);
+            if (MessageBox.Show("Are you sure you want to promote this student!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) 
+            {
+                promoteStudent(id_number);
+                Close();
+            }
+
+            
         }
     }
 }

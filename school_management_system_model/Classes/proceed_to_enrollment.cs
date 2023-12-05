@@ -49,10 +49,10 @@ namespace school_management_system_model.Classes
             return dt;
         }
 
-        public DataTable loadSection()
+        public DataTable loadSection(string course, string semester, string year_level)
         {
             var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from sections where course='"+ course +"' and semester='"+ semester +"' and status='Available'", con);
+            var da = new MySqlDataAdapter("select * from sections where course='"+ course +"' and semester='"+ semester +"' and year_level='"+year_level+"' and status='Available'" , con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt;
@@ -67,11 +67,10 @@ namespace school_management_system_model.Classes
             return dt;
         }
 
-        public DataTable loadSubjects()
+        public DataTable loadSubjects(string sectionCode, string semester)
         {
             var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from section_subjects where curriculum='"+ curriculum +"' " +
-                "and semester='"+ semester +"'", con);
+            var da = new MySqlDataAdapter("select * from section_subjects where section_code='"+ sectionCode +"' and semester='"+semester+"'", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt;

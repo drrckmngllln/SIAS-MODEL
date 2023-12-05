@@ -50,6 +50,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             var dt = new DataTable();
             da.Fill(dt);
 
+            dgv.Columns.Clear();
             dgv.Columns.Add("subject_code", "Subject Code");
             dgv.Columns.Add("descriptive_title", "Descriptive Title");
             dgv.Columns.Add("pre_requisite", "Pre Requisites");

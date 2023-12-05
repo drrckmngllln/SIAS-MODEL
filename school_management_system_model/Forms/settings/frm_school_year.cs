@@ -45,6 +45,7 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["school_year_from"].HeaderText = "From";
             dgv.Columns["school_year_to"].HeaderText = "To";
             dgv.Columns["semester"].HeaderText = "Semester";
+            dgv.Columns["is_current"].HeaderText = "Default";
         }
 
         private void addRecords()
@@ -59,7 +60,8 @@ namespace school_management_system_model.Forms.settings
                         description = tDescription.Text,
                         from = tFrom.Text,
                         to = tTo.Text,
-                        semester = tSemester.Text
+                        semester = tSemester.Text,
+                        is_current = tCurrent.Text
                     };
                     add.addRecords();
                     MessageBox.Show("Successfully Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -75,7 +77,7 @@ namespace school_management_system_model.Forms.settings
                         description = tDescription.Text,
                         from = tFrom.Text,
                         to = tTo.Text,
-                        semester = tSemester.Text
+                        semester = tSemester.Text, is_current = tCurrent.Text
                     };
                     edit.EditRecords(id);
                     MessageBox.Show("Successfully Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -149,6 +151,11 @@ namespace school_management_system_model.Forms.settings
             {
                 loadRecords();
             }
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            txtClear();
         }
     }
 }
