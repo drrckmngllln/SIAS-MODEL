@@ -26,15 +26,23 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void frm_student_promotion_Load(object sender, EventArgs e)
         {
-            tTitle.Text = id_number + ": " + fullname;
-            loadRecords();
-            var course = loadCourse(id_number);
+            try
+            {
+                tTitle.Text = id_number + ": " + fullname;
+                loadRecords();
+                var course = loadCourse(id_number);
 
-            tCourse.Text = course.Rows[0]["course"].ToString();
-            tYearLevel.Text = course.Rows[0]["year_level"].ToString();
-            tCampus.Text = course.Rows[0]["campus"].ToString();
-            tSemester.Text = course.Rows[0]["semester"].ToString();
-            tSchoolYear.Text = school_year;
+                tCourse.Text = course.Rows[0]["course"].ToString();
+                tYearLevel.Text = course.Rows[0]["year_level"].ToString();
+                tCampus.Text = course.Rows[0]["campus"].ToString();
+                tSemester.Text = course.Rows[0]["semester"].ToString();
+                tSchoolYear.Text = school_year;
+            }
+            catch
+            {
+                MessageBox.Show("Student not yet enrolled any subject", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private DataTable loadCourse(string idNumber)
@@ -65,16 +73,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void promoteStudent(string idNumber)
         {
-            // Incrementing Year Level
-            int yearLevel = 0;
-            yearLevel = Convert.ToInt32(tYearLevel.Text);
-            yearLevel++;
-            var con = new MySqlConnection(connection.con());
-            con.Open();
-            var cmd = new MySqlCommand("update student_course set year_level='" + yearLevel + "', section='', semester='1' where id_number='" + idNumber + "'", con);
-            cmd.ExecuteNonQuery();
-            con.Close();
-
             // Incrementing School Year
             string schoolYear = dgv.CurrentRow.Cells["code"].Value.ToString();
             if (tSchoolYear.Text == schoolYear)
@@ -83,6 +81,16 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
             else
             {
+                // Incrementing Year Level
+                int yearLevel = 0;
+                yearLevel = Convert.ToInt32(tYearLevel.Text);
+                yearLevel++;
+                var con = new MySqlConnection(connection.con());
+                con.Open();
+                var cmd = new MySqlCommand("update student_course set year_level='" + yearLevel + "', section='', semester='1' where id_number='" + idNumber + "'", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
                 con = new MySqlConnection(connection.con());
                 con.Open();
                 cmd = new MySqlCommand("update student_accounts set school_year='" + schoolYear + "', status='For Enrollment' where id_number='"+ idNumber +"'", con);

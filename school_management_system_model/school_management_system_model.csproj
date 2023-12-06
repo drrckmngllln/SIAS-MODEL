@@ -270,6 +270,12 @@
     <Compile Include="Forms\transactions\StudentAccounts\frm_create_account.Designer.cs">
       <DependentUpon>frm_create_account.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_input_grade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_input_grade.Designer.cs">
+      <DependentUpon>frm_input_grade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\frm_select_school_year.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -421,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_create_account.resx">
       <DependentUpon>frm_create_account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_input_grade.resx">
+      <DependentUpon>frm_input_grade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_select_school_year.resx">
       <DependentUpon>frm_select_school_year.cs</DependentUpon>

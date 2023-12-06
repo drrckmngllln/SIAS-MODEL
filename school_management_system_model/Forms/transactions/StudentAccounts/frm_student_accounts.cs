@@ -162,27 +162,42 @@ namespace school_management_system_model.Forms.transactions
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
+            
             var frm = new frm_view_subjects();
             frm_view_subjects.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
             frm_view_subjects.instance.fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString();
             frm_view_subjects.instance.school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString();
             frm.ShowDialog();
-        }
-
-        private void promoteStudent()
-        {
             
         }
 
         private void btnPromoteStudent_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_promotion
+            try
             {
-                id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
-                fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString(),
-                school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString()
-            };
+                var frm = new frm_student_promotion
+                {
+                    id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
+                    fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString(),
+                    school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString()
+                };
+                frm.ShowDialog();
+                loadRecords();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSYoptions_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_select_school_year();
             frm.ShowDialog();
+            if (schoolYear != null)
+            {
+                tSchoolYear.Text = schoolYear;
+            }
             loadRecords();
         }
     }
