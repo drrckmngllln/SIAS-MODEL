@@ -102,6 +102,7 @@
             // 
             // tSchoolyear
             // 
+            this.tSchoolyear.Enabled = false;
             this.tSchoolyear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tSchoolyear.Location = new System.Drawing.Point(187, 103);
             this.tSchoolyear.Name = "tSchoolyear";

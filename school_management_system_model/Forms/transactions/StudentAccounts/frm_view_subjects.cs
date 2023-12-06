@@ -142,9 +142,9 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                     tGrade.Text = dgv.CurrentRow.Cells["grade"].Value.ToString();
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("The selected value is not a grade","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

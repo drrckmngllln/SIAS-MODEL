@@ -269,10 +269,6 @@ namespace school_management_system_model.Forms.transactions
             if (MessageBox.Show("Are you sure you want to enrol these subjects?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 saveAllChanges();
-                //var frm = new frm_student_assessment();
-                //frm_student_assessment.instance.idNumber = tIdNumber.Text;
-                //frm.Text = "Student Assessment";
-                //frm.ShowDialog();
             }
         }
 
