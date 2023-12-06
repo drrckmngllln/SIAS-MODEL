@@ -185,7 +185,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(846, 425);
+            this.dgv.Size = new System.Drawing.Size(846, 479);
             this.dgv.TabIndex = 129;
             // 
             // groupBox1
@@ -304,7 +304,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.tTotal);
-            this.groupBox2.Location = new System.Drawing.Point(1041, 488);
+            this.groupBox2.Location = new System.Drawing.Point(1041, 542);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(193, 42);
             this.groupBox2.TabIndex = 139;
@@ -422,7 +422,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 542);
+            this.ClientSize = new System.Drawing.Size(1246, 596);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.kryptonButton6);
             this.Controls.Add(this.kryptonButton5);
