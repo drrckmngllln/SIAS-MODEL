@@ -24,6 +24,8 @@ namespace school_management_system_model.Classes
         public string day { get; set; }
         public string room { get; set; }
         public string instructor { get; set; }
+        public int grade { get; set; } = 0;
+        public string remarks { get; set; } = "Pending";
 
         //section incrementation
         public string section_code { get; set; }
@@ -38,8 +40,8 @@ namespace school_management_system_model.Classes
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("insert into student_subjects(id_number, unique_id, subject_code, descriptive_title, pre_requisite, " +
-                "total_units, lecture_units, lab_units, time, day, room, instructor, school_year) " +
-                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13)", con);
+                "total_units, lecture_units, lab_units, time, day, room, instructor, school_year, grade, remarks) " +
+                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15)", con);
             cmd.Parameters.AddWithValue("@1", id_number);
             cmd.Parameters.AddWithValue("@2", unique_id);
             cmd.Parameters.AddWithValue("@3", subject_code);
@@ -53,6 +55,8 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@11", room);
             cmd.Parameters.AddWithValue("@12", instructor);
             cmd.Parameters.AddWithValue("@13", school_year);
+            cmd.Parameters.AddWithValue("@14", grade);
+            cmd.Parameters.AddWithValue("@15", remarks);
             cmd.ExecuteNonQuery();
             con.Close();
         }

@@ -81,24 +81,48 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
             else
             {
-                // Incrementing Year Level
-                int yearLevel = 0;
-                yearLevel = Convert.ToInt32(tYearLevel.Text);
-                yearLevel++;
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("update student_course set year_level='" + yearLevel + "', section='', semester='1' where id_number='" + idNumber + "'", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                // Incrementing Year Level Or Semester
+                int studentYearLevel = 0;
+                int studentSemester = 0;
+                
 
-                con = new MySqlConnection(connection.con());
-                con.Open();
-                cmd = new MySqlCommand("update student_accounts set school_year='" + schoolYear + "', status='For Enrollment' where id_number='"+ idNumber +"'", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Student Promoted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                studentYearLevel = Convert.ToInt32(tYearLevel.Text);
+                studentSemester = Convert.ToInt32(tSemester.Text);
+
+                if (studentSemester < 3)
+                {
+                    studentSemester++;
+                    var con = new MySqlConnection(connection.con());
+                    con.Open();
+                    var cmd = new MySqlCommand("update student_course set semester='" + studentSemester + "', section='' where id_number='" + idNumber + "'", con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    con.Open();
+                    cmd = new MySqlCommand("update student_accounts set school_year='" + schoolYear + "' where id_number='" + idNumber + "'", con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                else if (studentSemester == 3)
+                {
+                    studentYearLevel++;
+                    var con = new MySqlConnection(connection.con());
+                    con.Open();
+                    var cmd = new MySqlCommand("update student_course set semester='1', year_level='"+ studentYearLevel +"', " +
+                        "section='' where id_number='" + idNumber + "'", con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    con.Open();
+                    cmd = new MySqlCommand("update student_accounts set school_year='" + schoolYear + "' where id_number='" + idNumber + "'", con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+               
             }
         }
+
+        
 
         private void frm_student_promotion_KeyDown(object sender, KeyEventArgs e)
         {

@@ -21,6 +21,7 @@ namespace school_management_system_model.Classes
         public string section { get; set; }
         public string semester { get; set; }
         public string section_code { get; set; }
+        public int grade { get; set; }  
         public string number_of_students {  get; set; }
 
         public DataTable loadStudentIdAndCourse()

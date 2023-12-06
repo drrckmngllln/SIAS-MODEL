@@ -197,7 +197,9 @@ namespace school_management_system_model.Forms.transactions
             if (schoolYear != null)
             {
                 tSchoolYear.Text = schoolYear;
+
             }
+            btnCreate.Text = "Create Account";
             loadRecords();
         }
     }
