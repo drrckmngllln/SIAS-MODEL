@@ -41,12 +41,9 @@ namespace school_management_system_model.Forms.transactions
         private void loadSection()
         {
             tSection.Items.Clear();
-            var section = new proceed_to_enrollment
-            {
-                course = tCourse.Text,
-                semester = tSemester.Text
-            };
-            var data = section.loadSection();
+            var section = new proceed_to_enrollment();
+            
+            var data = section.loadSection(tCourse.Text, tSemester.Text, tYearLevel.Text);
 
             foreach(DataRow row in data.Rows)
             {
@@ -123,12 +120,8 @@ namespace school_management_system_model.Forms.transactions
             else
             {
                 dgv.Rows.Clear();
-                var sectionSubjects = new proceed_to_enrollment
-                {
-                    curriculum = tCurriculum.Text,
-                    semester = tSemester.Text
-                };
-                var data = sectionSubjects.loadSubjects();
+                var sectionSubjects = new proceed_to_enrollment();
+                var data = sectionSubjects.loadSubjects(tSection.Text, tSemester.Text);
                 foreach(DataRow row in data.Rows)
                 {
                     dgv.Rows.Add(

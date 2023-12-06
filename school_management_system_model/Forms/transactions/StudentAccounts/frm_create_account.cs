@@ -102,6 +102,7 @@ namespace school_management_system_model.Forms.transactions
                     var add = new StudentAccount
                     {
                         id_number = tIdNumber.Text,
+                        
                         school_year = tSchoolyear.Text,
                         full_name = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
                         last_name = tLastname.Text,
@@ -113,8 +114,12 @@ namespace school_management_system_model.Forms.transactions
                         place_of_birth = tPlaceofBirth.Text,
                         nationality = tNationality.Text,
                         religion = tReligion.Text,
-                        status = tStatus.Text
+
+                        status = tStatus.Text,
+                        sy_enrolled=tSchoolyear.Text
+
                     };
+
                     add.addRecord();
                     MessageBox.Show("Account Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
@@ -135,7 +140,8 @@ namespace school_management_system_model.Forms.transactions
                         place_of_birth = tPlaceofBirth.Text,
                         nationality = tNationality.Text,
                         religion = tReligion.Text,
-                        status = tStatus.Text
+                        status = tStatus.Text,
+                        sy_enrolled = tSchoolyear.Text
                     };
                     edit.editRecord(tIdNumber.Text);
                     MessageBox.Show("Account Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
