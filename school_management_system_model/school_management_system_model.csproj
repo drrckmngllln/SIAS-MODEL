@@ -191,10 +191,10 @@
     <Compile Include="Forms\settings\frm_departments.Designer.cs">
       <DependentUpon>frm_departments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\settings\frm_discount_setup.cs">
+    <Compile Include="Forms\settings\DiscountSetup\frm_discount_setup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\settings\frm_discount_setup.Designer.cs">
+    <Compile Include="Forms\settings\DiscountSetup\frm_discount_setup.Designer.cs">
       <DependentUpon>frm_discount_setup.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\settings\frm_instructors.cs">
@@ -395,7 +395,7 @@
     <EmbeddedResource Include="Forms\settings\frm_departments.resx">
       <DependentUpon>frm_departments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\settings\frm_discount_setup.resx">
+    <EmbeddedResource Include="Forms\settings\DiscountSetup\frm_discount_setup.resx">
       <DependentUpon>frm_discount_setup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\frm_instructors.resx">

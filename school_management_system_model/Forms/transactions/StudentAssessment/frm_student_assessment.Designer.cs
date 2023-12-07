@@ -54,10 +54,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tTotal = new System.Windows.Forms.Label();
             this.totalTimer = new System.Windows.Forms.Timer(this.components);
-            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton5 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tuitionFeeTotal = new System.Windows.Forms.Label();
@@ -199,7 +197,6 @@
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(1017, 479);
             this.dgv.TabIndex = 129;
-            
             // 
             // groupBox1
             // 
@@ -341,38 +338,21 @@
             this.totalTimer.Enabled = true;
             this.totalTimer.Tick += new System.EventHandler(this.totalTimer_Tick);
             // 
-            // kryptonButton3
-            // 
-            this.kryptonButton3.CornerRoundingRadius = 10F;
-            this.kryptonButton3.Location = new System.Drawing.Point(388, 26);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Size = new System.Drawing.Size(126, 25);
-            this.kryptonButton3.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.kryptonButton3.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.kryptonButton3.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.kryptonButton3.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.kryptonButton3.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton3.StateCommon.Border.Rounding = 10F;
-            this.kryptonButton3.StateCommon.Border.Width = 2;
-            this.kryptonButton3.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton3.TabIndex = 1;
-            this.kryptonButton3.Values.Text = "Laboratory Fee";
-            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
-            // 
             // kryptonButton4
             // 
             this.kryptonButton4.CornerRoundingRadius = 10F;
-            this.kryptonButton4.Location = new System.Drawing.Point(520, 26);
+            this.kryptonButton4.Location = new System.Drawing.Point(388, 26);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.Size = new System.Drawing.Size(126, 25);
             this.kryptonButton4.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
             this.kryptonButton4.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.kryptonButton4.StateCommon.Border.Color1 = System.Drawing.Color.DarkBlue;
+            this.kryptonButton4.StateCommon.Border.Color2 = System.Drawing.Color.DarkBlue;
             this.kryptonButton4.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonButton4.StateCommon.Border.Rounding = 10F;
+            this.kryptonButton4.StateCommon.Border.Width = 2;
             this.kryptonButton4.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton4.TabIndex = 149;
             this.kryptonButton4.Values.Text = "View Subjects";
@@ -381,41 +361,27 @@
             // kryptonButton5
             // 
             this.kryptonButton5.CornerRoundingRadius = 10F;
-            this.kryptonButton5.Location = new System.Drawing.Point(784, 26);
+            this.kryptonButton5.Location = new System.Drawing.Point(520, 26);
             this.kryptonButton5.Name = "kryptonButton5";
             this.kryptonButton5.Size = new System.Drawing.Size(126, 25);
             this.kryptonButton5.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
             this.kryptonButton5.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.kryptonButton5.StateCommon.Border.Color1 = System.Drawing.Color.DarkRed;
+            this.kryptonButton5.StateCommon.Border.Color2 = System.Drawing.Color.DarkRed;
             this.kryptonButton5.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonButton5.StateCommon.Border.Rounding = 10F;
+            this.kryptonButton5.StateCommon.Border.Width = 2;
             this.kryptonButton5.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton5.TabIndex = 150;
             this.kryptonButton5.Values.Text = "Remove";
             this.kryptonButton5.Click += new System.EventHandler(this.kryptonButton5_Click);
             // 
-            // kryptonButton6
-            // 
-            this.kryptonButton6.CornerRoundingRadius = 10F;
-            this.kryptonButton6.Location = new System.Drawing.Point(652, 26);
-            this.kryptonButton6.Name = "kryptonButton6";
-            this.kryptonButton6.Size = new System.Drawing.Size(126, 25);
-            this.kryptonButton6.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.kryptonButton6.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.kryptonButton6.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton6.StateCommon.Border.Rounding = 10F;
-            this.kryptonButton6.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton6.TabIndex = 151;
-            this.kryptonButton6.Values.Text = "Add Unit";
-            this.kryptonButton6.Click += new System.EventHandler(this.kryptonButton6_Click);
-            // 
             // kryptonButton2
             // 
             this.kryptonButton2.CornerRoundingRadius = 10F;
-            this.kryptonButton2.Location = new System.Drawing.Point(916, 26);
+            this.kryptonButton2.Location = new System.Drawing.Point(652, 26);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Size = new System.Drawing.Size(126, 25);
             this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -530,10 +496,8 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.kryptonButton6);
             this.Controls.Add(this.kryptonButton5);
             this.Controls.Add(this.kryptonButton4);
-            this.Controls.Add(this.kryptonButton3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
@@ -601,10 +565,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label tTotal;
         private System.Windows.Forms.Timer totalTimer;
-        private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonButton kryptonButton4;
         private Krypton.Toolkit.KryptonButton kryptonButton5;
-        private Krypton.Toolkit.KryptonButton kryptonButton6;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label tuitionFeeTotal;

@@ -13,6 +13,7 @@ namespace school_management_system_model.Classes
     {
         public string id_number { get; set; }
         public string code { get; set; }
+        public string discount_target { get; set; }
         public string description { get; set; }
         public int discount_percentage { get; set; }
 
@@ -47,15 +48,24 @@ namespace school_management_system_model.Classes
             {
                 var con = new MySqlConnection(connection.con());
                 con.Open();
-                var cmd = new MySqlCommand("insert into student_discounts(id_number, code, description, discount_percentage) " +
-                    "values(@1,@2,@3,@4)", con);
+                var cmd = new MySqlCommand("insert into student_discounts(id_number, code, description, discount_percentage, discount_target) " +
+                    "values(@1,@2,@3,@4,@5)", con);
                 cmd.Parameters.AddWithValue("@1", id_number);
                 cmd.Parameters.AddWithValue("@2", code);
                 cmd.Parameters.AddWithValue("@3", description);
                 cmd.Parameters.AddWithValue("@4", discount_percentage);
+                cmd.Parameters.AddWithValue("@5", discount_target);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
+        }
+        public void deleteRecords(int id)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("delete from student_discounts where id='" + id + "'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
     }
 }

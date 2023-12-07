@@ -43,6 +43,7 @@
             this.tTotalFee = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -211,11 +212,34 @@
             this.kryptonButton1.TabIndex = 153;
             this.kryptonButton1.Values.Text = "Confirm";
             // 
+            // kryptonButton2
+            // 
+            this.kryptonButton2.CornerRoundingRadius = 15F;
+            this.kryptonButton2.Location = new System.Drawing.Point(162, 149);
+            this.kryptonButton2.Name = "kryptonButton2";
+            this.kryptonButton2.Size = new System.Drawing.Size(144, 38);
+            this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
+            this.kryptonButton2.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.kryptonButton2.StateCommon.Border.Color1 = System.Drawing.Color.DarkRed;
+            this.kryptonButton2.StateCommon.Border.Color2 = System.Drawing.Color.DarkRed;
+            this.kryptonButton2.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton2.StateCommon.Border.Rounding = 15F;
+            this.kryptonButton2.StateCommon.Border.Width = 2;
+            this.kryptonButton2.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.kryptonButton2.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonButton2.TabIndex = 166;
+            this.kryptonButton2.Values.Text = "Remove Discount";
+            this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
+            // 
             // frm_student_discounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 627);
+            this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
@@ -254,5 +278,6 @@
         private System.Windows.Forms.Label tTotalFee;
         private System.Windows.Forms.Label label9;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton kryptonButton2;
     }
 }
