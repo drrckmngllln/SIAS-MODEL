@@ -41,8 +41,9 @@ namespace school_management_system_model.Forms.settings
             var data = new MiscellaneousFeeSetup();
             dgv.DataSource = data.loadRecords();
             dgv.Columns["id"].Visible = false;
-            dgv.Columns["category"].HeaderText = "Category";
-            dgv.Columns["category"].Width = 250;
+            dgv.Columns["category"].Visible = false;
+            dgv.Columns["description"].HeaderText = "Description";
+            dgv.Columns["description"].Width = 250;
             dgv.Columns["campus"].HeaderText = "Campus";
             dgv.Columns["first_year"].HeaderText = "1st Year";
             dgv.Columns["second_year"].HeaderText = "2nd Year";
@@ -60,6 +61,7 @@ namespace school_management_system_model.Forms.settings
                     {
                         category = tCategory.Text,
                         campus = tCampus.Text,
+                        description = tDescription.Text,
                         first_year = Convert.ToDecimal(tFirstYear.Text),
                         second_year = Convert.ToDecimal(tSecondYear.Text),
                         third_year = Convert.ToDecimal(tThirdYear.Text),
@@ -84,6 +86,7 @@ namespace school_management_system_model.Forms.settings
                     {
                         id = Convert.ToInt32(ID),
                         category = tCategory.Text,
+                        description= tDescription.Text,
                         campus = tCampus.Text,
                         first_year = Convert.ToDecimal(tFirstYear.Text),
                         second_year = Convert.ToDecimal(tSecondYear.Text),
@@ -125,11 +128,8 @@ namespace school_management_system_model.Forms.settings
 
         private void deleteRecords()
         {
-            var delete = new MiscellaneousFeeSetup
-            {
-                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value)
-            };
-            delete.deleteRecords();
+            var delete = new MiscellaneousFeeSetup();
+            delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
             MessageBox.Show("Deleted Successfully","Success",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             loadRecords();
         }
@@ -152,10 +152,13 @@ namespace school_management_system_model.Forms.settings
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new MiscellaneousFeeSetup
-                {
-
-                };
+                var search = new MiscellaneousFeeSetup();
+                var searchData = search.searchRecords(tsearch.Text);
+                dgv.DataSource = searchData;
+            }
+            else if (tsearch.Text.Length == 0)
+            {
+                loadRecords();
             }
         }
 

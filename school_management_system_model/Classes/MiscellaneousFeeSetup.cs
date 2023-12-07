@@ -8,6 +8,7 @@ namespace school_management_system_model.Classes
     {
         public int id { get; set; }
         public string category { get; set; }
+        public string description { get; set; }
         public string campus { get; set; }
         public decimal first_year { get; set; }
         public decimal second_year { get; set; }
@@ -38,7 +39,8 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var sql = "insert into miscellaneous_fee_setup(category, campus, first_year, second_year, third_year, fourth_year) values(@1,@2,@3,@4,@5,@6)";
+            var sql = "insert into miscellaneous_fee_setup(category, campus, first_year, second_year, third_year, fourth_year, description) " +
+                "values(@1,@2,@3,@4,@5,@6,@7)";
             var cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@1", category);
             cmd.Parameters.AddWithValue("@2", campus);
@@ -46,6 +48,7 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@4", second_year);
             cmd.Parameters.AddWithValue("@5", third_year);
             cmd.Parameters.AddWithValue("@6", fourth_year);
+            cmd.Parameters.AddWithValue("@7", description);
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -53,7 +56,8 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var sql = "update miscellaneous_fee_setup set category=@1, campus=@2, first_year=@3, second_year=@4, third_year=@5, fourth_year=@6 where id='"+ id +"'";
+            var sql = "update miscellaneous_fee_setup set category=@1, campus=@2, first_year=@3, second_year=@4, third_year=@5, fourth_year=@6, " +
+                "description=@7 where id='"+ id +"'";
             var cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@1", category);
             cmd.Parameters.AddWithValue("@2", campus);
@@ -61,11 +65,12 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@4", second_year);
             cmd.Parameters.AddWithValue("@5", third_year);
             cmd.Parameters.AddWithValue("@6", fourth_year);
+            cmd.Parameters.AddWithValue("@7", description);
             cmd.ExecuteNonQuery();
             con.Close();
             con.Close();
         }
-        public void deleteRecords()
+        public void deleteRecords(int id)
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
@@ -73,12 +78,14 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public void searchRecords()
+        public DataTable searchRecords(string search)
         {
             var con = new MySqlConnection(connection.con());
             var sql = "select * from miscellaneous_fee_setup where concat(category, campus) like '%" + search + "%'";
             var da = new MySqlDataAdapter(sql, con);
-            da.Fill(frm_miscellaneous_setup.instance.dt);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
         }
     }
 }

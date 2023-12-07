@@ -197,16 +197,16 @@
     <Compile Include="Forms\settings\frm_instructors.Designer.cs">
       <DependentUpon>frm_instructors.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\settings\frm_lab_fee_setup.cs">
+    <Compile Include="Forms\settings\FeeSetup\frm_lab_fee_setup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\settings\frm_lab_fee_setup.Designer.cs">
+    <Compile Include="Forms\settings\FeeSetup\frm_lab_fee_setup.Designer.cs">
       <DependentUpon>frm_lab_fee_setup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\settings\frm_miscellaneous_setup.cs">
+    <Compile Include="Forms\settings\FeeSetup\frm_miscellaneous_setup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\settings\frm_miscellaneous_setup.Designer.cs">
+    <Compile Include="Forms\settings\FeeSetup\frm_miscellaneous_setup.Designer.cs">
       <DependentUpon>frm_miscellaneous_setup.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\settings\frm_levels.cs">
@@ -252,10 +252,10 @@
       <DependentUpon>frm_subjects.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\student_accounts.cs" />
-    <Compile Include="Forms\settings\frm_tuition_fee.cs">
+    <Compile Include="Forms\settings\FeeSetup\frm_tuition_fee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\settings\frm_tuition_fee.Designer.cs">
+    <Compile Include="Forms\settings\FeeSetup\frm_tuition_fee.Designer.cs">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\transactions\frm_add_courses.cs">
@@ -392,10 +392,10 @@
     <EmbeddedResource Include="Forms\settings\frm_instructors.resx">
       <DependentUpon>frm_instructors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\settings\frm_lab_fee_setup.resx">
+    <EmbeddedResource Include="Forms\settings\FeeSetup\frm_lab_fee_setup.resx">
       <DependentUpon>frm_lab_fee_setup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\settings\frm_miscellaneous_setup.resx">
+    <EmbeddedResource Include="Forms\settings\FeeSetup\frm_miscellaneous_setup.resx">
       <DependentUpon>frm_miscellaneous_setup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\frm_levels.resx">
@@ -419,7 +419,7 @@
     <EmbeddedResource Include="Forms\settings\frm_subjects.resx">
       <DependentUpon>frm_subjects.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\settings\frm_tuition_fee.resx">
+    <EmbeddedResource Include="Forms\settings\FeeSetup\frm_tuition_fee.resx">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\frm_add_courses.resx">

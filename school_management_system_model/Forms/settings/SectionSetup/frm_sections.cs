@@ -32,7 +32,7 @@ namespace school_management_system_model.Forms.settings
             var data = courses.getCourses();
             foreach(DataRow row in data.Rows)
             {
-                tcourse.Items.Add(row["code"]);
+                tCourse.Items.Add(row["code"]);
             }
         }
 
@@ -61,15 +61,15 @@ namespace school_management_system_model.Forms.settings
                 {
                     var add = new sections
                     {
-                        unique_id = tsectioncode.Text + tcourse.Text + tyearlevel.Text + tSemester.Text,
-                        section_code = tsectioncode.Text,
-                        course = tcourse.Text,
-                        year_level = tyearlevel.Text,
-                        section = tsection.Text,
+                        unique_id = tSectionCode.Text + tCourse.Text + tYearLevel.Text + tSemester.Text,
+                        section_code = tSectionCode.Text,
+                        course = tCourse.Text,
+                        year_level = tYearLevel.Text,
+                        section = tSection.Text,
                         semester = tSemester.Text,
-                        number_of_students = tnumberofstudents.Text,
-                        max_number_of_students = tmaxstudents.Text,
-                        status = tstatus.Text,
+                        number_of_students = tNumberOfStudents.Text,
+                        max_number_of_students = tMaxStudent.Text,
+                        status = tStatus.Text,
                         remarks = tRemarks.Text
                     };
                     add.addSection();
@@ -81,14 +81,14 @@ namespace school_management_system_model.Forms.settings
                     var edit = new sections
                     {
                         id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
-                        section_code = tsectioncode.Text,
-                        course = tcourse.Text,
-                        year_level = tyearlevel.Text,
-                        section = tsection.Text,
+                        section_code = tSectionCode.Text,
+                        course = tCourse.Text,
+                        year_level = tYearLevel.Text,
+                        section = tSection.Text,
                         semester = tSemester.Text,
-                        number_of_students = tnumberofstudents.Text,
-                        max_number_of_students = tmaxstudents.Text,
-                        status = tstatus.Text,
+                        number_of_students = tNumberOfStudents.Text,
+                        max_number_of_students = tMaxStudent.Text,
+                        status = tStatus.Text,
                         remarks = tRemarks.Text
                     };
                     edit.editSection();
@@ -109,7 +109,7 @@ namespace school_management_system_model.Forms.settings
             var delete = new sections
             {
                 id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
-                section_code = tsectioncode.Text
+                section_code = tSectionCode.Text
             };
             delete.deleteData();
             MessageBox.Show("Section Delete Success");
@@ -118,29 +118,29 @@ namespace school_management_system_model.Forms.settings
 
         private void txtclear()
         {
-            tsectioncode.Clear();
-            tsectioncode.Clear();
-            tyearlevel.Clear();
-            tsection.Clear();
-            tcourse.Text = "";
-            tnumberofstudents.Text = "0";
-            tmaxstudents.Text = "50";
-            tstatus.Text = "";
-            tsectioncode.Select();
+            tSectionCode.Clear();
+            tSectionCode.Clear();
+            tYearLevel.Clear();
+            tSection.Clear();
+            tCourse.Text = "";
+            tNumberOfStudents.Text = "0";
+            tMaxStudent.Text = "50";
+            tStatus.Text = "";
+            tSectionCode.Select();
             btn_save.Text = "Save";
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = dgv.CurrentRow.Cells[0].Value.ToString();
-            tsectioncode.Text = dgv.CurrentRow.Cells["section_code"].Value.ToString();
-            tyearlevel.Text = dgv.CurrentRow.Cells["year_level"].Value.ToString();
-            tcourse.Text = dgv.CurrentRow.Cells["course"].Value.ToString();
+            tSectionCode.Text = dgv.CurrentRow.Cells["section_code"].Value.ToString();
+            tYearLevel.Text = dgv.CurrentRow.Cells["year_level"].Value.ToString();
+            tCourse.Text = dgv.CurrentRow.Cells["course"].Value.ToString();
             tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
-            tnumberofstudents.Text = dgv.CurrentRow.Cells["number_of_students"].Value.ToString();
-            tmaxstudents.Text = dgv.CurrentRow.Cells["max_number_of_students"].Value.ToString();
-            tstatus.Text = dgv.CurrentRow.Cells["status"].Value.ToString();
-            tsection.Text = dgv.CurrentRow.Cells["section"].Value.ToString();
+            tNumberOfStudents.Text = dgv.CurrentRow.Cells["number_of_students"].Value.ToString();
+            tMaxStudent.Text = dgv.CurrentRow.Cells["max_number_of_students"].Value.ToString();
+            tStatus.Text = dgv.CurrentRow.Cells["status"].Value.ToString();
+            tSection.Text = dgv.CurrentRow.Cells["section"].Value.ToString();
             tRemarks.Text = dgv.CurrentRow.Cells["remarks"].Value.ToString();
             btn_save.Text = "Update";
         }
@@ -175,19 +175,19 @@ namespace school_management_system_model.Forms.settings
         private void tcourse_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            tsectioncode.Text += tcourse.Text.ToUpper();
-            tyearlevel.Clear();
-            tsection.Clear();
+            tSectionCode.Text += tCourse.Text.ToUpper();
+            tYearLevel.Clear();
+            tSection.Clear();
         }
 
         private void tyearlevel_TextChanged(object sender, EventArgs e)
         {
-            tsectioncode.Text += "-" +tyearlevel.Text.ToUpper();
+            tSectionCode.Text += "-" +tYearLevel.Text.ToUpper();
         }
 
         private void tsection_TextChanged(object sender, EventArgs e)
         {
-            tsectioncode.Text += "-" + tsection.Text.ToUpper();
+            tSectionCode.Text += "-" + tSection.Text.ToUpper();
         }
 
         private void btnSubjects_Click(object sender, EventArgs e)
@@ -207,6 +207,11 @@ namespace school_management_system_model.Forms.settings
             {
 
             }
+        }
+
+        private void tStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
         }
     }
 }
