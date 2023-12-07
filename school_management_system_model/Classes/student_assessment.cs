@@ -34,16 +34,16 @@ namespace school_management_system_model.Classes
             return dt;
         }
 
-        public int getTotalLectureUnits(string idNumber)
+        public decimal getTotalLectureUnits(string idNumber)
         {
             var con = new MySqlConnection (connection.con());
             var da = new MySqlDataAdapter("select * from student_subjects where id_number='" + idNumber + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
-            int total = 0;
+            decimal total = 0;
             foreach(DataRow row in dt.Rows)
             {
-                total += Convert.ToInt32(row["lecture_units"]);
+                total += Convert.ToDecimal(row["lecture_units"]);
             }
             return total;
         }

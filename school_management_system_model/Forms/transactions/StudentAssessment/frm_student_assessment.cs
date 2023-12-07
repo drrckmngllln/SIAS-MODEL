@@ -74,7 +74,7 @@ namespace school_management_system_model.Forms.transactions
         {
             // Loading of Tuition Fee/Unit
             var lectureFee = new student_assessment();
-            int tuitionUnit = 0;
+            decimal tuitionUnit = 0;
             tuitionUnit = lectureFee.getTotalLectureUnits(tIdNumber.Text);
 
             var tuition = new student_assessment();
