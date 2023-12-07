@@ -34,7 +34,8 @@ namespace school_management_system_model.Forms.settings
             dgv.DataSource = data.loadRecords();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["category"].HeaderText = "Category";
-            dgv.Columns["category"].Width = 250;
+            dgv.Columns["description"].HeaderText = "Description";
+            dgv.Columns["description"].Width = 250;
             dgv.Columns["campus"].HeaderText = "Campus";
             dgv.Columns["first_year"].HeaderText = "1st Year";
             dgv.Columns["second_year"].HeaderText = "2nd Year";
@@ -50,6 +51,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     category = tCategory.Text,
                     campus = tCampus.Text,
+                    description = tDescription.Text,
                     first_year = Convert.ToDecimal(tFirstYear.Text),
                     second_year = Convert.ToDecimal(tSecondYear.Text),
                     third_year = Convert.ToDecimal(tThirdYear.Text),
@@ -66,6 +68,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
                     category = tCategory.Text,
+                    description = tDescription.Text,
                     campus = tCampus.Text,
                     first_year = Convert.ToDecimal(tFirstYear.Text),
                     second_year = Convert.ToDecimal(tSecondYear.Text),
@@ -81,11 +84,8 @@ namespace school_management_system_model.Forms.settings
 
         private void deleteRecords()
         {
-            var delete = new TuitionFeeSetup
-            {
-                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString())
-            };
-            delete.deleteRecords();
+            var delete = new TuitionFeeSetup();
+            delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()));
             MessageBox.Show("Tuition Fee Deleted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             loadRecords();
         }
@@ -103,7 +103,6 @@ namespace school_management_system_model.Forms.settings
 
         private void txtClear()
         {
-            tCategory.Clear();
             tCampus.Text = "";
             tFirstYear.Clear();
             tSecondYear.Clear();
@@ -135,6 +134,20 @@ namespace school_management_system_model.Forms.settings
             if (e.KeyCode == Keys.Enter)
             {
                 addRecords();
+            }
+        }
+
+        private void tsearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Length > 2)
+            {
+                var data = new TuitionFeeSetup();
+                var search = data.searchRecords(tsearch.Text);
+                dgv.DataSource = search;
+            }
+            else if (tsearch.Text.Length == 0)
+            {
+                loadRecords();
             }
         }
     }

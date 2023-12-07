@@ -12,6 +12,7 @@ namespace school_management_system_model.Classes
     {
         public int id { get; set; }
         public string category { get; set; }
+        public string description { get; set; }
         public string campus { get; set; }
         public decimal first_year { get; set; }
         public decimal second_year { get; set; }
@@ -40,14 +41,15 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("insert into lab_fee_setup(category, campus, first_year, second_year, third_year, fourth_year) " +
-                "values(@1,@2,@3,@4,@5,@6)", con);
+            var cmd = new MySqlCommand("insert into lab_fee_setup(category, campus, first_year, second_year, third_year, fourth_year, description) " +
+                "values(@1,@2,@3,@4,@5,@6,@7)", con);
             cmd.Parameters.AddWithValue("@1", category);
             cmd.Parameters.AddWithValue("@2", campus);
             cmd.Parameters.AddWithValue("@3", first_year);
             cmd.Parameters.AddWithValue("@4", second_year);
             cmd.Parameters.AddWithValue("@5", third_year);
             cmd.Parameters.AddWithValue("@6", fourth_year);
+            cmd.Parameters.AddWithValue("@7", description);
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -56,17 +58,18 @@ namespace school_management_system_model.Classes
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("update lab_fee_setup set category=@1, campus=@2, first_year=@3, second_year=@4, third_year=@5, " +
-                "fourth_year=@6 where id = '" + id + "'", con);
+                "fourth_year=@6, description=@7 where id = '" + id + "'", con);
             cmd.Parameters.AddWithValue("@1", category);
             cmd.Parameters.AddWithValue("@2", campus);
             cmd.Parameters.AddWithValue("@3", first_year);
             cmd.Parameters.AddWithValue("@4", second_year);
             cmd.Parameters.AddWithValue("@5", third_year);
             cmd.Parameters.AddWithValue("@6", fourth_year);
+            cmd.Parameters.AddWithValue("@7", description);
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public DataTable deleteRecords()
+        public DataTable deleteRecords(int id)
         {
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter();
@@ -75,7 +78,7 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
-        public DataTable searchRecords()
+        public DataTable searchRecords(string search)
         {
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select * from lab_fee_setup where concat(category, course) like '%"+ search +"%'", con);

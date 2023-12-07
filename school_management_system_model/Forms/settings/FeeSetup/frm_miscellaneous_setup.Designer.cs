@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label7 = new System.Windows.Forms.Label();
             this.tFourthYear = new System.Windows.Forms.TextBox();
             this.tCampus = new System.Windows.Forms.ComboBox();
@@ -48,6 +48,8 @@
             this.btn_save = new Krypton.Toolkit.KryptonButton();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tDescription = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +57,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 249);
+            this.label7.Location = new System.Drawing.Point(29, 335);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 15);
             this.label7.TabIndex = 114;
@@ -64,7 +66,7 @@
             // tFourthYear
             // 
             this.tFourthYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tFourthYear.Location = new System.Drawing.Point(106, 246);
+            this.tFourthYear.Location = new System.Drawing.Point(106, 332);
             this.tFourthYear.Name = "tFourthYear";
             this.tFourthYear.Size = new System.Drawing.Size(236, 21);
             this.tFourthYear.TabIndex = 113;
@@ -73,7 +75,7 @@
             // 
             this.tCampus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tCampus.FormattingEnabled = true;
-            this.tCampus.Location = new System.Drawing.Point(106, 136);
+            this.tCampus.Location = new System.Drawing.Point(106, 222);
             this.tCampus.Name = "tCampus";
             this.tCampus.Size = new System.Drawing.Size(236, 23);
             this.tCampus.TabIndex = 112;
@@ -82,7 +84,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(29, 222);
+            this.label6.Location = new System.Drawing.Point(29, 308);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 15);
             this.label6.TabIndex = 111;
@@ -91,7 +93,7 @@
             // tThirdYear
             // 
             this.tThirdYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tThirdYear.Location = new System.Drawing.Point(106, 219);
+            this.tThirdYear.Location = new System.Drawing.Point(106, 305);
             this.tThirdYear.Name = "tThirdYear";
             this.tThirdYear.Size = new System.Drawing.Size(236, 21);
             this.tThirdYear.TabIndex = 110;
@@ -100,7 +102,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(29, 195);
+            this.label5.Location = new System.Drawing.Point(29, 281);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 109;
@@ -109,7 +111,7 @@
             // tSecondYear
             // 
             this.tSecondYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tSecondYear.Location = new System.Drawing.Point(106, 192);
+            this.tSecondYear.Location = new System.Drawing.Point(106, 278);
             this.tSecondYear.Name = "tSecondYear";
             this.tSecondYear.Size = new System.Drawing.Size(236, 21);
             this.tSecondYear.TabIndex = 108;
@@ -118,7 +120,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(29, 168);
+            this.label4.Location = new System.Drawing.Point(29, 254);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 15);
             this.label4.TabIndex = 107;
@@ -127,7 +129,7 @@
             // tFirstYear
             // 
             this.tFirstYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tFirstYear.Location = new System.Drawing.Point(106, 165);
+            this.tFirstYear.Location = new System.Drawing.Point(106, 251);
             this.tFirstYear.Name = "tFirstYear";
             this.tFirstYear.Size = new System.Drawing.Size(236, 21);
             this.tFirstYear.TabIndex = 106;
@@ -136,7 +138,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(29, 141);
+            this.label3.Location = new System.Drawing.Point(29, 227);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 15);
             this.label3.TabIndex = 105;
@@ -154,11 +156,13 @@
             // 
             // tCategory
             // 
+            this.tCategory.Enabled = false;
             this.tCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tCategory.Location = new System.Drawing.Point(106, 111);
             this.tCategory.Name = "tCategory";
             this.tCategory.Size = new System.Drawing.Size(236, 21);
             this.tCategory.TabIndex = 103;
+            this.tCategory.Text = "Miscellaneous Fee";
             // 
             // tsearch
             // 
@@ -172,7 +176,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.CornerRoundingRadius = 15F;
-            this.kryptonButton1.Location = new System.Drawing.Point(123, 356);
+            this.kryptonButton1.Location = new System.Drawing.Point(123, 442);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(133, 44);
             this.kryptonButton1.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -187,7 +191,7 @@
             // btn_clear
             // 
             this.btn_clear.CornerRoundingRadius = 15F;
-            this.btn_clear.Location = new System.Drawing.Point(197, 306);
+            this.btn_clear.Location = new System.Drawing.Point(197, 392);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(133, 44);
             this.btn_clear.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -202,7 +206,7 @@
             // btn_save
             // 
             this.btn_save.CornerRoundingRadius = 15F;
-            this.btn_save.Location = new System.Drawing.Point(58, 306);
+            this.btn_save.Location = new System.Drawing.Point(58, 392);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(133, 44);
             this.btn_save.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -233,23 +237,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgv.Location = new System.Drawing.Point(388, 111);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -263,11 +267,32 @@
             this.dgv.TabIndex = 100;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick_1);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(29, 141);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 15);
+            this.label8.TabIndex = 138;
+            this.label8.Text = "Description:";
+            // 
+            // tDescription
+            // 
+            this.tDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tDescription.Location = new System.Drawing.Point(106, 138);
+            this.tDescription.Multiline = true;
+            this.tDescription.Name = "tDescription";
+            this.tDescription.Size = new System.Drawing.Size(236, 78);
+            this.tDescription.TabIndex = 137;
+            // 
             // frm_miscellaneous_setup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 737);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.tDescription);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tFourthYear);
             this.Controls.Add(this.tCampus);
@@ -319,5 +344,7 @@
         private Krypton.Toolkit.KryptonButton btn_save;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tDescription;
     }
 }
