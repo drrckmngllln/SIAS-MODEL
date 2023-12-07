@@ -307,6 +307,8 @@ namespace school_management_system_model.Forms.transactions
                         totalOtherFee += Convert.ToDecimal(row.Cells["computation"].Value);
                     }
                 }
+
+                loadDiscounts();
             }
         }
 
@@ -383,16 +385,27 @@ namespace school_management_system_model.Forms.transactions
             decimal initialBreakdown = 0;
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                initialBreakdown += Convert.ToDecimal(row.Cells["computation"].Value);
+                foreach (DataRow rows in studentDiscounts.Rows)
+                {
+                    if (rows["discount_target"].ToString() == row.Cells["category"].ToString())
+                    {
+                        
+                    }
+                    if (rows["discount_target"].ToString() == row.Cells["category"].ToString())
+                    {
+                        dgv.Rows.Add(
+                            rows["discount_target"],
+                            rows["description"],
+                            "-" + (Convert.ToDecimal(rows["discount_percentage"]) / 100) * ,
+                            1,
+                            "-" + (Convert.ToDecimal(rows["discount_percentage"]) / 100) * initialBreakdown
+                        );
+                    }
+                }
             }
             foreach (DataRow row in studentDiscounts.Rows)
             {
-                dgv.Rows.Add(
-                    row["description"],
-                    "-" + (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown,
-                    1,
-                    "-" + (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown
-                    );
+                
             }
         }
         private void computeAssessment()

@@ -38,6 +38,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             dgv.DataSource = dt;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
+            dgv.Columns["discount_target"].HeaderText = "Discount Target";
             dgv.Columns["description"].HeaderText = "Description";
             dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
         }
@@ -47,6 +48,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             {
                 id_number = idNumber,
                 code = dgv.CurrentRow.Cells["code"].Value.ToString(),
+                discount_target = dgv.CurrentRow.Cells["discount_target"].Value.ToString(),
                 description = dgv.CurrentRow.Cells["description"].Value.ToString(),
                 discount_percentage = Convert.ToInt32(dgv.CurrentRow.Cells["discount_percentage"].Value.ToString())
             };

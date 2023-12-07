@@ -40,6 +40,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             dgv.DataSource = data.loadRecords(tIdNumber.Text);
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].Visible = false;
+            dgv.Columns["discount_target"].HeaderText = "Discount Target";
             dgv.Columns["code"].HeaderText = "Discount Code";
             dgv.Columns["description"].HeaderText = "Description";
             dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
@@ -68,6 +69,19 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
                 count += Convert.ToInt32(row.Cells["discount_percentage"].Value);
             }
             tTotalPercentage.Text = count.ToString() + "%";
+        }
+
+        
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete discount?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var delete = new StudentDiscount();
+                delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                MessageBox.Show("Discount Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadRecords();
+            }
         }
     }
 }

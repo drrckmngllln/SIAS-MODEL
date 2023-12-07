@@ -29,8 +29,9 @@ namespace school_management_system_model.Forms.settings
             dgv.DataSource = data.loadRecords();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
+            dgv.Columns["discount_target"].HeaderText = "Discount Target";
             dgv.Columns["description"].HeaderText = "Description";
-            dgv.Columns["description"].Width = 250;
+            dgv.Columns["description"].Width = 400;
             dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
         }
         private void addRecords()
@@ -41,6 +42,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     code = tCode.Text,
                     description = tDescription.Text,
+                    discount_target = tDiscountTarget.Text,
                     discount_percentage = Convert.ToInt32(tPercentage.Text)
                 };
                 add.addRecords();
@@ -54,6 +56,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     code = tCode.Text,
                     description = tDescription.Text,
+                    discount_target = tDiscountTarget.Text,
                     discount_percentage = Convert.ToInt32(tPercentage.Text)
                 };
                 edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
@@ -109,6 +112,20 @@ namespace school_management_system_model.Forms.settings
             if (MessageBox.Show("Delete this record?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 deleteRecords();
+            }
+        }
+
+        private void tsearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Length > 2)
+            {
+                var data = new DiscountSetup();
+                var search = data.searchRecords(tsearch.Text);
+                dgv.DataSource = search;
+            }
+            else if (tsearch.Text.Length == 0)
+            {
+                loadRecords();
             }
         }
     }
