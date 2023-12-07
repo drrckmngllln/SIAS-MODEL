@@ -1,5 +1,6 @@
 ﻿using Org.BouncyCastle.Crypto.Modes.Gcm;
 using school_management_system_model.Classes;
+using school_management_system_model.Forms.settings.FeeSetup;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -174,6 +175,26 @@ namespace school_management_system_model.Forms.settings
             tThirdYear.Text = dgv.CurrentRow.Cells["third_year"].Value.ToString();
             tFourthYear.Text = dgv.CurrentRow.Cells["fourth_year"].Value.ToString();
             btn_save.Text = "Update";
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_link_subjects
+            {
+                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value)
+            };
+            frm.Text = "Select";
+            frm.ShowDialog();
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_link_subjects
+            {
+                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value)
+            };
+            frm.Text = "View";
+            frm.ShowDialog();
         }
     }
 }

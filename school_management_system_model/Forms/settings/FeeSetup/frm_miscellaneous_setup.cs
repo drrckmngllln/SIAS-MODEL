@@ -107,7 +107,6 @@ namespace school_management_system_model.Forms.settings
 
         private void txtClear()
         {
-            tCategory.Clear();
             tCampus.Text = "";
             tFirstYear.Clear();
             tSecondYear.Clear();

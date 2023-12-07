@@ -19,6 +19,11 @@ namespace school_management_system_model.Forms.transactions
         public string studentID { get; set; }
         public string schoolYear { get; set; }
         public decimal totalUnits { get; set; }
+        public decimal totalTuitionFee{ get; set; }
+        public decimal totalMiscFee{ get; set; }
+        public decimal totalLabFee { get; set; }
+        public decimal totalOtherFee{ get; set; }
+        public decimal totalFee { get; set; }
         public decimal labFee { get; set; }
         public string labFeeCategory { get; set; }
 
@@ -35,6 +40,8 @@ namespace school_management_system_model.Forms.transactions
 
         private void loadRecords()
         {
+            dgv.Columns.Add("category", "Category");
+            //dgv.Columns["category"].Visible = false;
             dgv.Columns.Add("fee_type", "Fee Type");
             dgv.Columns.Add("amount", "Amount");
             dgv.Columns.Add("units", "Units");
@@ -73,9 +80,10 @@ namespace school_management_system_model.Forms.transactions
         private void addAssessmentRecords()
         {
             // Loading of Tuition Fee/Unit
+            
             var lectureFee = new student_assessment();
             decimal tuitionUnit = 0;
-            tuitionUnit = lectureFee.getTotalLectureUnits(tIdNumber.Text);
+            tuitionUnit = lectureFee.getTuitionFeeUnits(tIdNumber.Text);
 
             var tuition = new student_assessment();
             var data = tuition.getTuitionFee(tCampus.Text);
@@ -83,6 +91,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 dgv.Rows.Add(
                     data.Rows[0]["category"],
+                    data.Rows[0]["description"],
                     data.Rows[0]["first_year"],
                     tuitionUnit,
                     tuitionUnit * Convert.ToDecimal(data.Rows[0]["first_year"])
@@ -91,7 +100,8 @@ namespace school_management_system_model.Forms.transactions
             else if (tYearLevel.Text == "2")
             {
                 dgv.Rows.Add(
-                   data.Rows[0]["category"],
+                    data.Rows[0]["category"],
+                   data.Rows[0]["description"],
                    data.Rows[0]["second_year"],
                    tuitionUnit,
                     tuitionUnit * Convert.ToDecimal(data.Rows[0]["second_year"])
@@ -100,7 +110,8 @@ namespace school_management_system_model.Forms.transactions
             else if (tYearLevel.Text == "3")
             {
                 dgv.Rows.Add(
-                   data.Rows[0]["category"],
+                    data.Rows[0]["category"],
+                   data.Rows[0]["description"],
                    data.Rows[0]["third_year"],
                    tuitionUnit,
                    tuitionUnit * Convert.ToDecimal(data.Rows[0]["third_year"])
@@ -109,14 +120,17 @@ namespace school_management_system_model.Forms.transactions
             else if (tYearLevel.Text == "4")
             {
                 dgv.Rows.Add(
-                   data.Rows[0]["category"],
+                    data.Rows[0]["category"],
+                   data.Rows[0]["description"],
                    data.Rows[0]["fourth_year"],
                    tuitionUnit,
                    tuitionUnit * Convert.ToDecimal(data.Rows[0]["fourth_year"])
                    );
             }
-
+            
+            
             // Loading of Miscellaneous Fee
+            
             var misc = new student_assessment();
             var miscData = misc.getMiscellaneousFee(tCampus.Text);
             foreach(DataRow row in miscData.Rows)
@@ -125,6 +139,7 @@ namespace school_management_system_model.Forms.transactions
                 {
                     dgv.Rows.Add(
                         row["category"],
+                        row["description"],
                         row["first_year"],
                         1,
                         1 * Convert.ToDecimal(row["first_year"])
@@ -134,6 +149,7 @@ namespace school_management_system_model.Forms.transactions
                 {
                     dgv.Rows.Add(
                        row["category"],
+                       row["description"],
                        row["second_year"],
                        1,
                        1 * Convert.ToDecimal(row["second_year"])
@@ -142,7 +158,8 @@ namespace school_management_system_model.Forms.transactions
                 else if (tYearLevel.Text == "3")
                 {
                     dgv.Rows.Add(
-                       row["category"],
+                        row["category"],
+                       row["description"],
                        row["third_year"],
                        1,
                        1 * Convert.ToDecimal(row["third_year"])
@@ -151,7 +168,8 @@ namespace school_management_system_model.Forms.transactions
                 else if (tYearLevel.Text == "4")
                 {
                     dgv.Rows.Add(
-                       row["category"],
+                        row["category"],
+                       row["description"],
                        row["fourth_year"],
                        1,
                        1 * Convert.ToDecimal(row["fourth_year"])
@@ -159,18 +177,79 @@ namespace school_management_system_model.Forms.transactions
                 }
             }
 
+            // Loading of Lab Fee
+            loadLabFee();
+        }
 
+        private void loadLabFee()
+        {
+            var data = new student_assessment();
+            var schoolYear = data.getStudentSchoolYear(tIdNumber.Text);
+            var enrolledSubjects = data.loadEnrolledSubjects(tIdNumber.Text, schoolYear);
+            var labFeeSubjects = data.loadLabFeeSubjects();
+            
+
+            foreach(DataRow row in enrolledSubjects.Rows)
+            {
+                foreach(DataRow rows in labFeeSubjects.Rows)
+                {
+                    if (rows["subject_code"].ToString() == row["subject_code"].ToString())
+                    {
+                        var labFee = data.loadLabFee(Convert.ToInt32(rows["lab_fee_id"]));
+                        if (tYearLevel.Text == "1")
+                        {
+                            dgv.Rows.Add(
+                                labFee.Rows[0]["category"],
+                                labFee.Rows[0]["description"],
+                                labFee.Rows[0]["first_year"],
+                                1,
+                                1 * Convert.ToDecimal(labFee.Rows[0]["first_year"])
+                                );
+                        }
+                        else if (tYearLevel.Text == "2")
+                        {
+                            dgv.Rows.Add(
+                                labFee.Rows[0]["category"],
+                                labFee.Rows[0]["description"],
+                                labFee.Rows[0]["first_year"],
+                                1,
+                                1 * Convert.ToDecimal(labFee.Rows[0]["first_year"])
+                                );
+                        }
+                        else if(tYearLevel.Text == "3")
+                        {
+                            dgv.Rows.Add(
+                                labFee.Rows[0]["category"],
+                                labFee.Rows[0]["description"],
+                                labFee.Rows[0]["first_year"],
+                                1,
+                                1 * Convert.ToDecimal(labFee.Rows[0]["first_year"])
+                                );
+                        }
+                        else if(tYearLevel.Text == "4")
+                        {
+                            dgv.Rows.Add(
+                                labFee.Rows[0]["category"],
+                                labFee.Rows[0]["description"],
+                                labFee.Rows[0]["first_year"],
+                                1,
+                                1 * Convert.ToDecimal(labFee.Rows[0]["first_year"])
+                                );
+                        }
+                    }
+                }
+            }
         }
 
         private void loadAssessment()
         {
-            
+
             var assessment = new student_assessment();
             var data = assessment.loadRecords(schoolYear, tIdNumber.Text);
             if (data.Rows.Count > 0)
             {
                 dgv.Columns.Clear();
-                
+
                 dgv.DataSource = data;
                 dgv.Columns["id"].Visible = false;
                 dgv.Columns["id_number"].Visible = false;
@@ -179,12 +258,12 @@ namespace school_management_system_model.Forms.transactions
                 dgv.Columns["amount"].HeaderText = "Amount";
                 dgv.Columns["units"].HeaderText = "Units";
                 dgv.Columns["computation"].HeaderText = "Computation";
-
             }
             else
             {
                 dgv.Columns.Clear();
-                
+                dgv.Columns.Add("category", "Category");
+                dgv.Columns["category"].Visible = false;
                 dgv.Columns.Add("fee_type", "Fee Type");
                 dgv.Columns.Add("amount", "Amount");
                 dgv.Columns.Add("units", "Units");
@@ -209,18 +288,36 @@ namespace school_management_system_model.Forms.transactions
                 tSchoolYear.Text = schoolYear.ToString();
                 loadAssessment();
 
-                
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.Cells["category"].Value.ToString() == "Tuition Fee")
+                    {
+                        totalTuitionFee += Convert.ToDecimal(row.Cells["computation"].Value);
+                    }
+                    else if (row.Cells["category"].Value.ToString() == "Miscellaneous Fee")
+                    {
+                        totalMiscFee += Convert.ToDecimal(row.Cells["computation"].Value);
+                    }
+                    else if (row.Cells["category"].Value.ToString() == "Laboratory Fee")
+                    {
+                        totalLabFee += Convert.ToDecimal(row.Cells["computation"].Value);
+                    }
+                    else if (row.Cells["category"].Value.ToString() == "Other Fee")
+                    {
+                        totalOtherFee += Convert.ToDecimal(row.Cells["computation"].Value);
+                    }
+                }
             }
         }
 
         private void totalTimer_Tick(object sender, EventArgs e)
         {
-            totalUnits = 0;
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                totalUnits += Convert.ToDecimal(row.Cells["computation"].Value.ToString());
-            }
-            tTotal.Text = totalUnits.ToString();
+            
+            tuitionFeeTotal.Text = totalTuitionFee.ToString();
+            miscellaneousFeeTotal.Text = totalMiscFee.ToString();
+            labFeeTotal.Text = totalLabFee.ToString();
+            totalFee = totalTuitionFee + totalMiscFee + totalLabFee;
+            tTotal.Text = totalFee.ToString();
         }
 
         private void kryptonButton3_Click(object sender, EventArgs e)
@@ -256,6 +353,8 @@ namespace school_management_system_model.Forms.transactions
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
             dgv.Rows.Remove(dgv.CurrentRow);
+
+            computeAssessment();
         }
 
         private void saveAssessment()
@@ -296,9 +395,32 @@ namespace school_management_system_model.Forms.transactions
                     );
             }
         }
-        private void saveToStatementsOfAccounts()
+        private void computeAssessment()
         {
-
+            totalTuitionFee = 0;
+            totalMiscFee = 0;
+            totalLabFee = 0;
+            totalOtherFee = 0;
+            totalFee = 0;
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.Cells["category"].Value.ToString() == "Tuition Fee")
+                {
+                    totalTuitionFee += Convert.ToDecimal(row.Cells["computation"].Value);
+                }
+                else if (row.Cells["category"].Value.ToString() == "Miscellaneous Fee")
+                {
+                    totalMiscFee += Convert.ToDecimal(row.Cells["computation"].Value);
+                }
+                else if (row.Cells["category"].Value.ToString() == "Laboratory Fee")
+                {
+                    totalLabFee += Convert.ToDecimal(row.Cells["computation"].Value);
+                }
+                else if (row.Cells["category"].Value.ToString() == "Other Fee")
+                {
+                    totalOtherFee += Convert.ToDecimal(row.Cells["computation"].Value);
+                }
+            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -310,5 +432,6 @@ namespace school_management_system_model.Forms.transactions
         {
             loadDiscounts();
         }
+
     }
 }

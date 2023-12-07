@@ -149,6 +149,12 @@
     <Compile Include="Forms\settings\Curriculum\frm_curriculum_subjects_excel_import.Designer.cs">
       <DependentUpon>frm_curriculum_subjects_excel_import.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\settings\FeeSetup\frm_link_subjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\FeeSetup\frm_link_subjects.Designer.cs">
+      <DependentUpon>frm_link_subjects.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\settings\frm_add_curriculum_subjects.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -367,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\Curriculum\frm_curriculum_subjects_excel_import.resx">
       <DependentUpon>frm_curriculum_subjects_excel_import.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\FeeSetup\frm_link_subjects.resx">
+      <DependentUpon>frm_link_subjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\frm_add_curriculum_subjects.resx">
       <DependentUpon>frm_add_curriculum_subjects.cs</DependentUpon>
