@@ -397,6 +397,7 @@ namespace school_management_system_model.Forms.transactions
                 if (row["discount_target"].ToString() == "Tuition Fee")
                 {
                     initialBreakdown = totalTuitionFee;
+                    
                     decimal amount = -(Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
                     decimal computation = -(Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
 
@@ -407,7 +408,7 @@ namespace school_management_system_model.Forms.transactions
                             1,
                             computation
                         );
-                    totalTuitionFee += computation;
+                    //totalTuitionFee += computation;
                 }
                 else if (row["discount_target"].ToString() == "Miscellaneous Fee")
                 {
@@ -441,7 +442,7 @@ namespace school_management_system_model.Forms.transactions
                         );
                     totalTuitionFee += computation;
                 }
-                else if (row["discount_target"].ToString() == "Tuition Fee")
+                else if (row["discount_target"].ToString() == "Other Fee")
                     {
                         initialBreakdown = totalTuitionFee;
                         decimal amount = -(Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
