@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             this.tTotalFee = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tCourse = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,15 +62,19 @@
             this.labFeeTotal = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.miscellaneousFeeTotal = new System.Windows.Forms.Label();
-            this.otherFeesTotal = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.kajshdk = new System.Windows.Forms.GroupBox();
+            this.otherFeesTotal = new System.Windows.Forms.Label();
+            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.discountTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.otherFeesTotal.SuspendLayout();
+            this.kajshdk.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonButton1
@@ -95,17 +98,6 @@
             this.tTotalFee.Size = new System.Drawing.Size(23, 18);
             this.tTotalFee.TabIndex = 125;
             this.tTotalFee.Text = "...";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(1388, 666);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 18);
-            this.label9.TabIndex = 124;
-            this.label9.Text = "Total:";
             // 
             // label4
             // 
@@ -195,7 +187,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1017, 479);
+            this.dgv.Size = new System.Drawing.Size(1017, 626);
             this.dgv.TabIndex = 129;
             // 
             // groupBox1
@@ -312,23 +304,23 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.tTotal);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(1212, 542);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(32, 591);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(193, 42);
+            this.groupBox2.Size = new System.Drawing.Size(333, 92);
             this.groupBox2.TabIndex = 139;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Total Fee";
+            this.groupBox2.Text = "Total Assessment";
             // 
             // tTotal
             // 
             this.tTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tTotal.Location = new System.Drawing.Point(3, 17);
+            this.tTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tTotal.Location = new System.Drawing.Point(3, 22);
             this.tTotal.Name = "tTotal";
-            this.tTotal.Size = new System.Drawing.Size(187, 22);
+            this.tTotal.Size = new System.Drawing.Size(327, 67);
             this.tTotal.TabIndex = 0;
             this.tTotal.Text = "00000.00";
             this.tTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -361,7 +353,7 @@
             // kryptonButton5
             // 
             this.kryptonButton5.CornerRoundingRadius = 10F;
-            this.kryptonButton5.Location = new System.Drawing.Point(520, 26);
+            this.kryptonButton5.Location = new System.Drawing.Point(652, 26);
             this.kryptonButton5.Name = "kryptonButton5";
             this.kryptonButton5.Size = new System.Drawing.Size(126, 25);
             this.kryptonButton5.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -381,7 +373,7 @@
             // kryptonButton2
             // 
             this.kryptonButton2.CornerRoundingRadius = 10F;
-            this.kryptonButton2.Location = new System.Drawing.Point(652, 26);
+            this.kryptonButton2.Location = new System.Drawing.Point(784, 26);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.Size = new System.Drawing.Size(126, 25);
             this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -402,7 +394,7 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.tuitionFeeTotal);
-            this.groupBox3.Location = new System.Drawing.Point(416, 542);
+            this.groupBox3.Location = new System.Drawing.Point(416, 689);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(193, 42);
             this.groupBox3.TabIndex = 140;
@@ -424,7 +416,7 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.labFeeTotal);
-            this.groupBox4.Location = new System.Drawing.Point(615, 542);
+            this.groupBox4.Location = new System.Drawing.Point(615, 689);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(193, 42);
             this.groupBox4.TabIndex = 141;
@@ -446,7 +438,7 @@
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.miscellaneousFeeTotal);
-            this.groupBox5.Location = new System.Drawing.Point(814, 542);
+            this.groupBox5.Location = new System.Drawing.Point(814, 689);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(193, 42);
             this.groupBox5.TabIndex = 142;
@@ -464,34 +456,78 @@
             this.miscellaneousFeeTotal.Text = "00000.00";
             this.miscellaneousFeeTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // kajshdk
+            // 
+            this.kajshdk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.kajshdk.Controls.Add(this.otherFeesTotal);
+            this.kajshdk.Location = new System.Drawing.Point(1013, 689);
+            this.kajshdk.Name = "kajshdk";
+            this.kajshdk.Size = new System.Drawing.Size(193, 42);
+            this.kajshdk.TabIndex = 153;
+            this.kajshdk.TabStop = false;
+            this.kajshdk.Text = "Other Fees Total";
+            // 
             // otherFeesTotal
             // 
-            this.otherFeesTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.otherFeesTotal.Controls.Add(this.label12);
-            this.otherFeesTotal.Location = new System.Drawing.Point(1013, 542);
+            this.otherFeesTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.otherFeesTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherFeesTotal.Location = new System.Drawing.Point(3, 17);
             this.otherFeesTotal.Name = "otherFeesTotal";
-            this.otherFeesTotal.Size = new System.Drawing.Size(193, 42);
-            this.otherFeesTotal.TabIndex = 153;
-            this.otherFeesTotal.TabStop = false;
-            this.otherFeesTotal.Text = "Other Fees Total";
+            this.otherFeesTotal.Size = new System.Drawing.Size(187, 22);
+            this.otherFeesTotal.TabIndex = 0;
+            this.otherFeesTotal.Text = "00000.00";
+            this.otherFeesTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label12
+            // kryptonButton3
             // 
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(3, 17);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(187, 22);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "00000.00";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.kryptonButton3.CornerRoundingRadius = 10F;
+            this.kryptonButton3.Location = new System.Drawing.Point(520, 26);
+            this.kryptonButton3.Name = "kryptonButton3";
+            this.kryptonButton3.Size = new System.Drawing.Size(126, 25);
+            this.kryptonButton3.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
+            this.kryptonButton3.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.kryptonButton3.StateCommon.Border.Color1 = System.Drawing.Color.DarkBlue;
+            this.kryptonButton3.StateCommon.Border.Color2 = System.Drawing.Color.DarkBlue;
+            this.kryptonButton3.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton3.StateCommon.Border.Rounding = 10F;
+            this.kryptonButton3.StateCommon.Border.Width = 2;
+            this.kryptonButton3.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonButton3.TabIndex = 154;
+            this.kryptonButton3.Values.Text = "View Discounts";
+            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click_1);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.discountTotal);
+            this.groupBox6.Location = new System.Drawing.Point(1212, 689);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(193, 42);
+            this.groupBox6.TabIndex = 155;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Discount";
+            // 
+            // discountTotal
+            // 
+            this.discountTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.discountTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discountTotal.Location = new System.Drawing.Point(3, 17);
+            this.discountTotal.Name = "discountTotal";
+            this.discountTotal.Size = new System.Drawing.Size(187, 22);
+            this.discountTotal.TabIndex = 1;
+            this.discountTotal.Text = "00000.00";
+            this.discountTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frm_student_assessment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1417, 596);
-            this.Controls.Add(this.otherFeesTotal);
+            this.ClientSize = new System.Drawing.Size(1417, 743);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.kryptonButton3);
+            this.Controls.Add(this.kajshdk);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -518,7 +554,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.tTotalFee);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.kryptonButton1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -533,7 +568,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            this.otherFeesTotal.ResumeLayout(false);
+            this.kajshdk.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,7 +578,6 @@
         #endregion
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private System.Windows.Forms.Label tTotalFee;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tCourse;
         private System.Windows.Forms.Label label2;
@@ -574,7 +609,10 @@
         private System.Windows.Forms.Label labFeeTotal;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label miscellaneousFeeTotal;
-        private System.Windows.Forms.GroupBox otherFeesTotal;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox kajshdk;
+        private System.Windows.Forms.Label otherFeesTotal;
+        private Krypton.Toolkit.KryptonButton kryptonButton3;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label discountTotal;
     }
 }

@@ -81,6 +81,14 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
+        public DataTable getOtherFee(string campus)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from other_fees where campus='" + campus + "'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
         public void saveAssessment(string idNumber)
         {
             var con = new MySqlConnection(connection.con());
