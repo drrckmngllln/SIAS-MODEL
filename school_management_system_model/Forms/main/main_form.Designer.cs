@@ -67,6 +67,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.button14 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
             this.panelSidebar.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -111,7 +112,7 @@
             this.panel1.Controls.Add(this.button21);
             this.panel1.Controls.Add(this.button33);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 837);
+            this.panel1.Location = new System.Drawing.Point(0, 933);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(250, 458);
             this.panel1.TabIndex = 7;
@@ -156,7 +157,7 @@
             this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button17.ForeColor = System.Drawing.Color.White;
-            this.button17.Location = new System.Drawing.Point(0, 805);
+            this.button17.Location = new System.Drawing.Point(0, 901);
             this.button17.Name = "button17";
             this.button17.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.button17.Size = new System.Drawing.Size(250, 32);
@@ -174,7 +175,7 @@
             this.panelSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSettings.Location = new System.Drawing.Point(0, 347);
             this.panelSettings.Name = "panelSettings";
-            this.panelSettings.Size = new System.Drawing.Size(250, 458);
+            this.panelSettings.Size = new System.Drawing.Size(250, 554);
             this.panelSettings.TabIndex = 3;
             this.panelSettings.Visible = false;
             // 
@@ -184,7 +185,7 @@
             this.panelOfferings.Controls.Add(this.button10);
             this.panelOfferings.Controls.Add(this.button11);
             this.panelOfferings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelOfferings.Location = new System.Drawing.Point(0, 401);
+            this.panelOfferings.Location = new System.Drawing.Point(0, 435);
             this.panelOfferings.Name = "panelOfferings";
             this.panelOfferings.Size = new System.Drawing.Size(250, 110);
             this.panelOfferings.TabIndex = 4;
@@ -248,7 +249,7 @@
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.Location = new System.Drawing.Point(0, 369);
+            this.button12.Location = new System.Drawing.Point(0, 403);
             this.button12.Name = "button12";
             this.button12.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
             this.button12.Size = new System.Drawing.Size(250, 32);
@@ -260,6 +261,7 @@
             // 
             // panelGeneral
             // 
+            this.panelGeneral.Controls.Add(this.button28);
             this.panelGeneral.Controls.Add(this.button26);
             this.panelGeneral.Controls.Add(this.button25);
             this.panelGeneral.Controls.Add(this.button20);
@@ -273,7 +275,7 @@
             this.panelGeneral.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelGeneral.Location = new System.Drawing.Point(0, 32);
             this.panelGeneral.Name = "panelGeneral";
-            this.panelGeneral.Size = new System.Drawing.Size(250, 337);
+            this.panelGeneral.Size = new System.Drawing.Size(250, 371);
             this.panelGeneral.TabIndex = 2;
             this.panelGeneral.Visible = false;
             // 
@@ -677,6 +679,23 @@
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
+            // button28
+            // 
+            this.button28.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button28.FlatAppearance.BorderSize = 0;
+            this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button28.ForeColor = System.Drawing.Color.White;
+            this.button28.Location = new System.Drawing.Point(0, 320);
+            this.button28.Name = "button28";
+            this.button28.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button28.Size = new System.Drawing.Size(250, 32);
+            this.button28.TabIndex = 13;
+            this.button28.Text = "Other Fees";
+            this.button28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
+            // 
             // panelTask
             // 
             this.panelTask.BackgroundImage = global::school_management_system_model.Properties.Resources.Untitled_design;
@@ -783,5 +802,6 @@
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button28;
     }
 }
