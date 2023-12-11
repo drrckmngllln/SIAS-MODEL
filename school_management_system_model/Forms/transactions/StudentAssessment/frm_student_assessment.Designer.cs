@@ -395,7 +395,7 @@
             this.kryptonButton2.StateCommon.Border.Width = 2;
             this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton2.TabIndex = 152;
-            this.kryptonButton2.Values.Text = "Add Discount";
+            this.kryptonButton2.Values.Text = "Recompute";
             this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
             // 
             // groupBox3

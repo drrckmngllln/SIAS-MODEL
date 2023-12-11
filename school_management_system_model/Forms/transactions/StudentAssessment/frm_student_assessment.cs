@@ -328,6 +328,7 @@ namespace school_management_system_model.Forms.transactions
             labFeeTotal.Text = totalLabFee.ToString();
             totalFee = totalTuitionFee + totalMiscFee + totalLabFee;
             tTotal.Text = totalFee.ToString();
+            computeAssessment();
         }
 
         private void kryptonButton3_Click(object sender, EventArgs e)
@@ -391,7 +392,6 @@ namespace school_management_system_model.Forms.transactions
             var data = new student_assessment();
             var studentDiscounts = data.loadDiscounts(tIdNumber.Text);
             decimal initialBreakdown = 0;
-            
             foreach (DataRow row in studentDiscounts.Rows)
             {
                 if (row["discount_target"].ToString() == "Tuition Fee")
@@ -408,7 +408,6 @@ namespace school_management_system_model.Forms.transactions
                             1,
                             computation
                         );
-                    //totalTuitionFee += computation;
                 }
                 else if (row["discount_target"].ToString() == "Miscellaneous Fee")
                 {
@@ -443,22 +442,22 @@ namespace school_management_system_model.Forms.transactions
                     totalTuitionFee += computation;
                 }
                 else if (row["discount_target"].ToString() == "Other Fee")
-                    {
-                        initialBreakdown = totalTuitionFee;
-                        decimal amount = -(Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
-                        decimal computation = -(Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
+                {
+                    initialBreakdown = totalTuitionFee;
+                    decimal amount = -(Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
+                    decimal computation = -(Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
 
 
-                        dgv.Rows.Add(
-                                row["discount_target"],
-                                row["description"],
-                                amount,
-                                1,
-                                computation
-                            );
-                        totalTuitionFee += computation;
-                    }
-
+                    dgv.Rows.Add(
+                            row["discount_target"],
+                            row["description"],
+                            amount,
+                            1,
+                            computation
+                        );
+                    totalTuitionFee += computation;
+                }
+                
             }
         }
         private void computeAssessment()
@@ -496,7 +495,7 @@ namespace school_management_system_model.Forms.transactions
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            loadDiscounts();
+            computeAssessment();
         }
 
     }
