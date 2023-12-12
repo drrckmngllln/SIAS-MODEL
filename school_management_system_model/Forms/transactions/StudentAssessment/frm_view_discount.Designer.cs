@@ -53,7 +53,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(674, 360);
+            this.dgv.Size = new System.Drawing.Size(724, 411);
             this.dgv.TabIndex = 130;
             // 
             // label1
@@ -72,11 +72,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(698, 451);
+            this.ClientSize = new System.Drawing.Size(748, 502);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.CornerRoundingRadius = 10F;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "frm_view_discount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -85,6 +86,7 @@
             this.StateCommon.Border.Rounding = 10F;
             this.Text = "frm_view_discount";
             this.Load += new System.EventHandler(this.frm_view_discount_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_view_discount_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
