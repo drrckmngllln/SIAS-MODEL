@@ -582,6 +582,7 @@
             this.button31.Text = "Fee Collection";
             this.button31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button31.UseVisualStyleBackColor = true;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // button32
             // 
@@ -785,8 +786,9 @@
             // 
             // panelTask
             // 
+            this.panelTask.BackColor = System.Drawing.Color.White;
             this.panelTask.BackgroundImage = global::school_management_system_model.Properties.Resources.Untitled_design;
-            this.panelTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panelTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panelTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTask.Location = new System.Drawing.Point(267, 0);
             this.panelTask.Name = "panelTask";

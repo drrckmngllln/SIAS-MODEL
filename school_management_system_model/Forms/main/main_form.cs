@@ -283,5 +283,14 @@ namespace school_management_system_model.Forms.main
             panelTask.Controls.Add(frm);
             frm.Show();
         }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_fee_collection();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }
