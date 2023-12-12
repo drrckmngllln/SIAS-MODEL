@@ -2,6 +2,7 @@
 using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.FeeSetup;
 using school_management_system_model.Forms.transactions;
+using school_management_system_model.Forms.transactions.Collection;
 using school_management_system_model.Forms.transactions.StudentDiscounts;
 using System;
 
@@ -272,6 +273,15 @@ namespace school_management_system_model.Forms.main
             {
                 panelCollection.Visible = false;
             }
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_statements_of_accounts();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
         }
     }
 }

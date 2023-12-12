@@ -63,5 +63,21 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
+        public DataTable loadStudentRecords(string idNumber)
+        {
+            var con = new MySqlConnection (connection.con());
+            var da = new MySqlDataAdapter("select * from student_course where id_number='" + idNumber + "'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+        public DataTable searchRecords(string idNumber, string search)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from statements_of_accounts where concat(date, reference_no, particulars) like '%"+ search +"%' and id_number='"+ idNumber +"'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
     }
 }

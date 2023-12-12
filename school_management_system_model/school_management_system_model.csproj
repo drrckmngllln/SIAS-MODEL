@@ -278,6 +278,18 @@
     <Compile Include="Forms\settings\FeeSetup\frm_tuition_fee.Designer.cs">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_select_student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_select_student.Designer.cs">
+      <DependentUpon>frm_select_student.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_statements_of_accounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_statements_of_accounts.Designer.cs">
+      <DependentUpon>frm_statements_of_accounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\frm_add_courses.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -456,6 +468,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\FeeSetup\frm_tuition_fee.resx">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Collection\frm_select_student.resx">
+      <DependentUpon>frm_select_student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Collection\frm_statements_of_accounts.resx">
+      <DependentUpon>frm_statements_of_accounts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\frm_add_courses.resx">
       <DependentUpon>frm_add_courses.cs</DependentUpon>

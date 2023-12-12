@@ -57,6 +57,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panelTransactions = new System.Windows.Forms.Panel();
+            this.panelCollection = new System.Windows.Forms.Panel();
+            this.button30 = new System.Windows.Forms.Button();
+            this.button31 = new System.Windows.Forms.Button();
+            this.button32 = new System.Windows.Forms.Button();
             this.panelStudents = new System.Windows.Forms.Panel();
             this.button27 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -70,10 +74,6 @@
             this.panelUser = new System.Windows.Forms.Panel();
             this.button14 = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
-            this.panelCollection = new System.Windows.Forms.Panel();
-            this.button30 = new System.Windows.Forms.Button();
-            this.button31 = new System.Windows.Forms.Button();
-            this.button32 = new System.Windows.Forms.Button();
             this.panelSidebar.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -81,10 +81,10 @@
             this.panelOfferings.SuspendLayout();
             this.panelGeneral.SuspendLayout();
             this.panelTransactions.SuspendLayout();
+            this.panelCollection.SuspendLayout();
             this.panelStudents.SuspendLayout();
             this.panelStudentAdmission.SuspendLayout();
             this.panelUser.SuspendLayout();
-            this.panelCollection.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSidebar
@@ -539,6 +539,67 @@
             this.panelTransactions.TabIndex = 1;
             this.panelTransactions.Visible = false;
             // 
+            // panelCollection
+            // 
+            this.panelCollection.Controls.Add(this.button30);
+            this.panelCollection.Controls.Add(this.button31);
+            this.panelCollection.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelCollection.Location = new System.Drawing.Point(0, 292);
+            this.panelCollection.Name = "panelCollection";
+            this.panelCollection.Size = new System.Drawing.Size(250, 88);
+            this.panelCollection.TabIndex = 6;
+            this.panelCollection.Visible = false;
+            // 
+            // button30
+            // 
+            this.button30.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button30.FlatAppearance.BorderSize = 0;
+            this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button30.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button30.ForeColor = System.Drawing.Color.White;
+            this.button30.Location = new System.Drawing.Point(0, 32);
+            this.button30.Name = "button30";
+            this.button30.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button30.Size = new System.Drawing.Size(250, 32);
+            this.button30.TabIndex = 3;
+            this.button30.Text = "Statements Of Accounts";
+            this.button30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
+            // 
+            // button31
+            // 
+            this.button31.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button31.FlatAppearance.BorderSize = 0;
+            this.button31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button31.ForeColor = System.Drawing.Color.White;
+            this.button31.Location = new System.Drawing.Point(0, 0);
+            this.button31.Name = "button31";
+            this.button31.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button31.Size = new System.Drawing.Size(250, 32);
+            this.button31.TabIndex = 2;
+            this.button31.Text = "Fee Collection";
+            this.button31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button31.UseVisualStyleBackColor = true;
+            // 
+            // button32
+            // 
+            this.button32.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button32.FlatAppearance.BorderSize = 0;
+            this.button32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button32.ForeColor = System.Drawing.Color.White;
+            this.button32.Location = new System.Drawing.Point(0, 260);
+            this.button32.Name = "button32";
+            this.button32.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.button32.Size = new System.Drawing.Size(250, 32);
+            this.button32.TabIndex = 5;
+            this.button32.Text = "Collection";
+            this.button32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
+            // 
             // panelStudents
             // 
             this.panelStudents.Controls.Add(this.button27);
@@ -732,66 +793,6 @@
             this.panelTask.Size = new System.Drawing.Size(1103, 749);
             this.panelTask.TabIndex = 1;
             // 
-            // panelCollection
-            // 
-            this.panelCollection.Controls.Add(this.button30);
-            this.panelCollection.Controls.Add(this.button31);
-            this.panelCollection.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelCollection.Location = new System.Drawing.Point(0, 292);
-            this.panelCollection.Name = "panelCollection";
-            this.panelCollection.Size = new System.Drawing.Size(250, 88);
-            this.panelCollection.TabIndex = 6;
-            this.panelCollection.Visible = false;
-            // 
-            // button30
-            // 
-            this.button30.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button30.FlatAppearance.BorderSize = 0;
-            this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button30.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button30.ForeColor = System.Drawing.Color.White;
-            this.button30.Location = new System.Drawing.Point(0, 32);
-            this.button30.Name = "button30";
-            this.button30.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
-            this.button30.Size = new System.Drawing.Size(250, 32);
-            this.button30.TabIndex = 3;
-            this.button30.Text = "Statements Of Accounts";
-            this.button30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button30.UseVisualStyleBackColor = true;
-            // 
-            // button31
-            // 
-            this.button31.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button31.FlatAppearance.BorderSize = 0;
-            this.button31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button31.ForeColor = System.Drawing.Color.White;
-            this.button31.Location = new System.Drawing.Point(0, 0);
-            this.button31.Name = "button31";
-            this.button31.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
-            this.button31.Size = new System.Drawing.Size(250, 32);
-            this.button31.TabIndex = 2;
-            this.button31.Text = "Fee Collection";
-            this.button31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button31.UseVisualStyleBackColor = true;
-            // 
-            // button32
-            // 
-            this.button32.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button32.FlatAppearance.BorderSize = 0;
-            this.button32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button32.ForeColor = System.Drawing.Color.White;
-            this.button32.Location = new System.Drawing.Point(0, 260);
-            this.button32.Name = "button32";
-            this.button32.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.button32.Size = new System.Drawing.Size(250, 32);
-            this.button32.TabIndex = 5;
-            this.button32.Text = "Collection";
-            this.button32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button32.UseVisualStyleBackColor = true;
-            this.button32.Click += new System.EventHandler(this.button32_Click);
-            // 
             // main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -840,10 +841,10 @@
             this.panelOfferings.ResumeLayout(false);
             this.panelGeneral.ResumeLayout(false);
             this.panelTransactions.ResumeLayout(false);
+            this.panelCollection.ResumeLayout(false);
             this.panelStudents.ResumeLayout(false);
             this.panelStudentAdmission.ResumeLayout(false);
             this.panelUser.ResumeLayout(false);
-            this.panelCollection.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
