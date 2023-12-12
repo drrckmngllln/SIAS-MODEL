@@ -350,6 +350,7 @@ namespace school_management_system_model.Forms.transactions
                 // Loading the assessment
                 tSchoolYear.Text = schoolYear.ToString();
                 loadAssessment();
+
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
                     if (row.Cells["category"].Value.ToString() == "Tuition Fee")
@@ -439,8 +440,51 @@ namespace school_management_system_model.Forms.transactions
                 };
                 assessment.saveAssessment(tIdNumber.Text);
             }
+
+            // Saving to Statements of Accounts
+            saveStatementsOfAccounts();
+
             MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void saveStatementsOfAccounts()
+        {
+            var data = new StatementsOfAccounts
+            {
+                id_number = tIdNumber.Text,
+                particulars = "Total Assessment as of: " + tSchoolYear.Text,
+                debit = Convert.ToDecimal(tTotal.Text),
+                credit = 0,
+                balance = Convert.ToDecimal(tTotal.Text),
+                cashier_in_charge = ""
+            };
+            data.saveStatementOfAccount(tIdNumber.Text);
+            var discounts = new student_assessment();
+            var disc = discounts.loadDiscounts(tIdNumber.Text);
+            
+            foreach (DataRow row in disc.Rows)
+            {
+                var latest = new StatementsOfAccounts();
+                var soaLatest = latest.loadLatestSOA(tIdNumber.Text);
+                decimal debit = Convert.ToDecimal(soaLatest.Rows[0]["balance"]);
+                if (row["discount_target"].ToString() == "Tuition Fee")
+                {
+                    var computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * totalTuitionFee;
+                    var soaDiscount = new StatementsOfAccounts
+                    {
+                        id_number = tIdNumber.Text,
+                        particulars = row["description"].ToString(),
+                        debit = debit,
+                        credit = computation,
+                        balance = debit - computation,
+                        cashier_in_charge = ""
+                    };
+                    soaDiscount.saveStatementOfAccount(tIdNumber.Text);
+                }
+            }
+
+        }
+
         private void loadDiscounts()
         {
             // Loading the discount of the student
@@ -521,7 +565,10 @@ namespace school_management_system_model.Forms.transactions
 
         private void kryptonButton3_Click_1(object sender, EventArgs e)
         {
-            var frm = new frm_view_discount();
+            var frm = new frm_view_discount
+            {
+                id_number = tIdNumber.Text
+            };
             frm.ShowDialog();
         }
     }

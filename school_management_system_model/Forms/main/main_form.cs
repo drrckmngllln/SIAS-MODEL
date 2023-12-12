@@ -254,5 +254,24 @@ namespace school_management_system_model.Forms.main
             panelTask.Controls.Add(frm);
             frm.Show();
         }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_or_number_setup();
+            frm.Text = "Set OR Number";
+            frm.Show();
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            if (panelCollection.Visible == false)
+            {
+                panelCollection.Visible = true;
+            }
+            else
+            {
+                panelCollection.Visible = false;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
 {
     public partial class frm_view_discount : KryptonForm
     {
-        public decimal totalDiscount { get; set; }
+        public string id_number { get; set; }
         public frm_view_discount()
         {
             InitializeComponent();
@@ -26,11 +27,25 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
 
         private void loadRecords()
         {
-            dgv.Columns.Add("category", "Category");
-            dgv.Columns.Add("fee_type", "fee_type");
-            dgv.Columns.Add("amount", "Amount");
-            dgv.Columns.Add("units", "Units");
-            dgv.Columns.Add("computation", "Computation");
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from student_discounts where id_number='" + id_number + "'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            dgv.DataSource = dt;
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["id_number"].Visible = false;
+            dgv.Columns["code"].Visible = false;
+            dgv.Columns["discount_target"].HeaderText = "Disount Target";
+            dgv.Columns["description"].HeaderText = "Description";
+            dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
+        }
+
+        private void frm_view_discount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) 
+            { 
+                Close();
+            }
         }
     }
 }

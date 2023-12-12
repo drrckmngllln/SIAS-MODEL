@@ -42,6 +42,8 @@
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.panelGeneral = new System.Windows.Forms.Panel();
+            this.button29 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
@@ -67,8 +69,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.button14 = new System.Windows.Forms.Button();
-            this.button28 = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
+            this.panelCollection = new System.Windows.Forms.Panel();
+            this.button30 = new System.Windows.Forms.Button();
+            this.button31 = new System.Windows.Forms.Button();
+            this.button32 = new System.Windows.Forms.Button();
             this.panelSidebar.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -79,6 +84,7 @@
             this.panelStudents.SuspendLayout();
             this.panelStudentAdmission.SuspendLayout();
             this.panelUser.SuspendLayout();
+            this.panelCollection.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSidebar
@@ -112,7 +118,7 @@
             this.panel1.Controls.Add(this.button21);
             this.panel1.Controls.Add(this.button33);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 933);
+            this.panel1.Location = new System.Drawing.Point(0, 1100);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(250, 458);
             this.panel1.TabIndex = 7;
@@ -157,7 +163,7 @@
             this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button17.ForeColor = System.Drawing.Color.White;
-            this.button17.Location = new System.Drawing.Point(0, 901);
+            this.button17.Location = new System.Drawing.Point(0, 1068);
             this.button17.Name = "button17";
             this.button17.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.button17.Size = new System.Drawing.Size(250, 32);
@@ -173,9 +179,9 @@
             this.panelSettings.Controls.Add(this.panelGeneral);
             this.panelSettings.Controls.Add(this.button5);
             this.panelSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSettings.Location = new System.Drawing.Point(0, 347);
+            this.panelSettings.Location = new System.Drawing.Point(0, 469);
             this.panelSettings.Name = "panelSettings";
-            this.panelSettings.Size = new System.Drawing.Size(250, 554);
+            this.panelSettings.Size = new System.Drawing.Size(250, 599);
             this.panelSettings.TabIndex = 3;
             this.panelSettings.Visible = false;
             // 
@@ -185,9 +191,9 @@
             this.panelOfferings.Controls.Add(this.button10);
             this.panelOfferings.Controls.Add(this.button11);
             this.panelOfferings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelOfferings.Location = new System.Drawing.Point(0, 435);
+            this.panelOfferings.Location = new System.Drawing.Point(0, 467);
             this.panelOfferings.Name = "panelOfferings";
-            this.panelOfferings.Size = new System.Drawing.Size(250, 110);
+            this.panelOfferings.Size = new System.Drawing.Size(250, 115);
             this.panelOfferings.TabIndex = 4;
             this.panelOfferings.Visible = false;
             // 
@@ -249,7 +255,7 @@
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.Location = new System.Drawing.Point(0, 403);
+            this.button12.Location = new System.Drawing.Point(0, 435);
             this.button12.Name = "button12";
             this.button12.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
             this.button12.Size = new System.Drawing.Size(250, 32);
@@ -261,6 +267,7 @@
             // 
             // panelGeneral
             // 
+            this.panelGeneral.Controls.Add(this.button29);
             this.panelGeneral.Controls.Add(this.button28);
             this.panelGeneral.Controls.Add(this.button26);
             this.panelGeneral.Controls.Add(this.button25);
@@ -275,9 +282,43 @@
             this.panelGeneral.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelGeneral.Location = new System.Drawing.Point(0, 32);
             this.panelGeneral.Name = "panelGeneral";
-            this.panelGeneral.Size = new System.Drawing.Size(250, 371);
+            this.panelGeneral.Size = new System.Drawing.Size(250, 403);
             this.panelGeneral.TabIndex = 2;
             this.panelGeneral.Visible = false;
+            // 
+            // button29
+            // 
+            this.button29.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button29.FlatAppearance.BorderSize = 0;
+            this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button29.ForeColor = System.Drawing.Color.White;
+            this.button29.Location = new System.Drawing.Point(0, 352);
+            this.button29.Name = "button29";
+            this.button29.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button29.Size = new System.Drawing.Size(250, 32);
+            this.button29.TabIndex = 14;
+            this.button29.Text = "OR Number Setup";
+            this.button29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
+            // 
+            // button28
+            // 
+            this.button28.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button28.FlatAppearance.BorderSize = 0;
+            this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button28.ForeColor = System.Drawing.Color.White;
+            this.button28.Location = new System.Drawing.Point(0, 320);
+            this.button28.Name = "button28";
+            this.button28.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button28.Size = new System.Drawing.Size(250, 32);
+            this.button28.TabIndex = 13;
+            this.button28.Text = "Other Fees";
+            this.button28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
             // button26
             // 
@@ -473,7 +514,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(0, 315);
+            this.button6.Location = new System.Drawing.Point(0, 437);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.button6.Size = new System.Drawing.Size(250, 32);
@@ -485,6 +526,8 @@
             // 
             // panelTransactions
             // 
+            this.panelTransactions.Controls.Add(this.panelCollection);
+            this.panelTransactions.Controls.Add(this.button32);
             this.panelTransactions.Controls.Add(this.panelStudents);
             this.panelTransactions.Controls.Add(this.button22);
             this.panelTransactions.Controls.Add(this.panelStudentAdmission);
@@ -492,7 +535,7 @@
             this.panelTransactions.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTransactions.Location = new System.Drawing.Point(0, 32);
             this.panelTransactions.Name = "panelTransactions";
-            this.panelTransactions.Size = new System.Drawing.Size(250, 283);
+            this.panelTransactions.Size = new System.Drawing.Size(250, 405);
             this.panelTransactions.TabIndex = 1;
             this.panelTransactions.Visible = false;
             // 
@@ -504,7 +547,7 @@
             this.panelStudents.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelStudents.Location = new System.Drawing.Point(0, 144);
             this.panelStudents.Name = "panelStudents";
-            this.panelStudents.Size = new System.Drawing.Size(250, 122);
+            this.panelStudents.Size = new System.Drawing.Size(250, 116);
             this.panelStudents.TabIndex = 4;
             this.panelStudents.Visible = false;
             // 
@@ -679,23 +722,6 @@
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
-            // button28
-            // 
-            this.button28.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button28.FlatAppearance.BorderSize = 0;
-            this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button28.ForeColor = System.Drawing.Color.White;
-            this.button28.Location = new System.Drawing.Point(0, 320);
-            this.button28.Name = "button28";
-            this.button28.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
-            this.button28.Size = new System.Drawing.Size(250, 32);
-            this.button28.TabIndex = 13;
-            this.button28.Text = "Other Fees";
-            this.button28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button28.UseVisualStyleBackColor = true;
-            this.button28.Click += new System.EventHandler(this.button28_Click);
-            // 
             // panelTask
             // 
             this.panelTask.BackgroundImage = global::school_management_system_model.Properties.Resources.Untitled_design;
@@ -705,6 +731,66 @@
             this.panelTask.Name = "panelTask";
             this.panelTask.Size = new System.Drawing.Size(1103, 749);
             this.panelTask.TabIndex = 1;
+            // 
+            // panelCollection
+            // 
+            this.panelCollection.Controls.Add(this.button30);
+            this.panelCollection.Controls.Add(this.button31);
+            this.panelCollection.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelCollection.Location = new System.Drawing.Point(0, 292);
+            this.panelCollection.Name = "panelCollection";
+            this.panelCollection.Size = new System.Drawing.Size(250, 88);
+            this.panelCollection.TabIndex = 6;
+            this.panelCollection.Visible = false;
+            // 
+            // button30
+            // 
+            this.button30.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button30.FlatAppearance.BorderSize = 0;
+            this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button30.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button30.ForeColor = System.Drawing.Color.White;
+            this.button30.Location = new System.Drawing.Point(0, 32);
+            this.button30.Name = "button30";
+            this.button30.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button30.Size = new System.Drawing.Size(250, 32);
+            this.button30.TabIndex = 3;
+            this.button30.Text = "Statements Of Accounts";
+            this.button30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button30.UseVisualStyleBackColor = true;
+            // 
+            // button31
+            // 
+            this.button31.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button31.FlatAppearance.BorderSize = 0;
+            this.button31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button31.ForeColor = System.Drawing.Color.White;
+            this.button31.Location = new System.Drawing.Point(0, 0);
+            this.button31.Name = "button31";
+            this.button31.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button31.Size = new System.Drawing.Size(250, 32);
+            this.button31.TabIndex = 2;
+            this.button31.Text = "Fee Collection";
+            this.button31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button31.UseVisualStyleBackColor = true;
+            // 
+            // button32
+            // 
+            this.button32.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button32.FlatAppearance.BorderSize = 0;
+            this.button32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button32.ForeColor = System.Drawing.Color.White;
+            this.button32.Location = new System.Drawing.Point(0, 260);
+            this.button32.Name = "button32";
+            this.button32.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.button32.Size = new System.Drawing.Size(250, 32);
+            this.button32.TabIndex = 5;
+            this.button32.Text = "Collection";
+            this.button32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
             // main_form
             // 
@@ -757,6 +843,7 @@
             this.panelStudents.ResumeLayout(false);
             this.panelStudentAdmission.ResumeLayout(false);
             this.panelUser.ResumeLayout(false);
+            this.panelCollection.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -803,5 +890,10 @@
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.Button button29;
+        private System.Windows.Forms.Panel panelCollection;
+        private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.Button button32;
     }
 }

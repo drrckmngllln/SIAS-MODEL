@@ -131,6 +131,7 @@
     <Compile Include="Classes\SchoolYearSetup.cs" />
     <Compile Include="Classes\sections.cs" />
     <Compile Include="Classes\section_subject.cs" />
+    <Compile Include="Classes\StatementsOfAccounts.cs" />
     <Compile Include="Classes\StudentAccount.cs" />
     <Compile Include="Classes\StudentDiscount.cs" />
     <Compile Include="Classes\student_assessment.cs" />
@@ -227,6 +228,12 @@
     </Compile>
     <Compile Include="Forms\settings\frm_levels.Designer.cs">
       <DependentUpon>frm_levels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\frm_or_number_setup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\frm_or_number_setup.Designer.cs">
+      <DependentUpon>frm_or_number_setup.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\settings\frm_school_year.cs">
       <SubType>Form</SubType>
@@ -425,6 +432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\frm_levels.resx">
       <DependentUpon>frm_levels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\frm_or_number_setup.resx">
+      <DependentUpon>frm_or_number_setup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\frm_school_year.resx">
       <DependentUpon>frm_school_year.cs</DependentUpon>
