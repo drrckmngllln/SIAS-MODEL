@@ -196,6 +196,24 @@ REPLACE INTO `discount_setup` (`id`, `code`, `discount_target`, `description`, `
 	(4, 'Dean-Lister-25%', 'Tuition Fee', 'Dean Lister Discount', 25),
 	(5, 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75);
 
+-- Dumping structure for table model_test_db.fee_breakdown
+CREATE TABLE IF NOT EXISTS `fee_breakdown` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_number` varchar(100) DEFAULT NULL,
+  `prelim` decimal(20,2) DEFAULT NULL,
+  `midterm` decimal(20,2) DEFAULT NULL,
+  `semi_finals` decimal(20,2) DEFAULT NULL,
+  `finals` decimal(20,2) DEFAULT NULL,
+  `total` decimal(20,2) DEFAULT NULL,
+  `prelim_original` decimal(20,2) DEFAULT NULL,
+  `midterm_original` decimal(20,2) DEFAULT NULL,
+  `semi_finals_original` decimal(20,2) DEFAULT NULL,
+  `finals_original` decimal(20,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table model_test_db.fee_breakdown: ~0 rows (approximately)
+
 -- Dumping structure for table model_test_db.fee_type
 CREATE TABLE IF NOT EXISTS `fee_type` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
@@ -459,7 +477,7 @@ CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
   UNIQUE KEY `reference_no` (`reference_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.statements_of_accounts: ~3 rows (approximately)
+-- Dumping data for table model_test_db.statements_of_accounts: ~0 rows (approximately)
 REPLACE INTO `statements_of_accounts` (`id`, `id_number`, `date`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
 	(21, '2023-1-0002', '12-12-2023', 1000252, 'Total Assessment as of: 2023-2024-1', 9518.29, 0.00, 9518.29, ''),
 	(22, '2023-1-0002', '12-12-2023', 1000253, 'President Lister Discount', 9518.29, 5072.63, 4445.67, ''),
@@ -527,7 +545,7 @@ CREATE TABLE IF NOT EXISTS `student_course` (
   UNIQUE KEY `id_number` (`id_number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_course: ~2 rows (approximately)
+-- Dumping data for table model_test_db.student_course: ~0 rows (approximately)
 REPLACE INTO `student_course` (`id`, `id_number`, `course`, `campus`, `curriculum`, `year_level`, `section`, `semester`) VALUES
 	(77, '2023-1-0001', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
 	(78, '2023-1-0002', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '2');
