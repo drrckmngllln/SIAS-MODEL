@@ -40,9 +40,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tMiddlename = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.tGender = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.tCivilStatus = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tDateofBirth = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -56,6 +54,10 @@
             this.btnCreate = new Krypton.Toolkit.KryptonButton();
             this.btnCancel = new Krypton.Toolkit.KryptonButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cmbgender = new Krypton.Toolkit.KryptonComboBox();
+            this.cmbcivilstat = new Krypton.Toolkit.KryptonComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbgender)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbcivilstat)).BeginInit();
             this.SuspendLayout();
             // 
             // tTitle
@@ -177,14 +179,6 @@
             this.label7.TabIndex = 116;
             this.label7.Text = "Gender:";
             // 
-            // tGender
-            // 
-            this.tGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tGender.Location = new System.Drawing.Point(187, 219);
-            this.tGender.Name = "tGender";
-            this.tGender.Size = new System.Drawing.Size(303, 23);
-            this.tGender.TabIndex = 115;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -195,14 +189,6 @@
             this.label8.Size = new System.Drawing.Size(81, 17);
             this.label8.TabIndex = 118;
             this.label8.Text = "Civil Status:";
-            // 
-            // tCivilStatus
-            // 
-            this.tCivilStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tCivilStatus.Location = new System.Drawing.Point(187, 248);
-            this.tCivilStatus.Name = "tCivilStatus";
-            this.tCivilStatus.Size = new System.Drawing.Size(303, 23);
-            this.tCivilStatus.TabIndex = 117;
             // 
             // label9
             // 
@@ -354,12 +340,49 @@
             this.dateTimePicker1.TabIndex = 131;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
+            // cmbgender
+            // 
+            this.cmbgender.AutoCompleteCustomSource.AddRange(new string[] {
+            "Female",
+            "Male"});
+            this.cmbgender.CornerRoundingRadius = -1F;
+            this.cmbgender.DropDownWidth = 121;
+            this.cmbgender.IntegralHeight = false;
+            this.cmbgender.Items.AddRange(new object[] {
+            "Female",
+            "Male"});
+            this.cmbgender.Location = new System.Drawing.Point(187, 218);
+            this.cmbgender.Name = "cmbgender";
+            this.cmbgender.Size = new System.Drawing.Size(303, 21);
+            this.cmbgender.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.cmbgender.TabIndex = 132;
+            // 
+            // cmbcivilstat
+            // 
+            this.cmbcivilstat.AutoCompleteCustomSource.AddRange(new string[] {
+            "Female",
+            "Male"});
+            this.cmbcivilstat.CornerRoundingRadius = -1F;
+            this.cmbcivilstat.DropDownWidth = 121;
+            this.cmbcivilstat.IntegralHeight = false;
+            this.cmbcivilstat.Items.AddRange(new object[] {
+            "Single",
+            "Married",
+            "Widowed"});
+            this.cmbcivilstat.Location = new System.Drawing.Point(187, 247);
+            this.cmbcivilstat.Name = "cmbcivilstat";
+            this.cmbcivilstat.Size = new System.Drawing.Size(303, 21);
+            this.cmbcivilstat.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.cmbcivilstat.TabIndex = 133;
+            // 
             // frm_create_account
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(561, 512);
+            this.Controls.Add(this.cmbcivilstat);
+            this.Controls.Add(this.cmbgender);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreate);
@@ -374,9 +397,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.tDateofBirth);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.tCivilStatus);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.tGender);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tMiddlename);
             this.Controls.Add(this.label5);
@@ -400,6 +421,8 @@
             this.Text = "frm_create_account";
             this.Load += new System.EventHandler(this.frm_create_account_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_create_account_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.cmbgender)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbcivilstat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,9 +442,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tMiddlename;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tGender;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tCivilStatus;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tDateofBirth;
         private System.Windows.Forms.Label label10;
@@ -435,5 +456,7 @@
         private Krypton.Toolkit.KryptonButton btnCreate;
         private Krypton.Toolkit.KryptonButton btnCancel;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private Krypton.Toolkit.KryptonComboBox cmbgender;
+        private Krypton.Toolkit.KryptonComboBox cmbcivilstat;
     }
 }
