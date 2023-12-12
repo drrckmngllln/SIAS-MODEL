@@ -43,8 +43,8 @@ namespace school_management_system_model.Forms.transactions
                 tLastname.Text = data.Rows[0]["last_name"].ToString();
                 tFirstname.Text = data.Rows[0]["first_name"].ToString();
                 tMiddlename.Text = data.Rows[0]["middle_name"].ToString();
-                tGender.Text = data.Rows[0]["gender"].ToString();
-                tCivilStatus.Text = data.Rows[0]["civil_status"].ToString();
+                cmbgender.Text = data.Rows[0]["gender"].ToString();
+                cmbcivilstat.Text = data.Rows[0]["civil_status"].ToString();
                 tDateofBirth.Text = data.Rows[0]["date_of_birth"].ToString();
                 tPlaceofBirth.Text =data.Rows[0]["place_of_birth"].ToString();
                 tNationality.Text = data.Rows[0]["nationality"].ToString();
@@ -108,8 +108,8 @@ namespace school_management_system_model.Forms.transactions
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
                         middle_name = tMiddlename.Text,
-                        gender = tGender.Text,
-                        civil_status = tCivilStatus.Text,
+                        gender = cmbgender.Text,
+                        civil_status = cmbcivilstat.Text,
                         date_of_birth = tDateofBirth.Text,
                         place_of_birth = tPlaceofBirth.Text,
                         nationality = tNationality.Text,
@@ -134,8 +134,8 @@ namespace school_management_system_model.Forms.transactions
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
                         middle_name = tMiddlename.Text,
-                        gender = tGender.Text,
-                        civil_status = tCivilStatus.Text,
+                        gender = cmbgender.Text,
+                        civil_status = cmbcivilstat.Text,
                         date_of_birth = tDateofBirth.Text,
                         place_of_birth = tPlaceofBirth.Text,
                         nationality = tNationality.Text,
@@ -181,5 +181,7 @@ namespace school_management_system_model.Forms.transactions
         {
             Close();
         }
+
+       
     }
 }
