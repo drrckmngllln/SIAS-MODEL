@@ -123,6 +123,7 @@
     <Compile Include="Classes\course_fees.cs" />
     <Compile Include="Classes\Curriculums.cs" />
     <Compile Include="Classes\DiscountSetup.cs" />
+    <Compile Include="Classes\FeeCollection.cs" />
     <Compile Include="Classes\Instructors.cs" />
     <Compile Include="Classes\LabFeeSetup.cs" />
     <Compile Include="Classes\MiscellaneousFeeSetup.cs" />

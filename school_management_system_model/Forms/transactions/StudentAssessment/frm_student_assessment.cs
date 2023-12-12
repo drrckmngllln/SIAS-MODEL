@@ -444,7 +444,20 @@ namespace school_management_system_model.Forms.transactions
             // Saving to Statements of Accounts
             saveStatementsOfAccounts();
 
+            // Saving Fee Breakdown
+
+
             MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void saveFeeBreakDown()
+        {
+            decimal total = totalFee;
+            decimal downpayment = total * (decimal)0.20;
+            decimal prelim = total * (decimal)0.20;
+            decimal midterm = total * (decimal)0.20;
+            decimal semiFinal = total * (decimal)0.20;
+            decimal finals = total * (decimal)0.20;
         }
 
         private void saveStatementsOfAccounts()

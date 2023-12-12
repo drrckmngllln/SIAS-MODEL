@@ -28,37 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tDownpayment = new System.Windows.Forms.Label();
-            this.tPrelims = new System.Windows.Forms.Label();
-            this.tMidterms = new System.Windows.Forms.Label();
-            this.tSemiFinals = new System.Windows.Forms.Label();
             this.tFinals = new System.Windows.Forms.Label();
+            this.tSemiFinals = new System.Windows.Forms.Label();
+            this.tMidterms = new System.Windows.Forms.Label();
+            this.tPrelims = new System.Windows.Forms.Label();
+            this.tDownpayment = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tAmount = new System.Windows.Forms.TextBox();
             this.btnConfirmPayment = new Krypton.Toolkit.KryptonButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tCourse = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tStudentName = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tSearch = new Krypton.Toolkit.KryptonButton();
+            this.tIdNumber = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tPrint = new Krypton.Toolkit.KryptonButton();
             this.label14 = new System.Windows.Forms.Label();
             this.tTerm = new System.Windows.Forms.ComboBox();
             this.tParticulars = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.tIdNumber = new System.Windows.Forms.TextBox();
-            this.tSearch = new Krypton.Toolkit.KryptonButton();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tStudentName = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.tCourse = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -88,14 +88,14 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(6, 19);
             this.dgv.Name = "dgv";
@@ -139,85 +139,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fee Breakdown";
             // 
-            // label2
+            // tFinals
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 20);
-            this.label2.TabIndex = 160;
-            this.label2.Text = "Downpayment:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 20);
-            this.label3.TabIndex = 161;
-            this.label3.Text = "Prelims:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 106);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 20);
-            this.label4.TabIndex = 162;
-            this.label4.Text = "Midterms:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 142);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 20);
-            this.label5.TabIndex = 163;
-            this.label5.Text = "Semi-Finals:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 183);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 20);
-            this.label6.TabIndex = 164;
-            this.label6.Text = "Finals";
-            // 
-            // tDownpayment
-            // 
-            this.tDownpayment.AutoSize = true;
-            this.tDownpayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tDownpayment.Location = new System.Drawing.Point(164, 33);
-            this.tDownpayment.Name = "tDownpayment";
-            this.tDownpayment.Size = new System.Drawing.Size(24, 20);
-            this.tDownpayment.TabIndex = 165;
-            this.tDownpayment.Text = "...";
-            // 
-            // tPrelims
-            // 
-            this.tPrelims.AutoSize = true;
-            this.tPrelims.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tPrelims.Location = new System.Drawing.Point(164, 69);
-            this.tPrelims.Name = "tPrelims";
-            this.tPrelims.Size = new System.Drawing.Size(24, 20);
-            this.tPrelims.TabIndex = 166;
-            this.tPrelims.Text = "...";
-            // 
-            // tMidterms
-            // 
-            this.tMidterms.AutoSize = true;
-            this.tMidterms.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tMidterms.Location = new System.Drawing.Point(164, 106);
-            this.tMidterms.Name = "tMidterms";
-            this.tMidterms.Size = new System.Drawing.Size(24, 20);
-            this.tMidterms.TabIndex = 167;
-            this.tMidterms.Text = "...";
+            this.tFinals.AutoSize = true;
+            this.tFinals.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tFinals.Location = new System.Drawing.Point(164, 183);
+            this.tFinals.Name = "tFinals";
+            this.tFinals.Size = new System.Drawing.Size(24, 20);
+            this.tFinals.TabIndex = 169;
+            this.tFinals.Text = "...";
             // 
             // tSemiFinals
             // 
@@ -229,15 +159,85 @@
             this.tSemiFinals.TabIndex = 168;
             this.tSemiFinals.Text = "...";
             // 
-            // tFinals
+            // tMidterms
             // 
-            this.tFinals.AutoSize = true;
-            this.tFinals.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tFinals.Location = new System.Drawing.Point(164, 183);
-            this.tFinals.Name = "tFinals";
-            this.tFinals.Size = new System.Drawing.Size(24, 20);
-            this.tFinals.TabIndex = 169;
-            this.tFinals.Text = "...";
+            this.tMidterms.AutoSize = true;
+            this.tMidterms.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tMidterms.Location = new System.Drawing.Point(164, 106);
+            this.tMidterms.Name = "tMidterms";
+            this.tMidterms.Size = new System.Drawing.Size(24, 20);
+            this.tMidterms.TabIndex = 167;
+            this.tMidterms.Text = "...";
+            // 
+            // tPrelims
+            // 
+            this.tPrelims.AutoSize = true;
+            this.tPrelims.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPrelims.Location = new System.Drawing.Point(164, 69);
+            this.tPrelims.Name = "tPrelims";
+            this.tPrelims.Size = new System.Drawing.Size(24, 20);
+            this.tPrelims.TabIndex = 166;
+            this.tPrelims.Text = "...";
+            // 
+            // tDownpayment
+            // 
+            this.tDownpayment.AutoSize = true;
+            this.tDownpayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tDownpayment.Location = new System.Drawing.Point(164, 33);
+            this.tDownpayment.Name = "tDownpayment";
+            this.tDownpayment.Size = new System.Drawing.Size(24, 20);
+            this.tDownpayment.TabIndex = 165;
+            this.tDownpayment.Text = "...";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 183);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 20);
+            this.label6.TabIndex = 164;
+            this.label6.Text = "Finals";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 142);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 20);
+            this.label5.TabIndex = 163;
+            this.label5.Text = "Semi-Finals:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 20);
+            this.label4.TabIndex = 162;
+            this.label4.Text = "Midterms:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 20);
+            this.label3.TabIndex = 161;
+            this.label3.Text = "Prelims:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 20);
+            this.label2.TabIndex = 160;
+            this.label2.Text = "Downpayment:";
             // 
             // label12
             // 
@@ -295,6 +295,72 @@
             this.groupBox3.TabIndex = 173;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Student Information";
+            // 
+            // tCourse
+            // 
+            this.tCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tCourse.Location = new System.Drawing.Point(128, 95);
+            this.tCourse.Name = "tCourse";
+            this.tCourse.Size = new System.Drawing.Size(268, 20);
+            this.tCourse.TabIndex = 184;
+            this.tCourse.Text = "...";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(6, 95);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(64, 20);
+            this.label18.TabIndex = 183;
+            this.label18.Text = "Course:";
+            // 
+            // tStudentName
+            // 
+            this.tStudentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStudentName.Location = new System.Drawing.Point(128, 56);
+            this.tStudentName.Name = "tStudentName";
+            this.tStudentName.Size = new System.Drawing.Size(268, 20);
+            this.tStudentName.TabIndex = 182;
+            this.tStudentName.Text = "...";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(6, 56);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(116, 20);
+            this.label16.TabIndex = 181;
+            this.label16.Text = "Student Name:";
+            // 
+            // tSearch
+            // 
+            this.tSearch.CornerRoundingRadius = 10F;
+            this.tSearch.Location = new System.Drawing.Point(313, 19);
+            this.tSearch.Name = "tSearch";
+            this.tSearch.Size = new System.Drawing.Size(83, 26);
+            this.tSearch.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
+            this.tSearch.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.tSearch.StateCommon.Border.Color1 = System.Drawing.Color.DarkBlue;
+            this.tSearch.StateCommon.Border.Color2 = System.Drawing.Color.DarkBlue;
+            this.tSearch.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.tSearch.StateCommon.Border.Rounding = 10F;
+            this.tSearch.StateCommon.Border.Width = 2;
+            this.tSearch.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSearch.TabIndex = 180;
+            this.tSearch.Values.Text = "Search";
+            this.tSearch.Click += new System.EventHandler(this.tSearch_Click);
+            // 
+            // tIdNumber
+            // 
+            this.tIdNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tIdNumber.Location = new System.Drawing.Point(102, 19);
+            this.tIdNumber.Name = "tIdNumber";
+            this.tIdNumber.Size = new System.Drawing.Size(205, 26);
+            this.tIdNumber.TabIndex = 179;
             // 
             // label13
             // 
@@ -359,7 +425,6 @@
             this.tParticulars.Name = "tParticulars";
             this.tParticulars.Size = new System.Drawing.Size(320, 95);
             this.tParticulars.TabIndex = 178;
-            this.tParticulars.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label15
             // 
@@ -370,71 +435,6 @@
             this.label15.Size = new System.Drawing.Size(87, 20);
             this.label15.TabIndex = 177;
             this.label15.Text = "Particulars:";
-            // 
-            // tIdNumber
-            // 
-            this.tIdNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tIdNumber.Location = new System.Drawing.Point(102, 19);
-            this.tIdNumber.Name = "tIdNumber";
-            this.tIdNumber.Size = new System.Drawing.Size(205, 26);
-            this.tIdNumber.TabIndex = 179;
-            // 
-            // tSearch
-            // 
-            this.tSearch.CornerRoundingRadius = 10F;
-            this.tSearch.Location = new System.Drawing.Point(313, 19);
-            this.tSearch.Name = "tSearch";
-            this.tSearch.Size = new System.Drawing.Size(83, 26);
-            this.tSearch.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.tSearch.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.tSearch.StateCommon.Border.Color1 = System.Drawing.Color.DarkBlue;
-            this.tSearch.StateCommon.Border.Color2 = System.Drawing.Color.DarkBlue;
-            this.tSearch.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.tSearch.StateCommon.Border.Rounding = 10F;
-            this.tSearch.StateCommon.Border.Width = 2;
-            this.tSearch.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tSearch.TabIndex = 180;
-            this.tSearch.Values.Text = "Search";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(6, 56);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(116, 20);
-            this.label16.TabIndex = 181;
-            this.label16.Text = "Student Name:";
-            // 
-            // tStudentName
-            // 
-            this.tStudentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStudentName.Location = new System.Drawing.Point(128, 56);
-            this.tStudentName.Name = "tStudentName";
-            this.tStudentName.Size = new System.Drawing.Size(268, 20);
-            this.tStudentName.TabIndex = 182;
-            this.tStudentName.Text = "...";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(6, 95);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(64, 20);
-            this.label18.TabIndex = 183;
-            this.label18.Text = "Course:";
-            // 
-            // tCourse
-            // 
-            this.tCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tCourse.Location = new System.Drawing.Point(128, 95);
-            this.tCourse.Name = "tCourse";
-            this.tCourse.Size = new System.Drawing.Size(268, 20);
-            this.tCourse.TabIndex = 184;
-            this.tCourse.Text = "...";
             // 
             // frm_fee_collection
             // 
