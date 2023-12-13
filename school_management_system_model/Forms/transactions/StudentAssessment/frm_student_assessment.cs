@@ -371,6 +371,8 @@ namespace school_management_system_model.Forms.transactions
                     }
                 }
                 loadDiscounts();
+
+                FeeBreakDown();
             }
         }
 
@@ -445,19 +447,46 @@ namespace school_management_system_model.Forms.transactions
             saveStatementsOfAccounts();
 
             // Saving Fee Breakdown
-
+            saveFeeBreakdown();
 
             MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void saveFeeBreakDown()
+        private void saveFeeBreakdown()
         {
-            decimal total = totalFee;
-            decimal downpayment = total * (decimal)0.20;
-            decimal prelim = total * (decimal)0.20;
-            decimal midterm = total * (decimal)0.20;
-            decimal semiFinal = total * (decimal)0.20;
-            decimal finals = total * (decimal)0.20;
+            var add = new FeeBreakdown
+            {
+                prelim = Convert.ToDecimal(tPrelims.Text),
+                downpayment = Convert.ToDecimal(tDownpayment.Text),
+                midterms = Convert.ToDecimal(tMidterms.Text),
+                semi_finals = Convert.ToDecimal(tSemiFinals.Text),
+                finals = Convert.ToDecimal(tFinals.Text),
+                total = Convert.ToDecimal(tDownpayment.Text) + Convert.ToDecimal(tPrelims.Text) + Convert.ToDecimal(tMidterms.Text) + Convert.ToDecimal(tSemiFinals.Text) + Convert.ToDecimal(tFinals.Text)
+            };
+            add.saveRecords(tIdNumber.Text);
+        }
+
+        private void FeeBreakDown()
+        {
+            
+            decimal total = 0;
+            foreach(DataGridViewRow row in dgv.Rows)
+            {
+                total += (decimal)row.Cells["computation"].Value;
+            }
+            total -= totalDiscount;
+
+            decimal downpayment = total * Convert.ToDecimal(0.20);
+            decimal prelim = total * Convert.ToDecimal(0.20);
+            decimal midterm = total * Convert.ToDecimal(0.20);
+            decimal semiFinal = total * Convert.ToDecimal(0.20);
+            decimal finals = total * Convert.ToDecimal(0.20);
+
+            tDownpayment.Text = downpayment.ToString();
+            tPrelims.Text = prelim.ToString();
+            tMidterms.Text = midterm.ToString();
+            tSemiFinals.Text = semiFinal.ToString();
+            tFinals.Text = finals.ToString();
         }
 
         private void saveStatementsOfAccounts()
@@ -465,11 +494,12 @@ namespace school_management_system_model.Forms.transactions
             var data = new StatementsOfAccounts
             {
                 id_number = tIdNumber.Text,
+                school_year = tSchoolYear.Text,
                 particulars = "Total Assessment as of: " + tSchoolYear.Text,
                 debit = Convert.ToDecimal(tTotal.Text),
                 credit = 0,
                 balance = Convert.ToDecimal(tTotal.Text),
-                cashier_in_charge = ""
+                cashier_in_charge = "",
             };
             data.saveStatementOfAccount(tIdNumber.Text);
             var discounts = new student_assessment();
@@ -568,7 +598,10 @@ namespace school_management_system_model.Forms.transactions
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            saveAssessment();
+            if (MessageBox.Show("Are you sure you want to save this assessment?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                saveAssessment();
+            }
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
