@@ -200,19 +200,25 @@ REPLACE INTO `discount_setup` (`id`, `code`, `discount_target`, `description`, `
 CREATE TABLE IF NOT EXISTS `fee_breakdown` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `id_number` varchar(100) DEFAULT NULL,
+  `school_year` varchar(100) DEFAULT NULL,
+  `downpayment` decimal(20,2) DEFAULT NULL,
   `prelim` decimal(20,2) DEFAULT NULL,
   `midterm` decimal(20,2) DEFAULT NULL,
   `semi_finals` decimal(20,2) DEFAULT NULL,
   `finals` decimal(20,2) DEFAULT NULL,
   `total` decimal(20,2) DEFAULT NULL,
+  `downpayment_original` decimal(20,2) DEFAULT NULL,
   `prelim_original` decimal(20,2) DEFAULT NULL,
   `midterm_original` decimal(20,2) DEFAULT NULL,
   `semi_finals_original` decimal(20,2) DEFAULT NULL,
   `finals_original` decimal(20,2) DEFAULT NULL,
+  `total_original` decimal(20,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.fee_breakdown: ~0 rows (approximately)
+-- Dumping data for table model_test_db.fee_breakdown: ~1 rows (approximately)
+REPLACE INTO `fee_breakdown` (`id`, `id_number`, `school_year`, `downpayment`, `prelim`, `midterm`, `semi_finals`, `finals`, `total`, `downpayment_original`, `prelim_original`, `midterm_original`, `semi_finals_original`, `finals_original`, `total_original`) VALUES
+	(3, '2023-1-0004', '2023-2024-1', 1738.46, 1738.46, 1738.46, 1738.46, 1738.46, 8692.29, 1738.46, 1738.46, 1738.46, 1738.46, 1738.46, 8692.29);
 
 -- Dumping structure for table model_test_db.fee_type
 CREATE TABLE IF NOT EXISTS `fee_type` (
@@ -268,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `lab_fee_subjects` (
   UNIQUE KEY `subject_code` (`subject_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.lab_fee_subjects: ~1 rows (approximately)
+-- Dumping data for table model_test_db.lab_fee_subjects: ~0 rows (approximately)
 REPLACE INTO `lab_fee_subjects` (`id`, `lab_fee_id`, `subject_code`, `descriptive_title`) VALUES
 	(2, 6, 'GEC 7', 'Science, Technology and Society');
 
@@ -319,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `other_fees` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.other_fees: ~0 rows (approximately)
+-- Dumping data for table model_test_db.other_fees: ~2 rows (approximately)
 REPLACE INTO `other_fees` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(1, 'Other Fees', 'Student Information and Accounting Systems', 'ISAP', '652.15', '652.15', '652.15', '652.15'),
 	(2, 'Other Fees', 'Learning Management System', 'ISAP', '652.15', '652.15', '652.15', '652.15');
@@ -333,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `reference_number_setup` (
 
 -- Dumping data for table model_test_db.reference_number_setup: ~0 rows (approximately)
 REPLACE INTO `reference_number_setup` (`id`, `reference_number`) VALUES
-	(1, 1000254);
+	(1, 1000264);
 
 -- Dumping structure for table model_test_db.school_year
 CREATE TABLE IF NOT EXISTS `school_year` (
@@ -369,11 +375,11 @@ CREATE TABLE IF NOT EXISTS `sections` (
   UNIQUE KEY `unique_id` (`unique_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.sections: ~7 rows (approximately)
+-- Dumping data for table model_test_db.sections: ~8 rows (approximately)
 REPLACE INTO `sections` (`id`, `unique_id`, `section_code`, `course`, `year_level`, `section`, `semester`, `number_of_students`, `max_number_of_students`, `status`, `remarks`) VALUES
-	(33, 'BSCA-1-ABSCA11', 'BSCA-1-A', 'BSCA', '1', 'A', '1', 1, 50, 'Available', 'Regular'),
+	(33, 'BSCA-1-ABSCA11', 'BSCA-1-A', 'BSCA', '1', 'A', '1', 2, 50, 'Available', 'Regular'),
 	(34, 'BSCA-2-ABSCA21', 'BSCA-2-A', 'BSCA', '2', 'A', '1', 0, 50, 'Available', 'Regular'),
-	(35, 'BSCA-1-ABSCA12', 'BSCA-1-A', 'BSCA', '1', 'A', '2', 1, 50, 'Available', 'Regular'),
+	(35, 'BSCA-1-ABSCA12', 'BSCA-1-A', 'BSCA', '1', 'A', '2', 2, 50, 'Available', 'Regular'),
 	(36, 'BSCA-2-ABSCA22', 'BSCA-2-A', 'BSCA', '2', 'A', '2', 0, 50, 'Available', 'Regular'),
 	(37, 'BSCA-3-ABSCA31', 'BSCA-3-A', 'BSCA', '3', 'A', '1', 0, 50, 'Available', 'Regular'),
 	(38, 'BSCA-3-ABSCA32', 'BSCA-3-A', 'BSCA', '3', 'A', '2', 0, 50, 'Available', 'Regular'),
@@ -466,6 +472,7 @@ REPLACE INTO `section_subjects` (`id`, `unique_id`, `section_code`, `curriculum`
 CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `id_number` varchar(50) NOT NULL,
+  `school_year` varchar(50) NOT NULL,
   `date` varchar(50) NOT NULL,
   `reference_no` int NOT NULL DEFAULT '0',
   `particulars` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -475,13 +482,16 @@ CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
   `cashier_in_charge` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `reference_no` (`reference_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.statements_of_accounts: ~0 rows (approximately)
-REPLACE INTO `statements_of_accounts` (`id`, `id_number`, `date`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
-	(21, '2023-1-0002', '12-12-2023', 1000252, 'Total Assessment as of: 2023-2024-1', 9518.29, 0.00, 9518.29, ''),
-	(22, '2023-1-0002', '12-12-2023', 1000253, 'President Lister Discount', 9518.29, 5072.63, 4445.67, ''),
-	(23, '2023-1-0002', '12-12-2023', 1000254, 'Dean Lister Discount', 4445.67, 1690.88, 2754.80, '');
+-- Dumping data for table model_test_db.statements_of_accounts: ~3 rows (approximately)
+REPLACE INTO `statements_of_accounts` (`id`, `id_number`, `school_year`, `date`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
+	(24, '2023-1-0002', '', '12-13-2023', 1000255, 'Total Assessment as of: 2023-2024-1', 9518.29, 0.00, 9518.29, ''),
+	(25, '2023-1-0002', '', '12-13-2023', 1000256, 'President Lister Discount', 9518.29, 5072.63, 4445.67, ''),
+	(26, '2023-1-0002', '', '12-13-2023', 1000257, 'Dean Lister Discount', 4445.67, 1690.88, 2754.80, ''),
+	(27, '2023-1-0003', '', '12-13-2023', 1000258, 'Total Assessment as of: 2023-2024-1', 9518.29, 0.00, 9518.29, ''),
+	(28, '2023-1-0003', '', '12-13-2023', 1000259, 'President Lister Discount', 9518.29, 5072.63, 4445.67, ''),
+	(33, '2023-1-0004', '', '12-13-2023', 1000264, 'Total Assessment as of: 2023-2024-1', 8692.29, 0.00, 8692.29, '');
 
 -- Dumping structure for table model_test_db.student_accounts
 CREATE TABLE IF NOT EXISTS `student_accounts` (
@@ -503,12 +513,14 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number`),
   UNIQUE KEY `fullname` (`fullname`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_accounts: ~0 rows (approximately)
+-- Dumping data for table model_test_db.student_accounts: ~2 rows (approximately)
 REPLACE INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`) VALUES
 	(96, '2023-1-0001', '2023-2024-1', '2023-2024-1', 'MANGLALLAN, DERRICK DANIEL', 'MANGLALLAN', 'DERRICK', 'DANIEL', 'MALE', 'SINGLE', '12-05-2023', 'TUGUEGARAO, CAGAYAN', 'FILIPINO', 'ROMAN CATHOLIC', 'Accounting'),
-	(97, '2023-1-0002', '2023-2024-1', '2023-2024-1', 'Pingad, Airon Jim', 'Pingad', 'Airon', 'Jim', '', '', '', '', '', '', 'Accounting');
+	(97, '2023-1-0002', '2023-2024-1', '2023-2024-1', 'Pingad, Airon Jim', 'Pingad', 'Airon', 'Jim', '', '', '', '', '', '', 'Accounting'),
+	(98, '2023-1-0003', '2023-2024-1', '2023-2024-1', 'Go, Chong ke', 'Go', 'Chong', 'ke', '', '', '', '', '', '', 'Accounting'),
+	(99, '2023-1-0004', '2023-2024-1', '2023-2024-1', 'Buguina, Melenio M', 'Buguina', 'Melenio', 'M', 'Male', 'Married', '12-05-2023', '', '', '', 'Accounting');
 
 -- Dumping structure for table model_test_db.student_assessment
 CREATE TABLE IF NOT EXISTS `student_assessment` (
@@ -520,16 +532,21 @@ CREATE TABLE IF NOT EXISTS `student_assessment` (
   `units` varchar(50) NOT NULL DEFAULT '0',
   `computation` decimal(20,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_assessment: ~0 rows (approximately)
+-- Dumping data for table model_test_db.student_assessment: ~6 rows (approximately)
 REPLACE INTO `student_assessment` (`id`, `id_number`, `school_year`, `fee_type`, `amount`, `units`, `computation`) VALUES
-	(121, '2023-1-0002', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '27', 6763.50),
-	(122, '2023-1-0002', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
-	(123, '2023-1-0002', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
-	(124, '2023-1-0002', '2023-2024-1', 'PHYSICS LAB', 450.25, '1', 450.25),
-	(125, '2023-1-0002', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
-	(126, '2023-1-0002', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15);
+	(127, '2023-1-0002', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '27', 6763.50),
+	(128, '2023-1-0002', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
+	(129, '2023-1-0002', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
+	(130, '2023-1-0002', '2023-2024-1', 'PHYSICS LAB', 450.25, '1', 450.25),
+	(131, '2023-1-0002', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
+	(132, '2023-1-0002', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15),
+	(159, '2023-1-0004', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '26', 6387.75),
+	(160, '2023-1-0004', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
+	(161, '2023-1-0004', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
+	(162, '2023-1-0004', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
+	(163, '2023-1-0004', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15);
 
 -- Dumping structure for table model_test_db.student_course
 CREATE TABLE IF NOT EXISTS `student_course` (
@@ -543,12 +560,14 @@ CREATE TABLE IF NOT EXISTS `student_course` (
   `semester` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_course: ~0 rows (approximately)
+-- Dumping data for table model_test_db.student_course: ~2 rows (approximately)
 REPLACE INTO `student_course` (`id`, `id_number`, `course`, `campus`, `curriculum`, `year_level`, `section`, `semester`) VALUES
 	(77, '2023-1-0001', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
-	(78, '2023-1-0002', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '2');
+	(78, '2023-1-0002', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '2'),
+	(79, '2023-1-0003', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '2'),
+	(80, '2023-1-0004', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1');
 
 -- Dumping structure for table model_test_db.student_discounts
 CREATE TABLE IF NOT EXISTS `student_discounts` (
@@ -559,13 +578,14 @@ CREATE TABLE IF NOT EXISTS `student_discounts` (
   `description` varchar(50) NOT NULL,
   `discount_percentage` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_discounts: ~2 rows (approximately)
+-- Dumping data for table model_test_db.student_discounts: ~3 rows (approximately)
 REPLACE INTO `student_discounts` (`id`, `id_number`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
 	(15, '2023-1-0002', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75),
 	(16, '2023-1-0002', 'Dean-Lister-25%', 'Tuition Fee', 'Dean Lister Discount', 25),
-	(17, '2023-1-0001', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75);
+	(17, '2023-1-0001', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75),
+	(18, '2023-1-0003', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75);
 
 -- Dumping structure for table model_test_db.student_documents
 CREATE TABLE IF NOT EXISTS `student_documents` (
@@ -598,7 +618,7 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   `remarks` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`unique_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=469 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=489 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_subjects: ~20 rows (approximately)
 REPLACE INTO `student_subjects` (`id`, `id_number`, `unique_id`, `school_year`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor`, `grade`, `remarks`) VALUES
@@ -621,7 +641,27 @@ REPLACE INTO `student_subjects` (`id`, `id_number`, `unique_id`, `school_year`, 
 	(465, '2023-1-0002', '2023-1-0002-2023-2-ECON 101', '2023-2024-1', 'ECON 101', 'International Economics', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
 	(466, '2023-1-0002', '2023-1-0002-2023-2-PE 102', '2023-2024-1', 'PE 102', 'Physical Education 2 (Gymnastics)', 'PE 1', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
 	(467, '2023-1-0002', '2023-1-0002-2023-2-NSTP 2', '2023-2024-1', 'NSTP 2', 'National Service Training Program 2', 'NSTP 1', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(468, '2023-1-0002', '2023-1-0002-2023-2-MSCED 202', '2023-2024-1', 'MSCED 202', 'Advisorship Time', 'MSCED 201', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending');
+	(468, '2023-1-0002', '2023-1-0002-2023-2-MSCED 202', '2023-2024-1', 'MSCED 202', 'Advisorship Time', 'MSCED 201', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(469, '2023-1-0003', '2023-1-0003-2023-2-GEC 6', '2023-2024-1', 'GEC 6', 'Art Apreciation', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(470, '2023-1-0003', '2023-1-0003-2023-2-GEC 7', '2023-2024-1', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(471, '2023-1-0003', '2023-1-0003-2023-2-SCM 101', '2023-2024-1', 'SCM 101', 'Introduction to Supply Chain Management', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(472, '2023-1-0003', '2023-1-0003-2023-2-CM 101', '2023-2024-1', 'CM 101', 'Border Control and Security', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(473, '2023-1-0003', '2023-1-0003-2023-2-TM 101', '2023-2024-1', 'TM 101', 'Fundamentals of Customs and Tariff Management', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(474, '2023-1-0003', '2023-1-0003-2023-2-GEC 8', '2023-2024-1', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(475, '2023-1-0003', '2023-1-0003-2023-2-ECON 101', '2023-2024-1', 'ECON 101', 'International Economics', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(476, '2023-1-0003', '2023-1-0003-2023-2-PE 102', '2023-2024-1', 'PE 102', 'Physical Education 2 (Gymnastics)', 'PE 1', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(477, '2023-1-0003', '2023-1-0003-2023-2-NSTP 2', '2023-2024-1', 'NSTP 2', 'National Service Training Program 2', 'NSTP 1', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(478, '2023-1-0003', '2023-1-0003-2023-2-MSCED 202', '2023-2024-1', 'MSCED 202', 'Advisorship Time', 'MSCED 201', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(479, '2023-1-0004', '2023-1-0004-2023-1-GEC 1', '2023-2024-1', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(480, '2023-1-0004', '2023-1-0004-2023-1-GEC 2', '2023-2024-1', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(481, '2023-1-0004', '2023-1-0004-2023-1-GEC 3', '2023-2024-1', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(482, '2023-1-0004', '2023-1-0004-2023-1-GEC 4', '2023-2024-1', 'GEC 4', 'Mathematics in the Modern World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(483, '2023-1-0004', '2023-1-0004-2023-1-SBEC 100', '2023-2024-1', 'SBEC 100', 'International Trade', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(484, '2023-1-0004', '2023-1-0004-2023-1-GEC 5', '2023-2024-1', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(485, '2023-1-0004', '2023-1-0004-2023-1-PE 101', '2023-2024-1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 'None', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(486, '2023-1-0004', '2023-1-0004-2023-1-NSTP 1', '2023-2024-1', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(487, '2023-1-0004', '2023-1-0004-2023-1-ETHICS 100', '2023-2024-1', 'ETHICS 100', 'ISAPian Education with Values Formation', 'None', '1.5', '1.5', '0.0', '', '', '', '', 0, 'Pending'),
+	(488, '2023-1-0004', '2023-1-0004-2023-1-MSCED 201', '2023-2024-1', 'MSCED 201', 'Advisorship Time', 'None', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending');
 
 -- Dumping structure for table model_test_db.subjects
 CREATE TABLE IF NOT EXISTS `subjects` (
