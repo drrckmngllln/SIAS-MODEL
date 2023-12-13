@@ -67,6 +67,17 @@
             this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.discountTotal = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tDownpayment = new System.Windows.Forms.Label();
+            this.tPrelims = new System.Windows.Forms.Label();
+            this.tMidterms = new System.Windows.Forms.Label();
+            this.tSemiFinals = new System.Windows.Forms.Label();
+            this.tFinals = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,6 +86,7 @@
             this.groupBox5.SuspendLayout();
             this.kajshdk.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonButton1
@@ -307,9 +319,9 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.tTotal);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(32, 591);
+            this.groupBox2.Location = new System.Drawing.Point(16, 591);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(333, 92);
+            this.groupBox2.Size = new System.Drawing.Size(346, 137);
             this.groupBox2.TabIndex = 139;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Total Assessment";
@@ -317,10 +329,10 @@
             // tTotal
             // 
             this.tTotal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tTotal.Location = new System.Drawing.Point(3, 22);
             this.tTotal.Name = "tTotal";
-            this.tTotal.Size = new System.Drawing.Size(327, 67);
+            this.tTotal.Size = new System.Drawing.Size(340, 112);
             this.tTotal.TabIndex = 0;
             this.tTotal.Text = "00000.00";
             this.tTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -520,11 +532,138 @@
             this.discountTotal.Text = "00000.00";
             this.discountTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox7.Controls.Add(this.tFinals);
+            this.groupBox7.Controls.Add(this.tSemiFinals);
+            this.groupBox7.Controls.Add(this.tMidterms);
+            this.groupBox7.Controls.Add(this.tPrelims);
+            this.groupBox7.Controls.Add(this.tDownpayment);
+            this.groupBox7.Controls.Add(this.label13);
+            this.groupBox7.Controls.Add(this.label12);
+            this.groupBox7.Controls.Add(this.label11);
+            this.groupBox7.Controls.Add(this.label10);
+            this.groupBox7.Controls.Add(this.label9);
+            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(16, 372);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(346, 213);
+            this.groupBox7.TabIndex = 156;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Fee Breakdown";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(12, 33);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(136, 24);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Downpayment:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(11, 68);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 24);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Prelims:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(11, 103);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(92, 24);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Midterms:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(11, 138);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(114, 24);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Semi-Finals:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(11, 175);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 24);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "Finals:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tDownpayment
+            // 
+            this.tDownpayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tDownpayment.Location = new System.Drawing.Point(178, 33);
+            this.tDownpayment.Name = "tDownpayment";
+            this.tDownpayment.Size = new System.Drawing.Size(136, 24);
+            this.tDownpayment.TabIndex = 6;
+            this.tDownpayment.Text = "00000.00";
+            this.tDownpayment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tPrelims
+            // 
+            this.tPrelims.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPrelims.Location = new System.Drawing.Point(178, 68);
+            this.tPrelims.Name = "tPrelims";
+            this.tPrelims.Size = new System.Drawing.Size(136, 24);
+            this.tPrelims.TabIndex = 7;
+            this.tPrelims.Text = "00000.00";
+            this.tPrelims.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tMidterms
+            // 
+            this.tMidterms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tMidterms.Location = new System.Drawing.Point(178, 103);
+            this.tMidterms.Name = "tMidterms";
+            this.tMidterms.Size = new System.Drawing.Size(136, 24);
+            this.tMidterms.TabIndex = 8;
+            this.tMidterms.Text = "00000.00";
+            this.tMidterms.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tSemiFinals
+            // 
+            this.tSemiFinals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSemiFinals.Location = new System.Drawing.Point(178, 138);
+            this.tSemiFinals.Name = "tSemiFinals";
+            this.tSemiFinals.Size = new System.Drawing.Size(136, 24);
+            this.tSemiFinals.TabIndex = 9;
+            this.tSemiFinals.Text = "00000.00";
+            this.tSemiFinals.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tFinals
+            // 
+            this.tFinals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tFinals.Location = new System.Drawing.Point(178, 175);
+            this.tFinals.Name = "tFinals";
+            this.tFinals.Size = new System.Drawing.Size(136, 24);
+            this.tFinals.TabIndex = 10;
+            this.tFinals.Text = "00000.00";
+            this.tFinals.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frm_student_assessment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1417, 743);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.kryptonButton3);
             this.Controls.Add(this.kajshdk);
@@ -570,6 +709,8 @@
             this.groupBox5.ResumeLayout(false);
             this.kajshdk.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -614,5 +755,16 @@
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label discountTotal;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label tFinals;
+        private System.Windows.Forms.Label tSemiFinals;
+        private System.Windows.Forms.Label tMidterms;
+        private System.Windows.Forms.Label tPrelims;
+        private System.Windows.Forms.Label tDownpayment;
     }
 }

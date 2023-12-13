@@ -20,7 +20,21 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void frm_fee_collection_Load(object sender, EventArgs e)
         {
+            loadSchoolYear();
+        }
 
+        private void loadSchoolYear()
+        {
+            var schoolYear = new FeeCollection();
+            var data = schoolYear.loadSchoolYear();
+            foreach(DataRow row in data.Rows)
+            {
+                tSchoolYear.Items.Add(row["code"]);
+                if (row["is_current"].ToString() == "Yes")
+                {
+                    tSchoolYear.Text = row["code"].ToString();
+                }
+            }
         }
 
         private void loadStudentAccount()
@@ -51,11 +65,76 @@ namespace school_management_system_model.Forms.transactions.Collection
             dgv.Columns["cashier_in_charge"].Visible = false;
         }
 
+        private void loadFeeBreakdown()
+        {
+            var data = new FeeCollection();
+            var idNumber = data.loadFeeBreakdown(tIdNumber.Text);
+
+            tDownpayment.Text = idNumber.Rows[0]["downpayment"].ToString();
+            tPrelims.Text = idNumber.Rows[0]["downpayment"].ToString();
+            tMidterms.Text = idNumber.Rows[0]["downpayment"].ToString();
+            tSemiFinals.Text = idNumber.Rows[0]["downpayment"].ToString();
+            tFinals.Text = idNumber.Rows[0]["downpayment"].ToString();
+        }
+
         private void tSearch_Click(object sender, EventArgs e)
         {
-            loadStudentAccount();
-            loadStudentCourse();
-            loadStatementOfAccount();
+            try
+            {
+                loadStudentAccount();
+                loadStudentCourse();
+                loadStatementOfAccount();
+                loadFeeBreakdown();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tAmount.Clear();
+                tAmount.Select();
+            }
+        }
+
+        private void soaCollection()
+        {
+            int referenceNo = 0;
+            var data = new FeeCollection();
+            referenceNo = data.getReferenceNo();
+            referenceNo++;
+
+            var soa = new FeeCollection();
+            var latestSoa = soa.getLatestSoa(tIdNumber.Text, tSchoolYear.Text);
+            decimal latestBalance = Convert.ToDecimal(latestSoa.Rows[0]["balance"]);
+            decimal latestDebit = Convert.ToDecimal(latestSoa.Rows[0]["debit"]);
+            decimal latestCredit = Convert.ToDecimal(tAmount.Text);
+            string latestParticulars = tParticulars.Text;
+
+            var collect = new FeeCollection
+            {
+                school_year = tSchoolYear.Text,
+                date = DateTime.Now.ToString("MM-dd-yyyy"),
+                reference_no = referenceNo,
+                particulars = latestParticulars,
+                debit = latestBalance,
+                credit = latestCredit,
+                balance = latestBalance - latestCredit,
+                cashier_in_charge = ""
+            };
+            collect.soaCollection(tIdNumber.Text);
+        }
+
+        private void feeBreakdownCollection()
+        {
+            decimal prelims = Convert.ToDecimal(tPrelims.Text);
+            decimal midterms = Convert.ToDecimal(tMidterms.Text);
+            decimal semiFinals = Convert.ToDecimal(tSemiFinals.Text);
+            decimal finals = Convert.ToDecimal(tFinals.Text);
+            decimal amount = Convert.ToDecimal(tAmount.Text);
+
+            if (amount == 500)
+            {
+                 
+            }
+
         }
     }
 }
