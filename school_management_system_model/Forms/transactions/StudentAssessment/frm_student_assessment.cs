@@ -495,6 +495,10 @@ namespace school_management_system_model.Forms.transactions
             {
                 id_number = tIdNumber.Text,
                 school_year = tSchoolYear.Text,
+                date = DateTime.Now.ToString("MM-dd-yyyy"),
+                course = tCourse.Text,
+                year_level = tYearLevel.Text,
+                semester = tSemester.Text,
                 particulars = "Total Assessment as of: " + tSchoolYear.Text,
                 debit = Convert.ToDecimal(tTotal.Text),
                 credit = 0,

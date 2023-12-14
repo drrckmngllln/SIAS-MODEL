@@ -13,6 +13,9 @@ namespace school_management_system_model.Classes
         public string id_number { get; set; }
         public string date { get; set; }
         public string school_year { get; set; }
+        public string course { get; set; }
+        public string year_level { get; set; }
+        public string semester { get; set; }
         public int reference_no { get; set; }
         public string particulars { get; set; }
         public decimal debit { get; set; }
@@ -95,8 +98,9 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("insert into statements_of_accounts(id_number, school_year, date, reference_no, particulars, debit, credit, balance, cashier_in_charge) " +
-                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9)", con);
+            var cmd = new MySqlCommand("insert into statements_of_accounts(id_number, school_year, date, reference_no, particulars, debit, credit, balance, cashier_in_charge, " +
+                "course, year_level, semester) " +
+                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12)", con);
             cmd.Parameters.AddWithValue("@1", idNumber);
             cmd.Parameters.AddWithValue("@2", school_year);
             cmd.Parameters.AddWithValue("@3", date);
@@ -106,6 +110,9 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@7", credit);
             cmd.Parameters.AddWithValue("@8", balance);
             cmd.Parameters.AddWithValue("@9", cashier_in_charge);
+            cmd.Parameters.AddWithValue("@10", course);
+            cmd.Parameters.AddWithValue("@11", year_level);
+            cmd.Parameters.AddWithValue("@12", semester);
             cmd.ExecuteNonQuery();
             con.Close();
         }
