@@ -27,14 +27,28 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void loadRecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select id_number, fullname from student_accounts", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
-            dgv.Columns["id_number"].HeaderText = "Student Number";
-            dgv.Columns["id_number"].Width = 150;
-            dgv.Columns["fullname"].HeaderText = "Student Name";
+            if (this.Text == "Statements Of Accounts")
+            {
+                var con = new MySqlConnection(connection.con());
+                var da = new MySqlDataAdapter("select id_number, fullname from student_accounts", con);
+                var dt = new DataTable();
+                da.Fill(dt);
+                dgv.DataSource = dt;
+                dgv.Columns["id_number"].HeaderText = "Student Number";
+                dgv.Columns["id_number"].Width = 150;
+                dgv.Columns["fullname"].HeaderText = "Student Name";
+            }
+            else if (this.Text == "Fee Collection")
+            {
+                var con = new MySqlConnection(connection.con());
+                var da = new MySqlDataAdapter("select id_number, fullname from student_accounts", con);
+                var dt = new DataTable();
+                da.Fill(dt);
+                dgv.DataSource = dt;
+                dgv.Columns["id_number"].HeaderText = "Student Number";
+                dgv.Columns["id_number"].Width = 150;
+                dgv.Columns["fullname"].HeaderText = "Student Name";
+            }
         }
 
         private string selectStudentName()
@@ -48,9 +62,17 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void select()
         {
-            frm_statements_of_accounts.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
-            frm_statements_of_accounts.instance.fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-            Close();
+            if (this.Text == "Statements Of Accounts")
+            {
+                frm_statements_of_accounts.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
+                frm_statements_of_accounts.instance.fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString();
+                Close();
+            }
+            else if (this.Text == "Fee Collection")
+            {
+                frm_fee_collection.instance.id_number = selectIdNumber();
+                Close();
+            }
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)

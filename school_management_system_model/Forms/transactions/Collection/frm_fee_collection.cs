@@ -13,8 +13,11 @@ namespace school_management_system_model.Forms.transactions.Collection
 {
     public partial class frm_fee_collection : Form
     {
+        public static frm_fee_collection instance;
+        public string id_number { get; set; }
         public frm_fee_collection()
         {
+            instance = this;
             InitializeComponent();
         }
 
@@ -77,7 +80,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             tFinals.Text = idNumber.Rows[0]["downpayment"].ToString();
         }
 
-        private void tSearch_Click(object sender, EventArgs e)
+        private void loadRecords()
         {
             try
             {
@@ -86,11 +89,23 @@ namespace school_management_system_model.Forms.transactions.Collection
                 loadStatementOfAccount();
                 loadFeeBreakdown();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tAmount.Clear();
                 tAmount.Select();
+            }
+        }
+
+        private void tSearch_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_select_student();
+            frm.Text = "Fee Collection";
+            frm.ShowDialog();
+            if (id_number != null)
+            {
+                tIdNumber.Text = id_number;
+                loadRecords();
             }
         }
 
