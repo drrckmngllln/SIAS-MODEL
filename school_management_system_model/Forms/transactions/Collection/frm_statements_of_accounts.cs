@@ -25,7 +25,7 @@ namespace school_management_system_model.Forms.transactions.Collection
         private void button1_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_student();
-            frm.Text = "Select Student";
+            frm.Text = "Statements Of Accounts";
             frm.ShowDialog();
             if (id_number != null)
             {
