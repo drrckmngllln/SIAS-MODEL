@@ -32,8 +32,11 @@ namespace school_management_system_model.Forms.transactions.Classes
         public string status { get; set; }
         public string search { get; set; }
 
-        
-        
+        public string contact_no { get; set; }
+        public string email { get; set; }
+
+
+
         public void loadRecords()
         {
             var con = new MySqlConnection(connection.con());
@@ -56,8 +59,8 @@ namespace school_management_system_model.Forms.transactions.Classes
                 var con = new MySqlConnection(connection.con());
                 con.Open();
                 var cmd = new MySqlCommand("insert into student_accounts(id_number, fullname, last_name, first_name, middle_name, " +
-                    "gender, civil_status, date_of_birth, place_of_birth, nationality, religion, status, semester) " +
-                    "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13)", con);
+                    "gender, civil_status, date_of_birth, place_of_birth, nationality, religion, status, semester, contact_no, email) " +
+                    "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@16,@17)", con);
                 cmd.Parameters.AddWithValue("@1", id_number);
                 cmd.Parameters.AddWithValue("@2", full_name);
                 cmd.Parameters.AddWithValue("@3", last_name);
@@ -71,6 +74,8 @@ namespace school_management_system_model.Forms.transactions.Classes
                 cmd.Parameters.AddWithValue("@11", religion);
                 cmd.Parameters.AddWithValue("@12", status);
                 cmd.Parameters.AddWithValue("@13", semester);
+                cmd.Parameters.AddWithValue("@16", contact_no);
+                cmd.Parameters.AddWithValue("@17", email);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -89,7 +94,7 @@ namespace school_management_system_model.Forms.transactions.Classes
                 con.Open();
                 var cmd = new MySqlCommand("update student_accounts set id_number=@1, fullname=@2, last_name=@3, firstname=@4, " +
                     "middle_name=@5, gender=@6, civil_status=@7, date_of_birth=@8, place_of_birth=@9, nationality=@10, " +
-                    "religion=@11, status=@12, semester=@13 where id_number='"+ id_number +"'", con);
+                    "religion=@11, status=@12, semester=@13, contact_no=@16, email=@17 where id_number='"+ id_number +"'", con);
                 cmd.Parameters.AddWithValue("@1", id_number);
                 cmd.Parameters.AddWithValue("@2", full_name);
                 cmd.Parameters.AddWithValue("@3", last_name);
@@ -103,6 +108,8 @@ namespace school_management_system_model.Forms.transactions.Classes
                 cmd.Parameters.AddWithValue("@11", religion);
                 cmd.Parameters.AddWithValue("@12", status);
                 cmd.Parameters.AddWithValue("@13", semester);
+                cmd.Parameters.AddWithValue("@16", contact_no);
+                cmd.Parameters.AddWithValue("@17", email);
                 cmd.ExecuteNonQuery();
                 con.Close();
 

@@ -28,6 +28,21 @@ namespace school_management_system_model.Classes
         public string religion { get; set; }
         public string status { get; set; }
 
+        public string contact_no { get; set; }
+        public string email { get; set; }
+
+        public string elem { get; set; }
+        public string jhs { get; set; }
+        public string shs { get; set; }
+        public string elem_year { get; set; }
+        public string jhs_year { get; set; }
+        public string shs_year { get; set; }
+        public string mother_name { get; set; }
+
+        public string mother_no { get; set; }
+        public string father_name{ get; set; }
+        public string father_no { get; set; }
+
         public DataTable loadRecords(string schoolYear)
         {
             var con = new MySqlConnection(connection.con());
@@ -75,7 +90,8 @@ namespace school_management_system_model.Classes
             con.Open();
             var cmd = new MySqlCommand("insert into student_accounts(id_number, school_year, fullname, last_name, " +
                 "first_name, middle_name, gender, civil_status, date_of_birth, place_of_birth, nationality, " +
-                "religion, status, sy_enrolled) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14)", con);
+                "religion, status,sy_enrolled, contact_no, email, elem, jhs, shs, elem_year,jhs_year, shs_year,mother_name,mother_no,father_name,father_no) " +
+                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@16,@17,@18,@19,@20,@21,@22,@23,@24,@25,@26,@27)", con);
             cmd.Parameters.AddWithValue("@1", id_number);
             cmd.Parameters.AddWithValue("@2", school_year);
             cmd.Parameters.AddWithValue("@3", full_name);
@@ -90,6 +106,18 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@12", religion);
             cmd.Parameters.AddWithValue("@13", status);
             cmd.Parameters.AddWithValue("@14", sy_enrolled);
+            cmd.Parameters.AddWithValue("@16", contact_no);
+            cmd.Parameters.AddWithValue("@17", email);
+            cmd.Parameters.AddWithValue("@18", elem);
+            cmd.Parameters.AddWithValue("@19", jhs);
+            cmd.Parameters.AddWithValue("@20", shs);
+            cmd.Parameters.AddWithValue("@21", elem_year);
+            cmd.Parameters.AddWithValue("@22", jhs_year);
+            cmd.Parameters.AddWithValue("@23", shs_year);
+            cmd.Parameters.AddWithValue("@24", mother_name);
+            cmd.Parameters.AddWithValue("@25", mother_no);
+            cmd.Parameters.AddWithValue("@26", father_name);
+            cmd.Parameters.AddWithValue("@27", father_no);
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -99,7 +127,9 @@ namespace school_management_system_model.Classes
             con.Open();
             var cmd = new MySqlCommand("update student_accounts set id_number=@1, school_year=@2, fullname=@3, " +
                 "last_name=@4, first_name=@5, middle_name=@6, gender=@7, civil_status=@8, date_of_birth=@9, " +
-                "place_of_birth=@10, nationality=@11, religion=@12, status=@13, sy_enrolled=@14 where id_number='"+ idNumber +"'", con);
+                "place_of_birth=@10, nationality=@11, religion=@12, status=@13, sy_enrolled=@14, contact_no=@16, " +
+                "email=@17, elem=@18, jhs=@19, shs=@20, elem_year=@21, jhs_year=@22, shs_year=@23,mother_name=@24," +
+                "mother_no=@25, father_name=@26,father_no=@27 where id_number='"+ idNumber +"'", con);
             cmd.Parameters.AddWithValue("@1", id_number);
             cmd.Parameters.AddWithValue("@2", school_year);
             cmd.Parameters.AddWithValue("@3", full_name);
@@ -114,6 +144,18 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@12", religion);
             cmd.Parameters.AddWithValue("@13", status);
             cmd.Parameters.AddWithValue("@14", sy_enrolled);
+            cmd.Parameters.AddWithValue("@16", contact_no);
+            cmd.Parameters.AddWithValue("@17", email);
+            cmd.Parameters.AddWithValue("@18", elem);
+            cmd.Parameters.AddWithValue("@19", jhs);
+            cmd.Parameters.AddWithValue("@20", shs);
+            cmd.Parameters.AddWithValue("@21", elem_year);
+            cmd.Parameters.AddWithValue("@22", jhs_year);
+            cmd.Parameters.AddWithValue("@23", shs_year);
+            cmd.Parameters.AddWithValue("@24", mother_name);
+            cmd.Parameters.AddWithValue("@25", mother_no);
+            cmd.Parameters.AddWithValue("@26", father_name);
+            cmd.Parameters.AddWithValue("@27", father_no);
             cmd.ExecuteNonQuery();
             con.Close();
         }
