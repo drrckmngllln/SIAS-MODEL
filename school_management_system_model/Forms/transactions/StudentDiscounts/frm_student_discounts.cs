@@ -83,5 +83,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
                 loadRecords();
             }
         }
+
+        
     }
 }

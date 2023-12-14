@@ -45,6 +45,21 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             dgv.Columns["nationality"].Visible = false;
             dgv.Columns["religion"].Visible = false;
             dgv.Columns["status"].Visible = false;
+            dgv.Columns["status"].Visible = false;
+            dgv.Columns["contact_no"].Visible = false;
+            dgv.Columns["email"].Visible = false;
+            dgv.Columns["elem"].Visible = false;
+            dgv.Columns["jhs"].Visible = false;
+            dgv.Columns["shs"].Visible = false;
+            dgv.Columns["elem_year"].Visible = false;
+            dgv.Columns["jhs_year"].Visible = false;
+            dgv.Columns["shs_year"].Visible = false;
+            dgv.Columns["mother_name"].Visible = false;
+            dgv.Columns["mother_no"].Visible = false;
+            dgv.Columns["father_name"].Visible = false;
+            dgv.Columns["father_no"].Visible = false;
+
+
         }
 
         private string selectStudentName()
@@ -89,6 +104,11 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             {
                 loadRecords();
             }
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
