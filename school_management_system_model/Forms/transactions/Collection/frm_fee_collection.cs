@@ -104,7 +104,6 @@ namespace school_management_system_model.Forms.transactions.Collection
             var soa = new FeeCollection();
             var latestSoa = soa.getLatestSoa(tIdNumber.Text, tSchoolYear.Text);
             decimal latestBalance = Convert.ToDecimal(latestSoa.Rows[0]["balance"]);
-            decimal latestDebit = Convert.ToDecimal(latestSoa.Rows[0]["debit"]);
             decimal latestCredit = Convert.ToDecimal(tAmount.Text);
             string latestParticulars = tParticulars.Text;
 
@@ -120,6 +119,10 @@ namespace school_management_system_model.Forms.transactions.Collection
                 cashier_in_charge = ""
             };
             collect.soaCollection(tIdNumber.Text);
+            MessageBox.Show("Fee Collected", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var referenceNumberIncrement = new FeeCollection();
+            referenceNumberIncrement.incrementReferenceNo(referenceNo);
+            loadStatementOfAccount();
         }
 
         private void feeBreakdownCollection()
@@ -135,6 +138,21 @@ namespace school_management_system_model.Forms.transactions.Collection
                  
             }
 
+        }
+
+        private void btnConfirmPayment_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Confirm Payment: " + tAmount.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                soaCollection();
+            }
+            try
+            {
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
     }
 }

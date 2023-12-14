@@ -278,6 +278,7 @@
             this.btnConfirmPayment.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmPayment.TabIndex = 172;
             this.btnConfirmPayment.Values.Text = "Confirm Payment";
+            this.btnConfirmPayment.Click += new System.EventHandler(this.btnConfirmPayment_Click);
             // 
             // groupBox3
             // 
