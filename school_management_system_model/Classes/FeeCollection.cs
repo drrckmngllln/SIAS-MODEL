@@ -75,6 +75,14 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return Convert.ToInt32(dt.Rows[0]["reference_number"]);
         }
+        public void incrementReferenceNo(int referenceNumber)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("update reference_number_setup set reference_number='" + referenceNumber + "'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
         public DataTable getLatestSoa(string idNumber, string schoolYear)
         {
             var con =new MySqlConnection(connection.con());
