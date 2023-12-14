@@ -56,6 +56,30 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.cmbgender = new Krypton.Toolkit.KryptonComboBox();
             this.cmbcivilstat = new Krypton.Toolkit.KryptonComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tcontact = new System.Windows.Forms.TextBox();
+            this.temail = new System.Windows.Forms.TextBox();
+            this.lblsattend = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.telem = new System.Windows.Forms.TextBox();
+            this.tjhs = new System.Windows.Forms.TextBox();
+            this.tshs = new System.Windows.Forms.TextBox();
+            this.teyear = new System.Windows.Forms.TextBox();
+            this.tjyear = new System.Windows.Forms.TextBox();
+            this.tsyear = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.tmother = new System.Windows.Forms.TextBox();
+            this.tmcontact = new System.Windows.Forms.TextBox();
+            this.tfather = new System.Windows.Forms.TextBox();
+            this.tfcontact = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbcivilstat)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +89,7 @@
             this.tTitle.AutoSize = true;
             this.tTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tTitle.ForeColor = System.Drawing.SystemColors.Control;
-            this.tTitle.Location = new System.Drawing.Point(12, 9);
+            this.tTitle.Location = new System.Drawing.Point(43, 9);
             this.tTitle.Name = "tTitle";
             this.tTitle.Size = new System.Drawing.Size(209, 24);
             this.tTitle.TabIndex = 104;
@@ -73,7 +97,6 @@
             // 
             // tIdNumber
             // 
-            this.tIdNumber.Enabled = false;
             this.tIdNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tIdNumber.Location = new System.Drawing.Point(187, 74);
             this.tIdNumber.Name = "tIdNumber";
@@ -252,7 +275,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.Control;
-            this.label12.Location = new System.Drawing.Point(44, 367);
+            this.label12.Location = new System.Drawing.Point(44, 370);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(63, 17);
             this.label12.TabIndex = 126;
@@ -271,7 +294,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.Control;
-            this.label13.Location = new System.Drawing.Point(44, 396);
+            this.label13.Location = new System.Drawing.Point(44, 454);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(52, 17);
             this.label13.TabIndex = 128;
@@ -281,7 +304,7 @@
             // 
             this.tStatus.Enabled = false;
             this.tStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStatus.Location = new System.Drawing.Point(187, 393);
+            this.tStatus.Location = new System.Drawing.Point(187, 451);
             this.tStatus.Name = "tStatus";
             this.tStatus.Size = new System.Drawing.Size(303, 23);
             this.tStatus.TabIndex = 127;
@@ -290,7 +313,7 @@
             // btnCreate
             // 
             this.btnCreate.CornerRoundingRadius = 10F;
-            this.btnCreate.Location = new System.Drawing.Point(143, 445);
+            this.btnCreate.Location = new System.Drawing.Point(531, 524);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(116, 34);
             this.btnCreate.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -312,7 +335,7 @@
             // btnCancel
             // 
             this.btnCancel.CornerRoundingRadius = 10F;
-            this.btnCancel.Location = new System.Drawing.Point(281, 445);
+            this.btnCancel.Location = new System.Drawing.Point(653, 524);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(116, 34);
             this.btnCancel.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -329,7 +352,7 @@
             this.btnCancel.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.TabIndex = 130;
             this.btnCancel.Values.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            
             // 
             // dateTimePicker1
             // 
@@ -375,12 +398,265 @@
             this.cmbcivilstat.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.cmbcivilstat.TabIndex = 133;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(43, 399);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 17);
+            this.label1.TabIndex = 134;
+            this.label1.Text = "Contact no:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.Control;
+            this.label14.Location = new System.Drawing.Point(44, 428);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(46, 17);
+            this.label14.TabIndex = 135;
+            this.label14.Text = "Email:";
+            // 
+            // tcontact
+            // 
+            this.tcontact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcontact.Location = new System.Drawing.Point(187, 393);
+            this.tcontact.Name = "tcontact";
+            this.tcontact.Size = new System.Drawing.Size(303, 23);
+            this.tcontact.TabIndex = 136;
+            // 
+            // temail
+            // 
+            this.temail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.temail.Location = new System.Drawing.Point(187, 422);
+            this.temail.Name = "temail";
+            this.temail.Size = new System.Drawing.Size(303, 23);
+            this.temail.TabIndex = 137;
+            // 
+            // lblsattend
+            // 
+            this.lblsattend.AutoSize = true;
+            this.lblsattend.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsattend.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblsattend.Location = new System.Drawing.Point(842, 63);
+            this.lblsattend.Name = "lblsattend";
+            this.lblsattend.Size = new System.Drawing.Size(112, 17);
+            this.lblsattend.TabIndex = 138;
+            this.lblsattend.Text = "School Attended";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.Control;
+            this.label15.Location = new System.Drawing.Point(637, 106);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(83, 17);
+            this.label15.TabIndex = 139;
+            this.label15.Text = "Elementary:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.SystemColors.Control;
+            this.label16.Location = new System.Drawing.Point(598, 132);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(131, 17);
+            this.label16.TabIndex = 140;
+            this.label16.Text = "Junior High School:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.SystemColors.Control;
+            this.label17.Location = new System.Drawing.Point(598, 161);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(133, 17);
+            this.label17.TabIndex = 141;
+            this.label17.Text = "Senior High School:";
+            // 
+            // telem
+            // 
+            this.telem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.telem.Location = new System.Drawing.Point(745, 97);
+            this.telem.Name = "telem";
+            this.telem.Size = new System.Drawing.Size(309, 23);
+            this.telem.TabIndex = 142;
+            // 
+            // tjhs
+            // 
+            this.tjhs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tjhs.Location = new System.Drawing.Point(745, 126);
+            this.tjhs.Name = "tjhs";
+            this.tjhs.Size = new System.Drawing.Size(309, 23);
+            this.tjhs.TabIndex = 143;
+            // 
+            // tshs
+            // 
+            this.tshs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tshs.Location = new System.Drawing.Point(745, 155);
+            this.tshs.Name = "tshs";
+            this.tshs.Size = new System.Drawing.Size(309, 23);
+            this.tshs.TabIndex = 144;
+            // 
+            // teyear
+            // 
+            this.teyear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teyear.Location = new System.Drawing.Point(1060, 97);
+            this.teyear.Name = "teyear";
+            this.teyear.Size = new System.Drawing.Size(102, 23);
+            this.teyear.TabIndex = 145;
+            // 
+            // tjyear
+            // 
+            this.tjyear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tjyear.Location = new System.Drawing.Point(1060, 126);
+            this.tjyear.Name = "tjyear";
+            this.tjyear.Size = new System.Drawing.Size(102, 23);
+            this.tjyear.TabIndex = 146;
+            // 
+            // tsyear
+            // 
+            this.tsyear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsyear.Location = new System.Drawing.Point(1060, 155);
+            this.tsyear.Name = "tsyear";
+            this.tsyear.Size = new System.Drawing.Size(102, 23);
+            this.tsyear.TabIndex = 147;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.SystemColors.Control;
+            this.label18.Location = new System.Drawing.Point(1057, 63);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(110, 17);
+            this.label18.TabIndex = 148;
+            this.label18.Text = "Year Graduated";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.SystemColors.Control;
+            this.label19.Location = new System.Drawing.Point(842, 218);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(124, 17);
+            this.label19.TabIndex = 149;
+            this.label19.Text = "Parent Information";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.SystemColors.Control;
+            this.label20.Location = new System.Drawing.Point(608, 251);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(123, 17);
+            this.label20.TabIndex = 150;
+            this.label20.Text = "Mother Full Name:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.SystemColors.Control;
+            this.label21.Location = new System.Drawing.Point(608, 312);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(120, 17);
+            this.label21.TabIndex = 151;
+            this.label21.Text = "Father Full Name:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.SystemColors.Control;
+            this.label22.Location = new System.Drawing.Point(640, 280);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(80, 17);
+            this.label22.TabIndex = 152;
+            this.label22.Text = "Contact no:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.SystemColors.Control;
+            this.label23.Location = new System.Drawing.Point(649, 341);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(80, 17);
+            this.label23.TabIndex = 153;
+            this.label23.Text = "Contact no:";
+            // 
+            // tmother
+            // 
+            this.tmother.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tmother.Location = new System.Drawing.Point(745, 251);
+            this.tmother.Name = "tmother";
+            this.tmother.Size = new System.Drawing.Size(309, 23);
+            this.tmother.TabIndex = 154;
+            // 
+            // tmcontact
+            // 
+            this.tmcontact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tmcontact.Location = new System.Drawing.Point(745, 280);
+            this.tmcontact.Name = "tmcontact";
+            this.tmcontact.Size = new System.Drawing.Size(171, 23);
+            this.tmcontact.TabIndex = 155;
+       
+            // 
+            // tfather
+            // 
+            this.tfather.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tfather.Location = new System.Drawing.Point(745, 309);
+            this.tfather.Name = "tfather";
+            this.tfather.Size = new System.Drawing.Size(309, 23);
+            this.tfather.TabIndex = 156;
+            // 
+            // tfcontact
+            // 
+            this.tfcontact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tfcontact.Location = new System.Drawing.Point(745, 341);
+            this.tfcontact.Name = "tfcontact";
+            this.tfcontact.Size = new System.Drawing.Size(171, 23);
+            this.tfcontact.TabIndex = 157;
+            // 
             // frm_create_account
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(561, 512);
+            this.ClientSize = new System.Drawing.Size(1194, 598);
+            this.Controls.Add(this.tfcontact);
+            this.Controls.Add(this.tfather);
+            this.Controls.Add(this.tmcontact);
+            this.Controls.Add(this.tmother);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.tsyear);
+            this.Controls.Add(this.tjyear);
+            this.Controls.Add(this.teyear);
+            this.Controls.Add(this.tshs);
+            this.Controls.Add(this.tjhs);
+            this.Controls.Add(this.telem);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.lblsattend);
+            this.Controls.Add(this.temail);
+            this.Controls.Add(this.tcontact);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbcivilstat);
             this.Controls.Add(this.cmbgender);
             this.Controls.Add(this.dateTimePicker1);
@@ -458,5 +734,29 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private Krypton.Toolkit.KryptonComboBox cmbgender;
         private Krypton.Toolkit.KryptonComboBox cmbcivilstat;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox tcontact;
+        private System.Windows.Forms.TextBox temail;
+        private System.Windows.Forms.Label lblsattend;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox telem;
+        private System.Windows.Forms.TextBox tjhs;
+        private System.Windows.Forms.TextBox tshs;
+        private System.Windows.Forms.TextBox teyear;
+        private System.Windows.Forms.TextBox tjyear;
+        private System.Windows.Forms.TextBox tsyear;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox tmother;
+        private System.Windows.Forms.TextBox tmcontact;
+        private System.Windows.Forms.TextBox tfather;
+        private System.Windows.Forms.TextBox tfcontact;
     }
 }

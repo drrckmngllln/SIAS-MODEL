@@ -53,6 +53,19 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["nationality"].HeaderText = "Nationality";
             dgv.Columns["religion"].HeaderText = "Religion";
             dgv.Columns["status"].HeaderText = "Status";
+            dgv.Columns["contact_no"].HeaderText= "Contact Number";
+            dgv.Columns["email"].HeaderText= "Email";
+            dgv.Columns["elem"].HeaderText= "Elementary";
+            dgv.Columns["jhs"].HeaderText= "Junior High School";
+            dgv.Columns["shs"].HeaderText = "Senior High School";
+            dgv.Columns["elem_year"].HeaderText = "Elementary Year";
+            dgv.Columns["jhs_year"].HeaderText = "JHS Year";
+            dgv.Columns["shs_year"].HeaderText = "Shs Year";
+            dgv.Columns["mother_name"].HeaderText = "Mother Name";
+            dgv.Columns["mother_no"].HeaderText = "Mother Contact No.";
+            dgv.Columns["father_name"].HeaderText = "Father Name";
+            dgv.Columns["father_no"].HeaderText = "Father Contact No.";
+
         }
 
         private void loadSchoolYear()
@@ -201,6 +214,11 @@ namespace school_management_system_model.Forms.transactions
             }
             btnCreate.Text = "Create Account";
             loadRecords();
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -43,13 +43,26 @@ namespace school_management_system_model.Forms.transactions
                 tLastname.Text = data.Rows[0]["last_name"].ToString();
                 tFirstname.Text = data.Rows[0]["first_name"].ToString();
                 tMiddlename.Text = data.Rows[0]["middle_name"].ToString();
-                cmbgender.Text = data.Rows[0]["gender"].ToString();
+                cmbgender.Text = data.Rows[0]["Gender"].ToString();
                 cmbcivilstat.Text = data.Rows[0]["civil_status"].ToString();
                 tDateofBirth.Text = data.Rows[0]["date_of_birth"].ToString();
-                tPlaceofBirth.Text =data.Rows[0]["place_of_birth"].ToString();
-                tNationality.Text = data.Rows[0]["nationality"].ToString();
-                tReligion.Text = data.Rows[0]["religion"].ToString();
-                tStatus.Text = data.Rows[0]["status"].ToString();
+                tPlaceofBirth.Text = data.Rows[0]["Place_of_birth"].ToString();
+                tNationality.Text = data.Rows[0]["Nationality"].ToString();
+                tReligion.Text = data.Rows[0]["Religion"].ToString();
+                tcontact.Text = data.Rows[0]["contact_no"].ToString();
+                temail.Text = data.Rows[0]["Email"].ToString();
+                telem.Text = data.Rows[0]["elem"].ToString();
+                teyear.Text = data.Rows[0]["elem_year"].ToString();
+                tjhs.Text = data.Rows[0]["JHS"].ToString();
+                tjyear.Text = data.Rows[0]["jhs_year"].ToString();
+                tshs.Text = data.Rows[0]["SHS"].ToString();
+                tsyear.Text = data.Rows[0]["shs_year"].ToString();
+                tmother.Text= data.Rows[0]["mother_name"].ToString() ;
+                tmcontact.Text = data.Rows[0]["mother_no"].ToString();
+                tfather.Text = data.Rows[0]["father_name"].ToString();
+                tfcontact.Text = data.Rows[0]["father_no"].ToString();
+                tStatus.Text = data.Rows[0]["Status"].ToString();
+
                 btnCreate.Text = "Update Account";
             }
         }
@@ -102,7 +115,7 @@ namespace school_management_system_model.Forms.transactions
                     var add = new StudentAccount
                     {
                         id_number = tIdNumber.Text,
-                        
+
                         school_year = tSchoolyear.Text,
                         full_name = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
                         last_name = tLastname.Text,
@@ -114,9 +127,21 @@ namespace school_management_system_model.Forms.transactions
                         place_of_birth = tPlaceofBirth.Text,
                         nationality = tNationality.Text,
                         religion = tReligion.Text,
-
+                        contact_no = tcontact.Text,
+                        email = temail.Text,
+                        elem = telem.Text,
+                        elem_year = teyear.Text,
+                        jhs = tjhs.Text,
+                        jhs_year = tjyear.Text,
+                        shs = tshs.Text,
+                        shs_year = tsyear.Text,
+                        mother_name = tmother.Text,
+                        mother_no=  tmcontact.Text,
+                        father_name = tfather.Text,
+                        father_no= tfcontact.Text,
                         status = tStatus.Text,
-                        sy_enrolled=tSchoolyear.Text
+                        sy_enrolled = tSchoolyear.Text
+
 
                     };
 
@@ -140,7 +165,19 @@ namespace school_management_system_model.Forms.transactions
                         place_of_birth = tPlaceofBirth.Text,
                         nationality = tNationality.Text,
                         religion = tReligion.Text,
-                        status = tStatus.Text,
+                        contact_no = tcontact.Text,
+                        email = temail.Text,
+                        elem = telem.Text,
+                        elem_year = teyear.Text,
+                        jhs = tjhs.Text,
+                        jhs_year = tjyear.Text,
+                        shs = tshs.Text,
+                        shs_year = tsyear.Text,
+                        mother_name = tmother.Text,
+                        mother_no = tmcontact.Text,
+                        father_name = tfather.Text,
+                        father_no = tfcontact.Text,
+                        status = tStatus.Text,                     
                         sy_enrolled = tSchoolyear.Text
                     };
                     edit.editRecord(tIdNumber.Text);
@@ -148,7 +185,7 @@ namespace school_management_system_model.Forms.transactions
                     Close();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -177,11 +214,6 @@ namespace school_management_system_model.Forms.transactions
             tDateofBirth.Text = dateTimePicker1.Value.ToString("MM-dd-yyyy");
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-       
     }
-}
+    }
+

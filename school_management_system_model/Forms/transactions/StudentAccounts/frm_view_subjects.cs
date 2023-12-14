@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -88,7 +89,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 lectureUnits += Convert.ToDecimal(row["lecture_units"]);
                 labUnits += Convert.ToDecimal(row["total_units"]);
             }
-            dgv.Rows.Add("", "Total:", "",totalUnits, lectureUnits, labUnits);
+            dgv.Rows.Add("", "Total:", "", totalUnits, lectureUnits, labUnits);
 
 
 
@@ -142,29 +143,29 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                     tGrade.Text = dgv.CurrentRow.Cells["grade"].Value.ToString();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void dropSubject(string subjectCode)
         {
-            if (MessageBox.Show("Are you sure you want to drop this subject?","Warning",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+
+
+            if (MessageBox.Show("Are you sure you want to drop this subject?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var con = new MySqlConnection(connection.con());
                 con.Open();
-                var cmd = new MySqlCommand("update student_subjects set remarks='Dropped' where id_number='"+ id_number +"' and subject_code='"+ subjectCode +"'", con);
+                var cmd = new MySqlCommand("update student_subjects where id_number='" + id_number + "' and subject_code='" + subjectCode + "'", con);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Subject Dropped!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadRecords(id_number, school_year);
             }
-        }
-        
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            dropSubject(dgv.CurrentRow.Cells["subject_code"].Value.ToString());
         }
+
+       
     }
 }
+
