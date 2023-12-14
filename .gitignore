@@ -13,3 +13,4 @@ obj/
 # Ingnore bin folders
 bin/
 *.cache
+.vs/school_management_system_model/v17/.suo

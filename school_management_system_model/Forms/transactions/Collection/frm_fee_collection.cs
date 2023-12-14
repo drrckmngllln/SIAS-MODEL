@@ -51,6 +51,8 @@ namespace school_management_system_model.Forms.transactions.Collection
             var data = new FeeCollection();
             var idNumber = data.loadStudentCourse(tIdNumber.Text);
             tCourse.Text = idNumber.Rows[0]["course"].ToString();
+            tYearLevel.Text = idNumber.Rows[0]["year_level"].ToString();
+            tSemester.Text = idNumber.Rows[0]["semester"].ToString();
         }
         private void loadStatementOfAccount()
         {
@@ -60,6 +62,10 @@ namespace school_management_system_model.Forms.transactions.Collection
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].Visible = false;
             dgv.Columns["date"].HeaderText = "Date";
+            dgv.Columns["year_level"].Visible = false;
+            dgv.Columns["semester"].Visible = false;
+            dgv.Columns["school_year"].Visible = false;
+            dgv.Columns["course"].Visible = false;
             dgv.Columns["reference_no"].HeaderText = "OR Number";
             dgv.Columns["particulars"].HeaderText = "Particulars";
             dgv.Columns["debit"].HeaderText = "Debit";
@@ -73,11 +79,15 @@ namespace school_management_system_model.Forms.transactions.Collection
             var data = new FeeCollection();
             var idNumber = data.loadFeeBreakdown(tIdNumber.Text);
 
-            tDownpayment.Text = idNumber.Rows[0]["downpayment"].ToString();
-            tPrelims.Text = idNumber.Rows[0]["downpayment"].ToString();
-            tMidterms.Text = idNumber.Rows[0]["downpayment"].ToString();
-            tSemiFinals.Text = idNumber.Rows[0]["downpayment"].ToString();
-            tFinals.Text = idNumber.Rows[0]["downpayment"].ToString();
+            dgvFeeBreakdown.Columns.Add("term", "Term");
+            dgvFeeBreakdown.Columns.Add("amount", "Amount");
+
+            string[] term = { "Downpayment", "Prelims", "Midterms", "Semi-Finals", "Finals" };
+
+            for (int i = 0;i < 5; i++)
+            {
+                dgvFeeBreakdown.Rows.Add(term[i], idNumber.Rows[0][i + 3]);
+            }
         }
 
         private void loadRecords()
@@ -126,6 +136,9 @@ namespace school_management_system_model.Forms.transactions.Collection
             {
                 school_year = tSchoolYear.Text,
                 date = DateTime.Now.ToString("MM-dd-yyyy"),
+                course = tCourse.Text,
+                year_level = tYearLevel.Text,
+                semester = tSemester.Text,
                 reference_no = referenceNo,
                 particulars = latestParticulars,
                 debit = latestBalance,
@@ -142,17 +155,18 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void feeBreakdownCollection()
         {
-            decimal prelims = Convert.ToDecimal(tPrelims.Text);
-            decimal midterms = Convert.ToDecimal(tMidterms.Text);
-            decimal semiFinals = Convert.ToDecimal(tSemiFinals.Text);
-            decimal finals = Convert.ToDecimal(tFinals.Text);
             decimal amount = Convert.ToDecimal(tAmount.Text);
 
-            if (amount == 500)
+            foreach(DataGridViewRow row in dgvFeeBreakdown.Rows)
             {
-                 
+                decimal y = Convert.ToDecimal(row.Cells["amount"].Value);
+                if (y > 0)
+                {
+                    y -= amount;
+                    amount -= y;
+                    row.Cells["amount"].Value = y;
+                }
             }
-
         }
 
         private void btnConfirmPayment_Click(object sender, EventArgs e)
@@ -168,6 +182,16 @@ namespace school_management_system_model.Forms.transactions.Collection
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            feeBreakdownCollection();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            feeBreakdownCollection();
         }
     }
 }
