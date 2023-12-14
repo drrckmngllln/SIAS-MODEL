@@ -123,6 +123,7 @@
             this.tIdNumber.Name = "tIdNumber";
             this.tIdNumber.Size = new System.Drawing.Size(220, 21);
             this.tIdNumber.TabIndex = 159;
+            
             // 
             // btnAdd
             // 
