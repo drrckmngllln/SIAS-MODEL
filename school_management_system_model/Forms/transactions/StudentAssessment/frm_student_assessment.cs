@@ -456,6 +456,7 @@ namespace school_management_system_model.Forms.transactions
         {
             var add = new FeeBreakdown
             {
+                school_year = tSchoolYear.Text,
                 prelim = Convert.ToDecimal(tPrelims.Text),
                 downpayment = Convert.ToDecimal(tDownpayment.Text),
                 midterms = Convert.ToDecimal(tMidterms.Text),
@@ -509,6 +510,7 @@ namespace school_management_system_model.Forms.transactions
             var discounts = new student_assessment();
             var disc = discounts.loadDiscounts(tIdNumber.Text);
             
+            // For the discount
             foreach (DataRow row in disc.Rows)
             {
                 var latest = new StatementsOfAccounts();
@@ -520,6 +522,9 @@ namespace school_management_system_model.Forms.transactions
                     var soaDiscount = new StatementsOfAccounts
                     {
                         id_number = tIdNumber.Text,
+                        course = tCourse.Text,
+                        year_level = tYearLevel.Text,
+                        semester = tSemester.Text,
                         particulars = row["description"].ToString(),
                         debit = debit,
                         credit = computation,

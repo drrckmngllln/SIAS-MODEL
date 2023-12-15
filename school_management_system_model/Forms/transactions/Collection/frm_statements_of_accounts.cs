@@ -60,6 +60,11 @@ namespace school_management_system_model.Forms.transactions.Collection
             dgv.Columns["credit"].HeaderText = "Credit";
             dgv.Columns["balance"].HeaderText = "Balance";
             dgv.Columns["cashier_in_charge"].Visible = false;
+            dgv.Columns["school_year"].Visible = false;
+            dgv.Columns["course"].Visible = false;
+            dgv.Columns["year_level"].Visible = false;
+            dgv.Columns["semester"].Visible = false;
+
         }
 
         private void tSearch_TextChanged(object sender, EventArgs e)
@@ -74,6 +79,11 @@ namespace school_management_system_model.Forms.transactions.Collection
             {
                 loadRecords();
             }
+        }
+
+        private void frm_statements_of_accounts_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
