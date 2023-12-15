@@ -87,7 +87,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                     );
                 totalUnits += Convert.ToDecimal(row["total_units"]);
                 lectureUnits += Convert.ToDecimal(row["lecture_units"]);
-                labUnits += Convert.ToDecimal(row["total_units"]);
+                labUnits += Convert.ToDecimal(row["lab_units"]);
             }
             dgv.Rows.Add("", "Total:", "", totalUnits, lectureUnits, labUnits);
 

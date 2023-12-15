@@ -162,9 +162,12 @@ namespace school_management_system_model.Forms.transactions.Collection
                 decimal y = Convert.ToDecimal(row.Cells["amount"].Value);
                 if (y > 0)
                 {
-                    y -= amount;
-                    amount -= y;
-                    row.Cells["amount"].Value = y;
+                    var term = Convert.ToDecimal(row.Cells["amount"].Value);
+                    if (term != 0 && amount != 0)
+                    {
+                        amount -= term;
+                        row.Cells["amount"].Value = amount;
+                    }
                 }
             }
         }
