@@ -116,7 +116,7 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public void feeBreakdownCollection(string idNumber, string schoolYear)
+        public void feeBreakdownSave(string idNumber, string schoolYear)
         {
             var con = new MySqlConnection (connection.con());
             con.Open();
@@ -128,6 +128,14 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@4", semi_finals);
             cmd.Parameters.AddWithValue("@5", finals);
             cmd.Parameters.AddWithValue("@6", total);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void StudentStatusChange(string idNumber)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("update student_accounts set status='Officially Enrolled' where id_number='" + idNumber + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }

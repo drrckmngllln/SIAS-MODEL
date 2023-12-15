@@ -28,16 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvFeeBreakdown = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
             this.tAmount = new System.Windows.Forms.TextBox();
             this.btnConfirmPayment = new Krypton.Toolkit.KryptonButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tSemester = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tYearLevel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tCourse = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tStudentName = new System.Windows.Forms.Label();
@@ -46,23 +51,17 @@
             this.tIdNumber = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tPrint = new Krypton.Toolkit.KryptonButton();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tTerm = new System.Windows.Forms.ComboBox();
             this.tParticulars = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tSchoolYear = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.tYearLevel = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tSemester = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.dgvFeeBreakdown = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tStatus = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFeeBreakdown)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -88,14 +87,14 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(6, 19);
             this.dgv.Name = "dgv";
@@ -130,6 +129,35 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fee Breakdown";
             // 
+            // dgvFeeBreakdown
+            // 
+            this.dgvFeeBreakdown.AllowUserToAddRows = false;
+            this.dgvFeeBreakdown.AllowUserToDeleteRows = false;
+            this.dgvFeeBreakdown.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvFeeBreakdown.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvFeeBreakdown.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFeeBreakdown.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvFeeBreakdown.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFeeBreakdown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvFeeBreakdown.Location = new System.Drawing.Point(3, 16);
+            this.dgvFeeBreakdown.Name = "dgvFeeBreakdown";
+            this.dgvFeeBreakdown.ReadOnly = true;
+            this.dgvFeeBreakdown.RowHeadersVisible = false;
+            this.dgvFeeBreakdown.RowHeadersWidth = 60;
+            this.dgvFeeBreakdown.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvFeeBreakdown.RowTemplate.Height = 30;
+            this.dgvFeeBreakdown.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFeeBreakdown.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvFeeBreakdown.Size = new System.Drawing.Size(369, 221);
+            this.dgvFeeBreakdown.TabIndex = 158;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -152,7 +180,7 @@
             // btnConfirmPayment
             // 
             this.btnConfirmPayment.CornerRoundingRadius = 10F;
-            this.btnConfirmPayment.Location = new System.Drawing.Point(124, 233);
+            this.btnConfirmPayment.Location = new System.Drawing.Point(124, 199);
             this.btnConfirmPayment.Name = "btnConfirmPayment";
             this.btnConfirmPayment.Size = new System.Drawing.Size(156, 38);
             this.btnConfirmPayment.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -173,6 +201,8 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.tStatus);
+            this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.tSemester);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.tYearLevel);
@@ -191,6 +221,44 @@
             this.groupBox3.TabIndex = 173;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Student Information";
+            // 
+            // tSemester
+            // 
+            this.tSemester.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSemester.Location = new System.Drawing.Point(128, 172);
+            this.tSemester.Name = "tSemester";
+            this.tSemester.Size = new System.Drawing.Size(268, 20);
+            this.tSemester.TabIndex = 188;
+            this.tSemester.Text = "...";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(6, 172);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 20);
+            this.label11.TabIndex = 187;
+            this.label11.Text = "Semester:";
+            // 
+            // tYearLevel
+            // 
+            this.tYearLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tYearLevel.Location = new System.Drawing.Point(128, 133);
+            this.tYearLevel.Name = "tYearLevel";
+            this.tYearLevel.Size = new System.Drawing.Size(268, 20);
+            this.tYearLevel.TabIndex = 186;
+            this.tYearLevel.Text = "...";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(6, 133);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 20);
+            this.label9.TabIndex = 185;
+            this.label9.Text = "Year Level:";
             // 
             // tCourse
             // 
@@ -271,7 +339,7 @@
             // tPrint
             // 
             this.tPrint.CornerRoundingRadius = 10F;
-            this.tPrint.Location = new System.Drawing.Point(292, 233);
+            this.tPrint.Location = new System.Drawing.Point(292, 199);
             this.tPrint.Name = "tPrint";
             this.tPrint.Size = new System.Drawing.Size(156, 38);
             this.tPrint.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -287,36 +355,10 @@
             this.tPrint.TabIndex = 174;
             this.tPrint.Values.Text = "Print Receipt";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(14, 101);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(49, 20);
-            this.label14.TabIndex = 175;
-            this.label14.Text = "Term:";
-            // 
-            // tTerm
-            // 
-            this.tTerm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tTerm.FormattingEnabled = true;
-            this.tTerm.Items.AddRange(new object[] {
-            "Downpayment",
-            "Prelims",
-            "Midterms",
-            "Semi-Finals",
-            "Finals"});
-            this.tTerm.Location = new System.Drawing.Point(128, 98);
-            this.tTerm.Name = "tTerm";
-            this.tTerm.Size = new System.Drawing.Size(320, 28);
-            this.tTerm.TabIndex = 176;
-            this.tTerm.Text = "Downpayment";
-            // 
             // tParticulars
             // 
             this.tParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tParticulars.Location = new System.Drawing.Point(128, 132);
+            this.tParticulars.Location = new System.Drawing.Point(128, 98);
             this.tParticulars.Multiline = true;
             this.tParticulars.Name = "tParticulars";
             this.tParticulars.Size = new System.Drawing.Size(320, 95);
@@ -326,7 +368,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(14, 135);
+            this.label15.Location = new System.Drawing.Point(14, 101);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(87, 20);
             this.label15.TabIndex = 177;
@@ -353,95 +395,34 @@
             this.label7.TabIndex = 179;
             this.label7.Text = "School Year:";
             // 
-            // tYearLevel
+            // tStatus
             // 
-            this.tYearLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tYearLevel.Location = new System.Drawing.Point(128, 133);
-            this.tYearLevel.Name = "tYearLevel";
-            this.tYearLevel.Size = new System.Drawing.Size(268, 20);
-            this.tYearLevel.TabIndex = 186;
-            this.tYearLevel.Text = "...";
+            this.tStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStatus.Location = new System.Drawing.Point(128, 217);
+            this.tStatus.Name = "tStatus";
+            this.tStatus.Size = new System.Drawing.Size(268, 20);
+            this.tStatus.TabIndex = 190;
+            this.tStatus.Text = "...";
             // 
-            // label9
+            // label3
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(6, 133);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 20);
-            this.label9.TabIndex = 185;
-            this.label9.Text = "Year Level:";
-            // 
-            // tSemester
-            // 
-            this.tSemester.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tSemester.Location = new System.Drawing.Point(128, 172);
-            this.tSemester.Name = "tSemester";
-            this.tSemester.Size = new System.Drawing.Size(268, 20);
-            this.tSemester.TabIndex = 188;
-            this.tSemester.Text = "...";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(6, 172);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(82, 20);
-            this.label11.TabIndex = 187;
-            this.label11.Text = "Semester:";
-            // 
-            // dgvFeeBreakdown
-            // 
-            this.dgvFeeBreakdown.AllowUserToAddRows = false;
-            this.dgvFeeBreakdown.AllowUserToDeleteRows = false;
-            this.dgvFeeBreakdown.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvFeeBreakdown.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dgvFeeBreakdown.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFeeBreakdown.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvFeeBreakdown.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFeeBreakdown.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvFeeBreakdown.Location = new System.Drawing.Point(3, 16);
-            this.dgvFeeBreakdown.Name = "dgvFeeBreakdown";
-            this.dgvFeeBreakdown.ReadOnly = true;
-            this.dgvFeeBreakdown.RowHeadersVisible = false;
-            this.dgvFeeBreakdown.RowHeadersWidth = 60;
-            this.dgvFeeBreakdown.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvFeeBreakdown.RowTemplate.Height = 30;
-            this.dgvFeeBreakdown.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFeeBreakdown.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFeeBreakdown.Size = new System.Drawing.Size(369, 221);
-            this.dgvFeeBreakdown.TabIndex = 158;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(716, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 27);
-            this.button1.TabIndex = 181;
-            this.button1.Text = "Compute";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 217);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 20);
+            this.label3.TabIndex = 189;
+            this.label3.Text = "Status:";
             // 
             // frm_fee_collection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1321, 689);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.tSchoolYear);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tParticulars);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.tTerm);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.tPrint);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnConfirmPayment);
@@ -458,9 +439,9 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFeeBreakdown)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFeeBreakdown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,8 +459,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label13;
         private Krypton.Toolkit.KryptonButton tPrint;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox tTerm;
         private System.Windows.Forms.TextBox tParticulars;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label tStudentName;
@@ -495,6 +474,7 @@
         private System.Windows.Forms.Label tYearLevel;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dgvFeeBreakdown;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label tStatus;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -46,8 +46,9 @@ namespace school_management_system_model.Classes
             incrementReferenceNumber(reference_no);
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("insert into statements_of_accounts(id_number, date, reference_no, particulars, debit, credit, balance, cashier_in_charge, school_year) " +
-                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9)", con);
+            var cmd = new MySqlCommand("insert into statements_of_accounts(id_number, date, reference_no, particulars, debit, credit, balance, cashier_in_charge, school_year, " +
+                "course, year_level, semester) " +
+                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12)", con);
             cmd.Parameters.AddWithValue("@1", idNumber);
             cmd.Parameters.AddWithValue("@2", DateTime.Now.ToString("MM-dd-yyyy"));
             cmd.Parameters.AddWithValue("@3", reference_no);
@@ -57,6 +58,9 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@7", balance);
             cmd.Parameters.AddWithValue("@8", cashier_in_charge);
             cmd.Parameters.AddWithValue("@9", school_year);
+            cmd.Parameters.AddWithValue("@10", course);
+            cmd.Parameters.AddWithValue("@11", year_level);
+            cmd.Parameters.AddWithValue("@12", semester);
             cmd.ExecuteNonQuery();
             con.Close();
         }

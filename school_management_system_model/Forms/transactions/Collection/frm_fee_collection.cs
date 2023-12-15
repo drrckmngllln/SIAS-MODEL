@@ -23,7 +23,14 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void frm_fee_collection_Load(object sender, EventArgs e)
         {
+            loadFeeBreakdownDGV();
             loadSchoolYear();
+        }
+
+        private void loadFeeBreakdownDGV()
+        {
+            dgvFeeBreakdown.Columns.Add("term", "Term");
+            dgvFeeBreakdown.Columns.Add("amount", "Amount");
         }
 
         private void loadSchoolYear()
@@ -45,6 +52,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             var data = new FeeCollection();
             var idNumber = data.loadStudentAccounts(tIdNumber.Text);
             tStudentName.Text = idNumber.Rows[0]["fullname"].ToString();
+            tStatus.Text = idNumber.Rows[0]["status"].ToString();
         }
         private void loadStudentCourse()
         {
@@ -76,12 +84,11 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void loadFeeBreakdown()
         {
+            
             var data = new FeeCollection();
             var idNumber = data.loadFeeBreakdown(tIdNumber.Text);
 
-            dgvFeeBreakdown.Columns.Add("term", "Term");
-            dgvFeeBreakdown.Columns.Add("amount", "Amount");
-
+            
             string[] term = { "Downpayment", "Prelims", "Midterms", "Semi-Finals", "Finals" };
 
             for (int i = 0;i < 5; i++)
@@ -153,31 +160,76 @@ namespace school_management_system_model.Forms.transactions.Collection
             loadStatementOfAccount();
         }
 
-        private void feeBreakdownCollection()
+        private void feeBreakdownComputation()
         {
-            decimal amount = Convert.ToDecimal(tAmount.Text);
+            decimal amount = amount = Convert.ToDecimal(tAmount.Text);
+            decimal fee = 0;
+            decimal result = 0;
 
-            foreach(DataGridViewRow row in dgvFeeBreakdown.Rows)
+            foreach (DataGridViewRow row in dgvFeeBreakdown.Rows)
             {
-                decimal y = Convert.ToDecimal(row.Cells["amount"].Value);
-                if (y > 0)
+                fee = (decimal)row.Cells["amount"].Value;
+                if (amount > fee)
                 {
-                    var term = Convert.ToDecimal(row.Cells["amount"].Value);
-                    if (term != 0 && amount != 0)
-                    {
-                        amount -= term;
-                        row.Cells["amount"].Value = amount;
-                    }
+                    result = amount - fee;
+                    row.Cells["amount"].Value = 0;
+                    amount = result;
+                    
+                }
+                else if (amount <= fee)
+                {
+                    result = fee - amount;
+                    row.Cells["amount"].Value = result;
+                    amount = 0;
                 }
             }
         }
 
+        private void feeBreakDownSave()
+        {
+            feeBreakdownComputation();
+
+            var totalBreakdown = (decimal)dgvFeeBreakdown.Rows[0].Cells["amount"].Value + (decimal)dgvFeeBreakdown.Rows[1].Cells["amount"].Value + (decimal)dgvFeeBreakdown.Rows[2].Cells["amount"].Value
+                + (decimal)dgvFeeBreakdown.Rows[3].Cells["amount"].Value + (decimal)dgvFeeBreakdown.Rows[4].Cells["amount"].Value;
+
+            var feeBreakdown = new FeeCollection
+            {
+                downpayment = (decimal)dgvFeeBreakdown.Rows[0].Cells["amount"].Value,
+                prelim = (decimal)dgvFeeBreakdown.Rows[1].Cells["amount"].Value,
+                midterm = (decimal)dgvFeeBreakdown.Rows[2].Cells["amount"].Value,
+                semi_finals = (decimal)dgvFeeBreakdown.Rows[3].Cells["amount"].Value,
+                finals = (decimal)dgvFeeBreakdown.Rows[4].Cells["amount"].Value,
+                total = totalBreakdown
+            };
+            feeBreakdown.feeBreakdownSave(tIdNumber.Text, tSchoolYear.Text);
+            loadFeeBreakdown();
+        }
+
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirm Payment: " + tAmount.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            decimal collection = Convert.ToDecimal(tAmount.Text);
+            if (collection < 500)
             {
-                soaCollection();
+                MessageBox.Show("Error, Payment amount not accepted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                if (MessageBox.Show("Confirm Payment: " + tAmount.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    soaCollection();
+                    feeBreakDownSave();
+
+                    var data = new FeeCollection();
+                    var studentStatus = data.loadStudentAccounts(tIdNumber.Text);
+
+                    if (studentStatus.Rows[0]["status"].ToString() == "Accounting")
+                    {
+                        var changeStatus = new FeeCollection();
+                        changeStatus.StudentStatusChange(tIdNumber.Text);
+                    }
+                }
+            }
+
             try
             {
             }
@@ -187,14 +239,6 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            feeBreakdownCollection();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            feeBreakdownCollection();
-        }
+       
     }
 }
