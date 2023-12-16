@@ -168,13 +168,12 @@ namespace school_management_system_model.Forms.transactions.Collection
 
             foreach (DataGridViewRow row in dgvFeeBreakdown.Rows)
             {
-                fee = (decimal)row.Cells["amount"].Value;
+                fee = Convert.ToDecimal(row.Cells["amount"].Value);
                 if (amount > fee)
                 {
                     result = amount - fee;
                     row.Cells["amount"].Value = 0;
                     amount = result;
-                    
                 }
                 else if (amount <= fee)
                 {
@@ -189,20 +188,25 @@ namespace school_management_system_model.Forms.transactions.Collection
         {
             feeBreakdownComputation();
 
-            var totalBreakdown = (decimal)dgvFeeBreakdown.Rows[0].Cells["amount"].Value + (decimal)dgvFeeBreakdown.Rows[1].Cells["amount"].Value + (decimal)dgvFeeBreakdown.Rows[2].Cells["amount"].Value
-                + (decimal)dgvFeeBreakdown.Rows[3].Cells["amount"].Value + (decimal)dgvFeeBreakdown.Rows[4].Cells["amount"].Value;
+            var totalBreakdown = 
+                Convert.ToDecimal(dgvFeeBreakdown.Rows[0].Cells["amount"].Value) +
+                Convert.ToDecimal(dgvFeeBreakdown.Rows[1].Cells["amount"].Value) +
+                Convert.ToDecimal(dgvFeeBreakdown.Rows[2].Cells["amount"].Value) +
+                Convert.ToDecimal(dgvFeeBreakdown.Rows[3].Cells["amount"].Value) +
+                Convert.ToDecimal(dgvFeeBreakdown.Rows[4].Cells["amount"].Value);
+
 
             var feeBreakdown = new FeeCollection
             {
-                downpayment = (decimal)dgvFeeBreakdown.Rows[0].Cells["amount"].Value,
-                prelim = (decimal)dgvFeeBreakdown.Rows[1].Cells["amount"].Value,
-                midterm = (decimal)dgvFeeBreakdown.Rows[2].Cells["amount"].Value,
-                semi_finals = (decimal)dgvFeeBreakdown.Rows[3].Cells["amount"].Value,
-                finals = (decimal)dgvFeeBreakdown.Rows[4].Cells["amount"].Value,
+                downpayment = Convert.ToDecimal(dgvFeeBreakdown.Rows[0].Cells["amount"].Value),
+                prelim = Convert.ToDecimal(dgvFeeBreakdown.Rows[1].Cells["amount"].Value),
+                midterm = Convert.ToDecimal(dgvFeeBreakdown.Rows[2].Cells["amount"].Value),
+                semi_finals = Convert.ToDecimal(dgvFeeBreakdown.Rows[3].Cells["amount"].Value),
+                finals = Convert.ToDecimal(dgvFeeBreakdown.Rows[4].Cells["amount"].Value),
                 total = totalBreakdown
             };
             feeBreakdown.feeBreakdownSave(tIdNumber.Text, tSchoolYear.Text);
-            loadFeeBreakdown();
+            //loadFeeBreakdown();
         }
 
         private void btnConfirmPayment_Click(object sender, EventArgs e)
