@@ -131,11 +131,11 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public void StudentStatusChange(string idNumber)
+        public void StudentStatusChange(string idNumber, string schoolYear)
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("update student_accounts set status='Officially Enrolled' where id_number='" + idNumber + "'", con);
+            var cmd = new MySqlCommand("update student_accounts set status='Officially Enrolled for School Year "+schoolYear+"' where id_number='" + idNumber + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }

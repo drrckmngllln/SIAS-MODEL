@@ -229,7 +229,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                     if (studentStatus.Rows[0]["status"].ToString() == "Accounting")
                     {
                         var changeStatus = new FeeCollection();
-                        changeStatus.StudentStatusChange(tIdNumber.Text);
+                        changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
                     }
                 }
             }

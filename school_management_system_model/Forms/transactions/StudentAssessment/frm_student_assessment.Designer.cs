@@ -68,16 +68,16 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.discountTotal = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tDownpayment = new System.Windows.Forms.Label();
-            this.tPrelims = new System.Windows.Forms.Label();
-            this.tMidterms = new System.Windows.Forms.Label();
-            this.tSemiFinals = new System.Windows.Forms.Label();
             this.tFinals = new System.Windows.Forms.Label();
+            this.tSemiFinals = new System.Windows.Forms.Label();
+            this.tMidterms = new System.Windows.Forms.Label();
+            this.tPrelims = new System.Windows.Forms.Label();
+            this.tDownpayment = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -220,7 +220,7 @@
             this.tStudentName.Name = "tStudentName";
             this.tStudentName.Size = new System.Drawing.Size(344, 34);
             this.tStudentName.TabIndex = 0;
-            this.tStudentName.Text = "Student Name";
+            this.tStudentName.Text = "...";
             // 
             // button1
             // 
@@ -553,49 +553,55 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Fee Breakdown";
             // 
-            // label9
+            // tFinals
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(12, 33);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(136, 24);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Downpayment:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tFinals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tFinals.Location = new System.Drawing.Point(178, 175);
+            this.tFinals.Name = "tFinals";
+            this.tFinals.Size = new System.Drawing.Size(136, 24);
+            this.tFinals.TabIndex = 10;
+            this.tFinals.Text = "00000.00";
+            this.tFinals.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label10
+            // tSemiFinals
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(11, 68);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 24);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Prelims:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tSemiFinals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSemiFinals.Location = new System.Drawing.Point(178, 138);
+            this.tSemiFinals.Name = "tSemiFinals";
+            this.tSemiFinals.Size = new System.Drawing.Size(136, 24);
+            this.tSemiFinals.TabIndex = 9;
+            this.tSemiFinals.Text = "00000.00";
+            this.tSemiFinals.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label11
+            // tMidterms
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(11, 103);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 24);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Midterms:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tMidterms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tMidterms.Location = new System.Drawing.Point(178, 103);
+            this.tMidterms.Name = "tMidterms";
+            this.tMidterms.Size = new System.Drawing.Size(136, 24);
+            this.tMidterms.TabIndex = 8;
+            this.tMidterms.Text = "00000.00";
+            this.tMidterms.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label12
+            // tPrelims
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(11, 138);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(114, 24);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Semi-Finals:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tPrelims.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPrelims.Location = new System.Drawing.Point(178, 68);
+            this.tPrelims.Name = "tPrelims";
+            this.tPrelims.Size = new System.Drawing.Size(136, 24);
+            this.tPrelims.TabIndex = 7;
+            this.tPrelims.Text = "00000.00";
+            this.tPrelims.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tDownpayment
+            // 
+            this.tDownpayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tDownpayment.Location = new System.Drawing.Point(178, 33);
+            this.tDownpayment.Name = "tDownpayment";
+            this.tDownpayment.Size = new System.Drawing.Size(136, 24);
+            this.tDownpayment.TabIndex = 6;
+            this.tDownpayment.Text = "00000.00";
+            this.tDownpayment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label13
             // 
@@ -608,55 +614,49 @@
             this.label13.Text = "Finals:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tDownpayment
+            // label12
             // 
-            this.tDownpayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tDownpayment.Location = new System.Drawing.Point(178, 33);
-            this.tDownpayment.Name = "tDownpayment";
-            this.tDownpayment.Size = new System.Drawing.Size(136, 24);
-            this.tDownpayment.TabIndex = 6;
-            this.tDownpayment.Text = "00000.00";
-            this.tDownpayment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(11, 138);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(114, 24);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Semi-Finals:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tPrelims
+            // label11
             // 
-            this.tPrelims.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tPrelims.Location = new System.Drawing.Point(178, 68);
-            this.tPrelims.Name = "tPrelims";
-            this.tPrelims.Size = new System.Drawing.Size(136, 24);
-            this.tPrelims.TabIndex = 7;
-            this.tPrelims.Text = "00000.00";
-            this.tPrelims.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(11, 103);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(92, 24);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Midterms:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tMidterms
+            // label10
             // 
-            this.tMidterms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tMidterms.Location = new System.Drawing.Point(178, 103);
-            this.tMidterms.Name = "tMidterms";
-            this.tMidterms.Size = new System.Drawing.Size(136, 24);
-            this.tMidterms.TabIndex = 8;
-            this.tMidterms.Text = "00000.00";
-            this.tMidterms.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(11, 68);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 24);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Prelims:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tSemiFinals
+            // label9
             // 
-            this.tSemiFinals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tSemiFinals.Location = new System.Drawing.Point(178, 138);
-            this.tSemiFinals.Name = "tSemiFinals";
-            this.tSemiFinals.Size = new System.Drawing.Size(136, 24);
-            this.tSemiFinals.TabIndex = 9;
-            this.tSemiFinals.Text = "00000.00";
-            this.tSemiFinals.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tFinals
-            // 
-            this.tFinals.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tFinals.Location = new System.Drawing.Point(178, 175);
-            this.tFinals.Name = "tFinals";
-            this.tFinals.Size = new System.Drawing.Size(136, 24);
-            this.tFinals.TabIndex = 10;
-            this.tFinals.Text = "00000.00";
-            this.tFinals.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(12, 33);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(136, 24);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Downpayment:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frm_student_assessment
             // 

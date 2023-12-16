@@ -579,5 +579,8 @@
     <None Include="Resources\school logo1.png" />
     <Content Include="Untitled design.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\transactions\FeeAdjustment\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

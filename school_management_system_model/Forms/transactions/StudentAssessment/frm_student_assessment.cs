@@ -310,16 +310,25 @@ namespace school_management_system_model.Forms.transactions
             var data = assessment.loadRecords(schoolYear, tIdNumber.Text);
             if (data.Rows.Count > 0)
             {
-                dgv.Columns.Clear();
+                //dgv.Columns.Clear();
 
-                dgv.DataSource = data;
-                dgv.Columns["id"].Visible = false;
-                dgv.Columns["id_number"].Visible = false;
-                dgv.Columns["school_year"].Visible = false;
-                dgv.Columns["fee_type"].HeaderText = "Fee Type";
-                dgv.Columns["amount"].HeaderText = "Amount";
-                dgv.Columns["units"].HeaderText = "Units";
-                dgv.Columns["computation"].HeaderText = "Computation";
+                //dgv.DataSource = data;
+                //dgv.Columns["id"].Visible = false;
+                //dgv.Columns["id_number"].Visible = false;
+                //dgv.Columns["school_year"].Visible = false;
+                //dgv.Columns["fee_type"].HeaderText = "Fee Type";
+                //dgv.Columns["amount"].HeaderText = "Amount";
+                //dgv.Columns["units"].HeaderText = "Units";
+                //dgv.Columns["computation"].HeaderText = "Computation";
+
+                MessageBox.Show("Student Already Assessed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tIdNumber.Clear();
+                tCourse.Clear();
+                tCampus.Clear();
+                tYearLevel.Clear();
+                tSemester.Clear();
+                tSchoolYear.Clear();
+                tStudentName.Text = "...";
             }
             else
             {
