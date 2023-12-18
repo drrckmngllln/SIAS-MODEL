@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,16 +11,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace school_management_system_model.Forms.transactions
+namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
-    public partial class frm_select_subject : KryptonForm
+    public partial class frm_add_subject : KryptonForm
     {
-        public frm_select_subject()
+        public string idnumber { get; set; }
+        public string schoolyear { get; set; }
+
+        public static frm_add_subject instance;
+        public frm_add_subject()
         {
+            instance = this;
             InitializeComponent();
         }
 
-        private void frm_select_subject_Load(object sender, EventArgs e)
+        private void frm_add_subject_Load(object sender, EventArgs e)
         {
             loadRecords();
         }
@@ -52,7 +58,6 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["instructor"].Width = 250;
             dgv.Columns["status"].Visible = false;
         }
-
         private void searchRecords()
         {
             var con = new MySqlConnection(connection.con());
@@ -82,16 +87,12 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["instructor"].Width = 250;
             dgv.Columns["status"].Visible = false;
         }
-
         private void selectSubject()
         {
             int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-            frm_student_enrollment.instance.Id = id;
+              frm_student_enrollment.instance.Id = id;
             this.Close();
         }
-
-        
-
         private void frm_select_subject_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -124,9 +125,66 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void frm_add_subject_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+
+            {
+                addrecords(idnumber, schoolyear);
+            }
+            else if (e.KeyCode == Keys.Escape)
+
+            { 
+                Close();
+            }
+        }
+
+        private void addrecords(string idnumber, string schoolyear)
+        {
+            var subjectcode = dgv.CurrentRow.Cells["subject_code"].Value.ToString();
+            var curriculum = dgv.CurrentRow.Cells["curriculum"].Value.ToString();
+            var course = dgv.CurrentRow.Cells["course"].Value.ToString();
+            var yearlevel = dgv.CurrentRow.Cells["year_level"].Value.ToString();
+            var semester = dgv.CurrentRow.Cells["semester"].Value.ToString();
+            var sectioncode = dgv.CurrentRow.Cells["section_code"].Value.ToString();
+            var descriptivetitle = dgv.CurrentRow.Cells["descriptive_title"].Value.ToString();
+            var lectureunits = Convert.ToDecimal(dgv.CurrentRow.Cells["lecture_units"].Value.ToString());
+            var labunits =Convert.ToDecimal( dgv.CurrentRow.Cells["lab_units"].Value.ToString());
+            var prerequisite = dgv.CurrentRow.Cells["pre_requisite"].Value.ToString();
+            var time = dgv.CurrentRow.Cells["time"].Value.ToString();
+            var day= dgv.CurrentRow.Cells["day"].Value.ToString();
+            var room = dgv.CurrentRow.Cells["room"].Value.ToString();
+            var status = dgv.CurrentRow.Cells["status"].Value.ToString();
+            var instructor = dgv.CurrentRow.Cells["instructor"].Value.ToString();
+
+
+            var add = new section_subject
+            {
+                unique_id = idnumber + "-" + schoolyear + "-" + subjectcode,
+                section_code = sectioncode,
+                subject_code = subjectcode,
+                curriculum = curriculum,
+                course = course,
+                year_level = yearlevel,
+                semester = semester,
+                descriptive_title = descriptivetitle,
+                lecture_units = lectureunits,
+                pre_requisite = prerequisite,
+                lab_units = labunits,
+                time = time,
+                day = day,
+                room = room,
+                status = status,
+                instructor = instructor
+
+
+            };
+            add.saveSectionSubjects();
+            MessageBox.Show("Subject added Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Close();
+
 
         }
+
     }
 }

@@ -171,6 +171,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                 fee = Convert.ToDecimal(row.Cells["amount"].Value);
                 if (amount > fee)
                 {
+
                     result = amount - fee;
                     row.Cells["amount"].Value = 0;
                     amount = result;
@@ -180,6 +181,14 @@ namespace school_management_system_model.Forms.transactions.Collection
                     result = fee - amount;
                     row.Cells["amount"].Value = result;
                     amount = 0;
+
+                    var term = Convert.ToDecimal(row.Cells["amount"].Value);
+                    if (term != 0 && amount != 0)
+                    {
+                        amount -= term;
+                        row.Cells["amount"].Value = amount;
+                    }
+
                 }
             }
         }

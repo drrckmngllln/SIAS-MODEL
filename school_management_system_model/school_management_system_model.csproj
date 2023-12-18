@@ -304,6 +304,12 @@
     <Compile Include="Forms\transactions\frm_add_courses.Designer.cs">
       <DependentUpon>frm_add_courses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_add_subject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_add_subject.Designer.cs">
+      <DependentUpon>frm_add_subject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\frm_create_account.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -488,6 +494,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\frm_add_courses.resx">
       <DependentUpon>frm_add_courses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_add_subject.resx">
+      <DependentUpon>frm_add_subject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_create_account.resx">
       <DependentUpon>frm_create_account.cs</DependentUpon>
