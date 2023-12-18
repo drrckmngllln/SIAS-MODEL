@@ -297,6 +297,7 @@ namespace school_management_system_model.Forms.transactions
         private void kryptonButton1_Click_1(object sender, EventArgs e)
         {
             var frm = new frm_select_subject();
+            frm.Text = "Add Subject";
             frm.ShowDialog();
 
             var addCustomSubject = new proceed_to_enrollment

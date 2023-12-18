@@ -1,9 +1,11 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -16,9 +18,17 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
     public partial class frm_view_subjects : KryptonForm
     {
         public static frm_view_subjects instance;
+        
         public string id_number { get; set; }
         public string fullname { get; set; }
         public string school_year { get; set; }
+
+        public string subjectCode { get; set; }
+        public int Id { get; set; }
+        int totalUnits = 0;
+        int totalLectureUnits = 0;
+        int totalLabUnits = 0;
+
         public frm_view_subjects()
         {
             instance = this;
@@ -165,7 +175,63 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         }
 
-       
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_add_subject
+            {
+                idnumber = id_number,
+                schoolyear = school_year,
+            };
+
+            frm.ShowDialog();
+
+            var addCustomSubject = new proceed_to_enrollment
+            {
+                id = Id
+            };
+            var data = addCustomSubject.addCustomSubject();
+
+            if (Id != 0)
+            {
+                dgv.Rows.Add(
+                data.Rows[0]["subject_code"],
+                data.Rows[0]["descriptive_title"],
+                data.Rows[0]["pre_requisite"],
+                data.Rows[0]["total_units"],
+                data.Rows[0]["lecture_units"],
+                data.Rows[0]["lab_units"],
+                data.Rows[0]["time"],
+                data.Rows[0]["day"],
+                data.Rows[0]["room"],
+                data.Rows[0]["instructor"]
+                );
+
+                int lastRow = dgv.Rows.Count - 1;
+                totalUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["total_units"].Value);
+                totalLectureUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lecture_units"].Value);
+                totalLabUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lab_units"].Value);
+            }
+
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to drop this subject!", "Warning", MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+            {
+                var idnumber = id_number;
+                string subjectcode = dgv.CurrentRow.Cells["subject_code"].Value.ToString();
+                var con = new MySqlConnection(connection.con());
+                con.Open();
+                var cmd = new MySqlCommand("delete from student_subjects where id_number='" + id_number + "' and subject_code='" + dgv.CurrentRow.Cells["subject_code"].Value.ToString() + "'", con);
+            
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("Subject Dropped!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadRecords(id_number, school_year);
+            }
+          
+        }
     }
 }
+
 
