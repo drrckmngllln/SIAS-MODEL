@@ -45,7 +45,6 @@
             this.btnReset = new Krypton.Toolkit.KryptonButton();
             this.btnEnroll = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.btnPromoteStudent = new Krypton.Toolkit.KryptonButton();
             this.btnCancelEnrollment = new Krypton.Toolkit.KryptonButton();
             this.btnSYoptions = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -107,7 +106,7 @@
             // btnCreate
             // 
             this.btnCreate.CornerRoundingRadius = 10F;
-            this.btnCreate.Location = new System.Drawing.Point(12, 90);
+            this.btnCreate.Location = new System.Drawing.Point(18, 90);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(154, 34);
             this.btnCreate.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -204,7 +203,7 @@
             // 
             this.btnApprove.CornerRoundingRadius = 10F;
             this.btnApprove.Enabled = false;
-            this.btnApprove.Location = new System.Drawing.Point(172, 90);
+            this.btnApprove.Location = new System.Drawing.Point(178, 90);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(154, 34);
             this.btnApprove.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -250,7 +249,7 @@
             // 
             this.btnEnroll.CornerRoundingRadius = 10F;
             this.btnEnroll.Enabled = false;
-            this.btnEnroll.Location = new System.Drawing.Point(332, 90);
+            this.btnEnroll.Location = new System.Drawing.Point(338, 90);
             this.btnEnroll.Name = "btnEnroll";
             this.btnEnroll.Size = new System.Drawing.Size(154, 34);
             this.btnEnroll.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -272,7 +271,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.CornerRoundingRadius = 10F;
-            this.kryptonButton1.Location = new System.Drawing.Point(492, 90);
+            this.kryptonButton1.Location = new System.Drawing.Point(498, 90);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(154, 34);
             this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -291,32 +290,10 @@
             this.kryptonButton1.Values.Text = "View Subjects Enrolled";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
-            // btnPromoteStudent
-            // 
-            this.btnPromoteStudent.CornerRoundingRadius = 10F;
-            this.btnPromoteStudent.Location = new System.Drawing.Point(652, 90);
-            this.btnPromoteStudent.Name = "btnPromoteStudent";
-            this.btnPromoteStudent.Size = new System.Drawing.Size(154, 34);
-            this.btnPromoteStudent.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.btnPromoteStudent.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.btnPromoteStudent.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.btnPromoteStudent.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.btnPromoteStudent.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnPromoteStudent.StateCommon.Border.Rounding = 10F;
-            this.btnPromoteStudent.StateCommon.Border.Width = 2;
-            this.btnPromoteStudent.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
-            this.btnPromoteStudent.StateCommon.Content.ShortText.Color2 = System.Drawing.SystemColors.Control;
-            this.btnPromoteStudent.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPromoteStudent.TabIndex = 112;
-            this.btnPromoteStudent.Values.Text = "Promote Student";
-            this.btnPromoteStudent.Click += new System.EventHandler(this.btnPromoteStudent_Click);
-            // 
             // btnCancelEnrollment
             // 
             this.btnCancelEnrollment.CornerRoundingRadius = 10F;
-            this.btnCancelEnrollment.Location = new System.Drawing.Point(812, 90);
+            this.btnCancelEnrollment.Location = new System.Drawing.Point(658, 90);
             this.btnCancelEnrollment.Name = "btnCancelEnrollment";
             this.btnCancelEnrollment.Size = new System.Drawing.Size(154, 34);
             this.btnCancelEnrollment.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -333,6 +310,7 @@
             this.btnCancelEnrollment.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelEnrollment.TabIndex = 113;
             this.btnCancelEnrollment.Values.Text = "Cancel Enrollment";
+            this.btnCancelEnrollment.Click += new System.EventHandler(this.btnCancelEnrollment_Click);
             // 
             // btnSYoptions
             // 
@@ -364,7 +342,6 @@
             this.ClientSize = new System.Drawing.Size(1129, 620);
             this.Controls.Add(this.btnSYoptions);
             this.Controls.Add(this.btnCancelEnrollment);
-            this.Controls.Add(this.btnPromoteStudent);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.btnEnroll);
             this.Controls.Add(this.btnReset);
@@ -406,7 +383,6 @@
         private Krypton.Toolkit.KryptonButton btnReset;
         private Krypton.Toolkit.KryptonButton btnEnroll;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonButton btnPromoteStudent;
         private Krypton.Toolkit.KryptonButton btnCancelEnrollment;
         private Krypton.Toolkit.KryptonButton btnSYoptions;
     }

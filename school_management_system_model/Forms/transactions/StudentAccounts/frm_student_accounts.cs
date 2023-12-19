@@ -65,6 +65,10 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["mother_no"].HeaderText = "Mother Contact No.";
             dgv.Columns["father_name"].HeaderText = "Father Name";
             dgv.Columns["father_no"].HeaderText = "Father Contact No.";
+            dgv.Columns["home_address"].HeaderText = "Home Address ";
+            dgv.Columns["m_occupation"].HeaderText = "Mother Occupation";
+            dgv.Columns["f_occupation"].HeaderText = "Father Occupation";
+            dgv.Columns["type_of_student"].HeaderText = "Type of Student";
 
         }
 
@@ -205,6 +209,11 @@ namespace school_management_system_model.Forms.transactions
             }
             btnCreate.Text = "Create Account";
             loadRecords();
+        }
+
+        private void btnCancelEnrollment_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)

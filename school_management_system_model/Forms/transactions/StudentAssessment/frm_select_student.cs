@@ -67,6 +67,11 @@ namespace school_management_system_model.Forms.transactions
                 dgv.Columns["mother_no"].Visible = false;
                 dgv.Columns["father_name"].Visible = false;
                 dgv.Columns["father_no"].Visible = false;
+                dgv.Columns["home_address"].Visible = false;
+                dgv.Columns["m_occupation"].Visible = false;
+                dgv.Columns["f_occupation"].Visible = false;
+                dgv.Columns["type_of_student"].Visible = false;
+
             }
             else if (this.Text == "Select School Year")
             {
@@ -192,6 +197,22 @@ namespace school_management_system_model.Forms.transactions
                     dgv.Columns["nationality"].Visible = false;
                     dgv.Columns["religion"].Visible = false;
                     dgv.Columns["status"].Visible = false;
+                    dgv.Columns["religion"].Visible = false;            
+                    dgv.Columns["contact_no"].Visible = false;
+                    dgv.Columns["email"].Visible = false;
+                    dgv.Columns["elem"].Visible = false;
+                    dgv.Columns["jhs"].Visible = false;
+                    dgv.Columns["shs"].Visible = false;
+                    dgv.Columns["elem_year"].Visible = false;
+                    dgv.Columns["jhs_year"].Visible = false;
+                    dgv.Columns["shs_year"].Visible = false;
+                    dgv.Columns["mother_name"].Visible = false;
+                    dgv.Columns["mother_no"].Visible = false;
+                    dgv.Columns["father_name"].Visible = false;
+                    dgv.Columns["father_no"].Visible = false;
+                    dgv.Columns["home_address)"].Visible = false;
+                    dgv.Columns["m_occupation)"].Visible = false;
+                    dgv.Columns["f_occupation)"].Visible = false;
                 }
                 else if (tSearch.Text.Length == 0)
                 {

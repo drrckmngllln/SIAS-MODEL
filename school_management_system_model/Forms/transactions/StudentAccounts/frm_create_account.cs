@@ -61,7 +61,13 @@ namespace school_management_system_model.Forms.transactions
                 tmcontact.Text = data.Rows[0]["mother_no"].ToString();
                 tfather.Text = data.Rows[0]["father_name"].ToString();
                 tfcontact.Text = data.Rows[0]["father_no"].ToString();
+                tadd.Text = data.Rows[0]["home_address"].ToString();
+                tmoccupation.Text = data.Rows[0]["m_occupation"].ToString();
+                tfoccupation.Text = data.Rows[0]["f_occupation"].ToString();
                 tStatus.Text = data.Rows[0]["Status"].ToString();
+                ctype.Text = data.Rows[0]["type_of_student"].ToString();
+                
+                    
 
                 btnCreate.Text = "Update Account";
             }
@@ -139,6 +145,10 @@ namespace school_management_system_model.Forms.transactions
                         mother_no=  tmcontact.Text,
                         father_name = tfather.Text,
                         father_no= tfcontact.Text,
+                        home_address= tadd.Text,
+                        m_occupation= tmoccupation.Text,
+                        f_occupation=tfoccupation.Text,
+                        type_of_student= ctype.Text,
                         status = tStatus.Text,
                         sy_enrolled = tSchoolyear.Text
 
@@ -177,6 +187,10 @@ namespace school_management_system_model.Forms.transactions
                         mother_no = tmcontact.Text,
                         father_name = tfather.Text,
                         father_no = tfcontact.Text,
+                        home_address = tadd.Text,
+                        m_occupation = tmoccupation.Text,
+                        f_occupation = tfoccupation.Text,
+                        type_of_student = ctype.Text,
                         status = tStatus.Text,                     
                         sy_enrolled = tSchoolyear.Text
                     };
@@ -214,6 +228,20 @@ namespace school_management_system_model.Forms.transactions
             tDateofBirth.Text = dateTimePicker1.Value.ToString("MM-dd-yyyy");
         }
 
+        private void lblsattend_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void tSchoolyear_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     }
 
