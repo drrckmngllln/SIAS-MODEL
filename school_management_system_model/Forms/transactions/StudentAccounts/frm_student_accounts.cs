@@ -186,21 +186,12 @@ namespace school_management_system_model.Forms.transactions
 
         private void btnPromoteStudent_Click(object sender, EventArgs e)
         {
-            try
+            var frm = new frm_student_promotion
             {
-                var frm = new frm_student_promotion
-                {
-                    id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
-                    fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString(),
-                    school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString()
-                };
-                frm.ShowDialog();
-                loadRecords();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString()
+            };
+            frm.ShowDialog();
+            loadRecords();
         }
 
         private void btnSYoptions_Click(object sender, EventArgs e)
