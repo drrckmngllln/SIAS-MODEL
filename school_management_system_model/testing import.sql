@@ -413,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `section_subjects` (
   UNIQUE KEY `unique_id` (`unique_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.section_subjects: ~63 rows (approximately)
+-- Dumping data for table model_test_db.section_subjects: ~67 rows (approximately)
 INSERT INTO `section_subjects` (`id`, `unique_id`, `section_code`, `curriculum`, `course`, `year_level`, `semester`, `subject_code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `time`, `day`, `room`, `instructor`, `status`) VALUES
 	(132, 'BSCA-1-A-BSCA 2021-2022-BSCA-1-1-GEC 1', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 1', 'Understanding the Self', 3.0, 3.0, 0.0, 'None', '', '', '', NULL, NULL),
 	(133, 'BSCA-1-A-BSCA 2021-2022-BSCA-1-1-GEC 2', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 2', 'Readings in the Philippine History', 3.0, 3.0, 0.0, 'None', '', '', '', NULL, NULL),
@@ -564,7 +564,7 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
   UNIQUE KEY `fullname` (`fullname`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_accounts: ~10 rows (approximately)
+-- Dumping data for table model_test_db.student_accounts: ~11 rows (approximately)
 INSERT INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`) VALUES
 	(97, '2023-1-0002', '2023-2024-1', '2023-2024-1', 'Pingad, Airon Jim', 'Pingad', 'Airon', 'Jim', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '0', '', '0', '', '', '', ''),
 	(98, '2023-1-0003', '2023-2024-1', '2023-2024-1', 'Go, Chong ke', 'Go', 'Chong', 'ke', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '0', '', '0', '', '', '', ''),
@@ -573,7 +573,7 @@ INSERT INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`,
 	(115, '2023-1-0006', '2023-2024-1', '2023-2024-1', 'cha,  ', 'cha', '', '', '', '', '', '', '', '', 'Accounting', '091564', '@', 'annaf', 'annaf', 'annaf', '2023', '2021', '2023', 'ahaha', '123', 'das', '123', '', '', '', ''),
 	(116, '2023-1-0007', '2023-2024-1', '2023-2024-1', 'sdas, sad sad', 'sdas', 'sad', 'sad', '', 'Single', '', '', '', '', 'Accounting', '', '@', 'sdfd', 'vb', '', '1212', '12', '12', '', '', '', '', '', '', '', 'Freshmen'),
 	(117, '2023-1-0008', '2023-2024-1', '2023-2024-1', 'Pagela, John Christian ', 'Pagela', 'John Christian', '', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-	(118, '2023-1-0001', '2023-2024-1', '2023-2024-1', 'Manglallan, Derrick Daniel', 'Manglallan', 'Derrick', 'Daniel', 'Male', 'Single', '07-31-1996', 'Alcala, Cagayan', '', '', 'Officially Enrolled', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen'),
+	(118, '2023-1-0001', '2023-2024-1', '2023-2024-1', 'Manglallan, Derrick Daniel', 'Manglallan', 'Derrick', 'Daniel', 'Male', 'Single', '07-31-1996', 'Alcala, Cagayan', '', '', 'Officially Enrolled', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Regular'),
 	(120, '2023-1-0010', '2023-2024-1', '2023-2024-1', 'Dela Cruz, Juan ', 'Dela Cruz', 'Juan', '', '', '', '', '', '', '', 'Officially Enrolled', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen'),
 	(122, '2023-1-0011', '2023-2024-1', '2023-2024-1', 'das, asd sad', 'das', 'asd', 'sad', 'Female', 'Single', '12-18-2023', 'sd', 'sad', 'sd', 'For Enrollment', 'sad', 'das', 'asdas', 'sadas', 'das', '1', '2', '3', 'sad', '65456', 'fasfasf', '5644561', 'sadasd', 'housewife', 'farmer', 'Freshmen'),
 	(124, '2023-1-0012', '2023-2024-1', '2023-2024-1', 'dssadasdsa,  ', 'dssadasdsa', '', '', '', '', '', '', '', '', 'For Enrollment', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Transferee');
@@ -639,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `student_course` (
   UNIQUE KEY `id_number` (`id_number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_course: ~9 rows (approximately)
+-- Dumping data for table model_test_db.student_course: ~10 rows (approximately)
 INSERT INTO `student_course` (`id`, `id_number`, `course`, `campus`, `curriculum`, `year_level`, `section`, `semester`) VALUES
 	(78, '2023-1-0002', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '2'),
 	(79, '2023-1-0003', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '2'),
@@ -663,7 +663,7 @@ CREATE TABLE IF NOT EXISTS `student_discounts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_discounts: ~5 rows (approximately)
+-- Dumping data for table model_test_db.student_discounts: ~6 rows (approximately)
 INSERT INTO `student_discounts` (`id`, `id_number`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
 	(15, '2023-1-0002', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75),
 	(16, '2023-1-0002', 'Dean-Lister-25%', 'Tuition Fee', 'Dean Lister Discount', 25),
@@ -705,7 +705,7 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   UNIQUE KEY `unique_id` (`unique_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=544 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_subjects: ~67 rows (approximately)
+-- Dumping data for table model_test_db.student_subjects: ~75 rows (approximately)
 INSERT INTO `student_subjects` (`id`, `id_number`, `unique_id`, `school_year`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor`, `grade`, `remarks`) VALUES
 	(459, '2023-1-0002', '2023-1-0002-2023-2-GEC 6', '2023-2024-1', 'GEC 6', 'Art Apreciation', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
 	(460, '2023-1-0002', '2023-1-0002-2023-2-GEC 7', '2023-2024-1', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
