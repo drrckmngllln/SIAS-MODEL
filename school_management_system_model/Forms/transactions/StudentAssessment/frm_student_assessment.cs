@@ -84,7 +84,7 @@ namespace school_management_system_model.Forms.transactions
             
             var lectureFee = new student_assessment();
             decimal tuitionUnit = 0;
-            tuitionUnit = lectureFee.getTuitionFeeUnits(tIdNumber.Text);
+            tuitionUnit = lectureFee.getTuitionFeeUnits(tIdNumber.Text, tSchoolYear.Text);
 
             var tuition = new student_assessment();
             var data = tuition.getTuitionFee(tCampus.Text);
@@ -437,8 +437,9 @@ namespace school_management_system_model.Forms.transactions
 
         private void saveAssessment()
         {
+            
             // Save to Student Assessment
-            foreach(DataGridViewRow row in dgv.Rows)
+            foreach (DataGridViewRow row in dgv.Rows)
             {
                 var assessment = new student_assessment
                 {
@@ -459,6 +460,7 @@ namespace school_management_system_model.Forms.transactions
             saveFeeBreakdown();
 
             MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void saveFeeBreakdown()
@@ -501,49 +503,102 @@ namespace school_management_system_model.Forms.transactions
 
         private void saveStatementsOfAccounts()
         {
-            var data = new StatementsOfAccounts
+            // Checking for Previous Assessment if there are negatives
+            var dataBalance = new student_assessment();
+            var balance = dataBalance.checkPreviousSoa(tIdNumber.Text);
+            if (balance.Rows.Count > 0)
             {
-                id_number = tIdNumber.Text,
-                school_year = tSchoolYear.Text,
-                date = DateTime.Now.ToString("MM-dd-yyyy"),
-                course = tCourse.Text,
-                year_level = tYearLevel.Text,
-                semester = tSemester.Text,
-                particulars = "Total Assessment as of: " + tSchoolYear.Text,
-                debit = Convert.ToDecimal(tTotal.Text),
-                credit = 0,
-                balance = Convert.ToDecimal(tTotal.Text),
-                cashier_in_charge = "",
-            };
-            data.saveStatementOfAccount(tIdNumber.Text);
-            var discounts = new student_assessment();
-            var disc = discounts.loadDiscounts(tIdNumber.Text);
-            
-            // For the discount
-            foreach (DataRow row in disc.Rows)
-            {
-                var latest = new StatementsOfAccounts();
-                var soaLatest = latest.loadLatestSOA(tIdNumber.Text);
-                decimal debit = Convert.ToDecimal(soaLatest.Rows[0]["balance"]);
-                if (row["discount_target"].ToString() == "Tuition Fee")
+                var previousBalance = Convert.ToDecimal(balance.Rows[0]["balance"]);
+                var debitCurrent = Convert.ToDecimal(tTotal.Text);
+                var data = new StatementsOfAccounts
                 {
-                    var computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * totalTuitionFee;
-                    var soaDiscount = new StatementsOfAccounts
+                    id_number = tIdNumber.Text,
+                    school_year = tSchoolYear.Text,
+                    date = DateTime.Now.ToString("MM-dd-yyyy"),
+                    course = tCourse.Text,
+                    year_level = tYearLevel.Text,
+                    semester = tSemester.Text,
+                    particulars = "Total Assessment as of: " + tSchoolYear.Text,
+                    debit = debitCurrent,
+                    credit = previousBalance,
+                    balance = debitCurrent + previousBalance,
+                    cashier_in_charge = ""
+                };
+                data.saveStatementOfAccount(tIdNumber.Text);
+
+                var discounts = new student_assessment();
+                var disc = discounts.loadDiscounts(tIdNumber.Text);
+
+                // For the discount
+                foreach (DataRow row in disc.Rows)
+                {
+                    var latest = new StatementsOfAccounts();
+                    var soaLatest = latest.loadLatestSOA(tIdNumber.Text);
+                    decimal debit = Convert.ToDecimal(soaLatest.Rows[0]["balance"]);
+                    if (row["discount_target"].ToString() == "Tuition Fee")
                     {
-                        id_number = tIdNumber.Text,
-                        course = tCourse.Text,
-                        year_level = tYearLevel.Text,
-                        semester = tSemester.Text,
-                        particulars = row["description"].ToString(),
-                        debit = debit,
-                        credit = computation,
-                        balance = debit - computation,
-                        cashier_in_charge = ""
-                    };
-                    soaDiscount.saveStatementOfAccount(tIdNumber.Text);
+                        var computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * totalTuitionFee;
+                        var soaDiscount = new StatementsOfAccounts
+                        {
+                            id_number = tIdNumber.Text,
+                            course = tCourse.Text,
+                            year_level = tYearLevel.Text,
+                            semester = tSemester.Text,
+                            particulars = row["description"].ToString(),
+                            debit = debit,
+                            credit = computation,
+                            balance = debit - computation,
+                            cashier_in_charge = ""
+                        };
+                        soaDiscount.saveStatementOfAccount(tIdNumber.Text);
+                    }
                 }
             }
+            else if (balance.Rows.Count == 0)
+            {
+                var data = new StatementsOfAccounts
+                {
+                    id_number = tIdNumber.Text,
+                    school_year = tSchoolYear.Text,
+                    date = DateTime.Now.ToString("MM-dd-yyyy"),
+                    course = tCourse.Text,
+                    year_level = tYearLevel.Text,
+                    semester = tSemester.Text,
+                    particulars = "Total Assessment as of: " + tSchoolYear.Text,
+                    debit = Convert.ToDecimal(tTotal.Text),
+                    credit = 0,
+                    balance = Convert.ToDecimal(tTotal.Text),
+                    cashier_in_charge = "",
+                };
+                data.saveStatementOfAccount(tIdNumber.Text);
+                var discounts = new student_assessment();
+                var disc = discounts.loadDiscounts(tIdNumber.Text);
 
+                // For the discount
+                foreach (DataRow row in disc.Rows)
+                {
+                    var latest = new StatementsOfAccounts();
+                    var soaLatest = latest.loadLatestSOA(tIdNumber.Text);
+                    decimal debit = Convert.ToDecimal(soaLatest.Rows[0]["balance"]);
+                    if (row["discount_target"].ToString() == "Tuition Fee")
+                    {
+                        var computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * totalTuitionFee;
+                        var soaDiscount = new StatementsOfAccounts
+                        {
+                            id_number = tIdNumber.Text,
+                            course = tCourse.Text,
+                            year_level = tYearLevel.Text,
+                            semester = tSemester.Text,
+                            particulars = row["description"].ToString(),
+                            debit = debit,
+                            credit = computation,
+                            balance = debit - computation,
+                            cashier_in_charge = ""
+                        };
+                        soaDiscount.saveStatementOfAccount(tIdNumber.Text);
+                    }
+                }
+            }
         }
 
         private void loadDiscounts()

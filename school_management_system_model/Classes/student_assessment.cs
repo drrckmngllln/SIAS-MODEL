@@ -34,10 +34,10 @@ namespace school_management_system_model.Classes
             return dt;
         }
 
-        public decimal getTuitionFeeUnits(string idNumber)
+        public decimal getTuitionFeeUnits(string idNumber, string schoolYear)
         {
             var con = new MySqlConnection (connection.con());
-            var da = new MySqlDataAdapter("select * from student_subjects where id_number='" + idNumber + "'", con);
+            var da = new MySqlDataAdapter("select * from student_subjects where id_number='" + idNumber + "' and school_year='" + schoolYear + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
             decimal total = 0;
@@ -145,5 +145,13 @@ namespace school_management_system_model.Classes
             return dt;
         }
         
+        public DataTable checkPreviousSoa(string idNumber)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from statements_of_accounts where id_number='" + idNumber + "' order by id desc", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
     }
 }
