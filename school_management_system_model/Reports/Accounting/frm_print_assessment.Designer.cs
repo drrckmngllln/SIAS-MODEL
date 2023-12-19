@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.crv = new Microsoft.Reporting.WinForms.ReportViewer();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // reportViewer1
+            // crv
             // 
-            this.reportViewer1.Location = new System.Drawing.Point(12, 69);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1177, 610);
-            this.reportViewer1.TabIndex = 0;
+            this.crv.Location = new System.Drawing.Point(12, 69);
+            this.crv.Name = "crv";
+            this.crv.ServerReport.BearerToken = null;
+            this.crv.Size = new System.Drawing.Size(1177, 610);
+            this.crv.TabIndex = 0;
             // 
             // kryptonButton2
             // 
             this.kryptonButton2.CornerRoundingRadius = 10F;
-            this.kryptonButton2.Location = new System.Drawing.Point(668, 685);
+            this.kryptonButton2.Location = new System.Drawing.Point(1063, 689);
             this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(126, 25);
+            this.kryptonButton2.Size = new System.Drawing.Size(126, 41);
             this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
             this.kryptonButton2.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
             this.kryptonButton2.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -57,7 +58,18 @@
             this.kryptonButton2.StateCommon.Border.Width = 2;
             this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton2.TabIndex = 153;
-            this.kryptonButton2.Values.Text = "Recompute";
+            this.kryptonButton2.Values.Text = "Print";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(181, 24);
+            this.label1.TabIndex = 154;
+            this.label1.Text = "Student Assessment";
             // 
             // frm_print_assessment
             // 
@@ -65,8 +77,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(1201, 742);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.reportViewer1);
+            this.Controls.Add(this.crv);
             this.CornerRoundingRadius = 10F;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_print_assessment";
@@ -78,12 +91,14 @@
             this.Text = "frm_print_assessment";
             this.Load += new System.EventHandler(this.frm_print_assessment_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private Microsoft.Reporting.WinForms.ReportViewer crv;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
+        private System.Windows.Forms.Label label1;
     }
 }
