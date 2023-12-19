@@ -81,9 +81,5 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
         }
 
-        private void frm_statements_of_accounts_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
