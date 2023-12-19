@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
 using school_management_system_model.Forms.transactions.StudentAssessment;
+using school_management_system_model.Reports.Accounting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -691,8 +692,19 @@ namespace school_management_system_model.Forms.transactions
             frm.ShowDialog();
         }
 
+
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+        private void kryptonButton6_Click_1(object sender, EventArgs e)
+        {
+            var frm = new frm_print_assessment
+            {
+                id_number = tIdNumber.Text
+            };
+            frm.Text = "ISAP Assessment";
+            frm.ShowDialog();
 
         }
     }

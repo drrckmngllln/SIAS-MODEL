@@ -78,6 +78,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.kryptonButton6 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -150,9 +151,9 @@
             // btn_save
             // 
             this.btn_save.CornerRoundingRadius = 15F;
-            this.btn_save.Location = new System.Drawing.Point(97, 313);
+            this.btn_save.Location = new System.Drawing.Point(32, 292);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(186, 53);
+            this.btn_save.Size = new System.Drawing.Size(155, 48);
             this.btn_save.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
             this.btn_save.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
             this.btn_save.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -659,11 +660,34 @@
             this.label9.Text = "Downpayment:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // kryptonButton6
+            // 
+            this.kryptonButton6.CornerRoundingRadius = 15F;
+            this.kryptonButton6.Location = new System.Drawing.Point(193, 292);
+            this.kryptonButton6.Name = "kryptonButton6";
+            this.kryptonButton6.Size = new System.Drawing.Size(155, 48);
+            this.kryptonButton6.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
+            this.kryptonButton6.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.kryptonButton6.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.kryptonButton6.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.kryptonButton6.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton6.StateCommon.Border.Rounding = 15F;
+            this.kryptonButton6.StateCommon.Border.Width = 2;
+            this.kryptonButton6.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.kryptonButton6.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.kryptonButton6.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonButton6.TabIndex = 157;
+            this.kryptonButton6.Values.Text = "Print Assessment";
+            this.kryptonButton6.Click += new System.EventHandler(this.kryptonButton6_Click_1);
+            // 
             // frm_student_assessment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1417, 743);
+            this.Controls.Add(this.kryptonButton6);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.kryptonButton3);
@@ -767,5 +791,6 @@
         private System.Windows.Forms.Label tMidterms;
         private System.Windows.Forms.Label tPrelims;
         private System.Windows.Forms.Label tDownpayment;
+        private Krypton.Toolkit.KryptonButton kryptonButton6;
     }
 }
