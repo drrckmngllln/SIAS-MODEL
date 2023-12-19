@@ -690,5 +690,10 @@ namespace school_management_system_model.Forms.transactions
             };
             frm.ShowDialog();
         }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

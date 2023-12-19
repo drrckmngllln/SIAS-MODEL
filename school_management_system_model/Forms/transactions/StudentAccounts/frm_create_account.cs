@@ -228,20 +228,12 @@ namespace school_management_system_model.Forms.transactions
             tDateofBirth.Text = dateTimePicker1.Value.ToString("MM-dd-yyyy");
         }
 
-        private void lblsattend_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void tSchoolyear_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
     }
 

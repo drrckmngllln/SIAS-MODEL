@@ -86,13 +86,12 @@
             this.tmoccupation = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.tadd = new System.Windows.Forms.TextBox();
-            this.kryptonComboBox1 = new Krypton.Toolkit.KryptonComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.ctype = new Krypton.Toolkit.KryptonComboBox();
+            this.tCurriculum = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbcivilstat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctype)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,7 +144,6 @@
             this.tSchoolyear.Name = "tSchoolyear";
             this.tSchoolyear.Size = new System.Drawing.Size(303, 23);
             this.tSchoolyear.TabIndex = 107;
-            this.tSchoolyear.TextChanged += new System.EventHandler(this.tSchoolyear_TextChanged);
             // 
             // label4
             // 
@@ -459,7 +457,6 @@
             this.lblsattend.Size = new System.Drawing.Size(112, 17);
             this.lblsattend.TabIndex = 138;
             this.lblsattend.Text = "School Attended";
-            this.lblsattend.Click += new System.EventHandler(this.lblsattend_Click);
             // 
             // label15
             // 
@@ -697,20 +694,6 @@
             this.tadd.Size = new System.Drawing.Size(303, 23);
             this.tadd.TabIndex = 163;
             // 
-            // kryptonComboBox1
-            // 
-            this.kryptonComboBox1.AutoCompleteCustomSource.AddRange(new string[] {
-            "Female",
-            "Male"});
-            this.kryptonComboBox1.CornerRoundingRadius = -1F;
-            this.kryptonComboBox1.DropDownWidth = 121;
-            this.kryptonComboBox1.IntegralHeight = false;
-            this.kryptonComboBox1.Location = new System.Drawing.Point(713, 53);
-            this.kryptonComboBox1.Name = "kryptonComboBox1";
-            this.kryptonComboBox1.Size = new System.Drawing.Size(249, 21);
-            this.kryptonComboBox1.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.kryptonComboBox1.TabIndex = 164;
-            // 
             // label27
             // 
             this.label27.AutoSize = true;
@@ -751,6 +734,14 @@
             this.ctype.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.ctype.TabIndex = 167;
             // 
+            // tCurriculum
+            // 
+            this.tCurriculum.FormattingEnabled = true;
+            this.tCurriculum.Location = new System.Drawing.Point(713, 49);
+            this.tCurriculum.Name = "tCurriculum";
+            this.tCurriculum.Size = new System.Drawing.Size(234, 21);
+            this.tCurriculum.TabIndex = 168;
+            // 
             // frm_create_account
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -758,10 +749,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(1208, 635);
             this.ControlBox = false;
+            this.Controls.Add(this.tCurriculum);
             this.Controls.Add(this.ctype);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.label27);
-            this.Controls.Add(this.kryptonComboBox1);
             this.Controls.Add(this.tadd);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.tmoccupation);
@@ -849,7 +840,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_create_account_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.cmbgender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbcivilstat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctype)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -916,9 +906,9 @@
         private System.Windows.Forms.TextBox tmoccupation;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox tadd;
-        private Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private Krypton.Toolkit.KryptonComboBox ctype;
+        private System.Windows.Forms.ComboBox tCurriculum;
     }
 }
