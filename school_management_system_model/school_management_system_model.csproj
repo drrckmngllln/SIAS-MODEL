@@ -147,6 +147,7 @@
     <Compile Include="Classes\LabFeeSetup.cs" />
     <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
     <Compile Include="Classes\OtherFeesSetup.cs" />
+    <Compile Include="Classes\PrintingAssessment.cs" />
     <Compile Include="Classes\proceed_to_enrollment.cs" />
     <Compile Include="Classes\SchoolYearSetup.cs" />
     <Compile Include="Classes\sections.cs" />
@@ -438,6 +439,14 @@
     <Compile Include="Reports\Accounting\frm_print_assessment.Designer.cs">
       <DependentUpon>frm_print_assessment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Datasets\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Forms\main\main_form.resx">
       <DependentUpon>main_form.cs</DependentUpon>
@@ -587,7 +596,10 @@
     <EmbeddedResource Include="Reports\Accounting\frm_print_assessment.resx">
       <DependentUpon>frm_print_assessment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Accounting\isap_assessment.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\school_management_system_model.Classes.Curriculums.datasource" />
+    <None Include="Properties\DataSources\school_management_system_model.Classes.StudentAccount.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -602,6 +614,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Reports\Datasets\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Resources\user.png" />
   </ItemGroup>
   <ItemGroup>
@@ -632,6 +655,9 @@
   <ItemGroup>
     <Folder Include="Forms\transactions\FeeAdjustment\" />
     <Folder Include="Reports\Registrar\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
