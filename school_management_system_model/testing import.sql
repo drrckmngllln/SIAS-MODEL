@@ -380,7 +380,7 @@ CREATE TABLE IF NOT EXISTS `sections` (
 
 -- Dumping data for table model_test_db.sections: ~8 rows (approximately)
 INSERT INTO `sections` (`id`, `unique_id`, `section_code`, `course`, `year_level`, `section`, `semester`, `number_of_students`, `max_number_of_students`, `status`, `remarks`) VALUES
-	(33, 'BSCA-1-ABSCA11', 'BSCA-1-A', 'BSCA', '1', 'A', '1', 9, 50, 'Available', 'Regular'),
+	(33, 'BSCA-1-ABSCA11', 'BSCA-1-A', 'BSCA', '1', 'A', '1', 15, 50, 'Available', 'Regular'),
 	(34, 'BSCA-2-ABSCA21', 'BSCA-2-A', 'BSCA', '2', 'A', '1', 3, 50, 'Available', 'Regular'),
 	(35, 'BSCA-1-ABSCA12', 'BSCA-1-A', 'BSCA', '1', 'A', '2', 2, 50, 'Available', 'Regular'),
 	(36, 'BSCA-2-ABSCA22', 'BSCA-2-A', 'BSCA', '2', 'A', '2', 0, 50, 'Available', 'Regular'),
@@ -411,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `section_subjects` (
   `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`unique_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.section_subjects: ~67 rows (approximately)
 INSERT INTO `section_subjects` (`id`, `unique_id`, `section_code`, `curriculum`, `course`, `year_level`, `semester`, `subject_code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `time`, `day`, `room`, `instructor`, `status`) VALUES
@@ -470,16 +470,7 @@ INSERT INTO `section_subjects` (`id`, `unique_id`, `section_code`, `curriculum`,
 	(184, 'BSCA-4-A-BSCA 2021-2022-BSCA-4-1-MSCED 207', 'BSCA-4-A', 'BSCA 2021-2022', 'BSCA', '4', '1', 'MSCED 207', 'Advisorship Time', 0.0, 1.0, 0.0, 'MSCED 206', '', '', '', NULL, NULL),
 	(185, 'BSCA-4-A-BSCA 2021-2022-BSCA-4-2-CM 108', 'BSCA-4-A', 'BSCA 2021-2022', 'BSCA', '4', '2', 'CM 108', 'Competency Assessment in Customs Management', 5.0, 5.0, 0.0, '4th Year Standing', '', '', '', NULL, NULL),
 	(186, 'BSCA-4-A-BSCA 2021-2022-BSCA-4-2-TM 108', 'BSCA-4-A', 'BSCA 2021-2022', 'BSCA', '4', '2', 'TM 108', 'Competency Assessment in Tariff Management', 5.0, 5.0, 0.0, '4th Year Standing', '', '', '', NULL, NULL),
-	(187, '2023-1-0004-2023-2024-1-GEC 4', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 4', 'Mathematics in the Modern World', 0.0, 3.0, 0.0, 'None', '', '', '', '', ''),
-	(188, '2023-1-0004-2023-2024-1-SBEC 100', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'SBEC 100', 'International Trade', 0.0, 3.0, 0.0, 'None', '', '', '', '', ''),
-	(189, '2023-1-0004-2023-2024-1-GEC 5', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 5', 'Purposive Communication', 0.0, 3.0, 0.0, 'None', '', '', '', '', ''),
-	(190, '2023-1-0004-2023-2024-1-PE 101', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 0.0, 2.0, 0.0, 'None', '', '', '', '', ''),
-	(192, '2023-1-0001-2023-2024-1-GEC 1', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 1', 'Understanding the Self', 0.0, 3.0, 0.0, 'None', '', '', '', '', ''),
-	(193, '2023-1-0001-2023-2024-1-GEC 2', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 2', 'Readings in the Philippine History', 0.0, 3.0, 0.0, 'None', '', '', '', '', ''),
-	(194, '2023-1-0001-2023-2024-1-GEC 3', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 3', 'The Contemporary World', 0.0, 3.0, 0.0, 'None', '', '', '', '', ''),
 	(196, '2023-1-0001-2023-2024-1-GEC 9', 'BSCA-2-A', 'BSCA 2021-2022', 'BSCA', '2', '1', 'GEC 9', 'Rizal\'s Life and Works', 0.0, 3.0, 0.0, 'None', '', '', '', '', ''),
-	(197, '2023-1-0001-2023-2024-1-PE 101', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 0.0, 2.0, 0.0, 'None', '', '', '', '', ''),
-	(198, '2023-1-0001-2023-2024-1-GEC 4', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 4', 'Mathematics in the Modern World', 0.0, 3.0, 0.0, 'None', '', '', '', '', ''),
 	(199, '2023-1-0001-2023-2024-1-SCM 103', 'BSCA-2-A', 'BSCA 2021-2022', 'BSCA', '2', '2', 'SCM 103', 'Procurement and Inventory Management', 0.0, 3.0, 0.0, 'SCM 102', '', '', '', '', ''),
 	(201, '2023-1-0011-2023-2024-1-SCM 103', 'BSCA-2-A', 'BSCA 2021-2022', 'BSCA', '2', '2', 'SCM 103', 'Procurement and Inventory Management', 0.0, 3.0, 0.0, 'SCM 102', '', '', '', '', '');
 
@@ -559,24 +550,21 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
   `m_occupation` varchar(50) NOT NULL,
   `f_occupation` varchar(50) NOT NULL,
   `type_of_student` varchar(50) NOT NULL,
+  `date_of_admission` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number`),
   UNIQUE KEY `fullname` (`fullname`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_accounts: ~11 rows (approximately)
-INSERT INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`) VALUES
-	(97, '2023-1-0002', '2023-2024-1', '2023-2024-1', 'Pingad, Airon Jim', 'Pingad', 'Airon', 'Jim', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '0', '', '0', '', '', '', ''),
-	(98, '2023-1-0003', '2023-2024-1', '2023-2024-1', 'Go, Chong ke', 'Go', 'Chong', 'ke', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '0', '', '0', '', '', '', ''),
-	(99, '2023-1-0004', '2023-2024-1', '2023-2024-1', 'Buguina, Melenio M', 'Buguina', 'Melenio', 'M', 'Male', 'Married', '12-05-2023', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '0', '', '0', '', '', '', ''),
-	(113, '2023-1-0009', '2023-2024-1', '2023-2024-1', 'dsa,  ', 'dsa', '', '', 'Female', 'Single', '', '', '', '', 'Pending', '123', 'sadsa', 'sadsa', 'sdas', 'asdasd', '2023', '2023', '20123', '', '0', '', '0', '', '', '', ''),
-	(115, '2023-1-0006', '2023-2024-1', '2023-2024-1', 'cha,  ', 'cha', '', '', '', '', '', '', '', '', 'Accounting', '091564', '@', 'annaf', 'annaf', 'annaf', '2023', '2021', '2023', 'ahaha', '123', 'das', '123', '', '', '', ''),
-	(116, '2023-1-0007', '2023-2024-1', '2023-2024-1', 'sdas, sad sad', 'sdas', 'sad', 'sad', '', 'Single', '', '', '', '', 'Accounting', '', '@', 'sdfd', 'vb', '', '1212', '12', '12', '', '', '', '', '', '', '', 'Freshmen'),
-	(117, '2023-1-0008', '2023-2024-1', '2023-2024-1', 'Pagela, John Christian ', 'Pagela', 'John Christian', '', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-	(118, '2023-1-0001', '2023-2024-1', '2023-2024-1', 'Manglallan, Derrick Daniel', 'Manglallan', 'Derrick', 'Daniel', 'Male', 'Single', '07-31-1996', 'Alcala, Cagayan', '', '', 'Officially Enrolled', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Regular'),
-	(120, '2023-1-0010', '2023-2024-1', '2023-2024-1', 'Dela Cruz, Juan ', 'Dela Cruz', 'Juan', '', '', '', '', '', '', '', 'Officially Enrolled', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen'),
-	(122, '2023-1-0011', '2023-2024-1', '2023-2024-1', 'das, asd sad', 'das', 'asd', 'sad', 'Female', 'Single', '12-18-2023', 'sd', 'sad', 'sd', 'For Enrollment', 'sad', 'das', 'asdas', 'sadas', 'das', '1', '2', '3', 'sad', '65456', 'fasfasf', '5644561', 'sadasd', 'housewife', 'farmer', 'Freshmen'),
-	(124, '2023-1-0012', '2023-2024-1', '2023-2024-1', 'dssadasdsa,  ', 'dssadasdsa', '', '', '', '', '', '', '', '', 'For Enrollment', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Transferee');
+INSERT INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`, `date_of_admission`) VALUES
+	(97, '2023-1-0002', '2023-2024-1', '2023-2024-1', 'Pingad, Airon Jim', 'Pingad', 'Airon', 'Jim', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '0', '', '0', '', '', '', '', ''),
+	(98, '2023-1-0003', '2023-2024-1', '2023-2024-1', 'Go, Chong ke', 'Go', 'Chong', 'ke', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '0', '', '0', '', '', '', '', ''),
+	(99, '2023-1-0004', '2023-2024-1', '2023-2024-1', 'Buguina, Melenio M', 'Buguina', 'Melenio', 'M', 'Male', 'Married', '12-05-2023', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '0', '', '0', '', '', '', '', ''),
+	(117, '2023-1-0008', '2023-2024-1', '2023-2024-1', 'Pagela, John Christian ', 'Pagela', 'John Christian', '', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+	(118, '2023-1-0001', '2023-2024-1', '2023-2024-1', 'Manglallan, Derrick Daniel', 'Manglallan', 'Derrick', 'Daniel', 'Male', 'Single', '07-31-1996', 'Alcala, Cagayan', '', '', 'Officially Enrolled', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Regular', ''),
+	(120, '2023-1-0010', '2023-2024-1', '2023-2024-1', 'Dela Cruz, Juan ', 'Dela Cruz', 'Juan', '', '', '', '', '', '', '', 'Officially Enrolled', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', ''),
+	(130, '2023-1-0007', '2023-2024-1', '2023-2024-1', 'dsa, sadas sad', 'dsa', 'sadas', 'sad', '', '', '12-20-2023', '', '', '', 'For Enrollment', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '12/20/2023');
 
 -- Dumping structure for table model_test_db.student_assessment
 CREATE TABLE IF NOT EXISTS `student_assessment` (
@@ -637,7 +625,7 @@ CREATE TABLE IF NOT EXISTS `student_course` (
   `semester` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_course: ~10 rows (approximately)
 INSERT INTO `student_course` (`id`, `id_number`, `course`, `campus`, `curriculum`, `year_level`, `section`, `semester`) VALUES
@@ -650,7 +638,9 @@ INSERT INTO `student_course` (`id`, `id_number`, `course`, `campus`, `curriculum
 	(84, '2023-1-0001', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
 	(85, '2023-1-0010', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
 	(86, '2023-1-0011', 'BSCA', 'ISAP', 'BSCA 2021-2022', '2', 'BSCA-2-A', '1'),
-	(87, '2023-1-0012', NULL, NULL, NULL, NULL, NULL, NULL);
+	(87, '2023-1-0012', NULL, NULL, NULL, NULL, NULL, NULL),
+	(88, '2023-1-0013', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
+	(89, '2023-1-0009', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1');
 
 -- Dumping structure for table model_test_db.student_discounts
 CREATE TABLE IF NOT EXISTS `student_discounts` (
@@ -703,85 +693,20 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   `remarks` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`unique_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=544 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=588 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_subjects: ~75 rows (approximately)
 INSERT INTO `student_subjects` (`id`, `id_number`, `unique_id`, `school_year`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor`, `grade`, `remarks`) VALUES
-	(459, '2023-1-0002', '2023-1-0002-2023-2-GEC 6', '2023-2024-1', 'GEC 6', 'Art Apreciation', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(460, '2023-1-0002', '2023-1-0002-2023-2-GEC 7', '2023-2024-1', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(461, '2023-1-0002', '2023-1-0002-2023-2-SCM 101', '2023-2024-1', 'SCM 101', 'Introduction to Supply Chain Management', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(462, '2023-1-0002', '2023-1-0002-2023-2-CM 101', '2023-2024-1', 'CM 101', 'Border Control and Security', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(463, '2023-1-0002', '2023-1-0002-2023-2-TM 101', '2023-2024-1', 'TM 101', 'Fundamentals of Customs and Tariff Management', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(464, '2023-1-0002', '2023-1-0002-2023-2-GEC 8', '2023-2024-1', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(465, '2023-1-0002', '2023-1-0002-2023-2-ECON 101', '2023-2024-1', 'ECON 101', 'International Economics', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(466, '2023-1-0002', '2023-1-0002-2023-2-PE 102', '2023-2024-1', 'PE 102', 'Physical Education 2 (Gymnastics)', 'PE 1', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(467, '2023-1-0002', '2023-1-0002-2023-2-NSTP 2', '2023-2024-1', 'NSTP 2', 'National Service Training Program 2', 'NSTP 1', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(468, '2023-1-0002', '2023-1-0002-2023-2-MSCED 202', '2023-2024-1', 'MSCED 202', 'Advisorship Time', 'MSCED 201', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(469, '2023-1-0003', '2023-1-0003-2023-2-GEC 6', '2023-2024-1', 'GEC 6', 'Art Apreciation', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(470, '2023-1-0003', '2023-1-0003-2023-2-GEC 7', '2023-2024-1', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(471, '2023-1-0003', '2023-1-0003-2023-2-SCM 101', '2023-2024-1', 'SCM 101', 'Introduction to Supply Chain Management', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(472, '2023-1-0003', '2023-1-0003-2023-2-CM 101', '2023-2024-1', 'CM 101', 'Border Control and Security', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(473, '2023-1-0003', '2023-1-0003-2023-2-TM 101', '2023-2024-1', 'TM 101', 'Fundamentals of Customs and Tariff Management', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(474, '2023-1-0003', '2023-1-0003-2023-2-GEC 8', '2023-2024-1', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(475, '2023-1-0003', '2023-1-0003-2023-2-ECON 101', '2023-2024-1', 'ECON 101', 'International Economics', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(476, '2023-1-0003', '2023-1-0003-2023-2-PE 102', '2023-2024-1', 'PE 102', 'Physical Education 2 (Gymnastics)', 'PE 1', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(477, '2023-1-0003', '2023-1-0003-2023-2-NSTP 2', '2023-2024-1', 'NSTP 2', 'National Service Training Program 2', 'NSTP 1', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(478, '2023-1-0003', '2023-1-0003-2023-2-MSCED 202', '2023-2024-1', 'MSCED 202', 'Advisorship Time', 'MSCED 201', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(479, '2023-1-0004', '2023-1-0004-2023-1-GEC 1', '2023-2024-1', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(480, '2023-1-0004', '2023-1-0004-2023-1-GEC 2', '2023-2024-1', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(481, '2023-1-0004', '2023-1-0004-2023-1-GEC 3', '2023-2024-1', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(482, '2023-1-0004', '2023-1-0004-2023-1-GEC 4', '2023-2024-1', 'GEC 4', 'Mathematics in the Modern World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(483, '2023-1-0004', '2023-1-0004-2023-1-SBEC 100', '2023-2024-1', 'SBEC 100', 'International Trade', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(484, '2023-1-0004', '2023-1-0004-2023-1-GEC 5', '2023-2024-1', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(485, '2023-1-0004', '2023-1-0004-2023-1-PE 101', '2023-2024-1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 'None', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(486, '2023-1-0004', '2023-1-0004-2023-1-NSTP 1', '2023-2024-1', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(487, '2023-1-0004', '2023-1-0004-2023-1-ETHICS 100', '2023-2024-1', 'ETHICS 100', 'ISAPian Education with Values Formation', 'None', '1.5', '1.5', '0.0', '', '', '', '', 0, 'Pending'),
-	(488, '2023-1-0004', '2023-1-0004-2023-1-MSCED 201', '2023-2024-1', 'MSCED 201', 'Advisorship Time', 'None', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(489, '2023-1-0006', '2023-1-0006-2023-1-GEC 1', '2023-2024-1', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(490, '2023-1-0006', '2023-1-0006-2023-1-GEC 2', '2023-2024-1', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(491, '2023-1-0006', '2023-1-0006-2023-1-GEC 3', '2023-2024-1', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(492, '2023-1-0006', '2023-1-0006-2023-1-GEC 4', '2023-2024-1', 'GEC 4', 'Mathematics in the Modern World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(493, '2023-1-0006', '2023-1-0006-2023-1-SBEC 100', '2023-2024-1', 'SBEC 100', 'International Trade', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(494, '2023-1-0006', '2023-1-0006-2023-1-GEC 5', '2023-2024-1', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(495, '2023-1-0006', '2023-1-0006-2023-1-PE 101', '2023-2024-1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 'None', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(496, '2023-1-0006', '2023-1-0006-2023-1-NSTP 1', '2023-2024-1', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(497, '2023-1-0006', '2023-1-0006-2023-1-ETHICS 100', '2023-2024-1', 'ETHICS 100', 'ISAPian Education with Values Formation', 'None', '1.5', '1.5', '0.0', '', '', '', '', 0, 'Pending'),
-	(498, '2023-1-0006', '2023-1-0006-2023-1-MSCED 201', '2023-2024-1', 'MSCED 201', 'Advisorship Time', 'None', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(500, '2023-1-0007', '2023-1-0007-2023-1-GEC 1', '2023-2024-1', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(501, '2023-1-0007', '2023-1-0007-2023-1-GEC 2', '2023-2024-1', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(502, '2023-1-0007', '2023-1-0007-2023-1-GEC 3', '2023-2024-1', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(503, '2023-1-0007', '2023-1-0007-2023-1-GEC 4', '2023-2024-1', 'GEC 4', 'Mathematics in the Modern World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(504, '2023-1-0007', '2023-1-0007-2023-1-SBEC 100', '2023-2024-1', 'SBEC 100', 'International Trade', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(505, '2023-1-0007', '2023-1-0007-2023-1-GEC 5', '2023-2024-1', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(506, '2023-1-0007', '2023-1-0007-2023-1-PE 101', '2023-2024-1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 'None', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(507, '2023-1-0007', '2023-1-0007-2023-1-NSTP 1', '2023-2024-1', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(508, '2023-1-0007', '2023-1-0007-2023-1-ETHICS 100', '2023-2024-1', 'ETHICS 100', 'ISAPian Education with Values Formation', 'None', '1.5', '1.5', '0.0', '', '', '', '', 0, 'Pending'),
-	(509, '2023-1-0007', '2023-1-0007-2023-1-MSCED 201', '2023-2024-1', 'MSCED 201', 'Advisorship Time', 'None', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(515, '2023-1-0001', '2023-1-0001-2023-1-GEC 5', '2023-2024-1', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(516, '2023-1-0001', '2023-1-0001-2023-1-PE 101', '2023-2024-1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 'None', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(517, '2023-1-0001', '2023-1-0001-2023-1-NSTP 1', '2023-2024-1', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(518, '2023-1-0001', '2023-1-0001-2023-1-ETHICS 100', '2023-2024-1', 'ETHICS 100', 'ISAPian Education with Values Formation', 'None', '1.5', '1.5', '0.0', '', '', '', '', 0, 'Pending'),
-	(519, '2023-1-0001', '2023-1-0001-2023-1-MSCED 201', '2023-2024-1', 'MSCED 201', 'Advisorship Time', 'None', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(520, '2023-1-0010', '2023-1-0010-2023-1-GEC 1', '2023-2024-1', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(521, '2023-1-0010', '2023-1-0010-2023-1-GEC 2', '2023-2024-1', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(522, '2023-1-0010', '2023-1-0010-2023-1-GEC 3', '2023-2024-1', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(523, '2023-1-0010', '2023-1-0010-2023-1-GEC 4', '2023-2024-1', 'GEC 4', 'Mathematics in the Modern World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(524, '2023-1-0010', '2023-1-0010-2023-1-SBEC 100', '2023-2024-1', 'SBEC 100', 'International Trade', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(525, '2023-1-0010', '2023-1-0010-2023-1-GEC 5', '2023-2024-1', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(526, '2023-1-0010', '2023-1-0010-2023-1-PE 101', '2023-2024-1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 'None', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(527, '2023-1-0010', '2023-1-0010-2023-1-NSTP 1', '2023-2024-1', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(528, '2023-1-0010', '2023-1-0010-2023-1-ETHICS 100', '2023-2024-1', 'ETHICS 100', 'ISAPian Education with Values Formation', 'None', '1.5', '1.5', '0.0', '', '', '', '', 0, 'Pending'),
-	(529, '2023-1-0010', '2023-1-0010-2023-1-MSCED 201', '2023-2024-1', 'MSCED 201', 'Advisorship Time', 'None', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(531, '2023-1-0011', '2023-1-0011-2023-1-GEC 9', '2023-2024-1', 'GEC 9', 'Rizal\'s Life and Works', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(532, '2023-1-0011', '2023-1-0011-2023-1-LIT 101', '2023-2024-1', 'LIT 101', 'Panitikang Pilipino ', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(533, '2023-1-0011', '2023-1-0011-2023-1-SBEC 101', '2023-2024-1', 'SBEC 101', 'Income and Business Taxation', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(534, '2023-1-0011', '2023-1-0011-2023-1-SCM102', '2023-2024-1', 'SCM102', 'Warehoues Operations Management', 'SCM 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(535, '2023-1-0011', '2023-1-0011-2023-1-SBEC 102', '2023-2024-1', 'SBEC 102', 'Business Law', 'SBEC 100', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(536, '2023-1-0011', '2023-1-0011-2023-1-CM 102', '2023-2024-1', 'CM 102', 'Customs Operations and Cargo Handling with Educ. Tour', 'CM 101', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(537, '2023-1-0011', '2023-1-0011-2023-1-CM 103', '2023-2024-1', 'CM 103', 'Customs Warehousing', 'CM 101', '5.0', '5.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(538, '2023-1-0011', '2023-1-0011-2023-1-TM 102', '2023-2024-1', 'TM 102', 'Commodity Classification System', 'TM 101', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(539, '2023-1-0011', '2023-1-0011-2023-1-PE 103', '2023-2024-1', 'PE 103', 'Physical Education  3 (Swimming)', 'PE 102', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
-	(540, '2023-1-0011', '2023-1-0011-2023-1-MSCED 203', '2023-2024-1', 'MSCED 203', 'Advisorship Time', 'MSCED 202', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending');
+	(578, '2023-1-0008', '2023-1-0008-2023-1-GEC 1', '2023-2024-1', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(579, '2023-1-0008', '2023-1-0008-2023-1-GEC 2', '2023-2024-1', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(580, '2023-1-0008', '2023-1-0008-2023-1-GEC 3', '2023-2024-1', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(581, '2023-1-0008', '2023-1-0008-2023-1-GEC 4', '2023-2024-1', 'GEC 4', 'Mathematics in the Modern World', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(582, '2023-1-0008', '2023-1-0008-2023-1-SBEC 100', '2023-2024-1', 'SBEC 100', 'International Trade', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(583, '2023-1-0008', '2023-1-0008-2023-1-GEC 5', '2023-2024-1', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(584, '2023-1-0008', '2023-1-0008-2023-1-PE 101', '2023-2024-1', 'PE 101', 'Physical Education 1 (Physical Fitness)', 'None', '2.0', '2.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(585, '2023-1-0008', '2023-1-0008-2023-1-NSTP 1', '2023-2024-1', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
+	(586, '2023-1-0008', '2023-1-0008-2023-1-ETHICS 100', '2023-2024-1', 'ETHICS 100', 'ISAPian Education with Values Formation', 'None', '1.5', '1.5', '0.0', '', '', '', '', 0, 'Pending'),
+	(587, '2023-1-0008', '2023-1-0008-2023-1-MSCED 201', '2023-2024-1', 'MSCED 201', 'Advisorship Time', 'None', '0.0', '1.0', '0.0', '', '', '', '', 0, 'Pending');
 
 -- Dumping structure for table model_test_db.subjects
 CREATE TABLE IF NOT EXISTS `subjects` (

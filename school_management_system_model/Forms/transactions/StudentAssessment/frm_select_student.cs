@@ -71,6 +71,7 @@ namespace school_management_system_model.Forms.transactions
                 dgv.Columns["m_occupation"].Visible = false;
                 dgv.Columns["f_occupation"].Visible = false;
                 dgv.Columns["type_of_student"].Visible = false;
+                dgv.Columns["date_of_admission"].Visible = false;
 
             }
             else if (this.Text == "Select School Year")
@@ -213,6 +214,7 @@ namespace school_management_system_model.Forms.transactions
                     dgv.Columns["home_address)"].Visible = false;
                     dgv.Columns["m_occupation)"].Visible = false;
                     dgv.Columns["f_occupation)"].Visible = false;
+                    dgv.Columns["date_of_admission"].Visible=false;
                 }
                 else if (tSearch.Text.Length == 0)
                 {

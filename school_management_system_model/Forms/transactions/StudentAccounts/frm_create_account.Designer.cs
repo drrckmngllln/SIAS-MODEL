@@ -89,7 +89,9 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.ctype = new Krypton.Toolkit.KryptonComboBox();
-            this.tCurriculum = new System.Windows.Forms.ComboBox();
+            this.tCourse = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.kryptonDateTimePicker1 = new Krypton.Toolkit.KryptonDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.cmbgender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbcivilstat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctype)).BeginInit();
@@ -734,13 +736,36 @@
             this.ctype.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.ctype.TabIndex = 167;
             // 
-            // tCurriculum
+            // tCourse
             // 
-            this.tCurriculum.FormattingEnabled = true;
-            this.tCurriculum.Location = new System.Drawing.Point(713, 49);
-            this.tCurriculum.Name = "tCurriculum";
-            this.tCurriculum.Size = new System.Drawing.Size(234, 21);
-            this.tCurriculum.TabIndex = 168;
+            this.tCourse.FormattingEnabled = true;
+            this.tCourse.Location = new System.Drawing.Point(713, 49);
+            this.tCourse.Name = "tCourse";
+            this.tCourse.Size = new System.Drawing.Size(234, 21);
+            this.tCourse.TabIndex = 168;
+            this.tCourse.SelectedIndexChanged += new System.EventHandler(this.tCurriculum_SelectedIndexChanged);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.SystemColors.Control;
+            this.label29.Location = new System.Drawing.Point(907, 9);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(126, 17);
+            this.label29.TabIndex = 169;
+            this.label29.Text = "Date of Admission:";
+            // 
+            // kryptonDateTimePicker1
+            // 
+            this.kryptonDateTimePicker1.CalendarTodayFormat = "M";
+            this.kryptonDateTimePicker1.CornerRoundingRadius = -1F;
+            this.kryptonDateTimePicker1.Enabled = false;
+            this.kryptonDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.kryptonDateTimePicker1.Location = new System.Drawing.Point(1039, 11);
+            this.kryptonDateTimePicker1.Name = "kryptonDateTimePicker1";
+            this.kryptonDateTimePicker1.Size = new System.Drawing.Size(157, 21);
+            this.kryptonDateTimePicker1.TabIndex = 171;
             // 
             // frm_create_account
             // 
@@ -749,7 +774,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(1208, 635);
             this.ControlBox = false;
-            this.Controls.Add(this.tCurriculum);
+            this.Controls.Add(this.kryptonDateTimePicker1);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.tCourse);
             this.Controls.Add(this.ctype);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.label27);
@@ -909,6 +936,8 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private Krypton.Toolkit.KryptonComboBox ctype;
-        private System.Windows.Forms.ComboBox tCurriculum;
+        private System.Windows.Forms.ComboBox tCourse;
+        private System.Windows.Forms.Label label29;
+        private Krypton.Toolkit.KryptonDateTimePicker kryptonDateTimePicker1;
     }
 }

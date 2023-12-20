@@ -124,6 +124,11 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 

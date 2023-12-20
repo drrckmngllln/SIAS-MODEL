@@ -69,6 +69,7 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["m_occupation"].HeaderText = "Mother Occupation";
             dgv.Columns["f_occupation"].HeaderText = "Father Occupation";
             dgv.Columns["type_of_student"].HeaderText = "Type of Student";
+            dgv.Columns["date_of_admission"].Visible = false;
 
         }
 

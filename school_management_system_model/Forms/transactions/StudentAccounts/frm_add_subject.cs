@@ -84,8 +84,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             dgv.Columns["day"].HeaderText = "Day";
             dgv.Columns["room"].HeaderText = "Room";
             dgv.Columns["instructor"].HeaderText = "Instructor";
-            dgv.Columns["instructor"].Width = 250;
-            dgv.Columns["status"].Visible = false;
+            dgv.Columns["instructor"].Width = 250;          
+            dgv.Columns["status"].Visible= false;
         }
         private void selectSubject()
         {
@@ -112,19 +112,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             tRoom.Text = dgv.CurrentRow.Cells["room"].Value.ToString();
             tInstructor.Text = dgv.CurrentRow.Cells["instructor"].Value.ToString();
         }
-
-        private void tSearch_TextChanged(object sender, EventArgs e)
-        {
-            if (tSearch.Text.Length > 2)
-            {
-                searchRecords();
-            }
-            else if (tSearch.Text.Length == 0)
-            {
-                loadRecords();
-            }
-        }
-
         private void frm_add_subject_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -186,5 +173,21 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         }
 
+        private void tSearch_TextChanged_1(object sender, EventArgs e)
+        {
+            if (tSearch.Text.Length > 2)
+            {
+                searchRecords();
+            }
+            else if (tSearch.Text.Length == 0)
+            {
+                loadRecords();
+            }
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
