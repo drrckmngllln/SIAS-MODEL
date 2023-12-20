@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace school_management_system_model.Reports.Registrar {
+namespace school_management_system_model.Reports.Datasets {
     
     
     /// <summary>
@@ -20,17 +20,17 @@ namespace school_management_system_model.Reports.Registrar {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("StudentSubjects")]
+    [global::System.Xml.Serialization.XmlRootAttribute("StudentAccounts")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class StudentSubjects : global::System.Data.DataSet {
+    public partial class StudentAccounts : global::System.Data.DataSet {
         
-        private StudentSubjectsDataTable tableStudentSubjects;
+        private StudentAccountsDataTable tableStudentAccounts;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public StudentSubjects() {
+        public StudentAccounts() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace school_management_system_model.Reports.Registrar {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected StudentSubjects(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected StudentAccounts(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace school_management_system_model.Reports.Registrar {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["StudentSubjects"] != null)) {
-                    base.Tables.Add(new StudentSubjectsDataTable(ds.Tables["StudentSubjects"]));
+                if ((ds.Tables["StudentAccounts"] != null)) {
+                    base.Tables.Add(new StudentAccountsDataTable(ds.Tables["StudentAccounts"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace school_management_system_model.Reports.Registrar {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public StudentSubjectsDataTable _StudentSubjects {
+        public StudentAccountsDataTable _StudentAccounts {
             get {
-                return this.tableStudentSubjects;
+                return this.tableStudentAccounts;
             }
         }
         
@@ -127,7 +127,7 @@ namespace school_management_system_model.Reports.Registrar {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            StudentSubjects cln = ((StudentSubjects)(base.Clone()));
+            StudentAccounts cln = ((StudentAccounts)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace school_management_system_model.Reports.Registrar {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["StudentSubjects"] != null)) {
-                    base.Tables.Add(new StudentSubjectsDataTable(ds.Tables["StudentSubjects"]));
+                if ((ds.Tables["StudentAccounts"] != null)) {
+                    base.Tables.Add(new StudentAccountsDataTable(ds.Tables["StudentAccounts"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace school_management_system_model.Reports.Registrar {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableStudentSubjects = ((StudentSubjectsDataTable)(base.Tables["StudentSubjects"]));
+            this.tableStudentAccounts = ((StudentAccountsDataTable)(base.Tables["StudentAccounts"]));
             if ((initTable == true)) {
-                if ((this.tableStudentSubjects != null)) {
-                    this.tableStudentSubjects.InitVars();
+                if ((this.tableStudentAccounts != null)) {
+                    this.tableStudentAccounts.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace school_management_system_model.Reports.Registrar {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "StudentSubjects";
+            this.DataSetName = "StudentAccounts";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/StudentSubjects.xsd";
+            this.Namespace = "http://tempuri.org/StudentAccounts.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableStudentSubjects = new StudentSubjectsDataTable();
-            base.Tables.Add(this.tableStudentSubjects);
+            this.tableStudentAccounts = new StudentAccountsDataTable();
+            base.Tables.Add(this.tableStudentAccounts);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerialize_StudentSubjects() {
+        private bool ShouldSerialize_StudentAccounts() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace school_management_system_model.Reports.Registrar {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            StudentSubjects ds = new StudentSubjects();
+            StudentAccounts ds = new StudentAccounts();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,37 +270,25 @@ namespace school_management_system_model.Reports.Registrar {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void StudentSubjectsRowChangeEventHandler(object sender, StudentSubjectsRowChangeEvent e);
+        public delegate void StudentAccountsRowChangeEventHandler(object sender, StudentAccountsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class StudentSubjectsDataTable : global::System.Data.TypedTableBase<StudentSubjectsRow> {
+        public partial class StudentAccountsDataTable : global::System.Data.TypedTableBase<StudentAccountsRow> {
             
-            private global::System.Data.DataColumn columnsubject_code;
+            private global::System.Data.DataColumn columnid_number;
             
-            private global::System.Data.DataColumn columndescriptive_title;
+            private global::System.Data.DataColumn columnfullname;
             
-            private global::System.Data.DataColumn columnlecture_units;
-            
-            private global::System.Data.DataColumn columnlab_units;
-            
-            private global::System.Data.DataColumn columntime;
-            
-            private global::System.Data.DataColumn columnday;
-            
-            private global::System.Data.DataColumn columnroom;
-            
-            private global::System.Data.DataColumn columninstructor;
-            
-            private global::System.Data.DataColumn columnDateTime;
+            private global::System.Data.DataColumn columnschool_year;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public StudentSubjectsDataTable() {
-                this.TableName = "StudentSubjects";
+            public StudentAccountsDataTable() {
+                this.TableName = "StudentAccounts";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -308,7 +296,7 @@ namespace school_management_system_model.Reports.Registrar {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal StudentSubjectsDataTable(global::System.Data.DataTable table) {
+            internal StudentAccountsDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -325,80 +313,32 @@ namespace school_management_system_model.Reports.Registrar {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected StudentSubjectsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected StudentAccountsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn subject_codeColumn {
+            public global::System.Data.DataColumn id_numberColumn {
                 get {
-                    return this.columnsubject_code;
+                    return this.columnid_number;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn descriptive_titleColumn {
+            public global::System.Data.DataColumn fullnameColumn {
                 get {
-                    return this.columndescriptive_title;
+                    return this.columnfullname;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn lecture_unitsColumn {
+            public global::System.Data.DataColumn school_yearColumn {
                 get {
-                    return this.columnlecture_units;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn lab_unitsColumn {
-                get {
-                    return this.columnlab_units;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn timeColumn {
-                get {
-                    return this.columntime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn dayColumn {
-                get {
-                    return this.columnday;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn roomColumn {
-                get {
-                    return this.columnroom;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn instructorColumn {
-                get {
-                    return this.columninstructor;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DateTimeColumn {
-                get {
-                    return this.columnDateTime;
+                    return this.columnschool_year;
                 }
             }
             
@@ -413,53 +353,47 @@ namespace school_management_system_model.Reports.Registrar {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public StudentSubjectsRow this[int index] {
+            public StudentAccountsRow this[int index] {
                 get {
-                    return ((StudentSubjectsRow)(this.Rows[index]));
+                    return ((StudentAccountsRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event StudentSubjectsRowChangeEventHandler StudentSubjectsRowChanging;
+            public event StudentAccountsRowChangeEventHandler StudentAccountsRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event StudentSubjectsRowChangeEventHandler StudentSubjectsRowChanged;
+            public event StudentAccountsRowChangeEventHandler StudentAccountsRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event StudentSubjectsRowChangeEventHandler StudentSubjectsRowDeleting;
+            public event StudentAccountsRowChangeEventHandler StudentAccountsRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event StudentSubjectsRowChangeEventHandler StudentSubjectsRowDeleted;
+            public event StudentAccountsRowChangeEventHandler StudentAccountsRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddStudentSubjectsRow(StudentSubjectsRow row) {
+            public void AddStudentAccountsRow(StudentAccountsRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public StudentSubjectsRow AddStudentSubjectsRow(string subject_code, string descriptive_title, decimal lecture_units, decimal lab_units, string time, string day, string room, string instructor, System.DateTime DateTime) {
-                StudentSubjectsRow rowStudentSubjectsRow = ((StudentSubjectsRow)(this.NewRow()));
+            public StudentAccountsRow AddStudentAccountsRow(string id_number, string fullname, string school_year) {
+                StudentAccountsRow rowStudentAccountsRow = ((StudentAccountsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        subject_code,
-                        descriptive_title,
-                        lecture_units,
-                        lab_units,
-                        time,
-                        day,
-                        room,
-                        instructor,
-                        DateTime};
-                rowStudentSubjectsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowStudentSubjectsRow);
-                return rowStudentSubjectsRow;
+                        id_number,
+                        fullname,
+                        school_year};
+                rowStudentAccountsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowStudentAccountsRow);
+                return rowStudentAccountsRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                StudentSubjectsDataTable cln = ((StudentSubjectsDataTable)(base.Clone()));
+                StudentAccountsDataTable cln = ((StudentAccountsDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -467,72 +401,54 @@ namespace school_management_system_model.Reports.Registrar {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new StudentSubjectsDataTable();
+                return new StudentAccountsDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnsubject_code = base.Columns["subject_code"];
-                this.columndescriptive_title = base.Columns["descriptive_title"];
-                this.columnlecture_units = base.Columns["lecture_units"];
-                this.columnlab_units = base.Columns["lab_units"];
-                this.columntime = base.Columns["time"];
-                this.columnday = base.Columns["day"];
-                this.columnroom = base.Columns["room"];
-                this.columninstructor = base.Columns["instructor"];
-                this.columnDateTime = base.Columns["DateTime"];
+                this.columnid_number = base.Columns["id_number"];
+                this.columnfullname = base.Columns["fullname"];
+                this.columnschool_year = base.Columns["school_year"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnsubject_code = new global::System.Data.DataColumn("subject_code", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsubject_code);
-                this.columndescriptive_title = new global::System.Data.DataColumn("descriptive_title", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndescriptive_title);
-                this.columnlecture_units = new global::System.Data.DataColumn("lecture_units", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnlecture_units);
-                this.columnlab_units = new global::System.Data.DataColumn("lab_units", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnlab_units);
-                this.columntime = new global::System.Data.DataColumn("time", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntime);
-                this.columnday = new global::System.Data.DataColumn("day", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnday);
-                this.columnroom = new global::System.Data.DataColumn("room", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnroom);
-                this.columninstructor = new global::System.Data.DataColumn("instructor", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columninstructor);
-                this.columnDateTime = new global::System.Data.DataColumn("DateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDateTime);
-                this.ExtendedProperties.Add("Generator_TablePropName", "_StudentSubjects");
-                this.ExtendedProperties.Add("Generator_UserTableName", "StudentSubjects");
+                this.columnid_number = new global::System.Data.DataColumn("id_number", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_number);
+                this.columnfullname = new global::System.Data.DataColumn("fullname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfullname);
+                this.columnschool_year = new global::System.Data.DataColumn("school_year", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnschool_year);
+                this.ExtendedProperties.Add("Generator_TablePropName", "_StudentAccounts");
+                this.ExtendedProperties.Add("Generator_UserTableName", "StudentAccounts");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public StudentSubjectsRow NewStudentSubjectsRow() {
-                return ((StudentSubjectsRow)(this.NewRow()));
+            public StudentAccountsRow NewStudentAccountsRow() {
+                return ((StudentAccountsRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new StudentSubjectsRow(builder);
+                return new StudentAccountsRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(StudentSubjectsRow);
+                return typeof(StudentAccountsRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.StudentSubjectsRowChanged != null)) {
-                    this.StudentSubjectsRowChanged(this, new StudentSubjectsRowChangeEvent(((StudentSubjectsRow)(e.Row)), e.Action));
+                if ((this.StudentAccountsRowChanged != null)) {
+                    this.StudentAccountsRowChanged(this, new StudentAccountsRowChangeEvent(((StudentAccountsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -540,8 +456,8 @@ namespace school_management_system_model.Reports.Registrar {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.StudentSubjectsRowChanging != null)) {
-                    this.StudentSubjectsRowChanging(this, new StudentSubjectsRowChangeEvent(((StudentSubjectsRow)(e.Row)), e.Action));
+                if ((this.StudentAccountsRowChanging != null)) {
+                    this.StudentAccountsRowChanging(this, new StudentAccountsRowChangeEvent(((StudentAccountsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -549,8 +465,8 @@ namespace school_management_system_model.Reports.Registrar {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.StudentSubjectsRowDeleted != null)) {
-                    this.StudentSubjectsRowDeleted(this, new StudentSubjectsRowChangeEvent(((StudentSubjectsRow)(e.Row)), e.Action));
+                if ((this.StudentAccountsRowDeleted != null)) {
+                    this.StudentAccountsRowDeleted(this, new StudentAccountsRowChangeEvent(((StudentAccountsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -558,14 +474,14 @@ namespace school_management_system_model.Reports.Registrar {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.StudentSubjectsRowDeleting != null)) {
-                    this.StudentSubjectsRowDeleting(this, new StudentSubjectsRowChangeEvent(((StudentSubjectsRow)(e.Row)), e.Action));
+                if ((this.StudentAccountsRowDeleting != null)) {
+                    this.StudentAccountsRowDeleting(this, new StudentAccountsRowChangeEvent(((StudentAccountsRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveStudentSubjectsRow(StudentSubjectsRow row) {
+            public void RemoveStudentAccountsRow(StudentAccountsRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -574,7 +490,7 @@ namespace school_management_system_model.Reports.Registrar {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                StudentSubjects ds = new StudentSubjects();
+                StudentAccounts ds = new StudentAccounts();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -592,7 +508,7 @@ namespace school_management_system_model.Reports.Registrar {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "StudentSubjectsDataTable";
+                attribute2.FixedValue = "StudentAccountsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -636,267 +552,99 @@ namespace school_management_system_model.Reports.Registrar {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class StudentSubjectsRow : global::System.Data.DataRow {
+        public partial class StudentAccountsRow : global::System.Data.DataRow {
             
-            private StudentSubjectsDataTable tableStudentSubjects;
+            private StudentAccountsDataTable tableStudentAccounts;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal StudentSubjectsRow(global::System.Data.DataRowBuilder rb) : 
+            internal StudentAccountsRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableStudentSubjects = ((StudentSubjectsDataTable)(this.Table));
+                this.tableStudentAccounts = ((StudentAccountsDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string subject_code {
+            public string id_number {
                 get {
                     try {
-                        return ((string)(this[this.tableStudentSubjects.subject_codeColumn]));
+                        return ((string)(this[this.tableStudentAccounts.id_numberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'subject_code\' in table \'StudentSubjects\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'id_number\' in table \'StudentAccounts\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableStudentSubjects.subject_codeColumn] = value;
+                    this[this.tableStudentAccounts.id_numberColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string descriptive_title {
+            public string fullname {
                 get {
                     try {
-                        return ((string)(this[this.tableStudentSubjects.descriptive_titleColumn]));
+                        return ((string)(this[this.tableStudentAccounts.fullnameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'descriptive_title\' in table \'StudentSubjects\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'fullname\' in table \'StudentAccounts\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableStudentSubjects.descriptive_titleColumn] = value;
+                    this[this.tableStudentAccounts.fullnameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal lecture_units {
+            public string school_year {
                 get {
                     try {
-                        return ((decimal)(this[this.tableStudentSubjects.lecture_unitsColumn]));
+                        return ((string)(this[this.tableStudentAccounts.school_yearColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'lecture_units\' in table \'StudentSubjects\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'school_year\' in table \'StudentAccounts\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableStudentSubjects.lecture_unitsColumn] = value;
+                    this[this.tableStudentAccounts.school_yearColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal lab_units {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableStudentSubjects.lab_unitsColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'lab_units\' in table \'StudentSubjects\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableStudentSubjects.lab_unitsColumn] = value;
-                }
+            public bool Isid_numberNull() {
+                return this.IsNull(this.tableStudentAccounts.id_numberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string time {
-                get {
-                    try {
-                        return ((string)(this[this.tableStudentSubjects.timeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'time\' in table \'StudentSubjects\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableStudentSubjects.timeColumn] = value;
-                }
+            public void Setid_numberNull() {
+                this[this.tableStudentAccounts.id_numberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string day {
-                get {
-                    try {
-                        return ((string)(this[this.tableStudentSubjects.dayColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'day\' in table \'StudentSubjects\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableStudentSubjects.dayColumn] = value;
-                }
+            public bool IsfullnameNull() {
+                return this.IsNull(this.tableStudentAccounts.fullnameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string room {
-                get {
-                    try {
-                        return ((string)(this[this.tableStudentSubjects.roomColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'room\' in table \'StudentSubjects\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableStudentSubjects.roomColumn] = value;
-                }
+            public void SetfullnameNull() {
+                this[this.tableStudentAccounts.fullnameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string instructor {
-                get {
-                    try {
-                        return ((string)(this[this.tableStudentSubjects.instructorColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'instructor\' in table \'StudentSubjects\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableStudentSubjects.instructorColumn] = value;
-                }
+            public bool Isschool_yearNull() {
+                return this.IsNull(this.tableStudentAccounts.school_yearColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime DateTime {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableStudentSubjects.DateTimeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DateTime\' in table \'StudentSubjects\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableStudentSubjects.DateTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Issubject_codeNull() {
-                return this.IsNull(this.tableStudentSubjects.subject_codeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setsubject_codeNull() {
-                this[this.tableStudentSubjects.subject_codeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Isdescriptive_titleNull() {
-                return this.IsNull(this.tableStudentSubjects.descriptive_titleColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setdescriptive_titleNull() {
-                this[this.tableStudentSubjects.descriptive_titleColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Islecture_unitsNull() {
-                return this.IsNull(this.tableStudentSubjects.lecture_unitsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setlecture_unitsNull() {
-                this[this.tableStudentSubjects.lecture_unitsColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool Islab_unitsNull() {
-                return this.IsNull(this.tableStudentSubjects.lab_unitsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Setlab_unitsNull() {
-                this[this.tableStudentSubjects.lab_unitsColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IstimeNull() {
-                return this.IsNull(this.tableStudentSubjects.timeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SettimeNull() {
-                this[this.tableStudentSubjects.timeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsdayNull() {
-                return this.IsNull(this.tableStudentSubjects.dayColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetdayNull() {
-                this[this.tableStudentSubjects.dayColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsroomNull() {
-                return this.IsNull(this.tableStudentSubjects.roomColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetroomNull() {
-                this[this.tableStudentSubjects.roomColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsinstructorNull() {
-                return this.IsNull(this.tableStudentSubjects.instructorColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetinstructorNull() {
-                this[this.tableStudentSubjects.instructorColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsDateTimeNull() {
-                return this.IsNull(this.tableStudentSubjects.DateTimeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetDateTimeNull() {
-                this[this.tableStudentSubjects.DateTimeColumn] = global::System.Convert.DBNull;
+            public void Setschool_yearNull() {
+                this[this.tableStudentAccounts.school_yearColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -904,22 +652,22 @@ namespace school_management_system_model.Reports.Registrar {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class StudentSubjectsRowChangeEvent : global::System.EventArgs {
+        public class StudentAccountsRowChangeEvent : global::System.EventArgs {
             
-            private StudentSubjectsRow eventRow;
+            private StudentAccountsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public StudentSubjectsRowChangeEvent(StudentSubjectsRow row, global::System.Data.DataRowAction action) {
+            public StudentAccountsRowChangeEvent(StudentAccountsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public StudentSubjectsRow Row {
+            public StudentAccountsRow Row {
                 get {
                     return this.eventRow;
                 }

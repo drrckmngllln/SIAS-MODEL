@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FeeBreakdown" targetNamespace="http://tempuri.org/FeeBreakdown.xsd" xmlns:mstns="http://tempuri.org/FeeBreakdown.xsd" xmlns="http://tempuri.org/FeeBreakdown.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FeeBreakdown" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="FeeBreakdown" msprop:Generator_DataSetName="FeeBreakdown">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FeeBreakdown" msprop:Generator_RowEvHandlerName="FeeBreakdownRowChangeEventHandler" msprop:Generator_RowDeletedName="FeeBreakdownRowDeleted" msprop:Generator_RowDeletingName="FeeBreakdownRowDeleting" msprop:Generator_RowEvArgName="FeeBreakdownRowChangeEvent" msprop:Generator_TablePropName="_FeeBreakdown" msprop:Generator_RowChangedName="FeeBreakdownRowChanged" msprop:Generator_RowChangingName="FeeBreakdownRowChanging" msprop:Generator_TableClassName="FeeBreakdownDataTable" msprop:Generator_RowClassName="FeeBreakdownRow" msprop:Generator_TableVarName="tableFeeBreakdown" msprop:Generator_UserTableName="FeeBreakdown">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="school_year" msprop:Generator_ColumnPropNameInRow="school_year" msprop:Generator_ColumnPropNameInTable="school_yearColumn" msprop:Generator_ColumnVarNameInTable="columnschool_year" msprop:Generator_UserColumnName="school_year" type="xs:string" minOccurs="0" />
+              <xs:element name="downpayment" msprop:Generator_ColumnPropNameInRow="downpayment" msprop:Generator_ColumnPropNameInTable="downpaymentColumn" msprop:Generator_ColumnVarNameInTable="columndownpayment" msprop:Generator_UserColumnName="downpayment" type="xs:decimal" minOccurs="0" />
+              <xs:element name="prelim" msprop:Generator_ColumnPropNameInRow="prelim" msprop:Generator_ColumnPropNameInTable="prelimColumn" msprop:Generator_ColumnVarNameInTable="columnprelim" msprop:Generator_UserColumnName="prelim" type="xs:decimal" minOccurs="0" />
+              <xs:element name="midterm" msprop:Generator_ColumnPropNameInRow="midterm" msprop:Generator_ColumnPropNameInTable="midtermColumn" msprop:Generator_ColumnVarNameInTable="columnmidterm" msprop:Generator_UserColumnName="midterm" type="xs:decimal" minOccurs="0" />
+              <xs:element name="semi_finals" msprop:Generator_ColumnPropNameInRow="semi_finals" msprop:Generator_ColumnPropNameInTable="semi_finalsColumn" msprop:Generator_ColumnVarNameInTable="columnsemi_finals" msprop:Generator_UserColumnName="semi_finals" type="xs:decimal" minOccurs="0" />
+              <xs:element name="finals" msprop:Generator_ColumnPropNameInRow="finals" msprop:Generator_ColumnPropNameInTable="finalsColumn" msprop:Generator_ColumnVarNameInTable="columnfinals" msprop:Generator_UserColumnName="finals" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
