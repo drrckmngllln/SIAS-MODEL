@@ -232,15 +232,23 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
           
         }
+        public string studentCampus(string idNumber)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from student_course where id_number='" + idNumber + "'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt.Rows[0]["campus"].ToString();
+        }
 
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
-            var frm = new frm_print_assessment
+            var frm = new frm_print_isap_schedule
             {
                 id_number = id_number,
-                school_year = school_year
+                school_year = school_year,
+                campus = studentCampus(id_number)
             };
-            frm.Text = "ISAP Student Schedule";
             frm.ShowDialog();
         }
     }

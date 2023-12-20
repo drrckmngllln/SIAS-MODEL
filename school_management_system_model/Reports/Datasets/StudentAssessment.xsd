@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StudentAssessment" targetNamespace="http://tempuri.org/StudentAssessment.xsd" xmlns:mstns="http://tempuri.org/StudentAssessment.xsd" xmlns="http://tempuri.org/StudentAssessment.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StudentAssessment" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="StudentAssessment" msprop:Generator_DataSetName="StudentAssessment">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="StudentAssessment" msprop:Generator_RowEvHandlerName="StudentAssessmentRowChangeEventHandler" msprop:Generator_RowDeletedName="StudentAssessmentRowDeleted" msprop:Generator_RowDeletingName="StudentAssessmentRowDeleting" msprop:Generator_RowEvArgName="StudentAssessmentRowChangeEvent" msprop:Generator_TablePropName="_StudentAssessment" msprop:Generator_RowChangedName="StudentAssessmentRowChanged" msprop:Generator_RowChangingName="StudentAssessmentRowChanging" msprop:Generator_TableClassName="StudentAssessmentDataTable" msprop:Generator_RowClassName="StudentAssessmentRow" msprop:Generator_TableVarName="tableStudentAssessment" msprop:Generator_UserTableName="StudentAssessment">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="school_year" msprop:Generator_ColumnPropNameInRow="school_year" msprop:Generator_ColumnPropNameInTable="school_yearColumn" msprop:Generator_ColumnVarNameInTable="columnschool_year" msprop:Generator_UserColumnName="school_year" type="xs:string" minOccurs="0" />
+              <xs:element name="fee_type" msprop:Generator_ColumnPropNameInRow="fee_type" msprop:Generator_ColumnPropNameInTable="fee_typeColumn" msprop:Generator_ColumnVarNameInTable="columnfee_type" msprop:Generator_UserColumnName="fee_type" type="xs:string" minOccurs="0" />
+              <xs:element name="amount" msprop:Generator_ColumnPropNameInRow="amount" msprop:Generator_ColumnPropNameInTable="amountColumn" msprop:Generator_ColumnVarNameInTable="columnamount" msprop:Generator_UserColumnName="amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="units" msprop:Generator_ColumnPropNameInRow="units" msprop:Generator_ColumnPropNameInTable="unitsColumn" msprop:Generator_ColumnVarNameInTable="columnunits" msprop:Generator_UserColumnName="units" type="xs:decimal" minOccurs="0" />
+              <xs:element name="computation" msprop:Generator_ColumnPropNameInRow="computation" msprop:Generator_ColumnPropNameInTable="computationColumn" msprop:Generator_ColumnVarNameInTable="columncomputation" msprop:Generator_UserColumnName="computation" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -366,7 +366,7 @@ namespace school_management_system_model.Forms.transactions
 
         private void kryptonButton3_Click_1(object sender, EventArgs e)
         {
-            var frm = new frm_print_assessment
+            var frm = new frm_print_isap_schedule
             {
                 id_number = tIdNumber.Text,
                 school_year = school_year

@@ -433,31 +433,39 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\Accounting\frm_print_assessment.cs">
+    <Compile Include="Reports\Accounting\frm_isap_assessment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Accounting\frm_print_assessment.Designer.cs">
-      <DependentUpon>frm_print_assessment.cs</DependentUpon>
+    <Compile Include="Reports\Accounting\frm_isap_assessment.Designer.cs">
+      <DependentUpon>frm_isap_assessment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Datasets\AssessmentDataset.cs">
-      <DependentUpon>AssessmentDataset.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Datasets\AssessmentDataset.Designer.cs">
+    <Compile Include="Reports\Datasets\FeeBreakdown.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AssessmentDataset.xsd</DependentUpon>
+      <DependentUpon>FeeBreakdown.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Registrar\StudentAccounts.Designer.cs">
+    <Compile Include="Reports\Datasets\StudentAssessment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentAssessment.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Registrar\frm_print_isap_schedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Registrar\frm_print_isap_schedule.Designer.cs">
+      <DependentUpon>frm_print_isap_schedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\StudentAccounts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentAccounts.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Registrar\StudentCourse.Designer.cs">
+    <Compile Include="Reports\Datasets\StudentCourse.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentCourse.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Registrar\StudentSubjects.Designer.cs">
+    <Compile Include="Reports\Datasets\StudentSubjects.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentSubjects.xsd</DependentUpon>
@@ -608,11 +616,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports\Accounting\frm_print_assessment.resx">
-      <DependentUpon>frm_print_assessment.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Accounting\frm_isap_assessment.resx">
+      <DependentUpon>frm_isap_assessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Registrar\frm_print_isap_schedule.resx">
+      <DependentUpon>frm_print_isap_schedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Accounting\isap_assessment.rdlc" />
     <EmbeddedResource Include="Reports\Registrar\isap_schedule.rdlc" />
+    <EmbeddedResource Include="Reports\Registrar\mcnp_schedule.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.Curriculums.datasource" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.StudentAccount.datasource" />
@@ -630,48 +642,59 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Reports\Datasets\AssessmentDataset.xsc">
-      <DependentUpon>AssessmentDataset.xsd</DependentUpon>
+    <None Include="Reports\Datasets\FeeBreakdown.xsc">
+      <DependentUpon>FeeBreakdown.xsd</DependentUpon>
     </None>
-    <None Include="Reports\Datasets\AssessmentDataset.xsd">
+    <None Include="Reports\Datasets\FeeBreakdown.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AssessmentDataset.Designer.cs</LastGenOutput>
+      <LastGenOutput>FeeBreakdown.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Reports\Datasets\AssessmentDataset.xss">
-      <DependentUpon>AssessmentDataset.xsd</DependentUpon>
+    <None Include="Reports\Datasets\FeeBreakdown.xss">
+      <DependentUpon>FeeBreakdown.xsd</DependentUpon>
     </None>
-    <None Include="Reports\Registrar\StudentAccounts.xsc">
+    <None Include="Reports\Datasets\StudentAccounts.xsc">
       <DependentUpon>StudentAccounts.xsd</DependentUpon>
     </None>
-    <None Include="Reports\Registrar\StudentAccounts.xsd">
+    <None Include="Reports\Datasets\StudentAccounts.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>StudentAccounts.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Reports\Registrar\StudentAccounts.xss">
+    <None Include="Reports\Datasets\StudentAccounts.xss">
       <DependentUpon>StudentAccounts.xsd</DependentUpon>
     </None>
-    <None Include="Reports\Registrar\StudentCourse.xsc">
+    <None Include="Reports\Datasets\StudentAssessment.xsc">
+      <DependentUpon>StudentAssessment.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\StudentAssessment.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StudentAssessment.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\StudentAssessment.xss">
+      <DependentUpon>StudentAssessment.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\StudentCourse.xsc">
       <DependentUpon>StudentCourse.xsd</DependentUpon>
     </None>
-    <None Include="Reports\Registrar\StudentCourse.xsd">
+    <None Include="Reports\Datasets\StudentCourse.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>StudentCourse.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Reports\Registrar\StudentCourse.xss">
+    <None Include="Reports\Datasets\StudentCourse.xss">
       <DependentUpon>StudentCourse.xsd</DependentUpon>
     </None>
-    <None Include="Reports\Registrar\StudentSubjects.xsc">
+    <None Include="Reports\Datasets\StudentSubjects.xsc">
       <DependentUpon>StudentSubjects.xsd</DependentUpon>
     </None>
-    <None Include="Reports\Registrar\StudentSubjects.xsd">
+    <None Include="Reports\Datasets\StudentSubjects.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>StudentSubjects.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Reports\Registrar\StudentSubjects.xss">
+    <None Include="Reports\Datasets\StudentSubjects.xss">
       <DependentUpon>StudentSubjects.xsd</DependentUpon>
     </None>
     <None Include="Resources\user.png" />
