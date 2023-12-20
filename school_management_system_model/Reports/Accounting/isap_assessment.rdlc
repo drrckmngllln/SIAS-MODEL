@@ -44,36 +44,6 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox16">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>4.2037cm</Top>
-        <Left>1.79599cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
     <Height>11in</Height>
     <Style />
@@ -114,7 +84,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="StudentAccounts">
+    <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>DataSet1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -131,14 +101,14 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\drrckmngllln\Documents\GitHub\sias_model_mcnpisap\school_management_system_model\Reports\Datasets\DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\MCNP-ISAP\Documents\GitHub\SIAS-MODEL\school_management_system_model\Reports\Datasets\DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>StudentAccounts</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="StudentCourse">
+    <DataSet Name="DataSet2">
       <Query>
         <DataSourceName>DataSet1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -164,18 +134,10 @@
           <DataField>year_level</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="section">
-          <DataField>section</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="semester">
-          <DataField>semester</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\drrckmngllln\Documents\GitHub\sias_model_mcnpisap\school_management_system_model\Reports\Datasets\DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\MCNP-ISAP\Documents\GitHub\SIAS-MODEL\school_management_system_model\Reports\Datasets\DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>StudentCourse</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

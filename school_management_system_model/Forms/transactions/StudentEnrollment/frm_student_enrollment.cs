@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Forms.transactions.Classes;
+using school_management_system_model.Reports.Accounting;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -239,7 +240,7 @@ namespace school_management_system_model.Forms.transactions
                     status.changeStatus();
 
                     MessageBox.Show("Subjects Successfully Added! Proceed to Accounting!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    
                 }
                 else if (increment == "Full")
                 {
@@ -361,6 +362,18 @@ namespace school_management_system_model.Forms.transactions
             {
                 dgv.Rows.Remove(dgv.CurrentRow);
             }
+        }
+
+        private void kryptonButton3_Click_1(object sender, EventArgs e)
+        {
+            var frm = new frm_print_assessment
+            {
+                id_number = tIdNumber.Text,
+                school_year = school_year
+            };
+            frm.Text = "ISAP Student Schedule";
+            frm.ShowDialog();
+            Close();
         }
     }
 }
