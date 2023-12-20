@@ -295,6 +295,8 @@ namespace school_management_system_model.Reports.Registrar {
             
             private global::System.Data.DataColumn columninstructor;
             
+            private global::System.Data.DataColumn columnDateTime;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public StudentSubjectsDataTable() {
@@ -394,6 +396,14 @@ namespace school_management_system_model.Reports.Registrar {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateTimeColumn {
+                get {
+                    return this.columnDateTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -429,7 +439,7 @@ namespace school_management_system_model.Reports.Registrar {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public StudentSubjectsRow AddStudentSubjectsRow(string subject_code, string descriptive_title, string lecture_units, string lab_units, string time, string day, string room, string instructor) {
+            public StudentSubjectsRow AddStudentSubjectsRow(string subject_code, string descriptive_title, decimal lecture_units, decimal lab_units, string time, string day, string room, string instructor, System.DateTime DateTime) {
                 StudentSubjectsRow rowStudentSubjectsRow = ((StudentSubjectsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         subject_code,
@@ -439,7 +449,8 @@ namespace school_management_system_model.Reports.Registrar {
                         time,
                         day,
                         room,
-                        instructor};
+                        instructor,
+                        DateTime};
                 rowStudentSubjectsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowStudentSubjectsRow);
                 return rowStudentSubjectsRow;
@@ -470,6 +481,7 @@ namespace school_management_system_model.Reports.Registrar {
                 this.columnday = base.Columns["day"];
                 this.columnroom = base.Columns["room"];
                 this.columninstructor = base.Columns["instructor"];
+                this.columnDateTime = base.Columns["DateTime"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -479,9 +491,9 @@ namespace school_management_system_model.Reports.Registrar {
                 base.Columns.Add(this.columnsubject_code);
                 this.columndescriptive_title = new global::System.Data.DataColumn("descriptive_title", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescriptive_title);
-                this.columnlecture_units = new global::System.Data.DataColumn("lecture_units", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnlecture_units = new global::System.Data.DataColumn("lecture_units", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlecture_units);
-                this.columnlab_units = new global::System.Data.DataColumn("lab_units", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnlab_units = new global::System.Data.DataColumn("lab_units", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlab_units);
                 this.columntime = new global::System.Data.DataColumn("time", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntime);
@@ -491,6 +503,8 @@ namespace school_management_system_model.Reports.Registrar {
                 base.Columns.Add(this.columnroom);
                 this.columninstructor = new global::System.Data.DataColumn("instructor", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninstructor);
+                this.columnDateTime = new global::System.Data.DataColumn("DateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateTime);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_StudentSubjects");
                 this.ExtendedProperties.Add("Generator_UserTableName", "StudentSubjects");
             }
@@ -667,10 +681,10 @@ namespace school_management_system_model.Reports.Registrar {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string lecture_units {
+            public decimal lecture_units {
                 get {
                     try {
-                        return ((string)(this[this.tableStudentSubjects.lecture_unitsColumn]));
+                        return ((decimal)(this[this.tableStudentSubjects.lecture_unitsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'lecture_units\' in table \'StudentSubjects\' is DBNull.", e);
@@ -683,10 +697,10 @@ namespace school_management_system_model.Reports.Registrar {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string lab_units {
+            public decimal lab_units {
                 get {
                     try {
-                        return ((string)(this[this.tableStudentSubjects.lab_unitsColumn]));
+                        return ((decimal)(this[this.tableStudentSubjects.lab_unitsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'lab_units\' in table \'StudentSubjects\' is DBNull.", e);
@@ -758,6 +772,22 @@ namespace school_management_system_model.Reports.Registrar {
                 }
                 set {
                     this[this.tableStudentSubjects.instructorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateTime {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableStudentSubjects.DateTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateTime\' in table \'StudentSubjects\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStudentSubjects.DateTimeColumn] = value;
                 }
             }
             
@@ -855,6 +885,18 @@ namespace school_management_system_model.Reports.Registrar {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetinstructorNull() {
                 this[this.tableStudentSubjects.instructorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDateTimeNull() {
+                return this.IsNull(this.tableStudentSubjects.DateTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDateTimeNull() {
+                this[this.tableStudentSubjects.DateTimeColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -433,11 +433,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\Accounting\frm_print_assessment.cs">
+    <Compile Include="Reports\Registrar\frm_print_isap_schedule.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Accounting\frm_print_assessment.Designer.cs">
-      <DependentUpon>frm_print_assessment.cs</DependentUpon>
+    <Compile Include="Reports\Registrar\frm_print_isap_schedule.Designer.cs">
+      <DependentUpon>frm_print_isap_schedule.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Datasets\AssessmentDataset.cs">
       <DependentUpon>AssessmentDataset.xsd</DependentUpon>
@@ -608,8 +608,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports\Accounting\frm_print_assessment.resx">
-      <DependentUpon>frm_print_assessment.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Registrar\frm_print_isap_schedule.resx">
+      <DependentUpon>frm_print_isap_schedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Accounting\isap_assessment.rdlc" />
     <EmbeddedResource Include="Reports\Registrar\isap_schedule.rdlc" />
