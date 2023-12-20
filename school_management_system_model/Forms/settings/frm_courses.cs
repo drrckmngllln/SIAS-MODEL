@@ -185,5 +185,7 @@ namespace school_management_system_model.Forms.settings
                 delete();
             }
         }
+
+      
     }
 }

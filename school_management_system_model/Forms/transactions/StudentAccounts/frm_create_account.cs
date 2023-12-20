@@ -66,7 +66,8 @@ namespace school_management_system_model.Forms.transactions
                 tfoccupation.Text = data.Rows[0]["f_occupation"].ToString();
                 tStatus.Text = data.Rows[0]["Status"].ToString();
                 ctype.Text = data.Rows[0]["type_of_student"].ToString();
-                
+                kryptonDateTimePicker1 = new KryptonDateTimePicker();
+               // tCourse.Text = data.Rows[0]["course"].ToString();
                     
 
                 btnCreate.Text = "Update Account";
@@ -150,10 +151,11 @@ namespace school_management_system_model.Forms.transactions
                         f_occupation=tfoccupation.Text,
                         type_of_student= ctype.Text,
                         status = tStatus.Text,
-                        sy_enrolled = tSchoolyear.Text
+                        sy_enrolled =tSchoolyear.Text,
+                       date_of_admission = kryptonDateTimePicker1.Text,
+                        //course= tCourse.Text
 
-
-                    };
+                };
 
                     add.addRecord();
                     MessageBox.Show("Account Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -192,7 +194,9 @@ namespace school_management_system_model.Forms.transactions
                         f_occupation = tfoccupation.Text,
                         type_of_student = ctype.Text,
                         status = tStatus.Text,                     
-                        sy_enrolled = tSchoolyear.Text
+                        sy_enrolled = tSchoolyear.Text,
+                        date_of_admission = kryptonDateTimePicker1.Text,
+                        //course = tCourse.Text,
                     };
                     edit.editRecord(tIdNumber.Text);
                     MessageBox.Show("Account Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -233,7 +237,10 @@ namespace school_management_system_model.Forms.transactions
             Close();
         }
 
-        
+        private void tCurriculum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     }
 

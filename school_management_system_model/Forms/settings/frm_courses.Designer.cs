@@ -76,6 +76,7 @@
             this.tsearch.Name = "tsearch";
             this.tsearch.Size = new System.Drawing.Size(258, 23);
             this.tsearch.TabIndex = 70;
+      
             // 
             // t7
             // 
