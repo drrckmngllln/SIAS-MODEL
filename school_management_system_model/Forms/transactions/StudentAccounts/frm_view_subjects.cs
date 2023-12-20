@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Reports.Accounting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -230,6 +231,17 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 loadRecords(id_number, school_year);
             }
           
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_print_assessment
+            {
+                id_number = id_number,
+                school_year = school_year
+            };
+            frm.Text = "ISAP Student Schedule";
+            frm.ShowDialog();
         }
     }
 }
