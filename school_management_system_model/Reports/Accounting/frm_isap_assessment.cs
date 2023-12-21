@@ -55,7 +55,7 @@ namespace school_management_system_model.Reports.Accounting
                 var rpt2 = new ReportDataSource("StudentCourse", studentCourse);
                 var rpt3 = new ReportDataSource("StudentAssessment", studentAssessment);
                 var rpt4 = new ReportDataSource("FeeBreakdown", feeBreakdown);
-                crv.LocalReport.ReportPath = "C:\\Users\\drrckmngllln\\Documents\\GitHub\\sias_model_mcnpisap\\school_management_system_model\\Reports\\Accounting\\isap_assessment.rdlc";
+                crv.LocalReport.ReportPath = "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Accounting\\isap_assessment.rdlc";
 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);
