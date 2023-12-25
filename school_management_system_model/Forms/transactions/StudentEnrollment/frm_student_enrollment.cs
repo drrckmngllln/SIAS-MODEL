@@ -37,6 +37,7 @@ namespace school_management_system_model.Forms.transactions
         {
             loadRecords();
             loadCourses();
+            loadSection();
         }
 
         private void loadSection()
@@ -94,9 +95,11 @@ namespace school_management_system_model.Forms.transactions
             tStudentName.Text = studentName;
             tCourse.Text = data.Rows[0]["course"].ToString();
             tCampus.Text = data.Rows[0]["campus"].ToString();
+            tCurriculum.Text = data.Rows[0]["curriculum"].ToString();
             tYearLevel.Text = data.Rows[0]["year_level"].ToString();
             tSection.Text = data.Rows[0]["section"].ToString();
             tSemester.Text = data.Rows[0]["semester"].ToString();
+            tYearLevel.Select();
 
             dgv.Columns.Add("subject_code", "Subject Code");
             dgv.Columns.Add("descriptive_title", "Descriptive Title");
@@ -240,7 +243,7 @@ namespace school_management_system_model.Forms.transactions
                     status.changeStatus();
 
                     MessageBox.Show("Subjects Successfully Added! Proceed to Accounting!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+                    Close();
                 }
                 else if (increment == "Full")
                 {
@@ -364,16 +367,10 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void kryptonButton3_Click_1(object sender, EventArgs e)
+        private void tYearLevel_TextChanged(object sender, EventArgs e)
         {
-            var frm = new frm_print_isap_schedule
-            {
-                id_number = tIdNumber.Text,
-                school_year = school_year
-            };
-            frm.Text = "ISAP Student Schedule";
-            frm.ShowDialog();
-            Close();
+            loadSection();
+            tSection.Select();
         }
     }
 }

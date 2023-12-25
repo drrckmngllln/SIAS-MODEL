@@ -111,28 +111,18 @@ namespace school_management_system_model.Forms.transactions
                 
             }
         }
-
-        private string selectStudent()
-        {
-            return dgv.CurrentRow.Cells["id_number"].Value.ToString();
-        }
-        private string selectSchoolYear()
-        {
-            return dgv.CurrentRow.Cells["code"].Value.ToString();
-        }
-
         private void frm_select_student_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 if(this.Text == "Select Student")
                 {
-                    frm_student_assessment.instance.studentID = selectStudent();
+                    frm_student_assessment.instance.studentID = dgv.CurrentRow.Cells["id_number"].Value.ToString();
                     this.Close();
                 }
                 else if (this.Text == "Select School Year")
                 {
-                    frm_student_assessment.instance.schoolYear = selectSchoolYear();
+                    frm_student_assessment.instance.schoolYear = dgv.CurrentRow.Cells["code"].Value.ToString();
                     this.Close();
                 }
                 else if (this.Text == "Select Lab Fee")

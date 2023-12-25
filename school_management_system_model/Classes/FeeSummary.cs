@@ -24,11 +24,11 @@ namespace school_management_system_model.Classes
             var cmd = new MySqlCommand("insert into fee_summary(id_number, school_year, current_assessment, discounts, previous_balance, current_receivable) " +
                 "values(@1,@2,@3,@4,@5,@6)", con);
             cmd.Parameters.AddWithValue("@1", id_number);
-            cmd.Parameters.AddWithValue("@1", school_year);
-            cmd.Parameters.AddWithValue("@1", current_assessment);
-            cmd.Parameters.AddWithValue("@1", discounts);
-            cmd.Parameters.AddWithValue("@1", previous_balance);
-            cmd.Parameters.AddWithValue("@1", current_receivable);
+            cmd.Parameters.AddWithValue("@2", school_year);
+            cmd.Parameters.AddWithValue("@3", current_assessment);
+            cmd.Parameters.AddWithValue("@4", discounts);
+            cmd.Parameters.AddWithValue("@5", previous_balance);
+            cmd.Parameters.AddWithValue("@6", current_receivable);
             cmd.ExecuteNonQuery();
             con.Close();
         }
