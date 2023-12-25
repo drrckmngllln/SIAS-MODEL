@@ -45,7 +45,7 @@ namespace school_management_system_model.Reports.Accounting
                 var rpt = new ReportDataSource("StudentAccounts", studentAccounts);
                 var rpt2 = new ReportDataSource("StudentCourse", studentCourse);
                 var rpt3 = new ReportDataSource("StudentSubjects", studentSubjects);
-                crv.LocalReport.ReportPath = "C:\\Users\\drrckmngllln\\Documents\\GitHub\\sias_model_mcnpisap\\school_management_system_model\\Reports\\Registrar\\isap_schedule.rdlc";
+                crv.LocalReport.ReportPath = "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Registrar\\isap_schedule.rdlc";
                 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);
@@ -75,7 +75,7 @@ namespace school_management_system_model.Reports.Accounting
                 var rpt = new ReportDataSource("StudentAccounts", studentAccounts);
                 var rpt2 = new ReportDataSource("StudentCourse", studentCourse);
                 var rpt3 = new ReportDataSource("StudentSubjects", studentSubjects);
-                crv.LocalReport.ReportPath = "C:\\Users\\drrckmngllln\\Documents\\GitHub\\sias_model_mcnpisap\\school_management_system_model\\Reports\\Registrar\\isap_schedule.rdlc";
+                crv.LocalReport.ReportPath = "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Registrar\\mcnp_schedule.rdlc";
 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);

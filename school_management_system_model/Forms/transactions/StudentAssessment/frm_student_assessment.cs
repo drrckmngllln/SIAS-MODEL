@@ -451,8 +451,33 @@ namespace school_management_system_model.Forms.transactions
             // Saving Fee Breakdown
             saveFeeBreakdown();
 
+            // Saving Fee Summary
+            saveFeeSummary();
+
             MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+        }
+
+        private void saveFeeSummary()
+        {
+            var data = new FeeSummary
+            {
+                id_number = tIdNumber.Text
+            };
+            decimal previousBalance = data.loadPreviousBalance();
+            decimal currentAssessment = Convert.ToDecimal(tTotal.Text);
+            decimal discounts = Convert.ToDecimal(discountTotal.Text);
+
+            var add = new FeeSummary
+            {
+                id_number = tIdNumber.Text,
+                school_year = tSchoolYear.Text,
+                current_assessment = currentAssessment,
+                discounts = discounts,
+                previous_balance = previousBalance,
+                current_receivable = (currentAssessment + previousBalance) - discounts
+            };
+            add.saveFeeSummary();
         }
 
         private void saveFeeBreakdown()

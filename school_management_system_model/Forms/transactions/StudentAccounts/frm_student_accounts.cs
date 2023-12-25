@@ -76,7 +76,9 @@ namespace school_management_system_model.Forms.transactions
         private void loadSchoolYear()
         {
             var data = new StudentAccount();
-            tSchoolYear.Text = data.schoolYearPreSet();
+            var schoolYear = data.schoolYearPreSet();
+            tSchoolYear.Text = schoolYear.Rows[0]["code"].ToString();
+            tSemester.Text = schoolYear.Rows[0]["semester"].ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,6 +98,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 var frm = new frm_create_account();
                 frm_create_account.instance.schoolYear = tSchoolYear.Text;
+                frm_create_account.instance.semester = tSemester.Text;
                 frm.Text = "Create Account";
                 frm.ShowDialog();
                 loadRecords();
@@ -157,14 +160,13 @@ namespace school_management_system_model.Forms.transactions
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Approve Student?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            var frm = new frm_approve_account
             {
-                var approve = new StudentAccount();
-                approve.approveStudent(dgv.CurrentRow.Cells["id_number"].Value.ToString());
-                MessageBox.Show("Student Approved, Proceed to Enrollment", "Success", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Question);
-                loadRecords();
-            }
+                id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
+                fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString()
+            };
+            frm.ShowDialog();
+            loadRecords();
         }
 
         private void btnEnroll_Click(object sender, EventArgs e)

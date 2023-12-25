@@ -52,11 +52,24 @@ namespace school_management_system_model.Classes
 
         public string date_of_admission { get; set; }
 
+        public string course { get; set; }
+        public string campus { get; set; }
+       
+
+
         public DataTable loadRecords(string schoolYear)
         {
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select * from student_accounts where school_year='" + schoolYear + "' " +
                 "order by id desc", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+        public DataTable loadCourses()
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from courses", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt;
@@ -69,13 +82,13 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
-        public string schoolYearPreSet()
+        public DataTable schoolYearPreSet()
         {
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select * from school_year where is_current='Yes'", con);
             var dt = new DataTable();
             da.Fill(dt);
-            return dt.Rows[0]["code"].ToString();
+            return dt;
         }
         public int countStudent(string schoolYear)
         {
@@ -132,6 +145,16 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@30", f_occupation);
             cmd.Parameters.AddWithValue("@31", type_of_student);
             cmd.Parameters.AddWithValue("@32", date_of_admission);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            // Saving Student Course
+            con.Open();
+            cmd = new MySqlCommand("insert into student_course(id_number, course, campus, semester) values(@1,@2,@3,@4)", con);
+            cmd.Parameters.AddWithValue("@1", id_number);
+            cmd.Parameters.AddWithValue("@2", course);
+            cmd.Parameters.AddWithValue("@3", campus);
+            cmd.Parameters.AddWithValue("@4", semester);
             cmd.ExecuteNonQuery();
             con.Close();
         }

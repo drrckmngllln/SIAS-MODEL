@@ -151,9 +151,9 @@
             // btn_save
             // 
             this.btn_save.CornerRoundingRadius = 15F;
-            this.btn_save.Location = new System.Drawing.Point(32, 292);
+            this.btn_save.Location = new System.Drawing.Point(110, 296);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(155, 48);
+            this.btn_save.Size = new System.Drawing.Size(155, 37);
             this.btn_save.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
             this.btn_save.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
             this.btn_save.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -663,9 +663,9 @@
             // kryptonButton6
             // 
             this.kryptonButton6.CornerRoundingRadius = 15F;
-            this.kryptonButton6.Location = new System.Drawing.Point(193, 292);
+            this.kryptonButton6.Location = new System.Drawing.Point(916, 26);
             this.kryptonButton6.Name = "kryptonButton6";
-            this.kryptonButton6.Size = new System.Drawing.Size(155, 48);
+            this.kryptonButton6.Size = new System.Drawing.Size(155, 25);
             this.kryptonButton6.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
             this.kryptonButton6.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
             this.kryptonButton6.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));

@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
+using school_management_system_model.Forms.transactions.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,9 @@ namespace school_management_system_model.Forms.transactions
         public static frm_create_account instance;
         public string schoolYear { get; set; }
         public int id { get; set; }
+        public string course { get; set; }
+        public string campus { get; set; }
+        public string semester { get; set; }
         public frm_create_account()
         {
             instance = this;
@@ -30,6 +34,7 @@ namespace school_management_system_model.Forms.transactions
                 tTitle.Text = this.Text;
                 loadSchoolYear();
                 loadIdNumber();
+                loadCourses();
             }
             else if (this.Text == "Update Account")
             {
@@ -74,9 +79,15 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
+        private void loadCourses()
+        {
+            var data = new StudentAccount();
+        }
+
         private void loadSchoolYear()
         {
             tSchoolyear.Text = schoolYear;
+            
         }
         private void loadIdNumber()
         {
@@ -116,9 +127,9 @@ namespace school_management_system_model.Forms.transactions
         {
             try
             {
-
                 if (this.Text == "Create Account")
                 {
+                   
                     var add = new StudentAccount
                     {
                         id_number = tIdNumber.Text,
@@ -152,10 +163,13 @@ namespace school_management_system_model.Forms.transactions
                         type_of_student= ctype.Text,
                         status = tStatus.Text,
                         sy_enrolled =tSchoolyear.Text,
-                       date_of_admission = kryptonDateTimePicker1.Text,
-                        //course= tCourse.Text
-
-                };
+                        date_of_admission = kryptonDateTimePicker1.Text,
+                        // Inserting of Course
+                        course = tCourse.Text,
+                        semester = semester,
+                        campus = tCampus.Text
+                        
+                    };
 
                     add.addRecord();
                     MessageBox.Show("Account Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -240,6 +254,38 @@ namespace school_management_system_model.Forms.transactions
         private void tCurriculum_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_select_course();
+            frm.ShowDialog();
+            if (course != null)
+            {
+                tCourse.Text = course;
+                tCampus.Text = campus;
+            }
+        }
+
+        private void btnCreate_Click_1(object sender, EventArgs e)
+        {
+            addRecord();
+        }
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSelect_Click_1(object sender, EventArgs e)
+        {
+            var frm = new frm_select_course();
+            frm.ShowDialog();
+            if (course != null)
+            {
+                tCourse.Text = course;
+                tCampus.Text = campus;
+            }
         }
     }
     }
