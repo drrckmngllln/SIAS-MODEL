@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -429,8 +430,27 @@ namespace school_management_system_model.Forms.transactions
 
         private void saveAssessment()
         {
-            
+
             // Save to Student Assessment
+            saveStudentAssessment();
+
+            // Saving to Statements of Accounts
+            saveStatementsOfAccounts();
+
+            // Saving Fee Breakdown
+            saveFeeBreakdown();
+
+            // Saving Fee Summary
+            saveFeeSummary();
+
+            MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            printAssessment();
+
+        }
+
+        private void saveStudentAssessment()
+        {
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 var assessment = new student_assessment
@@ -444,18 +464,6 @@ namespace school_management_system_model.Forms.transactions
                 };
                 assessment.saveAssessment(tIdNumber.Text);
             }
-
-            // Saving to Statements of Accounts
-            saveStatementsOfAccounts();
-
-            // Saving Fee Breakdown
-            saveFeeBreakdown();
-
-            // Saving Fee Summary
-            saveFeeSummary();
-
-            MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void saveFeeSummary()
@@ -530,7 +538,7 @@ namespace school_management_system_model.Forms.transactions
                 var data = new StatementsOfAccounts
                 {
                     id_number = tIdNumber.Text,
-                    school_year = tSchoolYear.Text,
+                    school_year = schoolYear,
                     date = DateTime.Now.ToString("MM-dd-yyyy"),
                     course = tCourse.Text,
                     year_level = tYearLevel.Text,
@@ -541,7 +549,7 @@ namespace school_management_system_model.Forms.transactions
                     balance = debitCurrent + previousBalance,
                     cashier_in_charge = ""
                 };
-                data.saveStatementOfAccount(tIdNumber.Text);
+                data.saveStatementOfAccount(tIdNumber.Text, tSchoolYear.Text);
 
                 var discounts = new student_assessment();
                 var disc = discounts.loadDiscounts(tIdNumber.Text);
@@ -561,13 +569,14 @@ namespace school_management_system_model.Forms.transactions
                             course = tCourse.Text,
                             year_level = tYearLevel.Text,
                             semester = tSemester.Text,
+                            school_year = schoolYear,
                             particulars = row["description"].ToString(),
                             debit = debit,
                             credit = computation,
                             balance = debit - computation,
                             cashier_in_charge = ""
                         };
-                        soaDiscount.saveStatementOfAccount(tIdNumber.Text);
+                        soaDiscount.saveStatementOfAccount(tIdNumber.Text, tSchoolYear.Text);
                     }
                 }
             }
@@ -576,18 +585,18 @@ namespace school_management_system_model.Forms.transactions
                 var data = new StatementsOfAccounts
                 {
                     id_number = tIdNumber.Text,
-                    school_year = tSchoolYear.Text,
+                    school_year = schoolYear,
                     date = DateTime.Now.ToString("MM-dd-yyyy"),
                     course = tCourse.Text,
                     year_level = tYearLevel.Text,
                     semester = tSemester.Text,
-                    particulars = "Total Assessment as of: " + tSchoolYear.Text,
+                    particulars = "Total Assessment as of: " + schoolYear,
                     debit = Convert.ToDecimal(tTotal.Text),
                     credit = 0,
                     balance = Convert.ToDecimal(tTotal.Text),
                     cashier_in_charge = "",
                 };
-                data.saveStatementOfAccount(tIdNumber.Text);
+                data.saveStatementOfAccount(tIdNumber.Text, tSchoolYear.Text);
                 var discounts = new student_assessment();
                 var disc = discounts.loadDiscounts(tIdNumber.Text);
 
@@ -612,7 +621,7 @@ namespace school_management_system_model.Forms.transactions
                             balance = debit - computation,
                             cashier_in_charge = ""
                         };
-                        soaDiscount.saveStatementOfAccount(tIdNumber.Text);
+                        soaDiscount.saveStatementOfAccount(tIdNumber.Text, tSchoolYear.Text);
                     }
                 }
             }
@@ -688,10 +697,17 @@ namespace school_management_system_model.Forms.transactions
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to save this assessment?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (tIdNumber.Text == "")
             {
-                saveAssessment();
+                MessageBox.Show("Please select Student and school year", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                if (MessageBox.Show("Are you sure you want to save this assessment?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    saveAssessment();
+                }
+            }   
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -708,12 +724,12 @@ namespace school_management_system_model.Forms.transactions
             frm.ShowDialog();
         }
 
-
-        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private void kryptonButton6_Click_1(object sender, EventArgs e)
+        {
+            printAssessment();
+        }
+
+        private void printAssessment()
         {
             var frm = new frm_isap_assessment
             {

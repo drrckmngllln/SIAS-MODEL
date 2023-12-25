@@ -239,7 +239,7 @@
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 15F;
             this.Text = "frm_select_subject";
-            this.TransparencyKey = System.Drawing.Color.Transparent;
+            
             this.Load += new System.EventHandler(this.frm_select_subject_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_select_subject_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();

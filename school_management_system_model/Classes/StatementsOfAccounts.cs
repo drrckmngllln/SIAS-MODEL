@@ -40,7 +40,7 @@ namespace school_management_system_model.Classes
             con.Close();
         }
 
-        public void saveStatementOfAccount(string idNumber)
+        public void saveStatementOfAccount(string idNumber, string schoolYear)
         {
             reference_no = referenceNumber();
             incrementReferenceNumber(reference_no);
@@ -57,7 +57,7 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@6", credit);
             cmd.Parameters.AddWithValue("@7", balance);
             cmd.Parameters.AddWithValue("@8", cashier_in_charge);
-            cmd.Parameters.AddWithValue("@9", school_year);
+            cmd.Parameters.AddWithValue("@9", schoolYear);
             cmd.Parameters.AddWithValue("@10", course);
             cmd.Parameters.AddWithValue("@11", year_level);
             cmd.Parameters.AddWithValue("@12", semester);
