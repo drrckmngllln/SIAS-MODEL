@@ -50,17 +50,23 @@ namespace school_management_system_model.Reports.Accounting
                 var feeBreakdown = new DataTable();
                 da.Fill(feeBreakdown);
 
+                da = new MySqlDataAdapter("select * from student_subjects where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
+                var studentSubjects = new DataTable();
+                da.Fill(studentSubjects);
+
                 crv.LocalReport.DataSources.Clear();
                 var rpt = new ReportDataSource("StudentAccounts", studentAccounts);
                 var rpt2 = new ReportDataSource("StudentCourse", studentCourse);
                 var rpt3 = new ReportDataSource("StudentAssessment", studentAssessment);
                 var rpt4 = new ReportDataSource("FeeBreakdown", feeBreakdown);
-                crv.LocalReport.ReportPath = "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Accounting\\isap_assessment.rdlc";
+                var rpt5 = new ReportDataSource("StudentSubjects", studentSubjects);
+                crv.LocalReport.ReportPath = "C:\\Users\\drrckmngllln\\Documents\\GitHub\\sias_model_mcnpisap\\school_management_system_model\\Reports\\Assessment\\isap_assessment.rdlc";
 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);
                 crv.LocalReport.DataSources.Add(rpt3);
                 crv.LocalReport.DataSources.Add(rpt4);
+                crv.LocalReport.DataSources.Add(rpt5);
 
                 crv.SetDisplayMode(DisplayMode.PrintLayout);
                 crv.ZoomMode = ZoomMode.Percent;

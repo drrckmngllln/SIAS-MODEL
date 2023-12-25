@@ -143,6 +143,7 @@
     <Compile Include="Classes\DiscountSetup.cs" />
     <Compile Include="Classes\FeeBreakdown.cs" />
     <Compile Include="Classes\FeeCollection.cs" />
+    <Compile Include="Classes\FeeSummary.cs" />
     <Compile Include="Classes\Instructors.cs" />
     <Compile Include="Classes\LabFeeSetup.cs" />
     <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
@@ -329,6 +330,12 @@
     <Compile Include="Forms\transactions\StudentAccounts\frm_add_subject.Designer.cs">
       <DependentUpon>frm_add_subject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_approve_account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_approve_account.Designer.cs">
+      <DependentUpon>frm_approve_account.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\frm_create_account.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,6 +347,12 @@
     </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\frm_input_grade.Designer.cs">
       <DependentUpon>frm_input_grade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_select_course.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_select_course.Designer.cs">
+      <DependentUpon>frm_select_course.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\frm_select_school_year.cs">
       <SubType>Form</SubType>
@@ -433,10 +446,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\Accounting\frm_isap_assessment.cs">
+    <Compile Include="Reports\Datasets\FeeSummary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FeeSummary.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frm_isap_assessment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Accounting\frm_isap_assessment.Designer.cs">
+    <Compile Include="Reports\frm_isap_assessment.Designer.cs">
       <DependentUpon>frm_isap_assessment.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Datasets\FeeBreakdown.Designer.cs">
@@ -555,11 +573,17 @@
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_add_subject.resx">
       <DependentUpon>frm_add_subject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_approve_account.resx">
+      <DependentUpon>frm_approve_account.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_create_account.resx">
       <DependentUpon>frm_create_account.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_input_grade.resx">
       <DependentUpon>frm_input_grade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_select_course.resx">
+      <DependentUpon>frm_select_course.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_select_school_year.resx">
       <DependentUpon>frm_select_school_year.cs</DependentUpon>
@@ -616,15 +640,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports\Accounting\frm_isap_assessment.resx">
+    <EmbeddedResource Include="Reports\frm_isap_assessment.resx">
       <DependentUpon>frm_isap_assessment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Registrar\frm_print_isap_schedule.resx">
       <DependentUpon>frm_print_isap_schedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Accounting\isap_assessment.rdlc" />
-    <EmbeddedResource Include="Reports\Registrar\isap_schedule.rdlc" />
-    <EmbeddedResource Include="Reports\Registrar\mcnp_schedule.rdlc" />
+    <EmbeddedResource Include="Reports\Assessment\isap_assessment.rdlc" />
+    <EmbeddedResource Include="Reports\Assessment\mcnp_schedule.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.Curriculums.datasource" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.StudentAccount.datasource" />
@@ -652,6 +675,17 @@
     </None>
     <None Include="Reports\Datasets\FeeBreakdown.xss">
       <DependentUpon>FeeBreakdown.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\FeeSummary.xsc">
+      <DependentUpon>FeeSummary.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\FeeSummary.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FeeSummary.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\FeeSummary.xss">
+      <DependentUpon>FeeSummary.xsd</DependentUpon>
     </None>
     <None Include="Reports\Datasets\StudentAccounts.xsc">
       <DependentUpon>StudentAccounts.xsd</DependentUpon>
@@ -726,6 +760,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Forms\transactions\FeeAdjustment\" />
+    <Folder Include="Reports\Accounting\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
