@@ -9,16 +9,16 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="FeeSummary" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="FeeSummary" msprop:Generator_DataSetName="FeeSummary">
+  <xs:element name="FeeSummary" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="FeeSummary" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="FeeSummary">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="FeeSummary" msprop:Generator_RowEvHandlerName="FeeSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="FeeSummaryRowDeleted" msprop:Generator_RowDeletingName="FeeSummaryRowDeleting" msprop:Generator_RowEvArgName="FeeSummaryRowChangeEvent" msprop:Generator_TablePropName="_FeeSummary" msprop:Generator_RowChangedName="FeeSummaryRowChanged" msprop:Generator_RowChangingName="FeeSummaryRowChanging" msprop:Generator_TableClassName="FeeSummaryDataTable" msprop:Generator_RowClassName="FeeSummaryRow" msprop:Generator_TableVarName="tableFeeSummary" msprop:Generator_UserTableName="FeeSummary">
+        <xs:element name="FeeSummary" msprop:Generator_RowClassName="FeeSummaryRow" msprop:Generator_RowEvHandlerName="FeeSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="FeeSummaryRowDeleted" msprop:Generator_RowDeletingName="FeeSummaryRowDeleting" msprop:Generator_RowEvArgName="FeeSummaryRowChangeEvent" msprop:Generator_TablePropName="_FeeSummary" msprop:Generator_RowChangedName="FeeSummaryRowChanged" msprop:Generator_UserTableName="FeeSummary" msprop:Generator_RowChangingName="FeeSummaryRowChanging" msprop:Generator_TableClassName="FeeSummaryDataTable" msprop:Generator_TableVarName="tableFeeSummary">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="current_assessment" msprop:Generator_ColumnPropNameInRow="current_assessment" msprop:Generator_ColumnPropNameInTable="current_assessmentColumn" msprop:Generator_ColumnVarNameInTable="columncurrent_assessment" msprop:Generator_UserColumnName="current_assessment" type="xs:string" minOccurs="0" />
-              <xs:element name="discounts" msprop:Generator_ColumnPropNameInRow="discounts" msprop:Generator_ColumnPropNameInTable="discountsColumn" msprop:Generator_ColumnVarNameInTable="columndiscounts" msprop:Generator_UserColumnName="discounts" type="xs:string" minOccurs="0" />
-              <xs:element name="previous_balance" msprop:Generator_ColumnPropNameInRow="previous_balance" msprop:Generator_ColumnPropNameInTable="previous_balanceColumn" msprop:Generator_ColumnVarNameInTable="columnprevious_balance" msprop:Generator_UserColumnName="previous_balance" type="xs:string" minOccurs="0" />
-              <xs:element name="current_receivable" msprop:Generator_ColumnPropNameInRow="current_receivable" msprop:Generator_ColumnPropNameInTable="current_receivableColumn" msprop:Generator_ColumnVarNameInTable="columncurrent_receivable" msprop:Generator_UserColumnName="current_receivable" type="xs:string" minOccurs="0" />
+              <xs:element name="current_assessment" msprop:Generator_UserColumnName="current_assessment" msprop:Generator_ColumnPropNameInTable="current_assessmentColumn" msprop:Generator_ColumnPropNameInRow="current_assessment" msprop:Generator_ColumnVarNameInTable="columncurrent_assessment" type="xs:decimal" minOccurs="0" />
+              <xs:element name="discounts" msprop:Generator_UserColumnName="discounts" msprop:Generator_ColumnPropNameInTable="discountsColumn" msprop:Generator_ColumnPropNameInRow="discounts" msprop:Generator_ColumnVarNameInTable="columndiscounts" type="xs:decimal" minOccurs="0" />
+              <xs:element name="previous_balance" msprop:Generator_UserColumnName="previous_balance" msprop:Generator_ColumnPropNameInTable="previous_balanceColumn" msprop:Generator_ColumnPropNameInRow="previous_balance" msprop:Generator_ColumnVarNameInTable="columnprevious_balance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="current_receivable" msprop:Generator_UserColumnName="current_receivable" msprop:Generator_ColumnPropNameInTable="current_receivableColumn" msprop:Generator_ColumnPropNameInRow="current_receivable" msprop:Generator_ColumnVarNameInTable="columncurrent_receivable" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

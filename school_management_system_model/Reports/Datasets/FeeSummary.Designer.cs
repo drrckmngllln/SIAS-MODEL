@@ -389,7 +389,7 @@ namespace school_management_system_model.Reports.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public FeeSummaryRow AddFeeSummaryRow(string current_assessment, string discounts, string previous_balance, string current_receivable) {
+            public FeeSummaryRow AddFeeSummaryRow(decimal current_assessment, decimal discounts, decimal previous_balance, decimal current_receivable) {
                 FeeSummaryRow rowFeeSummaryRow = ((FeeSummaryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         current_assessment,
@@ -427,13 +427,13 @@ namespace school_management_system_model.Reports.Datasets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columncurrent_assessment = new global::System.Data.DataColumn("current_assessment", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columncurrent_assessment = new global::System.Data.DataColumn("current_assessment", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncurrent_assessment);
-                this.columndiscounts = new global::System.Data.DataColumn("discounts", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columndiscounts = new global::System.Data.DataColumn("discounts", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndiscounts);
-                this.columnprevious_balance = new global::System.Data.DataColumn("previous_balance", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnprevious_balance = new global::System.Data.DataColumn("previous_balance", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprevious_balance);
-                this.columncurrent_receivable = new global::System.Data.DataColumn("current_receivable", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columncurrent_receivable = new global::System.Data.DataColumn("current_receivable", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncurrent_receivable);
                 this.ExtendedProperties.Add("Generator_TablePropName", "_FeeSummary");
                 this.ExtendedProperties.Add("Generator_UserTableName", "FeeSummary");
@@ -579,10 +579,10 @@ namespace school_management_system_model.Reports.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string current_assessment {
+            public decimal current_assessment {
                 get {
                     try {
-                        return ((string)(this[this.tableFeeSummary.current_assessmentColumn]));
+                        return ((decimal)(this[this.tableFeeSummary.current_assessmentColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'current_assessment\' in table \'FeeSummary\' is DBNull.", e);
@@ -595,10 +595,10 @@ namespace school_management_system_model.Reports.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string discounts {
+            public decimal discounts {
                 get {
                     try {
-                        return ((string)(this[this.tableFeeSummary.discountsColumn]));
+                        return ((decimal)(this[this.tableFeeSummary.discountsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'discounts\' in table \'FeeSummary\' is DBNull.", e);
@@ -611,10 +611,10 @@ namespace school_management_system_model.Reports.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string previous_balance {
+            public decimal previous_balance {
                 get {
                     try {
-                        return ((string)(this[this.tableFeeSummary.previous_balanceColumn]));
+                        return ((decimal)(this[this.tableFeeSummary.previous_balanceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'previous_balance\' in table \'FeeSummary\' is DBNull.", e);
@@ -627,10 +627,10 @@ namespace school_management_system_model.Reports.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string current_receivable {
+            public decimal current_receivable {
                 get {
                     try {
-                        return ((string)(this[this.tableFeeSummary.current_receivableColumn]));
+                        return ((decimal)(this[this.tableFeeSummary.current_receivableColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'current_receivable\' in table \'FeeSummary\' is DBNull.", e);
