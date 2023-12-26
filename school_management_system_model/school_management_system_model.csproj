@@ -179,6 +179,7 @@
     <Compile Include="Classes\StudentDiscount.cs" />
     <Compile Include="Classes\student_assessment.cs" />
     <Compile Include="Classes\student_course.cs" />
+    <Compile Include="Classes\Toastr.cs" />
     <Compile Include="Classes\TuitionFeeSetup.cs" />
     <Compile Include="Data\connection.cs" />
     <Compile Include="Controls\session.cs" />
@@ -504,6 +505,12 @@
       <DependentUpon>StudentSubjects.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Toastr\frm_toastr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Toastr\frm_toastr.Designer.cs">
+      <DependentUpon>frm_toastr.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Authentication\Login\frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
@@ -663,6 +670,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Assessment\isap_assessment.rdlc" />
     <EmbeddedResource Include="Reports\Assessment\mcnp_assessment.rdlc" />
+    <EmbeddedResource Include="Toastr\frm_toastr.resx">
+      <DependentUpon>frm_toastr.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.Curriculums.datasource" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.StudentAccount.datasource" />
@@ -758,6 +768,10 @@
     <None Include="Resources\Untitled design.png" />
     <None Include="Resources\school logo.png" />
     <None Include="Resources\school logo1.png" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\information.png" />
+    <None Include="Resources\check.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

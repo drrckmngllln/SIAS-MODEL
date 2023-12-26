@@ -1,4 +1,6 @@
 ﻿using Krypton.Toolkit;
+using school_management_system_model.Classes;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +33,14 @@ namespace school_management_system_model.Authentication.Login
             InitializeComponent();
         }
 
-        
+        private void frm_login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.D1)
+            {
+                //var toast = new Classes.Toastr().toast("Success", "Login Successful");
+                //toast.toast("Success", "Login Successful!");
+                new Classes.Toastr().toast("Success", "Login Successful");
+            }
+        }
     }
 }
