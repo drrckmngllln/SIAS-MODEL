@@ -16,7 +16,7 @@ namespace school_management_system_model
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.main.main_form());
+            Application.Run(new Authentication.Login.frm_login());
         }
     }
 }

@@ -116,14 +116,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void tSearch_Click(object sender, EventArgs e)
         {
-            var frm = new frm_select_student();
-            frm.Text = "Fee Collection";
-            frm.ShowDialog();
-            if (id_number != null)
-            {
-                tIdNumber.Text = id_number;
-                loadRecords();
-            }
+            
         }
 
         private void soaCollection()
@@ -252,6 +245,16 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_select_student();
+            frm.Text = "Fee Collection";
+            frm.ShowDialog();
+            if (id_number != null)
+            {
+                tIdNumber.Text = id_number;
+                loadRecords();
+            }
+        }
     }
 }

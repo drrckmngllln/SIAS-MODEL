@@ -433,6 +433,9 @@ namespace school_management_system_model.Forms.transactions
 
             // Save to Student Assessment
             saveStudentAssessment();
+           
+            // Saving Fee Summary
+            saveFeeSummary();
 
             // Saving to Statements of Accounts
             saveStatementsOfAccounts();
@@ -440,8 +443,6 @@ namespace school_management_system_model.Forms.transactions
             // Saving Fee Breakdown
             saveFeeBreakdown();
 
-            // Saving Fee Summary
-            saveFeeSummary();
 
             MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

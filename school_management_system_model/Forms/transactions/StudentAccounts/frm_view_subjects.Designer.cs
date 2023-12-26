@@ -39,7 +39,6 @@
             this.tGrade = new System.Windows.Forms.Label();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -200,28 +199,6 @@
             this.kryptonButton3.Values.Text = "Add Subject";
             this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
             // 
-            // kryptonButton4
-            // 
-            this.kryptonButton4.CornerRoundingRadius = 10F;
-            this.kryptonButton4.Location = new System.Drawing.Point(260, 49);
-            this.kryptonButton4.Name = "kryptonButton4";
-            this.kryptonButton4.Size = new System.Drawing.Size(116, 34);
-            this.kryptonButton4.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.kryptonButton4.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.kryptonButton4.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton4.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton4.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton4.StateCommon.Border.Rounding = 10F;
-            this.kryptonButton4.StateCommon.Border.Width = 2;
-            this.kryptonButton4.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
-            this.kryptonButton4.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
-            this.kryptonButton4.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton4.TabIndex = 118;
-            this.kryptonButton4.Values.Text = "Print Schedule";
-            this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
-            // 
             // frm_view_subjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,7 +206,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(963, 557);
             this.ControlBox = false;
-            this.Controls.Add(this.kryptonButton4);
             this.Controls.Add(this.kryptonButton3);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.tGrade);
@@ -263,7 +239,6 @@
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 10F;
             this.Text = "View Subject";
-            
             this.Load += new System.EventHandler(this.frm_view_subjects_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
@@ -282,6 +257,5 @@
         private System.Windows.Forms.Label tGrade;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
-        private Krypton.Toolkit.KryptonButton kryptonButton4;
     }
 }

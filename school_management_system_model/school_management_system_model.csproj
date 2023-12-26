@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -135,6 +150,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\Login\frm_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authentication\Login\frm_login.Designer.cs">
+      <DependentUpon>frm_login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\add_course.cs" />
     <Compile Include="Classes\add_section.cs" />
     <Compile Include="Classes\add_subjects.cs" />
@@ -158,6 +179,7 @@
     <Compile Include="Classes\StudentDiscount.cs" />
     <Compile Include="Classes\student_assessment.cs" />
     <Compile Include="Classes\student_course.cs" />
+    <Compile Include="Classes\Toastr.cs" />
     <Compile Include="Classes\TuitionFeeSetup.cs" />
     <Compile Include="Data\connection.cs" />
     <Compile Include="Controls\session.cs" />
@@ -467,12 +489,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentAssessment.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Registrar\frm_print_isap_schedule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\Registrar\frm_print_isap_schedule.Designer.cs">
-      <DependentUpon>frm_print_isap_schedule.cs</DependentUpon>
-    </Compile>
     <Compile Include="Reports\Datasets\StudentAccounts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -489,6 +505,15 @@
       <DependentUpon>StudentSubjects.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Toastr\frm_toastr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Toastr\frm_toastr.Designer.cs">
+      <DependentUpon>frm_toastr.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Authentication\Login\frm_login.resx">
+      <DependentUpon>frm_login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\main\main_form.resx">
       <DependentUpon>main_form.cs</DependentUpon>
     </EmbeddedResource>
@@ -643,11 +668,11 @@
     <EmbeddedResource Include="Reports\frm_isap_assessment.resx">
       <DependentUpon>frm_isap_assessment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Registrar\frm_print_isap_schedule.resx">
-      <DependentUpon>frm_print_isap_schedule.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Assessment\isap_assessment.rdlc" />
-    <EmbeddedResource Include="Reports\Assessment\mcnp_schedule.rdlc" />
+    <EmbeddedResource Include="Reports\Assessment\mcnp_assessment.rdlc" />
+    <EmbeddedResource Include="Toastr\frm_toastr.resx">
+      <DependentUpon>frm_toastr.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.Curriculums.datasource" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.StudentAccount.datasource" />
@@ -743,6 +768,10 @@
     <None Include="Resources\Untitled design.png" />
     <None Include="Resources\school logo.png" />
     <None Include="Resources\school logo1.png" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\information.png" />
+    <None Include="Resources\check.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -759,11 +788,23 @@
     <Content Include="Untitled design.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Authentication\Auth Forms\" />
     <Folder Include="Forms\transactions\FeeAdjustment\" />
-    <Folder Include="Reports\Accounting\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

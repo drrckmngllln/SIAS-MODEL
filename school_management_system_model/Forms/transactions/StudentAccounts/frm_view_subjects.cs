@@ -241,16 +241,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             return dt.Rows[0]["campus"].ToString();
         }
 
-        private void kryptonButton4_Click(object sender, EventArgs e)
-        {
-            var frm = new frm_print_isap_schedule
-            {
-                id_number = id_number,
-                school_year = school_year,
-                campus = studentCampus(id_number)
-            };
-            frm.ShowDialog();
-        }
+        
     }
 }
 
