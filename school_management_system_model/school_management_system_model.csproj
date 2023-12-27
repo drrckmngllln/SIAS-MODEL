@@ -51,6 +51,9 @@
     <ApplicationIcon>Untitled design.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -181,6 +184,7 @@
     <Compile Include="Classes\student_course.cs" />
     <Compile Include="Classes\Toastr.cs" />
     <Compile Include="Classes\TuitionFeeSetup.cs" />
+    <Compile Include="Classes\UserManagement.cs" />
     <Compile Include="Data\connection.cs" />
     <Compile Include="Controls\session.cs" />
     <Compile Include="Forms\main\main_form.cs">
@@ -321,6 +325,12 @@
     </Compile>
     <Compile Include="Forms\settings\FeeSetup\frm_tuition_fee.Designer.cs">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\UserManagement\frm_user_management.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\UserManagement\frm_user_management.Designer.cs">
+      <DependentUpon>frm_user_management.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\transactions\Collection\frm_fee_collection.cs">
       <SubType>Form</SubType>
@@ -582,6 +592,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\FeeSetup\frm_tuition_fee.resx">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\UserManagement\frm_user_management.resx">
+      <DependentUpon>frm_user_management.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_fee_collection.resx">
       <DependentUpon>frm_fee_collection.cs</DependentUpon>

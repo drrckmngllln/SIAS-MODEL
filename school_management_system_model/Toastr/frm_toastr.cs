@@ -31,7 +31,7 @@ namespace school_management_system_model.Toastr
                     icon.Image = Properties.Resources.error;
 
                     break;
-                case "Info":
+                case "Information":
                     toastColor.BackColor = Color.FromArgb(18, 136, 191);
                     icon.Image = Properties.Resources.information;
 

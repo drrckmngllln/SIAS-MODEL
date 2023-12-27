@@ -12,7 +12,7 @@ namespace school_management_system_model.Classes
         public void toast(string type, string message)
         {
             var frm = new frm_toastr(type, message);
-            frm.Show();
+            frm.ShowDialog();
         }
     }
 }
