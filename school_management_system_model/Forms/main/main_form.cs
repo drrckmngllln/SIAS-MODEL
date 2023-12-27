@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.FeeSetup;
+using school_management_system_model.Forms.settings.UserManagement;
 using school_management_system_model.Forms.transactions;
 using school_management_system_model.Forms.transactions.Collection;
 using school_management_system_model.Forms.transactions.StudentDiscounts;
@@ -287,6 +288,15 @@ namespace school_management_system_model.Forms.main
         private void button31_Click(object sender, EventArgs e)
         {
             var frm = new frm_fee_collection();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void button38_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_user_management();
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

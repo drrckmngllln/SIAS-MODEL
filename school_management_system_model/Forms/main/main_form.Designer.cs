@@ -58,6 +58,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.panelTransactions = new System.Windows.Forms.Panel();
             this.panelCollection = new System.Windows.Forms.Panel();
+            this.button34 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.button32 = new System.Windows.Forms.Button();
@@ -73,8 +74,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.button14 = new System.Windows.Forms.Button();
+            this.button38 = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
-            this.button34 = new System.Windows.Forms.Button();
             this.panelSidebar.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -119,7 +120,7 @@
             this.panel1.Controls.Add(this.button21);
             this.panel1.Controls.Add(this.button33);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 1108);
+            this.panel1.Location = new System.Drawing.Point(0, 1140);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(250, 458);
             this.panel1.TabIndex = 7;
@@ -164,7 +165,7 @@
             this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button17.ForeColor = System.Drawing.Color.White;
-            this.button17.Location = new System.Drawing.Point(0, 1076);
+            this.button17.Location = new System.Drawing.Point(0, 1108);
             this.button17.Name = "button17";
             this.button17.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.button17.Size = new System.Drawing.Size(250, 32);
@@ -175,6 +176,7 @@
             // 
             // panelSettings
             // 
+            this.panelSettings.Controls.Add(this.button38);
             this.panelSettings.Controls.Add(this.panelOfferings);
             this.panelSettings.Controls.Add(this.button12);
             this.panelSettings.Controls.Add(this.panelGeneral);
@@ -182,7 +184,7 @@
             this.panelSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSettings.Location = new System.Drawing.Point(0, 477);
             this.panelSettings.Name = "panelSettings";
-            this.panelSettings.Size = new System.Drawing.Size(250, 599);
+            this.panelSettings.Size = new System.Drawing.Size(250, 631);
             this.panelSettings.TabIndex = 3;
             this.panelSettings.Visible = false;
             // 
@@ -552,6 +554,22 @@
             this.panelCollection.TabIndex = 6;
             this.panelCollection.Visible = false;
             // 
+            // button34
+            // 
+            this.button34.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button34.FlatAppearance.BorderSize = 0;
+            this.button34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button34.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button34.ForeColor = System.Drawing.Color.White;
+            this.button34.Location = new System.Drawing.Point(0, 64);
+            this.button34.Name = "button34";
+            this.button34.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button34.Size = new System.Drawing.Size(250, 32);
+            this.button34.TabIndex = 4;
+            this.button34.Text = "Fee Adjustment";
+            this.button34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button34.UseVisualStyleBackColor = true;
+            // 
             // button30
             // 
             this.button30.Dock = System.Windows.Forms.DockStyle.Top;
@@ -786,6 +804,23 @@
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
+            // button38
+            // 
+            this.button38.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button38.FlatAppearance.BorderSize = 0;
+            this.button38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button38.ForeColor = System.Drawing.Color.White;
+            this.button38.Location = new System.Drawing.Point(0, 582);
+            this.button38.Name = "button38";
+            this.button38.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.button38.Size = new System.Drawing.Size(250, 32);
+            this.button38.TabIndex = 5;
+            this.button38.Text = "User Management";
+            this.button38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button38.UseVisualStyleBackColor = true;
+            this.button38.Click += new System.EventHandler(this.button38_Click);
+            // 
             // panelTask
             // 
             this.panelTask.BackColor = System.Drawing.Color.White;
@@ -796,22 +831,6 @@
             this.panelTask.Name = "panelTask";
             this.panelTask.Size = new System.Drawing.Size(1103, 749);
             this.panelTask.TabIndex = 1;
-            // 
-            // button34
-            // 
-            this.button34.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button34.FlatAppearance.BorderSize = 0;
-            this.button34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button34.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button34.ForeColor = System.Drawing.Color.White;
-            this.button34.Location = new System.Drawing.Point(0, 64);
-            this.button34.Name = "button34";
-            this.button34.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
-            this.button34.Size = new System.Drawing.Size(250, 32);
-            this.button34.TabIndex = 4;
-            this.button34.Text = "Fee Adjustment";
-            this.button34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button34.UseVisualStyleBackColor = true;
             // 
             // main_form
             // 
@@ -917,5 +936,6 @@
         private System.Windows.Forms.Button button31;
         private System.Windows.Forms.Button button32;
         private System.Windows.Forms.Button button34;
+        private System.Windows.Forms.Button button38;
     }
 }

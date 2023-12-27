@@ -40,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -128,9 +127,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(31, 232);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 22);
+            this.label1.Size = new System.Drawing.Size(65, 22);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Username:";
+            this.label1.Text = "E-Mail:";
             // 
             // label2
             // 
@@ -161,24 +160,13 @@
             this.kryptonButton1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton1.TabIndex = 11;
             this.kryptonButton1.Values.Text = "Login";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(74, 123);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(205, 84);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Student Information\r\n and \r\nAccounting System";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // frm_login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(355, 509);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -222,6 +210,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private System.Windows.Forms.Label label3;
     }
 }
