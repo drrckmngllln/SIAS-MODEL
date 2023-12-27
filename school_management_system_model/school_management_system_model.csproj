@@ -153,6 +153,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\Auth Forms\Registrar\frm_main_registrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authentication\Auth Forms\Registrar\frm_main_registrar.Designer.cs">
+      <DependentUpon>frm_main_registrar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Authentication\Login\frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -521,6 +527,9 @@
     <Compile Include="Toastr\frm_toastr.Designer.cs">
       <DependentUpon>frm_toastr.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Authentication\Auth Forms\Registrar\frm_main_registrar.resx">
+      <DependentUpon>frm_main_registrar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Authentication\Login\frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
@@ -801,7 +810,7 @@
     <Content Include="Untitled design.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Authentication\Auth Forms\" />
+    <Folder Include="Authentication\Auth Forms\Finance\" />
     <Folder Include="Forms\transactions\FeeAdjustment\" />
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,13 @@ namespace school_management_system_model.Controls
 {
     internal class session
     {
-        public string username { get; set; }
+        public string fullname { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
         public string access_level { get; set; }
+        public bool is_add { get; set; }
+        public bool is_edit { get; set; }
+        public bool is_delete { get; set; }
+
     }
 }
