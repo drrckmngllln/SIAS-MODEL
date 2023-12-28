@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using school_management_system_model.Authentication.Login;
 using school_management_system_model.Controls;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,23 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void frm_main_registrar_Load(object sender, EventArgs e)
         {
-            
+            loadUserCredentials();
+        }
+
+        private void loadUserCredentials()
+        {
+            tUsername.Text = fullname;
+            tAccesslevel.Text = access_level;
+        }
+
+        private void tLogout_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("are you sure you want to logout?","Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
+            {
+                var frm = new frm_login();
+                frm.Show();
+                this.Close();
+            }
         }
     }
 }
