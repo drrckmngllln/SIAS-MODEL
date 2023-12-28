@@ -30,9 +30,10 @@
         {
             this.panelSidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.userPic = new System.Windows.Forms.PictureBox();
-            this.tUsername = new System.Windows.Forms.Label();
+            this.tLogout = new System.Windows.Forms.Label();
             this.tAccesslevel = new System.Windows.Forms.Label();
+            this.tUsername = new System.Windows.Forms.Label();
+            this.userPic = new System.Windows.Forms.PictureBox();
             this.panelSidebar.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPic)).BeginInit();
@@ -50,21 +51,38 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tLogout);
             this.panel1.Controls.Add(this.tAccesslevel);
             this.panel1.Controls.Add(this.tUsername);
             this.panel1.Controls.Add(this.userPic);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 148);
+            this.panel1.Size = new System.Drawing.Size(250, 160);
             this.panel1.TabIndex = 1;
             // 
-            // userPic
+            // tLogout
             // 
-            this.userPic.Location = new System.Drawing.Point(78, 12);
-            this.userPic.Name = "userPic";
-            this.userPic.Size = new System.Drawing.Size(88, 61);
-            this.userPic.TabIndex = 0;
-            this.userPic.TabStop = false;
+            this.tLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLogout.ForeColor = System.Drawing.SystemColors.Control;
+            this.tLogout.Location = new System.Drawing.Point(3, 122);
+            this.tLogout.Name = "tLogout";
+            this.tLogout.Size = new System.Drawing.Size(244, 23);
+            this.tLogout.TabIndex = 3;
+            this.tLogout.Text = "Logout";
+            this.tLogout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tLogout.Click += new System.EventHandler(this.tLogout_Click);
+            // 
+            // tAccesslevel
+            // 
+            this.tAccesslevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tAccesslevel.ForeColor = System.Drawing.SystemColors.Control;
+            this.tAccesslevel.Location = new System.Drawing.Point(3, 99);
+            this.tAccesslevel.Name = "tAccesslevel";
+            this.tAccesslevel.Size = new System.Drawing.Size(244, 23);
+            this.tAccesslevel.TabIndex = 2;
+            this.tAccesslevel.Text = "Access Level";
+            this.tAccesslevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tUsername
             // 
@@ -77,16 +95,13 @@
             this.tUsername.Text = "Lastname, Firstname Middlename";
             this.tUsername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tAccesslevel
+            // userPic
             // 
-            this.tAccesslevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tAccesslevel.ForeColor = System.Drawing.SystemColors.Control;
-            this.tAccesslevel.Location = new System.Drawing.Point(3, 99);
-            this.tAccesslevel.Name = "tAccesslevel";
-            this.tAccesslevel.Size = new System.Drawing.Size(244, 23);
-            this.tAccesslevel.TabIndex = 2;
-            this.tAccesslevel.Text = "Access Level";
-            this.tAccesslevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.userPic.Location = new System.Drawing.Point(78, 12);
+            this.userPic.Name = "userPic";
+            this.userPic.Size = new System.Drawing.Size(88, 61);
+            this.userPic.TabIndex = 0;
+            this.userPic.TabStop = false;
             // 
             // frm_main_registrar
             // 
@@ -148,5 +163,6 @@
         private System.Windows.Forms.Label tAccesslevel;
         private System.Windows.Forms.Label tUsername;
         private System.Windows.Forms.PictureBox userPic;
+        private System.Windows.Forms.Label tLogout;
     }
 }
