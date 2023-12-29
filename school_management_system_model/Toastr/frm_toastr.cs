@@ -53,7 +53,7 @@ namespace school_management_system_model.Toastr
         {
             toastY -= 10;
             this.Location = new Point(toastX, toastY);
-            if (toastY <= 780 )
+            if (toastY <= 950 )
             {
                 toastTimer.Stop();
                 toastHide.Start();

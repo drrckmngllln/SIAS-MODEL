@@ -69,7 +69,7 @@ namespace school_management_system_model.Reports.Accounting
                 var rpt5 = new ReportDataSource("StudentSubjects", studentSubjects);
                 var rpt6 = new ReportDataSource("FeeSummary", feeSummary);
 
-                crv.LocalReport.ReportPath = "C:\\Users\\drrckmngllln\\Documents\\GitHub\\sias_model_mcnpisap\\school_management_system_model\\Reports\\Assessment\\isap_assessment.rdlc";
+                crv.LocalReport.ReportPath = "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Assessment\\isap_assessment.rdlc";
 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);
@@ -122,7 +122,7 @@ namespace school_management_system_model.Reports.Accounting
                 var rpt5 = new ReportDataSource("StudentSubjects", studentSubjects);
                 var rpt6 = new ReportDataSource("FeeSummary", feeSummary);
 
-                crv.LocalReport.ReportPath = "C:\\Users\\drrckmngllln\\Documents\\GitHub\\sias_model_mcnpisap\\school_management_system_model\\Reports\\Assessment\\mcnp_assessment.rdlc";
+                crv.LocalReport.ReportPath = "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Assessment\\mcnp_assessment.rdlc";
 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);
