@@ -89,17 +89,17 @@
             this.toastHide.Interval = 10;
             this.toastHide.Tick += new System.EventHandler(this.toastHide_Tick);
             // 
-            // toastr
+            // frm_toastr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 61);
+            this.ClientSize = new System.Drawing.Size(441, 61);
             this.Controls.Add(this.tMessage);
             this.Controls.Add(this.tType);
             this.Controls.Add(this.icon);
             this.Controls.Add(this.toastColor);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "toastr";
+            this.Name = "frm_toastr";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "toastr_success";
             this.Load += new System.EventHandler(this.toastr_success_Load);
