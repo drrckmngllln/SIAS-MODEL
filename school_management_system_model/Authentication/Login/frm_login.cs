@@ -99,6 +99,22 @@ namespace school_management_system_model.Authentication.Login
                 frm.ShowDialog();
                 this.Hide();
             }
+            else if (e.Control && e.Shift && e.KeyCode == Keys.F12)
+            {
+                new Classes.Toastr().toast("Success", "Developers Mode, Registrar Main");
+                var frm = new frm_main_registrar
+                {
+                    fullname = "Developer",
+                    email = "None",
+                    password = Password,
+                    access_level = "Developer",
+                    is_add = true,
+                    is_delete = true,
+                    is_edit = true
+                };
+                frm.Show();
+                this.Hide();
+            }
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)

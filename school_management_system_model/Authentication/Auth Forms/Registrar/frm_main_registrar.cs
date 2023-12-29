@@ -49,5 +49,36 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
                 this.Close();
             }
         }
+
+        private void btnTransaction_Click(object sender, EventArgs e)
+        {
+            transactionTransition.Start();
+        }
+
+        int panelHeight;
+        private void transactionTransition_Tick(object sender, EventArgs e)
+        {
+            if (panelTransaction.Visible == true)
+            {
+                panelHeight += 10;
+                panelTransaction.Visible = true;
+                panelTransaction.Height = panelHeight;
+                if (panelTransaction.Height >= 80)
+                {
+                    transactionTransition.Stop();
+                }
+            }
+            //else
+            //{
+            //    panelHeight -= 10;
+            //    panelTransaction.Height = panelHeight;
+            //    if (panelHeight >= 0)
+            //    {
+            //        panelTransaction.Visible = true;
+            //        transactionTransition.Stop();
+            //    }
+            //}
+            
+        }
     }
 }
