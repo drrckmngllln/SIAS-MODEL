@@ -25,6 +25,7 @@ namespace school_management_system_model.Authentication.Login
         public string Email { get; set; }
         public string Password { get; set; }
         public string AccessLevel { get; set; }
+        public string Department { get; set; }
         public bool isAdd { get; set; }
         public bool isEdit { get; set; }
         public bool isDelete { get; set; }
@@ -61,33 +62,77 @@ namespace school_management_system_model.Authentication.Login
                 Email = dt.Rows[0]["email"].ToString();
                 Password = dt.Rows[0]["password"].ToString();
                 AccessLevel = dt.Rows[0]["access_level"].ToString();
+                Department = dt.Rows[0]["department"].ToString();
                 isAdd = Convert.ToBoolean(dt.Rows[0]["is_add"]);
                 isEdit = Convert.ToBoolean(dt.Rows[0]["is_edit"]);
                 isDelete = Convert.ToBoolean(dt.Rows[0]["is_delete"]);
-                switch (AccessLevel)
-                {
-                    case "Administrator":
-                        new Classes.Toastr().toast("Success", "Administrator Login Success!");
-                        var frm = new frm_main_registrar
-                        {
-                            fullname = UserName,
-                            email = Email,
-                            password = Password,
-                            access_level = AccessLevel,
-                            is_add = isAdd,
-                            is_delete = isDelete,
-                            is_edit = isEdit
-                        };
-                        frm.Show();
-                        this.Hide();
-                        break;
-                }
+                //switch (AccessLevel)
+                //{
+                //    case "Administrator":
+                //        new Classes.Toastr().toast("Success", "Administrator Login Success!");
+                //        var frm = new frm_main_registrar(fullname: "Derrick", access_level: "Administrator");
+                //        {
+                //            fullname = UserName,
+                //            email = Email,
+                //            password = Password,
+                //            access_level = AccessLevel,
+                //            is_add = isAdd,
+                //            is_delete = isDelete,
+                //            is_edit = isEdit
+                //        };
+                //        frm.Show();
+                //        this.Hide();
+                //        break;
+                //}
             }
             else
             {
                 new Classes.Toastr().toast("Warning", "Authentication Problem");
             }
 
+        }
+
+        private void developersOptionsRegistrar()
+        {
+            new Classes.Toastr().toast("Success", "Developers Mode, Registrar Main");
+            var frm = new frm_main_registrar();
+            //{
+            //    fullname = "Developer",
+            //    email = "None",
+            //    password = Password,
+            //    access_level = "Developer",
+            //    is_add = true,
+            //    is_delete = true,
+            //    is_edit = true
+            //};
+            frm_main_registrar.instance.fullname = "Developer";
+            frm_main_registrar.instance.access_level = "Developer Authorization";
+            frm_main_registrar.instance.is_add = true;
+            frm_main_registrar.instance.is_edit = true;
+            frm_main_registrar.instance.is_delete = true;
+
+            frm.Show();
+            this.Hide();
+        }
+        private void developerOptionsFinance()
+        {
+            new Classes.Toastr().toast("Success", "Developers Mode, Registrar Main");
+            var frm = new frm_main_registrar
+            {
+                fullname = UserName,
+                access_level = AccessLevel,
+                is_add = isAdd,
+                is_edit = isEdit,
+                is_delete = isDelete,
+            };
+        }
+        private void developerOptionsDean()
+        {
+            throw new NotImplementedException();
+        }
+        private void developerOptionsCampaign()
+        {
+            throw new NotImplementedException();
         }
 
         private void frm_login_KeyDown(object sender, KeyEventArgs e)
@@ -101,21 +146,23 @@ namespace school_management_system_model.Authentication.Login
             }
             else if (e.Control && e.Shift && e.KeyCode == Keys.F12)
             {
-                new Classes.Toastr().toast("Success", "Developers Mode, Registrar Main");
-                var frm = new frm_main_registrar
-                {
-                    fullname = "Developer",
-                    email = "None",
-                    password = Password,
-                    access_level = "Developer",
-                    is_add = true,
-                    is_delete = true,
-                    is_edit = true
-                };
-                frm.Show();
-                this.Hide();
+                developersOptionsRegistrar();
+            }
+            else if (e.Control && e.Shift && e.KeyCode == Keys.F11)
+            {
+                developerOptionsFinance();
+            }
+            else if (e.Control && e.Shift && e.KeyCode == Keys.F10)
+            {
+                developerOptionsDean();
+            }
+            else if (e.Control && e.Shift && e.KeyCode == Keys.F9)
+            {
+                developerOptionsCampaign();
             }
         }
+
+        
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {

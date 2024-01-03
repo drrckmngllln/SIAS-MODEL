@@ -36,6 +36,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
             dgv.Columns["email"].HeaderText = "Email Address";
             dgv.Columns["password"].Visible = false;
             dgv.Columns["access_level"].HeaderText = "Access Level";
+            dgv.Columns["department"].HeaderText = "Department";
             dgv.Columns["is_add"].HeaderText = "Add Authorization";
             dgv.Columns["is_edit"].HeaderText = "Edit Authorization";
             dgv.Columns["is_delete"].HeaderText = "Delete Authorization";
@@ -71,6 +72,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         email = tEmail.Text,
                         password = password,
                         access_level = tAccessLevel.Text,
+                        department = cDelete.Text,
                         add = add,
                         edit = edit,
                         delete = delete
@@ -95,6 +97,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         email = tEmail.Text,
                         password = password,
                         access_level = tAccessLevel.Text,
+                        department = tDepartment.Text,
                         add = add,
                         edit = edit,
                         delete = delete
@@ -144,14 +147,13 @@ namespace school_management_system_model.Forms.settings.UserManagement
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-            string[] name = fullname.Split(' ',',');
             tLastname.Text = dgv.CurrentRow.Cells["last_name"].Value.ToString();
             tFirstname.Text = dgv.CurrentRow.Cells["first_name"].Value.ToString();
             tMiddlename.Text = dgv.CurrentRow.Cells["middle_name"].Value.ToString();
             tEmployeeId.Text = dgv.CurrentRow.Cells["employee_id"].Value.ToString(); 
-            tEmail.Text = dgv.CurrentRow.Cells["employee_id"].Value.ToString(); 
+            tEmail.Text = dgv.CurrentRow.Cells["email"].Value.ToString(); 
             tAccessLevel.Text = dgv.CurrentRow.Cells["access_level"].Value.ToString();
+            tDepartment.Text = dgv.CurrentRow.Cells["department"].Value.ToString();
             if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_add"].Value))
             {
                 cAdd.Checked = true;

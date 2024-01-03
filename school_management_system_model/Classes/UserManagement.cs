@@ -18,6 +18,7 @@ namespace school_management_system_model.Classes
         public string email { get; set; }
         public string password { get; set; }
         public string access_level { get; set; }
+        public string department { get; set; }
         public int add { get; set; }
         public int edit { get; set; }
         public int delete { get; set; }
@@ -45,7 +46,7 @@ namespace school_management_system_model.Classes
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("insert into users(last_name, first_name, middle_name, fullname, employee_id, email, password, access_level, " +
-                "is_add, is_edit, is_delete) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)", con);
+                "is_add, is_edit, is_delete, department) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12)", con);
             cmd.Parameters.AddWithValue("@1", last_name);
             cmd.Parameters.AddWithValue("@2", first_name);
             cmd.Parameters.AddWithValue("@3", middle_name);
@@ -57,6 +58,7 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@9", add);
             cmd.Parameters.AddWithValue("@10", edit);
             cmd.Parameters.AddWithValue("@11", delete);
+            cmd.Parameters.AddWithValue("@12", department);
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -66,7 +68,7 @@ namespace school_management_system_model.Classes
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("update users set last_name=@1, first_name=@2, middle_name=@3, fullname=@4, employee_id=@5, email=@6, password=@7, " +
-                "access_level=@8, is_add=@9, is_edit=@10, is_delete=@11 where id='" + id + "'", con);
+                "access_level=@8, is_add=@9, is_edit=@10, is_delete=@11, department=@12 where id='" + id + "'", con);
             cmd.Parameters.AddWithValue("@1", last_name);
             cmd.Parameters.AddWithValue("@2", first_name);
             cmd.Parameters.AddWithValue("@3", middle_name);
@@ -78,6 +80,7 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@9", add);
             cmd.Parameters.AddWithValue("@10", edit);
             cmd.Parameters.AddWithValue("@11", delete);
+            cmd.Parameters.AddWithValue("@12", department);
             cmd.ExecuteNonQuery();
             con.Close();
         }
