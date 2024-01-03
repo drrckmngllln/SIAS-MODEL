@@ -153,10 +153,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\Auth Forms\Registrar\frm_main_registrar.cs">
+    <Compile Include="Authentication\Auth Forms\frm_main_campaign.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Authentication\Auth Forms\Registrar\frm_main_registrar.Designer.cs">
+    <Compile Include="Authentication\Auth Forms\frm_main_campaign.Designer.cs">
+      <DependentUpon>frm_main_campaign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Authentication\Auth Forms\frm_main_deans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authentication\Auth Forms\frm_main_deans.Designer.cs">
+      <DependentUpon>frm_main_deans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Authentication\Auth Forms\frm_main_finance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authentication\Auth Forms\frm_main_finance.Designer.cs">
+      <DependentUpon>frm_main_finance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Authentication\Auth Forms\frm_main_registrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authentication\Auth Forms\frm_main_registrar.Designer.cs">
       <DependentUpon>frm_main_registrar.cs</DependentUpon>
     </Compile>
     <Compile Include="Authentication\Login\frm_login.cs">
@@ -191,6 +209,7 @@
     <Compile Include="Classes\Toastr.cs" />
     <Compile Include="Classes\TuitionFeeSetup.cs" />
     <Compile Include="Classes\UserManagement.cs" />
+    <Compile Include="Controls\IAuthorization.cs" />
     <Compile Include="Data\connection.cs" />
     <Compile Include="Controls\session.cs" />
     <Compile Include="Forms\main\main_form.cs">
@@ -527,7 +546,7 @@
     <Compile Include="Toastr\frm_toastr.Designer.cs">
       <DependentUpon>frm_toastr.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Authentication\Auth Forms\Registrar\frm_main_registrar.resx">
+    <EmbeddedResource Include="Authentication\Auth Forms\frm_main_registrar.resx">
       <DependentUpon>frm_main_registrar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Authentication\Login\frm_login.resx">
@@ -810,7 +829,6 @@
     <Content Include="Untitled design.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Authentication\Auth Forms\Finance\" />
     <Folder Include="Forms\transactions\FeeAdjustment\" />
   </ItemGroup>
   <ItemGroup>

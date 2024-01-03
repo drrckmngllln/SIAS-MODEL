@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.tEmployeeId = new System.Windows.Forms.TextBox();
             this.tsearch = new Krypton.Toolkit.KryptonTextBox();
@@ -55,6 +55,8 @@
             this.cDelete = new System.Windows.Forms.CheckBox();
             this.cEdit = new System.Windows.Forms.CheckBox();
             this.cAdd = new System.Windows.Forms.CheckBox();
+            this.tDepartment = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +92,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.CornerRoundingRadius = 15F;
-            this.kryptonButton1.Location = new System.Drawing.Point(123, 504);
+            this.kryptonButton1.Location = new System.Drawing.Point(123, 533);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(133, 44);
             this.kryptonButton1.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -105,7 +107,7 @@
             // btn_clear
             // 
             this.btn_clear.CornerRoundingRadius = 15F;
-            this.btn_clear.Location = new System.Drawing.Point(197, 454);
+            this.btn_clear.Location = new System.Drawing.Point(197, 483);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(133, 44);
             this.btn_clear.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -120,7 +122,7 @@
             // btn_save
             // 
             this.btn_save.CornerRoundingRadius = 15F;
-            this.btn_save.Location = new System.Drawing.Point(58, 454);
+            this.btn_save.Location = new System.Drawing.Point(58, 483);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(133, 44);
             this.btn_save.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -151,23 +153,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Location = new System.Drawing.Point(388, 111);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -177,7 +179,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(749, 486);
+            this.dgv.Size = new System.Drawing.Size(749, 581);
             this.dgv.TabIndex = 140;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -277,7 +279,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(29, 276);
+            this.label8.Location = new System.Drawing.Point(29, 305);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(80, 15);
             this.label8.TabIndex = 156;
@@ -293,7 +295,7 @@
             "Finance Administrator",
             "Registrar User",
             "Finance User"});
-            this.tAccessLevel.Location = new System.Drawing.Point(120, 273);
+            this.tAccessLevel.Location = new System.Drawing.Point(120, 302);
             this.tAccessLevel.Name = "tAccessLevel";
             this.tAccessLevel.Size = new System.Drawing.Size(236, 23);
             this.tAccessLevel.TabIndex = 157;
@@ -313,7 +315,7 @@
             this.groupBox1.Controls.Add(this.cDelete);
             this.groupBox1.Controls.Add(this.cEdit);
             this.groupBox1.Controls.Add(this.cAdd);
-            this.groupBox1.Location = new System.Drawing.Point(120, 302);
+            this.groupBox1.Location = new System.Drawing.Point(120, 331);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(236, 100);
             this.groupBox1.TabIndex = 159;
@@ -353,11 +355,37 @@
             this.cAdd.UseVisualStyleBackColor = true;
             this.cAdd.CheckedChanged += new System.EventHandler(this.cAdd_CheckedChanged);
             // 
+            // tDepartment
+            // 
+            this.tDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tDepartment.FormattingEnabled = true;
+            this.tDepartment.Items.AddRange(new object[] {
+            "Finance",
+            "Registrar",
+            "Dean",
+            "Campaign"});
+            this.tDepartment.Location = new System.Drawing.Point(120, 273);
+            this.tDepartment.Name = "tDepartment";
+            this.tDepartment.Size = new System.Drawing.Size(236, 23);
+            this.tDepartment.TabIndex = 161;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(29, 276);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(75, 15);
+            this.label9.TabIndex = 160;
+            this.label9.Text = "Department:";
+            // 
             // frm_user_management
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1149, 609);
+            this.ClientSize = new System.Drawing.Size(1149, 704);
+            this.Controls.Add(this.tDepartment);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.tAccessLevel);
@@ -421,5 +449,7 @@
         private System.Windows.Forms.CheckBox cDelete;
         private System.Windows.Forms.CheckBox cEdit;
         private System.Windows.Forms.CheckBox cAdd;
+        private System.Windows.Forms.ComboBox tDepartment;
+        private System.Windows.Forms.Label label9;
     }
 }

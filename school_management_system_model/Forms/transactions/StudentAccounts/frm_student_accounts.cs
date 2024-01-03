@@ -14,6 +14,11 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_accounts : Form
     {
+        school_management_system_model.Classes.Toastr Toastr = new school_management_system_model.Classes.Toastr();
+        public bool IsAdd { get; set; }
+        public bool IsEdit { get; set; }
+        public bool IsDelete { get; set; }
+
         public static frm_student_accounts instance;
         public string schoolYear { get; set; }
         public frm_student_accounts()
@@ -31,6 +36,7 @@ namespace school_management_system_model.Forms.transactions
         {
             loadSchoolYear();
             loadRecords();
+            label1.Text = IsAdd.ToString() + IsEdit.ToString() + IsDelete.ToString();
         }
 
         private void loadRecords()
@@ -92,25 +98,61 @@ namespace school_management_system_model.Forms.transactions
             loadRecords();
         }
 
+        private void CreateAccount()
+        {
+            var frm = new frm_create_account();
+            frm_create_account.instance.schoolYear = tSchoolYear.Text;
+            frm_create_account.instance.semester = tSemester.Text;
+            frm.Text = "Create Account";
+            frm.ShowDialog();
+            loadRecords();
+        }
+        private void UpdateAccount()
+        {
+            var frm = new frm_create_account();
+            frm_create_account.instance.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+            frm.Text = "Update Account";
+            frm.ShowDialog();
+            loadRecords();
+        }
+
+        
         private void btnCreate_Click(object sender, EventArgs e)
         {
             if (btnCreate.Text == "Create Account")
             {
-                var frm = new frm_create_account();
-                frm_create_account.instance.schoolYear = tSchoolYear.Text;
-                frm_create_account.instance.semester = tSemester.Text;
-                frm.Text = "Create Account";
-                frm.ShowDialog();
-                loadRecords();
+                if (IsAdd)
+                {
+                    CreateAccount();
+                }
+                else
+                {
+                    Toastr.toast("Error", "Authorization Denied");
+                }
             }
             else if (btnCreate.Text == "Update Account")
             {
-                var frm = new frm_create_account();
-                frm_create_account.instance.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-                frm.Text = "Update Account";
-                frm.ShowDialog();
-                loadRecords();
+                if (IsEdit)
+                {
+                    UpdateAccount();
+                }
+                else
+                {
+                    Toastr.toast("Error", "Authorization Denied");
+                }
             }
+            //if (IsAdd)
+            //{
+            //    accountCreation("Create Account");
+            //}
+            //else if (IsEdit)
+            //{
+            //    accountCreation("Update Account");
+            //}
+            //else
+            //{
+            //    Toastr.toast("Error", "Authorization Denied");
+            //}
         }
 
         private void searchRecords(string search)

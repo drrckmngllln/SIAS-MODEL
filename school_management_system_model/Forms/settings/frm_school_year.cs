@@ -14,6 +14,10 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_school_year : Form
     {
+        public bool isAdd { get; set; }
+        public bool isEdit { get; set; }
+        public bool isDelete { get; set; }
+        public bool isAdministrator { get; set; }
         public frm_school_year()
         {
             InitializeComponent();
@@ -54,40 +58,47 @@ namespace school_management_system_model.Forms.settings
             {
                 if (btn_save.Text == "Save")
                 {
-                    var add = new SchoolYearSetup
+                    if (isAdd)
                     {
-                        code = tCode.Text,
-                        description = tDescription.Text,
-                        from = tFrom.Text,
-                        to = tTo.Text,
-                        semester = tSemester.Text,
-                        is_current = tCurrent.Text
-                    };
-                    add.addRecords();
-                    MessageBox.Show("Successfully Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadRecords();
-                    txtClear();
+                        var add = new SchoolYearSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            from = tFrom.Text,
+                            to = tTo.Text,
+                            semester = tSemester.Text,
+                            is_current = tCurrent.Text
+                        };
+                        add.addRecords();
+                        new Classes.Toastr().toast("Success", "Successfully Saved");
+                        loadRecords();
+                        txtClear();
+                    }
                 }
                 else if (btn_save.Text == "Update")
                 {
-                    int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-                    var edit = new SchoolYearSetup
+                    if (isEdit)
                     {
-                        code = tCode.Text,
-                        description = tDescription.Text,
-                        from = tFrom.Text,
-                        to = tTo.Text,
-                        semester = tSemester.Text, is_current = tCurrent.Text
-                    };
-                    edit.EditRecords(id);
-                    MessageBox.Show("Successfully Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadRecords();
-                    txtClear();
+                        int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+                        var edit = new SchoolYearSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            from = tFrom.Text,
+                            to = tTo.Text,
+                            semester = tSemester.Text,
+                            is_current = tCurrent.Text
+                        };
+                        edit.EditRecords(id);
+                        new Classes.Toastr().toast("Information", "Successfully Updated");
+                        loadRecords();
+                        txtClear();
+                    }
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                new Classes.Toastr().toast("Error", ex.Message);
             }
         }
         private void txtClear()
@@ -105,6 +116,7 @@ namespace school_management_system_model.Forms.settings
             var delete = new SchoolYearSetup();
             delete.deleteRecords(id);
             MessageBox.Show("Record Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            new Classes.Toastr().toast("Information", "Successfully Deleted");
             loadRecords();
         }
 
