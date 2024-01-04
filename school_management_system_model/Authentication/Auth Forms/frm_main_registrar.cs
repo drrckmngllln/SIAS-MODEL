@@ -2,7 +2,9 @@
 using school_management_system_model.Authentication.Login;
 using school_management_system_model.Classes;
 using school_management_system_model.Controls;
+using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.Schedule;
+using school_management_system_model.Forms.settings.UserManagement;
 using school_management_system_model.Forms.transactions;
 using System;
 using System.Collections.Generic;
@@ -124,9 +126,73 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
             frm.Show();
         }
 
+        // Settings Menu
         private void btnAdmissionSchedule_Click(object sender, EventArgs e)
         {
             var frm = new frm_admission_schedule();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnSchoolYear_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_school_year();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnCourses_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_courses();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnLevel_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_levels();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnCampuses_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_campuses();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnCurriculum_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_curriculum();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnSections_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_sections();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnUserManagement_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_user_management();
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

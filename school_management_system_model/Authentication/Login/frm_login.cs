@@ -51,90 +51,102 @@ namespace school_management_system_model.Authentication.Login
 
         private void loginAuthentication(string email, string password)
         {
-            
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from users where email='"+ email +"'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            var compare = dt.Rows[0]["password"].ToString();
-            bool passwordMatching = BCrypt.Net.BCrypt.Verify(password, compare);
-            if (passwordMatching)
+            try
             {
-                UserName = dt.Rows[0]["fullname"].ToString();
-                Email = dt.Rows[0]["email"].ToString();
-                Password = dt.Rows[0]["password"].ToString();
-                AccessLevel = dt.Rows[0]["access_level"].ToString();
-                Department = dt.Rows[0]["department"].ToString();
-                isAdd = Convert.ToBoolean(dt.Rows[0]["is_add"]);
-                isEdit = Convert.ToBoolean(dt.Rows[0]["is_edit"]);
-                isDelete = Convert.ToBoolean(dt.Rows[0]["is_delete"]);
-                isAdministrator = Convert.ToBoolean(dt.Rows[0]["is_administrator"]);
-                switch (Department)
+                var con = new MySqlConnection(connection.con());
+                var da = new MySqlDataAdapter("select * from users where email='" + email + "'", con);
+                var dt = new DataTable();
+                da.Fill(dt);
+                var compare = dt.Rows[0]["password"].ToString();
+                bool passwordMatching = BCrypt.Net.BCrypt.Verify(password, compare);
+                if (passwordMatching)
                 {
-                    case "Registrar":
-                        new Classes.Toastr().toast("Success", "Administrator Login Success!");
-                        var frm = new frm_main_registrar
-                        {
-                            fullname = UserName,
-                            email = Email,
-                            password = Password,
-                            access_level = AccessLevel,
-                            is_add = isAdd,
-                            is_delete = isDelete,
-                            is_edit = isEdit,
-                            isAdministrator = isAdministrator
-                        };
-                        frm.Show();
-                        this.Hide();
-                        break;
-                    case "Finance":
-                        new Classes.Toastr().toast("Success", "Administrator Login Success!");
-                        var frmFinance = new frm_main_finance
-                        {
-                            Fullname = UserName,
-                            AccessLevel = AccessLevel,
-                            IsAdd = isAdd,
-                            IsDelete = isDelete,
-                            IsEdit = isEdit,
-                            IsAdministrator = isAdministrator
-                        };
-                        frmFinance.Show();
-                        this.Hide();
-                        break;
-                    case "Dean":
-                        new Classes.Toastr().toast("Success", "Administrator Login Success!");
-                        var frmDean = new frm_main_deans
-                        {
-                            Fullname = UserName,
-                            AccessLevel = AccessLevel,
-                            IsAdd = isAdd,
-                            IsDelete = isDelete,
-                            IsEdit = isEdit,
-                            IsAdministrator = isAdministrator
-                        };
-                        frmDean.Show();
-                        this.Hide();
-                        break;
-                    case "Campaign":
-                        new Classes.Toastr().toast("Success", "Administrator Login Success!");
-                        var frmCampaign = new frm_main_campaign
-                        {
-                            Fullname = UserName,
-                            AccessLevel = AccessLevel,
-                            IsAdd = isAdd,
-                            IsDelete = isDelete,
-                            IsEdit = isEdit,
-                            IsAdministrator = isAdministrator
-                        };
-                        frmCampaign.Show();
-                        this.Hide();
-                        break;
+                    UserName = dt.Rows[0]["fullname"].ToString();
+                    Email = dt.Rows[0]["email"].ToString();
+                    Password = dt.Rows[0]["password"].ToString();
+                    AccessLevel = dt.Rows[0]["access_level"].ToString();
+                    Department = dt.Rows[0]["department"].ToString();
+                    isAdd = Convert.ToBoolean(dt.Rows[0]["is_add"]);
+                    isEdit = Convert.ToBoolean(dt.Rows[0]["is_edit"]);
+                    isDelete = Convert.ToBoolean(dt.Rows[0]["is_delete"]);
+                    isAdministrator = Convert.ToBoolean(dt.Rows[0]["is_administrator"]);
+                    switch (Department)
+                    {
+                        case "Registrar":
+                            new Classes.Toastr().toast("Success", "Login Success!");
+                            var frm = new frm_main_registrar
+                            {
+                                fullname = UserName,
+                                email = Email,
+                                password = Password,
+                                access_level = AccessLevel,
+                                is_add = isAdd,
+                                is_delete = isDelete,
+                                is_edit = isEdit,
+                                isAdministrator = isAdministrator
+                            };
+                            frm.Show();
+                            this.Hide();
+                            break;
+                        case "Finance":
+                            new Classes.Toastr().toast("Success", "Login Success!");
+                            var frmFinance = new frm_main_finance
+                            {
+                                Fullname = UserName,
+                                AccessLevel = AccessLevel,
+                                IsAdd = isAdd,
+                                IsDelete = isDelete,
+                                IsEdit = isEdit,
+                                IsAdministrator = isAdministrator
+                            };
+                            frmFinance.Show();
+                            this.Hide();
+                            break;
+                        case "Dean":
+                            new Classes.Toastr().toast("Success", "Login Success!");
+                            var frmDean = new frm_main_deans
+                            {
+                                Fullname = UserName,
+                                AccessLevel = AccessLevel,
+                                IsAdd = isAdd,
+                                IsDelete = isDelete,
+                                IsEdit = isEdit,
+                                IsAdministrator = isAdministrator
+                            };
+                            frmDean.Show();
+                            this.Hide();
+                            break;
+                        case "Campaign":
+                            new Classes.Toastr().toast("Success", "Login Success!");
+                            var frmCampaign = new frm_main_campaign
+                            {
+                                Fullname = UserName,
+                                AccessLevel = AccessLevel,
+                                IsAdd = isAdd,
+                                IsDelete = isDelete,
+                                IsEdit = isEdit,
+                                IsAdministrator = isAdministrator
+                            };
+                            frmCampaign.Show();
+                            this.Hide();
+                            break;
+                    }
+                }
+                else
+                {
+                    new Classes.Toastr().toast("Warning", "Access Denied, Error Password!");
+                    tPassword.Clear();
+                    tPassword.Select();
                 }
             }
-            else
+            catch
             {
-                new Classes.Toastr().toast("Warning", "Authentication Problem");
+                new Classes.Toastr().toast("Warning", "Access Denied, Error Username or Password");
+                tPassword.Clear();
+                tUserName.Clear();
+                tUserName.Select();
             }
+            
 
         }
 
