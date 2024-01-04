@@ -66,11 +66,11 @@
             // tUserName
             // 
             this.tUserName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tUserName.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tUserName.Location = new System.Drawing.Point(70, 258);
+            this.tUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tUserName.Location = new System.Drawing.Point(70, 263);
             this.tUserName.Name = "tUserName";
-            this.tUserName.Size = new System.Drawing.Size(240, 25);
-            this.tUserName.TabIndex = 2;
+            this.tUserName.Size = new System.Drawing.Size(240, 16);
+            this.tUserName.TabIndex = 1;
             // 
             // pictureBox2
             // 
@@ -113,12 +113,12 @@
             // tPassword
             // 
             this.tPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tPassword.Location = new System.Drawing.Point(70, 339);
+            this.tPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPassword.Location = new System.Drawing.Point(70, 342);
             this.tPassword.Name = "tPassword";
             this.tPassword.PasswordChar = '●';
-            this.tPassword.Size = new System.Drawing.Size(240, 22);
-            this.tPassword.TabIndex = 8;
+            this.tPassword.Size = new System.Drawing.Size(240, 16);
+            this.tPassword.TabIndex = 2;
             this.tPassword.UseSystemPasswordChar = true;
             // 
             // label1

@@ -36,6 +36,7 @@
             this.button33 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.panelSettings = new System.Windows.Forms.Panel();
+            this.button38 = new System.Windows.Forms.Button();
             this.panelOfferings = new System.Windows.Forms.Panel();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -74,7 +75,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panelUser = new System.Windows.Forms.Panel();
             this.button14 = new System.Windows.Forms.Button();
-            this.button38 = new System.Windows.Forms.Button();
+            this.button35 = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
             this.panelSidebar.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -120,7 +121,7 @@
             this.panel1.Controls.Add(this.button21);
             this.panel1.Controls.Add(this.button33);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 1140);
+            this.panel1.Location = new System.Drawing.Point(0, 1216);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(250, 458);
             this.panel1.TabIndex = 7;
@@ -165,7 +166,7 @@
             this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button17.ForeColor = System.Drawing.Color.White;
-            this.button17.Location = new System.Drawing.Point(0, 1108);
+            this.button17.Location = new System.Drawing.Point(0, 1184);
             this.button17.Name = "button17";
             this.button17.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.button17.Size = new System.Drawing.Size(250, 32);
@@ -184,19 +185,37 @@
             this.panelSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSettings.Location = new System.Drawing.Point(0, 477);
             this.panelSettings.Name = "panelSettings";
-            this.panelSettings.Size = new System.Drawing.Size(250, 631);
+            this.panelSettings.Size = new System.Drawing.Size(250, 707);
             this.panelSettings.TabIndex = 3;
             this.panelSettings.Visible = false;
             // 
+            // button38
+            // 
+            this.button38.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button38.FlatAppearance.BorderSize = 0;
+            this.button38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button38.ForeColor = System.Drawing.Color.White;
+            this.button38.Location = new System.Drawing.Point(0, 614);
+            this.button38.Name = "button38";
+            this.button38.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.button38.Size = new System.Drawing.Size(250, 32);
+            this.button38.TabIndex = 5;
+            this.button38.Text = "User Management";
+            this.button38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button38.UseVisualStyleBackColor = true;
+            this.button38.Click += new System.EventHandler(this.button38_Click);
+            // 
             // panelOfferings
             // 
+            this.panelOfferings.Controls.Add(this.button35);
             this.panelOfferings.Controls.Add(this.button9);
             this.panelOfferings.Controls.Add(this.button10);
             this.panelOfferings.Controls.Add(this.button11);
             this.panelOfferings.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOfferings.Location = new System.Drawing.Point(0, 467);
             this.panelOfferings.Name = "panelOfferings";
-            this.panelOfferings.Size = new System.Drawing.Size(250, 115);
+            this.panelOfferings.Size = new System.Drawing.Size(250, 147);
             this.panelOfferings.TabIndex = 4;
             this.panelOfferings.Visible = false;
             // 
@@ -804,22 +823,22 @@
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
-            // button38
+            // button35
             // 
-            this.button38.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button38.FlatAppearance.BorderSize = 0;
-            this.button38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button38.ForeColor = System.Drawing.Color.White;
-            this.button38.Location = new System.Drawing.Point(0, 582);
-            this.button38.Name = "button38";
-            this.button38.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.button38.Size = new System.Drawing.Size(250, 32);
-            this.button38.TabIndex = 5;
-            this.button38.Text = "User Management";
-            this.button38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button38.UseVisualStyleBackColor = true;
-            this.button38.Click += new System.EventHandler(this.button38_Click);
+            this.button35.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button35.FlatAppearance.BorderSize = 0;
+            this.button35.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button35.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button35.ForeColor = System.Drawing.Color.White;
+            this.button35.Location = new System.Drawing.Point(0, 96);
+            this.button35.Name = "button35";
+            this.button35.Padding = new System.Windows.Forms.Padding(65, 0, 0, 0);
+            this.button35.Size = new System.Drawing.Size(250, 32);
+            this.button35.TabIndex = 5;
+            this.button35.Text = "Admission Schedule";
+            this.button35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button35.UseVisualStyleBackColor = true;
+            this.button35.Click += new System.EventHandler(this.button35_Click);
             // 
             // panelTask
             // 
@@ -937,5 +956,6 @@
         private System.Windows.Forms.Button button32;
         private System.Windows.Forms.Button button34;
         private System.Windows.Forms.Button button38;
+        private System.Windows.Forms.Button button35;
     }
 }

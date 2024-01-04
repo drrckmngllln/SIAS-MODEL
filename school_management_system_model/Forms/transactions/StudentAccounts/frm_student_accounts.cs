@@ -18,6 +18,7 @@ namespace school_management_system_model.Forms.transactions
         public bool IsAdd { get; set; }
         public bool IsEdit { get; set; }
         public bool IsDelete { get; set; }
+        public bool IsAdministrator { get; set; }
 
         public static frm_student_accounts instance;
         public string schoolYear { get; set; }
@@ -36,7 +37,6 @@ namespace school_management_system_model.Forms.transactions
         {
             loadSchoolYear();
             loadRecords();
-            label1.Text = IsAdd.ToString() + IsEdit.ToString() + IsDelete.ToString();
         }
 
         private void loadRecords()
@@ -121,7 +121,7 @@ namespace school_management_system_model.Forms.transactions
         {
             if (btnCreate.Text == "Create Account")
             {
-                if (IsAdd)
+                if (IsAdd || IsAdministrator)
                 {
                     CreateAccount();
                 }
@@ -132,7 +132,7 @@ namespace school_management_system_model.Forms.transactions
             }
             else if (btnCreate.Text == "Update Account")
             {
-                if (IsEdit)
+                if (IsEdit || IsAdministrator)
                 {
                     UpdateAccount();
                 }
@@ -141,18 +141,6 @@ namespace school_management_system_model.Forms.transactions
                     Toastr.toast("Error", "Authorization Denied");
                 }
             }
-            //if (IsAdd)
-            //{
-            //    accountCreation("Create Account");
-            //}
-            //else if (IsEdit)
-            //{
-            //    accountCreation("Update Account");
-            //}
-            //else
-            //{
-            //    Toastr.toast("Error", "Authorization Denied");
-            //}
         }
 
         private void searchRecords(string search)
@@ -182,7 +170,7 @@ namespace school_management_system_model.Forms.transactions
             }
             else
             {
-                btnApprove.Enabled= false;
+                btnApprove.Enabled = false;
             }
 
             if (dgv.CurrentRow.Cells["status"].Value.ToString() == "For Enrollment")
