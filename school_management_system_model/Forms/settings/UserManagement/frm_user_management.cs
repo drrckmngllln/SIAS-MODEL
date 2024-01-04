@@ -12,7 +12,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
 {
     public partial class frm_user_management : Form
     {
-        int add, edit, delete = 0;
+        int add, edit, delete, administrator = 0;
         public frm_user_management()
         {
             InitializeComponent();
@@ -40,6 +40,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
             dgv.Columns["is_add"].HeaderText = "Add Authorization";
             dgv.Columns["is_edit"].HeaderText = "Edit Authorization";
             dgv.Columns["is_delete"].HeaderText = "Delete Authorization";
+            dgv.Columns["is_administrator"].HeaderText = "Administrator Authorization";
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -75,7 +76,8 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         department = cDelete.Text,
                         add = add,
                         edit = edit,
-                        delete = delete
+                        delete = delete,
+                        administrator = administrator
                     };
                     addUser.addUser();
                     new Classes.Toastr().toast("Success", "User Successfully Saved");
@@ -100,7 +102,8 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         department = tDepartment.Text,
                         add = add,
                         edit = edit,
-                        delete = delete
+                        delete = delete,
+                        administrator = administrator
                     };
                     addUser.editUser(id);
                     new Classes.Toastr().toast("Information", "User Successfully Updated");
@@ -169,6 +172,11 @@ namespace school_management_system_model.Forms.settings.UserManagement
                 cDelete.Checked = true;
             }else { cDelete.Checked = false; }
 
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_administrator"].Value))
+            {
+                cAdministrator.Checked = true;
+            }else { cAdministrator.Checked = false; }
+
             btn_save.Text = "Update";
             
             
@@ -189,6 +197,15 @@ namespace school_management_system_model.Forms.settings.UserManagement
                 loadRecords();
                 txtclear();
             }
+        }
+
+        private void cAdministrator_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cAdministrator.Checked)
+            {
+                administrator = 1;
+            }
+            else { administrator = 0; }
         }
 
         private void txtclear()

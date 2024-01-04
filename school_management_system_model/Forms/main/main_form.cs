@@ -1,11 +1,13 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.FeeSetup;
+using school_management_system_model.Forms.settings.Schedule;
 using school_management_system_model.Forms.settings.UserManagement;
 using school_management_system_model.Forms.transactions;
 using school_management_system_model.Forms.transactions.Collection;
 using school_management_system_model.Forms.transactions.StudentDiscounts;
 using System;
+using System.Threading.Tasks;
 
 namespace school_management_system_model.Forms.main
 {
@@ -300,6 +302,16 @@ namespace school_management_system_model.Forms.main
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private async void button35_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_admission_schedule();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            await Task.Delay(100);
             frm.Show();
         }
     }

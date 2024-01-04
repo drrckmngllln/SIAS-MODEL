@@ -46,9 +46,9 @@
             this.btnSchoolYear = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.panelTransaction = new System.Windows.Forms.Panel();
-            this.btnAdmissionSchedule = new System.Windows.Forms.Button();
             this.btnStudentAccounts = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
+            this.btnAdmissionSchedule = new System.Windows.Forms.Button();
             this.panelUserDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPic)).BeginInit();
             this.panelSidebar.SuspendLayout();
@@ -155,6 +155,7 @@
             // 
             // panelSettings
             // 
+            this.panelSettings.Controls.Add(this.btnAdmissionSchedule);
             this.panelSettings.Controls.Add(this.btnUserManagement);
             this.panelSettings.Controls.Add(this.btnSections);
             this.panelSettings.Controls.Add(this.btnCurriculum);
@@ -300,7 +301,6 @@
             // 
             // panelTransaction
             // 
-            this.panelTransaction.Controls.Add(this.btnAdmissionSchedule);
             this.panelTransaction.Controls.Add(this.btnStudentAccounts);
             this.panelTransaction.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTransaction.Location = new System.Drawing.Point(0, 50);
@@ -308,22 +308,6 @@
             this.panelTransaction.Size = new System.Drawing.Size(250, 80);
             this.panelTransaction.TabIndex = 2;
             this.panelTransaction.Visible = false;
-            // 
-            // btnAdmissionSchedule
-            // 
-            this.btnAdmissionSchedule.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAdmissionSchedule.FlatAppearance.BorderSize = 0;
-            this.btnAdmissionSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdmissionSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdmissionSchedule.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnAdmissionSchedule.Location = new System.Drawing.Point(0, 30);
-            this.btnAdmissionSchedule.Name = "btnAdmissionSchedule";
-            this.btnAdmissionSchedule.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnAdmissionSchedule.Size = new System.Drawing.Size(250, 30);
-            this.btnAdmissionSchedule.TabIndex = 3;
-            this.btnAdmissionSchedule.Text = "Admission Schedule";
-            this.btnAdmissionSchedule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdmissionSchedule.UseVisualStyleBackColor = true;
             // 
             // btnStudentAccounts
             // 
@@ -349,6 +333,23 @@
             this.panelTask.Name = "panelTask";
             this.panelTask.Size = new System.Drawing.Size(1043, 701);
             this.panelTask.TabIndex = 3;
+            // 
+            // btnAdmissionSchedule
+            // 
+            this.btnAdmissionSchedule.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAdmissionSchedule.FlatAppearance.BorderSize = 0;
+            this.btnAdmissionSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdmissionSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdmissionSchedule.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnAdmissionSchedule.Location = new System.Drawing.Point(0, 210);
+            this.btnAdmissionSchedule.Name = "btnAdmissionSchedule";
+            this.btnAdmissionSchedule.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnAdmissionSchedule.Size = new System.Drawing.Size(250, 30);
+            this.btnAdmissionSchedule.TabIndex = 11;
+            this.btnAdmissionSchedule.Text = "Admission Schedule";
+            this.btnAdmissionSchedule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdmissionSchedule.UseVisualStyleBackColor = true;
+            this.btnAdmissionSchedule.Click += new System.EventHandler(this.btnAdmissionSchedule_Click);
             // 
             // frm_main_registrar
             // 
@@ -417,7 +418,6 @@
         private System.Windows.Forms.Panel panelSidebar;
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelTransaction;
-        private System.Windows.Forms.Button btnAdmissionSchedule;
         private System.Windows.Forms.Button btnStudentAccounts;
         private System.Windows.Forms.Panel panelSettings;
         private System.Windows.Forms.Button btnCourses;
@@ -429,5 +429,6 @@
         private System.Windows.Forms.Button btnSections;
         private System.Windows.Forms.Button btnCurriculum;
         private System.Windows.Forms.Panel panelTask;
+        private System.Windows.Forms.Button btnAdmissionSchedule;
     }
 }

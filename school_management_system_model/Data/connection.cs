@@ -12,7 +12,7 @@ namespace school_management_system_model
     {
         public static string con()
         {
-            return ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["localhost"].ConnectionString;
         }
     }
 }

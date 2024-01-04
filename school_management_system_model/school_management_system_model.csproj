@@ -186,6 +186,7 @@
     <Compile Include="Classes\add_course.cs" />
     <Compile Include="Classes\add_section.cs" />
     <Compile Include="Classes\add_subjects.cs" />
+    <Compile Include="Classes\AdmissionSchedule.cs" />
     <Compile Include="Classes\course_fees.cs" />
     <Compile Include="Classes\Curriculums.cs" />
     <Compile Include="Classes\DiscountSetup.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Classes\FeeSummary.cs" />
     <Compile Include="Classes\Instructors.cs" />
     <Compile Include="Classes\LabFeeSetup.cs" />
+    <Compile Include="Classes\MainRegistrar.cs" />
     <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
     <Compile Include="Classes\OtherFeesSetup.cs" />
     <Compile Include="Classes\PrintingAssessment.cs" />
@@ -217,6 +219,12 @@
     </Compile>
     <Compile Include="Forms\main\main_form.Designer.cs">
       <DependentUpon>main_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\Schedule\frm_admission_schedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\Schedule\frm_admission_schedule.Designer.cs">
+      <DependentUpon>frm_admission_schedule.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\settings\Curriculum\frm_curriculum_subjects_excel_import.cs">
       <SubType>Form</SubType>
@@ -540,10 +548,10 @@
       <DependentUpon>StudentSubjects.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="Toastr\frm_toastr.cs">
+    <Compile Include="ToastrNotification\frm_toastr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Toastr\frm_toastr.Designer.cs">
+    <Compile Include="ToastrNotification\frm_toastr.Designer.cs">
       <DependentUpon>frm_toastr.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Authentication\Auth Forms\frm_main_registrar.resx">
@@ -554,6 +562,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\main\main_form.resx">
       <DependentUpon>main_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\Schedule\frm_admission_schedule.resx">
+      <DependentUpon>frm_admission_schedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\Curriculum\frm_curriculum_subjects_excel_import.resx">
       <DependentUpon>frm_curriculum_subjects_excel_import.cs</DependentUpon>
@@ -711,7 +722,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Assessment\isap_assessment.rdlc" />
     <EmbeddedResource Include="Reports\Assessment\mcnp_assessment.rdlc" />
-    <EmbeddedResource Include="Toastr\frm_toastr.resx">
+    <EmbeddedResource Include="ToastrNotification\frm_toastr.resx">
       <DependentUpon>frm_toastr.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

@@ -1,6 +1,8 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Authentication.Login;
+using school_management_system_model.Classes;
 using school_management_system_model.Controls;
+using school_management_system_model.Forms.settings.Schedule;
 using school_management_system_model.Forms.transactions;
 using System;
 using System.Collections.Generic;
@@ -34,20 +36,40 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
             InitializeComponent();
         }
 
+        private void AuthenticationSession()
+        {
+            if (isAdministrator)
+            {
+                btnSettings.Enabled = true;
+            }
+            else
+            {
+                btnSettings.Enabled = false;
+            }
+        }
+
+        private void AdmissionScheduleChecker()
+        {
+            bool EnrollmentSchedule = new MainRegistrar("Enrollment").ScheduleChecker();
+
+            if (!EnrollmentSchedule)
+            {
+                btnStudentAccounts.Visible = false;
+            }
+        }
+
+
         private void frm_main_registrar_Load(object sender, EventArgs e)
         {
             loadUserCredentials();
-            if (!isAdministrator)
-            {
-                btnSettings.Visible = false;
-            }
+            AuthenticationSession();
+            AdmissionScheduleChecker();
         }
 
         private void loadUserCredentials()
         {
             tUsername.Text = fullname;
             tAccesslevel.Text = access_level;
-            this.Text = is_add.ToString() + is_edit.ToString() + is_delete.ToString();
         }
 
         private void tLogout_Click(object sender, EventArgs e)
@@ -96,6 +118,15 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
                 IsEdit = is_edit,
                 IsDelete = is_delete,
             };
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnAdmissionSchedule_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_admission_schedule();
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
