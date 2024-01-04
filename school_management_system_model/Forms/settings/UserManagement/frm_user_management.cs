@@ -199,6 +199,26 @@ namespace school_management_system_model.Forms.settings.UserManagement
             }
         }
 
+        private void tAccessLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tAccessLevel.Text == "Administrator")
+            {
+                cAdministrator.Checked = true;
+                cAdd.Checked = true;
+                cDelete.Checked = true;
+                cEdit.Checked = true;
+            }
+            else if (tAccessLevel.Text == "User")
+            {
+                cAdministrator.Checked = false;
+                cAdministrator.Enabled = false;
+                cAdd.Checked = false;
+                cDelete.Checked = false;
+                cDelete.Enabled = false;
+                cEdit.Checked = false;
+            }
+        }
+
         private void cAdministrator_CheckedChanged(object sender, EventArgs e)
         {
             if (cAdministrator.Checked)
