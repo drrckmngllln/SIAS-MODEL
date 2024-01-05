@@ -51,6 +51,7 @@
             // 
             this.tType.AutoSize = true;
             this.tType.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tType.ForeColor = System.Drawing.SystemColors.Control;
             this.tType.Location = new System.Drawing.Point(79, 9);
             this.tType.Name = "tType";
             this.tType.Size = new System.Drawing.Size(73, 21);
@@ -61,6 +62,7 @@
             // 
             this.tMessage.AutoSize = true;
             this.tMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tMessage.ForeColor = System.Drawing.SystemColors.Control;
             this.tMessage.Location = new System.Drawing.Point(79, 30);
             this.tMessage.Name = "tMessage";
             this.tMessage.Size = new System.Drawing.Size(71, 21);
@@ -93,6 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(441, 61);
             this.Controls.Add(this.tMessage);
             this.Controls.Add(this.tType);

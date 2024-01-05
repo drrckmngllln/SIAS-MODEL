@@ -60,7 +60,7 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("delete from admission schedule where id='" + id + "'", con);
+            var cmd = new MySqlCommand("delete from admission_schedule where id='" + id + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }

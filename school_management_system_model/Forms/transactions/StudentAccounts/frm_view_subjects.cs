@@ -18,7 +18,9 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
     public partial class frm_view_subjects : KryptonForm
     {
+
         public static frm_view_subjects instance;
+        public bool IsAdministrator { get; set; }
         
         public string id_number { get; set; }
         public string fullname { get; set; }
@@ -30,10 +32,28 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         int totalLectureUnits = 0;
         int totalLabUnits = 0;
 
+        
+
         public frm_view_subjects()
         {
             instance = this;
+            
             InitializeComponent();
+        }
+
+        private void AdmissionChecker()
+        {
+            var schedule = new MainRegistrar("Adding and Dropping").ScheduleChecker();
+            if (schedule || IsAdministrator)
+            {
+                btnAdd.Visible = true;
+                btnDrop.Visible = true;
+            }
+            else
+            {
+                btnAdd.Visible = false;
+                btnDrop.Visible = false;
+            }
         }
 
         private void frm_view_subjects_Load(object sender, EventArgs e)
@@ -42,6 +62,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             tSchoolYear.Text = school_year;
             loadRecords(id_number, school_year);
             loadSchoolYear();
+            AdmissionChecker();
         }
         private void loadSchoolYear()
         {
