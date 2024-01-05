@@ -31,6 +31,8 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
         public bool isAdministrator { get; set; }
         public string picUrl { get; set; }
 
+        const string Office = "Registrar";
+
 
         public frm_main_registrar()
         {
@@ -50,22 +52,11 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
             }
         }
 
-        //private void AdmissionScheduleChecker()
-        //{
-        //    bool EnrollmentSchedule = new MainRegistrar("Enrollment").ScheduleChecker();
-
-        //    if (!EnrollmentSchedule)
-        //    {
-        //        btnStudentAccounts.Visible = false;
-        //    }
-        //}
-
-
+       
         private void frm_main_registrar_Load(object sender, EventArgs e)
         {
             loadUserCredentials();
             AuthenticationSession();
-            //AdmissionScheduleChecker();
         }
 
         private void loadUserCredentials()
@@ -193,7 +184,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnUserManagement_Click(object sender, EventArgs e)
         {
-            var frm = new frm_user_management();
+            var frm = new frm_user_management(Office);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

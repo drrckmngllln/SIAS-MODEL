@@ -13,9 +13,13 @@ namespace school_management_system_model.Forms.settings.UserManagement
     public partial class frm_user_management : Form
     {
         int add, edit, delete, administrator = 0;
-        public frm_user_management()
+
+        public string Office { get; }
+
+        public frm_user_management(string office)
         {
             InitializeComponent();
+            Office = office;
         }
 
         private void frm_user_management_Load(object sender, EventArgs e)
@@ -25,7 +29,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
 
         private void loadRecords()
         {
-            dgv.DataSource = new Classes.UserManagement().loadRecords();
+            dgv.DataSource = new Classes.UserManagement().loadRecords(Office);
             dgv.Columns["id"].Visible = false;
             dgv.Columns["last_name"].Visible = false;
             dgv.Columns["first_name"].Visible = false;

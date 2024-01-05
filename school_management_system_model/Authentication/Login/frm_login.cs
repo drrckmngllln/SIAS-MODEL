@@ -221,5 +221,10 @@ namespace school_management_system_model.Authentication.Login
         {
             loginAuthentication(tUserName.Text, tPassword.Text);
         }
+
+        private void frm_login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
