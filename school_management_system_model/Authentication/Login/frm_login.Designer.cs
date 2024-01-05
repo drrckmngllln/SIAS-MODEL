@@ -188,6 +188,7 @@
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 10F;
             this.Text = "frm_login";
+            this.Load += new System.EventHandler(this.frm_login_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_login_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

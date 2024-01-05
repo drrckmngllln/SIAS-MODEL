@@ -13,6 +13,7 @@ namespace school_management_system_model.Forms.main
 {
     public partial class main_form : KryptonForm
     {
+        const string Office = "All";
         public main_form()
         {
             InitializeComponent();
@@ -298,7 +299,7 @@ namespace school_management_system_model.Forms.main
 
         private void button38_Click(object sender, EventArgs e)
         {
-            var frm = new frm_user_management();
+            var frm = new frm_user_management(Office);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

@@ -301,6 +301,7 @@
             // 
             // txtSearch
             // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.CueHint.CueHintText = "Search";
             this.txtSearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
             this.txtSearch.Location = new System.Drawing.Point(922, 82);

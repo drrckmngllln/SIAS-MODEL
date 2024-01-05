@@ -24,13 +24,26 @@ namespace school_management_system_model.Classes
         public int delete { get; set; }
         public int administrator { get; set; }
 
-        public DataTable loadRecords()
+        public DataTable loadRecords(string department)
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from users", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            DataTable result;
+            if (department == "All")
+            {
+                var con = new MySqlConnection(connection.con());
+                var da = new MySqlDataAdapter("select * from users", con);
+                var dt = new DataTable();
+                da.Fill(dt);
+                result =  dt;
+            }
+            else
+            {
+                var con = new MySqlConnection(connection.con());
+                var da = new MySqlDataAdapter("select * from users where department='" + department + "'", con);
+                var dt = new DataTable();
+                da.Fill(dt);
+                result =  dt;
+            }
+            return result;
         }
 
         public DataTable searchRecords(string search)

@@ -554,6 +554,9 @@
     <Compile Include="ToastrNotification\frm_toastr.Designer.cs">
       <DependentUpon>frm_toastr.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Authentication\Auth Forms\frm_main_finance.resx">
+      <DependentUpon>frm_main_finance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Authentication\Auth Forms\frm_main_registrar.resx">
       <DependentUpon>frm_main_registrar.cs</DependentUpon>
     </EmbeddedResource>
