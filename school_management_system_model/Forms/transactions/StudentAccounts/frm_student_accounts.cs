@@ -22,6 +22,8 @@ namespace school_management_system_model.Forms.transactions
 
         public static frm_student_accounts instance;
         public string schoolYear { get; set; }
+
+        public bool AdmissionValidator { get; set; }
         public frm_student_accounts()
         {
             instance = this;
@@ -33,10 +35,21 @@ namespace school_management_system_model.Forms.transactions
             tTotal.Text = dgv.Rows.Count.ToString();
         }
 
+        private void AdmissionScheduleChecker()
+        {
+            var schedule = new MainRegistrar("Enrollment").ScheduleChecker();
+            if (schedule)
+            {
+                AdmissionValidator = true;
+            }
+            
+        }
+
         private void frm_student_accounts_Load(object sender, EventArgs e)
         {
             loadSchoolYear();
             loadRecords();
+            AdmissionScheduleChecker();
         }
 
         private void loadRecords()
@@ -123,7 +136,14 @@ namespace school_management_system_model.Forms.transactions
             {
                 if (IsAdd || IsAdministrator)
                 {
-                    CreateAccount();
+                    if (AdmissionValidator || IsAdministrator)
+                    {
+                        CreateAccount();
+                    }
+                    else
+                    {
+                        Toastr.toast("Error", "No Enrollment Schedule Available");
+                    }
                 }
                 else
                 {
@@ -141,6 +161,7 @@ namespace school_management_system_model.Forms.transactions
                     Toastr.toast("Error", "Authorization Denied");
                 }
             }
+            
         }
 
         private void searchRecords(string search)
@@ -190,24 +211,30 @@ namespace school_management_system_model.Forms.transactions
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-            var frm = new frm_approve_account
+            if (AdmissionValidator)
             {
-                id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
-                fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString()
-            };
-            frm.ShowDialog();
-            loadRecords();
+                var frm = new frm_approve_account
+                {
+                    id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
+                    fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString()
+                };
+                frm.ShowDialog();
+                loadRecords();
+            }
         }
 
         private void btnEnroll_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_enrollment();
-            frm.Text = "Enrollment: " + dgv.CurrentRow.Cells["id_number"].Value.ToString();
-            frm_student_enrollment.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
-            frm_student_enrollment.instance.studentName = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-            frm_student_enrollment.instance.school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString();
-            frm.ShowDialog();
-            loadRecords();
+            if (AdmissionValidator)
+            {
+                var frm = new frm_student_enrollment();
+                frm.Text = "Enrollment: " + dgv.CurrentRow.Cells["id_number"].Value.ToString();
+                frm_student_enrollment.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
+                frm_student_enrollment.instance.studentName = dgv.CurrentRow.Cells["fullname"].Value.ToString();
+                frm_student_enrollment.instance.school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString();
+                frm.ShowDialog();
+                loadRecords();
+            }
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -217,6 +244,7 @@ namespace school_management_system_model.Forms.transactions
             frm_view_subjects.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
             frm_view_subjects.instance.fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString();
             frm_view_subjects.instance.school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString();
+            frm_view_subjects.instance.IsAdministrator = IsAdministrator;
             frm.ShowDialog();
             
         }

@@ -37,8 +37,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tGrade = new System.Windows.Forms.Label();
-            this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            this.btnDrop = new Krypton.Toolkit.KryptonButton();
+            this.btnAdd = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,49 +155,49 @@
             this.tGrade.TabIndex = 115;
             this.tGrade.Text = "?";
             // 
-            // kryptonButton2
+            // btnDrop
             // 
-            this.kryptonButton2.CornerRoundingRadius = 10F;
-            this.kryptonButton2.Location = new System.Drawing.Point(138, 49);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.Size = new System.Drawing.Size(116, 34);
-            this.kryptonButton2.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.kryptonButton2.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.kryptonButton2.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton2.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton2.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnDrop.CornerRoundingRadius = 10F;
+            this.btnDrop.Location = new System.Drawing.Point(138, 49);
+            this.btnDrop.Name = "btnDrop";
+            this.btnDrop.Size = new System.Drawing.Size(116, 34);
+            this.btnDrop.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
+            this.btnDrop.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.btnDrop.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDrop.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDrop.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton2.StateCommon.Border.Rounding = 10F;
-            this.kryptonButton2.StateCommon.Border.Width = 2;
-            this.kryptonButton2.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
-            this.kryptonButton2.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
-            this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton2.TabIndex = 116;
-            this.kryptonButton2.Values.Text = "Drop Subject";
-            this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
+            this.btnDrop.StateCommon.Border.Rounding = 10F;
+            this.btnDrop.StateCommon.Border.Width = 2;
+            this.btnDrop.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnDrop.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnDrop.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDrop.TabIndex = 116;
+            this.btnDrop.Values.Text = "Drop Subject";
+            this.btnDrop.Click += new System.EventHandler(this.kryptonButton2_Click);
             // 
-            // kryptonButton3
+            // btnAdd
             // 
-            this.kryptonButton3.CornerRoundingRadius = 10F;
-            this.kryptonButton3.Location = new System.Drawing.Point(16, 49);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Size = new System.Drawing.Size(116, 34);
-            this.kryptonButton3.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.kryptonButton3.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.kryptonButton3.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton3.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.kryptonButton3.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnAdd.CornerRoundingRadius = 10F;
+            this.btnAdd.Location = new System.Drawing.Point(16, 49);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(116, 34);
+            this.btnAdd.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
+            this.btnAdd.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.btnAdd.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnAdd.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnAdd.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton3.StateCommon.Border.Rounding = 10F;
-            this.kryptonButton3.StateCommon.Border.Width = 2;
-            this.kryptonButton3.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
-            this.kryptonButton3.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
-            this.kryptonButton3.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton3.TabIndex = 117;
-            this.kryptonButton3.Values.Text = "Add Subject";
-            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
+            this.btnAdd.StateCommon.Border.Rounding = 10F;
+            this.btnAdd.StateCommon.Border.Width = 2;
+            this.btnAdd.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnAdd.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnAdd.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.TabIndex = 117;
+            this.btnAdd.Values.Text = "Add Subject";
+            this.btnAdd.Click += new System.EventHandler(this.kryptonButton3_Click);
             // 
             // frm_view_subjects
             // 
@@ -206,8 +206,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(963, 557);
             this.ControlBox = false;
-            this.Controls.Add(this.kryptonButton3);
-            this.Controls.Add(this.kryptonButton2);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnDrop);
             this.Controls.Add(this.tGrade);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -255,7 +255,7 @@
         private System.Windows.Forms.ComboBox tSchoolYear;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label tGrade;
-        private Krypton.Toolkit.KryptonButton kryptonButton2;
-        private Krypton.Toolkit.KryptonButton kryptonButton3;
+        private Krypton.Toolkit.KryptonButton btnDrop;
+        private Krypton.Toolkit.KryptonButton btnAdd;
     }
 }

@@ -88,7 +88,7 @@ namespace school_management_system_model.Forms.settings.Schedule
 
         private void txtclear()
         {
-            tCode.Clear();
+            tCode.Text = "";
             tDescription.Clear();
             tFrom.Clear();
             tTo.Clear();

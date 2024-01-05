@@ -50,22 +50,22 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
             }
         }
 
-        private void AdmissionScheduleChecker()
-        {
-            bool EnrollmentSchedule = new MainRegistrar("Enrollment").ScheduleChecker();
+        //private void AdmissionScheduleChecker()
+        //{
+        //    bool EnrollmentSchedule = new MainRegistrar("Enrollment").ScheduleChecker();
 
-            if (!EnrollmentSchedule)
-            {
-                btnStudentAccounts.Visible = false;
-            }
-        }
+        //    if (!EnrollmentSchedule)
+        //    {
+        //        btnStudentAccounts.Visible = false;
+        //    }
+        //}
 
 
         private void frm_main_registrar_Load(object sender, EventArgs e)
         {
             loadUserCredentials();
             AuthenticationSession();
-            AdmissionScheduleChecker();
+            //AdmissionScheduleChecker();
         }
 
         private void loadUserCredentials()
@@ -119,6 +119,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
                 IsAdd = is_add,
                 IsEdit = is_edit,
                 IsDelete = is_delete,
+                IsAdministrator = isAdministrator
             };
             frm.TopLevel = false;
             panelTask.Controls.Clear();
