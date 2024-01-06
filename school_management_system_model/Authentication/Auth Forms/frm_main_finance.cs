@@ -47,11 +47,29 @@ namespace school_management_system_model.Authentication.Auth_Forms
             if (IsAdministrator)
             {
                 btnSettings.Visible = true;
+                btnStudentAssessment.Visible = true;
+                btnDiscounts.Visible = true;
+                btnFeeCollection.Visible = true;
+                btnStatementofAccounts.Visible = true;
+                btnFeeAdjustment.Visible = true;
             }
             else
             {
                 btnSettings.Visible = false;
             }
+
+            if (AccessLevel == "Cashier")
+            {
+                btnFeeCollection.Visible = true;
+            }
+            else if (AccessLevel == "Student Accounts")
+            {
+                btnStudentAssessment.Visible = true;
+                btnDiscounts.Visible = true;
+                btnFeeAdjustment.Visible = true;
+                btnStatementofAccounts.Visible = true;
+            }
+            
         }
 
         private void btnTransaction_Click(object sender, EventArgs e)
@@ -59,10 +77,12 @@ namespace school_management_system_model.Authentication.Auth_Forms
             if (panelTransaction.Visible == false)
             {
                 panelTransaction.Visible = true;
+                btnTransaction.BackColor = Color.FromArgb(0, 0, 50);
             }
             else
             {
                 panelTransaction.Visible = false;
+                btnTransaction.BackColor = Color.FromArgb(0,0, 50);
             }
         }
 

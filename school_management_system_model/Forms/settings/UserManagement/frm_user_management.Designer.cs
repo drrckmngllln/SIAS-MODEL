@@ -292,7 +292,9 @@
             this.tAccessLevel.FormattingEnabled = true;
             this.tAccessLevel.Items.AddRange(new object[] {
             "Administrator",
-            "User"});
+            "Registrar ",
+            "Cashier",
+            "Student Accounts"});
             this.tAccessLevel.Location = new System.Drawing.Point(120, 302);
             this.tAccessLevel.Name = "tAccessLevel";
             this.tAccessLevel.Size = new System.Drawing.Size(236, 23);
