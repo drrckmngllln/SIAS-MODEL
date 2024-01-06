@@ -38,6 +38,7 @@
             this.tAmount = new System.Windows.Forms.TextBox();
             this.btnConfirmPayment = new Krypton.Toolkit.KryptonButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tStatus = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tSemester = new System.Windows.Forms.Label();
@@ -55,8 +56,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tSchoolYear = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tCampus = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -73,7 +75,7 @@
             this.groupBox1.Controls.Add(this.dgv);
             this.groupBox1.Location = new System.Drawing.Point(12, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(943, 628);
+            this.groupBox1.Size = new System.Drawing.Size(943, 668);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Statement of Account";
@@ -106,7 +108,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(931, 609);
+            this.dgv.Size = new System.Drawing.Size(931, 649);
             this.dgv.TabIndex = 157;
             // 
             // label1
@@ -124,7 +126,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.dgvFeeBreakdown);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(961, 453);
+            this.groupBox2.Location = new System.Drawing.Point(961, 493);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(348, 224);
             this.groupBox2.TabIndex = 159;
@@ -194,6 +196,8 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.tCampus);
+            this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.tStatus);
             this.groupBox3.Controls.Add(this.label3);
@@ -210,15 +214,25 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(961, 46);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(348, 187);
+            this.groupBox3.Size = new System.Drawing.Size(348, 227);
             this.groupBox3.TabIndex = 173;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Student Information";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(313, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 20);
+            this.button1.TabIndex = 181;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // tStatus
             // 
             this.tStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStatus.Location = new System.Drawing.Point(129, 154);
+            this.tStatus.Location = new System.Drawing.Point(128, 193);
             this.tStatus.Name = "tStatus";
             this.tStatus.Size = new System.Drawing.Size(210, 20);
             this.tStatus.TabIndex = 190;
@@ -228,7 +242,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(7, 154);
+            this.label3.Location = new System.Drawing.Point(6, 193);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 15);
             this.label3.TabIndex = 189;
@@ -346,6 +360,7 @@
             this.tPrint.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tPrint.TabIndex = 174;
             this.tPrint.Values.Text = "Print Receipt";
+            this.tPrint.Click += new System.EventHandler(this.tPrint_Click);
             // 
             // tParticulars
             // 
@@ -387,16 +402,6 @@
             this.label7.TabIndex = 179;
             this.label7.Text = "School Year:";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(313, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 20);
-            this.button1.TabIndex = 181;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -407,18 +412,37 @@
             this.groupBox4.Controls.Add(this.tPrint);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(961, 239);
+            this.groupBox4.Location = new System.Drawing.Point(961, 279);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(348, 208);
             this.groupBox4.TabIndex = 181;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Collect";
             // 
+            // tCampus
+            // 
+            this.tCampus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tCampus.Location = new System.Drawing.Point(128, 163);
+            this.tCampus.Name = "tCampus";
+            this.tCampus.Size = new System.Drawing.Size(210, 20);
+            this.tCampus.TabIndex = 192;
+            this.tCampus.Text = "...";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 163);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 15);
+            this.label4.TabIndex = 191;
+            this.label4.Text = "Campus:";
+            // 
             // frm_fee_collection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1321, 689);
+            this.ClientSize = new System.Drawing.Size(1321, 729);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.tSchoolYear);
             this.Controls.Add(this.label7);
@@ -474,5 +498,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label tCampus;
+        private System.Windows.Forms.Label label4;
     }
 }
