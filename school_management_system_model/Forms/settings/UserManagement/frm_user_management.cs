@@ -223,6 +223,8 @@ namespace school_management_system_model.Forms.settings.UserManagement
             }
         }
 
+        
+
         private void cAdministrator_CheckedChanged(object sender, EventArgs e)
         {
             if (cAdministrator.Checked)
