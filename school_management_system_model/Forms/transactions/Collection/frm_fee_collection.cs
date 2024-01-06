@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,6 +62,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             tCourse.Text = idNumber.Rows[0]["course"].ToString();
             tYearLevel.Text = idNumber.Rows[0]["year_level"].ToString();
             tSemester.Text = idNumber.Rows[0]["semester"].ToString();
+            tCampus.Text = idNumber.Rows[0]["campus"].ToString();
         }
         private void loadStatementOfAccount()
         {
@@ -252,9 +254,17 @@ namespace school_management_system_model.Forms.transactions.Collection
             frm.ShowDialog();
             if (id_number != null)
             {
+                dgvFeeBreakdown.Rows.Clear();
                 tIdNumber.Text = id_number;
                 loadRecords();
             }
+        }
+
+        private void tPrint_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_print_receipt(tCampus.Text, tIdNumber.Text);
+            frm.Text = "ISAP";
+            frm.ShowDialog();
         }
     }
 }

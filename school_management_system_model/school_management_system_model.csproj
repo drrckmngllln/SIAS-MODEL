@@ -522,6 +522,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FeeSummary.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Datasets\StatementOfAccounts.cs">
+      <DependentUpon>StatementOfAccounts.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\StatementOfAccounts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatementOfAccounts.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\frm_isap_assessment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -552,6 +560,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentSubjects.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frm_print_receipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frm_print_receipt.Designer.cs">
+      <DependentUpon>frm_print_receipt.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ToastrNotification\frm_toastr.cs">
@@ -734,6 +748,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Assessment\isap_assessment.rdlc" />
     <EmbeddedResource Include="Reports\Assessment\mcnp_assessment.rdlc" />
+    <EmbeddedResource Include="Reports\frm_print_receipt.resx">
+      <DependentUpon>frm_print_receipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Receipts\isap_receipt.rdlc" />
     <EmbeddedResource Include="ToastrNotification\frm_toastr.resx">
       <DependentUpon>frm_toastr.cs</DependentUpon>
     </EmbeddedResource>
@@ -775,6 +793,17 @@
     </None>
     <None Include="Reports\Datasets\FeeSummary.xss">
       <DependentUpon>FeeSummary.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\StatementOfAccounts.xsc">
+      <DependentUpon>StatementOfAccounts.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\StatementOfAccounts.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StatementOfAccounts.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\StatementOfAccounts.xss">
+      <DependentUpon>StatementOfAccounts.xsd</DependentUpon>
     </None>
     <None Include="Reports\Datasets\StudentAccounts.xsc">
       <DependentUpon>StudentAccounts.xsd</DependentUpon>
