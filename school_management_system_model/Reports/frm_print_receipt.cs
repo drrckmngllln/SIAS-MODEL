@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using Krypton.Toolkit;
+using Microsoft.Reporting.WinForms;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace school_management_system_model.Reports
 {
-    public partial class frm_print_receipt : Form
+    public partial class frm_print_receipt : KryptonForm
     {
         public frm_print_receipt(string campus, string idNumber)
         {
@@ -29,6 +30,12 @@ namespace school_management_system_model.Reports
 
             this.crv.RefreshReport();
             loadRecords(Campus);
+            //printReceipt();
+        }
+
+        private void printReceipt()
+        {
+            crv.PrintDialog();
         }
 
         private async void loadRecords(string campus)
@@ -59,6 +66,19 @@ namespace school_management_system_model.Reports
             crv.ZoomPercent = 100;
             await Task.Delay(1000);
             crv.RefreshReport();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            printReceipt();
+        }
+
+        private void frm_print_receipt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                printReceipt();
+            }
         }
     }
 }
