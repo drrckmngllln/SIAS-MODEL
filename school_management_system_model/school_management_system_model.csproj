@@ -211,9 +211,7 @@
     <Compile Include="Classes\Toastr.cs" />
     <Compile Include="Classes\TuitionFeeSetup.cs" />
     <Compile Include="Classes\UserManagement.cs" />
-    <Compile Include="Controls\IAuthorization.cs" />
     <Compile Include="Data\connection.cs" />
-    <Compile Include="Controls\session.cs" />
     <Compile Include="Forms\main\main_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -515,6 +513,8 @@
     <Compile Include="Forms\transactions\StudentDiscounts\frm_student_discounts.Designer.cs">
       <DependentUpon>frm_student_discounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Loggers\Activities\ActivityLogger.cs" />
+    <Compile Include="Loggers\Authentication\AuthenticationLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\Datasets\FeeSummary.Designer.cs">

@@ -2,18 +2,11 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Authentication.Auth_Forms;
 using school_management_system_model.Authentication.Auth_Forms.Registrar;
-using school_management_system_model.Classes;
-using school_management_system_model.Controls;
 using school_management_system_model.Forms.main;
+using school_management_system_model.Loggers.Authentication;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Authentication.Login
@@ -31,6 +24,9 @@ namespace school_management_system_model.Authentication.Login
         public bool isEdit { get; set; }
         public bool isDelete { get; set; }
         public bool isAdministrator { get; set; }
+
+        string Date = DateTime.Now.ToString("MM-dd-yyyy");
+        string Time = DateTime.Now.ToString("hh:mm:ss tt");
 
         protected override CreateParams CreateParams
         {
@@ -85,6 +81,7 @@ namespace school_management_system_model.Authentication.Login
                                 is_edit = isEdit,
                                 isAdministrator = isAdministrator
                             };
+                            new AuthenticationLogger(UserName, AccessLevel, Date, Time).LoginLogger();
                             frm.Show();
                             this.Hide();
                             break;
@@ -99,6 +96,7 @@ namespace school_management_system_model.Authentication.Login
                                 IsEdit = isEdit,
                                 IsAdministrator = isAdministrator
                             };
+                            new AuthenticationLogger(UserName, AccessLevel, Date, Time).LoginLogger();
                             frmFinance.Show();
                             this.Hide();
                             break;
@@ -113,6 +111,7 @@ namespace school_management_system_model.Authentication.Login
                                 IsEdit = isEdit,
                                 IsAdministrator = isAdministrator
                             };
+                            new AuthenticationLogger(UserName, AccessLevel, Date, Time).LoginLogger();
                             frmDean.Show();
                             this.Hide();
                             break;
@@ -127,6 +126,7 @@ namespace school_management_system_model.Authentication.Login
                                 IsEdit = isEdit,
                                 IsAdministrator = isAdministrator
                             };
+                            new AuthenticationLogger(UserName, AccessLevel, Date, Time).LoginLogger();
                             frmCampaign.Show();
                             this.Hide();
                             break;

@@ -172,7 +172,6 @@ namespace school_management_system_model.Forms.transactions
                     };
 
                     add.addRecord();
-                    //MessageBox.Show("Account Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     new school_management_system_model.Classes.Toastr().toast("Success", "Account Saved");
                     Close();
                 }
