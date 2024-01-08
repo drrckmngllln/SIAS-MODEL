@@ -11,7 +11,7 @@
               <TextRun>
                 <Value>=First(Fields!fullname.Value, "StudentAccounts")</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -19,10 +19,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>fullname</rd:DefaultName>
-        <Top>2.96016cm</Top>
-        <Left>1.87537cm</Left>
+        <Top>2.10389cm</Top>
+        <Left>2.5733cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.31542cm</Width>
+        <Width>4.90242cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -42,7 +42,7 @@
               <TextRun>
                 <Value>=First(Fields!date.Value, "StatementOfAccounts")</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -50,10 +50,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>date</rd:DefaultName>
-        <Top>1.58432cm</Top>
-        <Left>15.92474cm</Left>
+        <Top>1.94055cm</Top>
+        <Left>8.46349cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.71708cm</Width>
+        <Width>2.89158cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -74,7 +74,7 @@
               <TextRun>
                 <Value>=First(Fields!reference_no.Value, "StatementOfAccounts")</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -84,10 +84,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>reference_no</rd:DefaultName>
-        <Top>0.91377cm</Top>
-        <Left>15.92474cm</Left>
+        <Top>1.5875cm</Top>
+        <Left>8.46349cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.71708cm</Width>
+        <Width>2.89158cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -107,15 +107,17 @@
             <TextRuns>
               <TextRun>
                 <Value>=First(Fields!cashier_in_charge.Value, "StatementOfAccounts")</Value>
-                <Style />
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>cashier_in_charge</rd:DefaultName>
-        <Top>9.04558cm</Top>
-        <Left>15.10453cm</Left>
+        <Top>7.17931cm</Top>
+        <Left>7.32578cm</Left>
         <Height>0.6cm</Height>
         <Width>4.53729cm</Width>
         <ZIndex>3</ZIndex>
@@ -136,9 +138,9 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Tuition Fee</Value>
+                <Value>Remaining Balance:</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -146,10 +148,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>5.94995cm</Top>
-        <Left>1.82245cm</Left>
+        <Top>5.35368cm</Top>
+        <Left>1.24037cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.31542cm</Width>
+        <Width>4.90242cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -169,7 +171,9 @@
             <TextRuns>
               <TextRun>
                 <Value>=First(Fields!balance.Value, "StatementOfAccounts")</Value>
-                <Style />
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style>
@@ -178,8 +182,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>balance</rd:DefaultName>
-        <Top>5.94995cm</Top>
-        <Left>16.08349cm</Left>
+        <Top>5.35368cm</Top>
+        <Left>7.98724cm</Left>
         <Height>0.6cm</Height>
         <Width>3.55833cm</Width>
         <ZIndex>5</ZIndex>
@@ -202,7 +206,7 @@
               <TextRun>
                 <Value>Payment Tendered:</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -210,10 +214,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>5.17356cm</Top>
-        <Left>1.82245cm</Left>
+        <Top>4.57729cm</Top>
+        <Left>1.24037cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.31542cm</Width>
+        <Width>4.90242cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -233,7 +237,9 @@
             <TextRuns>
               <TextRun>
                 <Value>=First(Fields!credit.Value, "StatementOfAccounts")</Value>
-                <Style />
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style>
@@ -242,8 +248,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>credit</rd:DefaultName>
-        <Top>5.17356cm</Top>
-        <Left>16.08349cm</Left>
+        <Top>4.57729cm</Top>
+        <Left>7.98724cm</Left>
         <Height>0.6cm</Height>
         <Width>3.55833cm</Width>
         <ZIndex>7</ZIndex>
@@ -258,18 +264,13 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>9.64558cm</Height>
+    <Height>3.43772in</Height>
     <Style />
   </Body>
-  <Width>21.57cm</Width>
+  <Width>4.8455in</Width>
   <Page>
-    <PageHeight>11.43cm</PageHeight>
-    <PageWidth>21.57cm</PageWidth>
-    <LeftMargin>0cm</LeftMargin>
-    <RightMargin>0cm</RightMargin>
-    <TopMargin>0.25cm</TopMargin>
-    <BottomMargin>0cm</BottomMargin>
-    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <TopMargin>0.025in</TopMargin>
+    <ColumnSpacing>0.05118in</ColumnSpacing>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -363,6 +364,6 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>288ab1b3-9fab-442f-90a1-a6eee294dbfe</rd:ReportID>
 </Report>

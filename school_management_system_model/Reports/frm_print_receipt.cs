@@ -55,7 +55,7 @@ namespace school_management_system_model.Reports
             
             var rpt2 = new ReportDataSource("StatementOfAccounts", statementOfAccounts);
 
-            crv.LocalReport.ReportPath = "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Receipts\\isap_receipt.rdlc";
+            crv.LocalReport.ReportPath = "C:\\Users\\User\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Receipts\\isap_receipt.rdlc";
 
             crv.LocalReport.DataSources.Add(rpt);
             crv.LocalReport.DataSources.Add(rpt2);

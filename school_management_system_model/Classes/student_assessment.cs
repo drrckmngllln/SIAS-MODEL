@@ -153,5 +153,17 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
+        public void saveAssessmentBreakdown(string id_number, string school_year, string fee_type, decimal amount)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("insert into assessment_breakdown(id_number, school_year, fee_type, amount) values(@1,@2,@3,@4)", con);
+            cmd.Parameters.AddWithValue("@1", id_number);
+            cmd.Parameters.AddWithValue("@2", school_year);
+            cmd.Parameters.AddWithValue("@3", fee_type);
+            cmd.Parameters.AddWithValue("@4", amount);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 }

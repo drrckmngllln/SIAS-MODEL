@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Reports;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,8 @@ namespace school_management_system_model.Forms.transactions.Collection
     {
         public static frm_fee_collection instance;
         public string id_number { get; set; }
+
+        school_management_system_model.Classes.Toastr Toastr = new school_management_system_model.Classes.Toastr();
         public frm_fee_collection()
         {
             instance = this;
@@ -25,6 +29,7 @@ namespace school_management_system_model.Forms.transactions.Collection
         private void frm_fee_collection_Load(object sender, EventArgs e)
         {
             loadFeeBreakdownDGV();
+            loadAssessmentBreakdownDGV();
             loadSchoolYear();
         }
 
@@ -32,6 +37,12 @@ namespace school_management_system_model.Forms.transactions.Collection
         {
             dgvFeeBreakdown.Columns.Add("term", "Term");
             dgvFeeBreakdown.Columns.Add("amount", "Amount");
+        }
+        private void loadAssessmentBreakdownDGV()
+        {
+            dgvAssessmentBreakdown.Columns.Add("fee_type", "Fee Type");
+            dgvAssessmentBreakdown.Columns.Add("amount", "Amount");
+
         }
 
         private void loadSchoolYear()
@@ -107,12 +118,22 @@ namespace school_management_system_model.Forms.transactions.Collection
                 loadStudentCourse();
                 loadStatementOfAccount();
                 loadFeeBreakdown();
+                loadAssessmentBreakdown();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tAmount.Clear();
                 tAmount.Select();
+            }
+        }
+
+        private void loadAssessmentBreakdown()
+        {
+            var data = new FeeCollection().loadAssessmentBreakdown(tIdNumber.Text, tSchoolYear.Text);
+            foreach (DataRow row in data.Rows)
+            {
+                dgvAssessmentBreakdown.Rows.Add(row["fee_type"].ToString(), row["amount"].ToString());
             }
         }
 
@@ -154,6 +175,38 @@ namespace school_management_system_model.Forms.transactions.Collection
             referenceNumberIncrement.incrementReferenceNo(referenceNo);
             loadStatementOfAccount();
         }
+        private void assessmentBreakdownComputation()
+        {
+            decimal amount = amount = Convert.ToDecimal(tAmount.Text);
+            decimal fee = 0;
+            decimal result = 0;
+
+            foreach (DataGridViewRow row in dgvAssessmentBreakdown.Rows)
+            {
+                fee = Convert.ToDecimal(row.Cells["amount"].Value);
+                if (amount > fee)
+                {
+
+                    result = amount - fee;
+                    row.Cells["amount"].Value = 0;
+                    amount = result;
+                }
+                else if (amount <= fee)
+                {
+                    result = fee - amount;
+                    row.Cells["amount"].Value = result;
+                    amount = 0;
+
+                    var term = Convert.ToDecimal(row.Cells["amount"].Value);
+                    if (term != 0 && amount != 0)
+                    {
+                        amount -= term;
+                        row.Cells["amount"].Value = amount;
+                    }
+
+                }
+            }
+        }
 
         private void feeBreakdownComputation()
         {
@@ -191,6 +244,7 @@ namespace school_management_system_model.Forms.transactions.Collection
         private void feeBreakDownSave()
         {
             feeBreakdownComputation();
+            
 
             var totalBreakdown = 
                 Convert.ToDecimal(dgvFeeBreakdown.Rows[0].Cells["amount"].Value) +
@@ -213,12 +267,30 @@ namespace school_management_system_model.Forms.transactions.Collection
             //loadFeeBreakdown();
         }
 
+        private void assessmentBreakdownSave()
+        {
+            assessmentBreakdownComputation();
+
+            foreach (DataGridViewRow row in dgvAssessmentBreakdown.Rows)
+            {
+                var parameter = new SaveAssessmentBreakdownParams
+                {
+                    fee_type = row.Cells["fee_type"].Value.ToString(),
+                    amount = Convert.ToDecimal(row.Cells["amount"].Value)
+                };
+                var x = new FeeCollection();
+                x.assessmentBreakdownSave(parameter.amount, parameter.fee_type);
+            }
+        }
+
+        
+
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
             decimal collection = Convert.ToDecimal(tAmount.Text);
             if (collection < 500)
             {
-                MessageBox.Show("Error, Payment amount not accepted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Toastr.toast("Error", "Payment amount not accepter!");
             }
             else
             {
@@ -226,6 +298,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                 {
                     soaCollection();
                     feeBreakDownSave();
+                    assessmentBreakdownSave();
 
                     var data = new FeeCollection();
                     var studentStatus = data.loadStudentAccounts(tIdNumber.Text);
@@ -235,6 +308,8 @@ namespace school_management_system_model.Forms.transactions.Collection
                         var changeStatus = new FeeCollection();
                         changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
                     }
+
+                    Toastr.toast("Success", "Payment Saved!");
                 }
             }
 
@@ -255,6 +330,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             if (id_number != null)
             {
                 dgvFeeBreakdown.Rows.Clear();
+                dgvAssessmentBreakdown.Rows.Clear();
                 tIdNumber.Text = id_number;
                 loadRecords();
             }
