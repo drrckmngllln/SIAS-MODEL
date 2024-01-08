@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Forms.transactions.StudentAssessment;
 using school_management_system_model.Reports.Accounting;
 using System;
@@ -443,11 +444,35 @@ namespace school_management_system_model.Forms.transactions
             // Saving Fee Breakdown
             saveFeeBreakdown();
 
+            // Saving Assessment Breakdown
+            saveAssessmentBreakdown();
+
 
             MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             printAssessment();
 
+        }
+
+        private void saveAssessmentBreakdown()
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                var parameter = new SaveAssessmentBreakdownParams
+                {
+                    id_number = tIdNumber.Text,
+                    school_year = tSchoolYear.Text,
+                    fee_type = row.Cells["fee_type"].Value.ToString(),
+                    amount = Convert.ToDecimal(row.Cells["computation"].Value)
+                };
+                var assessmentBreakdown = new student_assessment();
+                assessmentBreakdown.saveAssessmentBreakdown(
+                    parameter.id_number, 
+                    parameter.school_year, 
+                    parameter.fee_type, 
+                    parameter.amount
+                    );
+            }
         }
 
         private void saveStudentAssessment()

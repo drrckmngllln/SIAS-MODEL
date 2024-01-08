@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.ReportingServices.Interfaces;
+using MySql.Data.MySqlClient;
+using school_management_system_model.Classes.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -136,6 +138,22 @@ namespace school_management_system_model.Classes
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("update student_accounts set status='Officially Enrolled for School Year "+schoolYear+"' where id_number='" + idNumber + "'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public DataTable loadAssessmentBreakdown(string idNumber, string schoolYear)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from assessment_breakdown where id_number='" + idNumber + "' and school_year='" + schoolYear + "'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+        public void assessmentBreakdownSave(decimal amount, string fee_type)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("update assessment_breakdown set amount='"+ amount +"' where fee_type='" + fee_type + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }

@@ -198,6 +198,7 @@
     <Compile Include="Classes\MainRegistrar.cs" />
     <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
     <Compile Include="Classes\OtherFeesSetup.cs" />
+    <Compile Include="Classes\Parameters\SaveAssessmentBreakdownParams.cs" />
     <Compile Include="Classes\PrintingAssessment.cs" />
     <Compile Include="Classes\proceed_to_enrollment.cs" />
     <Compile Include="Classes\SchoolYearSetup.cs" />

@@ -38,6 +38,8 @@
             this.tAmount = new System.Windows.Forms.TextBox();
             this.btnConfirmPayment = new Krypton.Toolkit.KryptonButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tCampus = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tStatus = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,14 +59,16 @@
             this.tSchoolYear = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tCampus = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dgvAssessmentBreakdown = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFeeBreakdown)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssessmentBreakdown)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -75,7 +79,7 @@
             this.groupBox1.Controls.Add(this.dgv);
             this.groupBox1.Location = new System.Drawing.Point(12, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(943, 668);
+            this.groupBox1.Size = new System.Drawing.Size(616, 668);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Statement of Account";
@@ -108,7 +112,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(931, 649);
+            this.dgv.Size = new System.Drawing.Size(604, 649);
             this.dgv.TabIndex = 157;
             // 
             // label1
@@ -218,6 +222,25 @@
             this.groupBox3.TabIndex = 173;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Student Information";
+            // 
+            // tCampus
+            // 
+            this.tCampus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tCampus.Location = new System.Drawing.Point(128, 163);
+            this.tCampus.Name = "tCampus";
+            this.tCampus.Size = new System.Drawing.Size(210, 20);
+            this.tCampus.TabIndex = 192;
+            this.tCampus.Text = "...";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 163);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 15);
+            this.label4.TabIndex = 191;
+            this.label4.Text = "Campus:";
             // 
             // button1
             // 
@@ -419,30 +442,45 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Collect";
             // 
-            // tCampus
+            // groupBox5
             // 
-            this.tCampus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tCampus.Location = new System.Drawing.Point(128, 163);
-            this.tCampus.Name = "tCampus";
-            this.tCampus.Size = new System.Drawing.Size(210, 20);
-            this.tCampus.TabIndex = 192;
-            this.tCampus.Text = "...";
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.dgvAssessmentBreakdown);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(634, 46);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(321, 668);
+            this.groupBox5.TabIndex = 182;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Fee Breakdown";
             // 
-            // label4
+            // dgvAssessmentBreakdown
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 163);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 15);
-            this.label4.TabIndex = 191;
-            this.label4.Text = "Campus:";
+            this.dgvAssessmentBreakdown.AllowUserToAddRows = false;
+            this.dgvAssessmentBreakdown.AllowUserToDeleteRows = false;
+            this.dgvAssessmentBreakdown.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAssessmentBreakdown.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvAssessmentBreakdown.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvAssessmentBreakdown.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAssessmentBreakdown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAssessmentBreakdown.Location = new System.Drawing.Point(3, 17);
+            this.dgvAssessmentBreakdown.Name = "dgvAssessmentBreakdown";
+            this.dgvAssessmentBreakdown.ReadOnly = true;
+            this.dgvAssessmentBreakdown.RowHeadersVisible = false;
+            this.dgvAssessmentBreakdown.RowHeadersWidth = 60;
+            this.dgvAssessmentBreakdown.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAssessmentBreakdown.RowTemplate.Height = 30;
+            this.dgvAssessmentBreakdown.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAssessmentBreakdown.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAssessmentBreakdown.Size = new System.Drawing.Size(315, 648);
+            this.dgvAssessmentBreakdown.TabIndex = 158;
             // 
             // frm_fee_collection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1321, 729);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.tSchoolYear);
             this.Controls.Add(this.label7);
@@ -463,6 +501,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssessmentBreakdown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,5 +540,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label tCampus;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.DataGridView dgvAssessmentBreakdown;
     }
 }
