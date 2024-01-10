@@ -149,13 +149,22 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
-        public void assessmentBreakdownSave(decimal amount, string fee_type)
+        public void assessmentBreakdownSave(string id_number, decimal amount, string fee_type)
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("update assessment_breakdown set amount='"+ amount +"' where fee_type='" + fee_type + "'", con);
+            var cmd = new MySqlCommand("update assessment_breakdown set amount='"+ amount +"' where fee_type='" + fee_type + "' and id_number='"+ id_number +"'", con);
             cmd.ExecuteNonQuery();
             con.Close();
+        }
+
+        public DataTable loadAssessment(string idNumber, string SchoolYear)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from student_assessment where id_number='" + idNumber + "' and school_year='" + SchoolYear + "'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
         }
     }
 }

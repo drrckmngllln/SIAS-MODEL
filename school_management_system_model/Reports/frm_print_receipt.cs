@@ -40,7 +40,6 @@ namespace school_management_system_model.Reports
 
         private async void loadRecords(string campus)
         {
-            //await Task.Delay(500);
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select * from student_accounts where id_number='" + id_number + "'", con);
             var studentAccounts = new DataTable();
@@ -55,7 +54,7 @@ namespace school_management_system_model.Reports
             
             var rpt2 = new ReportDataSource("StatementOfAccounts", statementOfAccounts);
 
-            crv.LocalReport.ReportPath = "C:\\Users\\User\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Receipts\\isap_receipt.rdlc";
+            crv.LocalReport.ReportPath = "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Reports\\Receipts\\isap_receipt.rdlc ";
 
             crv.LocalReport.DataSources.Add(rpt);
             crv.LocalReport.DataSources.Add(rpt2);

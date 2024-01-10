@@ -35,7 +35,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 tTitle.Text = this.Text;
                 var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select * from student_accounts where status='Accounting' order by fullname asc", con);
+                var da = new MySqlDataAdapter("select * from student_accounts order by fullname asc", con);
                 var dt = new DataTable();
                 da.Fill(dt);
                 dgv.DataSource = dt;

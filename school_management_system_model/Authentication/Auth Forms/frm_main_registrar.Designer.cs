@@ -49,6 +49,7 @@
             this.panelTransaction = new System.Windows.Forms.Panel();
             this.btnStudentAccounts = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
+            this.btnDepartment = new System.Windows.Forms.Button();
             this.panelUserDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPic)).BeginInit();
             this.panelSidebar.SuspendLayout();
@@ -156,6 +157,7 @@
             // panelSettings
             // 
             this.panelSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.panelSettings.Controls.Add(this.btnDepartment);
             this.panelSettings.Controls.Add(this.btnAdmissionSchedule);
             this.panelSettings.Controls.Add(this.btnUserManagement);
             this.panelSettings.Controls.Add(this.btnSections);
@@ -167,7 +169,7 @@
             this.panelSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSettings.Location = new System.Drawing.Point(0, 180);
             this.panelSettings.Name = "panelSettings";
-            this.panelSettings.Size = new System.Drawing.Size(250, 257);
+            this.panelSettings.Size = new System.Drawing.Size(250, 296);
             this.panelSettings.TabIndex = 4;
             this.panelSettings.Visible = false;
             // 
@@ -360,6 +362,23 @@
             this.panelTask.Size = new System.Drawing.Size(1043, 701);
             this.panelTask.TabIndex = 3;
             // 
+            // btnDepartment
+            // 
+            this.btnDepartment.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDepartment.FlatAppearance.BorderSize = 0;
+            this.btnDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDepartment.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnDepartment.Location = new System.Drawing.Point(0, 240);
+            this.btnDepartment.Name = "btnDepartment";
+            this.btnDepartment.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnDepartment.Size = new System.Drawing.Size(250, 30);
+            this.btnDepartment.TabIndex = 12;
+            this.btnDepartment.Text = "Department";
+            this.btnDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDepartment.UseVisualStyleBackColor = true;
+            this.btnDepartment.Click += new System.EventHandler(this.btnDepartment_Click);
+            // 
             // frm_main_registrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,5 +458,6 @@
         private System.Windows.Forms.Button btnCurriculum;
         private System.Windows.Forms.Panel panelTask;
         private System.Windows.Forms.Button btnAdmissionSchedule;
+        private System.Windows.Forms.Button btnDepartment;
     }
 }

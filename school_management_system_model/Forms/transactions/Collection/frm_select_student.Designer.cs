@@ -32,6 +32,7 @@
             this.tTitle = new System.Windows.Forms.Label();
             this.btnClose = new Krypton.Toolkit.KryptonButton();
             this.btnSelect = new Krypton.Toolkit.KryptonButton();
+            this.tSearch = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(12, 48);
+            this.dgv.Location = new System.Drawing.Point(12, 65);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
@@ -55,7 +56,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(815, 403);
+            this.dgv.Size = new System.Drawing.Size(815, 386);
             this.dgv.TabIndex = 157;
             // 
             // tTitle
@@ -108,12 +109,23 @@
             this.btnSelect.Values.Text = "Select";
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
+            // tSearch
+            // 
+            this.tSearch.CueHint.CueHintText = "Search Student...";
+            this.tSearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tSearch.Location = new System.Drawing.Point(12, 36);
+            this.tSearch.Name = "tSearch";
+            this.tSearch.Size = new System.Drawing.Size(815, 23);
+            this.tSearch.TabIndex = 161;
+            this.tSearch.TextChanged += new System.EventHandler(this.tSearch_TextChanged);
+            // 
             // frm_select_student
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(839, 507);
+            this.Controls.Add(this.tSearch);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tTitle);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.Label tTitle;
         private Krypton.Toolkit.KryptonButton btnClose;
         private Krypton.Toolkit.KryptonButton btnSelect;
+        private Krypton.Toolkit.KryptonTextBox tSearch;
     }
 }

@@ -376,6 +376,12 @@
     <Compile Include="Forms\transactions\Collection\frm_fee_collection.Designer.cs">
       <DependentUpon>frm_fee_collection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_payment_message.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_payment_message.Designer.cs">
+      <DependentUpon>frm_payment_message.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\Collection\frm_select_student.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -518,6 +524,11 @@
     <Compile Include="Loggers\Authentication\AuthenticationLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Datasets\AssessmentBreakdown.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssessmentBreakdown.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Datasets\FeeSummary.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -568,6 +579,12 @@
     <Compile Include="Reports\frm_print_receipt.Designer.cs">
       <DependentUpon>frm_print_receipt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\frm_print_receipt_breakdown.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frm_print_receipt_breakdown.Designer.cs">
+      <DependentUpon>frm_print_receipt_breakdown.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ToastrNotification\frm_toastr.cs">
       <SubType>Form</SubType>
@@ -584,6 +601,10 @@
     <EmbeddedResource Include="Authentication\Login\frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\Debug\Reports\isap_assessment.rdlc" />
+    <EmbeddedResource Include="bin\Debug\Reports\isap_assessment_breakdown.rdlc" />
+    <EmbeddedResource Include="bin\Debug\Reports\isap_receipt.rdlc" />
+    <EmbeddedResource Include="bin\Debug\Reports\mcnp_assessment.rdlc" />
     <EmbeddedResource Include="Forms\main\main_form.resx">
       <DependentUpon>main_form.cs</DependentUpon>
     </EmbeddedResource>
@@ -664,6 +685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_fee_collection.resx">
       <DependentUpon>frm_fee_collection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Collection\frm_payment_message.resx">
+      <DependentUpon>frm_payment_message.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_select_student.resx">
       <DependentUpon>frm_select_student.cs</DependentUpon>
@@ -752,6 +776,10 @@
     <EmbeddedResource Include="Reports\frm_print_receipt.resx">
       <DependentUpon>frm_print_receipt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frm_print_receipt_breakdown.resx">
+      <DependentUpon>frm_print_receipt_breakdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Receipts\isap_assessment_breakdown.rdlc" />
     <EmbeddedResource Include="Reports\Receipts\isap_receipt.rdlc" />
     <EmbeddedResource Include="ToastrNotification\frm_toastr.resx">
       <DependentUpon>frm_toastr.cs</DependentUpon>
@@ -773,6 +801,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Reports\Datasets\AssessmentBreakdown.xsc">
+      <DependentUpon>AssessmentBreakdown.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\Datasets\AssessmentBreakdown.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AssessmentBreakdown.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\Datasets\AssessmentBreakdown.xss">
+      <DependentUpon>AssessmentBreakdown.xsd</DependentUpon>
+    </None>
     <None Include="Reports\Datasets\FeeBreakdown.xsc">
       <DependentUpon>FeeBreakdown.xsd</DependentUpon>
     </None>

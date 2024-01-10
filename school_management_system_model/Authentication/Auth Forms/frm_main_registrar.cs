@@ -182,5 +182,14 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
             panelTask.Controls.Add(frm);
             frm.Show();
         }
+
+        private void btnDepartment_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_departments();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }
