@@ -44,6 +44,10 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             dgv.DataSource = dt;
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["code"].HeaderText = "Code";
+            dgv.Columns["description"].HeaderText = "Description";
+            dgv.Columns["campus"].HeaderText = "Campus";
         }
 
         string ID;

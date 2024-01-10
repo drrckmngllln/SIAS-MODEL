@@ -85,51 +85,48 @@ namespace school_management_system_model.Forms.settings
         {
             try
             {
+
                 if (btn_save.Text == "Save")
                 {
-                    if (isAdd)
-                    {
-                        var con = new MySqlConnection(connection.con());
-                        con.Open();
-                        var cmd = new MySqlCommand("insert into courses(code, description, level, campus, department, max_units, status) " +
-                            "values(@1,@2,@3,@4,@5,@6,@7)", con);
-                        cmd.Parameters.AddWithValue("@1", t1.Text);
-                        cmd.Parameters.AddWithValue("@2", t2.Text);
-                        cmd.Parameters.AddWithValue("@3", t3.Text);
-                        cmd.Parameters.AddWithValue("@4", t4.Text);
-                        cmd.Parameters.AddWithValue("@5", t5.Text);
-                        cmd.Parameters.AddWithValue("@6", t6.Text);
-                        cmd.Parameters.AddWithValue("@7", t7.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                        Toastr.toast("Success", "Add Success");
-                        loadrecords();
-                        txtclear();
-                    }
+                    var con = new MySqlConnection(connection.con());
+                    con.Open();
+                    var cmd = new MySqlCommand("insert into courses(code, description, level, campus, department, max_units, status) " +
+                        "values(@1,@2,@3,@4,@5,@6,@7)", con);
+                    cmd.Parameters.AddWithValue("@1", t1.Text);
+                    cmd.Parameters.AddWithValue("@2", t2.Text);
+                    cmd.Parameters.AddWithValue("@3", t3.Text);
+                    cmd.Parameters.AddWithValue("@4", t4.Text);
+                    cmd.Parameters.AddWithValue("@5", t5.Text);
+                    cmd.Parameters.AddWithValue("@6", t6.Text);
+                    cmd.Parameters.AddWithValue("@7", t7.Text);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    Toastr.toast("Success", "Add Success");
+                    loadrecords();
+                    txtclear();
+                    
 
                 }
                 else if (btn_save.Text == "Update")
                 {
-                    if (isEdit)
-                    {
-                        var con = new MySqlConnection(connection.con());
-                        con.Open();
-                        var cmd = new MySqlCommand("update courses set code=@1, description=@2, level=@3, campus=@4, department=@5, max_units=@6, status=@7 " +
-                            "where id='" + ID + "'", con);
-                        cmd.Parameters.AddWithValue("@1", t1.Text);
-                        cmd.Parameters.AddWithValue("@2", t2.Text);
-                        cmd.Parameters.AddWithValue("@3", t3.Text);
-                        cmd.Parameters.AddWithValue("@4", t4.Text);
-                        cmd.Parameters.AddWithValue("@5", t5.Text);
-                        cmd.Parameters.AddWithValue("@6", t6.Text);
-                        cmd.Parameters.AddWithValue("@7", t7.Text);
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                        MessageBox.Show("Course Update Success");
-                        Toastr.toast("Information", "Update Success");
-                        loadrecords();
-                        txtclear();
-                    }
+                    var con = new MySqlConnection(connection.con());
+                    con.Open();
+                    var cmd = new MySqlCommand("update courses set code=@1, description=@2, level=@3, campus=@4, department=@5, max_units=@6, status=@7 " +
+                        "where id='" + ID + "'", con);
+                    cmd.Parameters.AddWithValue("@1", t1.Text);
+                    cmd.Parameters.AddWithValue("@2", t2.Text);
+                    cmd.Parameters.AddWithValue("@3", t3.Text);
+                    cmd.Parameters.AddWithValue("@4", t4.Text);
+                    cmd.Parameters.AddWithValue("@5", t5.Text);
+                    cmd.Parameters.AddWithValue("@6", t6.Text);
+                    cmd.Parameters.AddWithValue("@7", t7.Text);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Course Update Success");
+                    Toastr.toast("Information", "Update Success");
+                    loadrecords();
+                    txtclear();
+                    
                     
                 }
             }
