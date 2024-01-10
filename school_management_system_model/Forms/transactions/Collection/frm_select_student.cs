@@ -96,5 +96,26 @@ namespace school_management_system_model.Forms.transactions.Collection
         {
             select();
         }
+
+        private DataTable searchRecords(string search)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select id_number, fullname from student_accounts where concat(id_number, fullname) like '%" + search + "%'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
+        private void tSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tSearch.Text.Length > 2)
+            {
+                dgv.DataSource = searchRecords(tSearch.Text);
+            }
+            else if (tSearch.Text.Length == 0)
+            {
+                loadRecords();
+            }
+        }
     }
 }

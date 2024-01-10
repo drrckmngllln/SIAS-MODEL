@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +53,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.tIdNumber = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.tPrint = new Krypton.Toolkit.KryptonButton();
             this.tParticulars = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tSchoolYear = new System.Windows.Forms.ComboBox();
@@ -61,6 +60,9 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dgvAssessmentBreakdown = new System.Windows.Forms.DataGridView();
+            this.tAmountPayable = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cPayment = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -79,7 +81,7 @@
             this.groupBox1.Controls.Add(this.dgv);
             this.groupBox1.Location = new System.Drawing.Point(12, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(616, 668);
+            this.groupBox1.Size = new System.Drawing.Size(943, 808);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Statement of Account";
@@ -94,14 +96,14 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(6, 19);
             this.dgv.Name = "dgv";
@@ -112,7 +114,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(604, 649);
+            this.dgv.Size = new System.Drawing.Size(931, 783);
             this.dgv.TabIndex = 157;
             // 
             // label1
@@ -161,26 +163,26 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(6, 17);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 17);
+            this.label12.Size = new System.Drawing.Size(52, 15);
             this.label12.TabIndex = 170;
             this.label12.Text = "Amount:";
             // 
             // tAmount
             // 
-            this.tAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tAmount.Location = new System.Drawing.Point(91, 14);
             this.tAmount.Name = "tAmount";
-            this.tAmount.Size = new System.Drawing.Size(248, 23);
+            this.tAmount.Size = new System.Drawing.Size(248, 21);
             this.tAmount.TabIndex = 171;
             this.tAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnConfirmPayment
             // 
             this.btnConfirmPayment.CornerRoundingRadius = 10F;
-            this.btnConfirmPayment.Location = new System.Drawing.Point(87, 164);
+            this.btnConfirmPayment.Location = new System.Drawing.Point(118, 164);
             this.btnConfirmPayment.Name = "btnConfirmPayment";
             this.btnConfirmPayment.Size = new System.Drawing.Size(123, 38);
             this.btnConfirmPayment.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -365,42 +367,22 @@
             this.label13.TabIndex = 174;
             this.label13.Text = "ID Number:";
             // 
-            // tPrint
-            // 
-            this.tPrint.CornerRoundingRadius = 10F;
-            this.tPrint.Location = new System.Drawing.Point(216, 164);
-            this.tPrint.Name = "tPrint";
-            this.tPrint.Size = new System.Drawing.Size(123, 38);
-            this.tPrint.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.tPrint.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.tPrint.StateCommon.Border.Color1 = System.Drawing.Color.DarkBlue;
-            this.tPrint.StateCommon.Border.Color2 = System.Drawing.Color.DarkBlue;
-            this.tPrint.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.tPrint.StateCommon.Border.Rounding = 10F;
-            this.tPrint.StateCommon.Border.Width = 2;
-            this.tPrint.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tPrint.TabIndex = 174;
-            this.tPrint.Values.Text = "Print Receipt";
-            this.tPrint.Click += new System.EventHandler(this.tPrint_Click);
-            // 
             // tParticulars
             // 
-            this.tParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tParticulars.Location = new System.Drawing.Point(91, 43);
+            this.tParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tParticulars.Location = new System.Drawing.Point(91, 93);
             this.tParticulars.Multiline = true;
             this.tParticulars.Name = "tParticulars";
-            this.tParticulars.Size = new System.Drawing.Size(248, 115);
+            this.tParticulars.Size = new System.Drawing.Size(248, 65);
             this.tParticulars.TabIndex = 178;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(6, 49);
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(8, 93);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(79, 17);
+            this.label15.Size = new System.Drawing.Size(68, 15);
             this.label15.TabIndex = 177;
             this.label15.Text = "Particulars:";
             // 
@@ -428,11 +410,13 @@
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.cPayment);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.tAmountPayable);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.tAmount);
             this.groupBox4.Controls.Add(this.btnConfirmPayment);
             this.groupBox4.Controls.Add(this.tParticulars);
-            this.groupBox4.Controls.Add(this.tPrint);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(961, 279);
@@ -444,15 +428,16 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.dgvAssessmentBreakdown);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(634, 46);
+            this.groupBox5.Location = new System.Drawing.Point(961, 723);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(321, 668);
+            this.groupBox5.Size = new System.Drawing.Size(348, 131);
             this.groupBox5.TabIndex = 182;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Fee Breakdown";
+            this.groupBox5.Text = "Assessment Breakdown";
             // 
             // dgvAssessmentBreakdown
             // 
@@ -472,14 +457,43 @@
             this.dgvAssessmentBreakdown.RowTemplate.Height = 30;
             this.dgvAssessmentBreakdown.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvAssessmentBreakdown.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAssessmentBreakdown.Size = new System.Drawing.Size(315, 648);
+            this.dgvAssessmentBreakdown.Size = new System.Drawing.Size(342, 111);
             this.dgvAssessmentBreakdown.TabIndex = 158;
+            // 
+            // tAmountPayable
+            // 
+            this.tAmountPayable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tAmountPayable.Location = new System.Drawing.Point(91, 66);
+            this.tAmountPayable.Name = "tAmountPayable";
+            this.tAmountPayable.Size = new System.Drawing.Size(248, 21);
+            this.tAmountPayable.TabIndex = 179;
+            this.tAmountPayable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(7, 69);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 15);
+            this.label2.TabIndex = 180;
+            this.label2.Text = "Payable:";
+            // 
+            // cPayment
+            // 
+            this.cPayment.AutoSize = true;
+            this.cPayment.Location = new System.Drawing.Point(91, 41);
+            this.cPayment.Name = "cPayment";
+            this.cPayment.Size = new System.Drawing.Size(62, 19);
+            this.cPayment.TabIndex = 181;
+            this.cPayment.Text = "Pay All";
+            this.cPayment.UseVisualStyleBackColor = true;
             // 
             // frm_fee_collection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1321, 729);
+            this.ClientSize = new System.Drawing.Size(1321, 869);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.tSchoolYear);
@@ -519,7 +533,6 @@
         private Krypton.Toolkit.KryptonButton btnConfirmPayment;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label13;
-        private Krypton.Toolkit.KryptonButton tPrint;
         private System.Windows.Forms.TextBox tParticulars;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label tStudentName;
@@ -542,5 +555,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DataGridView dgvAssessmentBreakdown;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tAmountPayable;
+        private System.Windows.Forms.CheckBox cPayment;
     }
 }

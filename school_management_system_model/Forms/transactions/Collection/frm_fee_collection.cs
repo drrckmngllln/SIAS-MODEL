@@ -37,6 +37,8 @@ namespace school_management_system_model.Forms.transactions.Collection
         {
             dgvFeeBreakdown.Columns.Add("term", "Term");
             dgvFeeBreakdown.Columns.Add("amount", "Amount");
+
+           
         }
         private void loadAssessmentBreakdownDGV()
         {
@@ -119,6 +121,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                 loadStatementOfAccount();
                 loadFeeBreakdown();
                 loadAssessmentBreakdown();
+                loadAmountPayable();
             }
             catch (Exception ex)
             {
@@ -152,7 +155,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             var soa = new FeeCollection();
             var latestSoa = soa.getLatestSoa(tIdNumber.Text, tSchoolYear.Text);
             decimal latestBalance = Convert.ToDecimal(latestSoa.Rows[0]["balance"]);
-            decimal latestCredit = Convert.ToDecimal(tAmount.Text);
+            decimal latestCredit = cPayment.Checked ? Convert.ToDecimal(tAmount.Text) : Convert.ToDecimal(tAmountPayable.Text);
             string latestParticulars = tParticulars.Text;
 
             var collect = new FeeCollection
@@ -170,7 +173,6 @@ namespace school_management_system_model.Forms.transactions.Collection
                 cashier_in_charge = ""
             };
             collect.soaCollection(tIdNumber.Text);
-            MessageBox.Show("Fee Collected", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             var referenceNumberIncrement = new FeeCollection();
             referenceNumberIncrement.incrementReferenceNo(referenceNo);
             loadStatementOfAccount();
@@ -275,11 +277,12 @@ namespace school_management_system_model.Forms.transactions.Collection
             {
                 var parameter = new SaveAssessmentBreakdownParams
                 {
+                    id_number = tIdNumber.Text,
                     fee_type = row.Cells["fee_type"].Value.ToString(),
                     amount = Convert.ToDecimal(row.Cells["amount"].Value)
                 };
                 var x = new FeeCollection();
-                x.assessmentBreakdownSave(parameter.amount, parameter.fee_type);
+                x.assessmentBreakdownSave(parameter.id_number, parameter.amount, parameter.fee_type);
             }
         }
 
@@ -287,39 +290,69 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-            decimal collection = Convert.ToDecimal(tAmount.Text);
-            if (collection < 500)
+            if (tAmount.Text == "")
             {
-                Toastr.toast("Error", "Payment amount not accepter!");
+                Toastr.toast("Error", "Missing Fields");
             }
             else
             {
-                if (MessageBox.Show("Confirm Payment: " + tAmount.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                decimal collection = Convert.ToDecimal(tAmount.Text);
+                decimal payable = Convert.ToDecimal(tAmountPayable.Text);
+                decimal change = 0;
+                if (collection < 500 && (decimal)dgvFeeBreakdown.Rows[0].Cells["amount"].Value > 0)
                 {
-                    soaCollection();
-                    feeBreakDownSave();
-                    assessmentBreakdownSave();
-
-                    var data = new FeeCollection();
-                    var studentStatus = data.loadStudentAccounts(tIdNumber.Text);
-
-                    if (studentStatus.Rows[0]["status"].ToString() == "Accounting")
+                    Toastr.toast("Error", "Payment amount not accepted!");
+                }
+                else if (cPayment.Checked)
+                {
+                    if (MessageBox.Show("Confirm Payment: " + tAmount.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        var changeStatus = new FeeCollection();
-                        changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
-                    }
+                        soaCollection();
+                        feeBreakDownSave();
+                        assessmentBreakdownSave();
 
-                    Toastr.toast("Success", "Payment Saved!");
+                        var data = new FeeCollection();
+                        var studentStatus = data.loadStudentAccounts(tIdNumber.Text);
+
+                        if (studentStatus.Rows[0]["status"].ToString() == "Accounting")
+                        {
+                            var changeStatus = new FeeCollection();
+                            changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
+                        }
+
+                        var frm = new frm_payment_message(tIdNumber.Text, 0);
+                        frm.ShowDialog();
+                    }
+                }
+                else
+                {
+                    change = collection - payable;
+
+                    if (change < 0)
+                    {
+                        Toastr.toast("Error", "Payment not accepted, please provide higher than the payable");
+                    }
+                    else
+                    {
+                        soaCollection();
+                        feeBreakDownSave();
+                        assessmentBreakdownSave();
+
+                        var data = new FeeCollection();
+                        var studentStatus = data.loadStudentAccounts(tIdNumber.Text);
+
+                        if (studentStatus.Rows[0]["status"].ToString() == "Accounting")
+                        {
+                            var changeStatus = new FeeCollection();
+                            changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
+                        }
+
+                        var frm = new frm_payment_message(tIdNumber.Text, change);
+                        frm.ShowDialog();
+                    }
                 }
             }
-
-            try
-            {
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -333,6 +366,20 @@ namespace school_management_system_model.Forms.transactions.Collection
                 dgvAssessmentBreakdown.Rows.Clear();
                 tIdNumber.Text = id_number;
                 loadRecords();
+                
+            }
+        }
+
+        private void loadAmountPayable()
+        {
+            decimal amount = 0;
+            foreach (DataGridViewRow row in dgvFeeBreakdown.Rows )
+            {
+                if ((decimal)row.Cells["amount"].Value > 0)
+                {
+                    tAmountPayable.Text = row.Cells["amount"].Value.ToString();
+                    break;
+                }
             }
         }
 
@@ -341,6 +388,10 @@ namespace school_management_system_model.Forms.transactions.Collection
             var frm = new frm_print_receipt(tCampus.Text, tIdNumber.Text);
             frm.Text = "ISAP";
             frm.ShowDialog();
+
+            var frm2 = new frm_print_receipt_breakdown(tIdNumber.Text, tSchoolYear.Text);
+            frm.Text = "ISAP";
+            frm2.ShowDialog();
         }
     }
 }
