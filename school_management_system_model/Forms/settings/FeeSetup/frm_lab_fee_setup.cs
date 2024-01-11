@@ -71,6 +71,7 @@ namespace school_management_system_model.Forms.settings
                     add.addRecords();
                     MessageBox.Show("Miscellaneous Fee Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadRecords();
+                    txtClear();
                 }
                 else if (btn_save.Text == "Update")
                 {
@@ -88,6 +89,7 @@ namespace school_management_system_model.Forms.settings
                     edit.editRecords();
                     MessageBox.Show("Miscellaneous Fee Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadRecords();
+                    txtClear();
                 }
             }
             catch(Exception ex)
