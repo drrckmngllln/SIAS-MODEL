@@ -154,9 +154,11 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton1_Click_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("are you sure you want to delete this record?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete this fee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                deleteRecords();
+                var delete = new LabFeeSetup();
+                delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                loadRecords();
             }
         }
 
@@ -195,6 +197,20 @@ namespace school_management_system_model.Forms.settings
             };
             frm.Text = "View";
             frm.ShowDialog();
+        }
+
+        private void tsearch_TextChanged_1(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Length > 2)
+            {
+                var data = new LabFeeSetup();
+                var search = data.searchRecords(tsearch.Text);
+                dgv.DataSource = search;
+            }
+            else if (tsearch.Text.Length == 0)
+            {
+                loadRecords();
+            }
         }
     }
 }

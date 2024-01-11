@@ -82,6 +82,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                         third_year = tThirdYear.Text,
                         fourth_year = tFourthYear.Text
                     };
+                    
                     edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
                     MessageBox.Show("Updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadRecords();
@@ -136,6 +137,11 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             {
                 loadRecords();
             }
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
