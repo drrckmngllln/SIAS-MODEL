@@ -89,7 +89,8 @@ namespace school_management_system_model.Forms.settings
                     status = t7.Text
                 };
                 add.addRecords();
-                MessageBox.Show("Curriculum Add Success");
+                
+                new Classes.Toastr().toast("Success", "Curriculum Added");
                 loadrecords();
                 txtclear();
 
@@ -107,7 +108,9 @@ namespace school_management_system_model.Forms.settings
                     status = t7.Text
                 };
                 edit.editRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
-                MessageBox.Show("Curriculum Update Success");
+                
+                new Classes.Toastr().toast("Information", "Curriculum Updated");
+
                 loadrecords();
                 txtclear();
             }
@@ -129,7 +132,9 @@ namespace school_management_system_model.Forms.settings
         {
             var delete = new Curriculums();
             delete.deleteRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
-            MessageBox.Show("Curriculum Deleted");
+            
+            new Classes.Toastr().toast("Information", "Curriculum Deleted");
+
             loadrecords();
         }
 

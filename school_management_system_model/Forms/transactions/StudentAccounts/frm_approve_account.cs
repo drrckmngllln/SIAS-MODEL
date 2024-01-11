@@ -71,7 +71,10 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 cmd = new MySqlCommand("update student_accounts set status='For Enrollment' where id_number='" + idNumber + "'", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Student Approved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                new Classes.Toastr().toast("Success", "Student Approved");
+
+
                 Close();
             }
             catch (Exception ex)
@@ -90,7 +93,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         {
             if (tCurriculum.Text == "")
             {
-                MessageBox.Show("Please select a curriculum", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                new Classes.Toastr().toast("Error", "Please select a curriculum");
             }
             else
             {

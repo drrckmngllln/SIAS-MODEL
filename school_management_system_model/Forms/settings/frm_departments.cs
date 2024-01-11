@@ -64,7 +64,8 @@ namespace school_management_system_model.Forms.settings
                 cmd.Parameters.AddWithValue("@3", t3.Text);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Department Add Success");
+                
+                new Classes.Toastr().toast("Success", "Department Added");
                 loadrecords();
                 txtclear();
             }
@@ -78,7 +79,8 @@ namespace school_management_system_model.Forms.settings
                 cmd.Parameters.AddWithValue("@3", t3.Text);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Department Add Success");
+               
+                new Classes.Toastr().toast("Information", "Department Updated");
                 loadrecords();
                 txtclear();
             }
@@ -128,6 +130,7 @@ namespace school_management_system_model.Forms.settings
             da.SelectCommand = new MySqlCommand("delete from departments where id='" + ID + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
+            new Classes.Toastr().toast("Information", "Department Deleted");
             MessageBox.Show("Department Deleted");
             loadrecords();
         }

@@ -1895,7 +1895,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.01857in</Width>
+              <Width>2.52039in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.51042in</Width>
@@ -2304,10 +2304,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>StudentAssessment</DataSetName>
-        <Top>2.45977in</Top>
-        <Left>1.12034in</Left>
+        <Top>2.42933in</Top>
+        <Left>0.98458in</Left>
         <Height>1in</Height>
-        <Width>6.52899in</Width>
+        <Width>4.03081in</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -3069,8 +3069,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>FeeBreakdown</DataSetName>
-        <Top>3.52922in</Top>
-        <Left>5.20849in</Left>
+        <Top>3.49878in</Top>
+        <Left>5.07272in</Left>
         <Height>1.75in</Height>
         <Width>2.44083in</Width>
         <ZIndex>15</ZIndex>
@@ -3084,15 +3084,15 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.50938in</Width>
+              <Width>1.49534in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.52144in</Width>
+              <Width>0.94549in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.35in</Height>
+              <Height>0.19in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -3136,7 +3136,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.35in</Height>
+              <Height>0.19in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -3247,7 +3247,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.35in</Height>
+              <Height>0.19in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -3358,7 +3358,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.35in</Height>
+              <Height>0.19in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -3469,7 +3469,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.35in</Height>
+              <Height>0.19in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -3608,10 +3608,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>FeeSummary</DataSetName>
-        <Top>3.52922in</Top>
-        <Left>1.12033in</Left>
-        <Height>1.75in</Height>
-        <Width>4.03082in</Width>
+        <Top>2.47933in</Top>
+        <Left>5.07272in</Left>
+        <Height>0.95in</Height>
+        <Width>2.44083in</Width>
         <ZIndex>16</ZIndex>
         <Style>
           <Border>
@@ -3620,7 +3620,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>5.27922in</Height>
+    <Height>5.24878in</Height>
     <Style />
   </Body>
   <Width>8.49813in</Width>

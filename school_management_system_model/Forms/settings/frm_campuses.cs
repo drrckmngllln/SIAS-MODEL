@@ -31,6 +31,12 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             dgv.DataSource = dt;
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["code"].HeaderText = "Code";
+            dgv.Columns["description"].HeaderText = "Description";
+            dgv.Columns["address"].HeaderText = "Address";
+            dgv.Columns["status"].HeaderText = "Status";
+
         }
 
         private void add_records()
@@ -46,7 +52,8 @@ namespace school_management_system_model.Forms.settings
                 cmd.Parameters.AddWithValue("@4", t4.Text);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Campus Add Success");
+                
+                new Classes.Toastr().toast("Success", "Campus Add Success");
                 loadrecords();
                 txtclear();
             }
@@ -61,7 +68,8 @@ namespace school_management_system_model.Forms.settings
                 cmd.Parameters.AddWithValue("@4", t4.Text);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Campus Add Success");
+                
+                new Classes.Toastr().toast("Information", "Campus Update Success");
                 loadrecords();
                 txtclear();
             }
@@ -112,7 +120,8 @@ namespace school_management_system_model.Forms.settings
             da.SelectCommand = new MySqlCommand("delete from campuses where id='" + ID + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
-            MessageBox.Show("Campus Deleted");
+            
+            new Classes.Toastr().toast("Information", "Campus Deleted");
             loadrecords();
         }
 

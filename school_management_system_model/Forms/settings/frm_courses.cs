@@ -122,7 +122,7 @@ namespace school_management_system_model.Forms.settings
                     cmd.Parameters.AddWithValue("@7", t7.Text);
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Course Update Success");
+                    
                     Toastr.toast("Information", "Update Success");
                     loadrecords();
                     txtclear();
@@ -189,6 +189,7 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             MessageBox.Show("Course Deleted");
+            new Classes.Toastr().toast("Information", "Course Deleted");
             loadrecords();
         }
 
