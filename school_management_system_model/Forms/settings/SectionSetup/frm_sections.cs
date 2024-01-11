@@ -73,7 +73,7 @@ namespace school_management_system_model.Forms.settings
                         remarks = tRemarks.Text
                     };
                     add.addSection();
-                    MessageBox.Show("Section Add Success", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                     new Classes.Toastr().toast("Success", "Section Add Success");
                     loadrecords();
                 }

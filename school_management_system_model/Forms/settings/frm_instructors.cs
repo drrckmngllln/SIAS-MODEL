@@ -56,6 +56,7 @@ namespace school_management_system_model.Forms.settings
                 };
                 data.addRecords();
                 MessageBox.Show("Instructor Added","Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new Classes.Toastr().toast("Success", "Instructor Added");
                 loadRecords();
                 txtClear();
             }
@@ -69,7 +70,8 @@ namespace school_management_system_model.Forms.settings
                     position = tPosition.Text
                 };
                 data.editRecords();
-                MessageBox.Show("Instructor Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
+                new Classes.Toastr().toast("Information", "Instructor Updated");
                 loadRecords();
                 txtClear();
             }
@@ -90,7 +92,8 @@ namespace school_management_system_model.Forms.settings
                 id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString())
             };
             delete.deleteRecords();
-            MessageBox.Show("Delete Success", "Success", MessageBoxButtons.OK,MessageBoxIcon.Information);
+            
+            new Classes.Toastr().toast("Information", "Instructor Deleted");
             loadRecords();
         }
 

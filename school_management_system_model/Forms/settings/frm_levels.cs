@@ -31,6 +31,10 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             dgv.DataSource = dt;
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["code"].HeaderText = "Code";
+            dgv.Columns["description"].HeaderText = "Description";
+            dgv.Columns["status"].HeaderText = "Status";
         }
 
         private void add_records()
@@ -45,7 +49,8 @@ namespace school_management_system_model.Forms.settings
                 cmd.Parameters.AddWithValue("@3", t3.Text);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Levels Add Success");
+                
+                new Classes.Toastr().toast("Success", "Level Added");
                 loadrecords();
                 txtclear();
 
@@ -61,6 +66,7 @@ namespace school_management_system_model.Forms.settings
                 cmd.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("Levels Update Success");
+                new Classes.Toastr().toast("Information", "Level Updated");
                 loadrecords();
                 txtclear();
             }
@@ -73,7 +79,8 @@ namespace school_management_system_model.Forms.settings
             da.SelectCommand = new MySqlCommand("delete from levels where id='" + ID + "'");
             var dt = new DataTable();
             da.Fill(dt);
-            MessageBox.Show("Level Deleted");
+            
+            new Classes.Toastr().toast("Information", "Level Deleteds");
             loadrecords();
         }
 

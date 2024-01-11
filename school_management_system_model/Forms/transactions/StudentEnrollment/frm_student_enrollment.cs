@@ -1,8 +1,5 @@
 ﻿using Krypton.Toolkit;
-using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
-using school_management_system_model.Forms.transactions.Classes;
-using school_management_system_model.Reports.Accounting;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -235,20 +232,23 @@ namespace school_management_system_model.Forms.transactions
                     }
 
                     // changing the status of the accounts
-                    var status = new student_accounts
+                    var status = new StudentAccount
                     {
                         id_number = tIdNumber.Text,
                         status = "Accounting"
                     };
-                    status.changeStatus();
+                    status.approveStudent(tIdNumber.Text);
 
-                    MessageBox.Show("Subjects Successfully Added! Proceed to Accounting!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   
+                    new Classes.Toastr().toast("Success", "Student Enrolled, Proceed to Accounting");
+
                     Close();
                 }
                 else if (increment == "Full")
                 {
-                    MessageBox.Show("Section is Full Please select another section", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                    new Classes.Toastr().toast("Error", "Section Full");
+
                     var data = new add_subjects
                     {
                         section_code = tSection.Text,

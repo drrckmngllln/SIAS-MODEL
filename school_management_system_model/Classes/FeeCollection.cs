@@ -48,10 +48,10 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
-        public DataTable loadStatementOfAccounts(string idNumber)
+        public DataTable loadStatementOfAccounts(string idNumber, string schoolYear)
         {
             var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from statements_of_accounts where id_number='" + idNumber + "'", con);
+            var da = new MySqlDataAdapter("select * from statements_of_accounts where id_number='" + idNumber + "' and school_year='"+ schoolYear +"'", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt;

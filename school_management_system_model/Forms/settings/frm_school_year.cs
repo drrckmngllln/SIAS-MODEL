@@ -115,7 +115,7 @@ namespace school_management_system_model.Forms.settings
             int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
             var delete = new SchoolYearSetup();
             delete.deleteRecords(id);
-            MessageBox.Show("Record Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
             new Classes.Toastr().toast("Information", "Successfully Deleted");
             loadRecords();
         }

@@ -69,7 +69,7 @@ namespace school_management_system_model.Reports.Accounting
                 var rpt5 = new ReportDataSource("StudentSubjects", studentSubjects);
                 var rpt6 = new ReportDataSource("FeeSummary", feeSummary);
 
-                crv.LocalReport.ReportPath = @"Reports\isap_assessment.rdlc";
+                crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_assessment.rdlc";
 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);
@@ -122,7 +122,6 @@ namespace school_management_system_model.Reports.Accounting
                 var rpt5 = new ReportDataSource("StudentSubjects", studentSubjects);
                 var rpt6 = new ReportDataSource("FeeSummary", feeSummary);
 
-                crv.LocalReport.ReportPath = Application.StartupPath + @"Reports\mcnp_assessment.rdlc";
 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);
@@ -131,6 +130,7 @@ namespace school_management_system_model.Reports.Accounting
                 crv.LocalReport.DataSources.Add(rpt5);
                 crv.LocalReport.DataSources.Add(rpt6);
 
+                crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\mcnp_assessment.rdlc";
 
                 crv.SetDisplayMode(DisplayMode.PrintLayout);
                 crv.ZoomMode = ZoomMode.Percent;

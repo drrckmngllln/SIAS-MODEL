@@ -54,7 +54,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
             var rpt2 = new ReportDataSource("StatementOfAccounts", statementOfAccounts);
 
-            crv.LocalReport.ReportPath = Application.StartupPath + @"Reports\isap_receipt.rdlc";
+            crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_receipt.rdlc";
 
             var changeParams = new ReportParameterCollection();
             changeParams.Add(new ReportParameter("ChangeParams", tChange.Text));

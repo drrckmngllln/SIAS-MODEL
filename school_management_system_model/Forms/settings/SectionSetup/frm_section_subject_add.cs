@@ -77,6 +77,7 @@ namespace school_management_system_model.Forms.settings
                     room = tRoom.Text
                 };
                 save.saveSectionSubjects();
+                new Classes.Toastr().toast("Success", "Subject Imported");
                 this.Close();
             }
             catch(Exception ex)
@@ -110,8 +111,11 @@ namespace school_management_system_model.Forms.settings
                         room = tRoom.Text
                     };
                     save.saveSectionSubjects();
-                    Close();
+                    
+                    
                 }
+                new Classes.Toastr().toast("Success", "Subjects Imported");
+                Close();
             }
             catch(Exception ex)
             {

@@ -106,22 +106,33 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dgv.Rows)
+            try
             {
-                curriculumIdCode = curriculum + row.Cells["code"].Value.ToString();
-                year_level = row.Cells["year_level"].Value.ToString();
-                semester = row.Cells["semester"].Value.ToString();
-                code = row.Cells["code"].Value.ToString();
-                descriptive_title = row.Cells["descriptive_title"].Value.ToString();
-                total_units = row.Cells["total_units"].Value.ToString();
-                lecture_units = row.Cells["lecture_units"].Value.ToString();
-                lab_units = row.Cells["lab_units"].Value.ToString();
-                pre_requisite = row.Cells["pre_requisite"].Value.ToString();
-                total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
-                saveRecords();
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    curriculumIdCode = curriculum + row.Cells["code"].Value.ToString();
+                    year_level = row.Cells["year_level"].Value.ToString();
+                    semester = row.Cells["semester"].Value.ToString();
+                    code = row.Cells["code"].Value.ToString();
+                    descriptive_title = row.Cells["descriptive_title"].Value.ToString();
+                    total_units = row.Cells["total_units"].Value.ToString();
+                    lecture_units = row.Cells["lecture_units"].Value.ToString();
+                    lab_units = row.Cells["lab_units"].Value.ToString();
+                    pre_requisite = row.Cells["pre_requisite"].Value.ToString();
+                    total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
+                    saveRecords();
+                }
+
+                new Classes.Toastr().toast("Success", "Curriculum Import Success");
+
+                Close();
             }
-            MessageBox.Show("Curriculum Subjects Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Close();
+            catch(Exception ex)
+            {
+                new Classes.Toastr().toast("Error", ex.Message);
+
+            }
+
         }
     }
 }

@@ -351,7 +351,6 @@
     <Compile Include="Forms\settings\frm_subjects.Designer.cs">
       <DependentUpon>frm_subjects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\student_accounts.cs" />
     <Compile Include="Forms\settings\FeeSetup\frm_tuition_fee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -483,12 +482,6 @@
     </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\frm_student_accounts.Designer.cs">
       <DependentUpon>frm_student_accounts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\transactions\frm_student_application.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\transactions\frm_student_application.Designer.cs">
-      <DependentUpon>frm_student_application.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\transactions\StudentAssessment\frm_student_assessment.cs">
       <SubType>Form</SubType>
@@ -740,9 +733,6 @@
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_student_accounts.resx">
       <DependentUpon>frm_student_accounts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\transactions\frm_student_application.resx">
-      <DependentUpon>frm_student_application.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAssessment\frm_student_assessment.resx">
       <DependentUpon>frm_student_assessment.cs</DependentUpon>
     </EmbeddedResource>
@@ -768,11 +758,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\Assessment\isap_assessment.rdlc" />
+    <EmbeddedResource Include="Reports\Assessment\mcnp_assessment.rdlc" />
     <EmbeddedResource Include="Reports\frm_isap_assessment.resx">
       <DependentUpon>frm_isap_assessment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Assessment\isap_assessment.rdlc" />
-    <EmbeddedResource Include="Reports\Assessment\mcnp_assessment.rdlc" />
     <EmbeddedResource Include="Reports\frm_print_receipt.resx">
       <DependentUpon>frm_print_receipt.cs</DependentUpon>
     </EmbeddedResource>

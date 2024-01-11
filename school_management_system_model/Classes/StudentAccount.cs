@@ -214,7 +214,7 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("update student_accounts set Status='For Enrollment' " +
+            var cmd = new MySqlCommand("update student_accounts set Status='Accounting' " +
                 "where id_number='" + idNumber + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();

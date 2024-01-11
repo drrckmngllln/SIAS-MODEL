@@ -89,7 +89,9 @@ namespace school_management_system_model.Forms.settings
                 DialogResult.Yes)
             {
                 delete();
-                MessageBox.Show("Curriculum Subject Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                new Classes.Toastr().toast("Information", "Curriculum Subject Deleted");
+
                 loadrecords();
             }
         }
@@ -115,6 +117,8 @@ namespace school_management_system_model.Forms.settings
             {
                 deleteAll(tcode.Text);
                 MessageBox.Show("Curriculum Subject Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new Classes.Toastr().toast("Information", "Curriculum Subject Deleted");
+
                 loadrecords();
             }
         }
