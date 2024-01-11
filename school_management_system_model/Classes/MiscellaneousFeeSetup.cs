@@ -81,7 +81,7 @@ namespace school_management_system_model.Classes
         public DataTable searchRecords(string search)
         {
             var con = new MySqlConnection(connection.con());
-            var sql = "select * from miscellaneous_fee_setup where concat(category, campus) like '%" + search + "%'";
+            var sql = "select * from miscellaneous_fee_setup where concat(description) like '%" + search + "%'";
             var da = new MySqlDataAdapter(sql, con);
             var dt = new DataTable();
             da.Fill(dt);
