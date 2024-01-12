@@ -78,6 +78,22 @@ namespace school_management_system_model.Forms.transactions.Collection
             Close();
         }
 
-        
+        private void printReceipt()
+        {
+            crv.PrintDialog();
+        }
+
+        private void btnConfirmPayment_Click(object sender, EventArgs e)
+        {
+            printReceipt();
+        }
+
+        private void frm_payment_message_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                printReceipt();
+            }
+        }
     }
 }

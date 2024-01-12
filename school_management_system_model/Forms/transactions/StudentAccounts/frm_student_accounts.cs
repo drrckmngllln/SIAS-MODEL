@@ -44,6 +44,10 @@ namespace school_management_system_model.Forms.transactions
             }
             
         }
+        private void getStudentCourse()
+        {
+            tSudentCourse.Text = new StudentAccount().getStudentCourse(dgv.CurrentRow.Cells["id_number"].Value.ToString());
+        }
 
         private void frm_student_accounts_Load(object sender, EventArgs e)
         {
@@ -202,6 +206,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 btnEnroll.Enabled = false;
             }
+            getStudentCourse();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)

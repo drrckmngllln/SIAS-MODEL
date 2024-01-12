@@ -201,9 +201,9 @@ namespace school_management_system_model.Forms.transactions
                     dgv.Columns["mother_no"].Visible = false;
                     dgv.Columns["father_name"].Visible = false;
                     dgv.Columns["father_no"].Visible = false;
-                    dgv.Columns["home_address)"].Visible = false;
-                    dgv.Columns["m_occupation)"].Visible = false;
-                    dgv.Columns["f_occupation)"].Visible = false;
+                    dgv.Columns["home_address"].Visible = false;
+                    dgv.Columns["m_occupation"].Visible = false;
+                    dgv.Columns["f_occupation"].Visible = false;
                     dgv.Columns["date_of_admission"].Visible=false;
                 }
                 else if (tSearch.Text.Length == 0)

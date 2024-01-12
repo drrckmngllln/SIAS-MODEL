@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,57 +12,22 @@ namespace school_management_system_model.Classes
 {
     internal class StudentAccount
     {
-        public int id { get; set; }
-        public string semester { get; set; }
-        public string id_number { get; set; }
-        public string sy_enrolled { get; set; }
-        public string school_year { get; set; }
-        public string full_name { get; set; }
-        public string last_name { get; set; }
-        public string first_name { get; set; }
-        public string middle_name { get; set; }
-        public string gender { get; set; }
-        public string civil_status { get; set; }
-        public string date_of_birth { get; set; }
-        public string place_of_birth { get; set; }
-        public string nationality { get; set; }
-        public string religion { get; set; }
-        public string status { get; set; }
-
-        public string contact_no { get; set; }
-        public string email { get; set; }
-
-        public string elem { get; set; }
-        public string jhs { get; set; }
-        public string shs { get; set; }
-        public string elem_year { get; set; }
-        public string jhs_year { get; set; }
-        public string shs_year { get; set; }
-        public string mother_name { get; set; }
-
-        public string mother_no { get; set; }
-        public string father_name{ get; set; }
-        public string father_no { get; set; }
-
-        public string home_address { get; set; }
-
-        public string f_occupation { get; set; }
-        public string m_occupation { get; set; }
-
-        public string type_of_student {  get; set; }
-
-        public string date_of_admission { get; set; }
-
-        public string course { get; set; }
-        public string campus { get; set; }
-       
 
 
+        
+        public string getStudentCourse(string idNumber)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from student_course where id_number='" + idNumber + "'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt.Rows[0]["course"].ToString();
+        }
         public DataTable loadRecords(string schoolYear)
         {
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select * from student_accounts where school_year='" + schoolYear + "' " +
-                "order by id desc", con);
+                "order by id desc limit 100", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt;
@@ -78,6 +44,14 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection (connection.con());
             var da = new MySqlDataAdapter("select * from student_accounts where id='" + id + "'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+        public DataTable loadUpdateCourseRecord(string idNumber)
+        {
+            var con = new MySqlConnection(connection.con());
+            var da = new MySqlDataAdapter("select * from student_course where id_number='" + idNumber + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt;
@@ -106,59 +80,60 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt.Rows[0]["semester"].ToString();
         }
-        public void addRecord()
+        public void addRecord(SaveStudentAccountsParams parameter)
         {
+            
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("insert into student_accounts(id_number, school_year, fullname, last_name, " +
                 "first_name, middle_name, gender, civil_status, date_of_birth, place_of_birth, nationality, " +
                 "religion, status,sy_enrolled, contact_no, email, elem, jhs, shs, elem_year,jhs_year, shs_year,mother_name,mother_no,father_name,father_no,home_address,m_occupation,f_occupation, type_of_student, date_of_admission) " +
                 "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@16,@17,@18,@19,@20,@21,@22,@23,@24,@25,@26,@27,@28,@29,@30,@31,@32)", con);
-            cmd.Parameters.AddWithValue("@1", id_number);
-            cmd.Parameters.AddWithValue("@2", school_year);
-            cmd.Parameters.AddWithValue("@3", full_name);
-            cmd.Parameters.AddWithValue("@4", last_name);
-            cmd.Parameters.AddWithValue("@5", first_name);
-            cmd.Parameters.AddWithValue("@6", middle_name);
-            cmd.Parameters.AddWithValue("@7", gender);
-            cmd.Parameters.AddWithValue("@8", civil_status);
-            cmd.Parameters.AddWithValue("@9", date_of_birth);
-            cmd.Parameters.AddWithValue("@10", place_of_birth);
-            cmd.Parameters.AddWithValue("@11", nationality);
-            cmd.Parameters.AddWithValue("@12", religion);
-            cmd.Parameters.AddWithValue("@13", status);
-            cmd.Parameters.AddWithValue("@14", sy_enrolled);
-            cmd.Parameters.AddWithValue("@16", contact_no);
-            cmd.Parameters.AddWithValue("@17", email);
-            cmd.Parameters.AddWithValue("@18", elem);
-            cmd.Parameters.AddWithValue("@19", jhs);
-            cmd.Parameters.AddWithValue("@20", shs);
-            cmd.Parameters.AddWithValue("@21", elem_year);
-            cmd.Parameters.AddWithValue("@22", jhs_year);
-            cmd.Parameters.AddWithValue("@23", shs_year);
-            cmd.Parameters.AddWithValue("@24", mother_name);
-            cmd.Parameters.AddWithValue("@25", mother_no);
-            cmd.Parameters.AddWithValue("@26", father_name);
-            cmd.Parameters.AddWithValue("@27", father_no);
-            cmd.Parameters.AddWithValue("@28", home_address);
-            cmd.Parameters.AddWithValue("@29", m_occupation);
-            cmd.Parameters.AddWithValue("@30", f_occupation);
-            cmd.Parameters.AddWithValue("@31", type_of_student);
-            cmd.Parameters.AddWithValue("@32", date_of_admission);
+            cmd.Parameters.AddWithValue("@1", parameter.id_number);
+            cmd.Parameters.AddWithValue("@2", parameter.school_year);
+            cmd.Parameters.AddWithValue("@3", parameter.full_name);
+            cmd.Parameters.AddWithValue("@4", parameter.last_name);
+            cmd.Parameters.AddWithValue("@5", parameter.first_name);
+            cmd.Parameters.AddWithValue("@6", parameter.middle_name);
+            cmd.Parameters.AddWithValue("@7", parameter.gender);
+            cmd.Parameters.AddWithValue("@8", parameter.civil_status);
+            cmd.Parameters.AddWithValue("@9", parameter.date_of_birth);
+            cmd.Parameters.AddWithValue("@10", parameter.place_of_birth);
+            cmd.Parameters.AddWithValue("@11", parameter.nationality);
+            cmd.Parameters.AddWithValue("@12", parameter.religion);
+            cmd.Parameters.AddWithValue("@13", parameter.status);
+            cmd.Parameters.AddWithValue("@14", parameter.sy_enrolled);
+            cmd.Parameters.AddWithValue("@16", parameter.contact_no);
+            cmd.Parameters.AddWithValue("@17", parameter.email);
+            cmd.Parameters.AddWithValue("@18", parameter.elem);
+            cmd.Parameters.AddWithValue("@19", parameter.jhs);
+            cmd.Parameters.AddWithValue("@20", parameter.shs);
+            cmd.Parameters.AddWithValue("@21", parameter.elem_year);
+            cmd.Parameters.AddWithValue("@22", parameter.jhs_year);
+            cmd.Parameters.AddWithValue("@23", parameter.shs_year);
+            cmd.Parameters.AddWithValue("@24", parameter.mother_name);
+            cmd.Parameters.AddWithValue("@25", parameter.mother_no);
+            cmd.Parameters.AddWithValue("@26", parameter.father_name);
+            cmd.Parameters.AddWithValue("@27", parameter.father_no);
+            cmd.Parameters.AddWithValue("@28", parameter.home_address);
+            cmd.Parameters.AddWithValue("@29", parameter.m_occupation);
+            cmd.Parameters.AddWithValue("@30", parameter.f_occupation);
+            cmd.Parameters.AddWithValue("@31", parameter.type_of_student);
+            cmd.Parameters.AddWithValue("@32", parameter.date_of_admission);
             cmd.ExecuteNonQuery();
             con.Close();
 
             // Saving Student Course
             con.Open();
             cmd = new MySqlCommand("insert into student_course(id_number, course, campus, semester) values(@1,@2,@3,@4)", con);
-            cmd.Parameters.AddWithValue("@1", id_number);
-            cmd.Parameters.AddWithValue("@2", course);
-            cmd.Parameters.AddWithValue("@3", campus);
-            cmd.Parameters.AddWithValue("@4", semester);
+            cmd.Parameters.AddWithValue("@1", parameter.id_number);
+            cmd.Parameters.AddWithValue("@2", parameter.course);
+            cmd.Parameters.AddWithValue("@3", parameter.campus);
+            cmd.Parameters.AddWithValue("@4", parameter.semester);
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public void editRecord(string idNumber)
+        public void editRecord(SaveStudentAccountsParams parameter)
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
@@ -166,38 +141,43 @@ namespace school_management_system_model.Classes
                 "last_name=@4, first_name=@5, middle_name=@6, gender=@7, civil_status=@8, date_of_birth=@9, " +
                 "place_of_birth=@10, nationality=@11, religion=@12, status=@13, sy_enrolled=@14, contact_no=@16, " +
                 "email=@17, elem=@18, jhs=@19, shs=@20, elem_year=@21, jhs_year=@22, shs_year=@23,mother_name=@24," +
-                "mother_no=@25, father_name=@26,father_no=@27,home_address=@28, m_occupation=@29, f_occupation=@30, type_of_student= @31, date_of_admission=@32 where id_number='"+ idNumber +"'", con);
-            cmd.Parameters.AddWithValue("@1", id_number);
-            cmd.Parameters.AddWithValue("@2", school_year);
-            cmd.Parameters.AddWithValue("@3", full_name);
-            cmd.Parameters.AddWithValue("@4", last_name);
-            cmd.Parameters.AddWithValue("@5", first_name);
-            cmd.Parameters.AddWithValue("@6", middle_name);
-            cmd.Parameters.AddWithValue("@7", gender);
-            cmd.Parameters.AddWithValue("@8", civil_status);
-            cmd.Parameters.AddWithValue("@9", date_of_birth);
-            cmd.Parameters.AddWithValue("@10", place_of_birth);
-            cmd.Parameters.AddWithValue("@11", nationality);
-            cmd.Parameters.AddWithValue("@12", religion);
-            cmd.Parameters.AddWithValue("@13", status);
-            cmd.Parameters.AddWithValue("@14", sy_enrolled);
-            cmd.Parameters.AddWithValue("@16", contact_no);
-            cmd.Parameters.AddWithValue("@17", email);
-            cmd.Parameters.AddWithValue("@18", elem);
-            cmd.Parameters.AddWithValue("@19", jhs);
-            cmd.Parameters.AddWithValue("@20", shs);
-            cmd.Parameters.AddWithValue("@21", elem_year);
-            cmd.Parameters.AddWithValue("@22", jhs_year);
-            cmd.Parameters.AddWithValue("@23", shs_year);
-            cmd.Parameters.AddWithValue("@24", mother_name);
-            cmd.Parameters.AddWithValue("@25", mother_no);
-            cmd.Parameters.AddWithValue("@26", father_name);
-            cmd.Parameters.AddWithValue("@27", father_no);
-            cmd.Parameters.AddWithValue("@28", home_address);
-            cmd.Parameters.AddWithValue("@29", m_occupation);
-            cmd.Parameters.AddWithValue("@30", f_occupation);
-            cmd.Parameters.AddWithValue("@31", type_of_student);
-            cmd.Parameters.AddWithValue("@32", date_of_admission);
+                "mother_no=@25, father_name=@26,father_no=@27,home_address=@28, m_occupation=@29, f_occupation=@30, type_of_student= @31, date_of_admission=@32 where id_number='"+ parameter.id_number +"'", con);
+            cmd.Parameters.AddWithValue("@1", parameter.id_number);
+            cmd.Parameters.AddWithValue("@2", parameter.school_year);
+            cmd.Parameters.AddWithValue("@3", parameter.full_name);
+            cmd.Parameters.AddWithValue("@4", parameter.last_name);
+            cmd.Parameters.AddWithValue("@5", parameter.first_name);
+            cmd.Parameters.AddWithValue("@6", parameter.middle_name);
+            cmd.Parameters.AddWithValue("@7", parameter.gender);
+            cmd.Parameters.AddWithValue("@8", parameter.civil_status);
+            cmd.Parameters.AddWithValue("@9", parameter.date_of_birth);
+            cmd.Parameters.AddWithValue("@10", parameter.place_of_birth);
+            cmd.Parameters.AddWithValue("@11", parameter.nationality);
+            cmd.Parameters.AddWithValue("@12", parameter.religion);
+            cmd.Parameters.AddWithValue("@13", parameter.status);
+            cmd.Parameters.AddWithValue("@14", parameter.sy_enrolled);
+            cmd.Parameters.AddWithValue("@16", parameter.contact_no);
+            cmd.Parameters.AddWithValue("@17", parameter.email);
+            cmd.Parameters.AddWithValue("@18", parameter.elem);
+            cmd.Parameters.AddWithValue("@19", parameter.jhs);
+            cmd.Parameters.AddWithValue("@20", parameter.shs);
+            cmd.Parameters.AddWithValue("@21", parameter.elem_year);
+            cmd.Parameters.AddWithValue("@22", parameter.jhs_year);
+            cmd.Parameters.AddWithValue("@23", parameter.shs_year);
+            cmd.Parameters.AddWithValue("@24", parameter.mother_name);
+            cmd.Parameters.AddWithValue("@25", parameter.mother_no);
+            cmd.Parameters.AddWithValue("@26", parameter.father_name);
+            cmd.Parameters.AddWithValue("@27", parameter.father_no);
+            cmd.Parameters.AddWithValue("@28", parameter.home_address);
+            cmd.Parameters.AddWithValue("@29", parameter.m_occupation);
+            cmd.Parameters.AddWithValue("@30", parameter.f_occupation);
+            cmd.Parameters.AddWithValue("@31", parameter.type_of_student);
+            cmd.Parameters.AddWithValue("@32", parameter.date_of_admission);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            con.Open();
+            cmd = new MySqlCommand("update student_course set course='" + parameter.course + "', campus='" + parameter.campus + "' where id_number='" + parameter.id_number + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }

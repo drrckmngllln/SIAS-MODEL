@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -121,6 +122,9 @@ namespace school_management_system_model.Forms.transactions
             else
             {
                 dgv.Rows.Clear();
+                totalUnits = 0;
+                totalLectureUnits = 0;
+                totalLabUnits = 0;
                 var sectionSubjects = new proceed_to_enrollment();
                 var data = sectionSubjects.loadSubjects(tSection.Text, tSemester.Text);
                 foreach(DataRow row in data.Rows)
@@ -232,12 +236,13 @@ namespace school_management_system_model.Forms.transactions
                     }
 
                     // changing the status of the accounts
-                    var status = new StudentAccount
+                    var parameter = new SaveStudentAccountsParams
                     {
                         id_number = tIdNumber.Text,
                         status = "Accounting"
                     };
-                    status.approveStudent(tIdNumber.Text);
+                    var status = new StudentAccount();
+                    status.approveStudent(parameter.id_number);
 
                    
                     new Classes.Toastr().toast("Success", "Student Enrolled, Proceed to Accounting");
