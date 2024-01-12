@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Forms.transactions.StudentAccounts;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,12 @@ namespace school_management_system_model.Forms.transactions
                 tStatus.Text = data.Rows[0]["Status"].ToString();
                 ctype.Text = data.Rows[0]["type_of_student"].ToString();
                 kryptonDateTimePicker1 = new KryptonDateTimePicker();
-               // tCourse.Text = data.Rows[0]["course"].ToString();
+               
+
+                var UpdateCourseData = new StudentAccount().loadUpdateCourseRecord(tIdNumber.Text);
+
+                tCourse.Text = UpdateCourseData.Rows[0]["course"].ToString();
+                tCampus.Text = UpdateCourseData.Rows[0]["campus"].ToString();
                     
 
                 btnCreate.Text = "Update Account";
@@ -123,14 +129,16 @@ namespace school_management_system_model.Forms.transactions
             tLastname.Select();
         }
 
+        
+       
         private void addRecord()
         {
             try
             {
                 if (this.Text == "Create Account")
                 {
-                   
-                    var add = new StudentAccount
+
+                    var parameter = new SaveStudentAccountsParams
                     {
                         id_number = tIdNumber.Text,
 
@@ -154,30 +162,31 @@ namespace school_management_system_model.Forms.transactions
                         shs = tshs.Text,
                         shs_year = tsyear.Text,
                         mother_name = tmother.Text,
-                        mother_no=  tmcontact.Text,
+                        mother_no = tmcontact.Text,
                         father_name = tfather.Text,
-                        father_no= tfcontact.Text,
-                        home_address= tadd.Text,
-                        m_occupation= tmoccupation.Text,
-                        f_occupation=tfoccupation.Text,
-                        type_of_student= ctype.Text,
+                        father_no = tfcontact.Text,
+                        home_address = tadd.Text,
+                        m_occupation = tmoccupation.Text,
+                        f_occupation = tfoccupation.Text,
+                        type_of_student = ctype.Text,
                         status = tStatus.Text,
-                        sy_enrolled =tSchoolyear.Text,
+                        sy_enrolled = tSchoolyear.Text,
                         date_of_admission = kryptonDateTimePicker1.Text,
                         // Inserting of Course
                         course = tCourse.Text,
                         semester = semester,
                         campus = tCampus.Text
-                        
                     };
+                    var add = new StudentAccount();
 
-                    add.addRecord();
+                    add.addRecord(parameter);
                     new school_management_system_model.Classes.Toastr().toast("Success", "Account Saved");
                     Close();
+
                 }
                 else if (this.Text == "Update Account")
                 {
-                    var edit = new StudentAccount
+                    var parameter = new SaveStudentAccountsParams
                     {
                         id_number = tIdNumber.Text,
                         school_year = tSchoolyear.Text,
@@ -207,15 +216,22 @@ namespace school_management_system_model.Forms.transactions
                         m_occupation = tmoccupation.Text,
                         f_occupation = tfoccupation.Text,
                         type_of_student = ctype.Text,
-                        status = tStatus.Text,                     
+                        status = tStatus.Text,
                         sy_enrolled = tSchoolyear.Text,
                         date_of_admission = kryptonDateTimePicker1.Text,
-                        //course = tCourse.Text,
+                        course = tCourse.Text,
+                        campus = tCampus.Text
                     };
-                    edit.editRecord(tIdNumber.Text);
-                    MessageBox.Show("Account Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var edit = new StudentAccount();
+                    edit.editRecord(parameter);
+
+                    edit = new StudentAccount();
+
+
+                    new Classes.Toastr().toast("Information", "Account Updated");
                     Close();
                 }
+                
             }
             catch (Exception ex)
             {

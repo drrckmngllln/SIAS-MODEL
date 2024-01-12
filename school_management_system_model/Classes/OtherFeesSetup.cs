@@ -13,10 +13,10 @@ namespace school_management_system_model.Classes
         public string category { get; set; }
         public string description { get; set; }
         public string campus { get; set; }
-        public string first_year { get; set; }
-        public string second_year { get; set; }
-        public string third_year { get; set; }
-        public string fourth_year { get; set; }
+        public decimal first_year { get; set; }
+        public decimal second_year { get; set; }
+        public decimal third_year { get; set; }
+        public decimal fourth_year { get; set; }
 
         public DataTable loadRecords()
         {

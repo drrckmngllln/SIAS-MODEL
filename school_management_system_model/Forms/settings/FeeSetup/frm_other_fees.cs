@@ -60,13 +60,14 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                         category = tCategory.Text,
                         description = tDescription.Text,
                         campus = tCampus.Text,
-                        first_year = tFirstYear.Text,
-                        second_year = tSecondYear.Text,
-                        third_year = tThirdYear.Text,
-                        fourth_year = tFourthYear.Text
+                        first_year = Convert.ToDecimal(tFirstYear.Text),
+                        second_year = Convert.ToDecimal(tSecondYear.Text),
+                        third_year = Convert.ToDecimal(tThirdYear.Text),
+                        fourth_year = Convert.ToDecimal(tFourthYear.Text)
                     };
                     add.addRecords();
-                    MessageBox.Show("Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new Classes.Toastr().toast("Success", "Other fee Saved");
+                    
                     loadRecords();
                     txtClear();
                 }
@@ -77,14 +78,15 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                         category = tCategory.Text,
                         description = tDescription.Text,
                         campus = tCampus.Text,
-                        first_year = tFirstYear.Text,
-                        second_year = tSecondYear.Text,
-                        third_year = tThirdYear.Text,
-                        fourth_year = tFourthYear.Text
+                        first_year = Convert.ToDecimal(tFirstYear.Text),
+                        second_year = Convert.ToDecimal(tSecondYear.Text),
+                        third_year = Convert.ToDecimal(tThirdYear.Text),
+                        fourth_year = Convert.ToDecimal(tFourthYear.Text)
                     };
                     
                     edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                    MessageBox.Show("Updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+ 
+                    new Classes.Toastr().toast("Information", "Other fee Updated");
                     loadRecords();
                     txtClear();
                 }
@@ -121,6 +123,8 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             {
                 var delete = new OtherFeesSetup();
                 delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                new Classes.Toastr().toast("Information", "Other fee Deleted!");
+
                 loadRecords();
             }
         }
@@ -142,6 +146,25 @@ namespace school_management_system_model.Forms.settings.FeeSetup
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
+            tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
+            tFirstYear.Text = dgv.CurrentRow.Cells["first_year"].Value.ToString();
+            tSecondYear.Text = dgv.CurrentRow.Cells["second_year"].Value.ToString();
+            tThirdYear.Text = dgv.CurrentRow.Cells["third_year"].Value.ToString();
+            tFourthYear.Text = dgv.CurrentRow.Cells["fourth_year"].Value.ToString();
+            btn_save.Text = "Update";
+        }
+
+        private void frm_other_fees_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                addRecords();
+            }
         }
     }
 }

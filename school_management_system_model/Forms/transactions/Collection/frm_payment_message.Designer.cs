@@ -100,6 +100,7 @@
             this.btnConfirmPayment.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmPayment.TabIndex = 173;
             this.btnConfirmPayment.Values.Text = "Print Receipt";
+            this.btnConfirmPayment.Click += new System.EventHandler(this.btnConfirmPayment_Click);
             // 
             // crv
             // 
@@ -146,6 +147,7 @@
             this.Controls.Add(this.label1);
             this.CornerRoundingRadius = 10F;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "frm_payment_message";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -154,6 +156,7 @@
             this.StateCommon.Border.Rounding = 10F;
             this.Text = "frm_payment_message";
             this.Load += new System.EventHandler(this.frm_payment_message_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_payment_message_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

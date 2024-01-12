@@ -127,17 +127,16 @@ namespace school_management_system_model.Forms.settings
         private void txtClear()
         {
             tCampus.Text = "";
+            tDescription.Clear();
             tFirstYear.Clear();
             tSecondYear.Clear();
             tThirdYear.Clear();
             tFourthYear.Clear();
+
             btn_save.Text = "Save";
         }
 
-        private void btn_clear_Click(object sender, EventArgs e)
-        {
-            txtClear();
-        }
+        
 
        
         private void tsearch_TextChanged(object sender, EventArgs e)
