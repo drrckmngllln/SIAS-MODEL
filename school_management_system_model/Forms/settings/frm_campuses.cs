@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,10 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_campuses : Form
     {
-        public frm_campuses()
+        public frm_campuses(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_campuses_Load(object sender, EventArgs e)
@@ -54,6 +56,8 @@ namespace school_management_system_model.Forms.settings
                 con.Close();
                 
                 new Classes.Toastr().toast("Success", "Campus Add Success");
+                new ActivityLogger().activityLogger(Email, "Campus Add: " + t2.Text);
+
                 loadrecords();
                 txtclear();
             }
@@ -70,6 +74,8 @@ namespace school_management_system_model.Forms.settings
                 con.Close();
                 
                 new Classes.Toastr().toast("Information", "Campus Update Success");
+                new ActivityLogger().activityLogger(Email, "Campus Edit: " + t2.Text);
+
                 loadrecords();
                 txtclear();
             }
@@ -98,6 +104,9 @@ namespace school_management_system_model.Forms.settings
             add_records();
         }
         string ID;
+
+        public string Email { get; }
+
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = dgv.CurrentRow.Cells[0].Value.ToString();
@@ -122,6 +131,8 @@ namespace school_management_system_model.Forms.settings
             da.Fill(dt);
             
             new Classes.Toastr().toast("Information", "Campus Deleted");
+            new ActivityLogger().activityLogger(Email, "Campus Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
+
             loadrecords();
         }
 

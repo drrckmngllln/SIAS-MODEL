@@ -77,7 +77,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         email = tEmail.Text,
                         password = password,
                         access_level = tAccessLevel.Text,
-                        department = cDelete.Text,
+                        department = tDepartment.Text,
                         add = add,
                         edit = edit,
                         delete = delete,

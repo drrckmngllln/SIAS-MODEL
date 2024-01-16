@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -7,9 +8,12 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_tuition_fee : Form
     {
-        public frm_tuition_fee()
+        public string Email { get; }
+
+        public frm_tuition_fee(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_tuition_fee_Load(object sender, System.EventArgs e)
@@ -59,6 +63,8 @@ namespace school_management_system_model.Forms.settings
                 };
                 add.addRecords();
                 MessageBox.Show("Tuition Fee Add Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new ActivityLogger().activityLogger(Email, "Tuition Setup Add: " + tDescription.Text);
+
                 loadRecords();
                 txtClear();
             }
@@ -77,6 +83,8 @@ namespace school_management_system_model.Forms.settings
                 };
                 edit.editRecords();
                 MessageBox.Show("Tuition Fee Update Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Edit: " + tDescription.Text);
+
                 loadRecords();
                 txtClear();
             }
@@ -87,6 +95,8 @@ namespace school_management_system_model.Forms.settings
             var delete = new TuitionFeeSetup();
             delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()));
             MessageBox.Show("Tuition Fee Deleted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
+
             loadRecords();
         }
 

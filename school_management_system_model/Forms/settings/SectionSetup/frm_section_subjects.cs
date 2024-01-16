@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -15,10 +16,13 @@ namespace school_management_system_model.Forms.settings
         public string semester { get; set; }
         public string remarks { get; set; }
         public string instructor { get; set; }
-        public frm_section_subjects()
+        public string Email { get; }
+
+        public frm_section_subjects(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_section_subjects_Load(object sender, EventArgs e)
@@ -83,7 +87,7 @@ namespace school_management_system_model.Forms.settings
         {
             if (btn_save.Text == "Add Subject")
             {
-                var frm = new frm_section_subject_add();
+                var frm = new frm_section_subject_add(Email);
                 frm_section_subject_add.instance.curriculum = tCurriculum.Text;
                 frm_section_subject_add.instance.sectionCode = tSectionCode.Text;
                 frm_section_subject_add.instance.course = tCourse.Text;
@@ -117,6 +121,8 @@ namespace school_management_system_model.Forms.settings
             };
             delete.deleteSectionSubjects();
             MessageBox.Show("Subject Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            new ActivityLogger().activityLogger(Email, "Section Subject Delete: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
+
             loadRecords();
         }
 

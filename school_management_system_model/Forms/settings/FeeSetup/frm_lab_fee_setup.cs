@@ -1,6 +1,7 @@
 ﻿using Org.BouncyCastle.Crypto.Modes.Gcm;
 using school_management_system_model.Classes;
 using school_management_system_model.Forms.settings.FeeSetup;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,12 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_lab_fee_setup : Form
     {
-        public frm_lab_fee_setup()
+        public string Email { get; set; }
+
+        public frm_lab_fee_setup(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_lab_fee_setup_Load(object sender, EventArgs e)
@@ -70,6 +74,7 @@ namespace school_management_system_model.Forms.settings
                     };
                     add.addRecords();
                     MessageBox.Show("Miscellaneous Fee Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new ActivityLogger().activityLogger(Email, "Miscelaneous fee Add: " + tDescription.Text);
                     loadRecords();
                     txtClear();
                 }
@@ -159,6 +164,7 @@ namespace school_management_system_model.Forms.settings
             {
                 var delete = new LabFeeSetup();
                 delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                new ActivityLogger().activityLogger(Email, "Lab fee Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
                 loadRecords();
             }
         }
@@ -182,20 +188,15 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            var frm = new frm_link_subjects
-            {
-                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value)
-            };
+            var frm = new frm_link_subjects(Email, Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
             frm.Text = "Select";
             frm.ShowDialog();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            var frm = new frm_link_subjects
-            {
-                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value)
-            };
+            var frm = new frm_link_subjects(Email, Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+            
             frm.Text = "View";
             frm.ShowDialog();
         }

@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Forms.settings.Curriculum;
+using school_management_system_model.Loggers;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -11,11 +12,14 @@ namespace school_management_system_model.Forms.settings
     {
         public string Curriculum;
         private string ID { get; set; }
+        public string Email { get; }
+
         public static frm_curriculum_subjects instance;
-        public frm_curriculum_subjects()
+        public frm_curriculum_subjects(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_curriculum_subjects_Load(object sender, EventArgs e)
@@ -91,7 +95,7 @@ namespace school_management_system_model.Forms.settings
                 delete();
                 
                 new Classes.Toastr().toast("Information", "Curriculum Subject Deleted");
-
+                new ActivityLogger().activityLogger(Email, "Curriculum Subject Delete: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
                 loadrecords();
             }
         }
@@ -103,7 +107,7 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            var frm = new frm_curriculum_subjects_excel_import();
+            var frm = new frm_curriculum_subjects_excel_import(Email);
             frm_curriculum_subjects_excel_import.instance.curriculum = tcode.Text;
             frm.Text = "Excel Import - Curriculum Subjects";
             frm.ShowDialog();
@@ -118,7 +122,7 @@ namespace school_management_system_model.Forms.settings
                 deleteAll(tcode.Text);
                 MessageBox.Show("Curriculum Subject Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 new Classes.Toastr().toast("Information", "Curriculum Subject Deleted");
-
+                new ActivityLogger().activityLogger(Email, "Deleted All Curriculum: " + tdescription.Text);
                 loadrecords();
             }
         }

@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,12 @@ namespace school_management_system_model.Forms.settings.Schedule
 {
     public partial class frm_admission_schedule : Form
     {
-        
-        public frm_admission_schedule()
+        public string Email { get; }
+
+        public frm_admission_schedule(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_admission_schedule_Load(object sender, EventArgs e)
@@ -62,6 +65,7 @@ namespace school_management_system_model.Forms.settings.Schedule
                     };
                     addRecords.AddRecords();
                     new Classes.Toastr().toast("Success", "Schedule Saved");
+                    new ActivityLogger().activityLogger(Email, "Admission Schedule Add: " + tDescription.Text);
                     loadRecords();
                     txtclear();
                 }
@@ -76,6 +80,8 @@ namespace school_management_system_model.Forms.settings.Schedule
                     };
                     editRecords.EditRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
                     new Classes.Toastr().toast("Information", "Schedule Updated");
+                    new ActivityLogger().activityLogger(Email, "Admission Schedule Edit: " + tDescription.Text);
+
                     loadRecords();
                     txtclear();
                 }
@@ -108,6 +114,8 @@ namespace school_management_system_model.Forms.settings.Schedule
                 var delete = new AdmissionSchedule();
                 delete.DeleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
                 new Classes.Toastr().toast("Information", "Schedule deleted");
+                new ActivityLogger().activityLogger(Email, "Admission Schedule Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
+
                 loadRecords();
             }
         }

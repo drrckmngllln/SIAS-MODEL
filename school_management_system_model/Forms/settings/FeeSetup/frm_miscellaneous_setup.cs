@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -13,10 +14,13 @@ namespace school_management_system_model.Forms.settings
         public DataTable coursesDt = new DataTable();
         string ID;
 
-        public frm_miscellaneous_setup()
+        public string Email { get; }
+
+        public frm_miscellaneous_setup(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_fees_Load(object sender, EventArgs e)
@@ -70,6 +74,7 @@ namespace school_management_system_model.Forms.settings
                     };
                     add.AddRecords();
                     MessageBox.Show("Successfully Saved","Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Add: " + tDescription.Text);
                     loadRecords();
                     txtClear();
                 }
@@ -95,6 +100,7 @@ namespace school_management_system_model.Forms.settings
                     };
                     add.editRecords();
                     MessageBox.Show("Successfully Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Edit: " + tDescription.Text);
                     txtClear();
                     loadRecords();
                 }
@@ -130,6 +136,8 @@ namespace school_management_system_model.Forms.settings
             var delete = new MiscellaneousFeeSetup();
             delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
             MessageBox.Show("Deleted Successfully","Success",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
+
             loadRecords();
         }
 

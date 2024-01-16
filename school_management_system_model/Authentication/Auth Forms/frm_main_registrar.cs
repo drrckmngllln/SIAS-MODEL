@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using school_management_system_model.Authentication.Auth_Forms.UserCustomization;
 using school_management_system_model.Authentication.Login;
 using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.Schedule;
@@ -113,7 +114,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
         // Settings Menu
         private void btnAdmissionSchedule_Click(object sender, EventArgs e)
         {
-            var frm = new frm_admission_schedule();
+            var frm = new frm_admission_schedule(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -131,7 +132,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnCourses_Click(object sender, EventArgs e)
         {
-            var frm = new frm_courses();
+            var frm = new frm_courses(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -140,7 +141,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnLevel_Click(object sender, EventArgs e)
         {
-            var frm = new frm_levels();
+            var frm = new frm_levels(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -149,7 +150,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnCampuses_Click(object sender, EventArgs e)
         {
-            var frm = new frm_campuses();
+            var frm = new frm_campuses(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -158,7 +159,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnCurriculum_Click(object sender, EventArgs e)
         {
-            var frm = new frm_curriculum();
+            var frm = new frm_curriculum(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -167,7 +168,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnSections_Click(object sender, EventArgs e)
         {
-            var frm = new frm_sections();
+            var frm = new frm_sections(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -185,11 +186,16 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnDepartment_Click(object sender, EventArgs e)
         {
-            var frm = new frm_departments();
+            var frm = new frm_departments(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
             frm.Show();
+        }
+
+        private void tUsername_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

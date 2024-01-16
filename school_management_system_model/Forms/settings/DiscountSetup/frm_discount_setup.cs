@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,12 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_discount_setup : Form
     {
-        public frm_discount_setup()
+        public string Email { get; }
+
+        public frm_discount_setup(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_discount_setup_Load(object sender, EventArgs e)
@@ -47,6 +51,7 @@ namespace school_management_system_model.Forms.settings
                 };
                 add.addRecords();
                 MessageBox.Show("Saved", "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new ActivityLogger().activityLogger(Email, "Add Discount: " + tDescription.Text);
                 txtClear();
                 loadRecords();
             }
@@ -105,6 +110,8 @@ namespace school_management_system_model.Forms.settings
             var delete = new DiscountSetup();
             delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
             MessageBox.Show("Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            new ActivityLogger().activityLogger(Email, "Discount Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
+            loadRecords();
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)

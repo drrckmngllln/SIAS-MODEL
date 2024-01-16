@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -16,11 +17,13 @@ namespace school_management_system_model.Forms.settings
         public string year_level { get; set; }
         public string semester { get; set; }
         public string remarks { get; set; }
-       
-        public frm_section_subject_add()
+        public string Email { get; }
+
+        public frm_section_subject_add(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_section_subject_add_Load(object sender, EventArgs e)
@@ -78,6 +81,8 @@ namespace school_management_system_model.Forms.settings
                 };
                 save.saveSectionSubjects();
                 new Classes.Toastr().toast("Success", "Subject Imported");
+                new ActivityLogger().activityLogger(Email, "Section Subject Add: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
+
                 this.Close();
             }
             catch(Exception ex)
@@ -115,6 +120,8 @@ namespace school_management_system_model.Forms.settings
                     
                 }
                 new Classes.Toastr().toast("Success", "Subjects Imported");
+                new ActivityLogger().activityLogger(Email, "Section Subject Select All");
+
                 Close();
             }
             catch(Exception ex)

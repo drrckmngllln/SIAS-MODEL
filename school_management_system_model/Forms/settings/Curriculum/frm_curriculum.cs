@@ -1,15 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
-using school_management_system_model.Forms.main;
+using school_management_system_model.Loggers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
@@ -17,9 +10,14 @@ namespace school_management_system_model.Forms.settings
     public partial class frm_curriculum : Form
     {
         string ID;
-        public frm_curriculum()
+
+        public string Email { get; }
+        
+
+        public frm_curriculum(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -89,6 +87,7 @@ namespace school_management_system_model.Forms.settings
                     status = t7.Text
                 };
                 add.addRecords();
+                new ActivityLogger().activityLogger(Email, "Add: " + t2.Text);
                 
                 new Classes.Toastr().toast("Success", "Curriculum Added");
                 loadrecords();
@@ -108,7 +107,7 @@ namespace school_management_system_model.Forms.settings
                     status = t7.Text
                 };
                 edit.editRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
-                
+                new ActivityLogger().activityLogger(Email, "Edit: " + t2.Text);
                 new Classes.Toastr().toast("Information", "Curriculum Updated");
 
                 loadrecords();
@@ -134,7 +133,7 @@ namespace school_management_system_model.Forms.settings
             delete.deleteRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
             
             new Classes.Toastr().toast("Information", "Curriculum Deleted");
-
+            new ActivityLogger().activityLogger(Email, "Delete Curriculum: " + dgv.CurrentRow.Cells["description"].Value.ToString());
             loadrecords();
         }
 
@@ -195,7 +194,7 @@ namespace school_management_system_model.Forms.settings
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
            
-            var frm = new frm_curriculum_subjects();
+            var frm = new frm_curriculum_subjects(Email);
             frm_curriculum_subjects.instance.Curriculum = dgv.CurrentRow.Cells["code"].Value.ToString();
             frm.Text = "Curriculum Subject of " + dgv.CurrentRow.Cells["code"].Value.ToString();
             frm.ShowDialog();

@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,12 @@ namespace school_management_system_model.Forms.settings.FeeSetup
 {
     public partial class frm_other_fees : Form
     {
-        public frm_other_fees()
+        public string Email { get; }
+
+        public frm_other_fees(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_other_fees_Load(object sender, EventArgs e)
@@ -67,7 +71,8 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                     };
                     add.addRecords();
                     new Classes.Toastr().toast("Success", "Other fee Saved");
-                    
+                    new ActivityLogger().activityLogger(Email, "Other fee Setup Add: " + tDescription.Text);
+
                     loadRecords();
                     txtClear();
                 }
@@ -85,7 +90,8 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                     };
                     
                     edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
- 
+                    new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Edit: " + tDescription.Text);
+
                     new Classes.Toastr().toast("Information", "Other fee Updated");
                     loadRecords();
                     txtClear();
@@ -124,6 +130,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                 var delete = new OtherFeesSetup();
                 delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
                 new Classes.Toastr().toast("Information", "Other fee Deleted!");
+                new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
 
                 loadRecords();
             }

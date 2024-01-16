@@ -37,6 +37,7 @@
             this.panelSidebar = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelSettings = new System.Windows.Forms.Panel();
+            this.btnDepartment = new System.Windows.Forms.Button();
             this.btnAdmissionSchedule = new System.Windows.Forms.Button();
             this.btnUserManagement = new System.Windows.Forms.Button();
             this.btnSections = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.panelTransaction = new System.Windows.Forms.Panel();
             this.btnStudentAccounts = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
-            this.btnDepartment = new System.Windows.Forms.Button();
             this.panelUserDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPic)).BeginInit();
             this.panelSidebar.SuspendLayout();
@@ -96,6 +96,7 @@
             // 
             // tUsername
             // 
+            this.tUsername.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tUsername.ForeColor = System.Drawing.SystemColors.Control;
             this.tUsername.Location = new System.Drawing.Point(3, 76);
@@ -104,6 +105,7 @@
             this.tUsername.TabIndex = 1;
             this.tUsername.Text = "Lastname, Firstname Middlename";
             this.tUsername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tUsername.Click += new System.EventHandler(this.tUsername_Click);
             // 
             // userPic
             // 
@@ -172,6 +174,23 @@
             this.panelSettings.Size = new System.Drawing.Size(250, 296);
             this.panelSettings.TabIndex = 4;
             this.panelSettings.Visible = false;
+            // 
+            // btnDepartment
+            // 
+            this.btnDepartment.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDepartment.FlatAppearance.BorderSize = 0;
+            this.btnDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDepartment.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnDepartment.Location = new System.Drawing.Point(0, 240);
+            this.btnDepartment.Name = "btnDepartment";
+            this.btnDepartment.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnDepartment.Size = new System.Drawing.Size(250, 30);
+            this.btnDepartment.TabIndex = 12;
+            this.btnDepartment.Text = "Department";
+            this.btnDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDepartment.UseVisualStyleBackColor = true;
+            this.btnDepartment.Click += new System.EventHandler(this.btnDepartment_Click);
             // 
             // btnAdmissionSchedule
             // 
@@ -361,23 +380,6 @@
             this.panelTask.Name = "panelTask";
             this.panelTask.Size = new System.Drawing.Size(1043, 701);
             this.panelTask.TabIndex = 3;
-            // 
-            // btnDepartment
-            // 
-            this.btnDepartment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDepartment.FlatAppearance.BorderSize = 0;
-            this.btnDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDepartment.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDepartment.Location = new System.Drawing.Point(0, 240);
-            this.btnDepartment.Name = "btnDepartment";
-            this.btnDepartment.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnDepartment.Size = new System.Drawing.Size(250, 30);
-            this.btnDepartment.TabIndex = 12;
-            this.btnDepartment.Text = "Department";
-            this.btnDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDepartment.UseVisualStyleBackColor = true;
-            this.btnDepartment.Click += new System.EventHandler(this.btnDepartment_Click);
             // 
             // frm_main_registrar
             // 

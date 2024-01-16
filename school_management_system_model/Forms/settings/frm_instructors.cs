@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,12 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_instructors : Form
     {
-        public frm_instructors()
+        public string Email { get; }
+
+        public frm_instructors(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_instructors_Load(object sender, EventArgs e)
@@ -55,8 +59,10 @@ namespace school_management_system_model.Forms.settings
                     position = tPosition.Text
                 };
                 data.addRecords();
-                MessageBox.Show("Instructor Added","Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          
                 new Classes.Toastr().toast("Success", "Instructor Added");
+                new ActivityLogger().activityLogger(Email, "Instructor Add: " + tFullname.Text);
+
                 loadRecords();
                 txtClear();
             }
@@ -72,6 +78,8 @@ namespace school_management_system_model.Forms.settings
                 data.editRecords();
                
                 new Classes.Toastr().toast("Information", "Instructor Updated");
+                new ActivityLogger().activityLogger(Email, "Instructor Edit: " + tFullname.Text);
+
                 loadRecords();
                 txtClear();
             }
@@ -94,6 +102,8 @@ namespace school_management_system_model.Forms.settings
             delete.deleteRecords();
             
             new Classes.Toastr().toast("Information", "Instructor Deleted");
+            new ActivityLogger().activityLogger(Email, "Instructor Delete: " + dgv.CurrentRow.Cells["fullname"].Value.ToString());
+
             loadRecords();
         }
 
