@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +19,12 @@ namespace school_management_system_model.Forms.settings
         public bool isEdit { get; set; }
         public bool isDelete { get; set; }
         public bool isAdministrator { get; set; }
-        public frm_school_year()
+        public string Email { get; }
+
+        public frm_school_year(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -71,6 +75,8 @@ namespace school_management_system_model.Forms.settings
                         };
                         add.addRecords();
                         new Classes.Toastr().toast("Success", "Successfully Saved");
+                        new ActivityLogger().activityLogger(Email, "School Year Add: " + tDescription.Text);
+
                         loadRecords();
                         txtClear();
                     }
@@ -91,6 +97,8 @@ namespace school_management_system_model.Forms.settings
                         };
                         edit.EditRecords(id);
                         new Classes.Toastr().toast("Information", "Successfully Updated");
+                        new ActivityLogger().activityLogger(Email, "School Year Edit: " + tDescription.Text);
+
                         loadRecords();
                         txtClear();
                     }
@@ -117,6 +125,8 @@ namespace school_management_system_model.Forms.settings
             delete.deleteRecords(id);
             
             new Classes.Toastr().toast("Information", "Successfully Deleted");
+            new ActivityLogger().activityLogger(Email, "School Year Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
+
             loadRecords();
         }
 

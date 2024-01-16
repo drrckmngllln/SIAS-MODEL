@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using school_management_system_model.Authentication.Login;
 using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.FeeSetup;
 using school_management_system_model.Forms.settings.Schedule;
@@ -8,15 +9,20 @@ using school_management_system_model.Forms.transactions.Collection;
 using school_management_system_model.Forms.transactions.StudentDiscounts;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.main
 {
     public partial class main_form : KryptonForm
     {
         const string Office = "All";
-        public main_form()
+
+        public string Email { get; }
+
+        public main_form(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -69,7 +75,7 @@ namespace school_management_system_model.Forms.main
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var frm = new frm_campuses();
+            var frm = new frm_campuses(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -78,7 +84,7 @@ namespace school_management_system_model.Forms.main
 
         private void button7_Click(object sender, EventArgs e)
         {
-            var frm = new frm_departments();
+            var frm = new frm_departments(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -87,7 +93,7 @@ namespace school_management_system_model.Forms.main
 
         private void button8_Click(object sender, EventArgs e)
         {
-            var frm = new frm_levels();
+            var frm = new frm_levels(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -96,7 +102,7 @@ namespace school_management_system_model.Forms.main
 
         private void button13_Click(object sender, EventArgs e)
         {
-            var frm = new frm_sections();
+            var frm = new frm_sections(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -105,7 +111,7 @@ namespace school_management_system_model.Forms.main
 
         private void button11_Click(object sender, EventArgs e)
         {
-            var frm = new frm_curriculum();
+            var frm = new frm_curriculum(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -123,7 +129,7 @@ namespace school_management_system_model.Forms.main
 
         private void button10_Click(object sender, EventArgs e)
         {
-            var frm = new frm_courses();
+            var frm = new frm_courses(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -138,7 +144,7 @@ namespace school_management_system_model.Forms.main
 
         public void open_curriculum_subjects()
         {
-            var frm = new frm_curriculum_subjects();
+            var frm = new frm_curriculum_subjects(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -168,7 +174,7 @@ namespace school_management_system_model.Forms.main
 
         private void button16_Click(object sender, EventArgs e)
         {
-            var frm = new frm_miscellaneous_setup();
+            var frm = new frm_miscellaneous_setup(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -178,7 +184,7 @@ namespace school_management_system_model.Forms.main
 
         private void button18_Click(object sender, EventArgs e)
         {
-            var frm = new frm_tuition_fee();
+            var frm = new frm_tuition_fee(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -187,7 +193,7 @@ namespace school_management_system_model.Forms.main
 
         private void button19_Click(object sender, EventArgs e)
         {
-            var frm = new frm_lab_fee_setup();
+            var frm = new frm_lab_fee_setup(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -196,7 +202,7 @@ namespace school_management_system_model.Forms.main
 
         private void button20_Click(object sender, EventArgs e)
         {
-            var frm = new frm_instructors();
+            var frm = new frm_instructors(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -223,7 +229,7 @@ namespace school_management_system_model.Forms.main
 
         private void button26_Click(object sender, EventArgs e)
         {
-            var frm = new frm_discount_setup();
+            var frm = new frm_discount_setup(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -253,7 +259,7 @@ namespace school_management_system_model.Forms.main
 
         private void button28_Click(object sender, EventArgs e)
         {
-            var frm = new frm_other_fees();
+            var frm = new frm_other_fees(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -308,12 +314,22 @@ namespace school_management_system_model.Forms.main
 
         private async void button35_Click(object sender, EventArgs e)
         {
-            var frm = new frm_admission_schedule();
+            var frm = new frm_admission_schedule(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
             await Task.Delay(100);
             frm.Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("are you sure you want to logout?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var frm = new frm_login();
+                frm.Show();
+                Close();
+            }
         }
     }
 }

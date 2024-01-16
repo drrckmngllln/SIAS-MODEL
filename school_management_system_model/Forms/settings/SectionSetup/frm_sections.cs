@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,13 @@ namespace school_management_system_model.Forms.settings
     public partial class frm_sections : Form
     {
         string ID;
-        public frm_sections()
+
+        public string Email { get; }
+
+        public frm_sections(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_sections_Load(object sender, EventArgs e)
@@ -75,6 +80,8 @@ namespace school_management_system_model.Forms.settings
                     add.addSection();
                     
                     new Classes.Toastr().toast("Success", "Section Add Success");
+                    new ActivityLogger().activityLogger(Email, "Section Add: " + tSectionCode.Text);
+
                     loadrecords();
                 }
                 else if (btn_save.Text == "Update")
@@ -94,6 +101,8 @@ namespace school_management_system_model.Forms.settings
                     };
                     edit.editSection();
                     MessageBox.Show("Section Update Success");
+                    new ActivityLogger().activityLogger(Email, "Section Edit: " + tSectionCode.Text);
+
                     loadrecords();
                     txtclear();
                 }
@@ -114,6 +123,8 @@ namespace school_management_system_model.Forms.settings
             };
             delete.deleteData();
             MessageBox.Show("Section Delete Success");
+            new ActivityLogger().activityLogger(Email, "Section Delete: " + tSectionCode.Text);
+
             loadrecords();
         }
 
@@ -195,7 +206,7 @@ namespace school_management_system_model.Forms.settings
         {
             if (tRemarks.Text == "Regular")
             {
-                var frm = new frm_section_subjects();
+                var frm = new frm_section_subjects(Email);
                 frm_section_subjects.instance.sectionCode = dgv.CurrentRow.Cells["section_code"].Value.ToString();
                 frm_section_subjects.instance.course = dgv.CurrentRow.Cells["course"].Value.ToString();
                 frm_section_subjects.instance.yearLevel = dgv.CurrentRow.Cells["year_level"].Value.ToString();

@@ -94,7 +94,8 @@ namespace school_management_system_model.Authentication.Login
                                 IsAdd = isAdd,
                                 IsDelete = isDelete,
                                 IsEdit = isEdit,
-                                IsAdministrator = isAdministrator
+                                IsAdministrator = isAdministrator,
+                                Email = Email
                             };
                             new AuthenticationLogger(UserName, AccessLevel, Date, Time).LoginLogger();
                             frmFinance.Show();
@@ -189,7 +190,7 @@ namespace school_management_system_model.Authentication.Login
             if (e.Control && e.KeyCode == Keys.D1)
             {
                 new Classes.Toastr().toast("Success", "Login Successful");
-                var frm = new main_form();
+                var frm = new main_form("Administrator Override");
                 frm.ShowDialog();
                 this.Hide();
             }
@@ -213,6 +214,10 @@ namespace school_management_system_model.Authentication.Login
             {
                 loginAuthentication(tUserName.Text, tPassword.Text);
             }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                Application.Exit();
+            }
         }
 
         
@@ -225,6 +230,11 @@ namespace school_management_system_model.Authentication.Login
         private void frm_login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

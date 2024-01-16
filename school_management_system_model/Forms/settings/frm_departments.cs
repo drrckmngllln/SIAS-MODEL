@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,10 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_departments : Form
     {
-        public frm_departments()
+        public frm_departments(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_departments_Load(object sender, EventArgs e)
@@ -52,6 +54,8 @@ namespace school_management_system_model.Forms.settings
 
         string ID;
 
+        public string Email { get; }
+
         private void add_records()
         {
             if (btn_save.Text == "Save")
@@ -66,6 +70,8 @@ namespace school_management_system_model.Forms.settings
                 con.Close();
                 
                 new Classes.Toastr().toast("Success", "Department Added");
+                new ActivityLogger().activityLogger(Email, "Department Add: " + t2.Text);
+
                 loadrecords();
                 txtclear();
             }
@@ -81,6 +87,8 @@ namespace school_management_system_model.Forms.settings
                 con.Close();
                
                 new Classes.Toastr().toast("Information", "Department Updated");
+                new ActivityLogger().activityLogger(Email, "Department Edit: " + t2.Text);
+
                 loadrecords();
                 txtclear();
             }
@@ -131,7 +139,8 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             new Classes.Toastr().toast("Information", "Department Deleted");
-            MessageBox.Show("Department Deleted");
+            new ActivityLogger().activityLogger(Email, "Department Delete: " + t2.Text);
+
             loadrecords();
         }
 

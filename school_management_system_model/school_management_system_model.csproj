@@ -177,6 +177,12 @@
     <Compile Include="Authentication\Auth Forms\frm_main_registrar.Designer.cs">
       <DependentUpon>frm_main_registrar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Authentication\Auth Forms\UserCustomization\frm_user_customization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authentication\Auth Forms\UserCustomization\frm_user_customization.Designer.cs">
+      <DependentUpon>frm_user_customization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Authentication\Login\frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -591,6 +597,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Authentication\Auth Forms\frm_main_registrar.resx">
       <DependentUpon>frm_main_registrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Authentication\Auth Forms\UserCustomization\frm_user_customization.resx">
+      <DependentUpon>frm_user_customization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Authentication\Login\frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>

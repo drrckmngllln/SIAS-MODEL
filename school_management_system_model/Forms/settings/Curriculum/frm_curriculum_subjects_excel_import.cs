@@ -1,6 +1,7 @@
 ﻿using ExcelDataReader;
 using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,13 +30,15 @@ namespace school_management_system_model.Forms.settings.Curriculum
         public string pre_requisite { get; set; }
         public string total_hrs_per_week { get; set; }
         public string status { get; set; }
+        public string Email { get; }
 
         public static frm_curriculum_subjects_excel_import instance;
 
-        public frm_curriculum_subjects_excel_import()
+        public frm_curriculum_subjects_excel_import(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_curriculum_subjects_excel_import_Load(object sender, EventArgs e)
@@ -69,6 +72,8 @@ namespace school_management_system_model.Forms.settings.Curriculum
                             dgv.DataSource = dt;
                         }
                     }
+
+                    this.Text = Path.GetFileName(ofd.FileName);
                 }
                 catch(Exception ex)
                 {
@@ -124,7 +129,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
                 }
 
                 new Classes.Toastr().toast("Success", "Curriculum Import Success");
-
+                new ActivityLogger().activityLogger(Email, "Curriculum File Import: " + this.Text);
                 Close();
             }
             catch(Exception ex)

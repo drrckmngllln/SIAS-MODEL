@@ -410,7 +410,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void loadAmountPayable()
         {
-            decimal amount = 0;
+            
             foreach (DataGridViewRow row in dgvFeeBreakdown.Rows )
             {
                 if ((decimal)row.Cells["amount"].Value > 0)

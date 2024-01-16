@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 
 namespace school_management_system_model.Forms.settings
 {
@@ -19,13 +20,16 @@ namespace school_management_system_model.Forms.settings
         public bool isEdit { get; set; }
         public bool isDelete { get; set; }
         public bool isAdministrator { get; set; }
+        public string Email { get; }
+
         string ID;
 
         school_management_system_model.Classes.Toastr Toastr = new Classes.Toastr();
 
-        public frm_courses()
+        public frm_courses(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_courses_Load(object sender, EventArgs e)
@@ -102,6 +106,8 @@ namespace school_management_system_model.Forms.settings
                     cmd.ExecuteNonQuery();
                     con.Close();
                     Toastr.toast("Success", "Add Success");
+                    new ActivityLogger().activityLogger(Email, "Course Add: " + t2.Text);
+
                     loadrecords();
                     txtclear();
                     
@@ -124,6 +130,8 @@ namespace school_management_system_model.Forms.settings
                     con.Close();
                     
                     Toastr.toast("Information", "Update Success");
+                    new ActivityLogger().activityLogger(Email, "Course Edit: " + t2.Text);
+
                     loadrecords();
                     txtclear();
                     
@@ -190,6 +198,8 @@ namespace school_management_system_model.Forms.settings
             da.Fill(dt);
             MessageBox.Show("Course Deleted");
             new Classes.Toastr().toast("Information", "Course Deleted");
+            new ActivityLogger().activityLogger(Email, "Course Delete: " + t2.Text);
+
             loadrecords();
         }
 

@@ -1,9 +1,11 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,10 +16,14 @@ namespace school_management_system_model.Forms.settings.FeeSetup
 {
     public partial class frm_link_subjects : KryptonForm
     {
-        public int id { get; set; }
-        public frm_link_subjects()
+        public int Id { get; set; }
+        public string Email { get; set; }
+
+        public frm_link_subjects(string email, int id)
         {
             InitializeComponent();
+            Email = email;
+            Id = id;
         }
 
         private void frm_link_subjects_Load(object sender, EventArgs e)
@@ -39,7 +45,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
         {
             if (this.Text == "Select")
             {
-                tTitle.Text = "Select Subjects: " + labFee(id);
+                tTitle.Text = "Select Subjects: " + labFee(Id);
                 var con = new MySqlConnection(connection.con());
                 var da = new MySqlDataAdapter("select code, descriptive_title from curriculum_subjects order by code asc", con);
                 var dt = new DataTable();
@@ -54,9 +60,9 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             }
             else if (this.Text == "View")
             {
-                tTitle.Text = "Linked Subjects: " + labFee(id);
+                tTitle.Text = "Linked Subjects: " + labFee(Id);
                 var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select * from lab_fee_subjects where lab_fee_id='"+ id +"'", con);
+                var da = new MySqlDataAdapter("select * from lab_fee_subjects where lab_fee_id='"+ Id + "'", con);
                 var dt = new DataTable();
                 da.Fill(dt);
                 dgv.DataSource = dt;
@@ -86,7 +92,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             var con = new MySqlConnection (connection.con());
             con.Open();
             var cmd = new MySqlCommand("insert into lab_fee_subjects(lab_fee_id, subject_code, descriptive_title) " +
-                "values('" + id + "','" + code + "','"+ descriptiveTitle +"')", con);
+                "values('" + Id + "','" + code + "','"+ descriptiveTitle +"')", con);
             cmd.ExecuteNonQuery();
             con.Close();
             MessageBox.Show("Subject Linked","Success!",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -129,6 +135,9 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                 dgv.CurrentRow.Cells["code"].Value.ToString(),
                 dgv.CurrentRow.Cells["descriptive_title"].Value.ToString()
                 );
+
+            new ActivityLogger().activityLogger(Email, "Select Link Subject: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
+
         }
 
         private void tsearch_TextChanged(object sender, EventArgs e)
@@ -149,6 +158,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             if (MessageBox.Show("Are you sure you want to unlink these subject?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 removeLink(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                new ActivityLogger().activityLogger(Email, "Unlink Subject: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
             }
         }
     }

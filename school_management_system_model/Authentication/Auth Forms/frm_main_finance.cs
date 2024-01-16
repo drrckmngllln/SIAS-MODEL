@@ -26,12 +26,14 @@ namespace school_management_system_model.Authentication.Auth_Forms
         public bool IsAdd { get; set; }
         public bool IsEdit { get; set; }
         public bool IsDelete { get; set; }
+        public string Email { get; set; }
 
         const string Office = "Finance";
 
         public frm_main_finance()
         {
             InitializeComponent();
+            
         }
 
         private void frm_main_finance_Load(object sender, EventArgs e)
@@ -153,7 +155,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
         // Settings Menu
         private void btnMiscellaneous_Click(object sender, EventArgs e)
         {
-            var frm = new frm_miscellaneous_setup();
+            var frm = new frm_miscellaneous_setup(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -162,7 +164,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnTuitionFee_Click(object sender, EventArgs e)
         {
-            var frm = new frm_tuition_fee();
+            var frm = new frm_tuition_fee(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -171,7 +173,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnLaboratoryFee_Click(object sender, EventArgs e)
         {
-            var frm = new frm_lab_fee_setup();
+            var frm = new frm_lab_fee_setup(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -180,7 +182,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnDiscountSetup_Click(object sender, EventArgs e)
         {
-            var frm = new frm_discount_setup();
+            var frm = new frm_discount_setup(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -189,7 +191,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnOtherFees_Click(object sender, EventArgs e)
         {
-            var frm = new frm_other_fees();
+            var frm = new frm_other_fees(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

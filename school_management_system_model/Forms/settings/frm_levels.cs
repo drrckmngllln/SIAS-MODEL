@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,13 @@ namespace school_management_system_model.Forms.settings
     public partial class frm_levels : Form
     {
         string ID;
-        public frm_levels()
+
+        public string Email { get; }
+
+        public frm_levels(string email)
         {
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_levels_Load(object sender, EventArgs e)
@@ -51,6 +56,8 @@ namespace school_management_system_model.Forms.settings
                 con.Close();
                 
                 new Classes.Toastr().toast("Success", "Level Added");
+                new ActivityLogger().activityLogger(Email, "Level Add: " + t2.Text);
+
                 loadrecords();
                 txtclear();
 
@@ -65,8 +72,10 @@ namespace school_management_system_model.Forms.settings
                 cmd.Parameters.AddWithValue("@3", t3.Text);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Levels Update Success");
+             
                 new Classes.Toastr().toast("Information", "Level Updated");
+                new ActivityLogger().activityLogger(Email, "Level Edit: " + t2.Text);
+
                 loadrecords();
                 txtclear();
             }
@@ -80,7 +89,9 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             
-            new Classes.Toastr().toast("Information", "Level Deleteds");
+            new Classes.Toastr().toast("Information", "Level Deleted");
+            new ActivityLogger().activityLogger(Email, "Level Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
+
             loadrecords();
         }
 
