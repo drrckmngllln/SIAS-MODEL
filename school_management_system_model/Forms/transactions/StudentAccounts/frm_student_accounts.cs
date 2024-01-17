@@ -24,10 +24,13 @@ namespace school_management_system_model.Forms.transactions
         public string schoolYear { get; set; }
 
         public bool AdmissionValidator { get; set; }
-        public frm_student_accounts()
+        public string Email { get; }
+
+        public frm_student_accounts(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void timerTotal_Tick(object sender, EventArgs e)
@@ -117,7 +120,7 @@ namespace school_management_system_model.Forms.transactions
 
         private void CreateAccount()
         {
-            var frm = new frm_create_account();
+            var frm = new frm_create_account(Email);
             frm_create_account.instance.schoolYear = tSchoolYear.Text;
             frm_create_account.instance.semester = tSemester.Text;
             frm.Text = "Create Account";
@@ -126,7 +129,7 @@ namespace school_management_system_model.Forms.transactions
         }
         private void UpdateAccount()
         {
-            var frm = new frm_create_account();
+            var frm = new frm_create_account(Email);
             frm_create_account.instance.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
             frm.Text = "Update Account";
             frm.ShowDialog();
@@ -218,7 +221,7 @@ namespace school_management_system_model.Forms.transactions
         {
             if (AdmissionValidator)
             {
-                var frm = new frm_approve_account
+                var frm = new frm_approve_account(Email)
                 {
                     id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
                     fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString()
@@ -245,7 +248,7 @@ namespace school_management_system_model.Forms.transactions
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             
-            var frm = new frm_view_subjects();
+            var frm = new frm_view_subjects(Email);
             frm_view_subjects.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
             frm_view_subjects.instance.fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString();
             frm_view_subjects.instance.school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString();

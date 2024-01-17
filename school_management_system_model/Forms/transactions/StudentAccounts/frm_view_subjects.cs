@@ -28,17 +28,20 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         public string subjectCode { get; set; }
         public int Id { get; set; }
+        public string Email { get; }
+
         int totalUnits = 0;
         int totalLectureUnits = 0;
         int totalLabUnits = 0;
 
         
 
-        public frm_view_subjects()
+        public frm_view_subjects(string email)
         {
             instance = this;
             
             InitializeComponent();
+            Email = email;
         }
 
         private void AdmissionChecker()
@@ -199,7 +202,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            var frm = new frm_add_subject
+            var frm = new frm_add_subject(Email)
             {
                 idnumber = id_number,
                 schoolyear = school_year,

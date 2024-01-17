@@ -53,6 +53,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
                 discount_percentage = Convert.ToInt32(dgv.CurrentRow.Cells["discount_percentage"].Value.ToString())
             };
             add.addRecords();
+            new Classes.Toastr().toast("Success", "Add discount to: " + idNumber);
             Close();
         }
 

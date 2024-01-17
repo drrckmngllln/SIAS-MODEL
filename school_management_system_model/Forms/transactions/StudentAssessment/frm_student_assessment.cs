@@ -2,6 +2,7 @@
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Forms.transactions.StudentAssessment;
+using school_management_system_model.Loggers;
 using school_management_system_model.Reports.Accounting;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,13 @@ namespace school_management_system_model.Forms.transactions
         public decimal labFee { get; set; }
         public decimal totalDiscount { get; set; }
         public string labFeeCategory { get; set; }
+        public string Email { get; }
 
-        public frm_student_assessment()
+        public frm_student_assessment(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_student_assessment_Load(object sender, EventArgs e)
@@ -449,6 +452,8 @@ namespace school_management_system_model.Forms.transactions
 
 
             MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            new ActivityLogger().activityLogger(Email, "Student Assessment: " + tIdNumber.Text);
 
             printAssessment();
 

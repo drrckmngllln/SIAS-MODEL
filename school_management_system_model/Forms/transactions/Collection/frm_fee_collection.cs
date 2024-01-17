@@ -1,5 +1,6 @@
 ﻿using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Loggers;
 using school_management_system_model.Reports;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,14 @@ namespace school_management_system_model.Forms.transactions.Collection
         public static frm_fee_collection instance;
         public string id_number { get; set; }
         public int OrNumber { get; set; }
+        public string Email { get; }
 
         school_management_system_model.Classes.Toastr Toastr = new school_management_system_model.Classes.Toastr();
-        public frm_fee_collection()
+        public frm_fee_collection(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_fee_collection_Load(object sender, EventArgs e)
@@ -348,7 +351,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                                 var changeStatus = new FeeCollection();
                                 changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
                             }
-
+                            new ActivityLogger().activityLogger(Email, "Payment Collection: " + tOrNumber.Text + "with a payment of: " + tAmount.Text);
                             var frm = new frm_payment_message(tIdNumber.Text, 0);
                             frm.ShowDialog();
                         }
@@ -377,6 +380,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                                     var changeStatus = new FeeCollection();
                                     changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
                                 }
+                                new ActivityLogger().activityLogger(Email, "Payment Collection: " + tOrNumber.Text + "with a payment of: " + tAmountPayable.Text);
 
                                 var frm = new frm_payment_message(tIdNumber.Text, change);
                                 frm.ShowDialog();

@@ -113,7 +113,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
         // Transaction Menu
         private void btnStudentAssessment_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_assessment();
+            var frm = new frm_student_assessment(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -131,7 +131,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnFeeCollection_Click(object sender, EventArgs e)
         {
-            var frm = new frm_fee_collection();
+            var frm = new frm_fee_collection(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,12 +18,14 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
     {
         public string idnumber { get; set; }
         public string schoolyear { get; set; }
+        public string Email { get; }
 
         public static frm_add_subject instance;
-        public frm_add_subject()
+        public frm_add_subject(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_add_subject_Load(object sender, EventArgs e)
@@ -168,6 +171,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             };
             add.saveSectionSubjects();
             MessageBox.Show("Subject added Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            new ActivityLogger().activityLogger(Email, "Adding Subject: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
+
             Close();
 
 

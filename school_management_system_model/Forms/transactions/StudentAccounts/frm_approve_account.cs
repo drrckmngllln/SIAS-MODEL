@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,10 +19,13 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         public string course { get; set; }
         public string id_number { get; set; }
         public string fullname { get; set; }
-        public frm_approve_account()
+        public string Email { get; }
+
+        public frm_approve_account(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_approve_account_Load(object sender, EventArgs e)
@@ -73,6 +77,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 con.Close();
                 
                 new Classes.Toastr().toast("Success", "Student Approved");
+                new ActivityLogger().activityLogger(Email, "Approve account: " + tName.Text + " With a course: " + tCourse.Text);
 
 
                 Close();

@@ -165,7 +165,7 @@ namespace school_management_system_model.Forms.main
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_accounts();
+            var frm = new frm_student_accounts(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -211,7 +211,7 @@ namespace school_management_system_model.Forms.main
 
         private void button15_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_assessment();
+            var frm = new frm_student_assessment(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -220,7 +220,7 @@ namespace school_management_system_model.Forms.main
 
         private void button25_Click(object sender, EventArgs e)
         {
-            var frm = new frm_school_year();
+            var frm = new frm_school_year(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -296,7 +296,7 @@ namespace school_management_system_model.Forms.main
 
         private void button31_Click(object sender, EventArgs e)
         {
-            var frm = new frm_fee_collection();
+            var frm = new frm_fee_collection(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

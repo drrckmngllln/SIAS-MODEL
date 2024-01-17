@@ -2,6 +2,7 @@
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Forms.transactions.StudentAccounts;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,10 +23,13 @@ namespace school_management_system_model.Forms.transactions
         public string course { get; set; }
         public string campus { get; set; }
         public string semester { get; set; }
-        public frm_create_account()
+        public string Email { get; }
+
+        public frm_create_account(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void frm_create_account_Load(object sender, EventArgs e)
@@ -181,6 +185,8 @@ namespace school_management_system_model.Forms.transactions
 
                     add.addRecord(parameter);
                     new school_management_system_model.Classes.Toastr().toast("Success", "Account Saved");
+                    new ActivityLogger().activityLogger(Email, "Account Creation: " + tIdNumber.Text);
+
                     Close();
 
                 }
@@ -229,6 +235,8 @@ namespace school_management_system_model.Forms.transactions
 
 
                     new Classes.Toastr().toast("Information", "Account Updated");
+                    new ActivityLogger().activityLogger(Email, "Account Edit: " + tIdNumber.Text);
+
                     Close();
                 }
                 
