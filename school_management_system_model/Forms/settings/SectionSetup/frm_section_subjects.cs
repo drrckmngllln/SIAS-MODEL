@@ -108,7 +108,9 @@ namespace school_management_system_model.Forms.settings
                     instructor = tInstructor.Text
                 };
                 update.updateSectionSubject();
-                MessageBox.Show("Schedule Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                new Classes.Toastr().toast("Information", "Schedule Updated");
+                new ActivityLogger().activityLogger(Email, "Updating Sections: " + tSectionCode.Text);
                 loadRecords();
             }
         }

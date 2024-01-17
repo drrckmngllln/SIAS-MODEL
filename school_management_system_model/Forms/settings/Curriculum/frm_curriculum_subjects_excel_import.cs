@@ -135,7 +135,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
             catch(Exception ex)
             {
                 new Classes.Toastr().toast("Error", ex.Message);
-
+                MessageBox.Show(ex.Message);
             }
 
         }

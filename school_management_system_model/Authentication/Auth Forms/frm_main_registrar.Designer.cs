@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main_registrar));
             this.panelUserDetails = new System.Windows.Forms.Panel();
+            this.btnHome = new System.Windows.Forms.Button();
             this.tLogout = new System.Windows.Forms.Label();
             this.tAccesslevel = new System.Windows.Forms.Label();
             this.tUsername = new System.Windows.Forms.Label();
@@ -37,6 +40,7 @@
             this.panelSidebar = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelSettings = new System.Windows.Forms.Panel();
+            this.btnInstructors = new System.Windows.Forms.Button();
             this.btnDepartment = new System.Windows.Forms.Button();
             this.btnAdmissionSchedule = new System.Windows.Forms.Button();
             this.btnUserManagement = new System.Windows.Forms.Button();
@@ -50,16 +54,23 @@
             this.panelTransaction = new System.Windows.Forms.Panel();
             this.btnStudentAccounts = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
+            this.panelStatus = new System.Windows.Forms.Panel();
+            this.tTime = new System.Windows.Forms.Label();
+            this.timerTime = new System.Windows.Forms.Timer(this.components);
+            this.tSystemDescription = new System.Windows.Forms.Label();
+            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.panelUserDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPic)).BeginInit();
             this.panelSidebar.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelSettings.SuspendLayout();
             this.panelTransaction.SuspendLayout();
+            this.panelStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelUserDetails
             // 
+            this.panelUserDetails.Controls.Add(this.btnHome);
             this.panelUserDetails.Controls.Add(this.tLogout);
             this.panelUserDetails.Controls.Add(this.tAccesslevel);
             this.panelUserDetails.Controls.Add(this.tUsername);
@@ -67,8 +78,26 @@
             this.panelUserDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUserDetails.Location = new System.Drawing.Point(0, 0);
             this.panelUserDetails.Name = "panelUserDetails";
-            this.panelUserDetails.Size = new System.Drawing.Size(250, 160);
+            this.panelUserDetails.Size = new System.Drawing.Size(250, 212);
             this.panelUserDetails.TabIndex = 1;
+            // 
+            // btnHome
+            // 
+            this.btnHome.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnHome.ImageKey = "home.png";
+            this.btnHome.ImageList = this.icons;
+            this.btnHome.Location = new System.Drawing.Point(0, 162);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(250, 50);
+            this.btnHome.TabIndex = 4;
+            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // tLogout
             // 
@@ -122,13 +151,17 @@
             this.btnTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTransaction.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnTransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransaction.ImageKey = "icons8-computer-50.png";
+            this.btnTransaction.ImageList = this.icons;
             this.btnTransaction.Location = new System.Drawing.Point(0, 0);
             this.btnTransaction.Name = "btnTransaction";
-            this.btnTransaction.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnTransaction.Size = new System.Drawing.Size(250, 50);
+            this.btnTransaction.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnTransaction.Size = new System.Drawing.Size(233, 50);
             this.btnTransaction.TabIndex = 1;
             this.btnTransaction.Text = "Transaction";
             this.btnTransaction.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransaction.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTransaction.UseVisualStyleBackColor = true;
             this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
             // 
@@ -151,14 +184,15 @@
             this.panelMenu.Controls.Add(this.panelTransaction);
             this.panelMenu.Controls.Add(this.btnTransaction);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMenu.Location = new System.Drawing.Point(0, 160);
+            this.panelMenu.Location = new System.Drawing.Point(0, 212);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(250, 541);
+            this.panelMenu.Size = new System.Drawing.Size(250, 489);
             this.panelMenu.TabIndex = 2;
             // 
             // panelSettings
             // 
             this.panelSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.panelSettings.Controls.Add(this.btnInstructors);
             this.panelSettings.Controls.Add(this.btnDepartment);
             this.panelSettings.Controls.Add(this.btnAdmissionSchedule);
             this.panelSettings.Controls.Add(this.btnUserManagement);
@@ -171,9 +205,26 @@
             this.panelSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSettings.Location = new System.Drawing.Point(0, 180);
             this.panelSettings.Name = "panelSettings";
-            this.panelSettings.Size = new System.Drawing.Size(250, 296);
+            this.panelSettings.Size = new System.Drawing.Size(233, 321);
             this.panelSettings.TabIndex = 4;
             this.panelSettings.Visible = false;
+            // 
+            // btnInstructors
+            // 
+            this.btnInstructors.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnInstructors.FlatAppearance.BorderSize = 0;
+            this.btnInstructors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInstructors.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructors.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnInstructors.Location = new System.Drawing.Point(0, 270);
+            this.btnInstructors.Name = "btnInstructors";
+            this.btnInstructors.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnInstructors.Size = new System.Drawing.Size(233, 30);
+            this.btnInstructors.TabIndex = 13;
+            this.btnInstructors.Text = "Instructors";
+            this.btnInstructors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInstructors.UseVisualStyleBackColor = true;
+            this.btnInstructors.Click += new System.EventHandler(this.btnInstructors_Click);
             // 
             // btnDepartment
             // 
@@ -185,7 +236,7 @@
             this.btnDepartment.Location = new System.Drawing.Point(0, 240);
             this.btnDepartment.Name = "btnDepartment";
             this.btnDepartment.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnDepartment.Size = new System.Drawing.Size(250, 30);
+            this.btnDepartment.Size = new System.Drawing.Size(233, 30);
             this.btnDepartment.TabIndex = 12;
             this.btnDepartment.Text = "Department";
             this.btnDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -202,7 +253,7 @@
             this.btnAdmissionSchedule.Location = new System.Drawing.Point(0, 210);
             this.btnAdmissionSchedule.Name = "btnAdmissionSchedule";
             this.btnAdmissionSchedule.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnAdmissionSchedule.Size = new System.Drawing.Size(250, 30);
+            this.btnAdmissionSchedule.Size = new System.Drawing.Size(233, 30);
             this.btnAdmissionSchedule.TabIndex = 11;
             this.btnAdmissionSchedule.Text = "Admission Schedule";
             this.btnAdmissionSchedule.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -219,7 +270,7 @@
             this.btnUserManagement.Location = new System.Drawing.Point(0, 180);
             this.btnUserManagement.Name = "btnUserManagement";
             this.btnUserManagement.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnUserManagement.Size = new System.Drawing.Size(250, 30);
+            this.btnUserManagement.Size = new System.Drawing.Size(233, 30);
             this.btnUserManagement.TabIndex = 10;
             this.btnUserManagement.Text = "User Management";
             this.btnUserManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -236,7 +287,7 @@
             this.btnSections.Location = new System.Drawing.Point(0, 150);
             this.btnSections.Name = "btnSections";
             this.btnSections.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnSections.Size = new System.Drawing.Size(250, 30);
+            this.btnSections.Size = new System.Drawing.Size(233, 30);
             this.btnSections.TabIndex = 9;
             this.btnSections.Text = "Sections";
             this.btnSections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -253,7 +304,7 @@
             this.btnCurriculum.Location = new System.Drawing.Point(0, 120);
             this.btnCurriculum.Name = "btnCurriculum";
             this.btnCurriculum.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnCurriculum.Size = new System.Drawing.Size(250, 30);
+            this.btnCurriculum.Size = new System.Drawing.Size(233, 30);
             this.btnCurriculum.TabIndex = 8;
             this.btnCurriculum.Text = "Curriculum";
             this.btnCurriculum.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,7 +321,7 @@
             this.btnCampuses.Location = new System.Drawing.Point(0, 90);
             this.btnCampuses.Name = "btnCampuses";
             this.btnCampuses.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnCampuses.Size = new System.Drawing.Size(250, 30);
+            this.btnCampuses.Size = new System.Drawing.Size(233, 30);
             this.btnCampuses.TabIndex = 7;
             this.btnCampuses.Text = "Campuses";
             this.btnCampuses.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -287,7 +338,7 @@
             this.btnLevel.Location = new System.Drawing.Point(0, 60);
             this.btnLevel.Name = "btnLevel";
             this.btnLevel.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnLevel.Size = new System.Drawing.Size(250, 30);
+            this.btnLevel.Size = new System.Drawing.Size(233, 30);
             this.btnLevel.TabIndex = 5;
             this.btnLevel.Text = "Level";
             this.btnLevel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -304,7 +355,7 @@
             this.btnCourses.Location = new System.Drawing.Point(0, 30);
             this.btnCourses.Name = "btnCourses";
             this.btnCourses.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnCourses.Size = new System.Drawing.Size(250, 30);
+            this.btnCourses.Size = new System.Drawing.Size(233, 30);
             this.btnCourses.TabIndex = 3;
             this.btnCourses.Text = "Courses";
             this.btnCourses.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -321,7 +372,7 @@
             this.btnSchoolYear.Location = new System.Drawing.Point(0, 0);
             this.btnSchoolYear.Name = "btnSchoolYear";
             this.btnSchoolYear.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnSchoolYear.Size = new System.Drawing.Size(250, 30);
+            this.btnSchoolYear.Size = new System.Drawing.Size(233, 30);
             this.btnSchoolYear.TabIndex = 2;
             this.btnSchoolYear.Text = "School Year";
             this.btnSchoolYear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -335,13 +386,17 @@
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettings.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.ImageKey = "icons8-setup-60.png";
+            this.btnSettings.ImageList = this.icons;
             this.btnSettings.Location = new System.Drawing.Point(0, 130);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btnSettings.Size = new System.Drawing.Size(250, 50);
+            this.btnSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnSettings.Size = new System.Drawing.Size(233, 50);
             this.btnSettings.TabIndex = 3;
             this.btnSettings.Text = "Settings";
             this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
@@ -352,7 +407,7 @@
             this.panelTransaction.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTransaction.Location = new System.Drawing.Point(0, 50);
             this.panelTransaction.Name = "panelTransaction";
-            this.panelTransaction.Size = new System.Drawing.Size(250, 80);
+            this.panelTransaction.Size = new System.Drawing.Size(233, 80);
             this.panelTransaction.TabIndex = 2;
             this.panelTransaction.Visible = false;
             // 
@@ -366,7 +421,7 @@
             this.btnStudentAccounts.Location = new System.Drawing.Point(0, 0);
             this.btnStudentAccounts.Name = "btnStudentAccounts";
             this.btnStudentAccounts.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnStudentAccounts.Size = new System.Drawing.Size(250, 30);
+            this.btnStudentAccounts.Size = new System.Drawing.Size(233, 30);
             this.btnStudentAccounts.TabIndex = 2;
             this.btnStudentAccounts.Text = "Student Accounts";
             this.btnStudentAccounts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -375,11 +430,62 @@
             // 
             // panelTask
             // 
-            this.panelTask.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelTask.BackgroundImage = global::school_management_system_model.Properties.Resources.Untitled_design;
+            this.panelTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panelTask.Location = new System.Drawing.Point(250, 0);
             this.panelTask.Name = "panelTask";
-            this.panelTask.Size = new System.Drawing.Size(1043, 701);
+            this.panelTask.Size = new System.Drawing.Size(1043, 669);
             this.panelTask.TabIndex = 3;
+            // 
+            // panelStatus
+            // 
+            this.panelStatus.Controls.Add(this.tSystemDescription);
+            this.panelStatus.Controls.Add(this.tTime);
+            this.panelStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelStatus.Location = new System.Drawing.Point(250, 675);
+            this.panelStatus.Name = "panelStatus";
+            this.panelStatus.Size = new System.Drawing.Size(1043, 26);
+            this.panelStatus.TabIndex = 4;
+            // 
+            // tTime
+            // 
+            this.tTime.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.tTime.AutoSize = true;
+            this.tTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tTime.Location = new System.Drawing.Point(962, 7);
+            this.tTime.Name = "tTime";
+            this.tTime.Size = new System.Drawing.Size(69, 13);
+            this.tTime.TabIndex = 0;
+            this.tTime.Text = "00:00:00 tt";
+            // 
+            // timerTime
+            // 
+            this.timerTime.Enabled = true;
+            this.timerTime.Tick += new System.EventHandler(this.timerTime_Tick);
+            // 
+            // tSystemDescription
+            // 
+            this.tSystemDescription.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tSystemDescription.AutoSize = true;
+            this.tSystemDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSystemDescription.Location = new System.Drawing.Point(6, 7);
+            this.tSystemDescription.Name = "tSystemDescription";
+            this.tSystemDescription.Size = new System.Drawing.Size(183, 13);
+            this.tSystemDescription.TabIndex = 1;
+            this.tSystemDescription.Text = "Developed by: ICT Office 2024\r\n";
+            // 
+            // icons
+            // 
+            this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
+            this.icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.icons.Images.SetKeyName(0, "icons8-setup-60.png");
+            this.icons.Images.SetKeyName(1, "icons8-process-64.png");
+            this.icons.Images.SetKeyName(2, "icons8-memo-66.png");
+            this.icons.Images.SetKeyName(3, "icons8-computer-50.png");
+            this.icons.Images.SetKeyName(4, "home.png");
             // 
             // frm_main_registrar
             // 
@@ -387,6 +493,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1293, 701);
             this.ControlBox = false;
+            this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.panelTask);
             this.Controls.Add(this.panelSidebar);
             this.CornerRoundingRadius = 10F;
@@ -434,6 +541,8 @@
             this.panelMenu.ResumeLayout(false);
             this.panelSettings.ResumeLayout(false);
             this.panelTransaction.ResumeLayout(false);
+            this.panelStatus.ResumeLayout(false);
+            this.panelStatus.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -461,5 +570,12 @@
         private System.Windows.Forms.Panel panelTask;
         private System.Windows.Forms.Button btnAdmissionSchedule;
         private System.Windows.Forms.Button btnDepartment;
+        private System.Windows.Forms.Button btnInstructors;
+        private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.Panel panelStatus;
+        private System.Windows.Forms.Label tTime;
+        private System.Windows.Forms.Timer timerTime;
+        private System.Windows.Forms.Label tSystemDescription;
+        private System.Windows.Forms.ImageList icons;
     }
 }

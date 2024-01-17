@@ -88,7 +88,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     var edit = new sections
                     {
-                        id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
+                        unique_id = tSectionCode.Text + tCourse.Text + tYearLevel.Text + tSemester.Text,
                         section_code = tSectionCode.Text,
                         course = tCourse.Text,
                         year_level = tYearLevel.Text,
@@ -99,19 +99,20 @@ namespace school_management_system_model.Forms.settings
                         status = tStatus.Text,
                         remarks = tRemarks.Text
                     };
-                    edit.editSection();
-                    MessageBox.Show("Section Update Success");
+                    edit.editSection(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                    new Classes.Toastr().toast("Information", "Section Update Success");
                     new ActivityLogger().activityLogger(Email, "Section Edit: " + tSectionCode.Text);
 
                     loadrecords();
                     txtclear();
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Error, Duplicate Entry","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Classes.Toastr().toast("Error", ex.Message);
+
             }
-            
+
         }
 
         private void delete()
