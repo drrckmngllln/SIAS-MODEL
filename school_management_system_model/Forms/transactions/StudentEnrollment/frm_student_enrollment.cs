@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Forms.transactions.StudentEnrollment;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -25,6 +26,7 @@ namespace school_management_system_model.Forms.transactions
         public DataTable dt = new DataTable();
 
         public static frm_student_enrollment instance;
+        
         public frm_student_enrollment()
         {
             instance = this;
@@ -34,7 +36,7 @@ namespace school_management_system_model.Forms.transactions
         private void frm_student_enrollment_Load(object sender, EventArgs e)
         {
             loadRecords();
-            loadCourses();
+            
             loadSection();
         }
 
@@ -69,16 +71,7 @@ namespace school_management_system_model.Forms.transactions
             tCampus.Text = campus.getCampus();
         }
 
-        private void loadCourses()
-        {
-            var courses = new proceed_to_enrollment();
-            var data = courses.loadCourses();
-
-            foreach(DataRow row in data.Rows)
-            {
-                tCourse.Items.Add(row["code"]);
-            }
-        }
+        
 
         private void loadRecords()
         {
@@ -376,6 +369,17 @@ namespace school_management_system_model.Forms.transactions
         {
             loadSection();
             tSection.Select();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_select_course();
+            frm.Text = "Select Course";
+            frm.ShowDialog();
+            if (course != null)
+            {
+                tCourse.Text = course;
+            }
         }
     }
 }

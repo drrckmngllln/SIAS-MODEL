@@ -197,5 +197,29 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
         {
            
         }
+
+        private void btnInstructors_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_instructors(email);
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            panelTask.Controls.Clear();
+            panelTransaction.Visible = false;
+            panelSettings.Visible = false;
+
+            btnTransaction.BackColor = Color.FromArgb(0,0,25);
+            btnSettings.BackColor = Color.FromArgb(0,0,25);
+        }
+
+        private void timerTime_Tick(object sender, EventArgs e)
+        {
+            tTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
+        }
     }
 }

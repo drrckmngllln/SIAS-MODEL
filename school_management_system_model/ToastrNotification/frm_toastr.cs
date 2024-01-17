@@ -53,7 +53,7 @@ namespace school_management_system_model.Toastr
         {
             toastY -= 10;
             this.Location = new Point(toastX, toastY);
-            if (toastY <= 950 )
+            if (toastY <= 950 ) //950
             {
                 toastTimer.Stop();
                 toastHide.Start();
@@ -82,8 +82,8 @@ namespace school_management_system_model.Toastr
             int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
             int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
 
-            toastX = screenWidth - this.Width - 10;
-            toastY = screenHeight - this.Height + 30;
+            toastX = screenWidth - this.Width;
+            toastY = screenHeight - this.Height;
 
             this.Location = new Point(toastX, toastY);
 

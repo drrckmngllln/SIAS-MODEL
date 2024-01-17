@@ -60,7 +60,7 @@ namespace school_management_system_model.Classes
            
         }
         
-        public void editSection()
+        public void editSection(int id)
         {
             var con = new MySqlConnection(connection.con());
             con.Open();

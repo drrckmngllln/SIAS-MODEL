@@ -478,6 +478,12 @@
     <Compile Include="Forms\transactions\StudentAssessment\frm_view_subjects.Designer.cs">
       <DependentUpon>frm_view_subjects.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_select_course.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_select_course.Designer.cs">
+      <DependentUpon>frm_select_course.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\StudentEnrollment\frm_select_subject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -736,6 +742,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAssessment\frm_view_subjects.resx">
       <DependentUpon>frm_view_subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_course.resx">
+      <DependentUpon>frm_select_course.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_subject.resx">
       <DependentUpon>frm_select_subject.cs</DependentUpon>

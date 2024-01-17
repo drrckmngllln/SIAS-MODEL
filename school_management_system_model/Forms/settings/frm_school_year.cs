@@ -62,46 +62,42 @@ namespace school_management_system_model.Forms.settings
             {
                 if (btn_save.Text == "Save")
                 {
-                    if (isAdd)
+                    var add = new SchoolYearSetup
                     {
-                        var add = new SchoolYearSetup
-                        {
-                            code = tCode.Text,
-                            description = tDescription.Text,
-                            from = tFrom.Text,
-                            to = tTo.Text,
-                            semester = tSemester.Text,
-                            is_current = tCurrent.Text
-                        };
-                        add.addRecords();
-                        new Classes.Toastr().toast("Success", "Successfully Saved");
-                        new ActivityLogger().activityLogger(Email, "School Year Add: " + tDescription.Text);
+                        code = tCode.Text,
+                        description = tDescription.Text,
+                        from = tFrom.Text,
+                        to = tTo.Text,
+                        semester = tSemester.Text,
+                        is_current = tCurrent.Text
+                    };
+                    add.addRecords();
+                    new Classes.Toastr().toast("Success", "Successfully Saved");
+                    new ActivityLogger().activityLogger(Email, "School Year Add: " + tDescription.Text);
 
-                        loadRecords();
-                        txtClear();
-                    }
+                    loadRecords();
+                    txtClear();
+                    
                 }
                 else if (btn_save.Text == "Update")
                 {
-                    if (isEdit)
+                    int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+                    var edit = new SchoolYearSetup
                     {
-                        int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-                        var edit = new SchoolYearSetup
-                        {
-                            code = tCode.Text,
-                            description = tDescription.Text,
-                            from = tFrom.Text,
-                            to = tTo.Text,
-                            semester = tSemester.Text,
-                            is_current = tCurrent.Text
-                        };
-                        edit.EditRecords(id);
-                        new Classes.Toastr().toast("Information", "Successfully Updated");
-                        new ActivityLogger().activityLogger(Email, "School Year Edit: " + tDescription.Text);
+                        code = tCode.Text,
+                        description = tDescription.Text,
+                        from = tFrom.Text,
+                        to = tTo.Text,
+                        semester = tSemester.Text,
+                        is_current = tCurrent.Text
+                    };
+                    edit.EditRecords(id);
+                    new Classes.Toastr().toast("Information", "Successfully Updated");
+                    new ActivityLogger().activityLogger(Email, "School Year Edit: " + tDescription.Text);
 
-                        loadRecords();
-                        txtClear();
-                    }
+                    loadRecords();
+                    txtClear();
+                    
                 }
             }
             catch(Exception ex)
