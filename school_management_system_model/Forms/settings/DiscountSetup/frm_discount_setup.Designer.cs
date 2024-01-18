@@ -219,6 +219,7 @@
             this.tDiscountTarget.Name = "tDiscountTarget";
             this.tDiscountTarget.Size = new System.Drawing.Size(236, 21);
             this.tDiscountTarget.TabIndex = 145;
+            this.tDiscountTarget.SelectedIndexChanged += new System.EventHandler(this.tDiscountTarget_SelectedIndexChanged);
             // 
             // label5
             // 

@@ -106,6 +106,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].Visible = false;
             dgv.Columns["date"].HeaderText = "Date";
+            
             dgv.Columns["year_level"].Visible = false;
             dgv.Columns["semester"].Visible = false;
             dgv.Columns["school_year"].Visible = false;
@@ -122,7 +123,7 @@ namespace school_management_system_model.Forms.transactions.Collection
         {
             
             var data = new FeeCollection();
-            var idNumber = data.loadFeeBreakdown(tIdNumber.Text);
+            var idNumber = data.loadFeeBreakdown(tIdNumber.Text, tSchoolYear.Text);
 
             
             string[] term = { "Downpayment", "Prelims", "Midterms", "Semi-Finals", "Finals" };
@@ -435,6 +436,11 @@ namespace school_management_system_model.Forms.transactions.Collection
         private void btnSet_Click(object sender, EventArgs e)
         {
             setOrNumber();
+        }
+
+        private void timerTime_Tick(object sender, EventArgs e)
+        {
+            tTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
     }
 }

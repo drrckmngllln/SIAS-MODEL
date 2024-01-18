@@ -131,8 +131,7 @@ namespace school_management_system_model.Forms.settings
 
         private void txtclear()
         {
-            tSectionCode.Clear();
-            tSectionCode.Clear();
+            tSectionCode.Text = "";
             tYearLevel.Clear();
             tSection.Clear();
             tCourse.Text = "";
@@ -223,6 +222,39 @@ namespace school_management_system_model.Forms.settings
         }
 
         private void tStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private void tSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tSearch.Text.Length > 2)
+            {
+                var search = new sections().searchRecords(tSearch.Text);
+                dgv.DataSource = search;
+            }
+            else if (tSearch.Text.Length == 0)
+            {
+                loadrecords();
+            }
+        }
+
+        private void tYearLevel_TextChanged_1(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private void tSection_TextChanged_1(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private void tSemester_TextChanged(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private void tCourse_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
         }

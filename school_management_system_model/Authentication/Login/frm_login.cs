@@ -236,5 +236,19 @@ namespace school_management_system_model.Authentication.Login
         {
             Application.Exit();
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                tPassword.UseSystemPasswordChar = false;
+                tPassword.PasswordChar = '\0';
+            }
+            else if (!checkBox1.Checked)
+            {
+                tPassword.UseSystemPasswordChar = true;
+                tPassword.PasswordChar = '●';
+            }
+        }
     }
 }

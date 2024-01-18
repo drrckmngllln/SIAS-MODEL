@@ -220,7 +220,7 @@ namespace school_management_system_model.Forms.main
 
         private void button25_Click(object sender, EventArgs e)
         {
-            var frm = new frm_school_year();
+            var frm = new frm_school_year(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

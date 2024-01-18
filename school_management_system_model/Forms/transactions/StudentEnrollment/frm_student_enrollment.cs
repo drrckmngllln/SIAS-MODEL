@@ -381,5 +381,11 @@ namespace school_management_system_model.Forms.transactions
                 tCourse.Text = course;
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_select_section();
+            frm.ShowDialog();
+        }
     }
 }

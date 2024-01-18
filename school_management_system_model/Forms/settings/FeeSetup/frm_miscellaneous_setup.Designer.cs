@@ -172,7 +172,7 @@
             this.tsearch.Name = "tsearch";
             this.tsearch.Size = new System.Drawing.Size(258, 23);
             this.tsearch.TabIndex = 102;
-           
+            this.tsearch.TextChanged += new System.EventHandler(this.tsearch_TextChanged_1);
             // 
             // kryptonButton1
             // 

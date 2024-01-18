@@ -64,10 +64,10 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public DataTable loadLatestSOA(string idNumber)
+        public DataTable loadLatestSOA(string idNumber, string schoolYear)
         {
             var con = new MySqlConnection (connection.con());
-            var da = new MySqlDataAdapter("select * from statements_of_accounts where id_number='" + idNumber + "' order by id desc", con);
+            var da = new MySqlDataAdapter("select * from statements_of_accounts where id_number='" + idNumber + "' and school_year='"+ schoolYear +"'", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt;
@@ -84,6 +84,14 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select * from statements_of_accounts where concat(date, reference_no, particulars) like '%"+ search +"%' and id_number='"+ idNumber +"'", con);
+            var dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+        public DataTable loadSchoolYear()
+        {
+            var con = new MySqlConnection (connection.con());
+            var da = new MySqlDataAdapter("select * from school_year", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt;

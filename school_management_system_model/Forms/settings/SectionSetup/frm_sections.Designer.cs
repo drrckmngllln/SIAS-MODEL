@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             this.btn_clear = new Krypton.Toolkit.KryptonButton();
             this.btn_save = new Krypton.Toolkit.KryptonButton();
@@ -54,6 +54,7 @@
             this.tCourse = new System.Windows.Forms.ComboBox();
             this.tStatus = new System.Windows.Forms.ComboBox();
             this.tRemarks = new System.Windows.Forms.ComboBox();
+            this.tSearch = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,23 +123,23 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgv.Location = new System.Drawing.Point(457, 111);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -269,6 +270,7 @@
             this.tYearLevel.Name = "tYearLevel";
             this.tYearLevel.Size = new System.Drawing.Size(199, 21);
             this.tYearLevel.TabIndex = 58;
+            this.tYearLevel.TextChanged += new System.EventHandler(this.tYearLevel_TextChanged_1);
             // 
             // tSection
             // 
@@ -277,6 +279,7 @@
             this.tSection.Name = "tSection";
             this.tSection.Size = new System.Drawing.Size(199, 21);
             this.tSection.TabIndex = 59;
+            this.tSection.TextChanged += new System.EventHandler(this.tSection_TextChanged_1);
             // 
             // tSemester
             // 
@@ -285,6 +288,7 @@
             this.tSemester.Name = "tSemester";
             this.tSemester.Size = new System.Drawing.Size(199, 21);
             this.tSemester.TabIndex = 60;
+            this.tSemester.TextChanged += new System.EventHandler(this.tSemester_TextChanged);
             // 
             // tNumberOfStudents
             // 
@@ -312,6 +316,7 @@
             this.tCourse.Name = "tCourse";
             this.tCourse.Size = new System.Drawing.Size(165, 21);
             this.tCourse.TabIndex = 63;
+            this.tCourse.SelectedIndexChanged += new System.EventHandler(this.tCourse_SelectedIndexChanged_1);
             // 
             // tStatus
             // 
@@ -336,11 +341,24 @@
             this.tRemarks.Size = new System.Drawing.Size(165, 21);
             this.tRemarks.TabIndex = 65;
             // 
+            // tSearch
+            // 
+            this.tSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tSearch.CueHint.CueHintText = "Search";
+            this.tSearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tSearch.Location = new System.Drawing.Point(1010, 80);
+            this.tSearch.Name = "tSearch";
+            this.tSearch.Size = new System.Drawing.Size(249, 21);
+            this.tSearch.StateActive.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSearch.TabIndex = 66;
+            this.tSearch.TextChanged += new System.EventHandler(this.tSearch_TextChanged);
+            // 
             // frm_sections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1271, 788);
+            this.Controls.Add(this.tSearch);
             this.Controls.Add(this.tRemarks);
             this.Controls.Add(this.tStatus);
             this.Controls.Add(this.tCourse);
@@ -404,5 +422,6 @@
         private System.Windows.Forms.ComboBox tCourse;
         private System.Windows.Forms.ComboBox tStatus;
         private System.Windows.Forms.ComboBox tRemarks;
+        private Krypton.Toolkit.KryptonTextBox tSearch;
     }
 }

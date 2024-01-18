@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("school_management_system_model")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("School Management System")]
+[assembly: AssemblyDescription("Student Information and Accounting System")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Medical Colleges of Northern Philippines and International School of Asia and the Pacific")]
 [assembly: AssemblyProduct("school_management_system_model")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]

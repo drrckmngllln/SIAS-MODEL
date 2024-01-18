@@ -50,7 +50,8 @@ namespace school_management_system_model.Forms.settings
                     discount_percentage = Convert.ToInt32(tPercentage.Text)
                 };
                 add.addRecords();
-                MessageBox.Show("Saved", "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                new Classes.Toastr().toast("Success", "Discount Setup Added");
                 new ActivityLogger().activityLogger(Email, "Add Discount: " + tDescription.Text);
                 txtClear();
                 loadRecords();
@@ -65,7 +66,9 @@ namespace school_management_system_model.Forms.settings
                     discount_percentage = Convert.ToInt32(tPercentage.Text)
                 };
                 edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                MessageBox.Show("Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                new Classes.Toastr().toast("Success", "Discount Setup Updated");
+
                 txtClear();
                 loadRecords();
             }
@@ -110,6 +113,8 @@ namespace school_management_system_model.Forms.settings
             var delete = new DiscountSetup();
             delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
             MessageBox.Show("Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            new Classes.Toastr().toast("Success", "Discount Setup Deleted");
+
             new ActivityLogger().activityLogger(Email, "Discount Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
             loadRecords();
         }
@@ -134,6 +139,11 @@ namespace school_management_system_model.Forms.settings
             {
                 loadRecords();
             }
+        }
+
+        private void tDiscountTarget_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

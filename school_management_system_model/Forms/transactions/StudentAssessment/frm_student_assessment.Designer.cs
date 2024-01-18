@@ -202,7 +202,6 @@
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(1017, 626);
             this.dgv.TabIndex = 129;
-            
             // 
             // groupBox1
             // 
@@ -269,6 +268,7 @@
             this.tSemester.Name = "tSemester";
             this.tSemester.Size = new System.Drawing.Size(220, 21);
             this.tSemester.TabIndex = 142;
+            this.tSemester.TextChanged += new System.EventHandler(this.tSemester_TextChanged);
             // 
             // label7
             // 
