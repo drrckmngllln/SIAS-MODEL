@@ -103,6 +103,7 @@ namespace school_management_system_model.Forms.settings
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             tCategory.Text = dgv.CurrentRow.Cells["category"].Value.ToString();
+            tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
             tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
             tFirstYear.Text = dgv.CurrentRow.Cells["first_year"].Value.ToString();
             tSecondYear.Text = dgv.CurrentRow.Cells["second_year"].Value.ToString();

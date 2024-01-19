@@ -37,19 +37,21 @@ namespace school_management_system_model.Forms.transactions
         {
             loadRecords();
             
-            loadSection();
         }
 
         private void loadSection()
         {
-            tSection.Items.Clear();
-            var section = new proceed_to_enrollment();
-            
-            var data = section.loadSection(tCourse.Text, tSemester.Text, tYearLevel.Text);
-
-            foreach(DataRow row in data.Rows)
+            try
             {
-                tSection.Items.Add(row["section_code"]);
+                var section = new proceed_to_enrollment();
+            
+                var data = section.loadSection(tCourse.Text, tSemester.Text, tYearLevel.Text.Length == 0 ? "1" : tYearLevel.Text);
+
+                tSection.Text = data.Rows[0]["section_code"].ToString();
+            }
+            catch(Exception ex)
+            {
+                new Classes.Toastr("Warning", ex.Message);
             }
         }
 
@@ -106,11 +108,13 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["descriptive_title"].Width = 400;
             
         }
-        private void tSection_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void loadSectionSubjects()
         {
             if (tCurriculum.Text.Length == 0 && tSemester.Text.Length == 0)
             {
-                MessageBox.Show("Please select a Curriculum and Semester", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                new Classes.Toastr("Warning", "Please select a Curriculum and Semester");
             }
             else
             {
@@ -120,7 +124,7 @@ namespace school_management_system_model.Forms.transactions
                 totalLabUnits = 0;
                 var sectionSubjects = new proceed_to_enrollment();
                 var data = sectionSubjects.loadSubjects(tSection.Text, tSemester.Text);
-                foreach(DataRow row in data.Rows)
+                foreach (DataRow row in data.Rows)
                 {
                     dgv.Rows.Add(
                         row["subject_code"], row["descriptive_title"], row["pre_requisite"], row["total_units"],
@@ -130,9 +134,10 @@ namespace school_management_system_model.Forms.transactions
                     totalLectureUnits += Convert.ToInt32(row["lecture_units"]);
                     totalLabUnits += Convert.ToInt32(row["lab_units"]);
                 }
-                
+
             }
         }
+        
 
         private void kryptonTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -238,14 +243,14 @@ namespace school_management_system_model.Forms.transactions
                     status.approveStudent(parameter.id_number);
 
                    
-                    new Classes.Toastr().toast("Success", "Student Enrolled, Proceed to Accounting");
+                    new Classes.Toastr("Success", "Student Enrolled, Proceed to Accounting");
 
                     Close();
                 }
                 else if (increment == "Full")
                 {
                     
-                    new Classes.Toastr().toast("Error", "Section Full");
+                    new Classes.Toastr("Error", "Section Full");
 
                     var data = new add_subjects
                     {
@@ -276,19 +281,19 @@ namespace school_management_system_model.Forms.transactions
 
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
-            if (tCourse.Text == "")
-            {
-                MessageBox.Show("Error, no course selected", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                var frm = new frm_select_section();
-                frm_select_section.instance.course = tCourse.Text;
-                frm.Text = "Select Section";
-                frm.ShowDialog();
-                tSection.Text = section;
+            //if (tCourse.Text == "")
+            //{
+            //    MessageBox.Show("Error, no course selected", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    var frm = new frm_select_section();
+            //    frm_select_section.instance.course = tCourse.Text;
+            //    frm.Text = "Select Section";
+            //    frm.ShowDialog();
+            //    tSection.Text = section;
 
-            }
+            //}
         }
 
         private void tCourse_SelectedIndexChanged(object sender, EventArgs e)
@@ -332,21 +337,9 @@ namespace school_management_system_model.Forms.transactions
             
             
         }
-
-
-        //dgv.Columns.Add("subject_code", "Subject Code");
-        //dgv.Columns.Add("descriptive_title", "Descriptive Title");
-        //dgv.Columns.Add("pre_requisite", "Pre Requisite");
-        //dgv.Columns.Add("total_units", "Total Units");
-        //dgv.Columns.Add("lecture_units", "Lecture Units");
-        //dgv.Columns.Add("lab_units", "Lab Units");
-        //dgv.Columns.Add("time", "Time");
-        //dgv.Columns.Add("day","Day");
-        //dgv.Columns.Add("room","Room");
-        //dgv.Columns.Add("instructor", "Instructor");
         private void tSemester_TextChanged(object sender, EventArgs e)
         {
-            loadSection();
+            
         }
 
         private void timerCounter_Tick(object sender, EventArgs e)
@@ -367,8 +360,15 @@ namespace school_management_system_model.Forms.transactions
 
         private void tYearLevel_TextChanged(object sender, EventArgs e)
         {
-            loadSection();
-            tSection.Select();
+            if (tYearLevel.Text.Length == 1)
+            {
+                loadSection();
+                loadSectionSubjects();
+            }
+            else if (tYearLevel.Text.Length == 0)
+            {
+                dgv.Rows.Clear();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -379,6 +379,17 @@ namespace school_management_system_model.Forms.transactions
             if (course != null)
             {
                 tCourse.Text = course;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_select_section(tCourse.Text, tSemester.Text, tYearLevel.Text);
+            frm.Text = "Select Subjects";
+            frm.ShowDialog();
+            if (section != null)
+            {
+                tSection.Text = section;
             }
         }
     }

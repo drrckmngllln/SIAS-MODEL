@@ -109,7 +109,7 @@ namespace school_management_system_model.Forms.settings
                 };
                 update.updateSectionSubject();
                 
-                new Classes.Toastr().toast("Information", "Schedule Updated");
+                new Classes.Toastr("Information", "Schedule Updated");
                 new ActivityLogger().activityLogger(Email, "Updating Sections: " + tSectionCode.Text);
                 loadRecords();
             }

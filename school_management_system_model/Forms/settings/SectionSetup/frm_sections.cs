@@ -79,7 +79,7 @@ namespace school_management_system_model.Forms.settings
                     };
                     add.addSection();
                     
-                    new Classes.Toastr().toast("Success", "Section Add Success");
+                    new Classes.Toastr("Success", "Section Add Success");
                     new ActivityLogger().activityLogger(Email, "Section Add: " + tSectionCode.Text);
 
                     loadrecords();
@@ -100,7 +100,7 @@ namespace school_management_system_model.Forms.settings
                         remarks = tRemarks.Text
                     };
                     edit.editSection(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                    new Classes.Toastr().toast("Information", "Section Update Success");
+                    new Classes.Toastr("Information", "Section Update Success");
                     new ActivityLogger().activityLogger(Email, "Section Edit: " + tSectionCode.Text);
 
                     loadrecords();
@@ -109,7 +109,7 @@ namespace school_management_system_model.Forms.settings
             }
             catch(Exception ex)
             {
-                new Classes.Toastr().toast("Error", ex.Message);
+                new Classes.Toastr("Error", ex.Message);
 
             }
 
@@ -131,8 +131,7 @@ namespace school_management_system_model.Forms.settings
 
         private void txtclear()
         {
-            tSectionCode.Clear();
-            tSectionCode.Clear();
+            tSectionCode.Text = "";
             tYearLevel.Clear();
             tSection.Clear();
             tCourse.Text = "";
@@ -223,6 +222,39 @@ namespace school_management_system_model.Forms.settings
         }
 
         private void tStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private void tSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tSearch.Text.Length > 2)
+            {
+                var search = new sections().searchRecords(tSearch.Text);
+                dgv.DataSource = search;
+            }
+            else if (tSearch.Text.Length == 0)
+            {
+                loadrecords();
+            }
+        }
+
+        private void tYearLevel_TextChanged_1(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private void tSection_TextChanged_1(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private void tSemester_TextChanged(object sender, EventArgs e)
+        {
+            tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private void tCourse_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
         }

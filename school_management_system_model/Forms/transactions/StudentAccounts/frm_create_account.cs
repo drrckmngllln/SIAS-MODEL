@@ -180,8 +180,7 @@ namespace school_management_system_model.Forms.transactions
                     var add = new StudentAccount();
 
                     add.addRecord(parameter);
-                    new school_management_system_model.Classes.Toastr().toast("Success", "Account Saved");
-                    Close();
+                    new school_management_system_model.Classes.Toastr("Success", "Account Saved");
 
                 }
                 else if (this.Text == "Update Account")
@@ -228,7 +227,7 @@ namespace school_management_system_model.Forms.transactions
                     edit = new StudentAccount();
 
 
-                    new Classes.Toastr().toast("Information", "Account Updated");
+                    new Classes.Toastr("Information", "Account Updated");
                     Close();
                 }
                 

@@ -80,7 +80,7 @@ namespace school_management_system_model.Forms.settings
                     room = tRoom.Text
                 };
                 save.saveSectionSubjects();
-                new Classes.Toastr().toast("Success", "Subject Imported");
+                new Classes.Toastr("Success", "Subject Imported");
                 new ActivityLogger().activityLogger(Email, "Section Subject Add: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
 
                 this.Close();
@@ -119,7 +119,7 @@ namespace school_management_system_model.Forms.settings
                     
                     
                 }
-                new Classes.Toastr().toast("Success", "Subjects Imported");
+                new Classes.Toastr("Success", "Subjects Imported");
                 new ActivityLogger().activityLogger(Email, "Section Subject Select All");
 
                 Close();

@@ -45,7 +45,6 @@
             this.tYearLevel = new System.Windows.Forms.TextBox();
             this.tSemester = new System.Windows.Forms.TextBox();
             this.tCurriculum = new System.Windows.Forms.ComboBox();
-            this.tSection = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tStudentName = new System.Windows.Forms.Label();
             this.tLectureUnits = new System.Windows.Forms.Label();
@@ -59,6 +58,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tCourse = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tSection = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -237,15 +238,6 @@
             this.tCurriculum.Size = new System.Drawing.Size(225, 21);
             this.tCurriculum.TabIndex = 107;
             // 
-            // tSection
-            // 
-            this.tSection.FormattingEnabled = true;
-            this.tSection.Location = new System.Drawing.Point(174, 275);
-            this.tSection.Name = "tSection";
-            this.tSection.Size = new System.Drawing.Size(225, 21);
-            this.tSection.TabIndex = 109;
-            this.tSection.SelectedIndexChanged += new System.EventHandler(this.tSection_SelectedIndexChanged);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tStudentName);
@@ -392,11 +384,30 @@
             this.tCourse.Size = new System.Drawing.Size(225, 20);
             this.tCourse.TabIndex = 120;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(405, 277);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(27, 19);
+            this.button2.TabIndex = 121;
+            this.button2.Text = "...";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // tSection
+            // 
+            this.tSection.Location = new System.Drawing.Point(174, 275);
+            this.tSection.Name = "tSection";
+            this.tSection.Size = new System.Drawing.Size(225, 20);
+            this.tSection.TabIndex = 122;
+            // 
             // frm_student_enrollment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 632);
+            this.Controls.Add(this.tSection);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.tCourse);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tCampus);
@@ -408,7 +419,6 @@
             this.Controls.Add(this.tLectureUnits);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tSection);
             this.Controls.Add(this.tCurriculum);
             this.Controls.Add(this.tSemester);
             this.Controls.Add(this.tYearLevel);
@@ -486,7 +496,6 @@
         private System.Windows.Forms.TextBox tYearLevel;
         private System.Windows.Forms.TextBox tSemester;
         private System.Windows.Forms.ComboBox tCurriculum;
-        private System.Windows.Forms.ComboBox tSection;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label tStudentName;
         private System.Windows.Forms.Label tLectureUnits;
@@ -500,5 +509,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox tCourse;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox tSection;
     }
 }

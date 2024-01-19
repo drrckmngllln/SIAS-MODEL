@@ -52,7 +52,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                     var cmd = new MySqlCommand("insert into access_level(access_level, office) values('" + tAccessLevel.Text + "','" + Office + "')", con);
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    new Classes.Toastr().toast("Success", "Access Level Added");
+                    new Classes.Toastr("Success", "Access Level Added");
                     txtClear();
                 }
                 else if (btnSave.Text == "Update")
@@ -63,13 +63,13 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         "where id='" + Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value) + "'", con);
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    new Classes.Toastr().toast("Information", "Access Level Updated");
+                    new Classes.Toastr("Information", "Access Level Updated");
                     txtClear();
                 }
             }
             catch(Exception ex)
             {
-                new Classes.Toastr().toast("Error", ex.Message);
+                new Classes.Toastr("Error", ex.Message);
             }
         }
 

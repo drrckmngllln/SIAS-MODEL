@@ -84,7 +84,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         administrator = administrator
                     };
                     addUser.addUser();
-                    new Classes.Toastr().toast("Success", "User Successfully Saved");
+                    new Classes.Toastr("Success", "User Successfully Saved");
                     loadRecords();
                     txtclear();
                 }
@@ -110,14 +110,14 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         administrator = administrator
                     };
                     addUser.editUser(id);
-                    new Classes.Toastr().toast("Information", "User Successfully Updated");
+                    new Classes.Toastr("Information", "User Successfully Updated");
                     loadRecords();
                     txtclear();
                 }
             }
             catch(Exception ex)
             {
-                new Classes.Toastr().toast("Error", ex.Message);
+                new Classes.Toastr("Error", ex.Message);
             }
             
         }
@@ -197,7 +197,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
             {
                 var delete = new Classes.UserManagement();
                 delete.deleteUser(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                new Classes.Toastr().toast("Success", "User Deleted Successfully");
+                new Classes.Toastr("Success", "User Deleted Successfully");
                 loadRecords();
                 txtclear();
             }
@@ -223,7 +223,19 @@ namespace school_management_system_model.Forms.settings.UserManagement
             }
         }
 
-        
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                tPassword.UseSystemPasswordChar = false;
+                tPassword.PasswordChar = '\0';
+            }
+            else if (!checkBox1.Checked)
+            {
+                tPassword.UseSystemPasswordChar = true;
+                tPassword.PasswordChar = '\0';
+            }
+        }
 
         private void cAdministrator_CheckedChanged(object sender, EventArgs e)
         {

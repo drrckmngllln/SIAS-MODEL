@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main_finance));
             this.panelSideBar = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelSettings = new System.Windows.Forms.Panel();
@@ -47,17 +49,23 @@
             this.btnStudentAssessment = new System.Windows.Forms.Button();
             this.btnTransaction = new System.Windows.Forms.Button();
             this.panelUserInfo = new System.Windows.Forms.Panel();
+            this.btnHome = new System.Windows.Forms.Button();
+            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.tLogout = new System.Windows.Forms.Label();
             this.tAccessLevel = new System.Windows.Forms.Label();
             this.tName = new System.Windows.Forms.Label();
             this.picUserImage = new System.Windows.Forms.PictureBox();
             this.panelTask = new System.Windows.Forms.Panel();
+            this.timerTime = new System.Windows.Forms.Timer(this.components);
+            this.panelStatus = new System.Windows.Forms.Panel();
+            this.tSystemDescription = new System.Windows.Forms.Label();
             this.panelSideBar.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelSettings.SuspendLayout();
             this.panelTransaction.SuspendLayout();
             this.panelUserInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUserImage)).BeginInit();
+            this.panelStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSideBar
@@ -68,7 +76,7 @@
             this.panelSideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSideBar.Location = new System.Drawing.Point(0, 0);
             this.panelSideBar.Name = "panelSideBar";
-            this.panelSideBar.Size = new System.Drawing.Size(250, 726);
+            this.panelSideBar.Size = new System.Drawing.Size(250, 772);
             this.panelSideBar.TabIndex = 0;
             // 
             // panelMenu
@@ -79,9 +87,9 @@
             this.panelMenu.Controls.Add(this.panelTransaction);
             this.panelMenu.Controls.Add(this.btnTransaction);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMenu.Location = new System.Drawing.Point(0, 200);
+            this.panelMenu.Location = new System.Drawing.Point(0, 250);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(250, 526);
+            this.panelMenu.Size = new System.Drawing.Size(250, 522);
             this.panelMenu.TabIndex = 1;
             // 
             // panelSettings
@@ -359,6 +367,7 @@
             // 
             // panelUserInfo
             // 
+            this.panelUserInfo.Controls.Add(this.btnHome);
             this.panelUserInfo.Controls.Add(this.tLogout);
             this.panelUserInfo.Controls.Add(this.tAccessLevel);
             this.panelUserInfo.Controls.Add(this.tName);
@@ -366,8 +375,36 @@
             this.panelUserInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUserInfo.Location = new System.Drawing.Point(0, 0);
             this.panelUserInfo.Name = "panelUserInfo";
-            this.panelUserInfo.Size = new System.Drawing.Size(250, 200);
+            this.panelUserInfo.Size = new System.Drawing.Size(250, 250);
             this.panelUserInfo.TabIndex = 1;
+            // 
+            // btnHome
+            // 
+            this.btnHome.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnHome.ImageKey = "home.png";
+            this.btnHome.ImageList = this.icons;
+            this.btnHome.Location = new System.Drawing.Point(0, 200);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(250, 50);
+            this.btnHome.TabIndex = 5;
+            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // icons
+            // 
+            this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
+            this.icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.icons.Images.SetKeyName(0, "icons8-setup-60.png");
+            this.icons.Images.SetKeyName(1, "icons8-process-64.png");
+            this.icons.Images.SetKeyName(2, "icons8-memo-66.png");
+            this.icons.Images.SetKeyName(3, "icons8-computer-50.png");
+            this.icons.Images.SetKeyName(4, "home.png");
             // 
             // tLogout
             // 
@@ -414,18 +451,47 @@
             // 
             // panelTask
             // 
-            this.panelTask.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelTask.BackgroundImage = global::school_management_system_model.Properties.Resources.Untitled_design;
+            this.panelTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panelTask.Location = new System.Drawing.Point(250, 0);
             this.panelTask.Name = "panelTask";
-            this.panelTask.Size = new System.Drawing.Size(972, 726);
+            this.panelTask.Size = new System.Drawing.Size(972, 743);
             this.panelTask.TabIndex = 1;
+            // 
+            // timerTime
+            // 
+            this.timerTime.Enabled = true;
+            // 
+            // panelStatus
+            // 
+            this.panelStatus.Controls.Add(this.tSystemDescription);
+            this.panelStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelStatus.Location = new System.Drawing.Point(250, 746);
+            this.panelStatus.Name = "panelStatus";
+            this.panelStatus.Size = new System.Drawing.Size(972, 26);
+            this.panelStatus.TabIndex = 5;
+            // 
+            // tSystemDescription
+            // 
+            this.tSystemDescription.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tSystemDescription.AutoSize = true;
+            this.tSystemDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSystemDescription.Location = new System.Drawing.Point(6, 7);
+            this.tSystemDescription.Name = "tSystemDescription";
+            this.tSystemDescription.Size = new System.Drawing.Size(183, 13);
+            this.tSystemDescription.TabIndex = 1;
+            this.tSystemDescription.Text = "Developed by: ICT Office 2024\r\n";
             // 
             // frm_main_finance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1222, 726);
+            this.ClientSize = new System.Drawing.Size(1222, 772);
             this.ControlBox = false;
+            this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.panelTask);
             this.Controls.Add(this.panelSideBar);
             this.CornerRoundingRadius = 10F;
@@ -475,6 +541,8 @@
             this.panelTransaction.ResumeLayout(false);
             this.panelUserInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picUserImage)).EndInit();
+            this.panelStatus.ResumeLayout(false);
+            this.panelStatus.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -505,5 +573,10 @@
         private System.Windows.Forms.Button btnMiscellaneous;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnUserManagement;
+        private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.ImageList icons;
+        private System.Windows.Forms.Timer timerTime;
+        private System.Windows.Forms.Panel panelStatus;
+        private System.Windows.Forms.Label tSystemDescription;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace school_management_system_model.Forms.transactions
+﻿namespace school_management_system_model.Forms.transactions.StudentEnrollment
 {
     partial class frm_select_section
     {
@@ -31,8 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.tsearch = new Krypton.Toolkit.KryptonTextBox();
-            this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            this.btnSelectSection = new Krypton.Toolkit.KryptonButton();
+            this.tSearch = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +43,6 @@
             this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -63,67 +62,66 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgv.Location = new System.Drawing.Point(12, 47);
+            this.dgv.Location = new System.Drawing.Point(12, 43);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
+            this.dgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 60;
             this.dgv.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(776, 348);
-            this.dgv.TabIndex = 84;
+            this.dgv.Size = new System.Drawing.Size(594, 258);
+            this.dgv.TabIndex = 83;
             // 
-            // tsearch
+            // btnSelectSection
             // 
-            this.tsearch.CueHint.CueHintText = "Search...";
-            this.tsearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.tsearch.Location = new System.Drawing.Point(12, 12);
-            this.tsearch.Name = "tsearch";
-            this.tsearch.Size = new System.Drawing.Size(374, 29);
-            this.tsearch.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.btnSelectSection.CornerRoundingRadius = 10F;
+            this.btnSelectSection.Location = new System.Drawing.Point(250, 307);
+            this.btnSelectSection.Name = "btnSelectSection";
+            this.btnSelectSection.Size = new System.Drawing.Size(118, 38);
+            this.btnSelectSection.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
+            this.btnSelectSection.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.btnSelectSection.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnSelectSection.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnSelectSection.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.tsearch.StateCommon.Border.Rounding = 10F;
-            this.tsearch.TabIndex = 85;
-            this.tsearch.TextChanged += new System.EventHandler(this.tsearch_TextChanged);
+            this.btnSelectSection.StateCommon.Border.Rounding = 10F;
+            this.btnSelectSection.StateCommon.Border.Width = 2;
+            this.btnSelectSection.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnSelectSection.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnSelectSection.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectSection.TabIndex = 100;
+            this.btnSelectSection.Values.Text = "Select";
+            this.btnSelectSection.Click += new System.EventHandler(this.btnSelectSection_Click);
             // 
-            // kryptonButton1
+            // tSearch
             // 
-            this.kryptonButton1.CornerRoundingRadius = 10F;
-            this.kryptonButton1.Location = new System.Drawing.Point(661, 401);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(127, 37);
-            this.kryptonButton1.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateCommon.Border.Rounding = 10F;
-            this.kryptonButton1.TabIndex = 86;
-            this.kryptonButton1.Values.Text = "Select Section";
-            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
+            this.tSearch.CueHint.CueHintText = "Search";
+            this.tSearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tSearch.Location = new System.Drawing.Point(12, 14);
+            this.tSearch.Name = "tSearch";
+            this.tSearch.Size = new System.Drawing.Size(594, 23);
+            this.tSearch.TabIndex = 101;
             // 
             // frm_select_section
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.tsearch);
+            this.ClientSize = new System.Drawing.Size(618, 355);
+            this.Controls.Add(this.tSearch);
+            this.Controls.Add(this.btnSelectSection);
             this.Controls.Add(this.dgv);
-            this.CornerRoundingRadius = 10F;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frm_select_section";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.StateCommon.Border.Rounding = 10F;
             this.Text = "frm_select_section";
             this.Load += new System.EventHandler(this.frm_select_section_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_select_section_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frm_select_section_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -133,7 +131,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv;
-        private Krypton.Toolkit.KryptonTextBox tsearch;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
+        private Krypton.Toolkit.KryptonButton btnSelectSection;
+        private Krypton.Toolkit.KryptonTextBox tSearch;
     }
 }

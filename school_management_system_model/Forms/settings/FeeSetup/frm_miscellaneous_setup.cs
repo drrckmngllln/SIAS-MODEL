@@ -202,12 +202,27 @@ namespace school_management_system_model.Forms.settings
         {
             ID = dgv.CurrentRow.Cells["id"].Value.ToString();
             tCategory.Text = dgv.CurrentRow.Cells["category"].Value.ToString();
+            tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
             tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
             tFirstYear.Text = dgv.CurrentRow.Cells["first_year"].Value.ToString();
             tSecondYear.Text = dgv.CurrentRow.Cells["second_year"].Value.ToString();
             tThirdYear.Text = dgv.CurrentRow.Cells["third_year"].Value.ToString();
             tFourthYear.Text = dgv.CurrentRow.Cells["fourth_year"].Value.ToString();
             btn_save.Text = "Update";
+        }
+
+        private void tsearch_TextChanged_1(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Length > 2)
+            {
+                var search = new MiscellaneousFeeSetup();
+                var searchData = search.searchRecords(tsearch.Text);
+                dgv.DataSource = searchData;
+            }
+            else if (tsearch.Text.Length == 0)
+            {
+                loadRecords();
+            }
         }
     }
 }

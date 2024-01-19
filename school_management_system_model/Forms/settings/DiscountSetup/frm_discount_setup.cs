@@ -40,35 +40,119 @@ namespace school_management_system_model.Forms.settings
         }
         private void addRecords()
         {
-            if (btn_save.Text == "Save")
+            try
             {
-                var add = new DiscountSetup
+                if (btn_save.Text == "Save")
                 {
-                    code = tCode.Text,
-                    description = tDescription.Text,
-                    discount_target = tDiscountTarget.Text,
-                    discount_percentage = Convert.ToInt32(tPercentage.Text)
-                };
-                add.addRecords();
-                MessageBox.Show("Saved", "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new ActivityLogger().activityLogger(Email, "Add Discount: " + tDescription.Text);
-                txtClear();
-                loadRecords();
+                    if (cTuition.Checked)
+                    {
+                        var add = new DiscountSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            discount_target = cTuition.Text,
+                            discount_percentage = Convert.ToInt32(tPercentage.Text)
+                        };
+                        add.addRecords();
+                    }
+                    if (cMisc.Checked)
+                    {
+                        var add = new DiscountSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            discount_target = cMisc.Text,
+                            discount_percentage = Convert.ToInt32(tPercentage.Text)
+                        };
+                        add.addRecords();
+                    }
+                    if (cOther.Checked)
+                    {
+                        var add = new DiscountSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            discount_target = cOther.Text,
+                            discount_percentage = Convert.ToInt32(tPercentage.Text)
+                        };
+                        add.addRecords();
+                    }
+                    if (cLab.Checked)
+                    {
+                        var add = new DiscountSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            discount_target = cLab.Text,
+                            discount_percentage = Convert.ToInt32(tPercentage.Text)
+                        };
+                        add.addRecords();
+                    }
+
+
+                    new Classes.Toastr("Success", "Discount Setup Added");
+                    new ActivityLogger().activityLogger(Email, "Add Discount: " + tDescription.Text);
+                    txtClear();
+                    loadRecords();
+                }
+                else if (btn_save.Text == "Update")
+                {
+                    if (cTuition.Checked)
+                    {
+                        var edit = new DiscountSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            discount_target = cTuition.Text,
+                            discount_percentage = Convert.ToInt32(tPercentage.Text)
+                        };
+                        edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                    }
+                    if (cMisc.Checked)
+                    {
+                        var edit = new DiscountSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            discount_target = cMisc.Text,
+                            discount_percentage = Convert.ToInt32(tPercentage.Text)
+                        };
+                        edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                    }
+                    if (cOther.Checked)
+                    {
+                        var edit = new DiscountSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            discount_target = cOther.Text,
+                            discount_percentage = Convert.ToInt32(tPercentage.Text)
+                        };
+                        edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                    }
+                    if (cLab.Checked)
+                    {
+                        var edit = new DiscountSetup
+                        {
+                            code = tCode.Text,
+                            description = tDescription.Text,
+                            discount_target = cLab.Text,
+                            discount_percentage = Convert.ToInt32(tPercentage.Text)
+                        };
+                        edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                    }
+
+                    new Classes.Toastr("Success", "Discount Setup Updated");
+
+                    txtClear();
+                    loadRecords();
+                }
             }
-            else if (btn_save.Text == "Update")
+            catch (Exception ex)
             {
-                var edit = new DiscountSetup
-                {
-                    code = tCode.Text,
-                    description = tDescription.Text,
-                    discount_target = tDiscountTarget.Text,
-                    discount_percentage = Convert.ToInt32(tPercentage.Text)
-                };
-                edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                MessageBox.Show("Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtClear();
-                loadRecords();
+                new Classes.Toastr("Warning", ex.Message);
             }
+            
         }
 
         private void txtClear()
@@ -77,6 +161,7 @@ namespace school_management_system_model.Forms.settings
             tDescription.Clear();
             tPercentage.Clear();
             btn_save.Text = "Save";
+            cTuition.Checked = false; cLab.Checked = false; cOther.Checked = false; cLab.Checked = false;
         }
 
         private void frm_discount_setup_KeyDown(object sender, KeyEventArgs e)
@@ -102,6 +187,14 @@ namespace school_management_system_model.Forms.settings
             tCode.Text = dgv.CurrentRow.Cells["code"].Value.ToString();
             tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
             tPercentage.Text = dgv.CurrentRow.Cells["discount_Percentage"].Value.ToString();
+            if (dgv.CurrentRow.Cells["discount_target"].Value.ToString() == "Tuition Fee")
+            {
+                cTuition.Checked = true;
+            }
+            else
+            {
+                cTuition.Checked= false;
+            }
 
             btn_save.Text = "Update";
         }
@@ -110,6 +203,8 @@ namespace school_management_system_model.Forms.settings
             var delete = new DiscountSetup();
             delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
             MessageBox.Show("Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            new Classes.Toastr("Success", "Discount Setup Deleted");
+
             new ActivityLogger().activityLogger(Email, "Discount Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
             loadRecords();
         }
@@ -134,6 +229,11 @@ namespace school_management_system_model.Forms.settings
             {
                 loadRecords();
             }
+        }
+
+        private void tDiscountTarget_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

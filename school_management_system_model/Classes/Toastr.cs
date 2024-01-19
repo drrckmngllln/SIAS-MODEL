@@ -9,9 +9,19 @@ namespace school_management_system_model.Classes
 {
     public class Toastr
     {
-        public void toast(string type, string message)
+        public Toastr(string type, string message)
         {
-            var frm = new frm_toastr(type, message);
+            Type = type;
+            Message = message;
+            toast();
+        }
+
+        public string Type { get; }
+        public string Message { get; }
+
+        public void toast()
+        {
+            var frm = new frm_toastr(Type, Message);
             frm.ShowDialog();
         }
     }

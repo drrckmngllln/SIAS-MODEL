@@ -47,5 +47,10 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
                 Close();
             }
         }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

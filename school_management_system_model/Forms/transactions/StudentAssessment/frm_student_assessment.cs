@@ -584,7 +584,7 @@ namespace school_management_system_model.Forms.transactions
                 foreach (DataRow row in disc.Rows)
                 {
                     var latest = new StatementsOfAccounts();
-                    var soaLatest = latest.loadLatestSOA(tIdNumber.Text);
+                    var soaLatest = latest.loadLatestSOA(tIdNumber.Text, tSchoolYear.Text);
                     decimal debit = Convert.ToDecimal(soaLatest.Rows[0]["balance"]);
                     if (row["discount_target"].ToString() == "Tuition Fee")
                     {
@@ -630,7 +630,7 @@ namespace school_management_system_model.Forms.transactions
                 foreach (DataRow row in disc.Rows)
                 {
                     var latest = new StatementsOfAccounts();
-                    var soaLatest = latest.loadLatestSOA(tIdNumber.Text);
+                    var soaLatest = latest.loadLatestSOA(tIdNumber.Text, tSchoolYear.Text);
                     decimal debit = Convert.ToDecimal(soaLatest.Rows[0]["balance"]);
                     if (row["discount_target"].ToString() == "Tuition Fee")
                     {
@@ -690,7 +690,6 @@ namespace school_management_system_model.Forms.transactions
                     decimal computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;                  
                     totalDiscount += computation;
                 }
-                
             }
         }
         private void computeAssessment()
@@ -764,6 +763,11 @@ namespace school_management_system_model.Forms.transactions
                 campus = tCampus.Text,
             };
             frm.ShowDialog();
+        }
+
+        private void tSemester_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

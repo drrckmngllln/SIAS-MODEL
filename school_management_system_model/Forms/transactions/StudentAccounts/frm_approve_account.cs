@@ -72,7 +72,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 cmd.ExecuteNonQuery();
                 con.Close();
                 
-                new Classes.Toastr().toast("Success", "Student Approved");
+                new Classes.Toastr("Success", "Student Approved");
 
 
                 Close();
@@ -94,7 +94,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             if (tCurriculum.Text == "")
             {
                 
-                new Classes.Toastr().toast("Error", "Please select a curriculum");
+                new Classes.Toastr("Error", "Please select a curriculum");
             }
             else
             {

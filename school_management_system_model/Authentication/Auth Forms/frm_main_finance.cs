@@ -212,5 +212,15 @@ namespace school_management_system_model.Authentication.Auth_Forms
             panelTask.Controls.Add(frm);
             frm.Show();
         }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            panelTask.Controls.Clear();
+            panelTransaction.Visible = false;
+            panelSettings.Visible = false;
+
+            btnTransaction.BackColor = Color.FromArgb(0, 0, 25);
+            btnSettings.BackColor = Color.FromArgb(0, 0, 25);
+        }
     }
 }

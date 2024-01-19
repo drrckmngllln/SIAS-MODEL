@@ -55,7 +55,7 @@ namespace school_management_system_model.Forms.settings
                 cmd.ExecuteNonQuery();
                 con.Close();
                 
-                new Classes.Toastr().toast("Success", "Level Added");
+                new Classes.Toastr("Success", "Level Added");
                 new ActivityLogger().activityLogger(Email, "Level Add: " + t2.Text);
 
                 loadrecords();
@@ -73,7 +73,7 @@ namespace school_management_system_model.Forms.settings
                 cmd.ExecuteNonQuery();
                 con.Close();
              
-                new Classes.Toastr().toast("Information", "Level Updated");
+                new Classes.Toastr("Information", "Level Updated");
                 new ActivityLogger().activityLogger(Email, "Level Edit: " + t2.Text);
 
                 loadrecords();
@@ -89,7 +89,7 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             
-            new Classes.Toastr().toast("Information", "Level Deleted");
+            new Classes.Toastr("Information", "Level Deleted");
             new ActivityLogger().activityLogger(Email, "Level Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
 
             loadrecords();

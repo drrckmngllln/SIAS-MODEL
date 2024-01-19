@@ -12,7 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\MCNP-ISAP\Desktop\Installer\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,8 +25,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,6 +50,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Untitled design.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>3CE66BFD83481C7B81FDA05C43942CDE540C866F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>school_management_system_model_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
@@ -442,12 +455,6 @@
     <Compile Include="Forms\transactions\StudentAccounts\frm_select_school_year.Designer.cs">
       <DependentUpon>frm_select_school_year.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\transactions\frm_select_section.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\transactions\frm_select_section.Designer.cs">
-      <DependentUpon>frm_select_section.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\frm_student_promotion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -483,6 +490,12 @@
     </Compile>
     <Compile Include="Forms\transactions\StudentEnrollment\frm_select_course.Designer.cs">
       <DependentUpon>frm_select_course.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_select_section.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_select_section.Designer.cs">
+      <DependentUpon>frm_select_section.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\transactions\StudentEnrollment\frm_select_subject.cs">
       <SubType>Form</SubType>
@@ -725,9 +738,6 @@
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_select_school_year.resx">
       <DependentUpon>frm_select_school_year.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\transactions\frm_select_section.resx">
-      <DependentUpon>frm_select_section.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_student_promotion.resx">
       <DependentUpon>frm_student_promotion.cs</DependentUpon>
     </EmbeddedResource>
@@ -745,6 +755,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_course.resx">
       <DependentUpon>frm_select_course.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_section.resx">
+      <DependentUpon>frm_select_section.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_subject.resx">
       <DependentUpon>frm_select_subject.cs</DependentUpon>
@@ -805,6 +818,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="school_management_system_model_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

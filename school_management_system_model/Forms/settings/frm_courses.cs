@@ -24,7 +24,7 @@ namespace school_management_system_model.Forms.settings
 
         string ID;
 
-        school_management_system_model.Classes.Toastr Toastr = new Classes.Toastr();
+        
 
         public frm_courses(string email)
         {
@@ -105,7 +105,7 @@ namespace school_management_system_model.Forms.settings
                     cmd.Parameters.AddWithValue("@7", t7.Text);
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    Toastr.toast("Success", "Add Success");
+                    new Classes.Toastr("Success", "Add Success");
                     new ActivityLogger().activityLogger(Email, "Course Add: " + t2.Text);
 
                     loadrecords();
@@ -129,7 +129,7 @@ namespace school_management_system_model.Forms.settings
                     cmd.ExecuteNonQuery();
                     con.Close();
                     
-                    Toastr.toast("Information", "Update Success");
+                    new Classes.Toastr("Information", "Update Success");
                     new ActivityLogger().activityLogger(Email, "Course Edit: " + t2.Text);
 
                     loadrecords();
@@ -140,7 +140,7 @@ namespace school_management_system_model.Forms.settings
             }
             catch
             {
-                Toastr.toast("Error", "Error, Missing Fields or Duplicate Entry");
+                new Classes.Toastr("Error", "Error, Missing Fields or Duplicate Entry");
             }
             
         }
@@ -197,7 +197,7 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             MessageBox.Show("Course Deleted");
-            new Classes.Toastr().toast("Information", "Course Deleted");
+            new Classes.Toastr("Information", "Course Deleted");
             new ActivityLogger().activityLogger(Email, "Course Delete: " + t2.Text);
 
             loadrecords();

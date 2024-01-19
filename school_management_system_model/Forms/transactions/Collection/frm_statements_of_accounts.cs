@@ -45,17 +45,28 @@ namespace school_management_system_model.Forms.transactions.Collection
             tSemester.Text = studentDetails.Rows[0]["campus"].ToString();
         }
 
+        private void loadSchoolYear()
+        {
+            var schoolYear = new StatementsOfAccounts().loadSchoolYear();
+            
+            foreach (DataRow row in schoolYear.Rows)
+            {
+                cmbSchoolYear.Items.Add(row["code"]);
+            }
+            cmbSchoolYear.Text = schoolYear.Rows[0]["code"].ToString();
+        }
+
         private void loadRecords()
         {
             var data = new StatementsOfAccounts();
-            var soa = data.loadLatestSOA(tIdNumber.Text);
+            var soa = data.loadLatestSOA(tIdNumber.Text, cmbSchoolYear.Text);
             dgv.DataSource = soa;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].Visible = false;
             dgv.Columns["date"].HeaderText = "Date";
             dgv.Columns["reference_no"].HeaderText = "OR Number";
             dgv.Columns["particulars"].HeaderText = "Particulars";
-            dgv.Columns["particulars"].Width = 400;
+            //dgv.Columns["particulars"].Width = 150;
             dgv.Columns["debit"].HeaderText = "Debit";
             dgv.Columns["credit"].HeaderText = "Credit";
             dgv.Columns["balance"].HeaderText = "Balance";
@@ -81,5 +92,14 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
         }
 
+        private void frm_statements_of_accounts_Load(object sender, EventArgs e)
+        {
+            loadSchoolYear();
+        }
+
+        private void cmbSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords();
+        }
     }
 }
