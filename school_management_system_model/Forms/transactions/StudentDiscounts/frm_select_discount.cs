@@ -42,17 +42,13 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             dgv.Columns["description"].HeaderText = "Description";
             dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
         }
-        private void addRecords()
+        
+        private void selectDiscount()
         {
-            var add = new StudentDiscount
-            {
-                id_number = idNumber,
-                code = dgv.CurrentRow.Cells["code"].Value.ToString(),
-                discount_target = dgv.CurrentRow.Cells["discount_target"].Value.ToString(),
-                description = dgv.CurrentRow.Cells["description"].Value.ToString(),
-                discount_percentage = Convert.ToInt32(dgv.CurrentRow.Cells["discount_percentage"].Value.ToString())
-            };
-            add.addRecords();
+            frm_student_discounts.instance.code = dgv.CurrentRow.Cells["code"].Value.ToString();
+            frm_student_discounts.instance.description = dgv.CurrentRow.Cells["description"].Value.ToString();
+            frm_student_discounts.instance.discount_target = dgv.CurrentRow.Cells["discount_target"].Value.ToString();
+            frm_student_discounts.instance.discount_percentage = dgv.CurrentRow.Cells["discount_percentage"].Value.ToString();
             Close();
         }
 
@@ -60,12 +56,22 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
         {
             if (e.KeyCode == Keys.Enter)
             {
-                addRecords();
+                selectDiscount();
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Close();
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            selectDiscount();
         }
     }
 }
