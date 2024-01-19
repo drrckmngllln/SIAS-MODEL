@@ -16,6 +16,10 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
         public static frm_student_discounts instance;
         public string fullname { get; set; }
         public string idNumber { get; set; }
+        public string code { get; set; }
+        public string description { get; set; }
+        public string discount_target { get; set; }
+        public string discount_percentage { get; set; }
         public frm_student_discounts()
         {
             instance = this;
@@ -50,25 +54,22 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
         {
             if (tIdNumber.Text == "")
             {
-                MessageBox.Show("select student", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Classes.Toastr("Warning", "Select Student");
             }
             else
             {
                 var frm = new frm_select_discount();
-                frm_select_discount.instance.idNumber = tIdNumber.Text;
                 frm.ShowDialog();
                 loadRecords();
+                if (code != null && discount_target != null && description != null && discount_percentage != null)
+                {
+                    tCode.Text = code;
+                    tDescription.Text = description;
+                    tDiscountTarget.Text = discount_target;
+                    tDiscountPercentage.Text = discount_percentage;
+                    dateTimePicker1.Select();
+                }
             }
-        }
-
-        private void totalTimer_Tick(object sender, EventArgs e)
-        {
-            int count = 0;
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                count += Convert.ToInt32(row.Cells["discount_percentage"].Value);
-            }
-            tTotalPercentage.Text = count.ToString() + "%";
         }
 
         
@@ -84,6 +85,14 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             }
         }
 
-        
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            tFrom.Text = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            tTo.Text = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+        }
     }
 }

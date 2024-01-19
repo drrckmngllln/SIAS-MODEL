@@ -32,6 +32,8 @@
             this.tTitle = new System.Windows.Forms.Label();
             this.tSearch = new Krypton.Toolkit.KryptonTextBox();
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new Krypton.Toolkit.KryptonButton();
+            this.btnClose = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,11 +67,53 @@
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.CornerRoundingRadius = 15F;
+            resources.ApplyResources(this.btnAdd, "btnAdd");
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnAdd.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnAdd.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnAdd.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnAdd.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnAdd.StateCommon.Border.Rounding = 15F;
+            this.btnAdd.StateCommon.Border.Width = 2;
+            this.btnAdd.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
+            this.btnAdd.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnAdd.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Values.Text = resources.GetString("btnAdd.Values.Text");
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.CornerRoundingRadius = 15F;
+            resources.ApplyResources(this.btnClose, "btnClose");
+            this.btnClose.Name = "btnClose";
+            this.btnClose.StateCommon.Back.Color1 = System.Drawing.Color.Maroon;
+            this.btnClose.StateCommon.Back.Color2 = System.Drawing.Color.Maroon;
+            this.btnClose.StateCommon.Border.Color1 = System.Drawing.Color.Maroon;
+            this.btnClose.StateCommon.Border.Color2 = System.Drawing.Color.Maroon;
+            this.btnClose.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnClose.StateCommon.Border.Rounding = 15F;
+            this.btnClose.StateCommon.Border.Width = 2;
+            this.btnClose.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
+            this.btnClose.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Values.Text = resources.GetString("kryptonButton1.Values.Text");
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frm_select_discount
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.tTitle);
             this.Controls.Add(this.tSearch);
             this.Controls.Add(this.dgv);
@@ -94,5 +138,7 @@
         private System.Windows.Forms.Label tTitle;
         private Krypton.Toolkit.KryptonTextBox tSearch;
         private System.Windows.Forms.DataGridView dgv;
+        private Krypton.Toolkit.KryptonButton btnAdd;
+        private Krypton.Toolkit.KryptonButton btnClose;
     }
 }

@@ -193,7 +193,34 @@ namespace school_management_system_model.Forms.settings
             }
             else
             {
-                cTuition.Checked= false;
+                cTuition.Checked = false;
+            }
+
+            if (dgv.CurrentRow.Cells["discount_target"].Value.ToString() == "Miscellaneous Fee")
+            {
+                cMisc.Checked = true;
+            }
+            else
+            {
+                cMisc.Checked = false;
+            }
+
+            if (dgv.CurrentRow.Cells["discount_target"].Value.ToString() == "Other Fee")
+            {
+                cOther.Checked = true;
+            }
+            else
+            {
+                cOther.Checked = false;
+            }
+
+            if (dgv.CurrentRow.Cells["discount_target"].Value.ToString() == "Laboratory Fee")
+            {
+                cLab.Checked = true;
+            }
+            else
+            {
+                cLab.Checked = false;
             }
 
             btn_save.Text = "Update";
