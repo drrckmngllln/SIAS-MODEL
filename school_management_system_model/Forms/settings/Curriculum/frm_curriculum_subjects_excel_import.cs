@@ -128,13 +128,13 @@ namespace school_management_system_model.Forms.settings.Curriculum
                     saveRecords();
                 }
 
-                new Classes.Toastr().toast("Success", "Curriculum Import Success");
+                new Classes.Toastr("Success", "Curriculum Import Success");
                 new ActivityLogger().activityLogger(Email, "Curriculum File Import: " + this.Text);
                 Close();
             }
             catch(Exception ex)
             {
-                new Classes.Toastr().toast("Error", ex.Message);
+                new Classes.Toastr("Error", ex.Message);
                 MessageBox.Show(ex.Message);
             }
 

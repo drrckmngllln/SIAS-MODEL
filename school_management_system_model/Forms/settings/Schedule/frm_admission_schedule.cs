@@ -64,7 +64,7 @@ namespace school_management_system_model.Forms.settings.Schedule
                         schedule_to = tTo.Text,
                     };
                     addRecords.AddRecords();
-                    new Classes.Toastr().toast("Success", "Schedule Saved");
+                    new Classes.Toastr("Success", "Schedule Saved");
                     new ActivityLogger().activityLogger(Email, "Admission Schedule Add: " + tDescription.Text);
                     loadRecords();
                     txtclear();
@@ -79,7 +79,7 @@ namespace school_management_system_model.Forms.settings.Schedule
                         schedule_to = tTo.Text,
                     };
                     editRecords.EditRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                    new Classes.Toastr().toast("Information", "Schedule Updated");
+                    new Classes.Toastr("Information", "Schedule Updated");
                     new ActivityLogger().activityLogger(Email, "Admission Schedule Edit: " + tDescription.Text);
 
                     loadRecords();
@@ -88,7 +88,7 @@ namespace school_management_system_model.Forms.settings.Schedule
             }
             catch (Exception ex)
             {
-                new Classes.Toastr().toast("Error", ex.Message);
+                new Classes.Toastr("Error", ex.Message);
             }
         }
 
@@ -113,7 +113,7 @@ namespace school_management_system_model.Forms.settings.Schedule
             {
                 var delete = new AdmissionSchedule();
                 delete.DeleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                new Classes.Toastr().toast("Information", "Schedule deleted");
+                new Classes.Toastr("Information", "Schedule deleted");
                 new ActivityLogger().activityLogger(Email, "Admission Schedule Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
 
                 loadRecords();

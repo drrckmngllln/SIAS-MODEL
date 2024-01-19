@@ -55,7 +55,7 @@ namespace school_management_system_model.Forms.settings
                 cmd.ExecuteNonQuery();
                 con.Close();
                 
-                new Classes.Toastr().toast("Success", "Campus Add Success");
+                new Classes.Toastr("Success", "Campus Add Success");
                 new ActivityLogger().activityLogger(Email, "Campus Add: " + t2.Text);
 
                 loadrecords();
@@ -73,7 +73,7 @@ namespace school_management_system_model.Forms.settings
                 cmd.ExecuteNonQuery();
                 con.Close();
                 
-                new Classes.Toastr().toast("Information", "Campus Update Success");
+                new Classes.Toastr("Information", "Campus Update Success");
                 new ActivityLogger().activityLogger(Email, "Campus Edit: " + t2.Text);
 
                 loadrecords();
@@ -130,7 +130,7 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             
-            new Classes.Toastr().toast("Information", "Campus Deleted");
+            new Classes.Toastr("Information", "Campus Deleted");
             new ActivityLogger().activityLogger(Email, "Campus Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
 
             loadrecords();

@@ -49,5 +49,29 @@ namespace school_management_system_model.Forms.transactions.StudentEnrollment
             dgv.Columns["status"].HeaderText = "Status";
             dgv.Columns["remarks"].HeaderText = "Remarks";
         }
+
+        string selectSection()
+        {
+            return dgv.CurrentRow.Cells["section_code"].Value.ToString();
+        }
+
+        private void frm_select_section_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                frm_student_enrollment.instance.section = selectSection();
+                Close();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
+
+        private void btnSelectSection_Click(object sender, EventArgs e)
+        {
+            frm_student_enrollment.instance.section = selectSection();
+            Close();
+        }
     }
 }

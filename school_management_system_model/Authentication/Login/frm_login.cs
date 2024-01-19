@@ -69,7 +69,7 @@ namespace school_management_system_model.Authentication.Login
                     switch (Department)
                     {
                         case "Registrar":
-                            new Classes.Toastr().toast("Success", "Login Success!");
+                            new Classes.Toastr("Success", "Login Success!");
                             var frm = new frm_main_registrar
                             {
                                 fullname = UserName,
@@ -86,7 +86,7 @@ namespace school_management_system_model.Authentication.Login
                             this.Hide();
                             break;
                         case "Finance":
-                            new Classes.Toastr().toast("Success", "Login Success!");
+                            new Classes.Toastr("Success", "Login Success!");
                             var frmFinance = new frm_main_finance
                             {
                                 Fullname = UserName,
@@ -102,7 +102,7 @@ namespace school_management_system_model.Authentication.Login
                             this.Hide();
                             break;
                         case "Dean":
-                            new Classes.Toastr().toast("Success", "Login Success!");
+                            new Classes.Toastr("Success", "Login Success!");
                             var frmDean = new frm_main_deans
                             {
                                 Fullname = UserName,
@@ -117,7 +117,7 @@ namespace school_management_system_model.Authentication.Login
                             this.Hide();
                             break;
                         case "Campaign":
-                            new Classes.Toastr().toast("Success", "Login Success!");
+                            new Classes.Toastr("Success", "Login Success!");
                             var frmCampaign = new frm_main_campaign
                             {
                                 Fullname = UserName,
@@ -135,14 +135,14 @@ namespace school_management_system_model.Authentication.Login
                 }
                 else
                 {
-                    new Classes.Toastr().toast("Warning", "Access Denied, Error Password!");
+                    new Classes.Toastr("Warning", "Access Denied, Error Password!");
                     tPassword.Clear();
                     tPassword.Select();
                 }
             }
             catch
             {
-                new Classes.Toastr().toast("Warning", "Access Denied, Error Username or Password");
+                new Classes.Toastr("Warning", "Access Denied, Error Username or Password");
                 tPassword.Clear();
                 tUserName.Clear();
                 tUserName.Select();
@@ -153,7 +153,7 @@ namespace school_management_system_model.Authentication.Login
 
         private void developersOptionsRegistrar()
         {
-            new Classes.Toastr().toast("Success", "Developers Mode, Registrar Main");
+            new Classes.Toastr("Success", "Developers Mode, Registrar Main");
             var frm = new frm_main_registrar();
             frm_main_registrar.instance.fullname = "Developer";
             frm_main_registrar.instance.access_level = "Developer Authorization";
@@ -166,7 +166,7 @@ namespace school_management_system_model.Authentication.Login
         }
         private void developerOptionsFinance()
         {
-            new Classes.Toastr().toast("Success", "Developers Mode, Registrar Main");
+            new Classes.Toastr("Success", "Developers Mode, Registrar Main");
             var frm = new frm_main_registrar
             {
                 fullname = UserName,
@@ -189,7 +189,7 @@ namespace school_management_system_model.Authentication.Login
         {
             if (e.Control && e.KeyCode == Keys.D1)
             {
-                new Classes.Toastr().toast("Success", "Login Successful");
+                new Classes.Toastr("Success", "Login Successful");
                 var frm = new main_form("Administrator Override");
                 frm.ShowDialog();
                 this.Hide();

@@ -14,7 +14,7 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_accounts : Form
     {
-        school_management_system_model.Classes.Toastr Toastr = new school_management_system_model.Classes.Toastr();
+   
         public bool IsAdd { get; set; }
         public bool IsEdit { get; set; }
         public bool IsDelete { get; set; }
@@ -146,12 +146,12 @@ namespace school_management_system_model.Forms.transactions
                     }
                     else
                     {
-                        Toastr.toast("Error", "No Enrollment Schedule Available");
+                        new Classes.Toastr("Error", "No Enrollment Schedule Available");
                     }
                 }
                 else
                 {
-                    Toastr.toast("Error", "Authorization Denied");
+                    new Classes.Toastr("Error", "Authorization Denied");
                 }
             }
             else if (btnCreate.Text == "Update Account")
@@ -162,7 +162,7 @@ namespace school_management_system_model.Forms.transactions
                 }
                 else
                 {
-                    Toastr.toast("Error", "Authorization Denied");
+                    new Classes.Toastr("Error", "Authorization Denied");
                 }
             }
             

@@ -72,7 +72,7 @@ namespace school_management_system_model.Forms.settings
                         is_current = tCurrent.Text
                     };
                     add.addRecords();
-                    new Classes.Toastr().toast("Success", "Successfully Saved");
+                    new Classes.Toastr("Success", "Successfully Saved");
                     new ActivityLogger().activityLogger(Email, "School Year Add: " + tDescription.Text);
 
                     loadRecords();
@@ -92,7 +92,7 @@ namespace school_management_system_model.Forms.settings
                         is_current = tCurrent.Text
                     };
                     edit.EditRecords(id);
-                    new Classes.Toastr().toast("Information", "Successfully Updated");
+                    new Classes.Toastr("Information", "Successfully Updated");
                     new ActivityLogger().activityLogger(Email, "School Year Edit: " + tDescription.Text);
 
                     loadRecords();
@@ -102,7 +102,7 @@ namespace school_management_system_model.Forms.settings
             }
             catch(Exception ex)
             {
-                new Classes.Toastr().toast("Error", ex.Message);
+                new Classes.Toastr("Error", ex.Message);
             }
         }
         private void txtClear()
@@ -120,7 +120,7 @@ namespace school_management_system_model.Forms.settings
             var delete = new SchoolYearSetup();
             delete.deleteRecords(id);
             
-            new Classes.Toastr().toast("Information", "Successfully Deleted");
+            new Classes.Toastr("Information", "Successfully Deleted");
             new ActivityLogger().activityLogger(Email, "School Year Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
 
             loadRecords();

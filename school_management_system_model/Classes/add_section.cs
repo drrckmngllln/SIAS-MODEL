@@ -22,18 +22,18 @@ namespace school_management_system_model.Classes
         public string search {  get; set; }
        
 
-        public void loadAvailableSections()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from sections where course = '"+ course +"' and status='Available'", con);
-            da.Fill(frm_select_section.instance.dt);
-        }
-        public void searchSections()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from sections where concat(section_code, course, section) like '%" + search + "%' and " +
-                "course='" + course + "' and status='Available'", con);
-            da.Fill(frm_select_section.instance.dt);
-        }
+        //public void loadAvailableSections()
+        //{
+        //    var con = new MySqlConnection(connection.con());
+        //    var da = new MySqlDataAdapter("select * from sections where course = '"+ course +"' and status='Available'", con);
+        //    da.Fill(frm_select_section.instance.dt);
+        //}
+        //public void searchSections()
+        //{
+        //    var con = new MySqlConnection(connection.con());
+        //    var da = new MySqlDataAdapter("select * from sections where concat(section_code, course, section) like '%" + search + "%' and " +
+        //        "course='" + course + "' and status='Available'", con);
+        //    da.Fill(frm_select_section.instance.dt);
+        //}
     }
 }

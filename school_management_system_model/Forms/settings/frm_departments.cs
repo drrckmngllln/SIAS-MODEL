@@ -69,7 +69,7 @@ namespace school_management_system_model.Forms.settings
                 cmd.ExecuteNonQuery();
                 con.Close();
                 
-                new Classes.Toastr().toast("Success", "Department Added");
+                new Classes.Toastr("Success", "Department Added");
                 new ActivityLogger().activityLogger(Email, "Department Add: " + t2.Text);
 
                 loadrecords();
@@ -86,7 +86,7 @@ namespace school_management_system_model.Forms.settings
                 cmd.ExecuteNonQuery();
                 con.Close();
                
-                new Classes.Toastr().toast("Information", "Department Updated");
+                new Classes.Toastr("Information", "Department Updated");
                 new ActivityLogger().activityLogger(Email, "Department Edit: " + t2.Text);
 
                 loadrecords();
@@ -138,7 +138,7 @@ namespace school_management_system_model.Forms.settings
             da.SelectCommand = new MySqlCommand("delete from departments where id='" + ID + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
-            new Classes.Toastr().toast("Information", "Department Deleted");
+            new Classes.Toastr("Information", "Department Deleted");
             new ActivityLogger().activityLogger(Email, "Department Delete: " + t2.Text);
 
             loadrecords();

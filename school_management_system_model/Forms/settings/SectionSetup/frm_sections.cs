@@ -79,7 +79,7 @@ namespace school_management_system_model.Forms.settings
                     };
                     add.addSection();
                     
-                    new Classes.Toastr().toast("Success", "Section Add Success");
+                    new Classes.Toastr("Success", "Section Add Success");
                     new ActivityLogger().activityLogger(Email, "Section Add: " + tSectionCode.Text);
 
                     loadrecords();
@@ -100,7 +100,7 @@ namespace school_management_system_model.Forms.settings
                         remarks = tRemarks.Text
                     };
                     edit.editSection(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                    new Classes.Toastr().toast("Information", "Section Update Success");
+                    new Classes.Toastr("Information", "Section Update Success");
                     new ActivityLogger().activityLogger(Email, "Section Edit: " + tSectionCode.Text);
 
                     loadrecords();
@@ -109,7 +109,7 @@ namespace school_management_system_model.Forms.settings
             }
             catch(Exception ex)
             {
-                new Classes.Toastr().toast("Error", ex.Message);
+                new Classes.Toastr("Error", ex.Message);
 
             }
 

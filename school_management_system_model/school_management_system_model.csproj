@@ -455,12 +455,6 @@
     <Compile Include="Forms\transactions\StudentAccounts\frm_select_school_year.Designer.cs">
       <DependentUpon>frm_select_school_year.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\transactions\frm_select_section.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\transactions\frm_select_section.Designer.cs">
-      <DependentUpon>frm_select_section.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\frm_student_promotion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -743,9 +737,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_select_school_year.resx">
       <DependentUpon>frm_select_school_year.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\transactions\frm_select_section.resx">
-      <DependentUpon>frm_select_section.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_student_promotion.resx">
       <DependentUpon>frm_student_promotion.cs</DependentUpon>

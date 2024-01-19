@@ -94,7 +94,7 @@ namespace school_management_system_model.Forms.settings
             {
                 delete();
                 
-                new Classes.Toastr().toast("Information", "Curriculum Subject Deleted");
+                new Classes.Toastr("Information", "Curriculum Subject Deleted");
                 new ActivityLogger().activityLogger(Email, "Curriculum Subject Delete: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
                 loadrecords();
             }
@@ -121,7 +121,7 @@ namespace school_management_system_model.Forms.settings
             {
                 deleteAll(tcode.Text);
                 MessageBox.Show("Curriculum Subject Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new Classes.Toastr().toast("Information", "Curriculum Subject Deleted");
+                new Classes.Toastr("Information", "Curriculum Subject Deleted");
                 new ActivityLogger().activityLogger(Email, "Deleted All Curriculum: " + tdescription.Text);
                 loadrecords();
             }

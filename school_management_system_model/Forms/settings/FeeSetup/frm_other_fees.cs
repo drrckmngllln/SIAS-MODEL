@@ -70,7 +70,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                         fourth_year = Convert.ToDecimal(tFourthYear.Text)
                     };
                     add.addRecords();
-                    new Classes.Toastr().toast("Success", "Other fee Saved");
+                    new Classes.Toastr("Success", "Other fee Saved");
                     new ActivityLogger().activityLogger(Email, "Other fee Setup Add: " + tDescription.Text);
 
                     loadRecords();
@@ -92,14 +92,15 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                     edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
                     new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Edit: " + tDescription.Text);
 
-                    new Classes.Toastr().toast("Information", "Other fee Updated");
+                    new Classes.Toastr("Information", "Other fee Updated");
                     loadRecords();
                     txtClear();
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                new Classes.Toastr("Error", ex.Message);
             }
         }
 
@@ -129,7 +130,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             {
                 var delete = new OtherFeesSetup();
                 delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                new Classes.Toastr().toast("Information", "Other fee Deleted!");
+                new Classes.Toastr("Information", "Other fee Deleted!");
                 new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
 
                 loadRecords();

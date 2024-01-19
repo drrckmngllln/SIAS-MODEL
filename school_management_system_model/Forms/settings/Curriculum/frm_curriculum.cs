@@ -89,7 +89,7 @@ namespace school_management_system_model.Forms.settings
                 add.addRecords();
                 new ActivityLogger().activityLogger(Email, "Add: " + t2.Text);
                 
-                new Classes.Toastr().toast("Success", "Curriculum Added");
+                new Classes.Toastr("Success", "Curriculum Added");
                 loadrecords();
                 txtclear();
 
@@ -108,7 +108,7 @@ namespace school_management_system_model.Forms.settings
                 };
                 edit.editRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
                 new ActivityLogger().activityLogger(Email, "Edit: " + t2.Text);
-                new Classes.Toastr().toast("Information", "Curriculum Updated");
+                new Classes.Toastr("Information", "Curriculum Updated");
 
                 loadrecords();
                 txtclear();
@@ -132,7 +132,7 @@ namespace school_management_system_model.Forms.settings
             var delete = new Curriculums();
             delete.deleteRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
             
-            new Classes.Toastr().toast("Information", "Curriculum Deleted");
+            new Classes.Toastr("Information", "Curriculum Deleted");
             new ActivityLogger().activityLogger(Email, "Delete Curriculum: " + dgv.CurrentRow.Cells["description"].Value.ToString());
             loadrecords();
         }

@@ -20,7 +20,7 @@ namespace school_management_system_model.Forms.transactions.Collection
         public string id_number { get; set; }
         public int OrNumber { get; set; }
 
-        school_management_system_model.Classes.Toastr Toastr = new school_management_system_model.Classes.Toastr();
+        
         public frm_fee_collection()
         {
             instance = this;
@@ -52,7 +52,7 @@ namespace school_management_system_model.Forms.transactions.Collection
         {
             if (tOrNumberSet.Text == "")
             {
-                new Classes.Toastr().toast("Error", "Fields Missing");
+                new Classes.Toastr("Error", "Fields Missing");
             }
             else
             {
@@ -318,11 +318,11 @@ namespace school_management_system_model.Forms.transactions.Collection
             {
                 if (tAmount.Text == "" && tParticulars.Text == "")
                 {
-                    Toastr.toast("Error", "Missing Fields");
+                    new Classes.Toastr("Error", "Missing Fields");
                 }
                 else if (tOrNumber.Text == "...")
                 {
-                    Toastr.toast("Error", "Please set Or Number");
+                    new Classes.Toastr("Error", "Please set Or Number");
                 }
                 else
                 {
@@ -331,7 +331,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                     decimal change = 0;
                     if (collection < 500 && (decimal)dgvFeeBreakdown.Rows[0].Cells["amount"].Value > 0)
                     {
-                        Toastr.toast("Error", "Payment amount not accepted!");
+                        new Classes.Toastr("Error", "Payment amount not accepted!");
                     }
                     else if (cPayment.Checked)
                     {
@@ -360,7 +360,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
                         if (change < 0)
                         {
-                            Toastr.toast("Error", "Payment not accepted, please provide higher than the payable");
+                            new Classes.Toastr("Error", "Payment not accepted, please provide higher than the payable");
                         }
                         else
                         {
@@ -389,7 +389,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
             catch (Exception ex)
             {
-                Toastr.toast("Error", ex.Message);
+                new Classes.Toastr("Error", ex.Message);
             }
             
         }
