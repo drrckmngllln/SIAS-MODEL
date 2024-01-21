@@ -2,6 +2,7 @@
 using school_management_system_model.Authentication.Login;
 using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.FeeSetup;
+using school_management_system_model.Forms.settings.TuitionFeeDummy;
 using school_management_system_model.Forms.settings.UserManagement;
 using school_management_system_model.Forms.transactions;
 using school_management_system_model.Forms.transactions.Collection;
@@ -122,7 +123,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnDiscounts_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_discounts();
+            var frm = new frm_student_discounts(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -164,7 +165,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnTuitionFee_Click(object sender, EventArgs e)
         {
-            var frm = new frm_tuition_fee(Email);
+            var frm = new frm_tf_setup(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

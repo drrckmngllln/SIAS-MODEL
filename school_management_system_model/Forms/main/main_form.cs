@@ -250,7 +250,7 @@ namespace school_management_system_model.Forms.main
 
         private void button27_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_discounts();
+            var frm = new frm_student_discounts(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

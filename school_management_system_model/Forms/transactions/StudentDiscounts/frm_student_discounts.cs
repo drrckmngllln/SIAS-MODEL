@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,10 +21,13 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
         public string description { get; set; }
         public string discount_target { get; set; }
         public string discount_percentage { get; set; }
-        public frm_student_discounts()
+        public string Email { get; }
+
+        public frm_student_discounts(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,6 +52,8 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             dgv.Columns["code"].HeaderText = "Discount Code";
             dgv.Columns["description"].HeaderText = "Description";
             dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
+            dgv.Columns["duration_from"].HeaderText = "From";
+            dgv.Columns["duration_to"].HeaderText = "To";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -80,7 +86,8 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             {
                 var delete = new StudentDiscount();
                 delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                MessageBox.Show("Discount Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new Classes.Toastr("Information", "Discount Removed");
+                new ActivityLogger().activityLogger(Email, "Remove discount: " + tStudentName.Text);
                 loadRecords();
             }
         }
@@ -93,6 +100,40 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             tTo.Text = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var save = new StudentDiscount
+            {
+                id_number = tIdNumber.Text,
+                code = tCode.Text,
+                discount_target = tDiscountTarget.Text,
+                description = tDescription.Text,
+                discount_percentage = Convert.ToInt32(tDiscountPercentage.Text),
+                duration_from = tFrom.Text,
+                duration_to = tTo.Text
+            };
+            save.addRecords();
+            loadRecords();
+            txtClear();
+            new Classes.Toastr("Success", "Student Discount Added");
+            new ActivityLogger().activityLogger(Email, "Adding discount to student: " + tStudentName.Text);
+        }
+
+        private void txtClear()
+        {
+            tCode.Clear();
+            tDescription.Clear();
+            tDiscountPercentage.Clear();
+            tDiscountTarget.Clear();
+            tFrom.Clear();
+            tTo.Clear();
+        }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

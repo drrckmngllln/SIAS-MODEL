@@ -377,6 +377,13 @@
     <Compile Include="Forms\settings\FeeSetup\frm_tuition_fee.Designer.cs">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\settings\TuitionFeeDummy\frm_tf_setup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\TuitionFeeDummy\frm_tf_setup.Designer.cs">
+      <DependentUpon>frm_tf_setup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings\TuitionFeeDummy\TuitionFeeSetup.cs" />
     <Compile Include="Forms\settings\UserManagement\frm_set_accessLevel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -698,6 +705,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\FeeSetup\frm_tuition_fee.resx">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\TuitionFeeDummy\frm_tf_setup.resx">
+      <DependentUpon>frm_tf_setup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\UserManagement\frm_set_accessLevel.resx">
       <DependentUpon>frm_set_accessLevel.cs</DependentUpon>
