@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         10.123.0.7
--- Server version:               8.2.0 - MySQL Community Server - GPL
--- Server OS:                    Linux
+-- Host:                         127.0.0.1
+-- Server version:               8.0.30 - MySQL Community Server - GPL
+-- Server OS:                    Win64
 -- HeidiSQL Version:             12.1.0.6537
 -- --------------------------------------------------------
 
@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS `access_level` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.access_level: ~0 rows (approximately)
-DELETE FROM `access_level`;
 INSERT INTO `access_level` (`id`, `access_level`, `office`) VALUES
 	(1, 'Administrator', '');
 
@@ -41,10 +40,9 @@ CREATE TABLE IF NOT EXISTS `activity_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.activity_logger: ~18 rows (approximately)
-DELETE FROM `activity_logger`;
+-- Dumping data for table model_test_db.activity_logger: ~22 rows (approximately)
 INSERT INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`, `time`) VALUES
 	(1, 'Registrar, Administrator ', 'Administrator', 'Add: Bachelor of Science in Nursing 2021-2022', '00-16-2024', '03:00:55 pm'),
 	(2, 'Registrar, Administrator ', 'Administrator', 'Edit: Bachelor of Science in Nursing Curriculum 2021-2022', '01-16-2024', '03:01:13 pm'),
@@ -67,7 +65,9 @@ INSERT INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`,
 	(19, 'Manglallan, Derrick Daniel', 'Administrator', 'Discount Delete: Dean Lister Discount', '17-19-2024', '11:17:37 am'),
 	(20, 'Manglallan, Derrick Daniel', 'Administrator', 'Discount Delete: President Lister Discount', '17-19-2024', '11:17:44 am'),
 	(21, 'Manglallan, Derrick Daniel', 'Administrator', 'Discount Delete: top 1 class valedictorian', '17-19-2024', '11:17:47 am'),
-	(22, 'Manglallan, Derrick Daniel', 'Administrator', 'Add Discount: 100% DISCOUNT TUITION AND MISCELLANEOUS', '20-19-2024', '11:20:05 am');
+	(22, 'Manglallan, Derrick Daniel', 'Administrator', 'Add Discount: 100% DISCOUNT TUITION AND MISCELLANEOUS', '20-19-2024', '11:20:05 am'),
+	(23, 'Manglallan, Derrick Daniel', 'Administrator', 'Adding discount to student: Dela Cruz, Juan ', '07-21-2024', '04:07:18 pm'),
+	(24, 'Manglallan, Derrick Daniel', 'Administrator', 'Adding discount to student: Dela Cruz, Juan ', '08-21-2024', '04:08:13 pm');
 
 -- Dumping structure for table model_test_db.admission_schedule
 CREATE TABLE IF NOT EXISTS `admission_schedule` (
@@ -81,7 +81,6 @@ CREATE TABLE IF NOT EXISTS `admission_schedule` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.admission_schedule: ~2 rows (approximately)
-DELETE FROM `admission_schedule`;
 INSERT INTO `admission_schedule` (`id`, `code`, `description`, `schedule_from`, `schedule_to`) VALUES
 	(1, 'Enrollment', 'Enrollment schedule for school year 2023-2024, 1st semester', '2024-01-07', '2024-01-31'),
 	(3, 'Adding and Dropping', 'Schedule for adding and dropping of students', '2024-01-12', '2024-01-19');
@@ -97,7 +96,6 @@ CREATE TABLE IF NOT EXISTS `assessment_breakdown` (
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.assessment_breakdown: ~20 rows (approximately)
-DELETE FROM `assessment_breakdown`;
 INSERT INTO `assessment_breakdown` (`id`, `id_number`, `school_year`, `fee_type`, `amount`) VALUES
 	(6, '2024-1-0003', '2023-2024-1', 'TUITION FEE/UNIT', 5887.75),
 	(7, '2024-1-0003', '2023-2024-1', 'PE UNIFORM', 500.12),
@@ -128,10 +126,9 @@ CREATE TABLE IF NOT EXISTS `authentication_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.authentication_logger: ~169 rows (approximately)
-DELETE FROM `authentication_logger`;
+-- Dumping data for table model_test_db.authentication_logger: ~188 rows (approximately)
 INSERT INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time`) VALUES
 	(1, 'Manglallan, Derrick Daniel', 'Administrator', '01-08-2024', '08:35:02 am'),
 	(2, 'Alan, Charity T', 'Cashier', '01-08-2024', '09:28:40 am'),
@@ -320,7 +317,24 @@ INSERT INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time
 	(185, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '11:16:00 am'),
 	(186, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '11:26:11 am'),
 	(187, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '11:29:21 am'),
-	(188, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '11:29:57 am');
+	(188, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '11:29:57 am'),
+	(189, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '01:16:01 pm'),
+	(190, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '01:18:37 pm'),
+	(191, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '01:19:22 pm'),
+	(192, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '01:44:07 pm'),
+	(193, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '01:47:49 pm'),
+	(194, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '02:00:55 pm'),
+	(195, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '02:01:40 pm'),
+	(196, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '02:02:38 pm'),
+	(197, 'Manglallan, Derrick Daniel', 'Administrator', '01-19-2024', '02:03:11 pm'),
+	(198, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '01:44:11 pm'),
+	(199, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '01:45:22 pm'),
+	(200, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '01:48:24 pm'),
+	(201, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '01:49:08 pm'),
+	(202, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:06:39 pm'),
+	(203, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:07:36 pm'),
+	(204, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:10:40 pm'),
+	(205, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:38:43 pm');
 
 -- Dumping structure for table model_test_db.campuses
 CREATE TABLE IF NOT EXISTS `campuses` (
@@ -334,7 +348,6 @@ CREATE TABLE IF NOT EXISTS `campuses` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.campuses: ~2 rows (approximately)
-DELETE FROM `campuses`;
 INSERT INTO `campuses` (`id`, `code`, `description`, `address`, `status`) VALUES
 	(6, 'MCNP', 'MEDICAL COLLEGES OF NORTHERN PHILIPPINES', '', 'Active'),
 	(7, 'ISAP', 'INTERNATIONAL SCHOOL OF ASIA AND THE PACIFIC', '', 'Active');
@@ -353,8 +366,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.courses: ~1 rows (approximately)
-DELETE FROM `courses`;
+-- Dumping data for table model_test_db.courses: ~2 rows (approximately)
 INSERT INTO `courses` (`id`, `code`, `description`, `level`, `campus`, `department`, `max_units`, `status`) VALUES
 	(7, 'BSCA', 'BSCA', 'COL', 'ISAP', 'CBEM', '30', 'Active'),
 	(8, 'STEM', 'STEM', 'COL', 'ISAP', 'CBEM', '50', '');
@@ -372,7 +384,6 @@ CREATE TABLE IF NOT EXISTS `course_fees` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.course_fees: ~0 rows (approximately)
-DELETE FROM `course_fees`;
 
 -- Dumping structure for table model_test_db.curriculums
 CREATE TABLE IF NOT EXISTS `curriculums` (
@@ -389,7 +400,6 @@ CREATE TABLE IF NOT EXISTS `curriculums` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.curriculums: ~3 rows (approximately)
-DELETE FROM `curriculums`;
 INSERT INTO `curriculums` (`id`, `code`, `description`, `campus`, `course`, `effective`, `expires`, `status`) VALUES
 	(6, 'BSCA 2021-2022', 'BACHELOR OF SCIENCE IN CUSTOMS ADMINISTRATION', 'ISAP', 'BSCA', '06-12-2023', '05-12-2023', 'Active'),
 	(8, 'BSN 2021-2022', 'Bachelor of Science in Nursing Curriculum 2021-2022', 'MCNP', 'BSN', '01-01-2024', '30-01-2024', 'Active'),
@@ -414,7 +424,6 @@ CREATE TABLE IF NOT EXISTS `curriculum_subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=468 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.curriculum_subjects: ~95 rows (approximately)
-DELETE FROM `curriculum_subjects`;
 INSERT INTO `curriculum_subjects` (`id`, `curriculumIdCode`, `curriculum`, `year_level`, `semester`, `code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `total_hrs_per_week`) VALUES
 	(241, 'BSCA 2021-2022GEC 1', 'BSCA 2021-2022', '1', '1', 'GEC 1', 'Understanding the Self', '3', '3', '0', 'None', '3'),
 	(242, 'BSCA 2021-2022GEC 2', 'BSCA 2021-2022', '1', '1', 'GEC 2', 'Readings in the Philippine History', '3', '3', '0', 'None', '3'),
@@ -523,7 +532,6 @@ CREATE TABLE IF NOT EXISTS `departments` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.departments: ~0 rows (approximately)
-DELETE FROM `departments`;
 INSERT INTO `departments` (`id`, `code`, `description`, `campus`) VALUES
 	(8, 'CBEM', 'CBEM', 'ISAP');
 
@@ -532,13 +540,12 @@ CREATE TABLE IF NOT EXISTS `discount_setup` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(50) NOT NULL,
   `discount_target` varchar(50) NOT NULL,
-  `description` varchar(50) NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `discount_percentage` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.discount_setup: ~0 rows (approximately)
-DELETE FROM `discount_setup`;
+-- Dumping data for table model_test_db.discount_setup: ~2 rows (approximately)
 INSERT INTO `discount_setup` (`id`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
 	(11, 'TOP 1', 'Tuition Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100),
 	(12, 'TOP 1', 'Miscellaneous Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100);
@@ -564,7 +571,6 @@ CREATE TABLE IF NOT EXISTS `fee_breakdown` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_breakdown: ~6 rows (approximately)
-DELETE FROM `fee_breakdown`;
 INSERT INTO `fee_breakdown` (`id`, `id_number`, `school_year`, `downpayment`, `prelim`, `midterm`, `semi_finals`, `finals`, `total`, `downpayment_original`, `prelim_original`, `midterm_original`, `semi_finals_original`, `finals_original`, `total_original`) VALUES
 	(10, '2023-1-0001', '2023-2024-1', 0.00, 421.82, 460.91, 460.91, 460.91, 1804.55, 780.30, 780.30, 780.30, 780.30, 780.30, 3901.48),
 	(11, '2023-1-0002', '2023-2024-1', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 460.91, 460.91, 460.91, 460.91, 460.91, 2304.54),
@@ -586,7 +592,6 @@ CREATE TABLE IF NOT EXISTS `fee_summary` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_summary: ~6 rows (approximately)
-DELETE FROM `fee_summary`;
 INSERT INTO `fee_summary` (`id`, `id_number`, `school_year`, `current_assessment`, `discounts`, `previous_balance`, `current_receivable`) VALUES
 	(2, '2023-1-0001', '2023-2024-1', 8692.29, 4790.81, 0.00, 3901.48),
 	(5, '2023-1-0002', '2023-2024-1', 8692.29, 6387.75, 0.00, 2304.54),
@@ -607,7 +612,6 @@ CREATE TABLE IF NOT EXISTS `fee_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_type: ~0 rows (approximately)
-DELETE FROM `fee_type`;
 
 -- Dumping structure for table model_test_db.instructors
 CREATE TABLE IF NOT EXISTS `instructors` (
@@ -618,8 +622,7 @@ CREATE TABLE IF NOT EXISTS `instructors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.instructors: ~1 rows (approximately)
-DELETE FROM `instructors`;
+-- Dumping data for table model_test_db.instructors: ~0 rows (approximately)
 INSERT INTO `instructors` (`id`, `fullname`, `department`, `position`) VALUES
 	(3, 'Manglallan, Derrick D.', 'CBEM', 'Instructor I');
 
@@ -637,7 +640,6 @@ CREATE TABLE IF NOT EXISTS `lab_fee_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.lab_fee_setup: ~4 rows (approximately)
-DELETE FROM `lab_fee_setup`;
 INSERT INTO `lab_fee_setup` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(5, 'Laboratory Fee', 'CHEMISTRY LAB', 'MCNP', 450.25, 450.25, 450.25, 450.25),
 	(6, 'Laboratory Fee', 'PHYSICS LAB', 'MCNP', 450.25, 450.25, 450.25, 450.25),
@@ -655,7 +657,6 @@ CREATE TABLE IF NOT EXISTS `lab_fee_subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.lab_fee_subjects: ~0 rows (approximately)
-DELETE FROM `lab_fee_subjects`;
 INSERT INTO `lab_fee_subjects` (`id`, `lab_fee_id`, `subject_code`, `descriptive_title`) VALUES
 	(2, 6, 'GEC 7', 'Science, Technology and Society');
 
@@ -670,7 +671,6 @@ CREATE TABLE IF NOT EXISTS `levels` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.levels: ~0 rows (approximately)
-DELETE FROM `levels`;
 INSERT INTO `levels` (`id`, `code`, `description`, `status`) VALUES
 	(7, 'COL', 'COLLEGE', 'Active');
 
@@ -688,7 +688,6 @@ CREATE TABLE IF NOT EXISTS `miscellaneous_fee_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.miscellaneous_fee_setup: ~4 rows (approximately)
-DELETE FROM `miscellaneous_fee_setup`;
 INSERT INTO `miscellaneous_fee_setup` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(20, 'Miscellaneous Fee', 'PE UNIFORM', 'MCNP', 450.50, 450.50, 450.50, 450.50),
 	(21, 'Miscellaneous Fee', 'Internet Fee', 'MCNP', 500.12, 500.12, 500.12, 500.12),
@@ -709,7 +708,6 @@ CREATE TABLE IF NOT EXISTS `other_fees` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.other_fees: ~2 rows (approximately)
-DELETE FROM `other_fees`;
 INSERT INTO `other_fees` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(1, 'Other Fees', 'Student Information and Accounting Systems', 'ISAP', 652.15, 652.15, 652.15, 652.15),
 	(2, 'Other Fees', 'Learning Management System', 'ISAP', 652.15, 652.15, 652.15, 652.15);
@@ -722,7 +720,6 @@ CREATE TABLE IF NOT EXISTS `reference_number_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.reference_number_setup: ~0 rows (approximately)
-DELETE FROM `reference_number_setup`;
 INSERT INTO `reference_number_setup` (`id`, `reference_number`) VALUES
 	(1, 1000329);
 
@@ -739,8 +736,7 @@ CREATE TABLE IF NOT EXISTS `school_year` (
   UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.school_year: ~1 rows (approximately)
-DELETE FROM `school_year`;
+-- Dumping data for table model_test_db.school_year: ~2 rows (approximately)
 INSERT INTO `school_year` (`id`, `code`, `description`, `school_year_from`, `school_year_to`, `semester`, `is_current`) VALUES
 	(9, '2023-2024-1', 'SY 2023-2024, 1ST Semester', '12-06-2023', '12-13-2023', '1', 'Yes'),
 	(10, '2023-2024-2', 'SY 2023-2024, 2nd Semester', '01-01-2024', '01-31-2024', '2', 'No');
@@ -763,7 +759,6 @@ CREATE TABLE IF NOT EXISTS `sections` (
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.sections: ~8 rows (approximately)
-DELETE FROM `sections`;
 INSERT INTO `sections` (`id`, `unique_id`, `section_code`, `course`, `year_level`, `section`, `semester`, `number_of_students`, `max_number_of_students`, `status`, `remarks`) VALUES
 	(33, 'BSCA-1-ABSCA1B', 'BSCA-1-A', 'BSCA', '1', 'A', '1', 22, 50, 'Available', 'Regular'),
 	(34, 'BSCA-2-ABSCA21', 'BSCA-2-A', 'BSCA', '2', 'A', '1', 3, 50, 'Available', 'Regular'),
@@ -799,7 +794,6 @@ CREATE TABLE IF NOT EXISTS `section_subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.section_subjects: ~68 rows (approximately)
-DELETE FROM `section_subjects`;
 INSERT INTO `section_subjects` (`id`, `unique_id`, `section_code`, `curriculum`, `course`, `year_level`, `semester`, `subject_code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `time`, `day`, `room`, `instructor`, `status`) VALUES
 	(132, 'BSCA-1-A-BSCA 2021-2022-BSCA-1-1-GEC 1', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 1', 'Understanding the Self', 3.0, 3.0, 0.0, 'None', '', '', '', NULL, NULL),
 	(133, 'BSCA-1-A-BSCA 2021-2022-BSCA-1-1-GEC 2', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 2', 'Readings in the Philippine History', 3.0, 3.0, 0.0, 'None', '', '', '', NULL, NULL),
@@ -890,7 +884,6 @@ CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.statements_of_accounts: ~27 rows (approximately)
-DELETE FROM `statements_of_accounts`;
 INSERT INTO `statements_of_accounts` (`id`, `id_number`, `school_year`, `date`, `course`, `year_level`, `semester`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
 	(67, '2023-1-0001', '2023-2024-1', '12-26-2023', 'BSCA', '1', '1', 1000302, 'Total Assessment as of: 2023-2024-1', 8692.29, 0.00, 8692.29, ''),
 	(68, '2023-1-0001', '2023-2024-1', '12-26-2023', 'BSCA', '1', '1', 1000303, 'President Lister Discount', 8692.29, 4790.81, 3901.48, ''),
@@ -960,7 +953,6 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_accounts: ~7 rows (approximately)
-DELETE FROM `student_accounts`;
 INSERT INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`, `date_of_admission`) VALUES
 	(138, '2023-1-0001', '2023-2024-1', '2023-2024-1', 'Manglallan, Derrick Daniel', 'Manglallan', 'Derrick', 'Daniel', '', '', '', '', '', '', 'Officially Enrolled for School Year 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '26/12/2023'),
 	(139, '2023-1-0002', '2023-2024-1', '2023-2024-1', 'Pagela, John Christian ', 'Pagela', 'John Christian', '', '', '', '', '', '', '', 'Officially Enrolled for School Year 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Transferee', '29/12/2023'),
@@ -983,7 +975,6 @@ CREATE TABLE IF NOT EXISTS `student_assessment` (
 ) ENGINE=InnoDB AUTO_INCREMENT=285 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_assessment: ~30 rows (approximately)
-DELETE FROM `student_assessment`;
 INSERT INTO `student_assessment` (`id`, `id_number`, `school_year`, `fee_type`, `amount`, `units`, `computation`) VALUES
 	(240, '2023-1-0001', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '26', 6387.75),
 	(241, '2023-1-0001', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
@@ -1031,7 +1022,6 @@ CREATE TABLE IF NOT EXISTS `student_course` (
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_course: ~7 rows (approximately)
-DELETE FROM `student_course`;
 INSERT INTO `student_course` (`id`, `id_number`, `course`, `campus`, `curriculum`, `year_level`, `section`, `semester`) VALUES
 	(94, '2023-1-0001', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
 	(95, '2023-1-0002', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
@@ -1049,18 +1039,21 @@ CREATE TABLE IF NOT EXISTS `student_discounts` (
   `discount_target` varchar(50) NOT NULL,
   `description` varchar(50) NOT NULL,
   `discount_percentage` int NOT NULL DEFAULT '0',
+  `duration_from` varchar(50) NOT NULL,
+  `duration_to` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_discounts: ~7 rows (approximately)
-DELETE FROM `student_discounts`;
-INSERT INTO `student_discounts` (`id`, `id_number`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
-	(17, '2023-1-0001', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75),
-	(18, '2023-1-0003', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75),
-	(19, '2023-1-0008', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75),
-	(20, '2023-1-0004', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75),
-	(21, '2024-1-0007', 'top 1', 'Other Fee', 'top 1 class valedictorian', 100),
-	(22, '2023-1-0002', 'top 1', 'Other Fee', 'top 1 class valedictorian', 100);
+-- Dumping data for table model_test_db.student_discounts: ~6 rows (approximately)
+INSERT INTO `student_discounts` (`id`, `id_number`, `code`, `discount_target`, `description`, `discount_percentage`, `duration_from`, `duration_to`) VALUES
+	(17, '2023-1-0001', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75, '', ''),
+	(18, '2023-1-0003', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75, '', ''),
+	(19, '2023-1-0008', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75, '', ''),
+	(20, '2023-1-0004', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75, '', ''),
+	(21, '2024-1-0007', 'top 1', 'Other Fee', 'top 1 class valedictorian', 100, '', ''),
+	(23, '2023-1-0002', 'TOP 1', 'Miscellaneous Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100, '', ''),
+	(24, '2024-1-0005', 'TOP 1', 'Miscellaneous Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100, '01-01-2024', '21-01-2025'),
+	(25, '2024-1-0005', 'TOP 1', 'Tuition Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100, '21-01-2024', '21-01-2025');
 
 -- Dumping structure for table model_test_db.student_documents
 CREATE TABLE IF NOT EXISTS `student_documents` (
@@ -1072,7 +1065,6 @@ CREATE TABLE IF NOT EXISTS `student_documents` (
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_documents: ~0 rows (approximately)
-DELETE FROM `student_documents`;
 
 -- Dumping structure for table model_test_db.student_subjects
 CREATE TABLE IF NOT EXISTS `student_subjects` (
@@ -1097,7 +1089,6 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=648 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_subjects: ~60 rows (approximately)
-DELETE FROM `student_subjects`;
 INSERT INTO `student_subjects` (`id`, `id_number`, `unique_id`, `school_year`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor`, `grade`, `remarks`) VALUES
 	(588, '2023-1-0001', '2023-1-0001-2023-1-GEC 1', '2023-2024-1', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
 	(589, '2023-1-0001', '2023-1-0001-2023-1-GEC 2', '2023-2024-1', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
@@ -1177,7 +1168,22 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.subjects: ~0 rows (approximately)
-DELETE FROM `subjects`;
+
+-- Dumping structure for table model_test_db.tuitionfeesetup
+CREATE TABLE IF NOT EXISTS `tuitionfeesetup` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `uid` varchar(755) NOT NULL DEFAULT '0',
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `campus` varchar(255) NOT NULL,
+  `year_level` varchar(255) NOT NULL,
+  `semester` varchar(255) NOT NULL,
+  `amount` decimal(18,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uid` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table model_test_db.tuitionfeesetup: ~0 rows (approximately)
 
 -- Dumping structure for table model_test_db.tuition_fee_setup
 CREATE TABLE IF NOT EXISTS `tuition_fee_setup` (
@@ -1193,7 +1199,6 @@ CREATE TABLE IF NOT EXISTS `tuition_fee_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.tuition_fee_setup: ~2 rows (approximately)
-DELETE FROM `tuition_fee_setup`;
 INSERT INTO `tuition_fee_setup` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(7, 'Tuition Fee', 'TUITION FEE/UNIT', 'MCNP', 250.50, 250.50, 250.50, 250.50),
 	(8, 'Tuition Fee', 'TUITION FEE/UNIT', 'ISAP', 250.50, 250.50, 250.50, 250.50);
@@ -1221,7 +1226,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.users: ~6 rows (approximately)
-DELETE FROM `users`;
 INSERT INTO `users` (`id`, `last_name`, `first_name`, `middle_name`, `fullname`, `employee_id`, `email`, `password`, `department`, `access_level`, `is_add`, `is_edit`, `is_delete`, `is_administrator`, `picture`) VALUES
 	(2, 'Manglallan', 'Derrick', 'Daniel', 'Manglallan, Derrick Daniel', '353', '123', '$2a$11$DMNzmgLxhI7vHa/6FURPeO.vKvbx5tL8FJtgp.JB5kUpk3hJGNQKy', 'Finance', 'Administrator', 1, 1, 1, 1, NULL),
 	(4, 'Buguina', 'Melenio', 'M', 'Buguina, Melenio M', '456', 'mbuguina@isap.edu.ph', '$2a$11$R/KM9DYyxO1MfmD.EceeUefnLihhbzxcKbycna8Z8VFu.UVBKrit2', 'Registrar', 'User', 1, 0, 0, 0, NULL),
