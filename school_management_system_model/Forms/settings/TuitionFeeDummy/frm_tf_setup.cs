@@ -61,6 +61,10 @@ namespace school_management_system_model.Forms.settings.TuitionFeeDummy
                 loadRecords();
                 txtclear();
             }
+            else if (btn_save.Text == "Update")
+            {
+
+            }
         }
 
         private void txtclear()
