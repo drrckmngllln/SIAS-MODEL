@@ -206,6 +206,8 @@
     <Compile Include="Classes\add_section.cs" />
     <Compile Include="Classes\add_subjects.cs" />
     <Compile Include="Classes\AdmissionSchedule.cs" />
+    <Compile Include="Classes\BaseEntity.cs" />
+    <Compile Include="Classes\Campuses.cs" />
     <Compile Include="Classes\course_fees.cs" />
     <Compile Include="Classes\Curriculums.cs" />
     <Compile Include="Classes\DiscountSetup.cs" />
@@ -383,6 +385,7 @@
     <Compile Include="Forms\settings\TuitionFeeDummy\frm_tf_setup.Designer.cs">
       <DependentUpon>frm_tf_setup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Levels.cs" />
     <Compile Include="Forms\settings\TuitionFeeDummy\TuitionFeeSetup.cs" />
     <Compile Include="Forms\settings\UserManagement\frm_set_accessLevel.cs">
       <SubType>Form</SubType>
@@ -492,6 +495,7 @@
     <Compile Include="Forms\transactions\StudentAssessment\frm_view_subjects.Designer.cs">
       <DependentUpon>frm_view_subjects.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\StudentAssessment\StudentAssessment.cs" />
     <Compile Include="Forms\transactions\StudentEnrollment\frm_select_course.cs">
       <SubType>Form</SubType>
     </Compile>
