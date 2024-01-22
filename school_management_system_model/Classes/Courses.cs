@@ -7,32 +7,38 @@ using System.Threading.Tasks;
 
 namespace school_management_system_model.Classes
 {
-    internal class Campuses
+    internal class Courses
     {
         public int id { get; set; }
         public string code { get; set; }
         public string description { get; set; }
-        public string address { get; set; }
+        public string level_id { get; set; }
+        public string campus_id { get; set; }
+        public string department_id { get; set; }
+        public string max_units { get; set; }
         public string status { get; set; }
 
-        public List<Campuses> GetCampuses()
+        public List<Courses> GetCourses()
         {
-            var list = new List<Campuses>();
+            var list = new List<Courses>();
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("select * from campuses", con);
+            var cmd = new MySqlCommand("select * from courses", con);
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var campus = new Campuses
+                var course = new Courses
                 {
                     id = reader.GetInt32("id"),
                     code = reader.GetString("code"),
                     description = reader.GetString("description"),
-                    address = reader.GetString("address"),
+                    level_id = reader.GetString("level_id"),
+                    campus_id = reader.GetString("campus_id"),
+                    department_id = reader.GetString("department_id"),
+                    max_units = reader.GetString("max_units"),
                     status = reader.GetString("status")
                 };
-                list.Add(campus);
+                list.Add(course);
             }
             con.Close();
             return list;

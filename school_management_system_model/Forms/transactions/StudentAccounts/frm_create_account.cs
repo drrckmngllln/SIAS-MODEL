@@ -143,7 +143,7 @@ namespace school_management_system_model.Forms.transactions
                         id_number = tIdNumber.Text,
 
                         school_year = tSchoolyear.Text,
-                        full_name = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
+                        fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
                         middle_name = tMiddlename.Text,
@@ -189,7 +189,7 @@ namespace school_management_system_model.Forms.transactions
                     {
                         id_number = tIdNumber.Text,
                         school_year = tSchoolyear.Text,
-                        full_name = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
+                        fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
                         middle_name = tMiddlename.Text,

@@ -208,6 +208,7 @@
     <Compile Include="Classes\AdmissionSchedule.cs" />
     <Compile Include="Classes\BaseEntity.cs" />
     <Compile Include="Classes\Campuses.cs" />
+    <Compile Include="Classes\Courses.cs" />
     <Compile Include="Classes\course_fees.cs" />
     <Compile Include="Classes\Curriculums.cs" />
     <Compile Include="Classes\DiscountSetup.cs" />
@@ -220,14 +221,14 @@
     <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
     <Compile Include="Classes\OtherFeesSetup.cs" />
     <Compile Include="Classes\Parameters\SaveAssessmentBreakdownParams.cs" />
-    <Compile Include="Classes\Parameters\SaveStudentAccountsParams.cs" />
+    <Compile Include="Forms\transactions\StudentAccounts\SaveStudentAccountsParams.cs" />
     <Compile Include="Classes\PrintingAssessment.cs" />
     <Compile Include="Classes\proceed_to_enrollment.cs" />
     <Compile Include="Classes\SchoolYearSetup.cs" />
     <Compile Include="Classes\sections.cs" />
     <Compile Include="Classes\section_subject.cs" />
     <Compile Include="Classes\StatementsOfAccounts.cs" />
-    <Compile Include="Classes\StudentAccount.cs" />
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccount.cs" />
     <Compile Include="Classes\StudentDiscount.cs" />
     <Compile Include="Classes\student_assessment.cs" />
     <Compile Include="Classes\student_course.cs" />

@@ -12,26 +12,17 @@ namespace school_management_system_model.Classes
 {
     internal class StudentAccount
     {
-
-
-        
-        public string getStudentCourse(string idNumber)
+        public List<SaveAssessmentBreakdownParams> GetStudentCourse(string idNumber)
         {
+            var studentCourse = new List<SaveAssessmentBreakdownParams>();
             var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_course where id_number='" + idNumber + "'", con);
+            var da = new MySqlDataAdapter("select * from student_course", con);
             var dt = new DataTable();
             da.Fill(dt);
             return dt.Rows[0]["course"].ToString();
         }
-        public DataTable loadRecords(string schoolYear)
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_accounts where school_year='" + schoolYear + "' " +
-                "order by id desc limit 100", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
+
+        
         public DataTable loadCourses()
         {
             var con = new MySqlConnection(connection.con());
@@ -91,7 +82,7 @@ namespace school_management_system_model.Classes
                 "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@16,@17,@18,@19,@20,@21,@22,@23,@24,@25,@26,@27,@28,@29,@30,@31,@32)", con);
             cmd.Parameters.AddWithValue("@1", parameter.id_number);
             cmd.Parameters.AddWithValue("@2", parameter.school_year);
-            cmd.Parameters.AddWithValue("@3", parameter.full_name);
+            cmd.Parameters.AddWithValue("@3", parameter.fullname);
             cmd.Parameters.AddWithValue("@4", parameter.last_name);
             cmd.Parameters.AddWithValue("@5", parameter.first_name);
             cmd.Parameters.AddWithValue("@6", parameter.middle_name);
@@ -144,7 +135,7 @@ namespace school_management_system_model.Classes
                 "mother_no=@25, father_name=@26,father_no=@27,home_address=@28, m_occupation=@29, f_occupation=@30, type_of_student= @31, date_of_admission=@32 where id_number='"+ parameter.id_number +"'", con);
             cmd.Parameters.AddWithValue("@1", parameter.id_number);
             cmd.Parameters.AddWithValue("@2", parameter.school_year);
-            cmd.Parameters.AddWithValue("@3", parameter.full_name);
+            cmd.Parameters.AddWithValue("@3", parameter.fullname);
             cmd.Parameters.AddWithValue("@4", parameter.last_name);
             cmd.Parameters.AddWithValue("@5", parameter.first_name);
             cmd.Parameters.AddWithValue("@6", parameter.middle_name);

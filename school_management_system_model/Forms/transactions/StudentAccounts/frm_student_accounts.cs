@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Forms.transactions.StudentAccounts;
 using System;
 using System.Collections.Generic;
@@ -58,8 +59,8 @@ namespace school_management_system_model.Forms.transactions
 
         private void loadRecords()
         {
-            var data = new StudentAccount();
-            dgv.DataSource = data.loadRecords(tSchoolYear.Text);
+            var data = new SaveStudentAccountsParams();
+            dgv.DataSource = data.GetStudentAccounts().Where(x => x.school_year == tSchoolYear.Text).ToList();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].HeaderText = "Student Number";
             dgv.Columns["sy_enrolled"].Visible = false;
@@ -76,10 +77,10 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["nationality"].HeaderText = "Nationality";
             dgv.Columns["religion"].HeaderText = "Religion";
             dgv.Columns["status"].HeaderText = "Status";
-            dgv.Columns["contact_no"].HeaderText= "Contact Number";
-            dgv.Columns["email"].HeaderText= "Email";
-            dgv.Columns["elem"].HeaderText= "Elementary";
-            dgv.Columns["jhs"].HeaderText= "Junior High School";
+            dgv.Columns["contact_no"].HeaderText = "Contact Number";
+            dgv.Columns["email"].HeaderText = "Email";
+            dgv.Columns["elem"].HeaderText = "Elementary";
+            dgv.Columns["jhs"].HeaderText = "Junior High School";
             dgv.Columns["shs"].HeaderText = "Senior High School";
             dgv.Columns["elem_year"].HeaderText = "Elementary Year";
             dgv.Columns["jhs_year"].HeaderText = "JHS Year";
@@ -93,6 +94,9 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["f_occupation"].HeaderText = "Father Occupation";
             dgv.Columns["type_of_student"].HeaderText = "Type of Student";
             dgv.Columns["date_of_admission"].Visible = false;
+            dgv.Columns["semester"].Visible = false;
+            dgv.Columns["course"].Visible = false;
+            dgv.Columns["campus"].Visible = false;
 
         }
 
