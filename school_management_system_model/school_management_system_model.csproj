@@ -211,6 +211,8 @@
     <Compile Include="Classes\Courses.cs" />
     <Compile Include="Classes\course_fees.cs" />
     <Compile Include="Classes\Curriculums.cs" />
+    <Compile Include="Classes\CurriculumSubjects.cs" />
+    <Compile Include="Classes\Departments.cs" />
     <Compile Include="Classes\DiscountSetup.cs" />
     <Compile Include="Classes\FeeBreakdown.cs" />
     <Compile Include="Classes\FeeCollection.cs" />

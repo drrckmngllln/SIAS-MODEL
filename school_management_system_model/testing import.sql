@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               8.0.30 - MySQL Community Server - GPL
--- Server OS:                    Win64
+-- Host:                         10.123.0.7
+-- Server version:               8.2.0 - MySQL Community Server - GPL
+-- Server OS:                    Linux
 -- HeidiSQL Version:             12.1.0.6537
 -- --------------------------------------------------------
 
@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS `access_level` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.access_level: ~0 rows (approximately)
+-- Dumping data for table model_test_db.access_level: ~1 rows (approximately)
+DELETE FROM `access_level`;
 INSERT INTO `access_level` (`id`, `access_level`, `office`) VALUES
 	(1, 'Administrator', '');
 
@@ -40,9 +41,10 @@ CREATE TABLE IF NOT EXISTS `activity_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.activity_logger: ~22 rows (approximately)
+-- Dumping data for table model_test_db.activity_logger: ~51 rows (approximately)
+DELETE FROM `activity_logger`;
 INSERT INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`, `time`) VALUES
 	(1, 'Registrar, Administrator ', 'Administrator', 'Add: Bachelor of Science in Nursing 2021-2022', '00-16-2024', '03:00:55 pm'),
 	(2, 'Registrar, Administrator ', 'Administrator', 'Edit: Bachelor of Science in Nursing Curriculum 2021-2022', '01-16-2024', '03:01:13 pm'),
@@ -67,7 +69,44 @@ INSERT INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`,
 	(21, 'Manglallan, Derrick Daniel', 'Administrator', 'Discount Delete: top 1 class valedictorian', '17-19-2024', '11:17:47 am'),
 	(22, 'Manglallan, Derrick Daniel', 'Administrator', 'Add Discount: 100% DISCOUNT TUITION AND MISCELLANEOUS', '20-19-2024', '11:20:05 am'),
 	(23, 'Manglallan, Derrick Daniel', 'Administrator', 'Adding discount to student: Dela Cruz, Juan ', '07-21-2024', '04:07:18 pm'),
-	(24, 'Manglallan, Derrick Daniel', 'Administrator', 'Adding discount to student: Dela Cruz, Juan ', '08-21-2024', '04:08:13 pm');
+	(24, 'Manglallan, Derrick Daniel', 'Administrator', 'Adding discount to student: Dela Cruz, Juan ', '08-21-2024', '04:08:13 pm'),
+	(25, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee per unit', '02-22-2024', '08:02:50 am'),
+	(26, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee per unit', '03-22-2024', '08:03:33 am'),
+	(27, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee per unit', '07-22-2024', '08:07:40 am'),
+	(28, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee per unit', '07-22-2024', '08:07:52 am'),
+	(29, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee per unit', '08-22-2024', '08:08:07 am'),
+	(30, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition fee per unit', '16-22-2024', '08:16:02 am'),
+	(31, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition fee per unit', '16-22-2024', '08:16:12 am'),
+	(32, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition fee per unit', '16-22-2024', '08:16:43 am'),
+	(33, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition fee per unit', '17-22-2024', '08:17:04 am'),
+	(34, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: alskdjalskdjlkj', '48-22-2024', '09:48:56 am'),
+	(35, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: 123123', '50-22-2024', '09:50:29 am'),
+	(36, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: 123213', '51-22-2024', '09:51:36 am'),
+	(37, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: asldkjhaslkjd', '53-22-2024', '09:53:54 am'),
+	(38, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: 123', '55-22-2024', '09:55:48 am'),
+	(39, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: sdssdsdsdsd', '57-22-2024', '09:57:58 am'),
+	(40, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: TUITION FEE PER UNIT', '42-22-2024', '10:42:40 am'),
+	(41, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: TUITION FEE PER UNIT', '44-22-2024', '10:44:21 am'),
+	(42, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: TUITION FEE PER UNIT', '44-22-2024', '10:44:36 am'),
+	(43, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: TUITION FEE PER UNIT', '45-22-2024', '10:45:30 am'),
+	(44, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: TUITION FEE PER UNIT', '45-22-2024', '10:45:41 am'),
+	(45, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee Per Unit', '32-22-2024', '03:32:57 pm'),
+	(46, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee Per Unit', '33-22-2024', '03:33:08 pm'),
+	(47, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee Per Unit', '33-22-2024', '03:33:18 pm'),
+	(48, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee Per Unit', '33-22-2024', '03:33:30 pm'),
+	(49, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee Per Unit', '38-22-2024', '03:38:08 pm'),
+	(50, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee Per Unit', '38-22-2024', '03:38:18 pm'),
+	(51, 'Manglallan, Derrick Daniel', 'Administrator', 'Tuition fee setup add: Tuition Fee Per Unit', '38-22-2024', '03:38:30 pm'),
+	(52, 'Registrar, Administrator ', 'Administrator', 'Add: Bachelor of Science in Customs Administration 2021-2022', '02-23-2024', '03:02:15 pm'),
+	(53, 'Registrar, Administrator ', 'Administrator', 'Department Add: College of Nursing', '18-23-2024', '03:18:05 pm'),
+	(54, 'Registrar, Administrator ', 'Administrator', 'Course Add: Bachelor of Science in Nursing', '18-23-2024', '03:18:45 pm'),
+	(55, 'Registrar, Administrator ', 'Administrator', 'Department Add: College of BEM', '22-23-2024', '03:22:09 pm'),
+	(56, 'Registrar, Administrator ', 'Administrator', 'Department Add: College of Nursing', '22-23-2024', '03:22:22 pm'),
+	(57, 'Registrar, Administrator ', 'Administrator', 'Department Edit: College of Business Education Management', '22-23-2024', '03:22:39 pm'),
+	(58, 'Registrar, Administrator ', 'Administrator', 'Course Add: Bachelor of Science in Nursing', '23-23-2024', '03:23:53 pm'),
+	(59, 'Registrar, Administrator ', 'Administrator', 'Course Add: Bachelor of Science in Customs Administration', '24-23-2024', '03:24:17 pm'),
+	(60, 'Registrar, Administrator ', 'Administrator', 'Add: Bachelor of Science in Customs Administration', '24-23-2024', '03:24:56 pm'),
+	(61, 'Registrar, Administrator ', 'Administrator', 'Edit: Bachelor of Science in Customs Administration', '25-23-2024', '03:25:01 pm');
 
 -- Dumping structure for table model_test_db.admission_schedule
 CREATE TABLE IF NOT EXISTS `admission_schedule` (
@@ -81,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `admission_schedule` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.admission_schedule: ~2 rows (approximately)
+DELETE FROM `admission_schedule`;
 INSERT INTO `admission_schedule` (`id`, `code`, `description`, `schedule_from`, `schedule_to`) VALUES
 	(1, 'Enrollment', 'Enrollment schedule for school year 2023-2024, 1st semester', '2024-01-07', '2024-01-31'),
 	(3, 'Adding and Dropping', 'Schedule for adding and dropping of students', '2024-01-12', '2024-01-19');
@@ -96,6 +136,7 @@ CREATE TABLE IF NOT EXISTS `assessment_breakdown` (
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.assessment_breakdown: ~20 rows (approximately)
+DELETE FROM `assessment_breakdown`;
 INSERT INTO `assessment_breakdown` (`id`, `id_number`, `school_year`, `fee_type`, `amount`) VALUES
 	(6, '2024-1-0003', '2023-2024-1', 'TUITION FEE/UNIT', 5887.75),
 	(7, '2024-1-0003', '2023-2024-1', 'PE UNIFORM', 500.12),
@@ -126,9 +167,10 @@ CREATE TABLE IF NOT EXISTS `authentication_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=375 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.authentication_logger: ~188 rows (approximately)
+-- Dumping data for table model_test_db.authentication_logger: ~307 rows (approximately)
+DELETE FROM `authentication_logger`;
 INSERT INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time`) VALUES
 	(1, 'Manglallan, Derrick Daniel', 'Administrator', '01-08-2024', '08:35:02 am'),
 	(2, 'Alan, Charity T', 'Cashier', '01-08-2024', '09:28:40 am'),
@@ -334,7 +376,176 @@ INSERT INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time
 	(202, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:06:39 pm'),
 	(203, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:07:36 pm'),
 	(204, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:10:40 pm'),
-	(205, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:38:43 pm');
+	(205, 'Manglallan, Derrick Daniel', 'Administrator', '01-21-2024', '04:38:43 pm'),
+	(206, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '07:56:59 am'),
+	(207, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:02:14 am'),
+	(208, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:04:36 am'),
+	(209, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:05:31 am'),
+	(210, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:06:29 am'),
+	(211, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:09:43 am'),
+	(212, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:13:17 am'),
+	(213, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:15:20 am'),
+	(214, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:17:46 am'),
+	(215, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:18:42 am'),
+	(216, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:19:27 am'),
+	(217, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:33:20 am'),
+	(218, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:54:01 am'),
+	(219, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:59:19 am'),
+	(220, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '08:59:47 am'),
+	(221, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:00:12 am'),
+	(222, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:01:22 am'),
+	(223, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:07:52 am'),
+	(224, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:12:41 am'),
+	(225, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:13:22 am'),
+	(226, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:14:12 am'),
+	(227, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:24:04 am'),
+	(228, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:24:24 am'),
+	(229, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:38:14 am'),
+	(230, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:38:45 am'),
+	(231, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:39:27 am'),
+	(232, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:42:18 am'),
+	(233, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:48:36 am'),
+	(234, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:50:14 am'),
+	(235, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:51:21 am'),
+	(236, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:53:27 am'),
+	(237, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:54:57 am'),
+	(238, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:55:30 am'),
+	(239, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '09:57:42 am'),
+	(240, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:08:02 am'),
+	(241, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:09:46 am'),
+	(242, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:10:05 am'),
+	(243, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:10:29 am'),
+	(244, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:17:40 am'),
+	(245, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:17:55 am'),
+	(246, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:36:59 am'),
+	(247, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:40:15 am'),
+	(248, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:42:09 am'),
+	(249, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:43:43 am'),
+	(250, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:54:02 am'),
+	(251, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:57:40 am'),
+	(252, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:58:25 am'),
+	(253, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '10:59:19 am'),
+	(254, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:00:00 am'),
+	(255, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:00:28 am'),
+	(256, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:01:21 am'),
+	(257, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:02:32 am'),
+	(258, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:05:12 am'),
+	(259, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:06:03 am'),
+	(260, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:09:51 am'),
+	(261, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:11:18 am'),
+	(262, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:12:03 am'),
+	(263, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:12:28 am'),
+	(264, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:13:44 am'),
+	(265, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:14:41 am'),
+	(266, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:26:22 am'),
+	(267, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:40:41 am'),
+	(268, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '11:41:34 am'),
+	(269, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:11:23 pm'),
+	(270, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:13:14 pm'),
+	(271, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:15:18 pm'),
+	(272, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:17:22 pm'),
+	(273, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:17:42 pm'),
+	(274, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:18:09 pm'),
+	(275, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:18:46 pm'),
+	(276, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:34:10 pm'),
+	(277, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:51:40 pm'),
+	(278, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:53:42 pm'),
+	(279, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:55:13 pm'),
+	(280, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '01:56:15 pm'),
+	(281, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '02:00:33 pm'),
+	(282, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '02:56:51 pm'),
+	(283, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '02:59:04 pm'),
+	(284, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:00:04 pm'),
+	(285, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:03:02 pm'),
+	(286, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:08:20 pm'),
+	(287, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:10:47 pm'),
+	(288, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:12:40 pm'),
+	(289, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:15:08 pm'),
+	(290, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:15:59 pm'),
+	(291, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:17:20 pm'),
+	(292, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:19:30 pm'),
+	(293, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:21:52 pm'),
+	(294, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:29:44 pm'),
+	(295, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:30:36 pm'),
+	(296, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:32:38 pm'),
+	(297, 'Manglallan, Derrick Daniel', 'Administrator', '01-22-2024', '03:59:37 pm'),
+	(298, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '03:59:47 pm'),
+	(299, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:00:48 pm'),
+	(300, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:01:19 pm'),
+	(301, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:07:56 pm'),
+	(302, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:08:26 pm'),
+	(303, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:09:14 pm'),
+	(304, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:11:15 pm'),
+	(305, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:13:03 pm'),
+	(306, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:14:08 pm'),
+	(307, 'Registrar, Administrator ', 'Administrator', '01-22-2024', '04:20:17 pm'),
+	(308, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '08:54:10 am'),
+	(309, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '08:59:12 am'),
+	(310, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '09:14:38 am'),
+	(311, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '09:15:20 am'),
+	(312, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:09:18 am'),
+	(313, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:10:08 am'),
+	(314, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:11:05 am'),
+	(315, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:19:30 am'),
+	(316, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:20:29 am'),
+	(317, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:21:51 am'),
+	(318, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:23:07 am'),
+	(319, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:29:35 am'),
+	(320, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:30:50 am'),
+	(321, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:33:00 am'),
+	(322, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:33:25 am'),
+	(323, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:33:49 am'),
+	(324, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:34:22 am'),
+	(325, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:35:41 am'),
+	(326, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:36:54 am'),
+	(327, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:38:13 am'),
+	(328, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:38:59 am'),
+	(329, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:39:58 am'),
+	(330, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:40:39 am'),
+	(331, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:42:02 am'),
+	(332, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '10:46:31 am'),
+	(333, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:13:00 am'),
+	(334, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:15:06 am'),
+	(335, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:21:12 am'),
+	(336, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:27:06 am'),
+	(337, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:28:14 am'),
+	(338, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:28:38 am'),
+	(339, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:29:19 am'),
+	(340, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:33:13 am'),
+	(341, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '11:35:12 am'),
+	(342, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '01:32:35 pm'),
+	(343, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '01:35:39 pm'),
+	(344, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '01:44:37 pm'),
+	(345, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '01:46:32 pm'),
+	(346, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '01:51:59 pm'),
+	(347, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '01:55:35 pm'),
+	(348, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '01:59:14 pm'),
+	(349, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '01:59:39 pm'),
+	(350, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:00:12 pm'),
+	(351, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:03:56 pm'),
+	(352, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:04:21 pm'),
+	(353, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:45:07 pm'),
+	(354, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:46:14 pm'),
+	(355, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:47:28 pm'),
+	(356, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:50:15 pm'),
+	(357, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:53:25 pm'),
+	(358, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '02:58:54 pm'),
+	(359, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '03:12:13 pm'),
+	(360, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '03:16:18 pm'),
+	(361, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '03:17:43 pm'),
+	(362, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '03:21:03 pm'),
+	(363, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '03:21:39 pm'),
+	(364, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '03:23:12 pm'),
+	(365, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:12:26 pm'),
+	(366, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:12:50 pm'),
+	(367, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:13:26 pm'),
+	(368, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:14:32 pm'),
+	(369, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:24:20 pm'),
+	(370, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:25:25 pm'),
+	(371, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:26:31 pm'),
+	(372, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:27:07 pm'),
+	(373, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:28:59 pm'),
+	(374, 'Registrar, Administrator ', 'Administrator', '01-23-2024', '04:31:16 pm');
 
 -- Dumping structure for table model_test_db.campuses
 CREATE TABLE IF NOT EXISTS `campuses` (
@@ -343,11 +554,12 @@ CREATE TABLE IF NOT EXISTS `campuses` (
   `description` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.campuses: ~2 rows (approximately)
+DELETE FROM `campuses`;
 INSERT INTO `campuses` (`id`, `code`, `description`, `address`, `status`) VALUES
 	(6, 'MCNP', 'MEDICAL COLLEGES OF NORTHERN PHILIPPINES', '', 'Active'),
 	(7, 'ISAP', 'INTERNATIONAL SCHOOL OF ASIA AND THE PACIFIC', '', 'Active');
@@ -357,19 +569,20 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `level` varchar(255) NOT NULL,
-  `campus` varchar(255) NOT NULL,
-  `department` varchar(255) NOT NULL,
-  `max_units` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
+  `level_id` int NOT NULL DEFAULT '0',
+  `campus_id` int NOT NULL DEFAULT '0',
+  `department_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `max_units` int NOT NULL DEFAULT '0',
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.courses: ~2 rows (approximately)
-INSERT INTO `courses` (`id`, `code`, `description`, `level`, `campus`, `department`, `max_units`, `status`) VALUES
-	(7, 'BSCA', 'BSCA', 'COL', 'ISAP', 'CBEM', '30', 'Active'),
-	(8, 'STEM', 'STEM', 'COL', 'ISAP', 'CBEM', '50', '');
+DELETE FROM `courses`;
+INSERT INTO `courses` (`id`, `code`, `description`, `level_id`, `campus_id`, `department_id`, `max_units`, `status`) VALUES
+	(10, 'BSN', 'Bachelor of Science in Nursing', 7, 6, '11', 50, 'Active'),
+	(11, 'BSCA', 'Bachelor of Science in Customs Administration', 7, 7, '10', 50, 'Active');
 
 -- Dumping structure for table model_test_db.course_fees
 CREATE TABLE IF NOT EXISTS `course_fees` (
@@ -384,32 +597,32 @@ CREATE TABLE IF NOT EXISTS `course_fees` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.course_fees: ~0 rows (approximately)
+DELETE FROM `course_fees`;
 
 -- Dumping structure for table model_test_db.curriculums
 CREATE TABLE IF NOT EXISTS `curriculums` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `campus` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `course` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `campus_id` int NOT NULL DEFAULT '0',
+  `course_id` int NOT NULL DEFAULT '0',
   `effective` varchar(50) NOT NULL,
   `expires` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.curriculums: ~3 rows (approximately)
-INSERT INTO `curriculums` (`id`, `code`, `description`, `campus`, `course`, `effective`, `expires`, `status`) VALUES
-	(6, 'BSCA 2021-2022', 'BACHELOR OF SCIENCE IN CUSTOMS ADMINISTRATION', 'ISAP', 'BSCA', '06-12-2023', '05-12-2023', 'Active'),
-	(8, 'BSN 2021-2022', 'Bachelor of Science in Nursing Curriculum 2021-2022', 'MCNP', 'BSN', '01-01-2024', '30-01-2024', 'Active'),
-	(9, 'STEM', 'STEM', 'ISAP', 'STEM', '24-01-2024', '25-01-2024', 'Active');
+-- Dumping data for table model_test_db.curriculums: ~1 rows (approximately)
+DELETE FROM `curriculums`;
+INSERT INTO `curriculums` (`id`, `code`, `description`, `campus_id`, `course_id`, `effective`, `expires`, `status`) VALUES
+	(11, 'BSCA 2021-2022', 'Bachelor of Science in Customs Administration', 7, 11, '01-01-2024', '31-01-2024', 'Active');
 
 -- Dumping structure for table model_test_db.curriculum_subjects
 CREATE TABLE IF NOT EXISTS `curriculum_subjects` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `curriculumIdCode` varchar(750) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `curriculum` varchar(750) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `uid` varchar(750) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `curriculum_id` varchar(750) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `year_level` varchar(50) NOT NULL,
   `semester` varchar(50) NOT NULL,
   `code` varchar(50) NOT NULL,
@@ -420,120 +633,27 @@ CREATE TABLE IF NOT EXISTS `curriculum_subjects` (
   `pre_requisite` varchar(750) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `total_hrs_per_week` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `curriculumIdCode` (`curriculumIdCode`)
+  UNIQUE KEY `curriculumIdCode` (`uid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=468 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.curriculum_subjects: ~95 rows (approximately)
-INSERT INTO `curriculum_subjects` (`id`, `curriculumIdCode`, `curriculum`, `year_level`, `semester`, `code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `total_hrs_per_week`) VALUES
-	(241, 'BSCA 2021-2022GEC 1', 'BSCA 2021-2022', '1', '1', 'GEC 1', 'Understanding the Self', '3', '3', '0', 'None', '3'),
-	(242, 'BSCA 2021-2022GEC 2', 'BSCA 2021-2022', '1', '1', 'GEC 2', 'Readings in the Philippine History', '3', '3', '0', 'None', '3'),
-	(243, 'BSCA 2021-2022GEC 3', 'BSCA 2021-2022', '1', '1', 'GEC 3', 'The Contemporary World', '3', '3', '0', 'None', '3'),
-	(244, 'BSCA 2021-2022GEC 4', 'BSCA 2021-2022', '1', '1', 'GEC 4', 'Mathematics in the Modern World', '3', '3', '0', 'None', '3'),
-	(245, 'BSCA 2021-2022SBEC 100', 'BSCA 2021-2022', '1', '1', 'SBEC 100', 'International Trade', '3', '3', '0', 'None', '3'),
-	(246, 'BSCA 2021-2022GEC 5', 'BSCA 2021-2022', '1', '1', 'GEC 5', 'Purposive Communication', '3', '3', '0', 'None', '3'),
-	(247, 'BSCA 2021-2022PE 101', 'BSCA 2021-2022', '1', '1', 'PE 101', 'Physical Education 1 (Physical Fitness)', '2', '2', '0', 'None', '2'),
-	(248, 'BSCA 2021-2022NSTP 1', 'BSCA 2021-2022', '1', '1', 'NSTP 1', 'National Service Training Program 1', '3', '3', '0', 'None', '3'),
-	(249, 'BSCA 2021-2022ETHICS 100', 'BSCA 2021-2022', '1', '1', 'ETHICS 100', 'ISAPian Education with Values Formation', '1.5', '1.5', '0', 'None', '1.5'),
-	(250, 'BSCA 2021-2022MSCED 201', 'BSCA 2021-2022', '1', '1', 'MSCED 201', 'Advisorship Time', '0', '1', '0', 'None', '1'),
-	(251, 'BSCA 2021-2022GEC 6', 'BSCA 2021-2022', '1', '2', 'GEC 6', 'Art Apreciation', '3', '3', '0', 'None', '3'),
-	(252, 'BSCA 2021-2022GEC 7', 'BSCA 2021-2022', '1', '2', 'GEC 7', 'Science, Technology and Society', '3', '3', '0', 'None', '3'),
-	(253, 'BSCA 2021-2022SCM 101', 'BSCA 2021-2022', '1', '2', 'SCM 101', 'Introduction to Supply Chain Management', '3', '3', '0', 'SBEC 100', '3'),
-	(254, 'BSCA 2021-2022CM 101', 'BSCA 2021-2022', '1', '2', 'CM 101', 'Border Control and Security', '3', '3', '0', 'SBEC 100', '3'),
-	(255, 'BSCA 2021-2022TM 101', 'BSCA 2021-2022', '1', '2', 'TM 101', 'Fundamentals of Customs and Tariff Management', '3', '3', '0', 'SBEC 100', '3'),
-	(256, 'BSCA 2021-2022GEC 8', 'BSCA 2021-2022', '1', '2', 'GEC 8', 'Ethics', '3', '3', '0', 'None', '3'),
-	(257, 'BSCA 2021-2022ECON 101', 'BSCA 2021-2022', '1', '2', 'ECON 101', 'International Economics', '3', '3', '0', 'SBEC 100', '3'),
-	(258, 'BSCA 2021-2022PE 102', 'BSCA 2021-2022', '1', '2', 'PE 102', 'Physical Education 2 (Gymnastics)', '2', '2', '0', 'PE 1', '2'),
-	(259, 'BSCA 2021-2022NSTP 2', 'BSCA 2021-2022', '1', '2', 'NSTP 2', 'National Service Training Program 2', '3', '3', '0', 'NSTP 1', '3'),
-	(260, 'BSCA 2021-2022MSCED 202', 'BSCA 2021-2022', '1', '2', 'MSCED 202', 'Advisorship Time', '0', '1', '0', 'MSCED 201', '1'),
-	(261, 'BSCA 2021-2022GEC 9', 'BSCA 2021-2022', '2', '1', 'GEC 9', 'Rizal\'s Life and Works', '3', '3', '0', 'None', '3'),
-	(262, 'BSCA 2021-2022LIT 101', 'BSCA 2021-2022', '2', '1', 'LIT 101', 'Panitikang Pilipino ', '3', '3', '0', 'None', '3'),
-	(263, 'BSCA 2021-2022SBEC 101', 'BSCA 2021-2022', '2', '1', 'SBEC 101', 'Income and Business Taxation', '3', '3', '0', 'SBEC 100', '3'),
-	(264, 'BSCA 2021-2022SCM102', 'BSCA 2021-2022', '2', '1', 'SCM102', 'Warehoues Operations Management', '3', '3', '0', 'SCM 100', '3'),
-	(265, 'BSCA 2021-2022SBEC 102', 'BSCA 2021-2022', '2', '1', 'SBEC 102', 'Business Law', '3', '3', '0', 'SBEC 100', '3'),
-	(266, 'BSCA 2021-2022CM 102', 'BSCA 2021-2022', '2', '1', 'CM 102', 'Customs Operations and Cargo Handling with Educ. Tour', '3', '3', '0', 'CM 101', '3'),
-	(267, 'BSCA 2021-2022CM 103', 'BSCA 2021-2022', '2', '1', 'CM 103', 'Customs Warehousing', '5', '5', '0', 'CM 101', '5'),
-	(268, 'BSCA 2021-2022TM 102', 'BSCA 2021-2022', '2', '1', 'TM 102', 'Commodity Classification System', '3', '3', '0', 'TM 101', '3'),
-	(269, 'BSCA 2021-2022PE 103', 'BSCA 2021-2022', '2', '1', 'PE 103', 'Physical Education  3 (Swimming)', '2', '2', '0', 'PE 102', '2'),
-	(270, 'BSCA 2021-2022MSCED 203', 'BSCA 2021-2022', '2', '1', 'MSCED 203', 'Advisorship Time', '0', '1', '0', 'MSCED 202', '1'),
-	(271, 'BSCA 2021-2022GEE 101', 'BSCA 2021-2022', '2', '2', 'GEE 101', 'Philippine Popular Culture', '3', '3', '0', 'None', '3'),
-	(272, 'BSCA 2021-2022CBMEC 101', 'BSCA 2021-2022', '2', '2', 'CBMEC 101', 'Strategic Management', '3', '3', '0', 'None', '3'),
-	(273, 'BSCA 2021-2022EC 101', 'BSCA 2021-2022', '2', '2', 'EC 101', 'International Marketing', '3', '3', '0', 'ECON 101', '3'),
-	(274, 'BSCA 2021-2022EC 102', 'BSCA 2021-2022', '2', '2', 'EC 102', 'Enterpreneurial Management', '3', '3', '0', 'ECON 101', '3'),
-	(275, 'BSCA 2021-2022SCM 103', 'BSCA 2021-2022', '2', '2', 'SCM 103', 'Procurement and Inventory Management', '3', '3', '0', 'SCM 102', '3'),
-	(276, 'BSCA 2021-2022CM 104', 'BSCA 2021-2022', '2', '2', 'CM 104', 'Customs Proceedings', '5', '3', '0', 'CM 103', '3'),
-	(277, 'BSCA 2021-2022TM 103', 'BSCA 2021-2022', '2', '2', 'TM 103', 'Customs Valuation System', '5', '5', '0', 'TM 102', '5'),
-	(278, 'BSCA 2021-2022PE 104', 'BSCA 2021-2022', '2', '2', 'PE 104', 'Physical Education 4 (Team Sports)', '2', '2', '0', 'PE 103', '2'),
-	(279, 'BSCA 2021-2022MSCED 204', 'BSCA 2021-2022', '2', '2', 'MSCED 204', 'Advisorship Time', '0', '1', '0', 'MSCED 203', '1'),
-	(280, 'BSCA 2021-2022FL 102', 'BSCA 2021-2022', '3', '1', 'FL 102', 'Foreign Language 2', '2', '2', '0', 'FL 101', '2'),
-	(281, 'BSCA 2021-2022FIL 102', 'BSCA 2021-2022', '3', '1', 'FIL 102', 'Kontekstwalissadong Filipino', '3', '3', '0', 'FIL 101', '3'),
-	(282, 'BSCA 2021-2022LIT 102', 'BSCA 2021-2022', '3', '1', 'LIT 102', 'Philippine Literature', '3', '3', '0', 'LIT 101', '3'),
-	(283, 'BSCA 2021-2022LED 1', 'BSCA 2021-2022', '3', '1', 'LED 1', 'Labor Education', '3', '3', '0', 'None', '3'),
-	(284, 'BSCA 2021-2022GEE 103', 'BSCA 2021-2022', '3', '1', 'GEE 103', 'Philippine Indigenous Communities', '3', '3', '0', 'GEE 102', '3'),
-	(285, 'BSCA 2021-2022CM 106', 'BSCA 2021-2022', '3', '1', 'CM 106', 'Customs Post Clearance Audit and Fraud Detection', '5', '5', '0', 'CM 105', '5'),
-	(286, 'BSCA 2021-2022TM 105', 'BSCA 2021-2022', '3', '1', 'TM 105', 'Excise Taxes, Liquidation of Duty and Surcharges', '5', '5', '0', 'TM 104', '5'),
-	(287, 'BSCA 2021-2022CA RES 102', 'BSCA 2021-2022', '3', '1', 'CA RES 102', 'Customs Research 2', '3', '3', '0', 'CA RES 101', '3'),
-	(288, 'BSCA 2021-2022MSCED 206', 'BSCA 2021-2022', '3', '1', 'MSCED 206', 'Advisorship Time', '0', '1', '0', 'MSCED 205', '1'),
-	(289, 'BSCA 2021-2022FIL 103', 'BSCA 2021-2022', '3', '3', 'FIL 103', 'Malayuning Komunikasyon', '3', '3', '0', 'FIL 102', '9'),
-	(290, 'BSCA 2021-2022CM 107', 'BSCA 2021-2022', '3', '3', 'CM 107', 'Ethics and Standards of Custom Broker', '3', '3', '0', 'CM 106', '9'),
-	(291, 'BSCA 2021-2022TM 106', 'BSCA 2021-2022', '3', '3', 'TM 106', 'Special Duties and Trade Remedies', '3', '3', '0', 'TM 105', '9'),
-	(292, 'BSCA 2021-2022CA 101', 'BSCA 2021-2022', '4', '1', 'CA 101', 'Integration Review for Cutoms Laws', '1.5', '1.5', '0', '4th Year Standing', '1.5 (3)'),
-	(293, 'BSCA 2021-2022CA 102', 'BSCA 2021-2022', '4', '1', 'CA 102', 'IntegrationReview for Tariff Management', '1.5', '1.5', '0', '4th Year Standing', '1.5 (3)'),
-	(294, 'BSCA 2021-2022TM 107', 'BSCA 2021-2022', '4', '1', 'TM 107', 'International Trade Organizations, Agreements and Rules of Origin', '5', '5', '0', 'TM 106', '5'),
-	(295, 'BSCA 2021-2022CBMEC 102', 'BSCA 2021-2022', '4', '1', 'CBMEC 102', 'Operations Management', '3', '3', '0', 'CBMEC 101', '3'),
-	(296, 'BSCA 2021-2022MSCED 207', 'BSCA 2021-2022', '4', '1', 'MSCED 207', 'Advisorship Time', '0', '1', '0', 'MSCED 206', '1'),
-	(297, 'BSCA 2021-2022CM 108', 'BSCA 2021-2022', '4', '2', 'CM 108', 'Competency Assessment in Customs Management', '5', '5', '0', '4th Year Standing', '5'),
-	(298, 'BSCA 2021-2022TM 108', 'BSCA 2021-2022', '4', '2', 'TM 108', 'Competency Assessment in Tariff Management', '5', '5', '0', '4th Year Standing', '5'),
-	(299, 'BSCA 2021-2022CA OCL', 'BSCA 2021-2022', '4', '2', 'CA OCL', 'Off-Campus Learning, Customs Brokerage Industry (200 hrs), Freight Forwarding/Logistics/Shipping  or Airline Companies, Govenrment Agencies(200hrs)', '3', '', 'Field', '4th Year Standing', '24'),
-	(300, 'BSCA 2021-2022MSCED 208', 'BSCA 2021-2022', '4', '2', 'MSCED 208', 'Advisorship Time', '0', '1', '1', 'MS CED 207', '1'),
-	(433, 'STEMPEH 1', 'STEM', '1', '1', 'PEH 1', 'Physical Education and Health 1', '2', '2', '0', 'None', '2'),
-	(434, 'STEMELS', 'STEM', '1', '1', 'ELS', 'Earth and Life Science ', '4', '4', '0', 'None', '4'),
-	(435, 'STEMUCSP11', 'STEM', '1', '1', 'UCSP11', 'Understanding Culture, Society and Politics', '4', '4', '0', 'None', '4'),
-	(436, 'STEMF11', 'STEM', '1', '1', 'F11', 'Komunikasyon at Pananaliksik sa Wika at Kulturang Pilipino', '4', '4', '0', 'None', '4'),
-	(437, 'STEMEN11/12OC', 'STEM', '1', '1', 'EN11/12OC', 'Oral Communication', '4', '4', '0', 'None', '4'),
-	(438, 'STEMM11GM', 'STEM', '1', '1', 'M11GM', 'General Mathematics', '4', '4', '0', 'None', '4'),
-	(439, 'STEMCS_RS 11', 'STEM', '1', '1', 'CS_RS 11', 'Practical Research 1', '4', '4', '0', 'None', '4'),
-	(440, 'STEMCS_ICT11', 'STEM', '1', '1', 'CS_ICT11', 'Empowerment Technologies', '4', '4', '0', 'None', '4'),
-	(441, 'STEMHUMSS_DIS11', 'STEM', '1', '1', 'HUMSS_DIS11', 'Disciplines and Ideas in the Social Sciences', '4', '4', '0', 'None', '4'),
-	(442, 'STEMRWS', 'STEM', '1', '2', 'RWS', 'Reading and Writing', '4', '4', '0', 'None', '4'),
-	(443, 'STEMF11PB', 'STEM', '1', '2', 'F11PB', 'Pagbasa at Pagsusuri ng Iba\'t Ibang Teksto Tungo sa Pananaliksik', '4', '4', '0', 'None', '4'),
-	(444, 'STEMSP11', 'STEM', '1', '2', 'SP11', 'Statistics and Probability', '4', '4', '0', 'None', '4'),
-	(445, 'STEMPD11', 'STEM', '1', '2', 'PD11', 'Personal Development/Pansariling Kaunlaran', '4', '4', '0', 'None', '4'),
-	(446, 'STEMPEH 2', 'STEM', '1', '2', 'PEH 2', 'Physical Education and Health 2', '2', '2', '0', 'None', '2'),
-	(447, 'STEMEN12Lit', 'STEM', '1', '2', 'EN12Lit', '21st Century Literature from the Philippines and the World', '4', '4', '0', 'None', '4'),
-	(448, 'STEMCS_EN-EAPP', 'STEM', '1', '2', 'CS_EN-EAPP', 'English for Academic and Professional Purposes', '4', '4', '0', 'None', '4'),
-	(449, 'STEMHUMSS_MCT11', 'STEM', '1', '2', 'HUMSS_MCT11', 'Trends, Networks and Critical Thinking in the 21st Century Culture', '4', '4', '0', 'Introduction to the philo of Man', '4'),
-	(450, 'STEMHUMSS_WRB11', 'STEM', '2', '2', 'HUMSS_WRB11', 'Introduction to World Religions and Belief System', '4', '4', '0', 'None', '4'),
-	(451, 'STEMPPT12', 'STEM', '2', '1', 'PPT12', 'Introduction to the Philosophy of the Human Person', '4', '4', '0', 'None', '4'),
-	(452, 'STEMPEH 3', 'STEM', '2', '1', 'PEH 3', 'Physical Education and Health 3', '2', '2', '0', 'None', '2'),
-	(453, 'STEMCS_FA 11', 'STEM', '2', '1', 'CS_FA 11', 'Filipino sa Piling Larang', '4', '4', '0', 'None', '4'),
-	(454, 'STEMCS_RS 12', 'STEM', '2', '1', 'CS_RS 12', 'Practical Research 2', '4', '4', '0', 'None', '4'),
-	(455, 'STEMcs11', 'STEM', '2', '1', 'cs11', 'Inquiries, Investigations and Immersion', '4', '4', '0', 'None', '4'),
-	(456, 'STEMHUMSS_CW', 'STEM', '2', '1', 'HUMSS_CW', 'Creative Writing/ Malikhaing Pagsusulat', '4', '4', '0', '21st Century Literature from the Philippines and the World', '4'),
-	(457, 'STEMHUMSS_PG12', 'STEM', '2', '1', 'HUMSS_PG12', 'Philippine Politics and Governance', '4', '4', '0', 'None', '4'),
-	(458, 'STEMHUMSS_DIS12', 'STEM', '2', '1', 'HUMSS_DIS12', 'Disciplines and Ideas in the Applied Social Sciences', '4', '4', '0', 'Disciplines and Ideas in the Social Sciences', '4'),
-	(459, 'STEMcs22', 'STEM', '2', '1', 'cs22', 'Nihongo', '2', '2', '0', 'None', '2'),
-	(460, 'STEMPEH 4', 'STEM', '2', '2', 'PEH 4', 'Physical Education and Health 4', '2', '2', '0', 'None', '2'),
-	(461, 'STEMPS', 'STEM', '2', '2', 'PS', 'Physical Science', '4', '4', '0', 'None', '4'),
-	(462, 'STEMMIL11', 'STEM', '2', '2', 'MIL11', 'Media and Information Literacy', '4', '4', '0', 'None', '4'),
-	(463, 'STEMCS_EP12', 'STEM', '2', '2', 'CS_EP12', 'Entrepreneurship', '4', '4', '0', 'None', '4'),
-	(464, 'STEMCAR', 'STEM', '2', '2', 'CAR', 'Contemporary Philippine Arts from the Regions', '4', '4', '0', 'None', '4'),
-	(465, 'STEMHUMSS_CNF12', 'STEM', '2', '2', 'HUMSS_CNF12', 'Creative Nonfiction: The Literary Essay', '4', '4', '0', 'Creative Writing/ Malikhaing Pagsusulat', '4'),
-	(466, 'STEMHUMSS_CSC12', 'STEM', '2', '2', 'HUMSS_CSC12', 'Community Engagement, Solidarity and Citizenship', '4', '4', '0', 'Disciplines and Ideas in the Social Sciences', '4'),
-	(467, 'STEMHUMSS_ CA12', 'STEM', '2', '2', 'HUMSS_ CA12', 'Culminating Activity', '4', '4', '0', 'None', '4');
+-- Dumping data for table model_test_db.curriculum_subjects: ~0 rows (approximately)
+DELETE FROM `curriculum_subjects`;
 
 -- Dumping structure for table model_test_db.departments
 CREATE TABLE IF NOT EXISTS `departments` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `campus` varchar(255) NOT NULL,
+  `campus_id` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.departments: ~0 rows (approximately)
-INSERT INTO `departments` (`id`, `code`, `description`, `campus`) VALUES
-	(8, 'CBEM', 'CBEM', 'ISAP');
+-- Dumping data for table model_test_db.departments: ~1 rows (approximately)
+DELETE FROM `departments`;
+INSERT INTO `departments` (`id`, `code`, `description`, `campus_id`) VALUES
+	(10, 'CBEM', 'College of Business Education Management', 6),
+	(11, 'NURSING', 'College of Nursing', 6);
 
 -- Dumping structure for table model_test_db.discount_setup
 CREATE TABLE IF NOT EXISTS `discount_setup` (
@@ -546,6 +666,7 @@ CREATE TABLE IF NOT EXISTS `discount_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.discount_setup: ~2 rows (approximately)
+DELETE FROM `discount_setup`;
 INSERT INTO `discount_setup` (`id`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
 	(11, 'TOP 1', 'Tuition Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100),
 	(12, 'TOP 1', 'Miscellaneous Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100);
@@ -571,6 +692,7 @@ CREATE TABLE IF NOT EXISTS `fee_breakdown` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_breakdown: ~6 rows (approximately)
+DELETE FROM `fee_breakdown`;
 INSERT INTO `fee_breakdown` (`id`, `id_number`, `school_year`, `downpayment`, `prelim`, `midterm`, `semi_finals`, `finals`, `total`, `downpayment_original`, `prelim_original`, `midterm_original`, `semi_finals_original`, `finals_original`, `total_original`) VALUES
 	(10, '2023-1-0001', '2023-2024-1', 0.00, 421.82, 460.91, 460.91, 460.91, 1804.55, 780.30, 780.30, 780.30, 780.30, 780.30, 3901.48),
 	(11, '2023-1-0002', '2023-2024-1', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 460.91, 460.91, 460.91, 460.91, 460.91, 2304.54),
@@ -592,6 +714,7 @@ CREATE TABLE IF NOT EXISTS `fee_summary` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_summary: ~6 rows (approximately)
+DELETE FROM `fee_summary`;
 INSERT INTO `fee_summary` (`id`, `id_number`, `school_year`, `current_assessment`, `discounts`, `previous_balance`, `current_receivable`) VALUES
 	(2, '2023-1-0001', '2023-2024-1', 8692.29, 4790.81, 0.00, 3901.48),
 	(5, '2023-1-0002', '2023-2024-1', 8692.29, 6387.75, 0.00, 2304.54),
@@ -612,6 +735,7 @@ CREATE TABLE IF NOT EXISTS `fee_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_type: ~0 rows (approximately)
+DELETE FROM `fee_type`;
 
 -- Dumping structure for table model_test_db.instructors
 CREATE TABLE IF NOT EXISTS `instructors` (
@@ -622,7 +746,8 @@ CREATE TABLE IF NOT EXISTS `instructors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.instructors: ~0 rows (approximately)
+-- Dumping data for table model_test_db.instructors: ~1 rows (approximately)
+DELETE FROM `instructors`;
 INSERT INTO `instructors` (`id`, `fullname`, `department`, `position`) VALUES
 	(3, 'Manglallan, Derrick D.', 'CBEM', 'Instructor I');
 
@@ -640,6 +765,7 @@ CREATE TABLE IF NOT EXISTS `lab_fee_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.lab_fee_setup: ~4 rows (approximately)
+DELETE FROM `lab_fee_setup`;
 INSERT INTO `lab_fee_setup` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(5, 'Laboratory Fee', 'CHEMISTRY LAB', 'MCNP', 450.25, 450.25, 450.25, 450.25),
 	(6, 'Laboratory Fee', 'PHYSICS LAB', 'MCNP', 450.25, 450.25, 450.25, 450.25),
@@ -656,7 +782,8 @@ CREATE TABLE IF NOT EXISTS `lab_fee_subjects` (
   UNIQUE KEY `subject_code` (`subject_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.lab_fee_subjects: ~0 rows (approximately)
+-- Dumping data for table model_test_db.lab_fee_subjects: ~1 rows (approximately)
+DELETE FROM `lab_fee_subjects`;
 INSERT INTO `lab_fee_subjects` (`id`, `lab_fee_id`, `subject_code`, `descriptive_title`) VALUES
 	(2, 6, 'GEC 7', 'Science, Technology and Society');
 
@@ -668,11 +795,13 @@ CREATE TABLE IF NOT EXISTS `levels` (
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.levels: ~0 rows (approximately)
+-- Dumping data for table model_test_db.levels: ~2 rows (approximately)
+DELETE FROM `levels`;
 INSERT INTO `levels` (`id`, `code`, `description`, `status`) VALUES
-	(7, 'COL', 'COLLEGE', 'Active');
+	(7, 'COL', 'COLLEGE', 'Active'),
+	(8, 'JHS', 'Junior High School', 'Active');
 
 -- Dumping structure for table model_test_db.miscellaneous_fee_setup
 CREATE TABLE IF NOT EXISTS `miscellaneous_fee_setup` (
@@ -688,6 +817,7 @@ CREATE TABLE IF NOT EXISTS `miscellaneous_fee_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.miscellaneous_fee_setup: ~4 rows (approximately)
+DELETE FROM `miscellaneous_fee_setup`;
 INSERT INTO `miscellaneous_fee_setup` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(20, 'Miscellaneous Fee', 'PE UNIFORM', 'MCNP', 450.50, 450.50, 450.50, 450.50),
 	(21, 'Miscellaneous Fee', 'Internet Fee', 'MCNP', 500.12, 500.12, 500.12, 500.12),
@@ -708,6 +838,7 @@ CREATE TABLE IF NOT EXISTS `other_fees` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.other_fees: ~2 rows (approximately)
+DELETE FROM `other_fees`;
 INSERT INTO `other_fees` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(1, 'Other Fees', 'Student Information and Accounting Systems', 'ISAP', 652.15, 652.15, 652.15, 652.15),
 	(2, 'Other Fees', 'Learning Management System', 'ISAP', 652.15, 652.15, 652.15, 652.15);
@@ -719,7 +850,8 @@ CREATE TABLE IF NOT EXISTS `reference_number_setup` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.reference_number_setup: ~0 rows (approximately)
+-- Dumping data for table model_test_db.reference_number_setup: ~1 rows (approximately)
+DELETE FROM `reference_number_setup`;
 INSERT INTO `reference_number_setup` (`id`, `reference_number`) VALUES
 	(1, 1000329);
 
@@ -737,6 +869,7 @@ CREATE TABLE IF NOT EXISTS `school_year` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.school_year: ~2 rows (approximately)
+DELETE FROM `school_year`;
 INSERT INTO `school_year` (`id`, `code`, `description`, `school_year_from`, `school_year_to`, `semester`, `is_current`) VALUES
 	(9, '2023-2024-1', 'SY 2023-2024, 1ST Semester', '12-06-2023', '12-13-2023', '1', 'Yes'),
 	(10, '2023-2024-2', 'SY 2023-2024, 2nd Semester', '01-01-2024', '01-31-2024', '2', 'No');
@@ -746,8 +879,8 @@ CREATE TABLE IF NOT EXISTS `sections` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `unique_id` varchar(255) NOT NULL,
   `section_code` varchar(255) NOT NULL,
-  `course` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `year_level` varchar(255) NOT NULL,
+  `course_id` int NOT NULL DEFAULT '0',
+  `year_level` int NOT NULL DEFAULT '0',
   `section` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `semester` varchar(255) NOT NULL,
   `number_of_students` int NOT NULL,
@@ -759,15 +892,7 @@ CREATE TABLE IF NOT EXISTS `sections` (
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.sections: ~8 rows (approximately)
-INSERT INTO `sections` (`id`, `unique_id`, `section_code`, `course`, `year_level`, `section`, `semester`, `number_of_students`, `max_number_of_students`, `status`, `remarks`) VALUES
-	(33, 'BSCA-1-ABSCA1B', 'BSCA-1-A', 'BSCA', '1', 'A', '1', 22, 50, 'Available', 'Regular'),
-	(34, 'BSCA-2-ABSCA21', 'BSCA-2-A', 'BSCA', '2', 'A', '1', 3, 50, 'Available', 'Regular'),
-	(35, 'BSCA-1-ABSCA12', 'BSCA-1-A', 'BSCA', '1', 'A', '2', 2, 50, 'Available', 'Regular'),
-	(36, 'BSCA-2-ABSCA22', 'BSCA-2-A', 'BSCA', '2', 'A', '2', 0, 50, 'Available', 'Regular'),
-	(37, 'BSCA-3-ABSCA31', 'BSCA-3-A', 'BSCA', '3', 'A', '1', 0, 50, 'Available', 'Regular'),
-	(38, 'BSCA-3-ABSCA32', 'BSCA-3-A', 'BSCA', '3', 'A', '2', 0, 50, 'Available', 'Regular'),
-	(39, 'BSCA-4-ABSCA41', 'BSCA-4-A', 'BSCA', '4', 'A', '1', 0, 50, 'Available', 'Regular'),
-	(40, 'BSCA-4-ABSCA42', 'BSCA-4-A', 'BSCA', '4', 'A', '2', 0, 50, 'Available', 'Regular');
+DELETE FROM `sections`;
 
 -- Dumping structure for table model_test_db.section_subjects
 CREATE TABLE IF NOT EXISTS `section_subjects` (
@@ -794,6 +919,7 @@ CREATE TABLE IF NOT EXISTS `section_subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.section_subjects: ~68 rows (approximately)
+DELETE FROM `section_subjects`;
 INSERT INTO `section_subjects` (`id`, `unique_id`, `section_code`, `curriculum`, `course`, `year_level`, `semester`, `subject_code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `time`, `day`, `room`, `instructor`, `status`) VALUES
 	(132, 'BSCA-1-A-BSCA 2021-2022-BSCA-1-1-GEC 1', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 1', 'Understanding the Self', 3.0, 3.0, 0.0, 'None', '', '', '', NULL, NULL),
 	(133, 'BSCA-1-A-BSCA 2021-2022-BSCA-1-1-GEC 2', 'BSCA-1-A', 'BSCA 2021-2022', 'BSCA', '1', '1', 'GEC 2', 'Readings in the Philippine History', 3.0, 3.0, 0.0, 'None', '', '', '', NULL, NULL),
@@ -884,6 +1010,7 @@ CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.statements_of_accounts: ~27 rows (approximately)
+DELETE FROM `statements_of_accounts`;
 INSERT INTO `statements_of_accounts` (`id`, `id_number`, `school_year`, `date`, `course`, `year_level`, `semester`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
 	(67, '2023-1-0001', '2023-2024-1', '12-26-2023', 'BSCA', '1', '1', 1000302, 'Total Assessment as of: 2023-2024-1', 8692.29, 0.00, 8692.29, ''),
 	(68, '2023-1-0001', '2023-2024-1', '12-26-2023', 'BSCA', '1', '1', 1000303, 'President Lister Discount', 8692.29, 4790.81, 3901.48, ''),
@@ -950,17 +1077,12 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number`),
   UNIQUE KEY `fullname` (`fullname`)
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_accounts: ~7 rows (approximately)
+DELETE FROM `student_accounts`;
 INSERT INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`, `date_of_admission`) VALUES
-	(138, '2023-1-0001', '2023-2024-1', '2023-2024-1', 'Manglallan, Derrick Daniel', 'Manglallan', 'Derrick', 'Daniel', '', '', '', '', '', '', 'Officially Enrolled for School Year 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '26/12/2023'),
-	(139, '2023-1-0002', '2023-2024-1', '2023-2024-1', 'Pagela, John Christian ', 'Pagela', 'John Christian', '', '', '', '', '', '', '', 'Officially Enrolled for School Year 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Transferee', '29/12/2023'),
-	(140, '2024-1-0003', '2023-2024-1', '2023-2024-1', 'Pingad, Airon Jim Aquilo', 'Pingad', 'Airon Jim', 'Aquilo', 'Male', 'Widowed', '', '', '', '', 'Officially Enrolled for School Year 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '1/8/2024'),
-	(141, '2024-1-0004', '2023-2024-1', '2023-2024-1', 'Quintana, Ronnel ', 'Quintana', 'Ronnel', '', '', '', '', '', '', '', 'Officially Enrolled for School Year 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '09/01/2024'),
-	(142, '2024-1-0005', '2023-2024-1', '2023-2024-1', 'Dela Cruz, Juan ', 'Dela Cruz', 'Juan', '', '', '', '', '', '', '', 'Officially Enrolled for School Year 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '10/01/2024'),
-	(143, '2024-1-0006', '2023-2024-1', '2023-2024-1', 'Tamad, Juan ', 'Tamad', 'Juan', '', '', '', '', '', '', '', 'Officially Enrolled for School Year 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '10/01/2024'),
-	(144, '2024-1-0007', '2023-2024-1', '2023-2024-1', 'rhthskljfh, werthrehrh uhsdhwekjehih', 'rhthskljfh', 'werthrehrh', 'uhsdhwekjehih', '', '', '', '', '', '', 'For Enrollment', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '17/01/2024');
+	(148, '2024-1-0001', '2023-2024-1', '2023-2024-1', 'Manglallan, Derrick Daniel', 'Manglallan', 'Derrick', 'Daniel', 'Male', 'Single', '', '', '', '', 'Pending', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '23/01/2024');
 
 -- Dumping structure for table model_test_db.student_assessment
 CREATE TABLE IF NOT EXISTS `student_assessment` (
@@ -969,67 +1091,63 @@ CREATE TABLE IF NOT EXISTS `student_assessment` (
   `school_year` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `fee_type` varchar(50) NOT NULL,
   `amount` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `units` varchar(50) NOT NULL DEFAULT '0',
+  `units` decimal(20,2) NOT NULL DEFAULT '0.00',
   `computation` decimal(20,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=285 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_assessment: ~30 rows (approximately)
+DELETE FROM `student_assessment`;
 INSERT INTO `student_assessment` (`id`, `id_number`, `school_year`, `fee_type`, `amount`, `units`, `computation`) VALUES
-	(240, '2023-1-0001', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '26', 6387.75),
-	(241, '2023-1-0001', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
-	(242, '2023-1-0001', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
-	(243, '2023-1-0001', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
-	(244, '2023-1-0001', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15),
-	(255, '2023-1-0002', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '26', 6387.75),
-	(256, '2023-1-0002', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
-	(257, '2023-1-0002', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
-	(258, '2023-1-0002', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
-	(259, '2023-1-0002', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15),
-	(265, '2024-1-0003', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '26', 6387.75),
-	(266, '2024-1-0003', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
-	(267, '2024-1-0003', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
-	(268, '2024-1-0003', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
-	(269, '2024-1-0003', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15),
-	(270, '2024-1-0004', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '26', 6387.75),
-	(271, '2024-1-0004', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
-	(272, '2024-1-0004', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
-	(273, '2024-1-0004', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
-	(274, '2024-1-0004', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15),
-	(275, '2024-1-0005', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '26', 6387.75),
-	(276, '2024-1-0005', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
-	(277, '2024-1-0005', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
-	(278, '2024-1-0005', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
-	(279, '2024-1-0005', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15),
-	(280, '2024-1-0006', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, '26', 6387.75),
-	(281, '2024-1-0006', '2023-2024-1', 'PE UNIFORM', 500.12, '1', 500.12),
-	(282, '2024-1-0006', '2023-2024-1', 'INTERNET FEE', 500.12, '1', 500.12),
-	(283, '2024-1-0006', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, '1', 652.15),
-	(284, '2024-1-0006', '2023-2024-1', 'Learning Management System', 652.15, '1', 652.15);
+	(240, '2023-1-0001', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, 26.00, 6387.75),
+	(241, '2023-1-0001', '2023-2024-1', 'PE UNIFORM', 500.12, 1.00, 500.12),
+	(242, '2023-1-0001', '2023-2024-1', 'INTERNET FEE', 500.12, 1.00, 500.12),
+	(243, '2023-1-0001', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, 1.00, 652.15),
+	(244, '2023-1-0001', '2023-2024-1', 'Learning Management System', 652.15, 1.00, 652.15),
+	(255, '2023-1-0002', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, 26.00, 6387.75),
+	(256, '2023-1-0002', '2023-2024-1', 'PE UNIFORM', 500.12, 1.00, 500.12),
+	(257, '2023-1-0002', '2023-2024-1', 'INTERNET FEE', 500.12, 1.00, 500.12),
+	(258, '2023-1-0002', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, 1.00, 652.15),
+	(259, '2023-1-0002', '2023-2024-1', 'Learning Management System', 652.15, 1.00, 652.15),
+	(265, '2024-1-0003', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, 26.00, 6387.75),
+	(266, '2024-1-0003', '2023-2024-1', 'PE UNIFORM', 500.12, 1.00, 500.12),
+	(267, '2024-1-0003', '2023-2024-1', 'INTERNET FEE', 500.12, 1.00, 500.12),
+	(268, '2024-1-0003', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, 1.00, 652.15),
+	(269, '2024-1-0003', '2023-2024-1', 'Learning Management System', 652.15, 1.00, 652.15),
+	(270, '2024-1-0004', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, 26.00, 6387.75),
+	(271, '2024-1-0004', '2023-2024-1', 'PE UNIFORM', 500.12, 1.00, 500.12),
+	(272, '2024-1-0004', '2023-2024-1', 'INTERNET FEE', 500.12, 1.00, 500.12),
+	(273, '2024-1-0004', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, 1.00, 652.15),
+	(274, '2024-1-0004', '2023-2024-1', 'Learning Management System', 652.15, 1.00, 652.15),
+	(275, '2024-1-0005', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, 26.00, 6387.75),
+	(276, '2024-1-0005', '2023-2024-1', 'PE UNIFORM', 500.12, 1.00, 500.12),
+	(277, '2024-1-0005', '2023-2024-1', 'INTERNET FEE', 500.12, 1.00, 500.12),
+	(278, '2024-1-0005', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, 1.00, 652.15),
+	(279, '2024-1-0005', '2023-2024-1', 'Learning Management System', 652.15, 1.00, 652.15),
+	(280, '2024-1-0006', '2023-2024-1', 'TUITION FEE/UNIT', 250.50, 26.00, 6387.75),
+	(281, '2024-1-0006', '2023-2024-1', 'PE UNIFORM', 500.12, 1.00, 500.12),
+	(282, '2024-1-0006', '2023-2024-1', 'INTERNET FEE', 500.12, 1.00, 500.12),
+	(283, '2024-1-0006', '2023-2024-1', 'Student Information and Accounting Systems', 652.15, 1.00, 652.15),
+	(284, '2024-1-0006', '2023-2024-1', 'Learning Management System', 652.15, 1.00, 652.15);
 
 -- Dumping structure for table model_test_db.student_course
 CREATE TABLE IF NOT EXISTS `student_course` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `id_number` varchar(50) NOT NULL,
-  `course` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `campus` varchar(50) DEFAULT NULL,
-  `curriculum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `id_number_id` int NOT NULL DEFAULT '0',
+  `course_id` int DEFAULT NULL,
+  `campus_id` int DEFAULT NULL,
+  `curriculum_id` int DEFAULT NULL,
   `year_level` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `section` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `semester` varchar(50) DEFAULT NULL,
+  `section_id` int DEFAULT NULL,
+  `semester` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_number` (`id_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `id_number` (`id_number_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_course: ~7 rows (approximately)
-INSERT INTO `student_course` (`id`, `id_number`, `course`, `campus`, `curriculum`, `year_level`, `section`, `semester`) VALUES
-	(94, '2023-1-0001', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
-	(95, '2023-1-0002', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
-	(96, '2024-1-0003', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
-	(97, '2024-1-0004', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
-	(98, '2024-1-0005', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
-	(99, '2024-1-0006', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1'),
-	(100, '2024-1-0007', 'BSCA', 'ISAP', 'BSCA 2021-2022', '1', 'BSCA-1-A', '1');
+-- Dumping data for table model_test_db.student_course: ~0 rows (approximately)
+DELETE FROM `student_course`;
+INSERT INTO `student_course` (`id`, `id_number_id`, `course_id`, `campus_id`, `curriculum_id`, `year_level`, `section_id`, `semester`) VALUES
+	(101, 148, 7, 7, NULL, NULL, NULL, 1);
 
 -- Dumping structure for table model_test_db.student_discounts
 CREATE TABLE IF NOT EXISTS `student_discounts` (
@@ -1044,7 +1162,8 @@ CREATE TABLE IF NOT EXISTS `student_discounts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_discounts: ~6 rows (approximately)
+-- Dumping data for table model_test_db.student_discounts: ~8 rows (approximately)
+DELETE FROM `student_discounts`;
 INSERT INTO `student_discounts` (`id`, `id_number`, `code`, `discount_target`, `description`, `discount_percentage`, `duration_from`, `duration_to`) VALUES
 	(17, '2023-1-0001', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75, '', ''),
 	(18, '2023-1-0003', 'President-Lister-75%', 'Tuition Fee', 'President Lister Discount', 75, '', ''),
@@ -1065,6 +1184,7 @@ CREATE TABLE IF NOT EXISTS `student_documents` (
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_documents: ~0 rows (approximately)
+DELETE FROM `student_documents`;
 
 -- Dumping structure for table model_test_db.student_subjects
 CREATE TABLE IF NOT EXISTS `student_subjects` (
@@ -1089,6 +1209,7 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=648 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_subjects: ~60 rows (approximately)
+DELETE FROM `student_subjects`;
 INSERT INTO `student_subjects` (`id`, `id_number`, `unique_id`, `school_year`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor`, `grade`, `remarks`) VALUES
 	(588, '2023-1-0001', '2023-1-0001-2023-1-GEC 1', '2023-2024-1', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
 	(589, '2023-1-0001', '2023-1-0001-2023-1-GEC 2', '2023-2024-1', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', '', '', '', '', 0, 'Pending'),
@@ -1168,6 +1289,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.subjects: ~0 rows (approximately)
+DELETE FROM `subjects`;
 
 -- Dumping structure for table model_test_db.tuitionfeesetup
 CREATE TABLE IF NOT EXISTS `tuitionfeesetup` (
@@ -1175,15 +1297,25 @@ CREATE TABLE IF NOT EXISTS `tuitionfeesetup` (
   `uid` varchar(755) NOT NULL DEFAULT '0',
   `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `description` varchar(255) NOT NULL,
-  `campus` varchar(255) NOT NULL,
+  `campus_id` int NOT NULL DEFAULT '0',
+  `level_id` int NOT NULL DEFAULT '0',
   `year_level` varchar(255) NOT NULL,
   `semester` varchar(255) NOT NULL,
   `amount` decimal(18,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.tuitionfeesetup: ~0 rows (approximately)
+-- Dumping data for table model_test_db.tuitionfeesetup: ~7 rows (approximately)
+DELETE FROM `tuitionfeesetup`;
+INSERT INTO `tuitionfeesetup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
+	(26, 'Tuition Fee611', 'Tuition Fee', 'Tuition Fee Per Unit', 6, 7, '1', '1', 123.32),
+	(27, 'Tuition Fee621', 'Tuition Fee', 'Tuition Fee Per Unit', 6, 7, '2', '1', 234.45),
+	(28, 'Tuition Fee631', 'Tuition Fee', 'Tuition Fee Per Unit', 6, 7, '3', '1', 345.34),
+	(29, 'Tuition Fee641', 'Tuition Fee', 'Tuition Fee Per Unit', 6, 7, '4', '1', 456.32),
+	(30, 'Tuition Fee711', 'Tuition Fee', 'Tuition Fee Per Unit', 7, 7, '1', '1', 123.23),
+	(31, 'Tuition Fee721', 'Tuition Fee', 'Tuition Fee Per Unit', 7, 7, '2', '1', 234.45),
+	(32, 'Tuition Fee731', 'Tuition Fee', 'Tuition Fee Per Unit', 7, 7, '3', '1', 345.54);
 
 -- Dumping structure for table model_test_db.tuition_fee_setup
 CREATE TABLE IF NOT EXISTS `tuition_fee_setup` (
@@ -1199,6 +1331,7 @@ CREATE TABLE IF NOT EXISTS `tuition_fee_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.tuition_fee_setup: ~2 rows (approximately)
+DELETE FROM `tuition_fee_setup`;
 INSERT INTO `tuition_fee_setup` (`id`, `category`, `description`, `campus`, `first_year`, `second_year`, `third_year`, `fourth_year`) VALUES
 	(7, 'Tuition Fee', 'TUITION FEE/UNIT', 'MCNP', 250.50, 250.50, 250.50, 250.50),
 	(8, 'Tuition Fee', 'TUITION FEE/UNIT', 'ISAP', 250.50, 250.50, 250.50, 250.50);
@@ -1226,13 +1359,14 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.users: ~6 rows (approximately)
+DELETE FROM `users`;
 INSERT INTO `users` (`id`, `last_name`, `first_name`, `middle_name`, `fullname`, `employee_id`, `email`, `password`, `department`, `access_level`, `is_add`, `is_edit`, `is_delete`, `is_administrator`, `picture`) VALUES
 	(2, 'Manglallan', 'Derrick', 'Daniel', 'Manglallan, Derrick Daniel', '353', '123', '$2a$11$DMNzmgLxhI7vHa/6FURPeO.vKvbx5tL8FJtgp.JB5kUpk3hJGNQKy', 'Finance', 'Administrator', 1, 1, 1, 1, NULL),
 	(4, 'Buguina', 'Melenio', 'M', 'Buguina, Melenio M', '456', 'mbuguina@isap.edu.ph', '$2a$11$R/KM9DYyxO1MfmD.EceeUefnLihhbzxcKbycna8Z8VFu.UVBKrit2', 'Registrar', 'User', 1, 0, 0, 0, NULL),
 	(5, 'Pingad', 'Airon', 'Jim', 'Pingad, Airon Jim', '465', 'apingad@isap.edu.ph', '$2a$11$UcXUgEDrguxicXmZHDc8W.j1HXpp4EsZcfyWLV68S3ABSpdp8mFy.', '', 'Finance User', 1, 0, 0, 0, NULL),
 	(6, 'Alan', 'Charity', 'T', 'Alan, Charity T', '437', 'charlan@isap.edu.ph', '$2a$11$DPX8ta.xEPMBuHJf8ml6y.biLFItS0F7Oz901aewnDYleGO3DB5iu', 'Finance', 'Cashier', 1, 1, 0, 0, NULL),
 	(8, 'Geron', 'Richard', 'T', 'Geron, Richard T', '656', 'rgeron@isap.edu.ph', '$2a$11$eStCGpUIIHEVBMUrXpBbZOOIWOPircEb2sZ1Ow5EJRXTAkIv3.EfC', 'Finance', 'Student Accounts', 1, 1, 1, 0, NULL),
-	(9, 'Registrar', 'Administrator', '', 'Registrar, Administrator ', '333', 'registrar.administrator', '$2a$11$fGDtElfRDxwls/IJWGicK.kswqZCfEZ13rLTpx8fZNxHdBOFFfkEq', 'Registrar', 'Administrator', 1, 1, 1, 1, NULL);
+	(9, 'Registrar', 'Administrator', '', 'Registrar, Administrator ', '333', 'reg.admin', '$2a$11$EaQYzygq2nVZEQfOkFtOteQYy8u85vBkOLWNq.TvM3SG7yWqDIQQK', 'Registrar', 'Administrator', 1, 1, 1, 1, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

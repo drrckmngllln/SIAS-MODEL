@@ -1,25 +1,28 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using school_management_system_model.Forms.settings.Curriculum;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
 {
     public partial class frm_curriculum_subjects : KryptonForm
     {
-        public string Curriculum;
-        private string ID { get; set; }
+        public int CurriculumId { get; set; }
+        private string id { get; set; }
         public string Email { get; }
 
         public static frm_curriculum_subjects instance;
-        public frm_curriculum_subjects(string email)
+        public frm_curriculum_subjects(string email, int curriculum_id)
         {
             instance = this;
             InitializeComponent();
             Email = email;
+            CurriculumId = curriculum_id;
         }
 
         private void frm_curriculum_subjects_Load(object sender, EventArgs e)
@@ -29,14 +32,13 @@ namespace school_management_system_model.Forms.settings
 
         private void loadrecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculum_subjects where curriculum='"+ Curriculum +"'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id == CurriculumId).ToList();
+            dgv.DataSource = curriculumSubjects;
+
+
             dgv.Columns["id"].Visible = false;
-            dgv.Columns["curriculumIdCode"].Visible = false;
-            dgv.Columns["curriculum"].Visible = false;
+            dgv.Columns["uid"].Visible = false;
+            dgv.Columns["curriculum_id"].Visible = false;
             dgv.Columns["year_level"].HeaderText = "Year Level";
             dgv.Columns["semester"].HeaderText = "Semester";
             dgv.Columns["code"].HeaderText = "Code";
@@ -48,35 +50,34 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
             dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
 
-            con = new MySqlConnection(connection.con());
-            da = new MySqlDataAdapter("select * from curriculums where code='" + Curriculum + "'", con);
-            var ds = new DataTable();
-            da.Fill(ds);
-            
-            tcode.Text = ds.Rows[0]["code"].ToString();
-            tdescription.Text = ds.Rows[0]["description"].ToString();
-            tcampus.Text = ds.Rows[0]["campus"].ToString();
-            tcourse.Text = ds.Rows[0]["course"].ToString();
-            teffective.Text = ds.Rows[0]["effective"].ToString();
-            texpires.Text = ds.Rows[0]["expires"].ToString();
+
+            var curriculums = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == CurriculumId);
+            //var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == curriculums.id);
+            //var course = new Courses().GetCourses().FirstOrDefault(x => x.id == curriculums.id);
+            tcode.Text = curriculums.code;
+            tdescription.Text = curriculums.description;
+            tcampus.Text = curriculums.campus_id;
+            tcourse.Text = curriculums.course_id;
+            teffective.Text = curriculums.effective;
+            texpires.Text = curriculums.expires;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            var frm = new frm_add_curriculum_subjects();
-            frm.Text = "Add Subjects";
-            frm_add_curriculum_subjects.instance.curriculum = Curriculum;
-            frm.ShowDialog();
-            loadrecords();
+            //var frm = new frm_add_curriculum_subjects();
+            //frm.Text = "Add Subjects";
+            //frm_add_curriculum_subjects.instance.curriculum = Curriculum;
+            //frm.ShowDialog();
+            //loadrecords();
         }
         
         private void delete()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter();
-            da.SelectCommand = new MySqlCommand("delete from curriculum_subjects where id='" + ID + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter();
+            //da.SelectCommand = new MySqlCommand("delete from curriculum_subjects where id='" + ID + "'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
         }
         private void deleteAll(string curriculum)
         {
@@ -93,7 +94,6 @@ namespace school_management_system_model.Forms.settings
                 DialogResult.Yes)
             {
                 delete();
-                
                 new Classes.Toastr("Information", "Curriculum Subject Deleted");
                 new ActivityLogger().activityLogger(Email, "Curriculum Subject Delete: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
                 loadrecords();
@@ -102,7 +102,7 @@ namespace school_management_system_model.Forms.settings
 
         private void dgv_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
-            ID = dgv.CurrentRow.Cells["id"].Value.ToString();
+            id = dgv.CurrentRow.Cells["id"].Value.ToString();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)

@@ -47,8 +47,16 @@ namespace school_management_system_model.Forms.transactions
         }
         private void getStudentCourse()
         {
-            var id = dgv.CurrentRow.Cells["id_number_id"].Value.ToString();
-            tSudentCourse.Text = new student_course().GetStudentCourses().FirstOrDefault(x => x.id_number_id == id).id_number_id;
+            try
+            {
+                var id = dgv.CurrentRow.Cells["id"].Value.ToString();
+                var course = new student_course().GetStudentCourses().FirstOrDefault(x => x.course_id.ToString() == id).course_id;
+                tSudentCourse.Text = new Courses().GetCourses().FirstOrDefault(x => x.id.ToString() == course).code;
+            }
+            catch
+            {
+                new Classes.Toastr("Information", "Approve Student to Assign Curriculum");
+            }
         }
 
         private void frm_student_accounts_Load(object sender, EventArgs e)
@@ -225,7 +233,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 var frm = new frm_approve_account
                 {
-                    id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
+                    id_number_id = dgv.CurrentRow.Cells["id"].Value.ToString(),
                     fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString()
                 };
                 frm.ShowDialog();

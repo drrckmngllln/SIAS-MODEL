@@ -33,23 +33,23 @@
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             this.btn_clear = new Krypton.Toolkit.KryptonButton();
             this.btn_save = new Krypton.Toolkit.KryptonButton();
-            this.t4 = new Krypton.Toolkit.KryptonComboBox();
-            this.t2 = new Krypton.Toolkit.KryptonRichTextBox();
-            this.t1 = new Krypton.Toolkit.KryptonTextBox();
+            this.tCourse = new Krypton.Toolkit.KryptonComboBox();
+            this.tDescription = new Krypton.Toolkit.KryptonRichTextBox();
+            this.tCode = new Krypton.Toolkit.KryptonTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.t3 = new Krypton.Toolkit.KryptonComboBox();
-            this.t5 = new Krypton.Toolkit.KryptonTextBox();
-            this.t6 = new Krypton.Toolkit.KryptonTextBox();
-            this.t7 = new Krypton.Toolkit.KryptonComboBox();
+            this.tCampus = new Krypton.Toolkit.KryptonComboBox();
+            this.tEffective = new Krypton.Toolkit.KryptonTextBox();
+            this.tExpires = new Krypton.Toolkit.KryptonTextBox();
+            this.tStatus = new Krypton.Toolkit.KryptonComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.tsearch = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
-            ((System.ComponentModel.ISupportInitialize)(this.t4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tCourse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tCampus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonButton1
@@ -97,37 +97,37 @@
             this.btn_save.Values.Text = "Save";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // t4
+            // tCourse
             // 
-            this.t4.CornerRoundingRadius = -1F;
-            this.t4.CueHint.CueHintText = "Course";
-            this.t4.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t4.DropDownWidth = 196;
-            this.t4.IntegralHeight = false;
-            this.t4.Location = new System.Drawing.Point(26, 276);
-            this.t4.Name = "t4";
-            this.t4.Size = new System.Drawing.Size(196, 21);
-            this.t4.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.t4.TabIndex = 14;
+            this.tCourse.CornerRoundingRadius = -1F;
+            this.tCourse.CueHint.CueHintText = "Course";
+            this.tCourse.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tCourse.DropDownWidth = 196;
+            this.tCourse.IntegralHeight = false;
+            this.tCourse.Location = new System.Drawing.Point(26, 276);
+            this.tCourse.Name = "tCourse";
+            this.tCourse.Size = new System.Drawing.Size(196, 21);
+            this.tCourse.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.tCourse.TabIndex = 14;
             // 
-            // t2
+            // tDescription
             // 
-            this.t2.CueHint.CueHintText = "Description";
-            this.t2.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t2.Location = new System.Drawing.Point(26, 140);
-            this.t2.Name = "t2";
-            this.t2.Size = new System.Drawing.Size(327, 101);
-            this.t2.TabIndex = 12;
-            this.t2.Text = "";
+            this.tDescription.CueHint.CueHintText = "Description";
+            this.tDescription.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tDescription.Location = new System.Drawing.Point(26, 140);
+            this.tDescription.Name = "tDescription";
+            this.tDescription.Size = new System.Drawing.Size(327, 101);
+            this.tDescription.TabIndex = 12;
+            this.tDescription.Text = "";
             // 
-            // t1
+            // tCode
             // 
-            this.t1.CueHint.CueHintText = "Code";
-            this.t1.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t1.Location = new System.Drawing.Point(26, 111);
-            this.t1.Name = "t1";
-            this.t1.Size = new System.Drawing.Size(258, 23);
-            this.t1.TabIndex = 11;
+            this.tCode.CueHint.CueHintText = "Code";
+            this.tCode.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tCode.Location = new System.Drawing.Point(26, 111);
+            this.tCode.Name = "tCode";
+            this.tCode.Size = new System.Drawing.Size(258, 23);
+            this.tCode.TabIndex = 11;
             // 
             // label1
             // 
@@ -178,56 +178,56 @@
             this.dgv.TabIndex = 9;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
-            // t3
+            // tCampus
             // 
-            this.t3.CornerRoundingRadius = -1F;
-            this.t3.CueHint.CueHintText = "Campus";
-            this.t3.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t3.DropDownWidth = 196;
-            this.t3.IntegralHeight = false;
-            this.t3.Location = new System.Drawing.Point(26, 247);
-            this.t3.Name = "t3";
-            this.t3.Size = new System.Drawing.Size(196, 21);
-            this.t3.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.t3.TabIndex = 18;
+            this.tCampus.CornerRoundingRadius = -1F;
+            this.tCampus.CueHint.CueHintText = "Campus";
+            this.tCampus.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tCampus.DropDownWidth = 196;
+            this.tCampus.IntegralHeight = false;
+            this.tCampus.Location = new System.Drawing.Point(26, 247);
+            this.tCampus.Name = "tCampus";
+            this.tCampus.Size = new System.Drawing.Size(196, 21);
+            this.tCampus.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.tCampus.TabIndex = 18;
             // 
-            // t5
+            // tEffective
             // 
-            this.t5.CueHint.CueHintText = "Effective";
-            this.t5.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t5.Location = new System.Drawing.Point(26, 303);
-            this.t5.Name = "t5";
-            this.t5.Size = new System.Drawing.Size(258, 23);
-            this.t5.TabIndex = 19;
+            this.tEffective.CueHint.CueHintText = "Effective";
+            this.tEffective.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tEffective.Location = new System.Drawing.Point(26, 303);
+            this.tEffective.Name = "tEffective";
+            this.tEffective.Size = new System.Drawing.Size(258, 23);
+            this.tEffective.TabIndex = 19;
             // 
-            // t6
+            // tExpires
             // 
-            this.t6.CueHint.CueHintText = "Expires";
-            this.t6.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t6.Location = new System.Drawing.Point(26, 332);
-            this.t6.Name = "t6";
-            this.t6.Size = new System.Drawing.Size(258, 23);
-            this.t6.TabIndex = 20;
+            this.tExpires.CueHint.CueHintText = "Expires";
+            this.tExpires.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tExpires.Location = new System.Drawing.Point(26, 332);
+            this.tExpires.Name = "tExpires";
+            this.tExpires.Size = new System.Drawing.Size(258, 23);
+            this.tExpires.TabIndex = 20;
             // 
-            // t7
+            // tStatus
             // 
-            this.t7.CornerRoundingRadius = -1F;
-            this.t7.CueHint.CueHintText = "Status";
-            this.t7.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t7.DropDownWidth = 196;
-            this.t7.IntegralHeight = false;
-            this.t7.Items.AddRange(new object[] {
+            this.tStatus.CornerRoundingRadius = -1F;
+            this.tStatus.CueHint.CueHintText = "Status";
+            this.tStatus.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tStatus.DropDownWidth = 196;
+            this.tStatus.IntegralHeight = false;
+            this.tStatus.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.t7.Location = new System.Drawing.Point(26, 361);
-            this.t7.Name = "t7";
-            this.t7.Size = new System.Drawing.Size(196, 21);
-            this.t7.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.t7.TabIndex = 21;
+            this.tStatus.Location = new System.Drawing.Point(26, 361);
+            this.tStatus.Name = "tStatus";
+            this.tStatus.Size = new System.Drawing.Size(196, 21);
+            this.tStatus.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.tStatus.TabIndex = 21;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(290, 303);
+            this.dateTimePicker1.Location = new System.Drawing.Point(267, 306);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(17, 20);
             this.dateTimePicker1.TabIndex = 22;
@@ -235,7 +235,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(290, 332);
+            this.dateTimePicker2.Location = new System.Drawing.Point(267, 335);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(17, 20);
             this.dateTimePicker2.TabIndex = 23;
@@ -275,16 +275,16 @@
             this.Controls.Add(this.tsearch);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.t7);
-            this.Controls.Add(this.t6);
-            this.Controls.Add(this.t5);
-            this.Controls.Add(this.t3);
+            this.Controls.Add(this.tStatus);
+            this.Controls.Add(this.tExpires);
+            this.Controls.Add(this.tEffective);
+            this.Controls.Add(this.tCampus);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.btn_save);
-            this.Controls.Add(this.t4);
-            this.Controls.Add(this.t2);
-            this.Controls.Add(this.t1);
+            this.Controls.Add(this.tCourse);
+            this.Controls.Add(this.tDescription);
+            this.Controls.Add(this.tCode);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -293,10 +293,10 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_curriculum_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_curriculum_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.t4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tCourse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tCampus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tStatus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,15 +307,15 @@
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton btn_clear;
         private Krypton.Toolkit.KryptonButton btn_save;
-        private Krypton.Toolkit.KryptonComboBox t4;
-        private Krypton.Toolkit.KryptonRichTextBox t2;
-        private Krypton.Toolkit.KryptonTextBox t1;
+        private Krypton.Toolkit.KryptonComboBox tCourse;
+        private Krypton.Toolkit.KryptonRichTextBox tDescription;
+        private Krypton.Toolkit.KryptonTextBox tCode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv;
-        private Krypton.Toolkit.KryptonComboBox t3;
-        private Krypton.Toolkit.KryptonTextBox t5;
-        private Krypton.Toolkit.KryptonTextBox t6;
-        private Krypton.Toolkit.KryptonComboBox t7;
+        private Krypton.Toolkit.KryptonComboBox tCampus;
+        private Krypton.Toolkit.KryptonTextBox tEffective;
+        private Krypton.Toolkit.KryptonTextBox tExpires;
+        private Krypton.Toolkit.KryptonComboBox tStatus;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private Krypton.Toolkit.KryptonTextBox tsearch;

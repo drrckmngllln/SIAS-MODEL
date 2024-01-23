@@ -30,14 +30,15 @@ namespace school_management_system_model.Classes
             {
                 var level = new Levels().GetLevels().FirstOrDefault(x => x.id == reader.GetInt32("level_id")).code;
                 var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
+                var department = new Departments().GetDepartments().FirstOrDefault(x => x.id == reader.GetInt32("department_id")).code;
                 var course = new Courses
                 {
                     id = reader.GetInt32("id"),
                     code = reader.GetString("code"),
                     description = reader.GetString("description"),
                     level_id = level,
-                    campus_id = reader.GetString("campus_id"),
-                    department_id = reader.GetString("department_id"),
+                    campus_id = campus,
+                    department_id = department,
                     max_units = reader.GetString("max_units"),
                     status = reader.GetString("status")
                 };

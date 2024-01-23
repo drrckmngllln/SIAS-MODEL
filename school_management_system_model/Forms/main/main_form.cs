@@ -142,14 +142,14 @@ namespace school_management_system_model.Forms.main
             panelTask.Controls.Clear();
         }
 
-        public void open_curriculum_subjects()
-        {
-            var frm = new frm_curriculum_subjects(Email);
-            frm.TopLevel = false;
-            panelTask.Controls.Clear();
-            panelTask.Controls.Add(frm);
-            frm.Show();
-        }
+        //public void open_curriculum_subjects()
+        //{
+        //    var frm = new frm_curriculum_subjects(Email);
+        //    frm.TopLevel = false;
+        //    panelTask.Controls.Clear();
+        //    panelTask.Controls.Add(frm);
+        //    frm.Show();
+        //}
 
         private void button2_Click(object sender, EventArgs e)
         {

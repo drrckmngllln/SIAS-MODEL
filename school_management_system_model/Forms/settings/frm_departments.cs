@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -23,33 +24,26 @@ namespace school_management_system_model.Forms.settings
         private void frm_departments_Load(object sender, EventArgs e)
         {
             loadrecords();
-            loadcombobox();
+            loadCampus();
         }
 
-        private void loadcombobox()
+        private void loadCampus()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from campuses", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            
-            foreach (DataRow item in dt.Rows)
-            {
-                t3.Items.Add(item["code"]);
-            }
+            var campus = new Campuses().GetCampuses();
+
+            tCampus.ValueMember = "id";
+            tCampus.DisplayMember = "code";
+            tCampus.DataSource = campus;
         }
 
         private void loadrecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from departments", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var departments = new Departments().GetDepartments().ToList();
+            dgv.DataSource = departments;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
-            dgv.Columns["campus"].HeaderText = "Campus";
+            dgv.Columns["campus_id"].HeaderText = "Campus";
         }
 
         string ID;
@@ -62,15 +56,15 @@ namespace school_management_system_model.Forms.settings
             {
                 var con = new MySqlConnection(connection.con());
                 con.Open();
-                var cmd = new MySqlCommand("insert into departments(code, description, campus) values(@1,@2,@3)", con);
-                cmd.Parameters.AddWithValue("@1", t1.Text);
-                cmd.Parameters.AddWithValue("@2", t2.Text);
-                cmd.Parameters.AddWithValue("@3", t3.Text);
+                var cmd = new MySqlCommand("insert into departments(code, description, campus_id) values(@1,@2,@3)", con);
+                cmd.Parameters.AddWithValue("@1", tCode.Text);
+                cmd.Parameters.AddWithValue("@2", tDescription.Text);
+                cmd.Parameters.AddWithValue("@3", tCampus.SelectedValue.ToString());
                 cmd.ExecuteNonQuery();
                 con.Close();
                 
                 new Classes.Toastr("Success", "Department Added");
-                new ActivityLogger().activityLogger(Email, "Department Add: " + t2.Text);
+                new ActivityLogger().activityLogger(Email, "Department Add: " + tDescription.Text);
 
                 loadrecords();
                 txtclear();
@@ -79,15 +73,15 @@ namespace school_management_system_model.Forms.settings
             {
                 var con = new MySqlConnection(connection.con());
                 con.Open();
-                var cmd = new MySqlCommand("update departments set code=@1, description=@2, campus=@3 where id='"+ ID +"'", con);
-                cmd.Parameters.AddWithValue("@1", t1.Text);
-                cmd.Parameters.AddWithValue("@2", t2.Text);
-                cmd.Parameters.AddWithValue("@3", t3.Text);
+                var cmd = new MySqlCommand("update departments set code=@1, description=@2, campus_id=@3 where id='"+ ID +"'", con);
+                cmd.Parameters.AddWithValue("@1", tCode.Text);
+                cmd.Parameters.AddWithValue("@2", tDescription.Text);
+                cmd.Parameters.AddWithValue("@3", tCampus.SelectedValue.ToString());
                 cmd.ExecuteNonQuery();
                 con.Close();
                
                 new Classes.Toastr("Information", "Department Updated");
-                new ActivityLogger().activityLogger(Email, "Department Edit: " + t2.Text);
+                new ActivityLogger().activityLogger(Email, "Department Edit: " + tDescription.Text);
 
                 loadrecords();
                 txtclear();
@@ -96,19 +90,19 @@ namespace school_management_system_model.Forms.settings
 
         private void txtclear()
         {
-            t1.Clear();
-            t2.Clear();
-            t3.Text = "";
-            t1.Select();
+            tCode.Clear();
+            tDescription.Clear();
+            tCampus.Text = "";
+            tCode.Select();
             btn_save.Text = "Save";
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = dgv.CurrentRow.Cells[0].Value.ToString();
-            t1.Text = dgv.CurrentRow.Cells[1].Value.ToString();
-            t2.Text = dgv.CurrentRow.Cells[2].Value.ToString();
-            t3.Text = dgv.CurrentRow.Cells[3].Value.ToString();
+            tCode.Text = dgv.CurrentRow.Cells[1].Value.ToString();
+            tDescription.Text = dgv.CurrentRow.Cells[2].Value.ToString();
+            tCampus.Text = dgv.CurrentRow.Cells[3].Value.ToString();
             btn_save.Text = "Update";
         }
 
@@ -139,7 +133,7 @@ namespace school_management_system_model.Forms.settings
             var dt = new DataTable();
             da.Fill(dt);
             new Classes.Toastr("Information", "Department Deleted");
-            new ActivityLogger().activityLogger(Email, "Department Delete: " + t2.Text);
+            new ActivityLogger().activityLogger(Email, "Department Delete: " + tDescription.Text);
 
             loadrecords();
         }

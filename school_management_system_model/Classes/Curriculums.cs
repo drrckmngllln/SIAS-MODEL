@@ -14,8 +14,8 @@ namespace school_management_system_model.Classes
         public int id { get; set; }
         public string code { get; set; }
         public string description { get; set; }
-        public string campus { get; set; }
-        public string course { get; set; }
+        public string campus_id { get; set; }
+        public string course_id { get; set; }
         public string effective { get; set; }
         public string expires { get; set; }
         public string status { get; set; }
@@ -30,13 +30,15 @@ namespace school_management_system_model.Classes
 
             while (reader.Read())
             {
+                var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
+                var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;
                 var curriculum = new Curriculums
                 {
                     id = reader.GetInt32("id"),
                     code = reader.GetString("code"),
                     description = reader.GetString("description"),
-                    campus = reader.GetString("campus"),
-                    course = reader.GetString("course"),
+                    campus_id = campus,
+                    course_id = course,
                     effective = reader.GetString("effective"),
                     expires = reader.GetString("expires"),
                     status = reader.GetString("status")
@@ -59,12 +61,12 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("insert into curriculums(code, description, campus, course, effective, expires, status) " +
+            var cmd = new MySqlCommand("insert into curriculums(code, description, campus_id, course_id, effective, expires, status) " +
                 "values(@1,@2,@3,@4,@5,@6,@7)", con);
             cmd.Parameters.AddWithValue("@1", code);
             cmd.Parameters.AddWithValue("@2", description);
-            cmd.Parameters.AddWithValue("@3", campus);
-            cmd.Parameters.AddWithValue("@4", course);
+            cmd.Parameters.AddWithValue("@3", campus_id);
+            cmd.Parameters.AddWithValue("@4", course_id);
             cmd.Parameters.AddWithValue("@5", effective);
             cmd.Parameters.AddWithValue("@6", expires);
             cmd.Parameters.AddWithValue("@7", status);
@@ -75,12 +77,12 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("update curriculums set code=@1, description=@2, campus=@3, course=@4, effective=@5, expires=@6, " +
+            var cmd = new MySqlCommand("update curriculums set code=@1, description=@2, campus_id=@3, course_id=@4, effective=@5, expires=@6, " +
                 "status=@7 where id='" + id + "'", con);
             cmd.Parameters.AddWithValue("@1", code);
             cmd.Parameters.AddWithValue("@2", description);
-            cmd.Parameters.AddWithValue("@3", campus);
-            cmd.Parameters.AddWithValue("@4", course);
+            cmd.Parameters.AddWithValue("@3", campus_id);
+            cmd.Parameters.AddWithValue("@4", course_id);
             cmd.Parameters.AddWithValue("@5", effective);
             cmd.Parameters.AddWithValue("@6", expires);
             cmd.Parameters.AddWithValue("@7", status);

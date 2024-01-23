@@ -276,8 +276,8 @@ namespace school_management_system_model.Forms.transactions
             frm.ShowDialog();
             if (course != null)
             {
-                tCourse.Text = course;
-                tCampus.Text = campus;
+                tCourse.Text = new Courses().GetCourses().FirstOrDefault(x => x.code == course).code;
+                tCampus.Text = new Campuses().GetCampuses().FirstOrDefault(x => x.code == campus).code;
             }
         }
 
@@ -297,7 +297,7 @@ namespace school_management_system_model.Forms.transactions
             frm.ShowDialog();
             if (course != null)
             {
-                tCourse.Text = course;
+                tCourse.Text = new Courses().GetCourses().FirstOrDefault(x => x.id.ToString() == course).code;
                 tCampus.Text = campus;
             }
         }

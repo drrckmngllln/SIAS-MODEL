@@ -106,11 +106,15 @@ namespace school_management_system_model.Classes
             con.Close();
 
             // Saving Student Course
+            var IdNumber = new SaveStudentAccountsParams().GetStudentAccounts().FirstOrDefault(x => x.id_number == parameter.id_number).id;
+            var course = new Courses().GetCourses().FirstOrDefault(x => x.code == parameter.course).id;
+            var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.code == parameter.campus).id;
+
             con.Open();
-            cmd = new MySqlCommand("insert into student_course(id_number, course, campus, semester) values(@1,@2,@3,@4)", con);
-            cmd.Parameters.AddWithValue("@1", parameter.id_number);
-            cmd.Parameters.AddWithValue("@2", parameter.course);
-            cmd.Parameters.AddWithValue("@3", parameter.campus);
+            cmd = new MySqlCommand("insert into student_course(id_number_id, course_id, campus_id, semester) values(@1,@2,@3,@4)", con);
+            cmd.Parameters.AddWithValue("@1", IdNumber);
+            cmd.Parameters.AddWithValue("@2", course);
+            cmd.Parameters.AddWithValue("@3", campus);
             cmd.Parameters.AddWithValue("@4", parameter.semester);
             cmd.ExecuteNonQuery();
             con.Close();

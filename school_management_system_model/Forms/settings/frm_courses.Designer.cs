@@ -28,45 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.t6 = new Krypton.Toolkit.KryptonTextBox();
-            this.t1 = new Krypton.Toolkit.KryptonTextBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.tMaxUnits = new Krypton.Toolkit.KryptonTextBox();
+            this.tCode = new Krypton.Toolkit.KryptonTextBox();
             this.tsearch = new Krypton.Toolkit.KryptonTextBox();
-            this.t7 = new Krypton.Toolkit.KryptonComboBox();
+            this.tStatus = new Krypton.Toolkit.KryptonComboBox();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             this.btn_clear = new Krypton.Toolkit.KryptonButton();
             this.btn_save = new Krypton.Toolkit.KryptonButton();
-            this.t2 = new Krypton.Toolkit.KryptonRichTextBox();
+            this.tDescription = new Krypton.Toolkit.KryptonRichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.t3 = new Krypton.Toolkit.KryptonComboBox();
-            this.t4 = new Krypton.Toolkit.KryptonComboBox();
-            this.t5 = new Krypton.Toolkit.KryptonComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.t7)).BeginInit();
+            this.tLevel = new Krypton.Toolkit.KryptonComboBox();
+            this.tCampus = new Krypton.Toolkit.KryptonComboBox();
+            this.tDepartment = new Krypton.Toolkit.KryptonComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.tStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tCampus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tDepartment)).BeginInit();
             this.SuspendLayout();
             // 
-            // t6
+            // tMaxUnits
             // 
-            this.t6.CueHint.CueHintText = "Max Units";
-            this.t6.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t6.Location = new System.Drawing.Point(26, 328);
-            this.t6.Name = "t6";
-            this.t6.Size = new System.Drawing.Size(258, 23);
-            this.t6.TabIndex = 62;
+            this.tMaxUnits.CueHint.CueHintText = "Max Units";
+            this.tMaxUnits.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tMaxUnits.Location = new System.Drawing.Point(26, 328);
+            this.tMaxUnits.Name = "tMaxUnits";
+            this.tMaxUnits.Size = new System.Drawing.Size(258, 23);
+            this.tMaxUnits.TabIndex = 62;
             // 
-            // t1
+            // tCode
             // 
-            this.t1.CueHint.CueHintText = "Code";
-            this.t1.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t1.Location = new System.Drawing.Point(26, 111);
-            this.t1.Name = "t1";
-            this.t1.Size = new System.Drawing.Size(258, 23);
-            this.t1.TabIndex = 56;
+            this.tCode.CueHint.CueHintText = "Code";
+            this.tCode.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tCode.Location = new System.Drawing.Point(26, 111);
+            this.tCode.Name = "tCode";
+            this.tCode.Size = new System.Drawing.Size(258, 23);
+            this.tCode.TabIndex = 56;
             // 
             // tsearch
             // 
@@ -76,23 +76,23 @@
             this.tsearch.Name = "tsearch";
             this.tsearch.Size = new System.Drawing.Size(258, 23);
             this.tsearch.TabIndex = 70;
-      
+            this.tsearch.TextChanged += new System.EventHandler(this.tsearch_TextChanged);
             // 
-            // t7
+            // tStatus
             // 
-            this.t7.CornerRoundingRadius = -1F;
-            this.t7.CueHint.CueHintText = "Status";
-            this.t7.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t7.DropDownWidth = 196;
-            this.t7.IntegralHeight = false;
-            this.t7.Items.AddRange(new object[] {
+            this.tStatus.CornerRoundingRadius = -1F;
+            this.tStatus.CueHint.CueHintText = "Status";
+            this.tStatus.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tStatus.DropDownWidth = 196;
+            this.tStatus.IntegralHeight = false;
+            this.tStatus.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.t7.Location = new System.Drawing.Point(26, 357);
-            this.t7.Name = "t7";
-            this.t7.Size = new System.Drawing.Size(196, 21);
-            this.t7.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.t7.TabIndex = 64;
+            this.tStatus.Location = new System.Drawing.Point(26, 357);
+            this.tStatus.Name = "tStatus";
+            this.tStatus.Size = new System.Drawing.Size(196, 21);
+            this.tStatus.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.tStatus.TabIndex = 64;
             // 
             // kryptonButton1
             // 
@@ -139,15 +139,15 @@
             this.btn_save.Values.Text = "Save";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // t2
+            // tDescription
             // 
-            this.t2.CueHint.CueHintText = "Description";
-            this.t2.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t2.Location = new System.Drawing.Point(26, 140);
-            this.t2.Name = "t2";
-            this.t2.Size = new System.Drawing.Size(327, 101);
-            this.t2.TabIndex = 58;
-            this.t2.Text = "";
+            this.tDescription.CueHint.CueHintText = "Description";
+            this.tDescription.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tDescription.Location = new System.Drawing.Point(26, 140);
+            this.tDescription.Name = "tDescription";
+            this.tDescription.Size = new System.Drawing.Size(327, 101);
+            this.tDescription.TabIndex = 58;
+            this.tDescription.Text = "";
             // 
             // label1
             // 
@@ -169,23 +169,23 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv.Location = new System.Drawing.Point(388, 111);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -199,61 +199,61 @@
             this.dgv.TabIndex = 68;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
-            // t3
+            // tLevel
             // 
-            this.t3.CornerRoundingRadius = -1F;
-            this.t3.CueHint.CueHintText = "Level";
-            this.t3.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t3.DropDownWidth = 196;
-            this.t3.IntegralHeight = false;
-            this.t3.Location = new System.Drawing.Point(26, 247);
-            this.t3.Name = "t3";
-            this.t3.Size = new System.Drawing.Size(196, 21);
-            this.t3.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.t3.TabIndex = 71;
+            this.tLevel.CornerRoundingRadius = -1F;
+            this.tLevel.CueHint.CueHintText = "Level";
+            this.tLevel.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tLevel.DropDownWidth = 196;
+            this.tLevel.IntegralHeight = false;
+            this.tLevel.Location = new System.Drawing.Point(26, 247);
+            this.tLevel.Name = "tLevel";
+            this.tLevel.Size = new System.Drawing.Size(196, 21);
+            this.tLevel.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.tLevel.TabIndex = 71;
             // 
-            // t4
+            // tCampus
             // 
-            this.t4.CornerRoundingRadius = -1F;
-            this.t4.CueHint.CueHintText = "Campus";
-            this.t4.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t4.DropDownWidth = 196;
-            this.t4.IntegralHeight = false;
-            this.t4.Location = new System.Drawing.Point(26, 274);
-            this.t4.Name = "t4";
-            this.t4.Size = new System.Drawing.Size(196, 21);
-            this.t4.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.t4.TabIndex = 72;
+            this.tCampus.CornerRoundingRadius = -1F;
+            this.tCampus.CueHint.CueHintText = "Campus";
+            this.tCampus.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tCampus.DropDownWidth = 196;
+            this.tCampus.IntegralHeight = false;
+            this.tCampus.Location = new System.Drawing.Point(26, 274);
+            this.tCampus.Name = "tCampus";
+            this.tCampus.Size = new System.Drawing.Size(196, 21);
+            this.tCampus.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.tCampus.TabIndex = 72;
             // 
-            // t5
+            // tDepartment
             // 
-            this.t5.CornerRoundingRadius = -1F;
-            this.t5.CueHint.CueHintText = "Department";
-            this.t5.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t5.DropDownWidth = 196;
-            this.t5.IntegralHeight = false;
-            this.t5.Location = new System.Drawing.Point(26, 301);
-            this.t5.Name = "t5";
-            this.t5.Size = new System.Drawing.Size(196, 21);
-            this.t5.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.t5.TabIndex = 73;
+            this.tDepartment.CornerRoundingRadius = -1F;
+            this.tDepartment.CueHint.CueHintText = "Department";
+            this.tDepartment.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tDepartment.DropDownWidth = 196;
+            this.tDepartment.IntegralHeight = false;
+            this.tDepartment.Location = new System.Drawing.Point(26, 301);
+            this.tDepartment.Name = "tDepartment";
+            this.tDepartment.Size = new System.Drawing.Size(196, 21);
+            this.tDepartment.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.tDepartment.TabIndex = 73;
             // 
             // frm_courses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1353, 788);
-            this.Controls.Add(this.t5);
-            this.Controls.Add(this.t4);
-            this.Controls.Add(this.t3);
-            this.Controls.Add(this.t6);
-            this.Controls.Add(this.t1);
+            this.Controls.Add(this.tDepartment);
+            this.Controls.Add(this.tCampus);
+            this.Controls.Add(this.tLevel);
+            this.Controls.Add(this.tMaxUnits);
+            this.Controls.Add(this.tCode);
             this.Controls.Add(this.tsearch);
-            this.Controls.Add(this.t7);
+            this.Controls.Add(this.tStatus);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.btn_save);
-            this.Controls.Add(this.t2);
+            this.Controls.Add(this.tDescription);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -263,29 +263,29 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_courses_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_courses_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.t7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tCampus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tDepartment)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private Krypton.Toolkit.KryptonTextBox t6;
-        private Krypton.Toolkit.KryptonTextBox t1;
+        private Krypton.Toolkit.KryptonTextBox tMaxUnits;
+        private Krypton.Toolkit.KryptonTextBox tCode;
         private Krypton.Toolkit.KryptonTextBox tsearch;
-        private Krypton.Toolkit.KryptonComboBox t7;
+        private Krypton.Toolkit.KryptonComboBox tStatus;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton btn_clear;
         private Krypton.Toolkit.KryptonButton btn_save;
-        private Krypton.Toolkit.KryptonRichTextBox t2;
+        private Krypton.Toolkit.KryptonRichTextBox tDescription;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv;
-        private Krypton.Toolkit.KryptonComboBox t3;
-        private Krypton.Toolkit.KryptonComboBox t4;
-        private Krypton.Toolkit.KryptonComboBox t5;
+        private Krypton.Toolkit.KryptonComboBox tLevel;
+        private Krypton.Toolkit.KryptonComboBox tCampus;
+        private Krypton.Toolkit.KryptonComboBox tDepartment;
     }
 }

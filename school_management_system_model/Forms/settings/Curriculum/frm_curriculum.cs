@@ -3,6 +3,7 @@ using school_management_system_model.Classes;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
@@ -22,18 +23,38 @@ namespace school_management_system_model.Forms.settings
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            t5.Text = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+            tEffective.Text = dateTimePicker1.Value.ToString("dd-MM-yyyy");
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            t6.Text = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            tExpires.Text = dateTimePicker2.Value.ToString("dd-MM-yyyy");
         }
 
         private void frm_curriculum_Load(object sender, EventArgs e)
         {
             loadrecords();
             loadcombobox();
+            loadCampus();
+            loadCourse();
+        }
+
+        private void loadCourse()
+        {
+            var course = new Courses().GetCourses();
+
+            tCourse.ValueMember = "id";
+            tCourse.DisplayMember = "code";
+            tCourse.DataSource = course;
+        }
+
+        private void loadCampus()
+        {
+            var campus = new Campuses().GetCampuses();
+
+            tCampus.ValueMember = "id";
+            tCampus.DisplayMember = "code";
+            tCampus.DataSource = campus;
         }
 
         private void loadcombobox()
@@ -44,7 +65,7 @@ namespace school_management_system_model.Forms.settings
             da.Fill(dt);
             foreach (DataRow item in dt.Rows)
             {
-                t3.Items.Add(item["code"]);
+                tCampus.Items.Add(item["code"]);
             }
 
             con = new MySqlConnection(connection.con());
@@ -53,20 +74,20 @@ namespace school_management_system_model.Forms.settings
             da.Fill(dt);
             foreach (DataRow item in dt.Rows)
             {
-                t4.Items.Add(item["code"]);
+                tCourse.Items.Add(item["code"]);
             }
         }
 
         private void loadrecords()
         {
-            var data = new Curriculums();
-            dgv.DataSource = data.loadRecords();
+            var data = new Curriculums().GetCurriculums().ToList();
+            dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Curriculum Code";
             dgv.Columns["description"].HeaderText = "Curriculum Description";
             dgv.Columns["description"].Width = 400;
-            dgv.Columns["campus"].HeaderText = "Campus";
-            dgv.Columns["course"].HeaderText = "Course";
+            dgv.Columns["campus_id"].HeaderText = "Campus";
+            dgv.Columns["course_id"].HeaderText = "Course";
             dgv.Columns["effective"].HeaderText = "Effective";
             dgv.Columns["expires"].HeaderText = "Expires";
             dgv.Columns["status"].HeaderText = "Status";
@@ -78,16 +99,16 @@ namespace school_management_system_model.Forms.settings
             {
                 var add = new Curriculums
                 {
-                    code = t1.Text,
-                    description = t2.Text,
-                    campus = t3.Text,
-                    course = t4.Text,
-                    effective = t5.Text,
-                    expires = t6.Text,
-                    status = t7.Text
+                    code = tCode.Text,
+                    description = tDescription.Text,
+                    campus_id = tCampus.SelectedValue.ToString(),
+                    course_id = tCourse.SelectedValue.ToString(),
+                    effective = tEffective.Text,
+                    expires = tExpires.Text,
+                    status = tStatus.Text
                 };
                 add.addRecords();
-                new ActivityLogger().activityLogger(Email, "Add: " + t2.Text);
+                new ActivityLogger().activityLogger(Email, "Add: " + tDescription.Text);
                 
                 new Classes.Toastr("Success", "Curriculum Added");
                 loadrecords();
@@ -98,16 +119,16 @@ namespace school_management_system_model.Forms.settings
             {
                 var edit = new Curriculums
                 {
-                    code = t1.Text,
-                    description = t2.Text,
-                    campus = t3.Text,
-                    course = t4.Text,
-                    effective = t5.Text,
-                    expires = t6.Text,
-                    status = t7.Text
+                    code = tCode.Text,
+                    description = tDescription.Text,
+                    campus_id = tCampus.SelectedValue.ToString(),
+                    course_id = tCourse.SelectedValue.ToString(),
+                    effective = tEffective.Text,
+                    expires = tExpires.Text,
+                    status = tStatus.Text
                 };
                 edit.editRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
-                new ActivityLogger().activityLogger(Email, "Edit: " + t2.Text);
+                new ActivityLogger().activityLogger(Email, "Edit: " + tDescription.Text);
                 new Classes.Toastr("Information", "Curriculum Updated");
 
                 loadrecords();
@@ -117,13 +138,13 @@ namespace school_management_system_model.Forms.settings
 
         private void txtclear()
         {
-            t1.Text = "";
-            t2.Text = "";
-            t3.Text = "";
-            t4.Text = "";
-            t5.Text = "";
-            t6.Text = "";
-            t7.Text = "";
+            tCode.Text = "";
+            tDescription.Text = "";
+            tCampus.Text = "";
+            tCourse.Text = "";
+            tEffective.Text = "";
+            tExpires.Text = "";
+            tStatus.Text = "";
             btn_save.Text = "Save";
         }
 
@@ -140,13 +161,13 @@ namespace school_management_system_model.Forms.settings
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = dgv.CurrentRow.Cells[0].Value.ToString();
-            t1.Text = dgv.CurrentRow.Cells[1].Value.ToString();
-            t2.Text = dgv.CurrentRow.Cells[2].Value.ToString();
-            t3.Text = dgv.CurrentRow.Cells[3].Value.ToString();
-            t4.Text = dgv.CurrentRow.Cells[4].Value.ToString();
-            t5.Text = dgv.CurrentRow.Cells[5].Value.ToString();
-            t6.Text = dgv.CurrentRow.Cells[6].Value.ToString();
-            t7.Text = dgv.CurrentRow.Cells[7].Value.ToString();
+            tCode.Text = dgv.CurrentRow.Cells[1].Value.ToString();
+            tDescription.Text = dgv.CurrentRow.Cells[2].Value.ToString();
+            tCampus.Text = dgv.CurrentRow.Cells[3].Value.ToString();
+            tCourse.Text = dgv.CurrentRow.Cells[4].Value.ToString();
+            tEffective.Text = dgv.CurrentRow.Cells[5].Value.ToString();
+            tExpires.Text = dgv.CurrentRow.Cells[6].Value.ToString();
+            tStatus.Text = dgv.CurrentRow.Cells[7].Value.ToString();
             btn_save.Text = "Update";
         }
 
@@ -181,9 +202,8 @@ namespace school_management_system_model.Forms.settings
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new Curriculums();
-                var data = search.searchRecords(tsearch.Text);
-                dgv.DataSource = data;
+                var search = new Curriculums().GetCurriculums().Where(x => x.code.ToLower().Contains(tsearch.Text) || x.description.ToLower().Contains(tsearch.Text));
+                dgv.DataSource = search;
             }
             else if (tsearch.Text.Length == 0)
             {
@@ -193,10 +213,9 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-           
-            var frm = new frm_curriculum_subjects(Email);
-            frm_curriculum_subjects.instance.Curriculum = dgv.CurrentRow.Cells["code"].Value.ToString();
-            frm.Text = "Curriculum Subject of " + dgv.CurrentRow.Cells["code"].Value.ToString();
+            var curriculum_id = (int)dgv.CurrentRow.Cells["id"].Value;
+            var frm = new frm_curriculum_subjects(Email, curriculum_id);
+            frm.Text = "Curriculum Subjecs";
             frm.ShowDialog();
         }
 

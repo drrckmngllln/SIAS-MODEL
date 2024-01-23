@@ -1,5 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Reports.Datasets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +18,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
     {
         public static frm_approve_account instance;
         public string course { get; set; }
-        public string id_number { get; set; }
+        public string id_number_id { get; set; }
         public string fullname { get; set; }
         public frm_approve_account()
         {
@@ -32,19 +34,24 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private string loadStudentCourse()
         {
+
             var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select course from student_course where id_number='" + id_number + "'", con);
+            var da = new MySqlDataAdapter("select course_id from student_course where id_number_id='" + id_number_id + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
-            return dt.Rows[0]["course"].ToString();
+            return dt.Rows[0]["course_id"].ToString();
         }
 
         private void loadRecords()
         {
+            var studentCourse = loadStudentCourse();
             tName.Text = fullname;
+            course = new Courses().GetCourses().FirstOrDefault(x => x.id.ToString() == studentCourse).code;
             tCourse.Text = course;
-            course = loadStudentCourse();
-            tCourse.Text = course;
+
+            tCurriculum.ValueMember = "id";
+            tCurriculum.DisplayMember = "code";
+            tCurriculum.DataSource = new Curriculums().GetCurriculums().ToList();
 
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select * from curriculums where course='" + course + "'", con);
@@ -98,7 +105,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
             else
             {
-                approveStudent(id_number);
+                approveStudent(id_number_id);
             }
         }
     }

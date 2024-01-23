@@ -28,7 +28,7 @@ namespace school_management_system_model.Classes
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var id_number = GetStudentIDNumber().FirstOrDefault(x => x.id == reader.GetInt32("id_number")).id_number;
+                var id_number = GetStudentIDNumber().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id")).id_number;
                 var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;
                 var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
                 var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id")).code;
@@ -54,7 +54,7 @@ namespace school_management_system_model.Classes
             var list = new List<SaveStudentAccountsParams>();
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("select * from student_accounts");
+            var cmd = new MySqlCommand("select * from student_accounts", con);
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {

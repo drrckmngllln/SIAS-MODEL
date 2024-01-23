@@ -67,8 +67,11 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            frm_create_account.instance.course = dgv.CurrentRow.Cells["code"].Value.ToString();
-            frm_create_account.instance.campus = dgv.CurrentRow.Cells["campus"].Value.ToString();
+            var course = (int)dgv.CurrentRow.Cells["id"].Value;
+            var campus = dgv.CurrentRow.Cells["campus_id"].Value.ToString();
+
+            frm_create_account.instance.course = dgv.CurrentRow.Cells["id"].Value.ToString();
+            frm_create_account.instance.campus = dgv.CurrentRow.Cells["campus_id"].Value.ToString();
             Close();
         }
     }
