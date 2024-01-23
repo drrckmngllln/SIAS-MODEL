@@ -19,7 +19,7 @@ namespace school_management_system_model.Classes
         public string year_level { get; set; }
         public string section_id { get; set; }
 
-        public List<student_course> GetStudent_Courses()
+        public List<student_course> GetStudentCourses()
         {
             var list = new List<student_course>();
             var con = new MySqlConnection(connection.con());
@@ -31,13 +31,16 @@ namespace school_management_system_model.Classes
                 var id_number = GetStudentIDNumber().FirstOrDefault(x => x.id == reader.GetInt32("id_number")).id_number;
                 var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;
                 var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
+                var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id")).code;
+                var section = new sections().GetSections().FirstOrDefault(x => x.id == reader.GetInt32("section_id")).section_code;
+
                 var courses = new student_course
                 {
                     id = reader.GetInt32("id"),
                     id_number_id = id_number,
                     course_id = course,
                     campus_id = campus,
-                    curriculum_id = reader.GetString("curriculum_id"),
+                    curriculum_id = curriculum,
                     year_level = reader.GetString("year_level"),
                     section_id = reader.GetString("section_id")
                 };

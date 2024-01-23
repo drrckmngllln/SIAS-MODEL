@@ -141,7 +141,6 @@ namespace school_management_system_model.Forms.transactions
                     var parameter = new SaveStudentAccountsParams
                     {
                         id_number = tIdNumber.Text,
-
                         school_year = tSchoolyear.Text,
                         fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
                         last_name = tLastname.Text,

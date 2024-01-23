@@ -68,12 +68,12 @@ namespace school_management_system_model.Forms.settings
                     {
                         unique_id = tSectionCode.Text + tCourse.Text + tYearLevel.Text + tSemester.Text,
                         section_code = tSectionCode.Text,
-                        course = tCourse.Text,
-                        year_level = tYearLevel.Text,
+                        course_id = tCourse.Text,
+                        year_level = Convert.ToInt32(tYearLevel.Text),
                         section = tSection.Text,
                         semester = tSemester.Text,
-                        number_of_students = tNumberOfStudents.Text,
-                        max_number_of_students = tMaxStudent.Text,
+                        number_of_students = Convert.ToInt32(tNumberOfStudents.Text),
+                        max_number_of_students = Convert.ToInt32(tMaxStudent.Text),
                         status = tStatus.Text,
                         remarks = tRemarks.Text
                     };
@@ -90,12 +90,12 @@ namespace school_management_system_model.Forms.settings
                     {
                         unique_id = tSectionCode.Text + tCourse.Text + tYearLevel.Text + tSemester.Text,
                         section_code = tSectionCode.Text,
-                        course = tCourse.Text,
-                        year_level = tYearLevel.Text,
+                        course_id = tCourse.Text,
+                        year_level = Convert.ToInt32(tYearLevel.Text),
                         section = tSection.Text,
                         semester = tSemester.Text,
-                        number_of_students = tNumberOfStudents.Text,
-                        max_number_of_students = tMaxStudent.Text,
+                        number_of_students = Convert.ToInt32(tNumberOfStudents.Text),
+                        max_number_of_students = Convert.ToInt32(tMaxStudent.Text),
                         status = tStatus.Text,
                         remarks = tRemarks.Text
                     };

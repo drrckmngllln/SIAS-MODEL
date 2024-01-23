@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,16 +27,16 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void loadCourses()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select code, description, level, campus from courses", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var courses = new Courses().GetCourses();
+            dgv.DataSource = courses.ToList();
+            dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
-            dgv.Columns["description"].Width = 350;
-            dgv.Columns["campus"].HeaderText = "Campus";
-            dgv.Columns["level"].HeaderText = "Level";
+            dgv.Columns["level_id"].HeaderText = "Level";
+            dgv.Columns["campus_id"].HeaderText = "Campus";
+            dgv.Columns["department_id"].HeaderText = "Department";
+            dgv.Columns["max_units"].HeaderText = "Max Units";
+            dgv.Columns["status"].Visible = false;
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)

@@ -11,6 +11,7 @@ namespace school_management_system_model.Classes
 {
     internal class Curriculums 
     {
+        public int id { get; set; }
         public string code { get; set; }
         public string description { get; set; }
         public string campus { get; set; }
@@ -19,7 +20,32 @@ namespace school_management_system_model.Classes
         public string expires { get; set; }
         public string status { get; set; }
 
-        
+        public List<Curriculums> GetCurriculums()
+        {
+            var list = new List<Curriculums>();
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("select * from curriculums", con);
+            var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var curriculum = new Curriculums
+                {
+                    id = reader.GetInt32("id"),
+                    code = reader.GetString("code"),
+                    description = reader.GetString("description"),
+                    campus = reader.GetString("campus"),
+                    course = reader.GetString("course"),
+                    effective = reader.GetString("effective"),
+                    expires = reader.GetString("expires"),
+                    status = reader.GetString("status")
+                };
+                list.Add(curriculum);
+            }
+            con.Close();
+            return list;
+        }
 
         public DataTable loadRecords()
         {

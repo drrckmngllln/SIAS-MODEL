@@ -12,16 +12,7 @@ namespace school_management_system_model.Classes
 {
     internal class StudentAccount
     {
-        public List<SaveAssessmentBreakdownParams> GetStudentCourse(string idNumber)
-        {
-            var studentCourse = new List<SaveAssessmentBreakdownParams>();
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_course", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt.Rows[0]["course"].ToString();
-        }
-
+        
         
         public DataTable loadCourses()
         {
