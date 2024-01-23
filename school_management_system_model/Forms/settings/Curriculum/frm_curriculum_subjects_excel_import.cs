@@ -1,6 +1,7 @@
 ﻿using ExcelDataReader;
 using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
     public partial class frm_curriculum_subjects_excel_import : KryptonForm
     {
         public int id { get; set; }
-        public string curriculumIdCode { get; set; }
+        public string uid { get; set; }
         public string curriculum { get; set; }
         public string year_level { get; set; }
         public string semester { get; set; }
@@ -84,24 +85,33 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
         private void saveRecords()
         {
-            var con = new MySqlConnection(connection.con());
-            con.Open();
-            var cmd = new MySqlCommand("insert into curriculum_subjects(curriculumIdCode, curriculum, year_level, semester, code, descriptive_title, " +
-                "total_units, lecture_units, lab_units, pre_requisite, total_hrs_per_week) " +
-                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)", con);
-            cmd.Parameters.AddWithValue("@1", curriculumIdCode);
-            cmd.Parameters.AddWithValue("@2", curriculum);
-            cmd.Parameters.AddWithValue("@3", year_level);
-            cmd.Parameters.AddWithValue("@4", semester);
-            cmd.Parameters.AddWithValue("@5", code);
-            cmd.Parameters.AddWithValue("@6", descriptive_title);
-            cmd.Parameters.AddWithValue("@7", total_units);
-            cmd.Parameters.AddWithValue("@8", lecture_units);
-            cmd.Parameters.AddWithValue("@9", lab_units);
-            cmd.Parameters.AddWithValue("@10", pre_requisite);
-            cmd.Parameters.AddWithValue("@11", total_hrs_per_week);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            
+            var subjects = new CurriculumSubjects
+            {
+                uid = curriculum + code,
+                curriculum_id = uid.ToString(),
+                year_level = year_level.ToString(),
+            };
+            var addCurriculumSubjects = new CurriculumSubjects().AddCurriculumSubjects()
+
+            //var con = new MySqlConnection(connection.con());
+            //con.Open();
+            //var cmd = new MySqlCommand("insert into curriculum_subjects(curriculumIdCode, curriculum, year_level, semester, code, descriptive_title, " +
+            //    "total_units, lecture_units, lab_units, pre_requisite, total_hrs_per_week) " +
+            //    "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)", con);
+            //cmd.Parameters.AddWithValue("@1", curriculumIdCode);
+            //cmd.Parameters.AddWithValue("@2", curriculum);
+            //cmd.Parameters.AddWithValue("@3", year_level);
+            //cmd.Parameters.AddWithValue("@4", semester);
+            //cmd.Parameters.AddWithValue("@5", code);
+            //cmd.Parameters.AddWithValue("@6", descriptive_title);
+            //cmd.Parameters.AddWithValue("@7", total_units);
+            //cmd.Parameters.AddWithValue("@8", lecture_units);
+            //cmd.Parameters.AddWithValue("@9", lab_units);
+            //cmd.Parameters.AddWithValue("@10", pre_requisite);
+            //cmd.Parameters.AddWithValue("@11", total_hrs_per_week);
+            //cmd.ExecuteNonQuery();
+            //con.Close();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -115,7 +125,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
             {
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    curriculumIdCode = curriculum + row.Cells["code"].Value.ToString();
+                    uid = curriculum + row.Cells["code"].Value.ToString();
                     year_level = row.Cells["year_level"].Value.ToString();
                     semester = row.Cells["semester"].Value.ToString();
                     code = row.Cells["code"].Value.ToString();
