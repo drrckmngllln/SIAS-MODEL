@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Classes.CurriculumSubjectComponents;
 using school_management_system_model.Forms.settings.Curriculum;
 using school_management_system_model.Loggers;
 using System;
@@ -30,9 +31,13 @@ namespace school_management_system_model.Forms.settings
             loadrecords();
         }
 
+       
+
         private void loadrecords()
         {
-            var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id.ToString() == CurriculumId.ToString()).ToList();
+            
+            var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id.ToString() == CurriculumId.ToString())
+                .Skip(2).Take(20).ToList();
             dgv.DataSource = curriculumSubjects;
 
 
@@ -146,6 +151,28 @@ namespace school_management_system_model.Forms.settings
             {
                 loadrecords();
             }
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            var curriculumSubject = new CurriculumSubjects
+            {
+                uid = dgv.CurrentRow.Cells["uid"].Value.ToString(),
+                curriculum_id = dgv.CurrentRow.Cells["curriculum_id"].Value.ToString(),
+                year_level = dgv.CurrentRow.Cells["year_level"].Value.ToString(),
+                semester = dgv.CurrentRow.Cells["semester"].Value.ToString(),
+                code = dgv.CurrentRow.Cells["code"].Value.ToString(),
+                descriptive_title = dgv.CurrentRow.Cells["descriptive_title"].Value.ToString(),
+                total_units = dgv.CurrentRow.Cells["total_units"].Value.ToString(),
+                lecture_units = dgv.CurrentRow.Cells["lecture_units"].Value.ToString(),
+                lab_units = dgv.CurrentRow.Cells["lab_units"].Value.ToString(),
+                pre_requisite = dgv.CurrentRow.Cells["pre_requisite"].Value.ToString(),
+                total_hrs_per_week = dgv.CurrentRow.Cells["total_hrs_per_week"].Value.ToString(),
+            };
+            var frm = new frm_edit_curriculum_subject(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value), Email);
+            frm.Text = "Update Curriculum Subject";
+            frm.ShowDialog();
+            loadrecords();
         }
     }
 }

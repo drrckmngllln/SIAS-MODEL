@@ -211,7 +211,8 @@
     <Compile Include="Classes\Courses.cs" />
     <Compile Include="Classes\course_fees.cs" />
     <Compile Include="Classes\Curriculums.cs" />
-    <Compile Include="Classes\CurriculumSubjects.cs" />
+    <Compile Include="Classes\CurriculumSubjectComponents\CurriculumSubjects.cs" />
+    <Compile Include="Classes\CurriculumSubjectComponents\CurriculumSubjectSpecParams.cs" />
     <Compile Include="Classes\Departments.cs" />
     <Compile Include="Classes\DiscountSetup.cs" />
     <Compile Include="Classes\FeeBreakdown.cs" />
@@ -223,6 +224,14 @@
     <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
     <Compile Include="Classes\OtherFeesSetup.cs" />
     <Compile Include="Classes\Parameters\SaveAssessmentBreakdownParams.cs" />
+    <Compile Include="Classes\Specification\BaseSpecification.cs" />
+    <Compile Include="Classes\Specification\ISpecification.cs" />
+    <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.Designer.cs">
+      <DependentUpon>frm_edit_curriculum_subject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\SaveStudentAccountsParams.cs" />
     <Compile Include="Classes\PrintingAssessment.cs" />
     <Compile Include="Classes\proceed_to_enrollment.cs" />
@@ -643,6 +652,9 @@
     <EmbeddedResource Include="bin\Debug\Reports\mcnp_assessment.rdlc" />
     <EmbeddedResource Include="Forms\main\main_form.resx">
       <DependentUpon>main_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.resx">
+      <DependentUpon>frm_edit_curriculum_subject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\Schedule\frm_admission_schedule.resx">
       <DependentUpon>frm_admission_schedule.cs</DependentUpon>

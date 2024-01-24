@@ -103,24 +103,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
             };
             new CurriculumSubjects().AddCurriculumSubjects(subjects);
 
-            //var con = new MySqlConnection(connection.con());
-            //con.Open();
-            //var cmd = new MySqlCommand("insert into curriculum_subjects(curriculumIdCode, curriculum, year_level, semester, code, descriptive_title, " +
-            //    "total_units, lecture_units, lab_units, pre_requisite, total_hrs_per_week) " +
-            //    "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)", con);
-            //cmd.Parameters.AddWithValue("@1", curriculumIdCode);
-            //cmd.Parameters.AddWithValue("@2", curriculum);
-            //cmd.Parameters.AddWithValue("@3", year_level);
-            //cmd.Parameters.AddWithValue("@4", semester);
-            //cmd.Parameters.AddWithValue("@5", code);
-            //cmd.Parameters.AddWithValue("@6", descriptive_title);
-            //cmd.Parameters.AddWithValue("@7", total_units);
-            //cmd.Parameters.AddWithValue("@8", lecture_units);
-            //cmd.Parameters.AddWithValue("@9", lab_units);
-            //cmd.Parameters.AddWithValue("@10", pre_requisite);
-            //cmd.Parameters.AddWithValue("@11", total_hrs_per_week);
-            //cmd.ExecuteNonQuery();
-            //con.Close();
+            
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
