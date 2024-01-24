@@ -55,7 +55,7 @@ namespace school_management_system_model.Forms.settings
                 var data = new Instructors
                 {
                     fullname = tFullname.Text,
-                    department = tDepartment.Text,
+                    department_id = tDepartment.Text,
                     position = tPosition.Text
                 };
                 data.addRecords();
@@ -72,7 +72,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                     fullname = tFullname.Text,
-                    department = tDepartment.Text,
+                    department_id = tDepartment.Text,
                     position = tPosition.Text
                 };
                 data.editRecords();
@@ -109,18 +109,7 @@ namespace school_management_system_model.Forms.settings
 
         private void searchRecords()
         {
-            if (tsearch.Text.Length > 2)
-            {
-                var search = new Instructors
-                {
-                    search = tsearch.Text
-                };
-                dgv.DataSource = search.searchRecords();
-            }
-            else if (tsearch.Text.Length == 0)
-            {
-                loadRecords();
-            }
+            
         }
 
         private void frm_instructors_KeyDown(object sender, KeyEventArgs e)

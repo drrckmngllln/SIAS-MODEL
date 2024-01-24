@@ -27,14 +27,13 @@ namespace school_management_system_model.Forms.settings
             dgv.DataSource = dt;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["fullname"].HeaderText = "Full Name";
-            dgv.Columns["department"].HeaderText = "Department";
+            dgv.Columns["department_id"].HeaderText = "Department";
             dgv.Columns["position"].HeaderText = "Position";
         }
 
         private void selectInstructor()
         {
-            frm_section_subjects.instance.instructor = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-            this.Close();
+            
         }
 
         private void tSearch_TextChanged(object sender, EventArgs e)
@@ -47,7 +46,7 @@ namespace school_management_system_model.Forms.settings
                 da.Fill(dt);
                 dgv.DataSource = dt;
                 dgv.Columns["fullname"].HeaderText = "Full Name";
-                dgv.Columns["department"].HeaderText = "Department";
+                dgv.Columns["department_id"].HeaderText = "Department";
                 dgv.Columns["position"].HeaderText = "Position";
             }
             else if (tSearch.Text.Length == 0)

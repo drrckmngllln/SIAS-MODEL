@@ -1,7 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
-using school_management_system_model.Classes.CurriculumSubjectComponents;
+using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Forms.settings.Curriculum;
 using school_management_system_model.Loggers;
 using System;
@@ -16,6 +16,7 @@ namespace school_management_system_model.Forms.settings
         public int CurriculumId { get; set; }
         private string id { get; set; }
         public string Email { get; }
+        PaginationParams pagination = new PaginationParams();
 
         public static frm_curriculum_subjects instance;
         public frm_curriculum_subjects(string email, int curriculum_id)
@@ -37,7 +38,7 @@ namespace school_management_system_model.Forms.settings
         {
             
             var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id.ToString() == CurriculumId.ToString())
-                .Skip(2).Take(20).ToList();
+                .Skip(pagination.pageSize * (pagination.pageNumber - 1)).Take(pagination.pageSize).ToList();
             dgv.DataSource = curriculumSubjects;
 
 
@@ -173,6 +174,36 @@ namespace school_management_system_model.Forms.settings
             frm.Text = "Update Curriculum Subject";
             frm.ShowDialog();
             loadrecords();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (dgv.Rows.Count < pagination.pageSize)
+            {
+                btnNext.Enabled = false;
+            }
+            else
+            {
+                pagination.pageNumber++;
+                tPageNumber.Text = pagination.pageNumber.ToString();
+                loadrecords();
+                btnPrevious.Enabled = true;
+            }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (pagination.pageNumber == 1)
+            {
+                btnPrevious.Enabled = false;
+            }
+            else
+            {
+                pagination.pageNumber--;
+                tPageNumber.Text = pagination.pageNumber.ToString();
+                loadrecords();
+                btnNext.Enabled = true;
+            }
         }
     }
 }

@@ -3,25 +3,23 @@ using school_management_system_model.Classes;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
 {
     public partial class frm_section_subjects : KryptonForm
     {
-        public static frm_section_subjects instance;
-        public string sectionCode { get; set; }
-        public string course { get; set; }
-        public string yearLevel { get; set; }
-        public string semester { get; set; }
-        public string remarks { get; set; }
-        public string instructor { get; set; }
+        public frm_section_subjects instance;
+        public int Id { get; }
         public string Email { get; }
+        public string instructor { get; set; }
 
-        public frm_section_subjects(string email)
+        public frm_section_subjects(int id, string email)
         {
-            instance = this;
+            
             InitializeComponent();
+            Id = id;
             Email = email;
         }
 
@@ -32,19 +30,13 @@ namespace school_management_system_model.Forms.settings
 
         private void loadRecords()
         {
-            var data = new section_subject
-            {
-                section_code = sectionCode,
-                course = course,
-                year_level = yearLevel,
-                semester = semester 
-            };
-            dgv.DataSource = data.getData();
+            var sectionSubjects = new SectionSubjects().GetSectionSubjects();
+            dgv.DataSource = sectionSubjects.ToList();
             dgv.Columns["id"].Visible =false;
             dgv.Columns["unique_id"].Visible = false;
-            dgv.Columns["section_code"].Visible = false;
-            dgv.Columns["curriculum"].Visible = false;
-            dgv.Columns["course"].Visible = false;
+            dgv.Columns["section_code_id"].Visible = false;
+            dgv.Columns["curriculum_id"].Visible = false;
+            dgv.Columns["course_id"].Visible = false;
             dgv.Columns["year_level"].Visible = false;
             dgv.Columns["semester"].Visible = false;
             dgv.Columns["subject_code"].HeaderText = "Subject Code";
@@ -56,30 +48,29 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["time"].HeaderText = "Time";
             dgv.Columns["day"].HeaderText = "Day";
             dgv.Columns["room"].HeaderText = "Room";
-            dgv.Columns["instructor"].HeaderText = "Instructor";
+            dgv.Columns["instructor_id"].HeaderText = "Instructor";
             dgv.Columns["status"].Visible = false;
 
             dgv.Columns["descriptive_title"].Width = 400;
-            dgv.Columns["instructor"].Width = 350;
+            dgv.Columns["instructor_id"].Width = 350;
             dgv.Columns["time"].Width = 300;
 
-            tSectionCode.Text = sectionCode;
-            tCourse.Text = course;
-            tYearLevel.Text = yearLevel;
-            tSemester.Text = semester;
+            var section = new sections().GetSections().FirstOrDefault(x => x.id == Id);
+            tSectionCode.Text = section.section_code;
+            tCourse.Text = section.course_id;
+            tYearLevel.Text = section.year_level.ToString();
+            tSemester.Text = section.semester;
            
             if (dgv.Rows.Count == 0)
             {
-                var curriculum = data.getCurriculums();
-                foreach (DataRow row in curriculum.Rows)
-                {
-                    tCurriculum.Items.Add(row["code"]);
-                }
-                tCurriculum.Text = curriculum.Rows[0]["code"].ToString();
+                var curriculum = new Curriculums().GetCurriculums().Where(x => x.course_id == tCourse.Text).ToList();
+                tCurriculum.ValueMember = "id";
+                tCurriculum.DisplayMember = "code";
+                tCurriculum.DataSource = curriculum;
             }
             else
             {
-                tCurriculum.Text = dgv.Rows[0].Cells["curriculum"].Value.ToString();
+                tCurriculum.Text = dgv.Rows[0].Cells["curriculum_id"].Value.ToString();
             }
         }
 
@@ -87,8 +78,9 @@ namespace school_management_system_model.Forms.settings
         {
             if (btn_save.Text == "Add Subject")
             {
+                var curriculum_id = new Curriculums().GetCurriculums().FirstOrDefault(x => x.code == tCurriculum.Text);
                 var frm = new frm_section_subject_add(Email);
-                frm_section_subject_add.instance.curriculum = tCurriculum.Text;
+                frm_section_subject_add.instance.curriculum_id = curriculum_id.id.ToString();
                 frm_section_subject_add.instance.sectionCode = tSectionCode.Text;
                 frm_section_subject_add.instance.course = tCourse.Text;
                 frm_section_subject_add.instance.year_level = tYearLevel.Text;

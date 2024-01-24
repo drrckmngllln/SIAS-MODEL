@@ -1,15 +1,8 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
-using school_management_system_model.Classes.CurriculumSubjectComponents;
 using school_management_system_model.Loggers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings.Curriculum

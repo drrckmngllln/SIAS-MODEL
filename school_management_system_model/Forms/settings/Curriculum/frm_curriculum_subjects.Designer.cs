@@ -49,6 +49,9 @@
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton4 = new Krypton.Toolkit.KryptonButton();
+            this.tPageNumber = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -315,11 +318,49 @@
             this.kryptonButton4.Values.Text = "Edit";
             this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
             // 
+            // tPageNumber
+            // 
+            this.tPageNumber.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tPageNumber.AutoSize = true;
+            this.tPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPageNumber.Location = new System.Drawing.Point(867, 698);
+            this.tPageNumber.Name = "tPageNumber";
+            this.tPageNumber.Size = new System.Drawing.Size(15, 15);
+            this.tPageNumber.TabIndex = 56;
+            this.tPageNumber.Text = "1";
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(888, 694);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(26, 23);
+            this.btnNext.TabIndex = 57;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrevious.Location = new System.Drawing.Point(835, 694);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(26, 23);
+            this.btnPrevious.TabIndex = 58;
+            this.btnPrevious.Text = "<";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
             // frm_curriculum_subjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.btnPrevious);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.tPageNumber);
             this.Controls.Add(this.kryptonButton4);
             this.Controls.Add(this.kryptonButton3);
             this.Controls.Add(this.kryptonButton2);
@@ -406,5 +447,8 @@
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonButton kryptonButton4;
+        private System.Windows.Forms.Label tPageNumber;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrevious;
     }
 }

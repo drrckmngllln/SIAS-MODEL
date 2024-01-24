@@ -1,15 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Classes.CurriculumSubjectComponents;
-using school_management_system_model.Classes.Specification;
-using System;
+using school_management_system_model.Classes.Parameters;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace school_management_system_model.Classes
 {
-    internal class CurriculumSubjects : BaseSpecification<CurriculumSubjects>
+    internal class CurriculumSubjects
     {
         public int id { get; set; }
         public string uid { get; set; }

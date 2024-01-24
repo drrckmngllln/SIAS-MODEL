@@ -34,12 +34,13 @@ namespace school_management_system_model.Classes
 
             while (reader.Read())
             {
+                var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
                 var section = new sections
                 {
                     id = reader.GetInt32("id"),
                     unique_id = reader.GetString("unique_id"),
                     section_code = reader.GetString("section_code"),
-                    course_id = reader.GetString("course_id"),
+                    course_id = course.code,
                     year_level = reader.GetInt32("year_level"),
                     section = reader.GetString("section"),
                     semester = reader.GetString("semester"),
@@ -53,15 +54,6 @@ namespace school_management_system_model.Classes
             con.Close();
             return list;
         }
-
-        public DataTable getSections()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from sections order by id desc", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
         public DataTable getCourses()
         {
             var con = new MySqlConnection(connection.con());
@@ -70,11 +62,11 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
-        public void addSection()
+        public void AddSection()
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("insert into sections(section_code, course, year_level, section, number_of_students, max_number_of_students, " +
+            var cmd = new MySqlCommand("insert into sections(section_code, course_id, year_level, section, number_of_students, max_number_of_students, " +
                 "status, remarks, semester, unique_id) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10)", con);
             cmd.Parameters.AddWithValue("@1", section_code);
             cmd.Parameters.AddWithValue("@2", course_id);
@@ -88,14 +80,13 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@10", unique_id);
             cmd.ExecuteNonQuery();
             con.Close();
-           
         }
         
-        public void editSection(int id)
+        public void EditSection(int id)
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("update sections set section_code=@1, course=@2, year_level=@3, section=@4, number_of_students=@5, " +
+            var cmd = new MySqlCommand("update sections set section_code=@1, course_id=@2, year_level=@3, section=@4, number_of_students=@5, " +
                 "max_number_of_students=@6, status=@7, remarks=@8, semester=@9, unique_id=@10 where id='"+ id +"'", con);
             cmd.Parameters.AddWithValue("@1", section_code);
             cmd.Parameters.AddWithValue("@2", course_id);
@@ -128,15 +119,6 @@ namespace school_management_system_model.Classes
             var dt = new DataTable();
             da.Fill(dt);
             deleteSectionSubjects();
-            return dt;
-        }
-        
-        public DataTable searchRecords(string search)
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from sections where concat(section_code, course) like '%" + search + "%'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
             return dt;
         }
     }
