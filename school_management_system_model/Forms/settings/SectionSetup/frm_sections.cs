@@ -48,7 +48,7 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
             dgv.Columns["section_code"].HeaderText = "Section Code";
-            dgv.Columns["course"].HeaderText = "Course";
+            dgv.Columns["course_id"].HeaderText = "Course";
             dgv.Columns["year_level"].HeaderText = "Year Level";
             dgv.Columns["section"].HeaderText = "Section";
             dgv.Columns["semester"].HeaderText = "Semester";

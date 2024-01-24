@@ -85,14 +85,23 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
         private void saveRecords()
         {
-            
+            var curriculum_id = new Curriculums().GetCurriculums().FirstOrDefault(x => x.code == curriculum).id;
             var subjects = new CurriculumSubjects
             {
                 uid = curriculum + code,
-                curriculum_id = uid.ToString(),
-                year_level = year_level.ToString(),
+                curriculum_id = curriculum_id.ToString(),
+                year_level = year_level,
+                semester = semester,
+                code = code.ToString(),
+                descriptive_title = descriptive_title.ToString(),
+                total_units = total_units,
+                lecture_units = lecture_units,
+                lab_units = lab_units,
+                pre_requisite = pre_requisite.ToString(),
+                total_hrs_per_week = total_hrs_per_week.ToString()
+
             };
-            var addCurriculumSubjects = new CurriculumSubjects().AddCurriculumSubjects()
+            new CurriculumSubjects().AddCurriculumSubjects(subjects);
 
             //var con = new MySqlConnection(connection.con());
             //con.Open();
@@ -121,22 +130,22 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                uid = curriculum + row.Cells["code"].Value.ToString();
+                year_level = row.Cells["year_level"].Value.ToString();
+                semester = row.Cells["semester"].Value.ToString();
+                code = row.Cells["code"].Value.ToString();
+                descriptive_title = row.Cells["descriptive_title"].Value.ToString();
+                total_units = row.Cells["total_units"].Value.ToString();
+                lecture_units = row.Cells["lecture_units"].Value.ToString();
+                lab_units = row.Cells["lab_units"].Value.ToString();
+                pre_requisite = row.Cells["pre_requisite"].Value.ToString();
+                total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
+                saveRecords();
+            }
             try
             {
-                foreach (DataGridViewRow row in dgv.Rows)
-                {
-                    uid = curriculum + row.Cells["code"].Value.ToString();
-                    year_level = row.Cells["year_level"].Value.ToString();
-                    semester = row.Cells["semester"].Value.ToString();
-                    code = row.Cells["code"].Value.ToString();
-                    descriptive_title = row.Cells["descriptive_title"].Value.ToString();
-                    total_units = row.Cells["total_units"].Value.ToString();
-                    lecture_units = row.Cells["lecture_units"].Value.ToString();
-                    lab_units = row.Cells["lab_units"].Value.ToString();
-                    pre_requisite = row.Cells["pre_requisite"].Value.ToString();
-                    total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
-                    saveRecords();
-                }
 
                 new Classes.Toastr("Success", "Curriculum Import Success");
                 new ActivityLogger().activityLogger(Email, "Curriculum File Import: " + this.Text);
@@ -145,7 +154,6 @@ namespace school_management_system_model.Forms.settings.Curriculum
             catch(Exception ex)
             {
                 new Classes.Toastr("Error", ex.Message);
-                MessageBox.Show(ex.Message);
             }
 
         }

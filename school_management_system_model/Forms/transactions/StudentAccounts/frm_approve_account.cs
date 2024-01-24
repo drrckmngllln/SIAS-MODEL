@@ -52,16 +52,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             tCurriculum.ValueMember = "id";
             tCurriculum.DisplayMember = "code";
             tCurriculum.DataSource = new Curriculums().GetCurriculums().ToList();
-
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculums where course='" + course + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                tCurriculum.Items.Add(dr["code"]);
-            }
         }
 
         private void approveStudent(string idNumber)
@@ -70,7 +60,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             {
                 var con = new MySqlConnection(connection.con());
                 con.Open();
-                var cmd = new MySqlCommand("update student_course set curriculum='" + tCurriculum.Text + "' where id_number='" + idNumber + "'", con);
+                var cmd = new MySqlCommand("update student_course set curriculum_id='" + tCurriculum.SelectedValue.ToString() + "' where id_number_id='" + idNumber + "'", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
 

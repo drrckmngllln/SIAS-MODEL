@@ -51,7 +51,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 var id = dgv.CurrentRow.Cells["id"].Value.ToString();
                 var course = new student_course().GetStudentCourses().FirstOrDefault(x => x.course_id.ToString() == id).course_id;
-                tSudentCourse.Text = new Courses().GetCourses().FirstOrDefault(x => x.id.ToString() == course).code;
+                tSudentCourse.Text = course;
             }
             catch
             {

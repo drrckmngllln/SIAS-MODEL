@@ -32,7 +32,7 @@ namespace school_management_system_model.Forms.settings
 
         private void loadrecords()
         {
-            var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id == CurriculumId).ToList();
+            var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id.ToString() == CurriculumId.ToString()).ToList();
             dgv.DataSource = curriculumSubjects;
 
 
