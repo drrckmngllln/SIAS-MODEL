@@ -54,7 +54,7 @@ namespace school_management_system_model.Classes
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
+                var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year"));
                 var student = new StudentAccount
                 {
                     id = reader.GetInt32("id"),

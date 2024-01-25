@@ -33,7 +33,7 @@ namespace school_management_system_model.Classes
                 var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;
                 var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
                 var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id")).code;
-                var section = new sections().GetSections().FirstOrDefault(x => x.id == reader.GetInt32("section_id")).section_code;
+                
 
                 var courses = new student_course
                 {
@@ -44,7 +44,7 @@ namespace school_management_system_model.Classes
                     curriculum_id = curriculum,
                     year_level = reader.GetString("year_level"),
                     section_id = reader.GetString("section_id"),
-                    semester = reader.GetString("semeester")
+                    semester = reader.GetString("semester")
                 };
                 list.Add(courses);
             }

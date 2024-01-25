@@ -4,6 +4,7 @@ using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Forms.transactions.StudentEnrollment;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.transactions
@@ -16,7 +17,7 @@ namespace school_management_system_model.Forms.transactions
         public string course { get; set; }
         public string section { get; set; }
         public string section_code { get; set; }
-        public string school_year { get; set; }
+        public string school_year_id { get; set; }
 
         int totalUnits = 0;
         int totalLectureUnits = 0;
@@ -78,20 +79,17 @@ namespace school_management_system_model.Forms.transactions
         private void loadRecords()
         {
             
-            var loadCourse = new proceed_to_enrollment
-            {
-                id_number = id_number
-            };
-            var data = loadCourse.loadStudentIdAndCourse();
-
-            tIdNumber.Text = id_number;
-            tStudentName.Text = studentName;
-            tCourse.Text = data.Rows[0]["course"].ToString();
-            tCampus.Text = data.Rows[0]["campus"].ToString();
-            tCurriculum.Text = data.Rows[0]["curriculum"].ToString();
-            tYearLevel.Text = data.Rows[0]["year_level"].ToString();
-            tSection.Text = data.Rows[0]["section"].ToString();
-            tSemester.Text = data.Rows[0]["semester"].ToString();
+            var student_account = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == id_number);
+            var student_course = new student_course().GetStudentCourses().FirstOrDefault(x => x.id_number_id == id_number);
+            
+            tIdNumber.Text = student_account.id_number;
+            tStudentName.Text = student_account.fullname;
+            tCourse.Text = student_course.course_id;
+            tCampus.Text = student_course.campus_id;
+            tCurriculum.Text = student_course.curriculum_id;
+            tSection.Text = student_course.section_id;
+            tYearLevel.Text = student_course.year_level;
+            tSemester.Text = student_course.semester;
             tYearLevel.Select();
 
             dgv.Columns.Add("subject_code", "Subject Code");
@@ -218,7 +216,7 @@ namespace school_management_system_model.Forms.transactions
                         {
                             id_number = id_number,
                             unique_id = id_number + "-" + schoolYear + "-" + tSemester.Text + "-" + row.Cells["subject_code"].Value.ToString(),
-                            school_year = school_year,
+                            school_year = school_year_id,
                             subject_code = row.Cells["subject_code"].Value.ToString(),
                             descriptive_title = row.Cells["descriptive_title"].Value.ToString(),
                             pre_requisite = row.Cells["pre_requisite"].Value.ToString(),

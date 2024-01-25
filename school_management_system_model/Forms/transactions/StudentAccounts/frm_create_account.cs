@@ -18,23 +18,19 @@ namespace school_management_system_model.Forms.transactions
     {
         public static frm_create_account instance;
 
-        public int Id_Number_Id { get; }
-        public string School_Year { get; }
-        public string Semester { get; }
-       
+        public int Id_Number { get; set; }
+        public string School_Year { get; set; }
+        public string Semester { get; set; }
+
         //public string schoolYear { get; set; }
         //public int id { get; set; }
-        //public string course { get; set; }
-        //public string campus { get; set; }
+        public string course { get; set; }
+        public string campus { get; set; }
         //public string semester { get; set; }
-        public frm_create_account(int id_number_id, string school_year, string semester)
+        public frm_create_account()
         {
             instance = this;
             InitializeComponent();
-            Id_Number_Id = id_number_id;
-            School_Year = school_year;
-            Semester = semester;
-            
         }
 
         private void frm_create_account_Load(object sender, EventArgs e)
@@ -47,8 +43,9 @@ namespace school_management_system_model.Forms.transactions
             }
             else if (this.Text == "Update Account")
             {
+                
                 tTitle.Text = this.Text;
-                var update = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == Id_Number_Id.ToString());
+                var update = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == Id_Number.ToString());
 
                 var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id.ToString() == School_Year);
 
@@ -95,19 +92,18 @@ namespace school_management_system_model.Forms.transactions
 
         private void loadSchoolYear()
         {
-            tSchoolyear.Text = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id.ToString() == School_Year).code;
-            
+            tSchoolyear.Text = School_Year;
         }
         private void loadIdNumber()
         {
-            var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id.ToString() == School_Year).code;
-            var data = new StudentAccount().GetStudentAccounts().Where(x => x.sy_enrolled == school_year).Count();
+            
+            var data = new StudentAccount().GetStudentAccounts().Where(x => x.sy_enrolled == School_Year).Count();
             int count = 0;
             count = data;
             var idNumber = DateTime.Now.Year.ToString();
 
            
-            idNumber += "-" + school_year;
+            idNumber += "-" + Semester;
 
             if (count < 9)
             {
@@ -141,10 +137,11 @@ namespace school_management_system_model.Forms.transactions
             {
                 if (this.Text == "Create Account")
                 {
+                    var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == School_Year);
                     var add = new StudentAccount
                     {
                         id_number = tIdNumber.Text,
-                        school_year_id = School_Year,
+                        school_year_id = school_year.id.ToString(),
                         fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
@@ -177,9 +174,10 @@ namespace school_management_system_model.Forms.transactions
                     };
                     add.AddStudentAccount();
 
+                    var id_number_id = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == tIdNumber.Text);
                     var course = new student_course
                     {
-                        id_number_id = Id_Number_Id.ToString(),
+                        id_number_id = id_number_id.id.ToString(),
                         course_id = new Courses().GetCourses().FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
                         campus_id = new Campuses().GetCampuses().FirstOrDefault(x => x.code == tCampus.Text).id.ToString(),
                         curriculum_id = "Not Set",

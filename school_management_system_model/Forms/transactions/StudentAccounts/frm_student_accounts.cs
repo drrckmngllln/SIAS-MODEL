@@ -51,13 +51,14 @@ namespace school_management_system_model.Forms.transactions
         {
             try
             {
-                var id = dgv.CurrentRow.Cells["id"].Value.ToString();
-                var course = new student_course().GetStudentCourses().FirstOrDefault(x => x.course_id.ToString() == id).course_id;
-                tSudentCourse.Text = course;
+                var id = dgv.CurrentRow.Cells["id_number"].Value.ToString();
+                var student_course = new student_course().GetStudentCourses().FirstOrDefault(x => x.id_number_id == id.ToString()).course_id;
+                var course = new Courses().GetCourses().FirstOrDefault(x => x.code.ToString() == student_course);
+                tSudentCourse.Text = course.code;
             }
-            catch
+            catch(Exception ex)
             {
-                new Classes.Toastr("Information", "Approve Student to Assign Curriculum");
+                new Classes.Toastr("Information", ex.Message);
             }
         }
 
@@ -71,7 +72,7 @@ namespace school_management_system_model.Forms.transactions
         private void loadRecords()
         {
             var data = new StudentAccount().GetStudentAccounts();
-            data.Where(x => x.school_year == tSchoolYear.Text).Skip(paging.pageSize * (paging.pageNumber - 1)).Take(paging.pageSize).ToList();
+            data.Where(x => x.school_year_id == tSchoolYear.Text).Skip(paging.pageSize * (paging.pageNumber - 1)).Take(paging.pageSize).ToList();
             dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].HeaderText = "Student Number";
@@ -110,10 +111,10 @@ namespace school_management_system_model.Forms.transactions
 
         private void loadSchoolYear()
         {
-            var data = new StudentAccount();
-            var schoolYear = data.schoolYearPreSet();
-            tSchoolYear.Text = schoolYear.Rows[0]["code"].ToString();
-            tSemester.Text = schoolYear.Rows[0]["semester"].ToString();
+            var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.is_current == "Yes");
+            ;
+            tSchoolYear.Text = school_year.code;
+            tSemester.Text = school_year.semester;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -129,17 +130,28 @@ namespace school_management_system_model.Forms.transactions
 
         private void CreateAccount()
         {
-            var id_number_id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
             var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
-            var frm = new frm_create_account(id_number_id, school_year.id.ToString(), school_year.semester);
+            var frm = new frm_create_account
+            //(id_number_id, school_year.id.ToString(), school_year.semester);
+            {
+                School_Year = tSchoolYear.Text,
+                Semester = school_year.semester
+            };
             frm.Text = "Create Account";
             frm.ShowDialog();
             loadRecords();
         }
         private void UpdateAccount()
         {
-            var frm = new frm_create_account();
-            frm_create_account.instance.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+            var id_number_id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
+            var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
+            var frm = new frm_create_account
+            //(id_number_id, school_year.id.ToString(), school_year.semester);
+            {
+                Id_Number = id_number_id,
+                School_Year = tSchoolYear.Text,
+                Semester = school_year.semester
+            };
             frm.Text = "Update Account";
             frm.ShowDialog();
             loadRecords();
@@ -248,7 +260,7 @@ namespace school_management_system_model.Forms.transactions
                 frm.Text = "Enrollment: " + dgv.CurrentRow.Cells["id_number"].Value.ToString();
                 frm_student_enrollment.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
                 frm_student_enrollment.instance.studentName = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-                frm_student_enrollment.instance.school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString();
+                frm_student_enrollment.instance.school_year_id = dgv.CurrentRow.Cells["school_year_id"].Value.ToString();
                 frm.ShowDialog();
                 loadRecords();
             }

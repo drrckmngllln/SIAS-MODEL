@@ -34,7 +34,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private string loadStudentCourse()
         {
-
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select course_id from student_course where id_number_id='" + id_number_id + "'", con);
             var dt = new DataTable();
@@ -65,7 +64,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 con.Close();
 
                 con.Open();
-                cmd = new MySqlCommand("update student_accounts set status='For Enrollment' where id_number='" + idNumber + "'", con);
+                cmd = new MySqlCommand("update student_accounts set status='For Enrollment' where id='" + idNumber + "'", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 
