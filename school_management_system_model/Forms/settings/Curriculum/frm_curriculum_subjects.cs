@@ -133,20 +133,13 @@ namespace school_management_system_model.Forms.settings
             }
         }
 
-        private DataTable onSearch(string search)
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculum_subjects where concat(curriculum, code, descriptive_title) like '%" + search + "%'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-
         private void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                dgv.DataSource = onSearch(tsearch.Text);
+                var search = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.code.ToLower().Contains(tsearch.Text) 
+                || x.descriptive_title.ToLower().Contains(tsearch.Text)).ToList();
+                dgv.DataSource = search;
             }
             else if (tsearch.Text.Length == 0)
             {

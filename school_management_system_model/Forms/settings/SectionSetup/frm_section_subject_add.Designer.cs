@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tCurriculum = new System.Windows.Forms.Label();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.tsearch = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFilter = new Krypton.Toolkit.KryptonButton();
@@ -73,13 +72,13 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv.Location = new System.Drawing.Point(12, 166);
+            this.dgv.Location = new System.Drawing.Point(12, 137);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv.RowTemplate.Height = 40;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1057, 328);
+            this.dgv.Size = new System.Drawing.Size(1057, 357);
             this.dgv.TabIndex = 52;
             // 
             // label1
@@ -117,17 +116,6 @@
             this.kryptonButton1.TabIndex = 55;
             this.kryptonButton1.Values.Text = "Select";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
-            // 
-            // tsearch
-            // 
-            this.tsearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tsearch.CueHint.CueHintText = "Search";
-            this.tsearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.tsearch.Location = new System.Drawing.Point(735, 137);
-            this.tsearch.Name = "tsearch";
-            this.tsearch.Size = new System.Drawing.Size(334, 23);
-            this.tsearch.TabIndex = 56;
-            this.tsearch.TextChanged += new System.EventHandler(this.tsearch_TextChanged);
             // 
             // kryptonButton2
             // 
@@ -225,7 +213,6 @@
             this.ClientSize = new System.Drawing.Size(1081, 545);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.tsearch);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.tCurriculum);
             this.Controls.Add(this.label1);
@@ -284,7 +271,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label tCurriculum;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonTextBox tsearch;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;

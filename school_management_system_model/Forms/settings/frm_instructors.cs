@@ -30,21 +30,19 @@ namespace school_management_system_model.Forms.settings
 
         private void loadDepartments()
         {
-            var departments = new Instructors();
-            var data = departments.loadDepartments();
-            foreach(DataRow row in data.Rows)
-            {
-                tDepartment.Items.Add(row["code"]);
-            }
+            var departments = new Departments().GetDepartments();
+            tDepartment.ValueMember = "id";
+            tDepartment.DisplayMember = "code";
+            tDepartment.DataSource = departments;
         }
 
         private void loadRecords()
         {
-            var data = new Instructors();
-            dgv.DataSource = data.loadRecords();
+            var data = new Instructors().GetInstructors();
+            dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["fullname"].HeaderText = "Full Name";
-            dgv.Columns["department"].HeaderText = "Department";
+            dgv.Columns["department_id"].HeaderText = "Department";
             dgv.Columns["position"].HeaderText = "Position";
         }
 
@@ -55,7 +53,7 @@ namespace school_management_system_model.Forms.settings
                 var data = new Instructors
                 {
                     fullname = tFullname.Text,
-                    department_id = tDepartment.Text,
+                    department_id = tDepartment.SelectedValue.ToString(),
                     position = tPosition.Text
                 };
                 data.addRecords();
@@ -72,7 +70,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                     fullname = tFullname.Text,
-                    department_id = tDepartment.Text,
+                    department_id = tDepartment.SelectedValue.ToString(),
                     position = tPosition.Text
                 };
                 data.editRecords();
@@ -146,7 +144,7 @@ namespace school_management_system_model.Forms.settings
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             tFullname.Text = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-            tDepartment.Text = dgv.CurrentRow.Cells["department"].Value.ToString();
+            tDepartment.Text = dgv.CurrentRow.Cells["department_id"].Value.ToString();
             tPosition.Text = dgv.CurrentRow.Cells["position"].Value.ToString();
             btn_save.Text = "Update";
         }

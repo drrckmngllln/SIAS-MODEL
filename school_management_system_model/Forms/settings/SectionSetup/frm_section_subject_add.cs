@@ -20,6 +20,7 @@ namespace school_management_system_model.Forms.settings
         public string remarks { get; set; }
         public string Email { get; }
 
+        Curriculums curriculum = new Curriculums();
         public frm_section_subject_add(string email)
         {
             instance = this;
@@ -90,37 +91,39 @@ namespace school_management_system_model.Forms.settings
         }
         private void saveAllSectionSubjects()
         {
-            try
-            {
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    var save = new section_subject
+                    var sections = new sections().GetSections().FirstOrDefault(x => x.id == Convert.ToInt32(sectionCode));
+                    var uid = sections.section_code + sections.course_id + sections.year_level + sections.section + sections.semester
+                        + row.Cells["code"].Value.ToString();
+                    var course_id = new Courses().GetCourses().FirstOrDefault(x => x.code == sections.course_id);
+                    var instructor = new Instructors().GetInstructors().FirstOrDefault();
+                    var SaveSectionSubjects = new SectionSubjects
                     {
-                        //unique_id = sectionCode + "-" + curriculum_id + "-" + course + "-" + year_level + "-" + semester + "-" +
-                        //row.Cells["code"].Value.ToString(),
-                        //section_code = sectionCode,
-                        //curriculum = curriculum_id,
-                        //course = course,
-                        //year_level = year_level,
-                        //semester = semester,
-                        //subject_code = row.Cells["code"].Value.ToString(),
-                        //descriptive_title = row.Cells["descriptive_title"].Value.ToString(),
-                        //total_units = Convert.ToDecimal(row.Cells["total_units"].Value.ToString()),
-                        //lecture_units = Convert.ToDecimal(row.Cells["lecture_units"].Value.ToString()),
-                        //lab_units = Convert.ToDecimal(row.Cells["lab_units"].Value.ToString()),
-                        //pre_requisite = row.Cells["pre_requisite"].Value.ToString(),
-                        //time = tTime.Text,
-                        //day = tDay.Text,
-                        //room = tRoom.Text
+                        unique_id = uid,
+                        section_code_id = sectionCode,
+                        curriculum_id = curriculum_id,
+                        course_id = course_id.id.ToString(),
+                        year_level = year_level,
+                        semester = semester,
+                        subject_code = row.Cells["code"].Value.ToString(),
+                        descriptive_title = row.Cells["descriptive_title"].Value.ToString(),
+                        total_units = row.Cells["total_units"].Value.ToString(),
+                        lecture_units = row.Cells["lecture_units"].Value.ToString(),
+                        lab_units = row.Cells["lab_units"].Value.ToString(),
+                        pre_requisite = row.Cells["pre_requisite"].Value.ToString(),
+                        instructor_id = instructor.id.ToString()
                     };
-                    save.saveSectionSubjects();
-                    
-                    
+                    SaveSectionSubjects.AddSectionSubjects();
                 }
                 new Classes.Toastr("Success", "Subjects Imported");
                 new ActivityLogger().activityLogger(Email, "Section Subject Select All");
 
                 Close();
+            try
+            {
+                
+
             }
             catch(Exception ex)
             {
@@ -132,25 +135,6 @@ namespace school_management_system_model.Forms.settings
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             SaveSectionSubjects();
-        }
-
-        private void tsearch_TextChanged(object sender, EventArgs e)
-        {
-            
-            if (tsearch.Text.Length > 2)
-            {
-                var search = new section_subject
-                {
-                    search = tsearch.Text,
-                    curriculumCode = tCurriculum.Text
-                };
-                dgv.DataSource = search.searchSectionSubjectRegular();
-                
-            }
-            else if (tsearch.Text.Length == 0)
-            {
-                loadRecords();
-            }
         }
 
         private void frm_section_subject_add_KeyDown(object sender, KeyEventArgs e)

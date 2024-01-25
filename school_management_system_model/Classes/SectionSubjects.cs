@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Reporting.Map.WebForms.BingMaps;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +29,11 @@ namespace school_management_system_model.Classes
         public string instructor_id { get; set; }
         public string status { get; set; }
 
-        public List<SectionSubjects> GetSectionSubjects()
+        public async Task<List<SectionSubjects>> GetSectionSubjects()
         {
             var list = new List<SectionSubjects>();
             var con = new MySqlConnection(connection.con());
-            con.Open();
+            await con.OpenAsync();
             var cmd = new MySqlCommand("select * from section_subjects", con);
             var reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -64,7 +65,7 @@ namespace school_management_system_model.Classes
                 };
                 list.Add(sectionSubjects);
             }
-            con.Close();
+            await con.CloseAsync();
             return list;
         }
 
@@ -73,25 +74,55 @@ namespace school_management_system_model.Classes
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("insert into section_subjects(unique_id, section_code_id, curriculum_id, course_id, year_level, semester, subject_code, " +
-                "descriptive_title, total_units, lecture_units, lab_units, pre_requisite, time, day, room, instructor_id) " +
+                "descriptive_title, total_units, lecture_units, lab_units, pre_requisite, time, day, room, instructor_id, status) " +
                 "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)", con);
             cmd.Parameters.AddWithValue("@1", unique_id);
             cmd.Parameters.AddWithValue("@2", section_code_id);
-            cmd.Parameters.AddWithValue("@1", curriculum_id);
-            cmd.Parameters.AddWithValue("@1", course_id);
-            cmd.Parameters.AddWithValue("@1", year_level);
-            cmd.Parameters.AddWithValue("@1", semester);
-            cmd.Parameters.AddWithValue("@1", subject_code);
-            cmd.Parameters.AddWithValue("@1", descriptive_title);
-            cmd.Parameters.AddWithValue("@1", total_units);
-            cmd.Parameters.AddWithValue("@1", lecture_units);
-            cmd.Parameters.AddWithValue("@1", lab_units);
-            cmd.Parameters.AddWithValue("@1", pre_requisite);
+            cmd.Parameters.AddWithValue("@3", curriculum_id);
+            cmd.Parameters.AddWithValue("@4", course_id);
+            cmd.Parameters.AddWithValue("@5", year_level);
+            cmd.Parameters.AddWithValue("@6", semester);
+            cmd.Parameters.AddWithValue("@7", subject_code);
+            cmd.Parameters.AddWithValue("@8", descriptive_title);
+            cmd.Parameters.AddWithValue("@9", total_units);
+            cmd.Parameters.AddWithValue("@10", lecture_units);
+            cmd.Parameters.AddWithValue("@11", lab_units);
+            cmd.Parameters.AddWithValue("@12", pre_requisite);
+            cmd.Parameters.AddWithValue("@13", "Not Set");
+            cmd.Parameters.AddWithValue("@14", "Not Set");
+            cmd.Parameters.AddWithValue("@15", "Not Set");
+            cmd.Parameters.AddWithValue("@16", instructor_id);
+            cmd.Parameters.AddWithValue("@17", "Active");
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void UpdateSectionSubjects(int id)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("update section_subjects set time=@1, day=@2, room=@3, instructor_id=@4 where id='" + id + "'", con);
             cmd.Parameters.AddWithValue("@1", time);
-            cmd.Parameters.AddWithValue("@1", day);
-            cmd.Parameters.AddWithValue("@1", room);
-            cmd.Parameters.AddWithValue("@1", instructor_id);
-            cmd.Parameters.AddWithValue("@1", status);
+            cmd.Parameters.AddWithValue("@2", day);
+            cmd.Parameters.AddWithValue("@3", room);
+            cmd.Parameters.AddWithValue("@4", instructor_id);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void DeleteSectionSubjects(int id)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("delete from section_subjects where id='" + id + "'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void DeleteAllSectionSubjects(int section_code_id)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("delete from section_subjects where section_code_id='" + section_code_id + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }

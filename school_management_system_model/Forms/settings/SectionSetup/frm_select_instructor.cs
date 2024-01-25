@@ -1,7 +1,9 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
@@ -20,11 +22,8 @@ namespace school_management_system_model.Forms.settings
 
         private void loadRecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from instructors", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var instructor = new Instructors().GetInstructors();
+            dgv.DataSource = instructor.ToList();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["fullname"].HeaderText = "Full Name";
             dgv.Columns["department_id"].HeaderText = "Department";
@@ -33,7 +32,8 @@ namespace school_management_system_model.Forms.settings
 
         private void selectInstructor()
         {
-            
+            frm_section_subjects.instance.instructor = dgv.CurrentRow.Cells["id"].Value.ToString();
+            Close();
         }
 
         private void tSearch_TextChanged(object sender, EventArgs e)

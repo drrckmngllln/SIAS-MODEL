@@ -37,28 +37,12 @@ namespace school_management_system_model.Classes
             con.Close();
             return list;
         }
-        public DataTable loadRecords()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from instructors", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        public DataTable loadDepartments()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from departments", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        
+       
         public void addRecords()
         {
             var con = new MySqlConnection( connection.con());
             con.Open();
-            var cmd = new MySqlCommand("insert into instructors(fullname, department, position) values(@1,@2,@3)", con);
+            var cmd = new MySqlCommand("insert into instructors(fullname, department_id, position) values(@1,@2,@3)", con);
             cmd.Parameters.AddWithValue("@1", fullname);
             cmd.Parameters.AddWithValue("@2", department_id);
             cmd.Parameters.AddWithValue("@3", position);
@@ -69,7 +53,7 @@ namespace school_management_system_model.Classes
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("update instructors set fullname=@1, department=@2, position=@3 where id='" +id+ "'", con);
+            var cmd = new MySqlCommand("update instructors set fullname=@1, department_id=@2, position=@3 where id='" +id+ "'", con);
             cmd.Parameters.AddWithValue("@1", fullname);
             cmd.Parameters.AddWithValue("@2", department_id);
             cmd.Parameters.AddWithValue("@3", position);

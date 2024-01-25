@@ -25,6 +25,8 @@ namespace school_management_system_model.Forms.transactions
         public string schoolYear { get; set; }
 
         public bool AdmissionValidator { get; set; }
+
+        PaginationParams paging = new PaginationParams();
         public frm_student_accounts()
         {
             instance = this;
@@ -68,12 +70,13 @@ namespace school_management_system_model.Forms.transactions
 
         private void loadRecords()
         {
-            var data = new SaveStudentAccountsParams();
-            dgv.DataSource = data.GetStudentAccounts().Where(x => x.school_year == tSchoolYear.Text).ToList();
+            var data = new StudentAccount().GetStudentAccounts();
+            data.Where(x => x.school_year == tSchoolYear.Text).Skip(paging.pageSize * (paging.pageNumber - 1)).Take(paging.pageSize).ToList();
+            dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].HeaderText = "Student Number";
             dgv.Columns["sy_enrolled"].Visible = false;
-            dgv.Columns["school_year"].Visible = false;
+            dgv.Columns["school_year_id"].Visible = false;
             dgv.Columns["fullname"].HeaderText = "Student Name";
             dgv.Columns["fullname"].Width = 300;
             dgv.Columns["last_name"].Visible = false;
@@ -103,10 +106,6 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["f_occupation"].HeaderText = "Father Occupation";
             dgv.Columns["type_of_student"].HeaderText = "Type of Student";
             dgv.Columns["date_of_admission"].Visible = false;
-            dgv.Columns["semester"].Visible = false;
-            dgv.Columns["course"].Visible = false;
-            dgv.Columns["campus"].Visible = false;
-
         }
 
         private void loadSchoolYear()
@@ -130,7 +129,9 @@ namespace school_management_system_model.Forms.transactions
 
         private void CreateAccount()
         {
-            var frm = new frm_create_account();
+            var id_number_id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
+            var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
+            var frm = new frm_create_account(id_number_id, school_year.id.ToString(), school_year.semester, "Create");
             frm_create_account.instance.schoolYear = tSchoolYear.Text;
             frm_create_account.instance.semester = tSemester.Text;
             frm.Text = "Create Account";

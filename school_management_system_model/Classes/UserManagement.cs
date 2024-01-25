@@ -10,6 +10,7 @@ namespace school_management_system_model.Classes
 {
     internal class UserManagement
     {
+        public int id { get; set; }
         public string last_name { get; set; }
         public string first_name { get; set; }
         public string middle_name { get; set; }
@@ -24,6 +25,37 @@ namespace school_management_system_model.Classes
         public int delete { get; set; }
         public int administrator { get; set; }
 
+        public async Task<List<UserManagement>> GetUserManagementsAsync()
+        {
+            var list = new List<UserManagement>();
+            var con = new MySqlConnection(connection.con());
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("select * from users", con);
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                var user = new UserManagement
+                {
+                    id = reader.GetInt32("id"),
+                    last_name = reader.GetString("last_name"),
+                    first_name = reader.GetString("first_name"),
+                    middle_name = reader.GetString("middle_name"),
+                    fullname = reader.GetString("fullname"),
+                    employee_id = reader.GetString("employee_id"),
+                    email = reader.GetString("email"),
+                    password = reader.GetString("password"),
+                    department = reader.GetString("department"),
+                    access_level = reader.GetString("access_level"),
+                    add = reader.GetInt32("is_add"),
+                    edit = reader.GetInt32("is_edit"),
+                    delete = reader.GetInt32("is_delete"),
+                    administrator = reader.GetInt32("is_administrator"),
+                };
+                list.Add(user);
+            }
+            await con.CloseAsync();
+            return list;
+        }
         public DataTable loadRecords(string department)
         {
             DataTable result;

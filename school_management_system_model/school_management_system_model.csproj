@@ -374,10 +374,10 @@
     <Compile Include="Forms\settings\SectionSetup\frm_section_subject_add.Designer.cs">
       <DependentUpon>frm_section_subject_add.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\settings\frm_select_instructor.cs">
+    <Compile Include="Forms\settings\SectionSetup\frm_select_instructor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\settings\frm_select_instructor.Designer.cs">
+    <Compile Include="Forms\settings\SectionSetup\frm_select_instructor.Designer.cs">
       <DependentUpon>frm_select_instructor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\settings\frm_subjects.cs">
@@ -717,7 +717,7 @@
     <EmbeddedResource Include="Forms\settings\SectionSetup\frm_section_subject_add.resx">
       <DependentUpon>frm_section_subject_add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\settings\frm_select_instructor.resx">
+    <EmbeddedResource Include="Forms\settings\SectionSetup\frm_select_instructor.resx">
       <DependentUpon>frm_select_instructor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\frm_subjects.resx">

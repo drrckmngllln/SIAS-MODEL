@@ -42,24 +42,6 @@ namespace school_management_system_model.Classes
             da.Fill(dt);
             return dt;
         }
-        public DataTable getCurriculums()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculums where course='" + course + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-
-        public DataTable GetCurriculumData()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculum_subjects where curriculum='"+ curriculumCode +"' " +
-                "and semester='"+ semester +"'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
 
         public void saveSectionSubjects()
         {
@@ -90,44 +72,18 @@ namespace school_management_system_model.Classes
             
         }
 
-        public void updateSectionSubject()
-        {
-            try
-            {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("update section_subjects set time=@1, day=@2, room=@3, instructor=@4 where id='"+ id +"'", con);
-                cmd.Parameters.AddWithValue("@1", time);
-                cmd.Parameters.AddWithValue("@2", day);
-                cmd.Parameters.AddWithValue("@3", room);
-                cmd.Parameters.AddWithValue("@4", instructor);
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch
-            {
-                MessageBox.Show("Duplicate Entry", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public DataTable searchSectionSubjectRegular()
+        public void updateSectionSubject(int id)
         {
             var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculum_subjects where concat(code, descriptive_title) like '%" + search + "%' " +
-                "and curriculum='" + curriculumCode + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        
-        public DataTable deleteSectionSubjects()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter();
-            da.SelectCommand = new MySqlCommand("delete from section_subjects where id='" + id + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            con.Open();
+            var cmd = new MySqlCommand("update section_subjects set time=@1, day=@2, room=@3, instructor=@4 where id='"+ id +"'", con);
+            cmd.Parameters.AddWithValue("@1", time);
+            cmd.Parameters.AddWithValue("@2", day);
+            cmd.Parameters.AddWithValue("@3", room);
+            cmd.Parameters.AddWithValue("@4", instructor);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            
         }
     }
 }

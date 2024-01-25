@@ -54,14 +54,7 @@ namespace school_management_system_model.Classes
             con.Close();
             return list;
         }
-        public DataTable getCourses()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from courses", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
+        
         public void AddSection()
         {
             var con = new MySqlConnection(connection.con());
@@ -101,6 +94,17 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
             
+        }
+        public void DeleteSection(int id)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("delete from sections where id='"+ id +"'", con);
+            cmd.ExecuteNonQuery();
+
+            cmd = new MySqlCommand("delete from section_subjects where section_code_id='"+ id +"'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
         public DataTable deleteSectionSubjects()
         {

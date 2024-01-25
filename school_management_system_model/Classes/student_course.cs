@@ -18,6 +18,7 @@ namespace school_management_system_model.Classes
         public string curriculum_id { get; set; }
         public string year_level { get; set; }
         public string section_id { get; set; }
+        public string semester { get; set; }
 
         public List<student_course> GetStudentCourses()
         {
@@ -28,7 +29,7 @@ namespace school_management_system_model.Classes
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var id_number = GetStudentIDNumber().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id")).id_number;
+                var id_number = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id")).id_number;
                 var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;
                 var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
                 var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id")).code;
@@ -42,32 +43,51 @@ namespace school_management_system_model.Classes
                     campus_id = campus,
                     curriculum_id = curriculum,
                     year_level = reader.GetString("year_level"),
-                    section_id = reader.GetString("section_id")
+                    section_id = reader.GetString("section_id"),
+                    semester = reader.GetString("semeester")
                 };
                 list.Add(courses);
             }
             con.Close();
             return list;
         }
-        public List<SaveStudentAccountsParams> GetStudentIDNumber()
+
+        public void AddStudentCourse()
         {
-            var list = new List<SaveStudentAccountsParams>();
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("select * from student_accounts", con);
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var student = new SaveStudentAccountsParams
-                {
-                    id = reader.GetInt32("id"),
-                    id_number = reader["id_number"].ToString()
-                };
-                list.Add(student);
-            }
+            var cmd = new MySqlCommand("insert into student_course(id_number_id, course_id, campus_id, curriculum_id, year_level, section_id, semester) " +
+                "values(@1,@2,@3,@4,@5,@6,@7)", con);
+            cmd.Parameters.AddWithValue("@1", id_number_id);
+            cmd.Parameters.AddWithValue("@2", course_id);
+            cmd.Parameters.AddWithValue("@3", campus_id);
+            cmd.Parameters.AddWithValue("@4", curriculum_id);
+            cmd.Parameters.AddWithValue("@5", year_level);
+            cmd.Parameters.AddWithValue("@6", section_id);
+            cmd.Parameters.AddWithValue("@7", semester);
+            cmd.ExecuteNonQuery();
             con.Close();
-            return list;
         }
+
+        //public List<SaveStudentAccountsParams> GetStudentIDNumber()
+        //{
+        //    var list = new List<SaveStudentAccountsParams>();
+        //    var con = new MySqlConnection(connection.con());
+        //    con.Open();
+        //    var cmd = new MySqlCommand("select * from student_accounts", con);
+        //    var reader = cmd.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        var student = new SaveStudentAccountsParams
+        //        {
+        //            id = reader.GetInt32("id"),
+        //            id_number = reader["id_number"].ToString()
+        //        };
+        //        list.Add(student);
+        //    }
+        //    con.Close();
+        //    return list;
+        //}
         
     }
 }

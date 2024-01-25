@@ -114,12 +114,8 @@ namespace school_management_system_model.Forms.settings
 
         private void delete()
         {
-            var delete = new sections
-            {
-                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
-                section_code = tSectionCode.Text
-            };
-            delete.deleteData();
+            var delete = new sections();
+            delete.DeleteSection(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
             MessageBox.Show("Section Delete Success");
             new ActivityLogger().activityLogger(Email, "Section Delete: " + tSectionCode.Text);
 

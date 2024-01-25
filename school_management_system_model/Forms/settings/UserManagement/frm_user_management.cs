@@ -27,9 +27,11 @@ namespace school_management_system_model.Forms.settings.UserManagement
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            dgv.DataSource = new Classes.UserManagement().loadRecords(Office);
+            var users = await new Classes.UserManagement().GetUserManagementsAsync();
+            users.Where(x => x.department == Office).ToList();
+            dgv.DataSource = users;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["last_name"].Visible = false;
             dgv.Columns["first_name"].Visible = false;
@@ -41,10 +43,10 @@ namespace school_management_system_model.Forms.settings.UserManagement
             dgv.Columns["password"].Visible = false;
             dgv.Columns["access_level"].HeaderText = "Access Level";
             dgv.Columns["department"].HeaderText = "Department";
-            dgv.Columns["is_add"].HeaderText = "Add Authorization";
-            dgv.Columns["is_edit"].HeaderText = "Edit Authorization";
-            dgv.Columns["is_delete"].HeaderText = "Delete Authorization";
-            dgv.Columns["is_administrator"].HeaderText = "Administrator Authorization";
+            dgv.Columns["add"].Visible = false;
+            dgv.Columns["edit"].Visible = false;
+            dgv.Columns["delete"].Visible = false;
+            dgv.Columns["administrator"].Visible = false;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -115,11 +117,11 @@ namespace school_management_system_model.Forms.settings.UserManagement
                     txtclear();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 new Classes.Toastr("Error", ex.Message);
             }
-            
+
         }
 
         private void cAdd_CheckedChanged(object sender, EventArgs e)
@@ -149,7 +151,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
             {
                 delete = 1;
             }
-            else {  delete = 0; }
+            else { delete = 0; }
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -157,33 +159,37 @@ namespace school_management_system_model.Forms.settings.UserManagement
             tLastname.Text = dgv.CurrentRow.Cells["last_name"].Value.ToString();
             tFirstname.Text = dgv.CurrentRow.Cells["first_name"].Value.ToString();
             tMiddlename.Text = dgv.CurrentRow.Cells["middle_name"].Value.ToString();
-            tEmployeeId.Text = dgv.CurrentRow.Cells["employee_id"].Value.ToString(); 
-            tEmail.Text = dgv.CurrentRow.Cells["email"].Value.ToString(); 
+            tEmployeeId.Text = dgv.CurrentRow.Cells["employee_id"].Value.ToString();
+            tEmail.Text = dgv.CurrentRow.Cells["email"].Value.ToString();
             tAccessLevel.Text = dgv.CurrentRow.Cells["access_level"].Value.ToString();
             tDepartment.Text = dgv.CurrentRow.Cells["department"].Value.ToString();
-            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_add"].Value))
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["add"].Value))
             {
                 cAdd.Checked = true;
-            }else { cAdd.Checked = false; }
+            }
+            else { cAdd.Checked = false; }
 
-            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_edit"].Value))
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["edit"].Value))
             {
                 cEdit.Checked = true;
-            }else { cEdit.Checked = false; }
-            
-            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_delete"].Value))
+            }
+            else { cEdit.Checked = false; }
+
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["delete"].Value))
             {
                 cDelete.Checked = true;
-            }else { cDelete.Checked = false; }
+            }
+            else { cDelete.Checked = false; }
 
-            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_administrator"].Value))
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["administrator"].Value))
             {
                 cAdministrator.Checked = true;
-            }else { cAdministrator.Checked = false; }
+            }
+            else { cAdministrator.Checked = false; }
 
             btn_save.Text = "Update";
-            
-            
+
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
