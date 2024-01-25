@@ -224,6 +224,7 @@
     <Compile Include="Classes\OtherFeesSetup.cs" />
     <Compile Include="Classes\Parameters\PaginationParams.cs" />
     <Compile Include="Classes\Parameters\SaveAssessmentBreakdownParams.cs" />
+    <Compile Include="Classes\SchoolYear.cs" />
     <Compile Include="Classes\SectionSubjects.cs" />
     <Compile Include="Classes\Specification\BaseSpecification.cs" />
     <Compile Include="Classes\Specification\ISpecification.cs" />

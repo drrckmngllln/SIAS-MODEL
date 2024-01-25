@@ -131,9 +131,7 @@ namespace school_management_system_model.Forms.transactions
         {
             var id_number_id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
             var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
-            var frm = new frm_create_account(id_number_id, school_year.id.ToString(), school_year.semester, "Create");
-            frm_create_account.instance.schoolYear = tSchoolYear.Text;
-            frm_create_account.instance.semester = tSemester.Text;
+            var frm = new frm_create_account(id_number_id, school_year.id.ToString(), school_year.semester);
             frm.Text = "Create Account";
             frm.ShowDialog();
             loadRecords();
