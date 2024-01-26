@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,11 +33,13 @@ namespace school_management_system_model.Forms.transactions.StudentEnrollment
 
         private void loadSection()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from sections where course='" + Course + "' and semester='" + Semester + "' and year_level='" + Year_Level + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var section = new sections().GetSections().Where(x => x.course_id == Course && x.semester == Semester && x.year_level.ToString() == Year_Level).ToList();
+
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from sections where course='" + Course + "' and semester='" + Semester + "' and year_level='" + Year_Level + "'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
+            dgv.DataSource = section;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
             dgv.Columns["section_code"].HeaderText = "Section Code";

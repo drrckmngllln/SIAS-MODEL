@@ -98,7 +98,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnStudentAccounts_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_accounts
+            var frm = new frm_student_accounts(email)
             {
                 IsAdd = is_add,
                 IsEdit = is_edit,

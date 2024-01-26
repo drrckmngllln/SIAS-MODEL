@@ -42,6 +42,7 @@ namespace school_management_system_model.Classes
                 var section = new sections().GetSections().FirstOrDefault(x => x.id == reader.GetInt32("section_code_id"));
                 var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
                 var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
+                
                 var sectionSubjects = new SectionSubjects
                 {
                     id = reader.GetInt32("id"),

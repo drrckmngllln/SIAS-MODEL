@@ -69,14 +69,16 @@ namespace school_management_system_model.Classes
             return dt;
         }
 
-        public DataTable loadSubjects(string sectionCode, string semester)
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from section_subjects where section_code='"+ sectionCode +"' and semester='"+semester+"'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
+        //public async DataTable loadSubjects(string sectionCode, string semester)
+        //{
+        //    var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+        //    sectionSubjects.Where(x => x.section_code_id == sectionCode && x.semester ==  semester).ToList();
+        //    var con = new MySqlConnection(connection.con());
+        //    var da = new MySqlDataAdapter("select * from section_subjects where section_code='"+ sectionCode +"' and semester='"+semester+"'", con);
+        //    var dt = new DataTable();
+        //    da.Fill(sectionSubjects);
+        //    return dt;
+        //}
         public void saveStudentCourse()
         {
             // student course

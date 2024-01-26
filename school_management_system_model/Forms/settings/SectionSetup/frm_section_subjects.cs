@@ -32,7 +32,7 @@ namespace school_management_system_model.Forms.settings
         private async void loadRecords()
         {
             var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
-            dgv.DataSource = sectionSubjects.Where(x => x.semester == tSemester.Text).ToList();
+            dgv.DataSource = sectionSubjects.Where(x => x.semester == tSemester.Text && x.section_code_id == tSectionCode.Text).ToList();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
             dgv.Columns["section_code_id"].Visible = false;

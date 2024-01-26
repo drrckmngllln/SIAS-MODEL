@@ -139,20 +139,6 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@32", date_of_admission);
             cmd.ExecuteNonQuery();
             con.Close();
-
-            //// Saving Student Course
-            //var IdNumber = new SaveStudentAccountsParams().GetStudentAccounts().FirstOrDefault(x => x.id_number == parameter.id_number).id;
-            //var course = new Courses().GetCourses().FirstOrDefault(x => x.code == parameter.course).id;
-            //var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.code == parameter.campus).id;
-
-            //con.Open();
-            //cmd = new MySqlCommand("insert into student_course(id_number_id, course_id, campus_id, semester) values(@1,@2,@3,@4)", con);
-            //cmd.Parameters.AddWithValue("@1", IdNumber);
-            //cmd.Parameters.AddWithValue("@2", course);
-            //cmd.Parameters.AddWithValue("@3", campus);
-            //cmd.Parameters.AddWithValue("@4", parameter.semester);
-            //cmd.ExecuteNonQuery();
-            //con.Close();
         }
 
         
@@ -205,16 +191,7 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public DataTable searchRecords(string search)
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_accounts where concat(fullname, id_number) " +
-                "like '%" + search + "%'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-        public void approveStudent(string idNumber)
+        public void ApproveStudent(string idNumber)
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
@@ -223,19 +200,19 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
 
-            // Inserting the id Number to the student Course
-            con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_course where id_number='" + idNumber + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count == 0)
-            {
-                con = new MySqlConnection(connection.con());
-                con.Open();
-                cmd = new MySqlCommand("insert into student_course(id_number) values('" + idNumber + "')", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
+            //// Inserting the id Number to the student Course
+            //con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from student_course where id_number='" + idNumber + "'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
+            //if (dt.Rows.Count == 0)
+            //{
+            //    con = new MySqlConnection(connection.con());
+            //    con.Open();
+            //    cmd = new MySqlCommand("insert into student_course(id_number) values('" + idNumber + "')", con);
+            //    cmd.ExecuteNonQuery();
+            //    con.Close();
+            //}
         }
 
 

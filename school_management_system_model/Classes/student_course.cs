@@ -69,25 +69,21 @@ namespace school_management_system_model.Classes
             con.Close();
         }
 
-        //public List<SaveStudentAccountsParams> GetStudentIDNumber()
-        //{
-        //    var list = new List<SaveStudentAccountsParams>();
-        //    var con = new MySqlConnection(connection.con());
-        //    con.Open();
-        //    var cmd = new MySqlCommand("select * from student_accounts", con);
-        //    var reader = cmd.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        var student = new SaveStudentAccountsParams
-        //        {
-        //            id = reader.GetInt32("id"),
-        //            id_number = reader["id_number"].ToString()
-        //        };
-        //        list.Add(student);
-        //    }
-        //    con.Close();
-        //    return list;
-        //}
-        
+        public void UpdateStudentCourse(int id)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("update student_course set id_number_id=@1, course_id=@2, curriculum_id=@3, year_level=@4, section_id=@5, " +
+                "semester=@6 where id='"+ id +"'", con);
+            cmd.Parameters.AddWithValue("@1", id_number_id);
+            cmd.Parameters.AddWithValue("@2", course_id);
+            cmd.Parameters.AddWithValue("@3", campus_id);
+            cmd.Parameters.AddWithValue("@4", curriculum_id);
+            cmd.Parameters.AddWithValue("@5", year_level);
+            cmd.Parameters.AddWithValue("@6", section_id);
+            cmd.Parameters.AddWithValue("@7", semester);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 }

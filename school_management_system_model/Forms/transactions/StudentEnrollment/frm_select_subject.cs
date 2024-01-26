@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,18 +25,21 @@ namespace school_management_system_model.Forms.transactions
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from section_subjects", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            tLoading.Visible = true;
+            var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from section_subjects", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
+            dgv.DataSource = sectionSubjects;
+            tLoading.Visible = false;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
-            dgv.Columns["section_code"].HeaderText = "Section";
-            dgv.Columns["curriculum"].HeaderText = "Curriculum";
-            dgv.Columns["course"].HeaderText = "Course";
+            dgv.Columns["section_code_id"].HeaderText = "Section";
+            dgv.Columns["curriculum_id"].HeaderText = "Curriculum";
+            dgv.Columns["course_id"].HeaderText = "Course";
             dgv.Columns["year_level"].HeaderText = "Year Level";
             dgv.Columns["semester"].HeaderText = "Semester";
             dgv.Columns["subject_code"].HeaderText = "Subject Code";
@@ -48,39 +52,44 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["time"].HeaderText = "Time";
             dgv.Columns["day"].HeaderText = "Day";
             dgv.Columns["room"].HeaderText = "Room";
-            dgv.Columns["instructor"].HeaderText = "Instructor";
-            dgv.Columns["instructor"].Width = 250;
+            dgv.Columns["instructor_id"].HeaderText = "Instructor";
+            dgv.Columns["instructor_id"].Width = 250;
             dgv.Columns["status"].Visible = false;
         }
 
-        private void searchRecords()
+        private async void searchRecords(string search)
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from section_subjects where concat(subject_code, descriptive_title) " +
-                "like '%" + tSearch.Text + "%'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
-            dgv.Columns["subject_code"].HeaderText = "Subject Code";
-            dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
-            dgv.Columns["descriptive_title"].Width = 350;
-            dgv.Columns["total_units"].HeaderText = "Total Units";
-            dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
-            dgv.Columns["lab_units"].HeaderText = "Lab Units";
-            dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
-            dgv.Columns["id"].Visible = false;
-            dgv.Columns["unique_id"].Visible = false;
-            dgv.Columns["section_code"].HeaderText = "Section";
-            dgv.Columns["curriculum"].HeaderText = "Curriculum";
-            dgv.Columns["course"].HeaderText = "Course";
-            dgv.Columns["year_level"].HeaderText = "Year Level";
-            dgv.Columns["semester"].HeaderText = "Semester";
-            dgv.Columns["time"].HeaderText = "Time";
-            dgv.Columns["day"].HeaderText = "Day";
-            dgv.Columns["room"].HeaderText = "Room";
-            dgv.Columns["instructor"].HeaderText = "Instructor";
-            dgv.Columns["instructor"].Width = 250;
-            dgv.Columns["status"].Visible = false;
+            //tLoading.Visible = true;
+            var searchSubjects = await new SectionSubjects().GetSectionSubjects();
+            searchSubjects.Where(x => x.subject_code.ToLower().Contains(search) || x.descriptive_title.ToLower().Contains(search));
+            dgv.DataSource = searchSubjects.ToList();
+            //tLoading.Visible = false;
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from section_subjects where concat(subject_code, descriptive_title) " +
+            //    "like '%" + tSearch.Text + "%'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
+            //dgv.DataSource = dt;
+            //dgv.Columns["subject_code"].HeaderText = "Subject Code";
+            //dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
+            //dgv.Columns["descriptive_title"].Width = 350;
+            //dgv.Columns["total_units"].HeaderText = "Total Units";
+            //dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
+            //dgv.Columns["lab_units"].HeaderText = "Lab Units";
+            //dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
+            //dgv.Columns["id"].Visible = false;
+            //dgv.Columns["unique_id"].Visible = false;
+            //dgv.Columns["section_code_id"].HeaderText = "Section";
+            //dgv.Columns["curriculum_id"].HeaderText = "Curriculum";
+            //dgv.Columns["course_id"].HeaderText = "Course";
+            //dgv.Columns["year_level"].HeaderText = "Year Level";
+            //dgv.Columns["semester"].HeaderText = "Semester";
+            //dgv.Columns["time"].HeaderText = "Time";
+            //dgv.Columns["day"].HeaderText = "Day";
+            //dgv.Columns["room"].HeaderText = "Room";
+            //dgv.Columns["instructor_id"].HeaderText = "Instructor";
+            //dgv.Columns["instructor_id"].Width = 250;
+            //dgv.Columns["status"].Visible = false;
         }
 
         private void selectSubject()
@@ -116,7 +125,8 @@ namespace school_management_system_model.Forms.transactions
         {
             if (tSearch.Text.Length > 2)
             {
-                searchRecords();
+                
+                searchRecords(tSearch.Text);
             }
             else if (tSearch.Text.Length == 0)
             {

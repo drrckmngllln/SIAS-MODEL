@@ -50,7 +50,9 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
             tCurriculum.ValueMember = "id";
             tCurriculum.DisplayMember = "code";
-            tCurriculum.DataSource = new Curriculums().GetCurriculums().ToList();
+            tCurriculum.DataSource = new Curriculums().GetCurriculums()
+                .Where(x => x.course_id == tCourse.Text)
+                .ToList();
         }
 
         private void approveStudent(string idNumber)

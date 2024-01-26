@@ -228,6 +228,7 @@
     <Compile Include="Classes\SectionSubjects.cs" />
     <Compile Include="Classes\Specification\BaseSpecification.cs" />
     <Compile Include="Classes\Specification\ISpecification.cs" />
+    <Compile Include="Classes\StudentSubject.cs" />
     <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.cs">
       <SubType>Form</SubType>
     </Compile>

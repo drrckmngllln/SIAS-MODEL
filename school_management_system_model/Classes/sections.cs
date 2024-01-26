@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -106,6 +107,25 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
         }
+
+        public void IncrementNumberOfStudent(int id, int numberOfStudents)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("update sections set number_of_students='"+ numberOfStudents +"' where id='" + id + "'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void FullStudent(int id)
+        {
+            var con = new MySqlConnection(connection.con());
+            con.Open();
+            var cmd = new MySqlCommand("update sections set status='Full' where id='" + id + "'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        
         public DataTable deleteSectionSubjects()
         {
             var con = new MySqlConnection(connection.con());

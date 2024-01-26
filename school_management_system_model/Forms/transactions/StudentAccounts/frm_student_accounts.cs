@@ -25,12 +25,14 @@ namespace school_management_system_model.Forms.transactions
         public string schoolYear { get; set; }
 
         public bool AdmissionValidator { get; set; }
+        public string Email { get; }
 
         PaginationParams paging = new PaginationParams();
-        public frm_student_accounts()
+        public frm_student_accounts(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void timerTotal_Tick(object sender, EventArgs e)
@@ -194,8 +196,13 @@ namespace school_management_system_model.Forms.transactions
 
         private void searchRecords(string search)
         {
-            var searchRecords = new StudentAccount();
-            dgv.DataSource = searchRecords.searchRecords(search);
+            var searchRecord = new StudentAccount()
+                .GetStudentAccounts()
+                .Where(x => x.fullname.ToLower().Contains(search))
+                .Skip(paging.pageSize * (paging.pageNumber - 1))
+                .Take(paging.pageSize)
+                .ToList();
+            dgv.DataSource = searchRecord;
         }
 
         private void tSearch_TextChanged(object sender, EventArgs e)
@@ -256,7 +263,7 @@ namespace school_management_system_model.Forms.transactions
         {
             if (AdmissionValidator)
             {
-                var frm = new frm_student_enrollment();
+                var frm = new frm_student_enrollment(Email);
                 frm.Text = "Enrollment: " + dgv.CurrentRow.Cells["id_number"].Value.ToString();
                 frm_student_enrollment.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
                 frm_student_enrollment.instance.studentName = dgv.CurrentRow.Cells["fullname"].Value.ToString();
