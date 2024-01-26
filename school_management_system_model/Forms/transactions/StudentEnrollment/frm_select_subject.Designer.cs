@@ -42,6 +42,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tLoading = new System.Windows.Forms.Label();
+            this.btnSelect = new Krypton.Toolkit.KryptonButton();
+            this.btnClose = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +56,6 @@
             this.tSearch.Name = "tSearch";
             this.tSearch.Size = new System.Drawing.Size(739, 23);
             this.tSearch.TabIndex = 0;
-            this.tSearch.TextChanged += new System.EventHandler(this.tSearch_TextChanged);
             // 
             // dgv
             // 
@@ -92,10 +93,9 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(739, 347);
+            this.dgv.Size = new System.Drawing.Size(739, 340);
             this.dgv.TabIndex = 83;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
-            this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             // 
             // label1
             // 
@@ -136,7 +136,6 @@
             this.groupBox1.TabIndex = 86;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Subject Details";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // tInstructor
             // 
@@ -209,20 +208,64 @@
             this.tLoading.AutoSize = true;
             this.tLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tLoading.ForeColor = System.Drawing.Color.White;
-            this.tLoading.Location = new System.Drawing.Point(307, 304);
+            this.tLoading.Location = new System.Drawing.Point(316, 307);
             this.tLoading.Name = "tLoading";
             this.tLoading.Size = new System.Drawing.Size(144, 20);
             this.tLoading.TabIndex = 92;
             this.tLoading.Text = "Loading Subjects...";
             this.tLoading.Visible = false;
             // 
+            // btnSelect
+            // 
+            this.btnSelect.CornerRoundingRadius = 10F;
+            this.btnSelect.Location = new System.Drawing.Point(537, 504);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(104, 38);
+            this.btnSelect.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.btnSelect.StateCommon.Back.Color2 = System.Drawing.Color.White;
+            this.btnSelect.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(25)))), ((int)(((byte)(0)))));
+            this.btnSelect.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnSelect.StateCommon.Border.Rounding = 10F;
+            this.btnSelect.StateCommon.Border.Width = 2;
+            this.btnSelect.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnSelect.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnSelect.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelect.TabIndex = 116;
+            this.btnSelect.Values.Text = "Select";
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.CornerRoundingRadius = 10F;
+            this.btnClose.Location = new System.Drawing.Point(647, 504);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(104, 38);
+            this.btnClose.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.btnClose.StateCommon.Back.Color2 = System.Drawing.Color.White;
+            this.btnClose.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(25)))), ((int)(((byte)(0)))));
+            this.btnClose.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnClose.StateCommon.Border.Rounding = 10F;
+            this.btnClose.StateCommon.Border.Width = 2;
+            this.btnClose.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnClose.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.TabIndex = 117;
+            this.btnClose.Values.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frm_select_subject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(763, 517);
+            this.ClientSize = new System.Drawing.Size(763, 554);
             this.ControlBox = false;
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.tLoading);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv);
@@ -278,5 +321,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label tLoading;
+        private Krypton.Toolkit.KryptonButton btnSelect;
+        private Krypton.Toolkit.KryptonButton btnClose;
     }
 }

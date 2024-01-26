@@ -25,10 +25,10 @@ namespace school_management_system_model.Forms.transactions
             loadRecords();
         }
 
-        private async void loadRecords()
+        private void loadRecords()
         {
             tLoading.Visible = true;
-            var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+            var sectionSubjects = new SectionSubjects().GetSectionSubjects();
             //var con = new MySqlConnection(connection.con());
             //var da = new MySqlDataAdapter("select * from section_subjects", con);
             //var dt = new DataTable();
@@ -57,13 +57,13 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["status"].Visible = false;
         }
 
-        private async void searchRecords(string search)
+        private void searchRecords(string search)
         {
-            //tLoading.Visible = true;
-            var searchSubjects = await new SectionSubjects().GetSectionSubjects();
-            searchSubjects.Where(x => x.subject_code.ToLower().Contains(search) || x.descriptive_title.ToLower().Contains(search));
+            tLoading.Visible = true;
+            var searchSubjects = new SectionSubjects().GetSectionSubjects()
+                .Where(x => x.subject_code.ToLower().Contains(tSearch.Text) || x.descriptive_title.ToLower().Contains(tSearch.Text));
             dgv.DataSource = searchSubjects.ToList();
-            //tLoading.Visible = false;
+            tLoading.Visible = false;
             //var con = new MySqlConnection(connection.con());
             //var da = new MySqlDataAdapter("select * from section_subjects where concat(subject_code, descriptive_title) " +
             //    "like '%" + tSearch.Text + "%'", con);
@@ -105,11 +105,13 @@ namespace school_management_system_model.Forms.transactions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                selectSubject();
+                searchRecords(tSearch.Text);
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                tSearch.Clear();
+                tSearch.Select();
+                loadRecords();
             }
         }
 
@@ -118,30 +120,17 @@ namespace school_management_system_model.Forms.transactions
             tTime.Text = dgv.CurrentRow.Cells["time"].Value.ToString();
             tDay.Text = dgv.CurrentRow.Cells["day"].Value.ToString();
             tRoom.Text = dgv.CurrentRow.Cells["room"].Value.ToString();
-            tInstructor.Text = dgv.CurrentRow.Cells["instructor"].Value.ToString();
+            tInstructor.Text = dgv.CurrentRow.Cells["instructor_id"].Value.ToString();
         }
 
-        private void tSearch_TextChanged(object sender, EventArgs e)
+        private void btnSelect_Click(object sender, EventArgs e)
         {
-            if (tSearch.Text.Length > 2)
-            {
-                
-                searchRecords(tSearch.Text);
-            }
-            else if (tSearch.Text.Length == 0)
-            {
-                loadRecords();
-            }
+            selectSubject();
         }
 
-        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
+            Close();
         }
     }
 }

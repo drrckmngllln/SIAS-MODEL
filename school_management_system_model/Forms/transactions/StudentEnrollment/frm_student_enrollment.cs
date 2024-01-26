@@ -122,7 +122,7 @@ namespace school_management_system_model.Forms.transactions
 
         }
 
-        private async void loadSectionSubjects()
+        private void loadSectionSubjects()
         {
             if (tCurriculum.Text.Length == 0 && tSemester.Text.Length == 0)
             {
@@ -135,8 +135,9 @@ namespace school_management_system_model.Forms.transactions
                 totalUnits = 0;
                 totalLectureUnits = 0;
                 totalLabUnits = 0;
-                var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
-                sectionSubjects.Where(x => x.section_code_id == tSection.Text && x.semester == tSemester.Text);
+                var sectionSubjects = new SectionSubjects().GetSectionSubjects()
+                    .Where(x => x.section_code_id == tSection.Text && x.year_level == tYearLevel.Text)
+                    .ToList();
 
                 if (tSection.Text == "No Section Exist")
                 {
@@ -214,7 +215,7 @@ namespace school_management_system_model.Forms.transactions
         {
             var sections = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
             var numberOfStudent = sections.number_of_students + 1;
-            
+
             var section = new sections();
             var sectionId = section.GetSections().FirstOrDefault(x => x.section_code == tSection.Text).id;
             section.IncrementNumberOfStudent(sectionId, numberOfStudent);
@@ -336,27 +337,35 @@ namespace school_management_system_model.Forms.transactions
             {
                 id = Id
             };
-            var data = addCustomSubject.addCustomSubject();
+
+            var customSubject = new SectionSubjects().GetSectionSubjects()
+                .FirstOrDefault(x => x.id == Id);
+           
 
             if (Id != 0)
             {
-                dgv.Rows.Add(
-                data.Rows[0]["subject_code"],
-                data.Rows[0]["descriptive_title"],
-                data.Rows[0]["pre_requisite"],
-                data.Rows[0]["total_units"],
-                data.Rows[0]["lecture_units"],
-                data.Rows[0]["lab_units"],
-                data.Rows[0]["time"],
-                data.Rows[0]["day"],
-                data.Rows[0]["room"],
-                data.Rows[0]["instructor"]
-                );
+                
+                dgv.Rows.Add
+                    (
+                        customSubject.subject_code,
+                        customSubject.descriptive_title,
+                        customSubject.pre_requisite,
+                        customSubject.total_units,
+                        customSubject.lecture_units,
+                        customSubject.lab_units,
+                        customSubject.time,
+                        customSubject.day,
+                        customSubject.room,
+                        customSubject.instructor_id
+                    );
 
                 int lastRow = dgv.Rows.Count - 1;
-                totalUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["total_units"].Value);
-                totalLectureUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lecture_units"].Value);
-                totalLabUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lab_units"].Value);
+                //totalUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["total_units"].Value);
+                totalUnits += Convert.ToDecimal(customSubject.total_units);
+                //totalLectureUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lecture_units"].Value);
+                totalLectureUnits += Convert.ToDecimal(customSubject.lecture_units);
+                //totalLabUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lab_units"].Value);
+                totalLabUnits += Convert.ToDecimal(customSubject.lecture_units);
             }
 
 
@@ -391,7 +400,7 @@ namespace school_management_system_model.Forms.transactions
                 await Task.Delay(200);
                 tLoading.Visible = false;
                 loadSection();
-                
+
             }
             else if (tYearLevel.Text.Length == 0)
             {
@@ -425,6 +434,7 @@ namespace school_management_system_model.Forms.transactions
             if (section != null)
             {
                 tSection.Text = section;
+                loadSectionSubjects();
             }
         }
     }

@@ -29,11 +29,11 @@ namespace school_management_system_model.Classes
         public string instructor_id { get; set; }
         public string status { get; set; }
 
-        public async Task<List<SectionSubjects>> GetSectionSubjects()
+        public List<SectionSubjects> GetSectionSubjects()
         {
             var list = new List<SectionSubjects>();
             var con = new MySqlConnection(connection.con());
-            await con.OpenAsync();
+            con.Open();
             var cmd = new MySqlCommand("select * from section_subjects", con);
             var reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -66,7 +66,7 @@ namespace school_management_system_model.Classes
                 };
                 list.Add(sectionSubjects);
             }
-            await con.CloseAsync();
+            con.Close();
             return list;
         }
 

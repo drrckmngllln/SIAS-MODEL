@@ -29,9 +29,9 @@ namespace school_management_system_model.Forms.settings
             loadRecords();
         }
 
-        private async void loadRecords()
+        private void loadRecords()
         {
-            var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+            var sectionSubjects = new SectionSubjects().GetSectionSubjects();
             dgv.DataSource = sectionSubjects.Where(x => x.semester == tSemester.Text && x.section_code_id == tSectionCode.Text).ToList();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
