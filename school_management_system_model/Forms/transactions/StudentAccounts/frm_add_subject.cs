@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         public string idnumber { get; set; }
         public string schoolyear { get; set; }
 
+        PaginationParams paging = new PaginationParams();
+
         public static frm_add_subject instance;
         public frm_add_subject()
         {
@@ -30,18 +33,26 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from section_subjects", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            tLoading.Visible = true;
+            await Task.Delay(100);
+            tLoading.Visible = false;
+            paging.pageSize = 10;
+            var sectionSubjects = new SectionSubjects().GetSectionSubjects()
+                .Skip(paging.pageSize * (paging.pageNumber - 1))
+                .Take(paging.pageSize).ToList();
+
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from section_subjects", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
+            dgv.DataSource = sectionSubjects;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
-            dgv.Columns["section_code"].HeaderText = "Section";
-            dgv.Columns["curriculum"].HeaderText = "Curriculum";
-            dgv.Columns["course"].HeaderText = "Course";
+            dgv.Columns["section_code_id"].HeaderText = "Section";
+            dgv.Columns["curriculum_id"].HeaderText = "Curriculum";
+            dgv.Columns["course_id"].HeaderText = "Course";
             dgv.Columns["year_level"].HeaderText = "Year Level";
             dgv.Columns["semester"].HeaderText = "Semester";
             dgv.Columns["subject_code"].HeaderText = "Subject Code";
@@ -54,18 +65,16 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             dgv.Columns["time"].HeaderText = "Time";
             dgv.Columns["day"].HeaderText = "Day";
             dgv.Columns["room"].HeaderText = "Room";
-            dgv.Columns["instructor"].HeaderText = "Instructor";
-            dgv.Columns["instructor"].Width = 250;
+            dgv.Columns["instructor_id"].HeaderText = "Instructor";
+            dgv.Columns["instructor_id"].Width = 250;
             dgv.Columns["status"].Visible = false;
         }
-        private void searchRecords()
+        private void searchRecords(string search)
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from section_subjects where concat(subject_code, descriptive_title) " +
-                "like '%" + tSearch.Text + "%'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var sectionSubjects = new SectionSubjects().GetSectionSubjects()
+                .Where(x => x.subject_code.ToLower().Contains(search) || x.descriptive_title.ToLower().Contains(search)).ToList();
+            
+            dgv.DataSource = sectionSubjects;
             dgv.Columns["subject_code"].HeaderText = "Subject Code";
             dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
             dgv.Columns["descriptive_title"].Width = 350;
@@ -75,22 +84,22 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
-            dgv.Columns["section_code"].HeaderText = "Section";
-            dgv.Columns["curriculum"].HeaderText = "Curriculum";
-            dgv.Columns["course"].HeaderText = "Course";
+            dgv.Columns["section_code_id"].HeaderText = "Section";
+            dgv.Columns["curriculum_id"].HeaderText = "Curriculum";
+            dgv.Columns["course_id"].HeaderText = "Course";
             dgv.Columns["year_level"].HeaderText = "Year Level";
             dgv.Columns["semester"].HeaderText = "Semester";
             dgv.Columns["time"].HeaderText = "Time";
             dgv.Columns["day"].HeaderText = "Day";
             dgv.Columns["room"].HeaderText = "Room";
-            dgv.Columns["instructor"].HeaderText = "Instructor";
-            dgv.Columns["instructor"].Width = 250;          
-            dgv.Columns["status"].Visible= false;
+            dgv.Columns["instructor_id"].HeaderText = "Instructor";
+            dgv.Columns["instructor_id"].Width = 250;
+            dgv.Columns["status"].Visible = false;
         }
         private void selectSubject()
         {
             int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-              frm_student_enrollment.instance.Id = id;
+            frm_student_enrollment.instance.Id = id;
             this.Close();
         }
         private void frm_select_subject_KeyDown(object sender, KeyEventArgs e)
@@ -117,12 +126,14 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             if (e.KeyCode == Keys.Enter)
 
             {
-                addrecords(idnumber, schoolyear);
+                searchRecords(tSearch.Text);
             }
             else if (e.KeyCode == Keys.Escape)
 
-            { 
-                Close();
+            {
+                tSearch.Clear();
+                tSearch.Select();
+                loadRecords();
             }
         }
 
@@ -136,10 +147,10 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             var sectioncode = dgv.CurrentRow.Cells["section_code"].Value.ToString();
             var descriptivetitle = dgv.CurrentRow.Cells["descriptive_title"].Value.ToString();
             var lectureunits = Convert.ToDecimal(dgv.CurrentRow.Cells["lecture_units"].Value.ToString());
-            var labunits =Convert.ToDecimal( dgv.CurrentRow.Cells["lab_units"].Value.ToString());
+            var labunits = Convert.ToDecimal(dgv.CurrentRow.Cells["lab_units"].Value.ToString());
             var prerequisite = dgv.CurrentRow.Cells["pre_requisite"].Value.ToString();
             var time = dgv.CurrentRow.Cells["time"].Value.ToString();
-            var day= dgv.CurrentRow.Cells["day"].Value.ToString();
+            var day = dgv.CurrentRow.Cells["day"].Value.ToString();
             var room = dgv.CurrentRow.Cells["room"].Value.ToString();
             var status = dgv.CurrentRow.Cells["status"].Value.ToString();
             var instructor = dgv.CurrentRow.Cells["instructor"].Value.ToString();
@@ -173,21 +184,56 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         }
 
-        private void tSearch_TextChanged_1(object sender, EventArgs e)
-        {
-            if (tSearch.Text.Length > 2)
-            {
-                searchRecords();
-            }
-            else if (tSearch.Text.Length == 0)
-            {
-                loadRecords();
-            }
-        }
-
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private async void btnPrev_Click(object sender, EventArgs e)
+        {
+            tLoading.Visible = true;
+            await Task.Delay(100);
+            tLoading.Visible = false;
+            if (paging.pageNumber == 1)
+            {
+                btnPrev.Enabled = false;
+            }
+            else
+            {
+                paging.pageNumber--;
+                tPageNumber.Text = paging.pageNumber.ToString();
+                loadRecords();
+                btnNext.Enabled = true;
+            }
+        }
+
+        private async void btnNext_Click(object sender, EventArgs e)
+        {
+            tLoading.Visible = true;
+            await Task.Delay(100);
+            tLoading.Visible = false;
+            if (dgv.Rows.Count < paging.pageSize)
+            {
+                btnNext.Enabled = false;
+            }
+            else
+            {
+                paging.pageNumber++;
+                tPageNumber.Text = paging.pageNumber.ToString();
+                loadRecords();
+                btnPrev.Enabled = true;
+            }
+        }
+
+        private void btnAddSubject_Click(object sender, EventArgs e)
+        {
+            addrecords(idnumber, schoolyear);
+
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

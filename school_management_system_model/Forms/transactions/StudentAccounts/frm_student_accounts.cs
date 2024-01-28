@@ -279,7 +279,7 @@ namespace school_management_system_model.Forms.transactions
             var frm = new frm_view_subjects();
             frm_view_subjects.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
             frm_view_subjects.instance.fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-            frm_view_subjects.instance.school_year = dgv.CurrentRow.Cells["school_year"].Value.ToString();
+            frm_view_subjects.instance.school_year = dgv.CurrentRow.Cells["school_year_id"].Value.ToString();
             frm_view_subjects.instance.IsAdministrator = IsAdministrator;
             frm.ShowDialog();
             

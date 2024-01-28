@@ -64,32 +64,7 @@ namespace school_management_system_model.Forms.transactions
                 .Where(x => x.subject_code.ToLower().Contains(tSearch.Text) || x.descriptive_title.ToLower().Contains(tSearch.Text));
             dgv.DataSource = searchSubjects.ToList();
             tLoading.Visible = false;
-            //var con = new MySqlConnection(connection.con());
-            //var da = new MySqlDataAdapter("select * from section_subjects where concat(subject_code, descriptive_title) " +
-            //    "like '%" + tSearch.Text + "%'", con);
-            //var dt = new DataTable();
-            //da.Fill(dt);
-            //dgv.DataSource = dt;
-            //dgv.Columns["subject_code"].HeaderText = "Subject Code";
-            //dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
-            //dgv.Columns["descriptive_title"].Width = 350;
-            //dgv.Columns["total_units"].HeaderText = "Total Units";
-            //dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
-            //dgv.Columns["lab_units"].HeaderText = "Lab Units";
-            //dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
-            //dgv.Columns["id"].Visible = false;
-            //dgv.Columns["unique_id"].Visible = false;
-            //dgv.Columns["section_code_id"].HeaderText = "Section";
-            //dgv.Columns["curriculum_id"].HeaderText = "Curriculum";
-            //dgv.Columns["course_id"].HeaderText = "Course";
-            //dgv.Columns["year_level"].HeaderText = "Year Level";
-            //dgv.Columns["semester"].HeaderText = "Semester";
-            //dgv.Columns["time"].HeaderText = "Time";
-            //dgv.Columns["day"].HeaderText = "Day";
-            //dgv.Columns["room"].HeaderText = "Room";
-            //dgv.Columns["instructor_id"].HeaderText = "Instructor";
-            //dgv.Columns["instructor_id"].Width = 250;
-            //dgv.Columns["status"].Visible = false;
+            
         }
 
         private void selectSubject()

@@ -1,7 +1,9 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Forms.settings.TuitionFeeDummy;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
@@ -18,86 +20,93 @@ namespace school_management_system_model.Forms.settings
 
         private void frm_tuition_fee_Load(object sender, System.EventArgs e)
         {
-            loadRecords();
             loadCampuses();
+            loadLevel();
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
+        }
+
+        private void loadLevel()
+        {
+            var level = new Levels().GetLevels();
+            tLevel.ValueMember = "id";
+            tLevel.DisplayMember = "code";
+            tLevel.DataSource = level;
         }
 
         private void loadCampuses()
         {
-            var courses = new TuitionFeeSetup();
-            var data = courses.loadCampuses();
-            foreach(DataRow row in data.Rows)
-            {
-                tCampus.Items.Add(row["code"]);
-            }
+            var campus = new Campuses().GetCampuses();
+            tCampus.ValueMember = "id";
+            tCampus.DisplayMember = "code";
+            tCampus.DataSource = campus;
         }
 
-        private void loadRecords()
+        private void loadRecords(string campus, string level, string yearLevel, string semester)
         {
-            var data = new TuitionFeeSetup();
-            dgv.DataSource = data.loadRecords();
+            var tuition = new TuitionFeeSetup().GetTuitionFeeSetups()
+                .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel && x.semester == semester)
+                .ToList();
+            dgv.DataSource = tuition;
             dgv.Columns["id"].Visible = false;
+            dgv.Columns["uid"].Visible = false;
             dgv.Columns["category"].HeaderText = "Category";
             dgv.Columns["description"].HeaderText = "Description";
             dgv.Columns["description"].Width = 250;
             dgv.Columns["campus"].HeaderText = "Campus";
-            dgv.Columns["first_year"].HeaderText = "1st Year";
-            dgv.Columns["second_year"].HeaderText = "2nd Year";
-            dgv.Columns["third_year"].HeaderText = "3rd Year";
-            dgv.Columns["fourth_year"].HeaderText = "4th Year";
+            dgv.Columns["level"].HeaderText = "Level";
+            dgv.Columns["year_level"].HeaderText = "Year Level";
+            dgv.Columns["semester"].HeaderText = "Semester";
+            dgv.Columns["amount"].HeaderText = "Amount";
         }
 
         private void addRecords()
         {
             if (btn_save.Text == "Save")
             {
-                var add = new TuitionFeeSetup
+                var AddRecords = new TuitionFeeSetup
                 {
+                    uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                     category = tCategory.Text,
-                    campus = tCampus.Text,
                     description = tDescription.Text,
-                    first_year = Convert.ToDecimal(tFirstYear.Text),
-                    second_year = Convert.ToDecimal(tSecondYear.Text),
-                    third_year = Convert.ToDecimal(tThirdYear.Text),
-                    fourth_year = Convert.ToDecimal(tFourthYear.Text)
+                    campus = tCampus.SelectedValue.ToString(),
+                    level = tLevel.SelectedValue.ToString(),
+                    year_level = tYearLevel.Text,
+                    semester = tSemester.Text,
+                    amount = Convert.ToDecimal(tAmount.Text),
                 };
-                add.addRecords();
-                MessageBox.Show("Tuition Fee Add Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new ActivityLogger().activityLogger(Email, "Tuition Setup Add: " + tDescription.Text);
-
-                loadRecords();
-                txtClear();
+                AddRecords.AddRecords();
+                new Classes.Toastr("Success", "Miscellaneous fee Added");
+                new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
             }
             else if (btn_save.Text == "Update")
             {
-                var edit = new TuitionFeeSetup
+                var EditRecords = new TuitionFeeSetup
                 {
-                    id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
+                    uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                     category = tCategory.Text,
                     description = tDescription.Text,
-                    campus = tCampus.Text,
-                    first_year = Convert.ToDecimal(tFirstYear.Text),
-                    second_year = Convert.ToDecimal(tSecondYear.Text),
-                    third_year = Convert.ToDecimal(tThirdYear.Text),
-                    fourth_year = Convert.ToDecimal(tFourthYear.Text)
+                    campus = tCampus.SelectedValue.ToString(),
+                    level = tLevel.SelectedValue.ToString(),
+                    year_level = tYearLevel.Text,
+                    semester = tSemester.Text,
+                    amount = Convert.ToDecimal(tAmount.Text),
                 };
-                edit.editRecords();
-                MessageBox.Show("Tuition Fee Update Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Edit: " + tDescription.Text);
-
-                loadRecords();
-                txtClear();
+                EditRecords.EditRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                new Classes.Toastr("Success", "Miscellaneous fee Added");
+                new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
             }
         }
 
         private void deleteRecords()
         {
             var delete = new TuitionFeeSetup();
-            delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()));
+            delete.DeleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()));
             MessageBox.Show("Tuition Fee Deleted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
 
-            loadRecords();
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -105,20 +114,18 @@ namespace school_management_system_model.Forms.settings
             tCategory.Text = dgv.CurrentRow.Cells["category"].Value.ToString();
             tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
             tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
-            tFirstYear.Text = dgv.CurrentRow.Cells["first_year"].Value.ToString();
-            tSecondYear.Text = dgv.CurrentRow.Cells["second_year"].Value.ToString();
-            tThirdYear.Text = dgv.CurrentRow.Cells["third_year"].Value.ToString();
-            tFourthYear.Text = dgv.CurrentRow.Cells["fourth_year"].Value.ToString();
+            tLevel.Text = dgv.CurrentRow.Cells["level"].Value.ToString();
+            tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
+            tAmount.Text = dgv.CurrentRow.Cells["amount"].Value.ToString();
             btn_save.Text = "Update";
         }
 
         private void txtClear()
         {
             tCampus.Text = "";
-            tFirstYear.Clear();
-            tSecondYear.Clear();
-            tThirdYear.Clear();
-            tFourthYear.Clear();
+            tDescription.Clear();
+            tSemester.Text = "1";
+            tAmount.Clear();
             btn_save.Text = "Save";
         }
 
@@ -134,7 +141,7 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this fee?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete this fee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 deleteRecords();
             }
@@ -152,14 +159,39 @@ namespace school_management_system_model.Forms.settings
         {
             if (tsearch.Text.Length > 2)
             {
-                var data = new TuitionFeeSetup();
-                var search = data.searchRecords(tsearch.Text);
+                var search = new TuitionFeeSetup().GetTuitionFeeSetups()
+                    .Where(x => x.category.ToLower().Contains(tsearch.Text) && x.description.ToLower().Contains(tsearch.Text))
+                    .ToList();
                 dgv.DataSource = search;
             }
             else if (tsearch.Text.Length == 0)
             {
-                loadRecords();
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
             }
+        }
+
+        private void tCampus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
+
+        }
+
+        private void tLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
+
+        }
+
+        private void tYearLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
+
+        }
+
+        private void tSemester_TextChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
+
         }
     }
 }

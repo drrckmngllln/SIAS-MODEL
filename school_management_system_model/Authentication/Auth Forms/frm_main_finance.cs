@@ -165,7 +165,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnTuitionFee_Click(object sender, EventArgs e)
         {
-            var frm = new frm_tf_setup(Email);
+            var frm = new frm_tuition_fee(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

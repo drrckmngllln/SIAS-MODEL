@@ -237,7 +237,8 @@ namespace school_management_system_model.Forms.transactions
                 var time = row.Cells["time"].Value.ToString();
                 var day = row.Cells["day"].Value.ToString();
                 var room = row.Cells["room"].Value.ToString();
-                var instructor = row.Cells["instructor"].Value.ToString();
+                var instructor = new Instructors().GetInstructors()
+                    .FirstOrDefault(x => x.fullname == row.Cells["instructor"].Value.ToString()).id;
 
                 var StudentSubject = new StudentSubject
                 {
@@ -333,11 +334,7 @@ namespace school_management_system_model.Forms.transactions
             frm.Text = "Add Subject";
             frm.ShowDialog();
 
-            var addCustomSubject = new proceed_to_enrollment
-            {
-                id = Id
-            };
-
+            
             var customSubject = new SectionSubjects().GetSectionSubjects()
                 .FirstOrDefault(x => x.id == Id);
            
@@ -378,6 +375,7 @@ namespace school_management_system_model.Forms.transactions
 
         private void timerCounter_Tick(object sender, EventArgs e)
         {
+            //CountUnits();
             tTotalUnits.Text = totalUnits.ToString();
             tLectureUnits.Text = totalLectureUnits.ToString();
             tLabUnits.Text = totalLabUnits.ToString();
@@ -388,6 +386,9 @@ namespace school_management_system_model.Forms.transactions
             if (MessageBox.Show("Are you sure you want to remove this subject?", "Warning",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                totalUnits -= Convert.ToDecimal(dgv.CurrentRow.Cells["total_units"].Value);
+                totalLectureUnits -= Convert.ToDecimal(dgv.CurrentRow.Cells["lecture_units"].Value);
+                totalLabUnits -= Convert.ToDecimal(dgv.CurrentRow.Cells["lab_units"].Value);
                 dgv.Rows.Remove(dgv.CurrentRow);
             }
         }
