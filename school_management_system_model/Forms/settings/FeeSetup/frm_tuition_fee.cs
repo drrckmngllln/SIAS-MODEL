@@ -193,5 +193,23 @@ namespace school_management_system_model.Forms.settings
             loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
 
         }
+
+        private void kryptonButton1_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this record?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                deleteRecords();
+            }
+        }
+
+        private void btn_clear_Click_1(object sender, EventArgs e)
+        {
+            txtClear();
+        }
+
+        private void btn_save_Click_1(object sender, EventArgs e)
+        {
+            addRecords();
+        }
     }
 }
