@@ -1,5 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +20,10 @@ namespace school_management_system_model.Forms.transactions
         public string yearLevel { get; set; }
         public string id_number { get; set; }
         public static frm_select_student instance;
+
+        PaginationParams paging = new PaginationParams();
+
+
         public frm_select_student()
         {
             instance = this;
@@ -34,17 +40,24 @@ namespace school_management_system_model.Forms.transactions
             if (this.Text == "Select Student")
             {
                 tTitle.Text = this.Text;
-                var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select * from student_accounts order by fullname asc", con);
-                var dt = new DataTable();
-                da.Fill(dt);
-                dgv.DataSource = dt;
+                tPageSize.Text = paging.pageNumber.ToString();
+                var student = new StudentAccount().GetStudentAccounts()
+                    .OrderByDescending(x => x.id)
+                    .Skip(paging.pageSize * (paging.pageNumber - 1))
+                    .Take(paging.pageSize)
+                    .ToList();
+
+                //var con = new MySqlConnection(connection.con());
+                //var da = new MySqlDataAdapter("select * from student_accounts order by fullname asc", con);
+                //var dt = new DataTable();
+                //da.Fill(dt);
+                dgv.DataSource = student;
                 dgv.Columns["id"].Visible = false;
                 dgv.Columns["id_number"].HeaderText = "ID Number";
                 dgv.Columns["sy_enrolled"].Visible = false;
-                dgv.Columns["school_year"].HeaderText = "School Year";
+                dgv.Columns["school_year_id"].HeaderText = "School Year";
                 dgv.Columns["fullname"].HeaderText = "Student Name";
-                dgv.Columns["fullname"].Width = 250;
+                dgv.Columns["fullname"].Width = 150;
                 dgv.Columns["last_name"].Visible = false;
                 dgv.Columns["first_name"].Visible = false;
                 dgv.Columns["middle_name"].Visible = false;

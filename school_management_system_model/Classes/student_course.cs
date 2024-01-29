@@ -12,8 +12,8 @@ namespace school_management_system_model.Classes
     internal class student_course
     {
         public int id { get; set; }
-        public string id_number_id {  get; set; }
-        public string course_id {  get; set; }
+        public string id_number_id { get; set; }
+        public string course_id { get; set; }
         public string campus_id { get; set; }
         public string curriculum_id { get; set; }
         public string year_level { get; set; }
@@ -33,7 +33,7 @@ namespace school_management_system_model.Classes
                 var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;
                 var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
                 var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id")).code;
-                
+
 
                 var courses = new student_course
                 {
@@ -71,19 +71,40 @@ namespace school_management_system_model.Classes
 
         public void UpdateStudentCourse(int id)
         {
-            var con = new MySqlConnection(connection.con());
-            con.Open();
-            var cmd = new MySqlCommand("update student_course set id_number_id=@1, course_id=@2, curriculum_id=@3, year_level=@4, section_id=@5, " +
-                "semester=@6 where id='"+ id +"'", con);
-            cmd.Parameters.AddWithValue("@1", id_number_id);
-            cmd.Parameters.AddWithValue("@2", course_id);
-            cmd.Parameters.AddWithValue("@3", campus_id);
-            cmd.Parameters.AddWithValue("@4", curriculum_id);
-            cmd.Parameters.AddWithValue("@5", year_level);
-            cmd.Parameters.AddWithValue("@6", section_id);
-            cmd.Parameters.AddWithValue("@7", semester);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                con.Open();
+                var sql = "update student_course set id_number_id=@1, course_id=@2, campus_id=@3, curriculum_id=@4, year_level=@5, section_id=@6, semester=@7 " +
+                    "where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@1", id_number_id);
+                    cmd.Parameters.AddWithValue("@2", course_id);
+                    cmd.Parameters.AddWithValue("@3", campus_id);
+                    cmd.Parameters.AddWithValue("@4", curriculum_id);
+                    cmd.Parameters.AddWithValue("@5", year_level);
+                    cmd.Parameters.AddWithValue("@6", section_id);
+                    cmd.Parameters.AddWithValue("@7", semester);
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+        }
+
+        public void EnrolStudent(int id, string year_level, string section_id)
+        {
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                con.Open();
+                var sql = "update student_course set year_level=@1, section_id=@2 where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@1", year_level);
+                    cmd.Parameters.AddWithValue("@2", section_id);
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+            }
         }
     }
 }

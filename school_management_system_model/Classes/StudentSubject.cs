@@ -36,16 +36,16 @@ namespace school_management_system_model.Classes
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                //var id_number = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
-                //var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
-                //var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
-                
+                var id_number = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+                var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
+                var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
+
                 var studentSubjects = new StudentSubject
                 {
                     id = reader.GetInt32("id"),
-                    id_number_id = reader.GetString("id_number_id"),
+                    id_number_id = id_number.id_number,
                     unique_id = reader.GetString("unique_id"),
-                    school_year_id = reader.GetString("school_year_id"),
+                    school_year_id = school_year.code,
                     subject_code = reader.GetString("subject_code"),
                     descriptive_title = reader.GetString("descriptive_title"),
                     pre_requisite = reader.GetString("pre_requisite"),
@@ -55,9 +55,9 @@ namespace school_management_system_model.Classes
                     time = reader.GetString("time"),
                     day = reader.GetString("day"),
                     room = reader.GetString("room"),
-                    instructor_id = reader.GetString("instructor_id"),
-                    grade = reader.GetString("grade"),
-                    remarks = reader.GetString("remarks")
+                    //instructor_id = instructor.fullname,
+                    //grade = reader.GetString("grade"),
+                    //remarks = reader.GetString("remarks")
                 };
                 list.Add(studentSubjects);
             }

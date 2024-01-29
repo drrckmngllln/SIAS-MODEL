@@ -34,7 +34,6 @@
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelSettings = new System.Windows.Forms.Panel();
             this.btnUserManagement = new System.Windows.Forms.Button();
-            this.btnOrSetter = new System.Windows.Forms.Button();
             this.btnOtherFees = new System.Windows.Forms.Button();
             this.btnDiscountSetup = new System.Windows.Forms.Button();
             this.btnLaboratoryFee = new System.Windows.Forms.Button();
@@ -95,7 +94,6 @@
             // panelSettings
             // 
             this.panelSettings.Controls.Add(this.btnUserManagement);
-            this.panelSettings.Controls.Add(this.btnOrSetter);
             this.panelSettings.Controls.Add(this.btnOtherFees);
             this.panelSettings.Controls.Add(this.btnDiscountSetup);
             this.panelSettings.Controls.Add(this.btnLaboratoryFee);
@@ -115,7 +113,7 @@
             this.btnUserManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUserManagement.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUserManagement.Location = new System.Drawing.Point(0, 180);
+            this.btnUserManagement.Location = new System.Drawing.Point(0, 150);
             this.btnUserManagement.Name = "btnUserManagement";
             this.btnUserManagement.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
             this.btnUserManagement.Size = new System.Drawing.Size(250, 30);
@@ -124,23 +122,6 @@
             this.btnUserManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUserManagement.UseVisualStyleBackColor = true;
             this.btnUserManagement.Click += new System.EventHandler(this.btnUserManagement_Click);
-            // 
-            // btnOrSetter
-            // 
-            this.btnOrSetter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOrSetter.FlatAppearance.BorderSize = 0;
-            this.btnOrSetter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrSetter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrSetter.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnOrSetter.Location = new System.Drawing.Point(0, 150);
-            this.btnOrSetter.Name = "btnOrSetter";
-            this.btnOrSetter.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnOrSetter.Size = new System.Drawing.Size(250, 30);
-            this.btnOrSetter.TabIndex = 6;
-            this.btnOrSetter.Text = "Set OR Number";
-            this.btnOrSetter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrSetter.UseVisualStyleBackColor = true;
-            this.btnOrSetter.Click += new System.EventHandler(this.btnOrSetter_Click);
             // 
             // btnOtherFees
             // 
@@ -234,13 +215,17 @@
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettings.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.ImageKey = "icons8-setup-60.png";
+            this.btnSettings.ImageList = this.icons;
             this.btnSettings.Location = new System.Drawing.Point(0, 211);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.btnSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnSettings.Size = new System.Drawing.Size(250, 50);
             this.btnSettings.TabIndex = 2;
             this.btnSettings.Text = "Settings";
             this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
@@ -355,13 +340,17 @@
             this.btnTransaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTransaction.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnTransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransaction.ImageKey = "icons8-computer-50.png";
+            this.btnTransaction.ImageList = this.icons;
             this.btnTransaction.Location = new System.Drawing.Point(0, 0);
             this.btnTransaction.Name = "btnTransaction";
-            this.btnTransaction.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.btnTransaction.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnTransaction.Size = new System.Drawing.Size(250, 50);
             this.btnTransaction.TabIndex = 0;
             this.btnTransaction.Text = "Transaction";
             this.btnTransaction.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransaction.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTransaction.UseVisualStyleBackColor = true;
             this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
             // 
@@ -565,7 +554,6 @@
         private System.Windows.Forms.Button btnFeeCollection;
         private System.Windows.Forms.Button btnDiscounts;
         private System.Windows.Forms.Panel panelSettings;
-        private System.Windows.Forms.Button btnOrSetter;
         private System.Windows.Forms.Button btnOtherFees;
         private System.Windows.Forms.Button btnDiscountSetup;
         private System.Windows.Forms.Button btnLaboratoryFee;

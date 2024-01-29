@@ -9,8 +9,10 @@ namespace school_management_system_model.Classes.Parameters
     internal class PaginationParams
     {
         public int pageSize = 20;
-        public int pageNumber { get; set; }
 
-        
+        int _pageNumber = 1;
+        public int pageNumber { get => _pageNumber; set => _pageNumber = value; }
+
+
     }
 }

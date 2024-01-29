@@ -31,6 +31,9 @@
             this.tSearch = new Krypton.Toolkit.KryptonTextBox();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.tTitle = new System.Windows.Forms.Label();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.tPageSize = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +67,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(745, 423);
+            this.dgv.Size = new System.Drawing.Size(745, 379);
             this.dgv.TabIndex = 130;
             // 
             // tTitle
@@ -78,12 +81,50 @@
             this.tTitle.TabIndex = 131;
             this.tTitle.Text = "Select Student";
             // 
+            // btnPrev
+            // 
+            this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrev.Location = new System.Drawing.Point(344, 447);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(26, 23);
+            this.btnPrev.TabIndex = 134;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(397, 447);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(26, 23);
+            this.btnNext.TabIndex = 133;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            // 
+            // tPageSize
+            // 
+            this.tPageSize.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tPageSize.AutoSize = true;
+            this.tPageSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPageSize.ForeColor = System.Drawing.SystemColors.Control;
+            this.tPageSize.Location = new System.Drawing.Point(376, 450);
+            this.tPageSize.Name = "tPageSize";
+            this.tPageSize.Size = new System.Drawing.Size(15, 15);
+            this.tPageSize.TabIndex = 132;
+            this.tPageSize.Text = "1";
+            this.tPageSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frm_select_student
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.ClientSize = new System.Drawing.Size(769, 496);
+            this.ClientSize = new System.Drawing.Size(769, 482);
+            this.Controls.Add(this.btnPrev);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.tPageSize);
             this.Controls.Add(this.tTitle);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.tSearch);
@@ -109,5 +150,8 @@
         private Krypton.Toolkit.KryptonTextBox tSearch;
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Label tTitle;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label tPageSize;
     }
 }

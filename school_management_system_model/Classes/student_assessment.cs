@@ -25,14 +25,14 @@ namespace school_management_system_model.Classes
         public int units { get; set; }
         public decimal computation { get; set; }
 
-        public DataTable loadRecords(string schoolYear, string id_number)
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_assessment where school_year='" + schoolYear + "' and id_number='"+ id_number +"'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
+        //public DataTable loadRecords(string schoolYear, string id_number)
+        //{
+        //    var con = new MySqlConnection(connection.con());
+        //    var da = new MySqlDataAdapter("select * from student_assessment where school_year='" + schoolYear + "' and id_number='"+ id_number +"'", con);
+        //    var dt = new DataTable();
+        //    da.Fill(dt);
+        //    return dt;
+        //}
 
         public decimal getTuitionFeeUnits(string idNumber, string schoolYear)
         {

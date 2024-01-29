@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace school_management_system_model.Forms.transactions.StudentAssessment
 {
-    internal class StudentAssessment
+    internal class StudentAssessments
     {
         public int id { get; set; }
         public string id_number { get; set; }
@@ -18,20 +18,22 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
         public decimal units { get; set; }
         public decimal computation { get; set; }
 
-        public List<StudentAssessment> GetStudentAssessments()
+        public List<StudentAssessments> GetStudentAssessments()
         {
-            var list = new List<StudentAssessment>();
+            var list = new List<StudentAssessments>();
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("select * from student_assessment", con);
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var student = new StudentAssessment
+                var id_number_id = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+                var school_year_id = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
+                var student = new StudentAssessments
                 {
                     id = reader.GetInt32("id"),
-                    id_number = reader["id_number"].ToString(),
-                    school_year = reader["school_year"].ToString(),
+                    id_number = id_number_id.id.ToString(),
+                    school_year = school_year_id.code,
                     fee_type = reader["fee_type"].ToString(),
                     amount = reader.GetDecimal("amount"),
                     units = reader.GetDecimal("units"),

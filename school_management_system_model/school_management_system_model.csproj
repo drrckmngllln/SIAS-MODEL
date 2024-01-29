@@ -501,7 +501,7 @@
     <Compile Include="Forms\transactions\StudentAssessment\frm_view_subjects.Designer.cs">
       <DependentUpon>frm_view_subjects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\transactions\StudentAssessment\StudentAssessment.cs" />
+    <Compile Include="Classes\StudentAssessments.cs" />
     <Compile Include="Forms\transactions\StudentEnrollment\frm_select_course.cs">
       <SubType>Form</SubType>
     </Compile>

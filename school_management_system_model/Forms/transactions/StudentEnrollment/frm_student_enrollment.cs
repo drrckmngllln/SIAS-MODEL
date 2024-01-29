@@ -194,21 +194,10 @@ namespace school_management_system_model.Forms.transactions
 
         private void SaveStudentCourse()
         {
+            var id = new student_course().GetStudentCourses().FirstOrDefault(x => x.id_number_id == tIdNumber.Text);
             var section = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
-            var id_number = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == tIdNumber.Text);
-            var course = new Courses().GetCourses().FirstOrDefault(x => x.code == tCourse.Text);
-            var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.code == tCampus.Text);
-            var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.code == tCurriculum.Text);
-            var student_course = new student_course
-            {
-                id_number_id = id_number.id.ToString(),
-                course_id = course.id.ToString(),
-                campus_id = campus.id.ToString(),
-                curriculum_id = curriculum.id.ToString(),
-                year_level = tYearLevel.Text,
-                section_id = section.id.ToString(),
-            };
-            student_course.UpdateStudentCourse(id_number.id);
+            var enrollStudent = new student_course();
+            enrollStudent.EnrolStudent(id.id, tYearLevel.Text, section.id.ToString());
         }
 
         private void IncrementingSectionNumber()
