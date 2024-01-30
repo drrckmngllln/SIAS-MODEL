@@ -67,6 +67,7 @@
             this.tYearLevel.Size = new System.Drawing.Size(236, 23);
             this.tYearLevel.TabIndex = 161;
             this.tYearLevel.Text = "1";
+            this.tYearLevel.SelectedIndexChanged += new System.EventHandler(this.tYearLevel_SelectedIndexChanged);
             // 
             // tLevel
             // 
@@ -76,6 +77,7 @@
             this.tLevel.Name = "tLevel";
             this.tLevel.Size = new System.Drawing.Size(236, 23);
             this.tLevel.TabIndex = 160;
+            this.tLevel.SelectedIndexChanged += new System.EventHandler(this.tLevel_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -114,6 +116,7 @@
             this.tCampus.Name = "tCampus";
             this.tCampus.Size = new System.Drawing.Size(236, 23);
             this.tCampus.TabIndex = 156;
+            this.tCampus.SelectedIndexChanged += new System.EventHandler(this.tCampus_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -150,6 +153,7 @@
             this.tSemester.Name = "tSemester";
             this.tSemester.Size = new System.Drawing.Size(236, 21);
             this.tSemester.TabIndex = 152;
+            this.tSemester.TextChanged += new System.EventHandler(this.tSemester_TextChanged);
             // 
             // label4
             // 
@@ -189,7 +193,7 @@
             this.tCategory.Name = "tCategory";
             this.tCategory.Size = new System.Drawing.Size(236, 21);
             this.tCategory.TabIndex = 148;
-            this.tCategory.Text = "Miscellaneous Fee";
+            this.tCategory.Text = "Other Fee";
             // 
             // tsearch
             // 

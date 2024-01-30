@@ -171,14 +171,14 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            var frm = new frm_link_subjects(Email, Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+            var frm = new frm_link_subjects(Email, dgv.CurrentRow.Cells["description"].Value.ToString());
             frm.Text = "Select";
             frm.ShowDialog();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            var frm = new frm_link_subjects(Email, Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+            var frm = new frm_link_subjects(Email, dgv.CurrentRow.Cells["description"].Value.ToString());
 
             frm.Text = "View";
             frm.ShowDialog();

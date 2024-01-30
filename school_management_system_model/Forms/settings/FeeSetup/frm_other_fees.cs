@@ -169,5 +169,29 @@ namespace school_management_system_model.Forms.settings.FeeSetup
 
             }
         }
+
+        private void tCampus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
+
+        }
+
+        private void tLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
+
+        }
+
+        private void tYearLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
+
+        }
+
+        private void tSemester_TextChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
+
+        }
     }
 }

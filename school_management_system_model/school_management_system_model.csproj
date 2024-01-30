@@ -219,6 +219,7 @@
     <Compile Include="Classes\FeeSummary.cs" />
     <Compile Include="Classes\Instructors.cs" />
     <Compile Include="Classes\LabFeeSetup.cs" />
+    <Compile Include="Classes\LabFeeSubjects.cs" />
     <Compile Include="Classes\MainRegistrar.cs" />
     <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
     <Compile Include="Classes\OtherFeesSetup.cs" />
