@@ -43,5 +43,26 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
             }
             return list;
         }
+
+        public void SaveStudentAssessment()
+        {
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                con.Open();
+                var sql = "insert into student_assessment(id_number_id, school_year_id, fee_type, amount, units, computation) " +
+                    "values(@1,@2,@3,@4,@5,@6)";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@1", id_number);
+                    cmd.Parameters.AddWithValue("@2", school_year);
+                    cmd.Parameters.AddWithValue("@3", fee_type);
+                    cmd.Parameters.AddWithValue("@4", amount);
+                    cmd.Parameters.AddWithValue("@5", units);
+                    cmd.Parameters.AddWithValue("@6", computation);
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+        }
     }
 }

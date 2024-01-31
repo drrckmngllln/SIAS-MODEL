@@ -48,12 +48,6 @@
             this.tDescription = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tDiscountPercentage = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tFrom = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tTo = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.btnSave = new Krypton.Toolkit.KryptonButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -110,7 +104,7 @@
             // btnAdd
             // 
             this.btnAdd.CornerRoundingRadius = 15F;
-            this.btnAdd.Location = new System.Drawing.Point(131, 420);
+            this.btnAdd.Location = new System.Drawing.Point(131, 360);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(122, 38);
             this.btnAdd.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -295,60 +289,6 @@
             this.tDiscountPercentage.Size = new System.Drawing.Size(220, 21);
             this.tDiscountPercentage.TabIndex = 173;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 348);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 15);
-            this.label7.TabIndex = 176;
-            this.label7.Text = "Duration From:";
-            // 
-            // tFrom
-            // 
-            this.tFrom.Enabled = false;
-            this.tFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tFrom.Location = new System.Drawing.Point(159, 345);
-            this.tFrom.Name = "tFrom";
-            this.tFrom.Size = new System.Drawing.Size(220, 21);
-            this.tFrom.TabIndex = 175;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(29, 375);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 15);
-            this.label8.TabIndex = 178;
-            this.label8.Text = "Duration To:";
-            // 
-            // tTo
-            // 
-            this.tTo.Enabled = false;
-            this.tTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tTo.Location = new System.Drawing.Point(159, 372);
-            this.tTo.Name = "tTo";
-            this.tTo.Size = new System.Drawing.Size(220, 21);
-            this.tTo.TabIndex = 177;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(361, 346);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(18, 20);
-            this.dateTimePicker1.TabIndex = 179;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(361, 372);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(18, 20);
-            this.dateTimePicker2.TabIndex = 180;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
-            // 
             // btnSave
             // 
             this.btnSave.CornerRoundingRadius = 15F;
@@ -377,12 +317,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 627);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.tTo);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.tFrom);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tDiscountPercentage);
             this.Controls.Add(this.label5);
@@ -434,12 +368,6 @@
         private System.Windows.Forms.TextBox tDescription;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tDiscountPercentage;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tFrom;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tTo;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private Krypton.Toolkit.KryptonButton btnSave;
     }
 }

@@ -2,11 +2,13 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Authentication.Auth_Forms;
 using school_management_system_model.Authentication.Auth_Forms.Registrar;
+using school_management_system_model.Classes;
 using school_management_system_model.Forms.main;
 using school_management_system_model.Loggers.Authentication;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Authentication.Login
@@ -45,10 +47,18 @@ namespace school_management_system_model.Authentication.Login
 
         
 
-        private void loginAuthentication(string email, string password)
+        private async void loginAuthentication(string email, string password)
         {
             try
             {
+                //var userEmail = await new UserManagement().GetUserManagementsAsync();
+                //userEmail.FirstOrDefault(x => x.email == email);
+
+                //if (userEmail != null)
+                //{
+
+                //}
+
                 var con = new MySqlConnection(connection.con());
                 var da = new MySqlDataAdapter("select * from users where email='" + email + "'", con);
                 var dt = new DataTable();

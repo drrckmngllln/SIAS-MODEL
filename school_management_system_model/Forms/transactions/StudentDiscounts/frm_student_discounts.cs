@@ -44,16 +44,20 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
 
         private void loadRecords()
         {
-            var data = new StudentDiscount();
-            dgv.DataSource = data.loadRecords(tIdNumber.Text);
-            dgv.Columns["id"].Visible = false;
-            dgv.Columns["id_number"].Visible = false;
-            dgv.Columns["discount_target"].HeaderText = "Discount Target";
-            dgv.Columns["code"].HeaderText = "Discount Code";
-            dgv.Columns["description"].HeaderText = "Description";
-            dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
-            dgv.Columns["duration_from"].HeaderText = "From";
-            dgv.Columns["duration_to"].HeaderText = "To";
+            var studentDiscount = new StudentDiscount().GetStudentDiscounts()
+                .Where(x => x.id_number == idNumber).ToList();
+            //var data = new StudentDiscount();
+
+            if (studentDiscount != null)
+            {
+                dgv.DataSource = studentDiscount;
+                dgv.Columns["id"].Visible = false;
+                dgv.Columns["id_number"].Visible = false;
+                dgv.Columns["discount_target"].HeaderText = "Discount Target";
+                dgv.Columns["code"].HeaderText = "Discount Code";
+                dgv.Columns["description"].HeaderText = "Description";
+                dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -73,12 +77,11 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
                     tDescription.Text = description;
                     tDiscountTarget.Text = discount_target;
                     tDiscountPercentage.Text = discount_percentage;
-                    dateTimePicker1.Select();
                 }
             }
         }
 
-        
+
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
@@ -92,15 +95,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             }
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            tFrom.Text = dateTimePicker1.Value.ToString("dd-MM-yyyy");
-        }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            tTo.Text = dateTimePicker2.Value.ToString("dd-MM-yyyy");
-        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -111,8 +106,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
                 discount_target = tDiscountTarget.Text,
                 description = tDescription.Text,
                 discount_percentage = Convert.ToInt32(tDiscountPercentage.Text),
-                duration_from = tFrom.Text,
-                duration_to = tTo.Text
+
             };
             save.addRecords();
             loadRecords();
@@ -127,8 +121,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             tDescription.Clear();
             tDiscountPercentage.Clear();
             tDiscountTarget.Clear();
-            tFrom.Clear();
-            tTo.Clear();
+
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)

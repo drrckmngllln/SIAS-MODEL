@@ -4,6 +4,7 @@ using school_management_system_model.Loggers;
 using System;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
@@ -23,8 +24,11 @@ namespace school_management_system_model.Forms.settings
             Email = email;
         }
 
-        private void frm_section_subjects_Load(object sender, EventArgs e)
+        private async void frm_section_subjects_Load(object sender, EventArgs e)
         {
+            tLoading.Visible = true;
+            await Task.Delay(500);
+            tLoading.Visible = false;
             loadSections();
             loadRecords();
         }

@@ -15,7 +15,7 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_accounts : Form
     {
-   
+        public int id { get; set; }
         public bool IsAdd { get; set; }
         public bool IsEdit { get; set; }
         public bool IsDelete { get; set; }
@@ -33,6 +33,10 @@ namespace school_management_system_model.Forms.transactions
             instance = this;
             InitializeComponent();
             Email = email;
+            if (id != 0)
+            {
+                id = (int)dgv.CurrentRow.Cells["id"].Value;
+            }
         }
 
         private void timerTotal_Tick(object sender, EventArgs e)
@@ -256,6 +260,10 @@ namespace school_management_system_model.Forms.transactions
                 };
                 frm.ShowDialog();
                 loadRecords();
+            }
+            else
+            {
+                new Classes.Toastr("Warning", "No Scheduled Enrollment or Adding Schedule");
             }
         }
 
