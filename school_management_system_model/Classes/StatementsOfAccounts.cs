@@ -30,7 +30,7 @@ namespace school_management_system_model.Classes
             using (var con = new MySqlConnection(connection.con()))
             {
                 con.Open();
-                var sql = "select * from statemets_of_accounts";
+                var sql = "select * from statements_of_accounts";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
                     using (var reader = cmd.ExecuteReader())
@@ -85,16 +85,16 @@ namespace school_management_system_model.Classes
             con.Close();
         }
 
-        public void saveStatementOfAccount(string idNumber, string schoolYear)
+        public void saveStatementOfAccount()
         {
             reference_no = referenceNumber();
             incrementReferenceNumber(reference_no);
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("insert into statements_of_accounts(id_number, date, reference_no, particulars, debit, credit, balance, cashier_in_charge, school_year, " +
-                "course, year_level, semester) " +
+            var cmd = new MySqlCommand("insert into statements_of_accounts(id_number_id, date, reference_no, particulars, debit, credit, balance, cashier_in_charge, school_year_id, " +
+                "course_id, year_level, semester) " +
                 "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12)", con);
-            cmd.Parameters.AddWithValue("@1", idNumber);
+            cmd.Parameters.AddWithValue("@1", id_number);
             cmd.Parameters.AddWithValue("@2", DateTime.Now.ToString("MM-dd-yyyy"));
             cmd.Parameters.AddWithValue("@3", reference_no);
             cmd.Parameters.AddWithValue("@4", particulars);
@@ -102,7 +102,7 @@ namespace school_management_system_model.Classes
             cmd.Parameters.AddWithValue("@6", credit);
             cmd.Parameters.AddWithValue("@7", balance);
             cmd.Parameters.AddWithValue("@8", cashier_in_charge);
-            cmd.Parameters.AddWithValue("@9", schoolYear);
+            cmd.Parameters.AddWithValue("@9", school_year);
             cmd.Parameters.AddWithValue("@10", course);
             cmd.Parameters.AddWithValue("@11", year_level);
             cmd.Parameters.AddWithValue("@12", semester);

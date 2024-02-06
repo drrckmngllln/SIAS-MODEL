@@ -89,28 +89,28 @@ namespace school_management_system_model.Reports.Accounting
             {
                 await Task.Delay(500);
                 var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select * from student_accounts where id_number='" + id_number + "'", con);
+                var da = new MySqlDataAdapter("select * from student_accounts where id_number_id='" + id_number + "'", con);
                 var studentAccounts = new DataTable();
                 da.Fill(studentAccounts);
 
 
-                da = new MySqlDataAdapter("select * from student_course where id_number='" + id_number + "'", con);
+                da = new MySqlDataAdapter("select * from student_course where id_number_id='" + id_number + "'", con);
                 var studentCourse = new DataTable();
                 da.Fill(studentCourse);
 
-                da = new MySqlDataAdapter("select * from student_assessment where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
+                da = new MySqlDataAdapter("select * from student_assessment where id_number_id='" + id_number + "' and school_year_id='" + school_year + "'", con);
                 var studentAssessment = new DataTable();
                 da.Fill(studentAssessment);
 
-                da = new MySqlDataAdapter("select * from fee_breakdown where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
+                da = new MySqlDataAdapter("select * from fee_breakdown where id_number_id='" + id_number + "' and school_year_id='" + school_year + "'", con);
                 var feeBreakdown = new DataTable();
                 da.Fill(feeBreakdown);
 
-                da = new MySqlDataAdapter("select * from student_subjects where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
+                da = new MySqlDataAdapter("select * from student_subjects where id_number_id='" + id_number + "' and school_year_id='" + school_year + "'", con);
                 var studentSubjects = new DataTable();
                 da.Fill(studentSubjects);
 
-                da = new MySqlDataAdapter("select * from fee_summary where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
+                da = new MySqlDataAdapter("select * from fee_summary where id_number_id='" + id_number + "' and school_year_id='" + school_year + "'", con);
                 var feeSummary = new DataTable();
                 da.Fill(feeSummary);
 

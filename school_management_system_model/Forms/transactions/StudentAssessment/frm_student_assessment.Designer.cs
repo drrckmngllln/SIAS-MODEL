@@ -271,7 +271,6 @@
             this.tSemester.Name = "tSemester";
             this.tSemester.Size = new System.Drawing.Size(220, 21);
             this.tSemester.TabIndex = 142;
-            this.tSemester.TextChanged += new System.EventHandler(this.tSemester_TextChanged);
             // 
             // label7
             // 

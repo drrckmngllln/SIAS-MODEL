@@ -70,13 +70,13 @@ namespace school_management_system_model.Classes
             }
         }
 
-        public void saveRecords(string idNumber)
+        public void saveRecords()
         {
             var con = new MySqlConnection(connection.con());
             con.Open();
-            var cmd = new MySqlCommand("insert into fee_breakdown(id_number, school_year,prelim, midterm, semi_finals, finals, total, prelim_original, midterm_original, semi_finals_original,finals_original, " +
+            var cmd = new MySqlCommand("insert into fee_breakdown(id_number_id, school_year_id,prelim, midterm, semi_finals, finals, total, prelim_original, midterm_original, semi_finals_original,finals_original, " +
                 "total_original, downpayment, downpayment_original) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14)", con);
-            cmd.Parameters.AddWithValue("@1", idNumber);
+            cmd.Parameters.AddWithValue("@1", id_number);
             cmd.Parameters.AddWithValue("@2", school_year);
             cmd.Parameters.AddWithValue("@3", prelim);
             cmd.Parameters.AddWithValue("@4", midterm);

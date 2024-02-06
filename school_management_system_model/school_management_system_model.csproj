@@ -206,6 +206,7 @@
     <Compile Include="Classes\add_section.cs" />
     <Compile Include="Classes\add_subjects.cs" />
     <Compile Include="Classes\AdmissionSchedule.cs" />
+    <Compile Include="Classes\AssessmentBreakdowns.cs" />
     <Compile Include="Classes\BaseEntity.cs" />
     <Compile Include="Classes\Campuses.cs" />
     <Compile Include="Classes\Courses.cs" />
