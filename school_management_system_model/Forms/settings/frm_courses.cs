@@ -213,7 +213,9 @@ namespace school_management_system_model.Forms.settings
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new Courses().GetCourses().Where(x => x.code.ToLower().Contains(tsearch.Text.ToLower())).ToList();
+                var search = new Courses().GetCourses()
+                    .Where(x => x.code.ToLower().Contains(tsearch.Text.ToLower()) || x.description.ToLower().Contains(tsearch.Text.ToLower()))
+                    .ToList();
                 dgv.DataSource = search;
             }
             else if (tsearch.Text.Length == 0)

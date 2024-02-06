@@ -90,5 +90,16 @@ namespace school_management_system_model.Classes
             cmd.ExecuteNonQuery();
             con.Close();
         }
+
+        public void DeleteCurriculumSubjects(int curriculum_id)
+        {
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                con.Open();
+                var cmd = new MySqlCommand("delete from curriculum_subjects where curriculum_id='" + curriculum_id + "'", con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
     }
 }
