@@ -124,48 +124,53 @@ namespace school_management_system_model.Forms.transactions
                 
             }
         }
+
+        private void SelectFunc()
+        {
+            if (this.Text == "Select Student")
+            {
+                frm_student_assessment.instance.studentID = dgv.CurrentRow.Cells["id_number"].Value.ToString();
+                this.Close();
+            }
+            else if (this.Text == "Select School Year")
+            {
+                frm_student_assessment.instance.schoolYear = dgv.CurrentRow.Cells["code"].Value.ToString();
+                this.Close();
+            }
+            else if (this.Text == "Select Lab Fee")
+            {
+                if (yearLevel == "1")
+                {
+                    frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["first_year"].Value);
+                    frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
+                    this.Close();
+                }
+                else if (yearLevel == "2")
+                {
+                    frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["second_year"].Value);
+                    frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
+                    this.Close();
+                }
+                else if (yearLevel == "3")
+                {
+                    frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["third_year"].Value);
+                    frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
+                    this.Close();
+                }
+                else if (yearLevel == "4")
+                {
+                    frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["fourth_year"].Value);
+                    frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
+                    this.Close();
+                }
+            }
+        }
+
         private void frm_select_student_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if(this.Text == "Select Student")
-                {
-                    frm_student_assessment.instance.studentID = dgv.CurrentRow.Cells["id_number"].Value.ToString();
-                    this.Close();
-                }
-                else if (this.Text == "Select School Year")
-                {
-                    frm_student_assessment.instance.schoolYear = dgv.CurrentRow.Cells["code"].Value.ToString();
-                    this.Close();
-                }
-                else if (this.Text == "Select Lab Fee")
-                {
-                    if (yearLevel == "1")
-                    {
-                        frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["first_year"].Value);
-                        frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
-                        this.Close();
-                    }
-                    else if (yearLevel == "2")
-                    {
-                        frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["second_year"].Value);
-                        frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
-                        this.Close();
-                    }
-                    else if(yearLevel == "3")
-                    {
-                        frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["third_year"].Value);
-                        frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
-                        this.Close();
-                    }
-                    else if (yearLevel == "4")
-                    {
-                        frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["fourth_year"].Value);
-                        frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
-                        this.Close();
-                    }
-                }
-                
+                SelectFunc();
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -228,6 +233,16 @@ namespace school_management_system_model.Forms.transactions
             {
 
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            SelectFunc();
         }
     }
 }

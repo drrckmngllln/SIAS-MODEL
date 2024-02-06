@@ -193,5 +193,16 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
 
         }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
+            tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
+            tLevel.Text = dgv.CurrentRow.Cells["level"].Value.ToString();
+            tYearLevel.Text = dgv.CurrentRow.Cells["year_level"].Value.ToString();
+            tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
+            tAmount.Text = dgv.CurrentRow.Cells["amount"].Value.ToString();
+            btn_save.Text = "Update";
+        }
     }
 }

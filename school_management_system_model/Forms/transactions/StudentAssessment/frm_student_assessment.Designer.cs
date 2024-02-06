@@ -79,8 +79,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.kryptonButton6 = new Krypton.Toolkit.KryptonButton();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.tReferenceNumber = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -90,7 +88,6 @@
             this.kajshdk.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // kryptonButton1
@@ -153,20 +150,20 @@
             // 
             // btn_save
             // 
-            this.btn_save.CornerRoundingRadius = 15F;
-            this.btn_save.Location = new System.Drawing.Point(89, 47);
+            this.btn_save.CornerRoundingRadius = 10F;
+            this.btn_save.Location = new System.Drawing.Point(78, 293);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(155, 30);
-            this.btn_save.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.btn_save.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.btn_save.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btn_save.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn_save.Size = new System.Drawing.Size(220, 37);
+            this.btn_save.StateCommon.Back.Color1 = System.Drawing.Color.DarkGreen;
+            this.btn_save.StateCommon.Back.Color2 = System.Drawing.Color.DarkGreen;
+            this.btn_save.StateCommon.Border.Color1 = System.Drawing.Color.DarkGreen;
+            this.btn_save.StateCommon.Border.Color2 = System.Drawing.Color.DarkGreen;
             this.btn_save.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btn_save.StateCommon.Border.Rounding = 15F;
+            this.btn_save.StateCommon.Border.Rounding = 10F;
             this.btn_save.StateCommon.Border.Width = 2;
-            this.btn_save.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btn_save.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
             this.btn_save.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
             this.btn_save.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.TabIndex = 126;
@@ -684,31 +681,12 @@
             this.kryptonButton6.Values.Text = "Print Assessment";
             this.kryptonButton6.Click += new System.EventHandler(this.kryptonButton6_Click_1);
             // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.tReferenceNumber);
-            this.groupBox8.Controls.Add(this.btn_save);
-            this.groupBox8.Location = new System.Drawing.Point(32, 275);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(330, 91);
-            this.groupBox8.TabIndex = 158;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "OR Number";
-            // 
-            // tReferenceNumber
-            // 
-            this.tReferenceNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tReferenceNumber.Location = new System.Drawing.Point(6, 20);
-            this.tReferenceNumber.Name = "tReferenceNumber";
-            this.tReferenceNumber.Size = new System.Drawing.Size(318, 21);
-            this.tReferenceNumber.TabIndex = 147;
-            // 
             // frm_student_assessment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1417, 743);
-            this.Controls.Add(this.groupBox8);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.kryptonButton6);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -757,8 +735,6 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -815,7 +791,5 @@
         private System.Windows.Forms.Label tPrelims;
         private System.Windows.Forms.Label tDownpayment;
         private Krypton.Toolkit.KryptonButton kryptonButton6;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.TextBox tReferenceNumber;
     }
 }

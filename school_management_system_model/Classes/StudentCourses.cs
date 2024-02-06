@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace school_management_system_model.Classes
 {
-    internal class student_course
+    internal class StudentCourses
     {
         public int id { get; set; }
         public string id_number_id { get; set; }
@@ -20,9 +20,9 @@ namespace school_management_system_model.Classes
         public string section_id { get; set; }
         public string semester { get; set; }
 
-        public List<student_course> GetStudentCourses()
+        public List<StudentCourses> GetStudentCourses()
         {
-            var list = new List<student_course>();
+            var list = new List<StudentCourses>();
             var con = new MySqlConnection(connection.con());
             con.Open();
             var cmd = new MySqlCommand("select * from student_course", con);
@@ -32,21 +32,25 @@ namespace school_management_system_model.Classes
                 var id_number = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id")).id_number;
                 var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;
                 var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
-                var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id")).code;
+                var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id.ToString() == reader.GetString("curriculum_id")).code;
+                //var section = new sections().GetSections().FirstOrDefault(x => x.id == reader.GetInt32("section_id"));
 
-
-                var courses = new student_course
+                if (id_number != null && course != null && campus != null && curriculum != null)
                 {
-                    id = reader.GetInt32("id"),
-                    id_number_id = id_number,
-                    course_id = course,
-                    campus_id = campus,
-                    curriculum_id = curriculum,
-                    year_level = reader.GetString("year_level"),
-                    section_id = reader.GetString("section_id"),
-                    semester = reader.GetString("semester")
-                };
-                list.Add(courses);
+                    var courses = new StudentCourses
+                    {
+                        id = reader.GetInt32("id"),
+                        id_number_id = id_number,
+                        course_id = course,
+                        campus_id = campus,
+                        curriculum_id = curriculum,
+                        year_level = reader.GetString("year_level"),
+                        section_id = reader.GetString("section_id"),
+                        semester = reader.GetString("semester")
+                    };
+                    list.Add(courses);
+                }
+                
             }
             con.Close();
             return list;

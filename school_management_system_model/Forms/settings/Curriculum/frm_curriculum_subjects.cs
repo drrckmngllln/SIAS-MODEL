@@ -85,11 +85,11 @@ namespace school_management_system_model.Forms.settings
             //var dt = new DataTable();
             //da.Fill(dt);
         }
-        private void deleteAll(string curriculum)
+        private void deleteAll(int curriculum)
         {
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter();
-            da.SelectCommand = new MySqlCommand("delete from curriculum_subjects where curriculum='" + curriculum + "'", con);
+            da.SelectCommand = new MySqlCommand("delete from curriculum_subjects where curriculum_id='" + curriculum + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
         }
@@ -125,8 +125,10 @@ namespace school_management_system_model.Forms.settings
             if (MessageBox.Show("are you sure you want to delete all subjects in this curriculum?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                DialogResult.Yes)
             {
-                deleteAll(tcode.Text);
-                MessageBox.Show("Curriculum Subject Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var curriculum_id = new Curriculums().GetCurriculums()
+                    .FirstOrDefault(x => x.code == tcode.Text);
+
+                deleteAll(curriculum_id.id);
                 new Classes.Toastr("Information", "Curriculum Subject Deleted");
                 new ActivityLogger().activityLogger(Email, "Deleted All Curriculum: " + tdescription.Text);
                 loadrecords();

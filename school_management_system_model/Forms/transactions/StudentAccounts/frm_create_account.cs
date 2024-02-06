@@ -80,7 +80,7 @@ namespace school_management_system_model.Forms.transactions
                 kryptonDateTimePicker1 = new KryptonDateTimePicker();
                
 
-                var UpdateCourseData = new student_course().GetStudentCourses().FirstOrDefault(x => x.course_id == tCourse.Text);
+                var UpdateCourseData = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.course_id == tCourse.Text);
 
                 tCourse.Text = UpdateCourseData.course_id;
                 tCampus.Text = UpdateCourseData.campus_id;
@@ -175,14 +175,14 @@ namespace school_management_system_model.Forms.transactions
                     add.AddStudentAccount();
 
                     var id_number_id = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == tIdNumber.Text);
-                    var course = new student_course
+                    var course = new StudentCourses
                     {
                         id_number_id = id_number_id.id.ToString(),
                         course_id = new Courses().GetCourses().FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
                         campus_id = new Campuses().GetCampuses().FirstOrDefault(x => x.code == tCampus.Text).id.ToString(),
-                        curriculum_id = "Not Set",
-                        year_level = "Not Set",
-                        section_id = "Not Set",
+                        //curriculum_id = "Not Set",
+                        //year_level = "Not Set",
+                        //section_id = "Not Set",
                         semester = Semester
                     };
                     course.AddStudentCourse();

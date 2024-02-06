@@ -69,7 +69,7 @@ namespace school_management_system_model.Forms.transactions
 
                 // Getting Student Course
 
-                var studentCourse = new student_course().GetStudentCourses()
+                var studentCourse = new StudentCourses().GetStudentCourses()
                     .FirstOrDefault(x => x.id_number_id == studentID);
 
                 tIdNumber.Text = studentID.ToString();

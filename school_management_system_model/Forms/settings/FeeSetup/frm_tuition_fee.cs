@@ -109,17 +109,6 @@ namespace school_management_system_model.Forms.settings
             loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
         }
 
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            tCategory.Text = dgv.CurrentRow.Cells["category"].Value.ToString();
-            tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
-            tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
-            tLevel.Text = dgv.CurrentRow.Cells["level"].Value.ToString();
-            tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
-            tAmount.Text = dgv.CurrentRow.Cells["amount"].Value.ToString();
-            btn_save.Text = "Update";
-        }
-
         private void txtClear()
         {
             tCampus.Text = "";
@@ -210,6 +199,17 @@ namespace school_management_system_model.Forms.settings
         private void btn_save_Click_1(object sender, EventArgs e)
         {
             addRecords();
+        }
+
+        private void dgv_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            tCategory.Text = dgv.CurrentRow.Cells["category"].Value.ToString();
+            tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
+            tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
+            tLevel.Text = dgv.CurrentRow.Cells["level"].Value.ToString();
+            tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
+            tAmount.Text = dgv.CurrentRow.Cells["amount"].Value.ToString();
+            btn_save.Text = "Update";
         }
     }
 }

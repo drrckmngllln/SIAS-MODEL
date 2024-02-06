@@ -29,14 +29,18 @@ namespace school_management_system_model.Classes
                         {
                             var lab_fee_id = new LabFeeSetup().GetLabFeeSetups()
                                 .FirstOrDefault(x => x.id == reader.GetInt32("lab_fee_id"));
-                            var labFeeSubjects = new LabFeeSubjects
+                            if (lab_fee_id != null)
                             {
-                                id = reader.GetInt32("id"),
-                                lab_fee = lab_fee_id.description,
-                                subject_code = reader.GetString("subject_code"),
-                                descriptive_title = reader.GetString("descriptive_title")
-                            };
-                            list.Add(labFeeSubjects);
+                                var labFeeSubjects = new LabFeeSubjects
+                                {
+                                    id = reader.GetInt32("id"),
+                                    lab_fee = lab_fee_id.description,
+                                    subject_code = reader.GetString("subject_code"),
+                                    descriptive_title = reader.GetString("descriptive_title")
+                                };
+                                list.Add(labFeeSubjects);
+                            }
+                            
                         }
                     }
                 }

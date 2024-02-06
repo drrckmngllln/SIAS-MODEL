@@ -95,7 +95,7 @@ namespace school_management_system_model.Forms.transactions
         {
 
             var student_account = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == id_number);
-            var student_course = new student_course().GetStudentCourses().FirstOrDefault(x => x.id_number_id == id_number);
+            var student_course = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number_id == id_number);
 
             tIdNumber.Text = student_account.id_number;
             tStudentName.Text = student_account.fullname;
@@ -194,9 +194,9 @@ namespace school_management_system_model.Forms.transactions
 
         private void SaveStudentCourse()
         {
-            var id = new student_course().GetStudentCourses().FirstOrDefault(x => x.id_number_id == tIdNumber.Text);
+            var id = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number_id == tIdNumber.Text);
             var section = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
-            var enrollStudent = new student_course();
+            var enrollStudent = new StudentCourses();
             enrollStudent.EnrolStudent(id.id, tYearLevel.Text, section.id.ToString());
         }
 
@@ -260,7 +260,7 @@ namespace school_management_system_model.Forms.transactions
             // INCREMENTING OF SECTIONS
 
             var section = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
-            var studentCourse = new student_course().GetStudentCourses().FirstOrDefault(x => x.id_number_id == tIdNumber.Text);
+            var studentCourse = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number_id == tIdNumber.Text);
 
             if (section.number_of_students <= section.max_number_of_students)
             {

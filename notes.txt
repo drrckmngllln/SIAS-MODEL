@@ -1,4 +1,10 @@
-TO SAVE ENROLLED SUBJECTS
 
-1. MAKE SURE THE SECTIONS ARE FULL OR NOT, BY CHECKING THE NUMBER OF STUDENTS
-2. IF THE SECTIONS ARE NOT FULL STORE THE SECTIONS TO THE STUDENT SUBJECTS TABLE
+
+
+remove the annoying toastr when selecting student from student accounts
+edit the header of select school year is_current
+fix the reporting services
+adding seting up or
+view subjects functionality in the student assessment
+view discounts functionality
+add functionality to update the assessment when there is detected

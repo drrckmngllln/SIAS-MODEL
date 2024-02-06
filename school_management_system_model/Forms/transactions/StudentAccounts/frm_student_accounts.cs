@@ -1,4 +1,5 @@
-﻿using school_management_system_model.Classes;
+﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Forms.transactions.StudentAccounts;
 using System;
@@ -51,21 +52,11 @@ namespace school_management_system_model.Forms.transactions
             {
                 AdmissionValidator = true;
             }
-            
+
         }
         private void getStudentCourse()
         {
-            try
-            {
-                var id = dgv.CurrentRow.Cells["id_number"].Value.ToString();
-                var student_course = new student_course().GetStudentCourses().FirstOrDefault(x => x.id_number_id == id.ToString()).course_id;
-                var course = new Courses().GetCourses().FirstOrDefault(x => x.code.ToString() == student_course);
-                tSudentCourse.Text = course.code;
-            }
-            catch(Exception ex)
-            {
-                new Classes.Toastr("Information", ex.Message);
-            }
+            
         }
 
         private void frm_student_accounts_Load(object sender, EventArgs e)
@@ -163,7 +154,7 @@ namespace school_management_system_model.Forms.transactions
             loadRecords();
         }
 
-        
+
         private void btnCreate_Click(object sender, EventArgs e)
         {
             if (btnCreate.Text == "Create Account")
@@ -195,7 +186,7 @@ namespace school_management_system_model.Forms.transactions
                     new Classes.Toastr("Error", "Authorization Denied");
                 }
             }
-            
+
         }
 
         private void searchRecords(string search)
@@ -283,14 +274,14 @@ namespace school_management_system_model.Forms.transactions
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            
+
             var frm = new frm_view_subjects();
             frm_view_subjects.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
             frm_view_subjects.instance.fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString();
             frm_view_subjects.instance.school_year = dgv.CurrentRow.Cells["school_year_id"].Value.ToString();
             frm_view_subjects.instance.IsAdministrator = IsAdministrator;
             frm.ShowDialog();
-            
+
         }
 
         private void btnPromoteStudent_Click(object sender, EventArgs e)
@@ -316,14 +307,10 @@ namespace school_management_system_model.Forms.transactions
             loadRecords();
         }
 
-        private void btnCancelEnrollment_Click(object sender, EventArgs e)
+        private void btnStudentDetails_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            var frm = new frm_student_details(dgv.CurrentRow.Cells["id_number"].Value.ToString());
+            frm.ShowDialog();
         }
     }
 }

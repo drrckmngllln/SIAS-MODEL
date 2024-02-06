@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.btnCreate = new Krypton.Toolkit.KryptonButton();
@@ -54,13 +54,11 @@
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             this.btnCancelEnrollment = new Krypton.Toolkit.KryptonButton();
             this.btnSYoptions = new Krypton.Toolkit.KryptonButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tSudentCourse = new System.Windows.Forms.Label();
+            this.btnStudentDetails = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -82,23 +80,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv.Location = new System.Drawing.Point(6, 60);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -108,10 +106,9 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1090, 338);
+            this.dgv.Size = new System.Drawing.Size(1258, 338);
             this.dgv.TabIndex = 102;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
-            this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             // 
             // btnCreate
             // 
@@ -142,7 +139,7 @@
             this.groupBox1.Controls.Add(this.tSemester);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tSchoolYear);
-            this.groupBox1.Location = new System.Drawing.Point(819, 12);
+            this.groupBox1.Location = new System.Drawing.Point(987, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(251, 56);
             this.groupBox1.TabIndex = 105;
@@ -196,7 +193,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.tTotal);
-            this.groupBox2.Location = new System.Drawing.Point(1012, 569);
+            this.groupBox2.Location = new System.Drawing.Point(1180, 569);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(105, 39);
             this.groupBox2.TabIndex = 106;
@@ -242,7 +239,7 @@
             this.groupBox3.Controls.Add(this.dgv);
             this.groupBox3.Location = new System.Drawing.Point(12, 130);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1102, 433);
+            this.groupBox3.Size = new System.Drawing.Size(1270, 433);
             this.groupBox3.TabIndex = 107;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Student Accounts";
@@ -251,7 +248,7 @@
             // 
             this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrev.Location = new System.Drawing.Point(509, 407);
+            this.btnPrev.Location = new System.Drawing.Point(593, 407);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(26, 23);
             this.btnPrev.TabIndex = 106;
@@ -262,7 +259,7 @@
             // 
             this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext.Location = new System.Drawing.Point(562, 407);
+            this.btnNext.Location = new System.Drawing.Point(646, 407);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(26, 23);
             this.btnNext.TabIndex = 105;
@@ -274,7 +271,7 @@
             this.tPageSize.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.tPageSize.AutoSize = true;
             this.tPageSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tPageSize.Location = new System.Drawing.Point(541, 410);
+            this.tPageSize.Location = new System.Drawing.Point(625, 410);
             this.tPageSize.Name = "tPageSize";
             this.tPageSize.Size = new System.Drawing.Size(15, 15);
             this.tPageSize.TabIndex = 104;
@@ -286,7 +283,7 @@
             this.tSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tSearch.CueHint.CueHintText = "Search...";
             this.tSearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.tSearch.Location = new System.Drawing.Point(834, 28);
+            this.tSearch.Location = new System.Drawing.Point(1002, 28);
             this.tSearch.Name = "tSearch";
             this.tSearch.Size = new System.Drawing.Size(262, 23);
             this.tSearch.TabIndex = 103;
@@ -318,7 +315,7 @@
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReset.CornerRoundingRadius = 10F;
-            this.btnReset.Location = new System.Drawing.Point(1053, 90);
+            this.btnReset.Location = new System.Drawing.Point(1221, 90);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(55, 34);
             this.btnReset.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -363,7 +360,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.CornerRoundingRadius = 10F;
-            this.kryptonButton1.Location = new System.Drawing.Point(498, 90);
+            this.kryptonButton1.Location = new System.Drawing.Point(658, 90);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(154, 34);
             this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -385,7 +382,7 @@
             // btnCancelEnrollment
             // 
             this.btnCancelEnrollment.CornerRoundingRadius = 10F;
-            this.btnCancelEnrollment.Location = new System.Drawing.Point(658, 90);
+            this.btnCancelEnrollment.Location = new System.Drawing.Point(818, 90);
             this.btnCancelEnrollment.Name = "btnCancelEnrollment";
             this.btnCancelEnrollment.Size = new System.Drawing.Size(154, 34);
             this.btnCancelEnrollment.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -402,13 +399,12 @@
             this.btnCancelEnrollment.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelEnrollment.TabIndex = 113;
             this.btnCancelEnrollment.Values.Text = "Cancel Enrollment";
-            this.btnCancelEnrollment.Click += new System.EventHandler(this.btnCancelEnrollment_Click);
             // 
             // btnSYoptions
             // 
             this.btnSYoptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSYoptions.CornerRoundingRadius = 10F;
-            this.btnSYoptions.Location = new System.Drawing.Point(1073, 18);
+            this.btnSYoptions.Location = new System.Drawing.Point(1241, 18);
             this.btnSYoptions.Name = "btnSYoptions";
             this.btnSYoptions.Size = new System.Drawing.Size(44, 50);
             this.btnSYoptions.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -427,35 +423,34 @@
             this.btnSYoptions.Values.Text = "...";
             this.btnSYoptions.Click += new System.EventHandler(this.btnSYoptions_Click);
             // 
-            // groupBox4
+            // btnStudentDetails
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.tSudentCourse);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(889, 89);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(158, 40);
-            this.groupBox4.TabIndex = 107;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Student Course";
-            // 
-            // tSudentCourse
-            // 
-            this.tSudentCourse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tSudentCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tSudentCourse.Location = new System.Drawing.Point(3, 16);
-            this.tSudentCourse.Name = "tSudentCourse";
-            this.tSudentCourse.Size = new System.Drawing.Size(152, 21);
-            this.tSudentCourse.TabIndex = 0;
-            this.tSudentCourse.Text = "...";
-            this.tSudentCourse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStudentDetails.CornerRoundingRadius = 10F;
+            this.btnStudentDetails.Location = new System.Drawing.Point(498, 90);
+            this.btnStudentDetails.Name = "btnStudentDetails";
+            this.btnStudentDetails.Size = new System.Drawing.Size(154, 34);
+            this.btnStudentDetails.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
+            this.btnStudentDetails.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
+            this.btnStudentDetails.StateCommon.Border.Color1 = System.Drawing.Color.DarkGoldenrod;
+            this.btnStudentDetails.StateCommon.Border.Color2 = System.Drawing.Color.DarkGoldenrod;
+            this.btnStudentDetails.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnStudentDetails.StateCommon.Border.Rounding = 10F;
+            this.btnStudentDetails.StateCommon.Border.Width = 2;
+            this.btnStudentDetails.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnStudentDetails.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnStudentDetails.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentDetails.TabIndex = 115;
+            this.btnStudentDetails.Values.Text = "Student Details";
+            this.btnStudentDetails.Click += new System.EventHandler(this.btnStudentDetails_Click);
             // 
             // frm_student_accounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1129, 620);
-            this.Controls.Add(this.groupBox4);
+            this.ClientSize = new System.Drawing.Size(1297, 620);
+            this.Controls.Add(this.btnStudentDetails);
             this.Controls.Add(this.btnSYoptions);
             this.Controls.Add(this.btnCancelEnrollment);
             this.Controls.Add(this.kryptonButton1);
@@ -479,7 +474,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,11 +500,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label tSemester;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label tSudentCourse;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label tPageSize;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPrev;
+        private Krypton.Toolkit.KryptonButton btnStudentDetails;
     }
 }

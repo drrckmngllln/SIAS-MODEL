@@ -83,8 +83,62 @@ namespace school_management_system_model.Forms.settings.Curriculum
             }
         }
 
-        private void saveRecords()
+        private async Task SaveLoading()
         {
+            panelWait.Visible = true;
+            btnSave.Enabled = false;
+
+            int totalSubjects = Convert.ToInt32(dgv.Rows.Count);
+
+            UpdateProgressBar(totalSubjects);
+            await Task.Delay(1);
+
+            panelWait.Visible = false;
+
+            //progressBar1.Minimum = 0;
+            //progressBar1.Maximum = 100;
+            //progressBar1.Value = 0;
+            //try
+            //{
+            //    await Task.Run(async () =>
+            //    {
+            //        int totalSubjects = Convert.ToInt32(dgv.Rows.Count);
+
+            //        for (int i = 1; i <= totalSubjects; i++)
+            //        {
+            //            await Task.Delay(10);
+
+            //            int progress = (int)(i / ((double)totalSubjects) * 100);
+            //            UpdateProgressBar(progress);
+            //        }
+            //    });
+            //}
+            //catch
+            //{
+            //    new Classes.Toastr("Warning", "An Error has occured while saving");
+            //}
+            //finally
+            //{
+            //    panelWait.Visible = false;
+            //    btnSave.Enabled = true;
+            //}
+        }
+
+        private void UpdateProgressBar(int progress)
+        {
+            if (progressBar1.InvokeRequired)
+            {
+                progressBar1.Invoke(new Action<int>(UpdateProgressBar), progress);
+            }
+            else
+            {
+                progressBar1.Value = progress;
+            }
+        }
+
+        private async Task saveRecords()
+        {
+            await SaveLoading();
             var curriculum_id = new Curriculums().GetCurriculums().FirstOrDefault(x => x.code == curriculum).id;
             var subjects = new CurriculumSubjects
             {
@@ -111,7 +165,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
             excelImport();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private async void kryptonButton1_Click(object sender, EventArgs e)
         {
             
             try
@@ -128,7 +182,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
                     lab_units = row.Cells["lab_units"].Value.ToString();
                     pre_requisite = row.Cells["pre_requisite"].Value.ToString();
                     total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
-                    saveRecords();
+                    await saveRecords();
                 }
 
                 new Classes.Toastr("Success", "Curriculum Import Success");
