@@ -102,8 +102,8 @@ namespace school_management_system_model.Forms.settings
                     {
                         unique_id = uid,
                         section_code_id = sectionCode,
-                        curriculum_id = curriculum_id,
-                        course_id = course_id.id.ToString(),
+                        //curriculum_id = curriculum_id,
+                        //course_id = course_id.id.ToString(),
                         year_level = year_level,
                         semester = semester,
                         subject_code = row.Cells["code"].Value.ToString(),

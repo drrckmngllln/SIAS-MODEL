@@ -57,11 +57,11 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["status"].Visible = false;
         }
 
-        private void searchRecords(string search)
+        private async void searchRecords(string search)
         {
             tLoading.Visible = true;
-            var searchSubjects = new SectionSubjects().GetSectionSubjects()
-                .Where(x => x.subject_code.ToLower().Contains(tSearch.Text) || x.descriptive_title.ToLower().Contains(tSearch.Text));
+            var searchSubjects = await new SectionSubjects().GetSectionSubjects();
+                searchSubjects.Where(x => x.subject_code.ToLower().Contains(tSearch.Text) || x.descriptive_title.ToLower().Contains(tSearch.Text));
             dgv.DataSource = searchSubjects.ToList();
             tLoading.Visible = false;
             

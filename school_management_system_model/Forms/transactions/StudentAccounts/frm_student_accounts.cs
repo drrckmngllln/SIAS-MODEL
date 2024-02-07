@@ -309,7 +309,7 @@ namespace school_management_system_model.Forms.transactions
 
         private void btnStudentDetails_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_details(dgv.CurrentRow.Cells["id_number"].Value.ToString());
+            var frm = new frm_student_details(dgv.CurrentRow.Cells["id_number"].Value.ToString(), dgv.CurrentRow.Cells["fullname"].Value.ToString());
             frm.ShowDialog();
         }
     }

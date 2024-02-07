@@ -70,13 +70,13 @@ namespace school_management_system_model.Forms.transactions
                 // Getting Student Course
 
                 var studentCourse = new StudentCourses().GetStudentCourses()
-                    .FirstOrDefault(x => x.id_number_id == studentID);
+                    .FirstOrDefault(x => x.id_number == studentID);
 
                 tIdNumber.Text = studentID.ToString();
-                tCourse.Text = studentCourse.course_id.ToString();
+                tCourse.Text = studentCourse.course.ToString();
                 tYearLevel.Text = studentCourse.year_level;
                 tSemester.Text = studentCourse.semester;
-                tCampus.Text = studentCourse.campus_id;
+                tCampus.Text = studentCourse.campus;
             }
         }
 

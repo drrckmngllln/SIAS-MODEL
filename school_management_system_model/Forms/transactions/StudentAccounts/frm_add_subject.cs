@@ -39,8 +39,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             await Task.Delay(100);
             tLoading.Visible = false;
             paging.pageSize = 10;
-            var sectionSubjects = new SectionSubjects().GetSectionSubjects()
-                .Skip(paging.pageSize * (paging.pageNumber - 1))
+            var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+                sectionSubjects.Skip(paging.pageSize * (paging.pageNumber - 1))
                 .Take(paging.pageSize).ToList();
 
             //var con = new MySqlConnection(connection.con());
@@ -69,10 +69,10 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             dgv.Columns["instructor_id"].Width = 250;
             dgv.Columns["status"].Visible = false;
         }
-        private void searchRecords(string search)
+        private async void searchRecords(string search)
         {
-            var sectionSubjects = new SectionSubjects().GetSectionSubjects()
-                .Where(x => x.subject_code.ToLower().Contains(search) || x.descriptive_title.ToLower().Contains(search)).ToList();
+            var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+                sectionSubjects.Where(x => x.subject_code.ToLower().Contains(search) || x.descriptive_title.ToLower().Contains(search)).ToList();
             
             dgv.DataSource = sectionSubjects;
             dgv.Columns["subject_code"].HeaderText = "Subject Code";

@@ -33,15 +33,16 @@ namespace school_management_system_model.Forms.settings
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var sectionSubjects = new SectionSubjects().GetSectionSubjects();
-            dgv.DataSource = sectionSubjects.Where(x => x.semester == tSemester.Text && x.section_code_id == tSectionCode.Text).ToList();
+            //x.semester == tSemester.Text && 
+            var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+            dgv.DataSource = sectionSubjects.Where(x => x.section_code_id == tSectionCode.Text).ToList();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
             dgv.Columns["section_code_id"].Visible = false;
-            dgv.Columns["curriculum_id"].Visible = false;
-            dgv.Columns["course_id"].Visible = false;
+            //dgv.Columns["curriculum_id"].Visible = false;
+            //dgv.Columns["course_id"].Visible = false;
             dgv.Columns["year_level"].Visible = false;
             dgv.Columns["semester"].Visible = false;
             dgv.Columns["subject_code"].HeaderText = "Subject Code";
@@ -149,7 +150,7 @@ namespace school_management_system_model.Forms.settings
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            tCurriculum.Text = dgv.CurrentRow.Cells["curriculum_id"].Value.ToString();
+            //tCurriculum.Text = dgv.CurrentRow.Cells["curriculum_id"].Value.ToString();
             tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
             tTime.Text = dgv.CurrentRow.Cells["time"].Value.ToString();
             tDay.Text = dgv.CurrentRow.Cells["day"].Value.ToString();

@@ -13,8 +13,8 @@ namespace school_management_system_model.Classes
         public int id { get; set; }
         public string unique_id { get; set; }
         public string section_code_id { get; set; }
-        public string curriculum_id { get; set; }
-        public string course_id { get; set; }
+        //public string curriculum_id { get; set; }
+        //public string course_id { get; set; }
         public string year_level { get; set; }
         public string semester { get; set; }
         public string subject_code { get; set; }
@@ -29,27 +29,27 @@ namespace school_management_system_model.Classes
         public string instructor_id { get; set; }
         public string status { get; set; }
 
-        public List<SectionSubjects> GetSectionSubjects()
+        public async Task<List<SectionSubjects>> GetSectionSubjects()
         {
             var list = new List<SectionSubjects>();
             var con = new MySqlConnection(connection.con());
-            con.Open();
+            await con.OpenAsync();
             var cmd = new MySqlCommand("select * from section_subjects", con);
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id"));
+                //var curriculum = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id"));
                 var section = new sections().GetSections().FirstOrDefault(x => x.id == reader.GetInt32("section_code_id"));
-                var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
-                var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
-                
+                //var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
+                //var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
+
                 var sectionSubjects = new SectionSubjects
                 {
                     id = reader.GetInt32("id"),
                     unique_id = reader.GetString("unique_id"),
                     section_code_id = section.section_code,
-                    curriculum_id = curriculum.code,
-                    course_id = course.code,
+                    //curriculum_id = curriculum.code,
+                    //course_id = course.code,
                     year_level = reader.GetString("year_level"),
                     semester = reader.GetString("semester"),
                     subject_code = reader.GetString("subject_code"),
@@ -61,12 +61,18 @@ namespace school_management_system_model.Classes
                     time = reader.GetString("time"),
                     day = reader.GetString("day"),
                     room = reader.GetString("room"),
-                    instructor_id = instructor.fullname,
+                    instructor_id = reader.GetString("instructor_id"), //instructor.fullname,
                     status = reader.GetString("status"),
                 };
                 list.Add(sectionSubjects);
+                //if (curriculum != null && section != null && course != null && instructor != null)
+                //{
+                    
+                //}
+
+                
             }
-            con.Close();
+            await con.CloseAsync();
             return list;
         }
 
@@ -79,8 +85,8 @@ namespace school_management_system_model.Classes
                 "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15,@16,@17)", con);
             cmd.Parameters.AddWithValue("@1", unique_id);
             cmd.Parameters.AddWithValue("@2", section_code_id);
-            cmd.Parameters.AddWithValue("@3", curriculum_id);
-            cmd.Parameters.AddWithValue("@4", course_id);
+            //cmd.Parameters.AddWithValue("@3", curriculum_id);
+            //cmd.Parameters.AddWithValue("@4", course_id);
             cmd.Parameters.AddWithValue("@5", year_level);
             cmd.Parameters.AddWithValue("@6", semester);
             cmd.Parameters.AddWithValue("@7", subject_code);

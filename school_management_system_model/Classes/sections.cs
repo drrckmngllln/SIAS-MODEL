@@ -36,21 +36,24 @@ namespace school_management_system_model.Classes
             while (reader.Read())
             {
                 var course = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
-                var section = new sections
+                if (course != null)
                 {
-                    id = reader.GetInt32("id"),
-                    unique_id = reader.GetString("unique_id"),
-                    section_code = reader.GetString("section_code"),
-                    course_id = course.code,
-                    year_level = reader.GetInt32("year_level"),
-                    section = reader.GetString("section"),
-                    semester = reader.GetString("semester"),
-                    number_of_students = reader.GetInt32("number_of_students"),
-                    max_number_of_students = reader.GetInt32("max_number_of_students"),
-                    status = reader.GetString("status"),
-                    remarks = reader.GetString("remarks")
-                };
-                list.Add(section);
+                    var section = new sections
+                    {
+                        id = reader.GetInt32("id"),
+                        unique_id = reader.GetString("unique_id"),
+                        section_code = reader.GetString("section_code"),
+                        course_id = course.code,
+                        year_level = reader.GetInt32("year_level"),
+                        section = reader.GetString("section"),
+                        semester = reader.GetString("semester"),
+                        number_of_students = reader.GetInt32("number_of_students"),
+                        max_number_of_students = reader.GetInt32("max_number_of_students"),
+                        status = reader.GetString("status"),
+                        remarks = reader.GetString("remarks")
+                    };
+                    list.Add(section);
+                }
             }
             con.Close();
             return list;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using school_management_system_model.TestFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace school_management_system_model
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Authentication.Login.frm_login());
+            //Application.Run(new frmTest());
+
         }
     }
 }

@@ -33,6 +33,7 @@
             this.panelSideBar = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelSettings = new System.Windows.Forms.Panel();
+            this.btnStudentAssessmentOR = new System.Windows.Forms.Button();
             this.btnUserManagement = new System.Windows.Forms.Button();
             this.btnOtherFees = new System.Windows.Forms.Button();
             this.btnDiscountSetup = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.btnTuitionFee = new System.Windows.Forms.Button();
             this.btnMiscellaneous = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
+            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.panelTransaction = new System.Windows.Forms.Panel();
             this.btnFeeAdjustment = new System.Windows.Forms.Button();
             this.btnStatementofAccounts = new System.Windows.Forms.Button();
@@ -49,7 +51,6 @@
             this.btnTransaction = new System.Windows.Forms.Button();
             this.panelUserInfo = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
-            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.tLogout = new System.Windows.Forms.Label();
             this.tAccessLevel = new System.Windows.Forms.Label();
             this.tName = new System.Windows.Forms.Label();
@@ -93,6 +94,7 @@
             // 
             // panelSettings
             // 
+            this.panelSettings.Controls.Add(this.btnStudentAssessmentOR);
             this.panelSettings.Controls.Add(this.btnUserManagement);
             this.panelSettings.Controls.Add(this.btnOtherFees);
             this.panelSettings.Controls.Add(this.btnDiscountSetup);
@@ -105,6 +107,23 @@
             this.panelSettings.Size = new System.Drawing.Size(250, 229);
             this.panelSettings.TabIndex = 3;
             this.panelSettings.Visible = false;
+            // 
+            // btnStudentAssessmentOR
+            // 
+            this.btnStudentAssessmentOR.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStudentAssessmentOR.FlatAppearance.BorderSize = 0;
+            this.btnStudentAssessmentOR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentAssessmentOR.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentAssessmentOR.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnStudentAssessmentOR.Location = new System.Drawing.Point(0, 180);
+            this.btnStudentAssessmentOR.Name = "btnStudentAssessmentOR";
+            this.btnStudentAssessmentOR.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnStudentAssessmentOR.Size = new System.Drawing.Size(250, 30);
+            this.btnStudentAssessmentOR.TabIndex = 8;
+            this.btnStudentAssessmentOR.Text = "Student Assessment OR";
+            this.btnStudentAssessmentOR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentAssessmentOR.UseVisualStyleBackColor = true;
+            this.btnStudentAssessmentOR.Click += new System.EventHandler(this.btnStudentAssessmentOR_Click);
             // 
             // btnUserManagement
             // 
@@ -228,6 +247,16 @@
             this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // icons
+            // 
+            this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
+            this.icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.icons.Images.SetKeyName(0, "icons8-setup-60.png");
+            this.icons.Images.SetKeyName(1, "icons8-process-64.png");
+            this.icons.Images.SetKeyName(2, "icons8-memo-66.png");
+            this.icons.Images.SetKeyName(3, "icons8-computer-50.png");
+            this.icons.Images.SetKeyName(4, "home.png");
             // 
             // panelTransaction
             // 
@@ -384,16 +413,6 @@
             this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
-            // icons
-            // 
-            this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
-            this.icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.icons.Images.SetKeyName(0, "icons8-setup-60.png");
-            this.icons.Images.SetKeyName(1, "icons8-process-64.png");
-            this.icons.Images.SetKeyName(2, "icons8-memo-66.png");
-            this.icons.Images.SetKeyName(3, "icons8-computer-50.png");
-            this.icons.Images.SetKeyName(4, "home.png");
             // 
             // tLogout
             // 
@@ -566,5 +585,6 @@
         private System.Windows.Forms.Timer timerTime;
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.Label tSystemDescription;
+        private System.Windows.Forms.Button btnStudentAssessmentOR;
     }
 }

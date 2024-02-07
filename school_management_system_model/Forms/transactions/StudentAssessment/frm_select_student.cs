@@ -102,6 +102,7 @@ namespace school_management_system_model.Forms.transactions
                 dgv.Columns["school_year_from"].HeaderText = "From";
                 dgv.Columns["school_year_to"].HeaderText = "To";
                 dgv.Columns["semester"].HeaderText = "Semester";
+                dgv.Columns["is_current"].HeaderText = "Default";
             }
             else if (this.Text == "Select Lab Fee")
             {

@@ -91,21 +91,29 @@ namespace school_management_system_model.Forms.transactions
 
 
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-
+            tStudentLoading.Visible = true;
+            await Task.Delay(250);
+            tStudentLoading.Visible = false;
             var student_account = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == id_number);
-            var student_course = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number_id == id_number);
+            var student_course = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number == id_number);
 
             tIdNumber.Text = student_account.id_number;
             tStudentName.Text = student_account.fullname;
-            tCourse.Text = student_course.course_id;
-            tCampus.Text = student_course.campus_id;
-            tCurriculum.Text = student_course.curriculum_id;
-            tSection.Text = student_course.section_id;
+            tCourse.Text = student_course.course;
+            tCampus.Text = student_course.campus;
+            tCurriculum.Text = student_course.curriculum;
+            tSection.Text = student_course.section;
             tYearLevel.Text = student_course.year_level;
             tSemester.Text = student_course.semester;
             tYearLevel.Select();
+            if (student_account != null & student_course != null)
+            {
+
+            }
+
+
 
             dgv.Columns.Add("subject_code", "Subject Code");
             dgv.Columns.Add("descriptive_title", "Descriptive Title");
@@ -122,7 +130,7 @@ namespace school_management_system_model.Forms.transactions
 
         }
 
-        private void loadSectionSubjects()
+        private async void loadSectionSubjects()
         {
             if (tCurriculum.Text.Length == 0 && tSemester.Text.Length == 0)
             {
@@ -135,9 +143,9 @@ namespace school_management_system_model.Forms.transactions
                 totalUnits = 0;
                 totalLectureUnits = 0;
                 totalLabUnits = 0;
-                var sectionSubjects = new SectionSubjects().GetSectionSubjects()
-                    .Where(x => x.section_code_id == tSection.Text && x.year_level == tYearLevel.Text)
-                    .ToList();
+                var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+                sectionSubjects.Where(x => x.section_code_id == tSection.Text && x.year_level == tYearLevel.Text)
+                .ToList();
 
                 if (tSection.Text == "No Section Exist")
                 {
@@ -194,7 +202,7 @@ namespace school_management_system_model.Forms.transactions
 
         private void SaveStudentCourse()
         {
-            var id = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number_id == tIdNumber.Text);
+            var id = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number == tIdNumber.Text);
             var section = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
             var enrollStudent = new StudentCourses();
             enrollStudent.EnrolStudent(id.id, tYearLevel.Text, section.id.ToString());
@@ -260,7 +268,7 @@ namespace school_management_system_model.Forms.transactions
             // INCREMENTING OF SECTIONS
 
             var section = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
-            var studentCourse = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number_id == tIdNumber.Text);
+            var studentCourse = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
             if (section.number_of_students <= section.max_number_of_students)
             {
@@ -317,41 +325,42 @@ namespace school_management_system_model.Forms.transactions
             loadCurriculum();
         }
 
-        private void kryptonButton1_Click_1(object sender, EventArgs e)
+        private async void kryptonButton1_Click_1(object sender, EventArgs e)
         {
             var frm = new frm_select_subject();
             frm.Text = "Add Subject";
             frm.ShowDialog();
 
-            
-            var customSubject = new SectionSubjects().GetSectionSubjects()
-                .FirstOrDefault(x => x.id == Id);
-           
+
+            var customSubject = await new SectionSubjects().GetSectionSubjects();
+
+            var subject = customSubject.FirstOrDefault(x => x.id == Id);
+
 
             if (Id != 0)
             {
-                
-                dgv.Rows.Add
+
+                 dgv.Rows.Add
                     (
-                        customSubject.subject_code,
-                        customSubject.descriptive_title,
-                        customSubject.pre_requisite,
-                        customSubject.total_units,
-                        customSubject.lecture_units,
-                        customSubject.lab_units,
-                        customSubject.time,
-                        customSubject.day,
-                        customSubject.room,
-                        customSubject.instructor_id
+                        subject.subject_code,
+                        subject.descriptive_title,
+                        subject.pre_requisite,
+                        subject.total_units,
+                        subject.lecture_units,
+                        subject.lab_units,
+                        subject.time,
+                        subject.day,
+                        subject.room,
+                        subject.instructor_id
                     );
 
                 int lastRow = dgv.Rows.Count - 1;
                 //totalUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["total_units"].Value);
-                totalUnits += Convert.ToDecimal(customSubject.total_units);
+                totalUnits += Convert.ToDecimal(subject.total_units);
                 //totalLectureUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lecture_units"].Value);
-                totalLectureUnits += Convert.ToDecimal(customSubject.lecture_units);
+                totalLectureUnits += Convert.ToDecimal(subject.lecture_units);
                 //totalLabUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lab_units"].Value);
-                totalLabUnits += Convert.ToDecimal(customSubject.lecture_units);
+                totalLabUnits += Convert.ToDecimal(subject.lecture_units);
             }
 
 

@@ -223,5 +223,12 @@ namespace school_management_system_model.Authentication.Auth_Forms
             btnTransaction.BackColor = Color.FromArgb(0, 0, 25);
             btnSettings.BackColor = Color.FromArgb(0, 0, 25);
         }
+
+        private void btnStudentAssessmentOR_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_or_number_setup();
+            frm.Text = "Student Assessment OR Number Setup";
+            frm.ShowDialog();
+        }
     }
 }

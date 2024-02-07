@@ -23,23 +23,18 @@ namespace school_management_system_model.Toastr
             switch (type)
             {
                 case "Success":
-                    toastColor.BackColor = Color.FromArgb(57, 155, 53);
                     icon.Image = Properties.Resources.check;
                     break;
                 case "Error":
-                    toastColor.BackColor = Color.FromArgb(227, 50, 45);
                     icon.Image = Properties.Resources.error;
 
                     break;
                 case "Information":
-                    toastColor.BackColor = Color.FromArgb(18, 136, 191);
                     icon.Image = Properties.Resources.information;
 
                     break;
                 case "Warning":
-                    toastColor.BackColor = Color.FromArgb(245, 171, 35);
                     icon.Image = Properties.Resources.warning;
-
                     break;
             }
         }
