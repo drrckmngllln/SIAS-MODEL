@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,18 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
         public decimal units { get; set; }
         public decimal computation { get; set; }
 
-        public List<StudentAssessments> GetStudentAssessments()
+        public async Task<List<StudentAssessments>> GetStudentAssessments()
         {
+            var _studentAccountRepo = new StudentAccountRepository();
             var list = new List<StudentAssessments>();
             var con = new MySqlConnection(connection.con());
-            con.Open();
+            await con.OpenAsync();
             var cmd = new MySqlCommand("select * from student_assessment", con);
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var id_number_id = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+                var a = await _studentAccountRepo.GetAllAsync();
+                var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
                 var school_year_id = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
                 var student = new StudentAssessments
                 {
@@ -41,6 +44,7 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
                 };
                 list.Add(student);
             }
+            await con.CloseAsync();
             return list;
         }
 

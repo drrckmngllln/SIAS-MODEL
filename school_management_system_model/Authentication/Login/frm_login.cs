@@ -47,7 +47,7 @@ namespace school_management_system_model.Authentication.Login
 
         
 
-        private async void loginAuthentication(string email, string password)
+        private void loginAuthentication(string email, string password)
         {
             try
             {

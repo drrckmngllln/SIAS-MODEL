@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Reports.Datasets;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
     public partial class frm_student_details : KryptonForm
     {
+        StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
         public frm_student_details(string id_number, string student_name)
         {
             InitializeComponent();
@@ -56,18 +58,18 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             tStudentName.Text = Student_Name;
 
             await Task.Delay(100);
-            var studentCourse = await new StudentCourses().GetStudentCourses();
-            var a = studentCourse.Where(x => x.id_number == Id_Number).FirstOrDefault();
+            var a = await _studentCourseRepo.GetAllAsync();
+            var studentCourse = a.Where(x => x.id_number == Id_Number).FirstOrDefault();
 
             if (studentCourse != null)
             {
                 messageBox("Success", "");
-                tCourse.Text = a.course;
-                tCampus.Text = a.campus;
-                tCurriculum.Text = a.curriculum;
-                tYearLevel.Text = a.year_level;
-                tSection.Text = a.section;
-                tSemester.Text = a.semester;
+                tCourse.Text = studentCourse.course;
+                tCampus.Text = studentCourse.campus;
+                tCurriculum.Text = studentCourse.curriculum;
+                tYearLevel.Text = studentCourse.year_level;
+                tSection.Text = studentCourse.section;
+                tSemester.Text = studentCourse.semester;
             }
             else
             {

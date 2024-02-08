@@ -40,24 +40,24 @@ namespace school_management_system_model.Forms.settings
 
         private void loadRecords()
         {
-            tCurriculum.Text = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == Convert.ToInt32(curriculum_id)).description;
-            tYearLevel.Text = year_level;
-            tSemester.Text = semester;
-            var subjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id == curriculum_id && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
-            dgv.DataSource = subjects.ToList();
-            dgv.Columns["id"].Visible = false;
-            dgv.Columns["uid"].Visible = false;
-            dgv.Columns["curriculum_id"].Visible = false;
-            dgv.Columns["year_level"].Visible = false;
-            dgv.Columns["semester"].Visible = false;
-            dgv.Columns["code"].HeaderText = "Code";
-            dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
-            dgv.Columns["descriptive_title"].Width = 400;
-            dgv.Columns["total_units"].HeaderText = "Total Units";
-            dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
-            dgv.Columns["lab_units"].HeaderText = "Lab Units";
-            dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
-            dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
+            //tCurriculum.Text = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == Convert.ToInt32(curriculum_id)).description;
+            //tYearLevel.Text = year_level;
+            //tSemester.Text = semester;
+            //var subjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id == curriculum_id && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
+            //dgv.DataSource = subjects.ToList();
+            //dgv.Columns["id"].Visible = false;
+            //dgv.Columns["uid"].Visible = false;
+            //dgv.Columns["curriculum_id"].Visible = false;
+            //dgv.Columns["year_level"].Visible = false;
+            //dgv.Columns["semester"].Visible = false;
+            //dgv.Columns["code"].HeaderText = "Code";
+            //dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
+            //dgv.Columns["descriptive_title"].Width = 400;
+            //dgv.Columns["total_units"].HeaderText = "Total Units";
+            //dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
+            //dgv.Columns["lab_units"].HeaderText = "Lab Units";
+            //dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
+            //dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
         }
 
         private void SaveSectionSubjects()

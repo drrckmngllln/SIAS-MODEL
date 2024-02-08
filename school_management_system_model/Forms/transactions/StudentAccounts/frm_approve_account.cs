@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Reports.Datasets;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
     public partial class frm_approve_account : KryptonForm
     {
+        CourseRepository _courseRepo = new CourseRepository();
         public static frm_approve_account instance;
         public string course { get; set; }
         public string id_number_id { get; set; }
@@ -41,18 +43,19 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             return dt.Rows[0]["course_id"].ToString();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
             var studentCourse = loadStudentCourse();
             tName.Text = fullname;
-            course = new Courses().GetCourses().FirstOrDefault(x => x.id.ToString() == studentCourse).code;
+            var courses = await _courseRepo.GetAllAsync();
+            course = courses.FirstOrDefault(x => x.id.ToString() == studentCourse).code;
             tCourse.Text = course;
 
-            tCurriculum.ValueMember = "id";
-            tCurriculum.DisplayMember = "code";
-            tCurriculum.DataSource = new Curriculums().GetCurriculums()
-                .Where(x => x.course_id == tCourse.Text)
-                .ToList();
+            //tCurriculum.ValueMember = "id";
+            //tCurriculum.DisplayMember = "code";
+            //tCurriculum.DataSource = new Curriculums().GetCurriculums()
+            //    .Where(x => x.course_id == tCourse.Text)
+            //    .ToList();
         }
 
         private void approveStudent(string idNumber)

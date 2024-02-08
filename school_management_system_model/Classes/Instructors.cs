@@ -17,27 +17,28 @@ namespace school_management_system_model.Classes
 
         public List<Instructors> GetInstructors()
         {
-            var list = new List<Instructors>();
-            var con = new MySqlConnection(connection.con());
-            con.Open();
-            var cmd = new MySqlCommand("select * from instructors", con);
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var department = new Departments().GetDepartments().FirstOrDefault(x => x.id == reader.GetInt32("department_id"));
-                var instructors = new Instructors
-                {
-                    id = reader.GetInt32("id"),
-                    fullname = reader.GetString("fullname"),
-                    department_id = department.code,
-                    position = reader.GetString("position"),
-                };
-                list.Add(instructors);
-            }
-            con.Close();
-            return list;
+            //var list = new List<Instructors>();
+            //var con = new MySqlConnection(connection.con());
+            //con.Open();
+            //var cmd = new MySqlCommand("select * from instructors", con);
+            //var reader = cmd.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    var department = new Departments().GetDepartments().FirstOrDefault(x => x.id == reader.GetInt32("department_id"));
+            //    var instructors = new Instructors
+            //    {
+            //        id = reader.GetInt32("id"),
+            //        fullname = reader.GetString("fullname"),
+            //        department_id = department.code,
+            //        position = reader.GetString("position"),
+            //    };
+            //    list.Add(instructors);
+            //}
+            //con.Close();
+            //return list;
+            return null;
         }
-       
+
         public void addRecords()
         {
             var con = new MySqlConnection( connection.con());

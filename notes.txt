@@ -1,10 +1,16 @@
+include repository for student accounts
+
+
+repo for departments?
+repo for curriculum
+repo for levels
+repo for campuses
+repo for instructors
 
 
 
-remove the annoying toastr when selecting student from student accounts
-edit the header of select school year is_current
 fix the reporting services
-adding seting up or
+
 view subjects functionality in the student assessment
 view discounts functionality
 add functionality to update the assessment when there is detected

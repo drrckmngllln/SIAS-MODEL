@@ -12,11 +12,15 @@ using System.Windows.Forms;
 using school_management_system_model.Classes;
 using school_management_system_model.Loggers;
 using school_management_system_model.Forms.settings.TuitionFeeDummy;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Core.Entities;
 
 namespace school_management_system_model.Forms.settings
 {
     public partial class frm_courses : Form
     {
+        CourseRepository _courseRepo = new CourseRepository();
+        DepartmentRepository _departmentRepo = new DepartmentRepository();
         public bool isAdd { get; set; }
         public bool isEdit { get; set; }
         public bool isDelete { get; set; }
@@ -41,9 +45,9 @@ namespace school_management_system_model.Forms.settings
             loadDepartment();
         }
 
-        private void loadDepartment()
+        private async void loadDepartment()
         {
-            var department = new Departments().GetDepartments();
+            var department = await _departmentRepo.GetAllAsync();
 
             tDepartment.ValueMember = "id";
             tDepartment.DisplayMember = "code";
@@ -68,69 +72,57 @@ namespace school_management_system_model.Forms.settings
             tLevel.DataSource = level;
         }
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            var courses = new Courses().GetCourses();
+            var courses = await _courseRepo.GetAllAsync();
             dgv.DataSource = courses.ToList();
             dgv.Columns[0].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
-            dgv.Columns["level_id"].HeaderText = "Level";
-            dgv.Columns["campus_id"].HeaderText = "Campus";
-            dgv.Columns["department_id"].HeaderText = "Department";
+            dgv.Columns["level"].HeaderText = "Level";
+            dgv.Columns["campus"].HeaderText = "Campus";
+            dgv.Columns["department"].HeaderText = "Department";
             dgv.Columns["max_units"].HeaderText = "Max Units";
             dgv.Columns["status"].HeaderText = "Status";
         }
 
-        private void add_records()
+        private async void add_records()
         {
             try
             {
-
                 if (btn_save.Text == "Save")
                 {
-                    var con = new MySqlConnection(connection.con());
-                    con.Open();
-                    var cmd = new MySqlCommand("insert into courses(code, description, level_id, campus_id, department_id, max_units, status) " +
-                        "values(@1,@2,@3,@4,@5,@6,@7)", con);
-                    cmd.Parameters.AddWithValue("@1", tCode.Text);
-                    cmd.Parameters.AddWithValue("@2", tDescription.Text);
-                    cmd.Parameters.AddWithValue("@3", tLevel.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@4", tCampus.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@5", tDepartment.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@6", tMaxUnits.Text);
-                    cmd.Parameters.AddWithValue("@7", tStatus.Text);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    new Classes.Toastr("Success", "Add Success");
-                    new ActivityLogger().activityLogger(Email, "Course Add: " + tDescription.Text);
-
+                    var AddCourses = new Courses
+                    {
+                        code = tCode.Text,
+                        description = tDescription.Text,
+                        level = tLevel.SelectedValue.ToString(),
+                        campus = tLevel.SelectedValue.ToString(),
+                        department = tDepartment.SelectedValue.ToString(),
+                        max_units = tMaxUnits.Text,
+                        status = tStatus.Text
+                    };
+                    await _courseRepo.AddRecords(AddCourses);
+                    new Classes.Toastr("Success", "Course Added");
                     loadrecords();
                     
 
                 }
                 else if (btn_save.Text == "Update")
                 {
-                    var con = new MySqlConnection(connection.con());
-                    con.Open();
-                    var cmd = new MySqlCommand("update courses set code=@1, description=@2, level=@3, campus_id=@4, department_id=@5, max_units=@6, status=@7 " +
-                        "where id='" + ID + "'", con);
-                    cmd.Parameters.AddWithValue("@1", tCode.Text);
-                    cmd.Parameters.AddWithValue("@2", tDescription.Text);
-                    cmd.Parameters.AddWithValue("@3", tLevel.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@4", tCampus.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@5", tDepartment.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@6", tMaxUnits.Text);
-                    cmd.Parameters.AddWithValue("@7", tStatus.Text);
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    
-                    new Classes.Toastr("Information", "Update Success");
-                    new ActivityLogger().activityLogger(Email, "Course Edit: " + tDescription.Text);
-
+                    var EditCourses = new Courses
+                    {
+                        code = tCode.Text,
+                        description = tDescription.Text,
+                        level = tLevel.SelectedValue.ToString(),
+                        campus = tLevel.SelectedValue.ToString(),
+                        department = tDepartment.SelectedValue.ToString(),
+                        max_units = tMaxUnits.Text,
+                        status = tStatus.Text
+                    };
+                    await _courseRepo.UpdateRecords(EditCourses);
+                    new Classes.Toastr("Information", "Course Updated");
                     loadrecords();
-                    
-                    
                 }
             }
             catch
@@ -184,17 +176,14 @@ namespace school_management_system_model.Forms.settings
             txtclear();
         }
 
-        private void delete()
+        private async void delete()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter();
-            da.SelectCommand = new MySqlCommand("delete from courses where id='" + ID + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            MessageBox.Show("Course Deleted");
+            var delete = new Courses
+            {
+                id = Convert.ToInt32(ID)
+            };
+            await _courseRepo.DeleteRecords(delete);
             new Classes.Toastr("Information", "Course Deleted");
-            new ActivityLogger().activityLogger(Email, "Course Delete: " + tDescription.Text);
-
             loadrecords();
         }
 
@@ -209,11 +198,12 @@ namespace school_management_system_model.Forms.settings
             }
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new Courses().GetCourses()
+                var a = await _courseRepo.GetAllAsync();
+                var search = a
                     .Where(x => x.code.ToLower().Contains(tsearch.Text.ToLower()) || x.description.ToLower().Contains(tsearch.Text.ToLower()))
                     .ToList();
                 dgv.DataSource = search;

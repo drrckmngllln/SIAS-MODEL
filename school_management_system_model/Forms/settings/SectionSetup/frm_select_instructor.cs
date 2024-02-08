@@ -22,12 +22,12 @@ namespace school_management_system_model.Forms.settings
 
         private void loadRecords()
         {
-            var instructor = new Instructors().GetInstructors();
-            dgv.DataSource = instructor.ToList();
-            dgv.Columns["id"].Visible = false;
-            dgv.Columns["fullname"].HeaderText = "Full Name";
-            dgv.Columns["department_id"].HeaderText = "Department";
-            dgv.Columns["position"].HeaderText = "Position";
+            //var instructor = new Instructors().GetInstructors();
+            //dgv.DataSource = instructor.ToList();
+            //dgv.Columns["id"].Visible = false;
+            //dgv.Columns["fullname"].HeaderText = "Full Name";
+            //dgv.Columns["department_id"].HeaderText = "Department";
+            //dgv.Columns["position"].HeaderText = "Position";
         }
 
         private void selectInstructor()

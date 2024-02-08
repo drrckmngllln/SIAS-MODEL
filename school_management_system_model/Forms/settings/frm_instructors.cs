@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_instructors : Form
     {
+        DepartmentRepository _departmentRepo = new DepartmentRepository();
         public string Email { get; }
 
         public frm_instructors(string email)
@@ -28,9 +30,9 @@ namespace school_management_system_model.Forms.settings
             loadDepartments();
         }
 
-        private void loadDepartments()
+        private async void loadDepartments()
         {
-            var departments = new Departments().GetDepartments();
+            var departments = await _departmentRepo.GetAllAsync();
             tDepartment.ValueMember = "id";
             tDepartment.DisplayMember = "code";
             tDepartment.DataSource = departments;
@@ -38,12 +40,12 @@ namespace school_management_system_model.Forms.settings
 
         private void loadRecords()
         {
-            var data = new Instructors().GetInstructors();
-            dgv.DataSource = data;
-            dgv.Columns["id"].Visible = false;
-            dgv.Columns["fullname"].HeaderText = "Full Name";
-            dgv.Columns["department_id"].HeaderText = "Department";
-            dgv.Columns["position"].HeaderText = "Position";
+            //var data = new Instructors().GetInstructors();
+            //dgv.DataSource = data;
+            //dgv.Columns["id"].Visible = false;
+            //dgv.Columns["fullname"].HeaderText = "Full Name";
+            //dgv.Columns["department_id"].HeaderText = "Department";
+            //dgv.Columns["position"].HeaderText = "Position";
         }
 
         private void addRecords()

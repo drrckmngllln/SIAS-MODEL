@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
 using school_management_system_model.Reports.Datasets;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace school_management_system_model.Classes
+namespace school_management_system_model.Core.Entities
 {
     internal class StudentSubject
     {
@@ -27,43 +28,7 @@ namespace school_management_system_model.Classes
         public string grade { get; set; }
         public string remarks { get; set; }
 
-        public List<StudentSubject> GetStudentSubjects()
-        {
-            var list = new List<StudentSubject>();
-            var con = new MySqlConnection(connection.con());
-            con.Open();
-            var cmd = new MySqlCommand("select * from student_subjects", con);
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var id_number = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
-                var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
-                var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
-
-                var studentSubjects = new StudentSubject
-                {
-                    id = reader.GetInt32("id"),
-                    id_number_id = id_number.id_number,
-                    unique_id = reader.GetString("unique_id"),
-                    school_year_id = school_year.code,
-                    subject_code = reader.GetString("subject_code"),
-                    descriptive_title = reader.GetString("descriptive_title"),
-                    pre_requisite = reader.GetString("pre_requisite"),
-                    total_units = reader.GetString("total_units"),
-                    lecture_units = reader.GetString("lecture_units"),
-                    lab_units = reader.GetString("lab_units"),
-                    time = reader.GetString("time"),
-                    day = reader.GetString("day"),
-                    room = reader.GetString("room"),
-                    //instructor_id = instructor.fullname,
-                    //grade = reader.GetString("grade"),
-                    //remarks = reader.GetString("remarks")
-                };
-                list.Add(studentSubjects);
-            }
-            con.Close();
-            return list;
-        }
+        
 
         public void SaveSectionSubjects()
         {

@@ -20,7 +20,7 @@ namespace school_management_system_model.TestFolder
             InitializeComponent();
         }
 
-        private async void frmTest_Load(object sender, EventArgs e)
+        private void frmTest_Load(object sender, EventArgs e)
         {
             //var sectionsubjects = await _sectionRepo.GetAllAsync();
             //dgv.DataSource = sectionsubjects.Where(x => x.section_code == "41").ToList();

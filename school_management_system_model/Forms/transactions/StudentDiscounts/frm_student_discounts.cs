@@ -42,9 +42,10 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var studentDiscount = new StudentDiscount().GetStudentDiscounts()
+            var a = await new StudentDiscount().GetStudentDiscounts();
+            var studentDiscount = a
                 .Where(x => x.id_number == idNumber).ToList();
             //var data = new StudentDiscount();
 

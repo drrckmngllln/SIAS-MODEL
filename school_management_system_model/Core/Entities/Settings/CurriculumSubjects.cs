@@ -1,8 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Classes.Parameters;
 using System.Collections.Generic;
 
-namespace school_management_system_model.Classes
+namespace school_management_system_model.Core.Entities
 {
     internal class CurriculumSubjects
     {
@@ -19,36 +18,7 @@ namespace school_management_system_model.Classes
         public string pre_requisite { get; set; }
         public string total_hrs_per_week { get; set; }
 
-        public List<CurriculumSubjects> GetCurriculumSubjects()
-        {
-            var list = new List<CurriculumSubjects>();
-            var con = new MySqlConnection(connection.con());
-            con.Open();
-            var cmd = new MySqlCommand("select * from curriculum_subjects", con);
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                var curriculumSubject = new CurriculumSubjects
-                {
-                    id = reader.GetInt32("id"),
-                    uid = reader.GetString("uid"),
-                    curriculum_id = reader.GetString("curriculum_id"),
-                    year_level = reader.GetString("year_level"),
-                    semester = reader.GetString("semester"),
-                    code = reader.GetString("code"),
-                    descriptive_title = reader.GetString("descriptive_title"),
-                    total_units = reader.GetString("total_units"),
-                    lecture_units = reader.GetString("lecture_units"),
-                    lab_units = reader.GetString("lab_units"),
-                    pre_requisite = reader.GetString("pre_requisite"),
-                    total_hrs_per_week = reader.GetString("total_hrs_per_week")
-                };
-                list.Add(curriculumSubject);
-            }
-            con.Close();
-            return list;
-        }
-
+       
         public void AddCurriculumSubjects(CurriculumSubjects subjects)
         {
             var con = new MySqlConnection(connection.con());

@@ -37,35 +37,35 @@ namespace school_management_system_model.Forms.settings
         private void loadrecords()
         {
             
-            var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id.ToString() == CurriculumId.ToString())
-                .Skip(pagination.pageSize * (pagination.pageNumber - 1)).Take(pagination.pageSize).ToList();
-            dgv.DataSource = curriculumSubjects;
+            //var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id.ToString() == CurriculumId.ToString())
+            //    .Skip(pagination.pageSize * (pagination.pageNumber - 1)).Take(pagination.pageSize).ToList();
+            //dgv.DataSource = curriculumSubjects;
 
 
-            dgv.Columns["id"].Visible = false;
-            dgv.Columns["uid"].Visible = false;
-            dgv.Columns["curriculum_id"].Visible = false;
-            dgv.Columns["year_level"].HeaderText = "Year Level";
-            dgv.Columns["semester"].HeaderText = "Semester";
-            dgv.Columns["code"].HeaderText = "Code";
-            dgv.Columns["descriptive_title"].HeaderText = "Descriptive Tittle";
-            dgv.Columns["descriptive_title"].Width = 300;
-            dgv.Columns["total_units"].HeaderText = "Total Units";
-            dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
-            dgv.Columns["lab_units"].HeaderText = "Lab Units";
-            dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
-            dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
+            //dgv.Columns["id"].Visible = false;
+            //dgv.Columns["uid"].Visible = false;
+            //dgv.Columns["curriculum_id"].Visible = false;
+            //dgv.Columns["year_level"].HeaderText = "Year Level";
+            //dgv.Columns["semester"].HeaderText = "Semester";
+            //dgv.Columns["code"].HeaderText = "Code";
+            //dgv.Columns["descriptive_title"].HeaderText = "Descriptive Tittle";
+            //dgv.Columns["descriptive_title"].Width = 300;
+            //dgv.Columns["total_units"].HeaderText = "Total Units";
+            //dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
+            //dgv.Columns["lab_units"].HeaderText = "Lab Units";
+            //dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
+            //dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
 
 
-            var curriculums = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == CurriculumId);
-            //var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == curriculums.id);
-            //var course = new Courses().GetCourses().FirstOrDefault(x => x.id == curriculums.id);
-            tcode.Text = curriculums.code;
-            tdescription.Text = curriculums.description;
-            tcampus.Text = curriculums.campus_id;
-            tcourse.Text = curriculums.course_id;
-            teffective.Text = curriculums.effective;
-            texpires.Text = curriculums.expires;
+            //var curriculums = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == CurriculumId);
+            ////var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == curriculums.id);
+            ////var course = new Courses().GetCourses().FirstOrDefault(x => x.id == curriculums.id);
+            //tcode.Text = curriculums.code;
+            //tdescription.Text = curriculums.description;
+            //tcampus.Text = curriculums.campus_id;
+            //tcourse.Text = curriculums.course_id;
+            //teffective.Text = curriculums.effective;
+            //texpires.Text = curriculums.expires;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -122,17 +122,17 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("are you sure you want to delete all subjects in this curriculum?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
-               DialogResult.Yes)
-            {
-                var curriculum_id = new Curriculums().GetCurriculums()
-                    .FirstOrDefault(x => x.code == tcode.Text);
+            //if (MessageBox.Show("are you sure you want to delete all subjects in this curriculum?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+            //   DialogResult.Yes)
+            //{
+            //    var curriculum_id = new Curriculums().GetCurriculums()
+            //        .FirstOrDefault(x => x.code == tcode.Text);
 
-                deleteAll(curriculum_id.id);
-                new Classes.Toastr("Information", "Curriculum Subject Deleted");
-                new ActivityLogger().activityLogger(Email, "Deleted All Curriculum: " + tdescription.Text);
-                loadrecords();
-            }
+            //    deleteAll(curriculum_id.id);
+            //    new Classes.Toastr("Information", "Curriculum Subject Deleted");
+            //    new ActivityLogger().activityLogger(Email, "Deleted All Curriculum: " + tdescription.Text);
+            //    loadrecords();
+            //}
         }
 
         private void tsearch_TextChanged(object sender, EventArgs e)

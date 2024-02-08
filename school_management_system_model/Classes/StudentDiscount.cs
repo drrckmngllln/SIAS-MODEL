@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,12 +19,15 @@ namespace school_management_system_model.Classes
         public string description { get; set; }
         public int discount_percentage { get; set; }
 
-        public List<StudentDiscount> GetStudentDiscounts()
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+
+        public async Task<List<StudentDiscount>> GetStudentDiscounts()
         {
+            
             var list = new List<StudentDiscount>();
             using (var con = new MySqlConnection(connection.con()))
             {
-                con.Open();
+                await con.OpenAsync();
                 var sql = "select * from student_discounts";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
@@ -31,7 +35,8 @@ namespace school_management_system_model.Classes
                     {
                         while (reader.Read())
                         {
-                            var id_number_id = new StudentAccount().GetStudentAccounts()
+                            var a = await _studentAccountRepo.GetAllAsync();
+                            var id_number_id = a
                                 .FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
                             if (id_number_id != null)
                             {
@@ -50,7 +55,7 @@ namespace school_management_system_model.Classes
                         }
                     }
                 }
-                con.Close();
+                await con.CloseAsync();
                 return list;
             }
         }
@@ -64,9 +69,10 @@ namespace school_management_system_model.Classes
             return dt;
         }
 
-        public void addRecords()
+        public async void addRecords()
         {
-            var id_number_id = new StudentAccount().GetStudentAccounts()
+            var a = await _studentAccountRepo.GetAllAsync();
+            var id_number_id = a
                 .FirstOrDefault(x => x.id_number == id_number);
             if (id_number_id != null)
             {

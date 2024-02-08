@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,13 @@ namespace school_management_system_model.Classes
         public decimal finals_original { get; set; }
         public decimal total_original { get; set; }
 
-        public List<FeeBreakdowns> GetFeeBreakdowns()
+        public async Task<List<FeeBreakdowns>> GetFeeBreakdowns()
         {
+            var _studentAccountRepo = new StudentAccountRepository();
             var list = new List<FeeBreakdowns>();
             using (var con = new MySqlConnection(connection.con()))
             {
-                con.Open();
+                await con.OpenAsync();
                 var sql = "select * from fee_breakdown";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
@@ -39,7 +41,8 @@ namespace school_management_system_model.Classes
                     {
                         while (reader.Read())
                         {
-                            var id_number_id = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+                            var a = await _studentAccountRepo.GetAllAsync();
+                            var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
                             var school_year_id = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
                             if (id_number_id != null && school_year_id != null)
                             {
@@ -65,7 +68,7 @@ namespace school_management_system_model.Classes
                         }
                     }
                 }
-                con.Close();
+                await con.CloseAsync();
                 return list;
             }
         }

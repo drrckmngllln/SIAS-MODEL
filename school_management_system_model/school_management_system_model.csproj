@@ -209,11 +209,11 @@
     <Compile Include="Classes\AssessmentBreakdowns.cs" />
     <Compile Include="Classes\BaseEntity.cs" />
     <Compile Include="Classes\Campuses.cs" />
-    <Compile Include="Classes\Courses.cs" />
+    <Compile Include="Core\Entities\Settings\Courses.cs" />
     <Compile Include="Classes\course_fees.cs" />
     <Compile Include="Classes\Curriculums.cs" />
     <Compile Include="Classes\CurriculumSubjects.cs" />
-    <Compile Include="Classes\Departments.cs" />
+    <Compile Include="Core\Entities\Settings\Departments.cs" />
     <Compile Include="Classes\DiscountSetup.cs" />
     <Compile Include="Classes\FeeBreakdowns.cs" />
     <Compile Include="Classes\FeeCollection.cs" />
@@ -230,11 +230,16 @@
     <Compile Include="Core\Entities\Section-Settings\SectionSubjects.cs" />
     <Compile Include="Classes\Specification\BaseSpecification.cs" />
     <Compile Include="Classes\Specification\ISpecification.cs" />
-    <Compile Include="Classes\StudentSubject.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentAssessment\StudentSubject.cs" />
     <Compile Include="Core\Entities\Section-Settings\Sections.cs" />
     <Compile Include="Data\Interfaces\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\CourseRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\DepartmentRepository.cs" />
     <Compile Include="Data\Repositories\Setings\Section\SectionRepository.cs" />
     <Compile Include="Data\Repositories\Setings\Section\SectionSubjectRepository.cs" />
+    <Compile Include="Data\Repositories\Transaction\StudentAccountRepository.cs" />
+    <Compile Include="Data\Repositories\Transaction\StudentSubjectRepository.cs" />
+    <Compile Include="Data\Repositories\Transaction\StudentCourseRepository.cs" />
     <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,10 +257,10 @@
     <Compile Include="Classes\sections.cs" />
     <Compile Include="Classes\section_subject.cs" />
     <Compile Include="Classes\StatementsOfAccounts.cs" />
-    <Compile Include="Forms\transactions\StudentAccounts\StudentAccount.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentAccount\StudentAccount.cs" />
     <Compile Include="Classes\StudentDiscount.cs" />
     <Compile Include="Classes\student_assessment.cs" />
-    <Compile Include="Classes\StudentCourses.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentCourse\StudentCourses.cs" />
     <Compile Include="Classes\Toastr.cs" />
     <Compile Include="Classes\TuitionFeeSetup.cs" />
     <Compile Include="Classes\UserManagement.cs" />

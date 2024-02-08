@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,12 +26,14 @@ namespace school_management_system_model.Classes
         public decimal balance { get; set; }
         public string cashier_in_charge { get; set; }
 
-        public List<StatementsOfAccounts> GetStatementsOfAccounts()
+        public async Task<List<StatementsOfAccounts>> GetStatementsOfAccounts()
         {
+            var _studentAccountRepo = new StudentAccountRepository();
+            var _courseRepo = new CourseRepository();
             var list = new List<StatementsOfAccounts>();
             using (var con = new MySqlConnection(connection.con()))
             {
-                con.Open();
+                await con.OpenAsync();
                 var sql = "select * from statements_of_accounts";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
@@ -37,9 +41,13 @@ namespace school_management_system_model.Classes
                     {
                         while (reader.Read())
                         {
-                            var id_number_id = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+                            var a = await _studentAccountRepo.GetAllAsync();
+                            var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+
                             var school_year_id = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
-                            var course_id = new Courses().GetCourses().FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
+
+                            var b = await _courseRepo.GetAllAsync();
+                            var course_id = b.FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
                             if (id_number_id != null && school_year_id != null && course_id != null)
                             {
                                 var soa = new StatementsOfAccounts
@@ -63,7 +71,7 @@ namespace school_management_system_model.Classes
                         }
                     }
                 }
-                con.Close();
+                await con.CloseAsync();
                 return list;
             }
         }

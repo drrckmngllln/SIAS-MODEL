@@ -138,24 +138,24 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
         private async Task saveRecords()
         {
-            await SaveLoading();
-            var curriculum_id = new Curriculums().GetCurriculums().FirstOrDefault(x => x.code == curriculum).id;
-            var subjects = new CurriculumSubjects
-            {
-                uid = curriculum + code,
-                curriculum_id = curriculum_id.ToString(),
-                year_level = year_level,
-                semester = semester,
-                code = code.ToString(),
-                descriptive_title = descriptive_title.ToString(),
-                total_units = total_units,
-                lecture_units = lecture_units,
-                lab_units = lab_units,
-                pre_requisite = pre_requisite.ToString(),
-                total_hrs_per_week = total_hrs_per_week.ToString()
+            //await SaveLoading();
+            //var curriculum_id = new Curriculums().GetCurriculums().FirstOrDefault(x => x.code == curriculum).id;
+            //var subjects = new CurriculumSubjects
+            //{
+            //    uid = curriculum + code,
+            //    curriculum_id = curriculum_id.ToString(),
+            //    year_level = year_level,
+            //    semester = semester,
+            //    code = code.ToString(),
+            //    descriptive_title = descriptive_title.ToString(),
+            //    total_units = total_units,
+            //    lecture_units = lecture_units,
+            //    lab_units = lab_units,
+            //    pre_requisite = pre_requisite.ToString(),
+            //    total_hrs_per_week = total_hrs_per_week.ToString()
 
-            };
-            new CurriculumSubjects().AddCurriculumSubjects(subjects);
+            //};
+            //new CurriculumSubjects().AddCurriculumSubjects(subjects);
 
             
         }

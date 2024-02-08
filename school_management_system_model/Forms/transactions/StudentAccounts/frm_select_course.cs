@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
     public partial class frm_select_course : KryptonForm
     {
+        CourseRepository _courseRepo = new CourseRepository();
         public frm_select_course()
         {
             InitializeComponent();
@@ -25,9 +27,9 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             loadCourses();
         }
 
-        private void loadCourses()
+        private async void loadCourses()
         {
-            var courses = new Courses().GetCourses();
+            var courses = await _courseRepo.GetAllAsync();
             dgv.DataSource = courses.ToList();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";

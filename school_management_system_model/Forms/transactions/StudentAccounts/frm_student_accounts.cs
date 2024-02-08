@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Forms.transactions.StudentAccounts;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_accounts : Form
     {
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         public int id { get; set; }
         public bool IsAdd { get; set; }
         public bool IsEdit { get; set; }
@@ -66,10 +68,10 @@ namespace school_management_system_model.Forms.transactions
             AdmissionScheduleChecker();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var data = new StudentAccount().GetStudentAccounts();
-            data.Where(x => x.school_year_id == tSchoolYear.Text).Skip(paging.pageSize * (paging.pageNumber - 1)).Take(paging.pageSize).ToList();
+            var data = await _studentAccountRepo.GetAllAsync();
+            var studentAccount = data.Where(x => x.school_year_id == tSchoolYear.Text).Skip(paging.pageSize * (paging.pageNumber - 1)).Take(paging.pageSize).ToList();
             dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].HeaderText = "Student Number";
@@ -189,10 +191,10 @@ namespace school_management_system_model.Forms.transactions
 
         }
 
-        private void searchRecords(string search)
+        private async void searchRecords(string search)
         {
-            var searchRecord = new StudentAccount()
-                .GetStudentAccounts()
+            var a = await _studentAccountRepo.GetAllAsync();
+            var searchRecord = a
                 .Where(x => x.fullname.ToLower().Contains(search))
                 .Skip(paging.pageSize * (paging.pageNumber - 1))
                 .Take(paging.pageSize)

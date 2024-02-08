@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_select_student : KryptonForm
     {
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         public string campus { get; set; }
         public string yearLevel { get; set; }
         public string id_number { get; set; }
@@ -35,13 +37,14 @@ namespace school_management_system_model.Forms.transactions
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
             if (this.Text == "Select Student")
             {
                 tTitle.Text = this.Text;
                 tPageSize.Text = paging.pageNumber.ToString();
-                var student = new StudentAccount().GetStudentAccounts()
+                var a = await _studentAccountRepo.GetAllAsync();
+                var student = a
                     .OrderByDescending(x => x.id)
                     .Skip(paging.pageSize * (paging.pageNumber - 1))
                     .Take(paging.pageSize)

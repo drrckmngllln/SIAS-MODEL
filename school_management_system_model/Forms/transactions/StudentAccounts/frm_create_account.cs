@@ -1,6 +1,10 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Transaction;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Forms.transactions.StudentAccounts;
 using System;
 using System.Collections.Generic;
@@ -16,6 +20,10 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_create_account : KryptonForm
     {
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        StudentCourseRepository _studentCoursesRepo = new StudentCourseRepository();
+        CourseRepository _courseRepo = new CourseRepository();
+
         public static frm_create_account instance;
 
         public int Id_Number { get; set; }
@@ -45,7 +53,8 @@ namespace school_management_system_model.Forms.transactions
             {
 
                 tTitle.Text = this.Text;
-                var update = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == Id_Number.ToString());
+                var a = await _studentAccountRepo.GetAllAsync();
+                var update = a.FirstOrDefault(x => x.id_number == Id_Number.ToString());
 
                 var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id.ToString() == School_Year);
 
@@ -80,11 +89,11 @@ namespace school_management_system_model.Forms.transactions
                 kryptonDateTimePicker1 = new KryptonDateTimePicker();
 
 
-                var UpdateCourseData = await new StudentCourses().GetStudentCourses();
-                    var a = UpdateCourseData.FirstOrDefault(x => x.course == tCourse.Text);
+                var UpdateCourseData = await _studentCoursesRepo.GetAllAsync();
+                var b = UpdateCourseData.FirstOrDefault(x => x.course == tCourse.Text);
 
-                tCourse.Text = a.course;
-                tCampus.Text = a.campus;
+                tCourse.Text = b.course;
+                tCampus.Text = b.campus;
 
 
                 btnCreate.Text = "Update Account";
@@ -95,10 +104,10 @@ namespace school_management_system_model.Forms.transactions
         {
             tSchoolyear.Text = School_Year;
         }
-        private void loadIdNumber()
+        private async void loadIdNumber()
         {
-
-            var data = new StudentAccount().GetStudentAccounts().Where(x => x.sy_enrolled == School_Year).Count();
+            var a = await _studentAccountRepo.GetAllAsync();
+            var data = a.Where(x => x.sy_enrolled == School_Year).Count();
             int count = 0;
             count = data;
             var idNumber = DateTime.Now.Year.ToString();
@@ -132,12 +141,13 @@ namespace school_management_system_model.Forms.transactions
 
 
 
-        private void addRecord()
+        private async void addRecord()
         {
             try
             {
                 if (this.Text == "Create Account")
                 {
+
                     var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == School_Year);
                     var add = new StudentAccount
                     {
@@ -175,11 +185,14 @@ namespace school_management_system_model.Forms.transactions
                     };
                     add.AddStudentAccount();
 
-                    var id_number_id = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == tIdNumber.Text);
+                    var a = await _studentAccountRepo.GetAllAsync();
+                    var id_number_id = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+                    var b = await _courseRepo.GetAllAsync();
                     var course = new StudentCourses
                     {
                         id_number = id_number_id.id.ToString(),
-                        course = new Courses().GetCourses().FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
+                        course = b.FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
                         campus = new Campuses().GetCampuses().FirstOrDefault(x => x.code == tCampus.Text).id.ToString(),
                         curriculum = "Not Set",
                         year_level = "Not Set",
@@ -187,7 +200,7 @@ namespace school_management_system_model.Forms.transactions
                         semester = Semester
                     };
                     course.AddStudentCourse();
-                    new school_management_system_model.Classes.Toastr("Success", "Account Saved");
+                    new Classes.Toastr("Success", "Account Saved");
                     Close();
 
                 }
@@ -278,18 +291,7 @@ namespace school_management_system_model.Forms.transactions
         {
 
         }
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            var frm = new frm_select_course();
-            frm.ShowDialog();
-            if (course != null)
-            {
-                tCourse.Text = new Courses().GetCourses().FirstOrDefault(x => x.code == course).code;
-                tCampus.Text = new Campuses().GetCampuses().FirstOrDefault(x => x.code == campus).code;
-            }
-        }
-
+        
         private void btnCreate_Click_1(object sender, EventArgs e)
         {
             addRecord();
@@ -300,14 +302,16 @@ namespace school_management_system_model.Forms.transactions
             Close();
         }
 
-        private void btnSelect_Click_1(object sender, EventArgs e)
+        private async void btnSelect_Click_1(object sender, EventArgs e)
         {
             var frm = new frm_select_course();
             frm.ShowDialog();
             if (course != null)
             {
-                tCourse.Text = new Courses().GetCourses().FirstOrDefault(x => x.id.ToString() == course).code;
-                tCampus.Text = campus;
+                var a = await _courseRepo.GetAllAsync();
+
+                tCourse.Text = a.FirstOrDefault(x => x.code == course).code;
+                tCampus.Text = new Campuses().GetCampuses().FirstOrDefault(x => x.code == campus).code;
             }
         }
     }

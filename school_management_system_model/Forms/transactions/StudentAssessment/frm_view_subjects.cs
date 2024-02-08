@@ -1,19 +1,15 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.transactions.StudentAssessment
 {
     public partial class frm_view_subjects : KryptonForm
     {
+        StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
         public static frm_view_subjects instance;
         public string id_number { get; set; }
         public frm_view_subjects()
@@ -30,6 +26,8 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
         private void loadRecords()
         {
             tTitle.Text = this.Text;
+
+
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter("select * from student_subjects where id_number='" + id_number + "'", con);
             var dt = new DataTable();

@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Reports.Accounting;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
     public partial class frm_view_subjects : KryptonForm
     {
-
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         public static frm_view_subjects instance;
         public bool IsAdministrator { get; set; }
         
@@ -76,9 +77,10 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
         }
 
-        private void loadRecords(string idNumber, string schoolYear)
+        private async void loadRecords(string idNumber, string schoolYear)
         {
-            var idnumber = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == idNumber);
+            var a = await _studentAccountRepo.GetAllAsync();
+            var idnumber = a.FirstOrDefault(x => x.id_number == idNumber);
             var schoolyear = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == schoolYear);
             //var studentSubjects = new StudentSubject().GetStudentSubjects()
             //    .Where(x => x.id_number_id == idnumber.id.ToString() && x.school_year_id == schoolyear.id.ToString()).ToList();
@@ -107,50 +109,30 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             decimal labUnits = 0;
             dgv.Rows.Clear();
 
-            //foreach (var items in studentSubjects)
+           
+
+            //foreach (DataRow row in dt.Rows)
             //{
-
-            //    dgv.Rows.Add
-            //        (
-            //            items.subject_code,
-            //            items.descriptive_title,
-            //            items.total_units,
-            //            items.lecture_units,
-            //            items.lab_units,
-            //            items.time,
-            //            items.day,
-            //            items.room,
-            //            items.instructor_id,
-            //            items.grade,
-            //            items.remarks
+            //    var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == Convert.ToInt32(row["instructor_id"])).fullname;
+            //    dgv.Rows.Add(
+            //        row["subject_code"],
+            //        row["descriptive_title"],
+            //        row["pre_requisite"],
+            //        row["total_units"],
+            //        row["lecture_units"],
+            //        row["lab_units"],
+            //        row["time"],
+            //        row["day"],
+            //        row["room"],
+            //        instructor,
+            //        row["grade"],
+            //        row["remarks"]
             //        );
-            //    totalUnits += Convert.ToDecimal(items.total_units);
-            //    lectureUnits += Convert.ToDecimal(items.lecture_units);
-            //    labUnits += Convert.ToDecimal(items.lab_units);
+            //    totalUnits += Convert.ToDecimal(row["total_units"]);
+            //    lectureUnits += Convert.ToDecimal(row["lecture_units"]);
+            //    labUnits += Convert.ToDecimal(row["lab_units"]);
             //}
-
-            foreach (DataRow row in dt.Rows)
-            {
-                var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == Convert.ToInt32(row["instructor_id"])).fullname;
-                dgv.Rows.Add(
-                    row["subject_code"],
-                    row["descriptive_title"],
-                    row["pre_requisite"],
-                    row["total_units"],
-                    row["lecture_units"],
-                    row["lab_units"],
-                    row["time"],
-                    row["day"],
-                    row["room"],
-                    instructor,
-                    row["grade"],
-                    row["remarks"]
-                    );
-                totalUnits += Convert.ToDecimal(row["total_units"]);
-                lectureUnits += Convert.ToDecimal(row["lecture_units"]);
-                labUnits += Convert.ToDecimal(row["lab_units"]);
-            }
-            dgv.Rows.Add("", "Total:", "", totalUnits, lectureUnits, labUnits);
+            //dgv.Rows.Add("", "Total:", "", totalUnits, lectureUnits, labUnits);
 
 
 

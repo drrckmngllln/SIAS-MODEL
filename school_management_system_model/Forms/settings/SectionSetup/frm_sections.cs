@@ -2,6 +2,7 @@
 using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Repositories;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Loggers;
 using System;
@@ -18,6 +19,7 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_sections : Form
     {
+        CourseRepository _courseRepo = new CourseRepository();
         string ID;
 
         public string Email { get; }
@@ -36,11 +38,11 @@ namespace school_management_system_model.Forms.settings
             loadcourses();
         }
 
-        private void loadcourses()
+        private async void loadcourses()
         {
             tCourse.ValueMember = "id";
             tCourse.DisplayMember = "code";
-            tCourse.DataSource = new Courses().GetCourses();
+            tCourse.DataSource = await _courseRepo.GetAllAsync();
         }
 
         private async void loadrecords()

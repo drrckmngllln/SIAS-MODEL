@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_departments : Form
     {
+        DepartmentRepository _departmentRepo = new DepartmentRepository();
         public frm_departments(string email)
         {
             InitializeComponent();
@@ -36,9 +39,9 @@ namespace school_management_system_model.Forms.settings
             tCampus.DataSource = campus;
         }
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            var departments = new Departments().GetDepartments().ToList();
+            var departments = await _departmentRepo.GetAllAsync();
             dgv.DataSource = departments;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
@@ -50,18 +53,17 @@ namespace school_management_system_model.Forms.settings
 
         public string Email { get; }
 
-        private void add_records()
+        private async void add_records()
         {
             if (btn_save.Text == "Save")
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("insert into departments(code, description, campus_id) values(@1,@2,@3)", con);
-                cmd.Parameters.AddWithValue("@1", tCode.Text);
-                cmd.Parameters.AddWithValue("@2", tDescription.Text);
-                cmd.Parameters.AddWithValue("@3", tCampus.SelectedValue.ToString());
-                cmd.ExecuteNonQuery();
-                con.Close();
+                var AddDepartment = new Departments
+                {
+                    code = tCode.Text,
+                    description = tDescription.Text,
+                    campus = tCampus.SelectedValue.ToString()
+                };
+                await _departmentRepo.AddRecords(AddDepartment);
                 
                 new Classes.Toastr("Success", "Department Added");
                 new ActivityLogger().activityLogger(Email, "Department Add: " + tDescription.Text);
@@ -71,14 +73,14 @@ namespace school_management_system_model.Forms.settings
             }
             else
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("update departments set code=@1, description=@2, campus_id=@3 where id='"+ ID +"'", con);
-                cmd.Parameters.AddWithValue("@1", tCode.Text);
-                cmd.Parameters.AddWithValue("@2", tDescription.Text);
-                cmd.Parameters.AddWithValue("@3", tCampus.SelectedValue.ToString());
-                cmd.ExecuteNonQuery();
-                con.Close();
+                var EditDepartment = new Departments
+                {
+                    id = Convert.ToInt32(ID),
+                    code = tCode.Text,
+                    description = tDescription.Text,
+                    campus = tCampus.SelectedValue.ToString()
+                };
+                await _departmentRepo.UpdateRecords(EditDepartment);
                
                 new Classes.Toastr("Information", "Department Updated");
                 new ActivityLogger().activityLogger(Email, "Department Edit: " + tDescription.Text);
@@ -124,14 +126,13 @@ namespace school_management_system_model.Forms.settings
             txtclear();
         }
 
-        private void delete()
+        private async void delete()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter();
-
-            da.SelectCommand = new MySqlCommand("delete from departments where id='" + ID + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
+            var Delete = new Departments
+            {
+                id = Convert.ToInt32(ID)
+            };
+            await _departmentRepo.DeleteRecords(Delete);
             new Classes.Toastr("Information", "Department Deleted");
             new ActivityLogger().activityLogger(Email, "Department Delete: " + tDescription.Text);
 

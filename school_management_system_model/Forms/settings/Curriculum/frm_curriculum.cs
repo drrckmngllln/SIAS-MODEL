@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
@@ -10,6 +12,8 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_curriculum : Form
     {
+        CourseRepository _courseRepo = new CourseRepository();
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
         string ID;
 
         public string Email { get; }
@@ -39,9 +43,9 @@ namespace school_management_system_model.Forms.settings
             loadCourse();
         }
 
-        private void loadCourse()
+        private async void loadCourse()
         {
-            var course = new Courses().GetCourses();
+            var course = await _courseRepo.GetAllAsync();
 
             tCourse.ValueMember = "id";
             tCourse.DisplayMember = "code";
@@ -78,9 +82,9 @@ namespace school_management_system_model.Forms.settings
             }
         }
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            var data = new Curriculums().GetCurriculums().ToList();
+            var data = await _curriculumRepo.GetAllAsync();
             dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Curriculum Code";
@@ -93,7 +97,7 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["status"].HeaderText = "Status";
         }
 
-        private void add_records()
+        private async void add_records()
         {
             if (btn_save.Text == "Save")
             {
@@ -107,7 +111,7 @@ namespace school_management_system_model.Forms.settings
                     expires = tExpires.Text,
                     status = tStatus.Text
                 };
-                add.addRecords();
+                await _curriculumRepo.AddRecords(add);
                 new ActivityLogger().activityLogger(Email, "Add: " + tDescription.Text);
                 
                 new Classes.Toastr("Success", "Curriculum Added");
@@ -127,7 +131,8 @@ namespace school_management_system_model.Forms.settings
                     expires = tExpires.Text,
                     status = tStatus.Text
                 };
-                edit.editRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
+                await _curriculumRepo.UpdateRecords(edit);
+
                 new ActivityLogger().activityLogger(Email, "Edit: " + tDescription.Text);
                 new Classes.Toastr("Information", "Curriculum Updated");
 
@@ -148,11 +153,12 @@ namespace school_management_system_model.Forms.settings
             btn_save.Text = "Save";
         }
 
-        private void delete()
+        private async void delete()
         {
             var delete = new Curriculums();
             delete.deleteRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
-            
+            await _curriculumRepo.DeleteRecords(delete);
+
             new Classes.Toastr("Information", "Curriculum Deleted");
             new ActivityLogger().activityLogger(Email, "Delete Curriculum: " + dgv.CurrentRow.Cells["description"].Value.ToString());
             loadrecords();
@@ -202,8 +208,8 @@ namespace school_management_system_model.Forms.settings
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new Curriculums().GetCurriculums().Where(x => x.code.ToLower().Contains(tsearch.Text) || x.description.ToLower().Contains(tsearch.Text));
-                dgv.DataSource = search;
+                //var search = new Curriculums().GetCurriculums().Where(x => x.code.ToLower().Contains(tsearch.Text) || x.description.ToLower().Contains(tsearch.Text));
+                //dgv.DataSource = search;
             }
             else if (tsearch.Text.Length == 0)
             {
