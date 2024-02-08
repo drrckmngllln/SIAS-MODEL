@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_levels : Form
     {
+        LevelsRepository _levelRepo = new LevelsRepository();
         string ID;
 
         public string Email { get; }
@@ -29,34 +32,30 @@ namespace school_management_system_model.Forms.settings
             loadrecords();
         }
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from levels", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var levels = await _levelRepo.GetAllAsync();
+            dgv.DataSource = levels;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
             dgv.Columns["status"].HeaderText = "Status";
         }
 
-        private void add_records()
+        private async void add_records()
         {
             if (btn_save.Text == "Save")
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("insert into levels(code, description, status) values(@1,@2,@3)", con);
-                cmd.Parameters.AddWithValue("@1", t1.Text);
-                cmd.Parameters.AddWithValue("@2", t2.Text);
-                cmd.Parameters.AddWithValue("@3", t3.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                
+                var AddLevel = new Levels
+                {
+                    code = tCode.Text,
+                    description = tDescription.Text,
+                    status = tStatus.Text,
+                };
+                await _levelRepo.AddRecords(AddLevel);
+
                 new Classes.Toastr("Success", "Level Added");
-                new ActivityLogger().activityLogger(Email, "Level Add: " + t2.Text);
+                new ActivityLogger().activityLogger(Email, "Level Add: " + tDescription.Text);
 
                 loadrecords();
                 txtclear();
@@ -64,30 +63,30 @@ namespace school_management_system_model.Forms.settings
             }
             else if (btn_save.Text == "Update")
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("update levels set code=@1, description=@2, status=@3 where id='"+ ID +"'", con);
-                cmd.Parameters.AddWithValue("@1", t1.Text);
-                cmd.Parameters.AddWithValue("@2", t2.Text);
-                cmd.Parameters.AddWithValue("@3", t3.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                var UpdateLevel = new Levels
+                {
+                    id = Convert.ToInt32(ID),
+                    code = tCode.Text,
+                    description = tDescription.Text,
+                    status = tStatus.Text,
+                };
+                await _levelRepo.UpdateRecords(UpdateLevel);
              
                 new Classes.Toastr("Information", "Level Updated");
-                new ActivityLogger().activityLogger(Email, "Level Edit: " + t2.Text);
+                new ActivityLogger().activityLogger(Email, "Level Edit: " + tDescription.Text);
 
                 loadrecords();
                 txtclear();
             }
         }
 
-        private void delete()
+        private async void delete()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter();
-            da.SelectCommand = new MySqlCommand("delete from levels where id='" + ID + "'");
-            var dt = new DataTable();
-            da.Fill(dt);
+            var Delete = new Levels
+            {
+                id = Convert.ToInt32(ID)
+            };
+            await _levelRepo.DeleteRecords(Delete);
             
             new Classes.Toastr("Information", "Level Deleted");
             new ActivityLogger().activityLogger(Email, "Level Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
@@ -97,19 +96,19 @@ namespace school_management_system_model.Forms.settings
 
         private void txtclear()
         {
-            t1.Clear();
-            t2.Clear();
-            t3.Text = "";
-            t1.Select();
+            tCode.Clear();
+            tDescription.Clear();
+            tStatus.Text = "";
+            tCode.Select();
             btn_save.Text = "Save";
         }
         
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = dgv.CurrentRow.Cells[0].Value.ToString();
-            t1.Text = dgv.CurrentRow.Cells[1].Value.ToString();
-            t2.Text = dgv.CurrentRow.Cells[2].Value.ToString();
-            t3.Text = dgv.CurrentRow.Cells[3].Value.ToString();
+            tCode.Text = dgv.CurrentRow.Cells[1].Value.ToString();
+            tDescription.Text = dgv.CurrentRow.Cells[2].Value.ToString();
+            tStatus.Text = dgv.CurrentRow.Cells[3].Value.ToString();
             btn_save.Text = "Update";
         }
 

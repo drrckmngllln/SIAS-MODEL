@@ -1,23 +1,13 @@
-﻿using Krypton.Toolkit;
-using Microsoft.ReportingServices.Diagnostics.Internal;
-using school_management_system_model.Classes;
-using school_management_system_model.Classes.Parameters;
+﻿using school_management_system_model.Classes;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using school_management_system_model.Forms.transactions.StudentAssessment;
 using school_management_system_model.Reports.Accounting;
-using school_management_system_model.Reports.Datasets;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.transactions
@@ -28,6 +18,8 @@ namespace school_management_system_model.Forms.transactions
         StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
         StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
         CourseRepository _courseRepo = new CourseRepository();
+        CampusRepository _campusRepo = new CampusRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
 
 
         public static frm_student_assessment instance;
@@ -104,22 +96,24 @@ namespace school_management_system_model.Forms.transactions
 
             int yearLevel = Convert.ToInt32(tYearLevel.Text);
 
-            var tuitionFeeSetup = new TuitionFeeSetup().GetTuitionFeeSetups()
+            var tuitionFeeSetup = await new TuitionFeeSetup().GetTuitionFeeSetups();
+            var b = tuitionFeeSetup
                 .FirstOrDefault(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text);
 
-            if (tuitionFeeSetup == null)
+            if (b == null)
             {
                 new Classes.Toastr("Warning", "No Tuition Fee Set");
             }
             else
             {
-                dgv.Rows.Add(tuitionFeeSetup.category, tuitionFeeSetup.description, tuitionFeeSetup.amount, tuitionFee, tuitionFee * tuitionFeeSetup.amount);
+                dgv.Rows.Add(b.category, b.description, b.amount, tuitionFee, tuitionFee * b.amount);
             }
         }
 
-        private void loadMiscFeePerUnit()
+        private async void loadMiscFeePerUnit()
         {
-            var getMiscFeeSetup = new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups()
+            var getMiscFeeSetup = await new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups();
+            var a = getMiscFeeSetup
                 .Where(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text).ToList();
 
             if (getMiscFeeSetup != null)
@@ -147,12 +141,13 @@ namespace school_management_system_model.Forms.transactions
             loadOtherFees();
         }
 
-        private void loadOtherFees()
+        private async void loadOtherFees()
         {
-            var otherFees = new OtherFeesSetup().GetOtherFeesSetups()
+            var otherFees = await new OtherFeesSetup().GetOtherFeesSetups();
+            var a = otherFees
                 .Where(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text).ToList();
 
-            foreach (var item in otherFees)
+            foreach (var item in a)
             {
                 dgv.Rows.Add(item.category, item.description, item.amount, 1, item.amount * 1);
             }
@@ -164,25 +159,26 @@ namespace school_management_system_model.Forms.transactions
             var studentSubjects = a
                 .Where(x => x.id_number_id == tIdNumber.Text && x.school_year_id == tSchoolYear.Text).ToList();
 
-            var labFeeSubjects = new LabFeeSubjects().GetLabFeeSubjects().ToList();
+            var labFeeSubjects = await new LabFeeSubjects().GetLabFeeSubjects();
             if (labFeeSubjects != null)
             {
                 foreach (var studentSubjectItem in studentSubjects)
                 {
                     foreach (var labFeeSubjectItems in labFeeSubjects)
                     {
-                        var labFee = new LabFeeSetup().GetLabFeeSetups()
+                        var labFee = await new LabFeeSetup().GetLabFeeSetups();
+                        var b = labFee
                             .FirstOrDefault(x => x.description == labFeeSubjectItems.lab_fee);
 
-                        if (labFee != null)
+                        if (b != null)
                         {
                             if (studentSubjectItem.subject_code == labFeeSubjectItems.subject_code)
                             {
-                                decimal unitsComputation = Convert.ToDecimal(studentSubjectItem.lab_units) * Convert.ToDecimal(labFee.amount);
+                                decimal unitsComputation = Convert.ToDecimal(studentSubjectItem.lab_units) * Convert.ToDecimal(b.amount);
                                 unitsComputation = Math.Round(unitsComputation, 2);
                                 if (unitsComputation != 0)
                                 {
-                                    dgv.Rows.Add(labFee.category, labFee.description, labFee.amount, studentSubjectItem.lab_units, unitsComputation);
+                                    dgv.Rows.Add(b.category, b.description, b.amount, studentSubjectItem.lab_units, unitsComputation);
                                 }
                             }
                         }
@@ -317,7 +313,9 @@ namespace school_management_system_model.Forms.transactions
             var a = await _studentAccountRepo.GetAllAsync();
             var id_number_id = a
                 .FirstOrDefault(x => x.id_number == tIdNumber.Text);
-            var school_year_id = new SchoolYear().GetSchoolYears()
+
+            var b = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = b
                 .FirstOrDefault(x => x.code == tSchoolYear.Text);
 
             foreach (DataGridViewRow row in dgv.Rows)
@@ -337,7 +335,9 @@ namespace school_management_system_model.Forms.transactions
         {
             var a = await _studentAccountRepo.GetAllAsync();
             var id_number_id = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
-            var school_year_id = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
+
+            var b = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = b.FirstOrDefault(x => x.code == tSchoolYear.Text);
             if (id_number_id != null && school_year_id != null)
             {
                 foreach (DataGridViewRow row in dgv.Rows)
@@ -377,7 +377,9 @@ namespace school_management_system_model.Forms.transactions
 
                     var c = await _studentAccountRepo.GetAllAsync();
                     var id_number = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
-                    var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
+
+                    var d = await _schoolYearRepo.GetAllAsync();
+                    var school_year = d.FirstOrDefault(x => x.code == tSchoolYear.Text);
                     if (id_number != null && school_year != null)
                     {
                         var saveFeeSummary = new FeeSummaries
@@ -399,7 +401,9 @@ namespace school_management_system_model.Forms.transactions
         {
             var a = await _studentAccountRepo.GetAllAsync();
             var id_number = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
-            var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
+
+            var b = await _schoolYearRepo.GetAllAsync();
+            var school_year = b.FirstOrDefault(x => x.code == tSchoolYear.Text);
             var add = new FeeBreakdowns
             {
                 id_number = id_number.id.ToString(),
@@ -452,16 +456,18 @@ namespace school_management_system_model.Forms.transactions
             var c = await _courseRepo.GetAllAsync();
             var course_id = c
                 .FirstOrDefault(x => x.code == tCourse.Text);
-            var school_year_id = new SchoolYear().GetSchoolYears()
+
+            var d = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = d
                 .FirstOrDefault(x => x.code == tSchoolYear.Text);
 
             if (dataBalance == null)
             {
                 var soa = await new StatementsOfAccounts().GetStatementsOfAccounts();
-                var d = soa
+                var e = soa
                     .OrderByDescending(x => x.id)
                     .FirstOrDefault(x => x.school_year == tSchoolYear.Text && x.id_number == tIdNumber.Text);
-                var previousBalance = Convert.ToDecimal(d.balance);
+                var previousBalance = Convert.ToDecimal(e.balance);
                 var currentDebit = Convert.ToDecimal(tTotal.Text);
 
                 var SaveSOA = new StatementsOfAccounts
@@ -483,12 +489,12 @@ namespace school_management_system_model.Forms.transactions
 
                 // For the discounts if any
                 var discounts = await new StudentDiscount().GetStudentDiscounts();
-                var e = discounts
+                var f = discounts
                     .Where(x => x.id_number == tIdNumber.Text)
                     .ToList();
                 if (discounts != null)
                 {
-                    foreach (var discount in e)
+                    foreach (var discount in f)
                     {
                         if (discount.discount_target == "Tuition Fee")
                         {
@@ -496,7 +502,7 @@ namespace school_management_system_model.Forms.transactions
                             var computation = (discountPercentage / 100) * totalTuitionFee;
 
                             var debit = await new StatementsOfAccounts().GetStatementsOfAccounts();
-                            decimal f = debit
+                            decimal g = debit
                                 .FirstOrDefault(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text).balance;
 
                             var saveSoaDiscount = new StatementsOfAccounts
@@ -509,7 +515,7 @@ namespace school_management_system_model.Forms.transactions
                                 particulars = discount.description,
                                 debit = currentDebit,
                                 credit = computation,
-                                balance = f - computation,
+                                balance = g - computation,
                                 // Cashier in charge assignment
                                 cashier_in_charge = ""
                             };
@@ -552,8 +558,8 @@ namespace school_management_system_model.Forms.transactions
                             var discountPercentage = Convert.ToDecimal(discount.discount_percentage);
                             var computation = (discountPercentage / 100) * totalTuitionFee;
 
-                            var d = await new StatementsOfAccounts().GetStatementsOfAccounts();
-                            decimal debit = d
+                            var e = await new StatementsOfAccounts().GetStatementsOfAccounts();
+                            decimal debit = e
                                 .FirstOrDefault(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text).balance;
 
                             var saveSoaDiscount = new StatementsOfAccounts
@@ -679,9 +685,13 @@ namespace school_management_system_model.Forms.transactions
             var a = await _studentAccountRepo.GetAllAsync();
             var id_number_id = a
                 .FirstOrDefault(x => x.id_number == tIdNumber.Text);
-            var school_year_id = new SchoolYear().GetSchoolYears()
+
+            var b = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = b
                 .FirstOrDefault(x => x.code == tSchoolYear.Text);
-            var campus_id = new Campuses().GetCampuses()
+
+            var c = await _campusRepo.GetAllAsync();
+            var campus_id = c
                 .FirstOrDefault(x => x.code == tCampus.Text);
 
             if (id_number_id != null && school_year_id != null && campus_id != null)

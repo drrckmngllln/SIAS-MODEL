@@ -3,11 +3,8 @@ using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using static Google.Protobuf.Collections.MapField<TKey, TValue>;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace school_management_system_model.Data.Repositories.Setings
@@ -15,6 +12,7 @@ namespace school_management_system_model.Data.Repositories.Setings
     internal class CurriculumRepository : IGenericRepository<Curriculums>
     {
         CourseRepository _coursesRepo = new CourseRepository();
+        CampusRepository _campusRepo = new CampusRepository();  
         MySqlConnection con = new MySqlConnection(connection.con());
         public async Task AddRecords(Curriculums entity)
         {
@@ -52,7 +50,8 @@ namespace school_management_system_model.Data.Repositories.Setings
 
             while (reader.Read())
             {
-                var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
+                var a = await _campusRepo.GetAllAsync();
+                var campus = a.FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
 
                 var b = await _coursesRepo.GetAllAsync();
                 var course = b.FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;

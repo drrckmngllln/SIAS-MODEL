@@ -1,5 +1,5 @@
 ﻿using school_management_system_model.Classes;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
@@ -10,6 +10,8 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_tuition_fee : Form
     {
+        LevelsRepository _levelRepo = new LevelsRepository();
+        CampusRepository _campusRepo = new CampusRepository();
         public string Email { get; }
 
         public frm_tuition_fee(string email)
@@ -25,25 +27,26 @@ namespace school_management_system_model.Forms.settings
             loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
         }
 
-        private void loadLevel()
+        private async void loadLevel()
         {
-            var level = new Levels().GetLevels();
+            var level = await _levelRepo.GetAllAsync();
             tLevel.ValueMember = "id";
             tLevel.DisplayMember = "code";
             tLevel.DataSource = level;
         }
 
-        private void loadCampuses()
+        private async void loadCampuses()
         {
-            var campus = new Campuses().GetCampuses();
+            var campus = await _campusRepo.GetAllAsync();
             tCampus.ValueMember = "id";
             tCampus.DisplayMember = "code";
             tCampus.DataSource = campus;
         }
 
-        private void loadRecords(string campus, string level, string yearLevel, string semester)
+        private async void loadRecords(string campus, string level, string yearLevel, string semester)
         {
-            var tuition = new TuitionFeeSetup().GetTuitionFeeSetups()
+            var tuition = await new TuitionFeeSetup().GetTuitionFeeSetups();
+            var a = tuition
                 .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel && x.semester == semester)
                 .ToList();
             dgv.DataSource = tuition;
@@ -144,14 +147,15 @@ namespace school_management_system_model.Forms.settings
             }
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new TuitionFeeSetup().GetTuitionFeeSetups()
+                var search = await new TuitionFeeSetup().GetTuitionFeeSetups();
+                var a = search
                     .Where(x => x.category.ToLower().Contains(tsearch.Text) && x.description.ToLower().Contains(tsearch.Text))
                     .ToList();
-                dgv.DataSource = search;
+                dgv.DataSource = a;
             }
             else if (tsearch.Text.Length == 0)
             {

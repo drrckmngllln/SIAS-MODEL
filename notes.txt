@@ -1,11 +1,10 @@
 include repository for student accounts
 
 
-repo for departments?
-repo for curriculum
-repo for levels
-repo for campuses
-repo for instructors
+
+
+
+
 
 
 

@@ -2,6 +2,7 @@
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
@@ -24,6 +25,8 @@ namespace school_management_system_model.Forms.transactions
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();  
         StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
         StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
+        InstructorRepository _instructorRepo = new InstructorRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();  
         public int Id { get; set; }
         public string id_number { get; set; }
         public string studentName { get; set; }
@@ -236,7 +239,9 @@ namespace school_management_system_model.Forms.transactions
             {
                 var a = await _studentAccountRepo.GetAllAsync();
                 var id_number = a.FirstOrDefault(x => x.id_number == tIdNumber.Text).id;
-                var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == school_year_id).id;
+
+                var b = await _schoolYearRepo.GetAllAsync();
+                var school_year = b.FirstOrDefault(x => x.code == school_year_id).id;
                 var subject_code = row.Cells["subject_code"].Value.ToString();
                 var unique_id = id_number + school_year + subject_code;
                 var descriptive_title = row.Cells["descriptive_title"].Value.ToString();
@@ -247,7 +252,9 @@ namespace school_management_system_model.Forms.transactions
                 var time = row.Cells["time"].Value.ToString();
                 var day = row.Cells["day"].Value.ToString();
                 var room = row.Cells["room"].Value.ToString();
-                var instructor = new Instructors().GetInstructors()
+
+                var ins = await _instructorRepo.GetAllAsync();
+                var instructor = ins
                     .FirstOrDefault(x => x.fullname == row.Cells["instructor"].Value.ToString()).id;
 
                 

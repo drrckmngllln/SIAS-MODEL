@@ -1,8 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Forms.settings;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
+using school_management_system_model.Data.Repositories.Setings;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,17 +18,22 @@ namespace school_management_system_model.Classes
         public string semester { get; set; }
         public decimal amount { get; set; }
 
-        public List<MiscellaneousFeeSetup> GetMiscellaneousFeeSetups()
+        public async Task<List<MiscellaneousFeeSetup>> GetMiscellaneousFeeSetups()
         {
+            var _levelRepo = new LevelsRepository();
+            var _campusRepo = new CampusRepository();
             var list = new List<MiscellaneousFeeSetup>();
             var con = new MySqlConnection(connection.con());
-            con.Open();
+            await con.OpenAsync();
             var cmd = new MySqlCommand("select * from miscellaneous_fee_setup", con);
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var campus_id = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id"));
-                var level_id = new Levels().GetLevels().FirstOrDefault(x => x.id == reader.GetInt32("level_id"));
+                var a = await _campusRepo.GetAllAsync();
+                var campus_id = a.FirstOrDefault(x => x.id == reader.GetInt32("campus_id"));
+
+                var b = await _levelRepo.GetAllAsync();
+                var level_id = b.FirstOrDefault(x => x.id == reader.GetInt32("level_id"));
                 var misc = new MiscellaneousFeeSetup
                 {
                     id = reader.GetInt32("id"),
@@ -45,7 +48,7 @@ namespace school_management_system_model.Classes
                 };
                 list.Add(misc);
             }
-            con.Close();
+            await con.CloseAsync();
             return list;
         }
 

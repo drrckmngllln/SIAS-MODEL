@@ -2,20 +2,16 @@
 using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace school_management_system_model.Data.Repositories.Setings
 {
     internal class CourseRepository : IGenericRepository<Courses>
     {
         DepartmentRepository _departmentRepo = new DepartmentRepository();
+        LevelsRepository _levelsRepo = new LevelsRepository();
         public async Task AddRecords(Courses entity)
         {
             using (var con = new MySqlConnection(connection.con()))
@@ -54,6 +50,7 @@ namespace school_management_system_model.Data.Repositories.Setings
 
         public async Task<IReadOnlyList<Courses>> GetAllAsync()
         {
+            var _campusRepo = new CampusRepository();
             var list = new List<Courses>();
             var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
@@ -61,8 +58,11 @@ namespace school_management_system_model.Data.Repositories.Setings
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var level = new Levels().GetLevels().FirstOrDefault(x => x.id == reader.GetInt32("level_id")).code;
-                var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
+                var a = await _levelsRepo.GetAllAsync();
+                var level = a.FirstOrDefault(x => x.id == reader.GetInt32("level_id")).code;
+
+                var b = await _campusRepo.GetAllAsync();
+                var campus = b.FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
 
                 var c = await _departmentRepo.GetAllAsync();
                 var department = c.FirstOrDefault(x => x.id == reader.GetInt32("department_id")).code;

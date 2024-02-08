@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace school_management_system_model.Classes
         public async Task<List<FeeSummaries>> GetFeeSummaries()
         {
             var _studentAccountRepo = new StudentAccountRepository();
+            var _schoolYearRepo = new SchoolYearRepository();
             var list = new List<FeeSummaries>();
             using (var con = new MySqlConnection(connection.con()))
             {
@@ -35,7 +37,9 @@ namespace school_management_system_model.Classes
                         {
                             var a = await _studentAccountRepo.GetAllAsync();
                             var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
-                            var school_year_id = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
+
+                            var c = await _schoolYearRepo.GetAllAsync();
+                            var school_year_id = c.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
                             if (id_number_id != null && school_year_id != null)
                             {
                                 var feeSummary = new FeeSummaries

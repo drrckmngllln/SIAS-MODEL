@@ -1,20 +1,17 @@
 ﻿using school_management_system_model.Classes;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings.FeeSetup
 {
     public partial class frm_other_fees : Form
     {
+        LevelsRepository _levelRepo = new LevelsRepository();
+        CampusRepository _campusRepo = new CampusRepository();
         public string Email { get; }
 
         public frm_other_fees(string email)
@@ -30,28 +27,29 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
         }
 
-        private void loadLevels()
+        private async void loadLevels()
         {
-            var level = new Levels().GetLevels().ToList();
+            var level = await _levelRepo.GetAllAsync();
             tLevel.ValueMember = "id";
             tLevel.DisplayMember = "code";
             tLevel.DataSource = level;
         }
 
-        private void loadCampuses()
+        private async void loadCampuses()
         {
-            var campus = new Campuses().GetCampuses().ToList();
+            var campus = await _campusRepo.GetAllAsync();
             tCampus.ValueMember = "id";
             tCampus.DisplayMember = "code";
             tCampus.DataSource = campus;
         }
 
-        private void loadRecords(string campus, string level, string yearLevel)
+        private async void loadRecords(string campus, string level, string yearLevel)
         {
-            var misc = new OtherFeesSetup().GetOtherFeesSetups()
+            var misc = await new OtherFeesSetup().GetOtherFeesSetups();
+            var a = misc
                 .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel)
                 .ToList();
-            dgv.DataSource = misc;
+            dgv.DataSource = a;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["uid"].Visible = false;
             dgv.Columns["category"].HeaderText = "Category";
@@ -123,14 +121,15 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             txtClear();
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var searchRecord = new OtherFeesSetup().GetOtherFeesSetups()
+                var searchRecord = await new OtherFeesSetup().GetOtherFeesSetups();
+                var a = searchRecord
                 .Where(x => x.category.ToLower().Contains(tsearch.Text) || x.description.ToLower().Contains(tsearch.Text))
                 .ToList();
-                dgv.DataSource = searchRecord;
+                dgv.DataSource = a;
             }
             else if (tsearch.Text.Length == 0)
             {

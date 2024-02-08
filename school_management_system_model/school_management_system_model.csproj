@@ -208,17 +208,17 @@
     <Compile Include="Classes\AdmissionSchedule.cs" />
     <Compile Include="Classes\AssessmentBreakdowns.cs" />
     <Compile Include="Classes\BaseEntity.cs" />
-    <Compile Include="Classes\Campuses.cs" />
+    <Compile Include="Core\Entities\Settings\Campuses.cs" />
     <Compile Include="Core\Entities\Settings\Courses.cs" />
     <Compile Include="Classes\course_fees.cs" />
-    <Compile Include="Classes\Curriculums.cs" />
-    <Compile Include="Classes\CurriculumSubjects.cs" />
+    <Compile Include="Core\Entities\Settings\Curriculums.cs" />
+    <Compile Include="Core\Entities\Settings\CurriculumSubjects.cs" />
     <Compile Include="Core\Entities\Settings\Departments.cs" />
     <Compile Include="Classes\DiscountSetup.cs" />
     <Compile Include="Classes\FeeBreakdowns.cs" />
     <Compile Include="Classes\FeeCollection.cs" />
     <Compile Include="Classes\FeeSummaries.cs" />
-    <Compile Include="Classes\Instructors.cs" />
+    <Compile Include="Core\Entities\Settings\Instructors.cs" />
     <Compile Include="Classes\LabFeeSetup.cs" />
     <Compile Include="Classes\LabFeeSubjects.cs" />
     <Compile Include="Classes\MainRegistrar.cs" />
@@ -226,15 +226,21 @@
     <Compile Include="Classes\OtherFeesSetup.cs" />
     <Compile Include="Classes\Parameters\PaginationParams.cs" />
     <Compile Include="Classes\Parameters\SaveAssessmentBreakdownParams.cs" />
-    <Compile Include="Classes\SchoolYear.cs" />
+    <Compile Include="Core\Entities\Settings\SchoolYear.cs" />
     <Compile Include="Core\Entities\Section-Settings\SectionSubjects.cs" />
     <Compile Include="Classes\Specification\BaseSpecification.cs" />
     <Compile Include="Classes\Specification\ISpecification.cs" />
     <Compile Include="Core\Entities\Transaction\StudentAssessment\StudentSubject.cs" />
     <Compile Include="Core\Entities\Section-Settings\Sections.cs" />
     <Compile Include="Data\Interfaces\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\CampusRepository.cs" />
     <Compile Include="Data\Repositories\Setings\CourseRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\CurriculumRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\CurriculumSubjectsRepository.cs" />
     <Compile Include="Data\Repositories\Setings\DepartmentRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\InstructorRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\LevelsRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\SchoolYearRepository.cs" />
     <Compile Include="Data\Repositories\Setings\Section\SectionRepository.cs" />
     <Compile Include="Data\Repositories\Setings\Section\SectionSubjectRepository.cs" />
     <Compile Include="Data\Repositories\Transaction\StudentAccountRepository.cs" />
@@ -409,7 +415,7 @@
     <Compile Include="Forms\settings\FeeSetup\frm_tuition_fee.Designer.cs">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Levels.cs" />
+    <Compile Include="Core\Entities\Settings\Levels.cs" />
     <Compile Include="Forms\settings\UserManagement\frm_set_accessLevel.cs">
       <SubType>Form</SubType>
     </Compile>

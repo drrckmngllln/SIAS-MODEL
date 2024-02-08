@@ -1,7 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Crypto.Generators;
-using school_management_system_model.Classes;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
+﻿using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
@@ -12,6 +10,8 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_miscellaneous_setup : Form
     {
+        LevelsRepository _levelRepo = new LevelsRepository();
+        CampusRepository _campusRepo = new CampusRepository();
         public static frm_miscellaneous_setup instance;
         public DataTable dt = new DataTable();
         public DataTable coursesDt = new DataTable();
@@ -33,25 +33,26 @@ namespace school_management_system_model.Forms.settings
             loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
         }
 
-        private void loadLevels()
+        private async void loadLevels()
         {
-            var level = new Levels().GetLevels().ToList();
+            var level = await _levelRepo.GetAllAsync();
             tLevel.ValueMember = "id";
             tLevel.DisplayMember = "code";
             tLevel.DataSource = level;
         }
 
-        private void loadCampuses()
+        private async void loadCampuses()
         {
-            var campus = new Campuses().GetCampuses().ToList();
+            var campus = await _campusRepo.GetAllAsync();
             tCampus.ValueMember = "id";
             tCampus.DisplayMember = "code";
             tCampus.DataSource = campus;
         }
 
-        private void loadRecords(string campus, string level, string yearLevel)
+        private async void loadRecords(string campus, string level, string yearLevel)
         {
-            var misc = new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups()
+            var misc = await new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups();
+            var a = misc
                 .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel)
                 .ToList();
             dgv.DataSource = misc;
@@ -127,9 +128,10 @@ namespace school_management_system_model.Forms.settings
             delete.DeleteMiscFee(id);
         }
 
-        private void searchRecords(string search)
+        private async void searchRecords(string search)
         {
-            var searchRecord = new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups()
+            var searchRecord = await new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups(); 
+            var a = searchRecord
                 .Where(x => x.category.ToLower().Contains(search) || x.description.ToLower().Contains(search))
                 .ToList();
             dgv.DataSource = searchRecord;

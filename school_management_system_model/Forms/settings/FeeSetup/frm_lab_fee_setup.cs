@@ -1,6 +1,6 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Forms.settings.FeeSetup;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
@@ -11,6 +11,8 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_lab_fee_setup : Form
     {
+        LevelsRepository _levelRepo = new LevelsRepository();
+        CampusRepository _campusRepo = new CampusRepository();
         public string Email { get; set; }
 
         public frm_lab_fee_setup(string email)
@@ -26,25 +28,26 @@ namespace school_management_system_model.Forms.settings
             loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
         }
 
-        private void loadLevels()
+        private async void loadLevels()
         {
-            var levels = new Levels().GetLevels();
+            var levels = await _levelRepo.GetAllAsync();
             tLevel.ValueMember = "id";
             tLevel.DisplayMember = "code";
             tLevel.DataSource = levels;
         }
 
-        private void loadCampuses()
+        private async void loadCampuses()
         {
-            var campuses = new Campuses().GetCampuses();
+            var campuses = await _campusRepo.GetAllAsync();
             tCampus.ValueMember = "id";
             tCampus.DisplayMember = "code";
             tCampus.DataSource = campuses;
         }
 
-        private void loadRecords(string campus, string level, string yearLevel, string semester)
+        private async void loadRecords(string campus, string level, string yearLevel, string semester)
         {
-            var lab = new LabFeeSetup().GetLabFeeSetups()
+            var lab = await new LabFeeSetup().GetLabFeeSetups();
+            var a = lab
                 .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel && x.semester == semester)
                 .ToList();
             dgv.DataSource = lab;
@@ -184,14 +187,15 @@ namespace school_management_system_model.Forms.settings
             frm.ShowDialog();
         }
 
-        private void tsearch_TextChanged_1(object sender, EventArgs e)
+        private async void tsearch_TextChanged_1(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new LabFeeSetup().GetLabFeeSetups()
+                var search = await new LabFeeSetup().GetLabFeeSetups();
+                var a = search
                     .Where(x => x.category.ToLower().Contains(tsearch.Text) && x.description.ToLower().Contains(tsearch.Text))
                     .ToList();
-                dgv.DataSource = search;
+                dgv.DataSource = a;
             }
             else if (tsearch.Text.Length == 0)
             {

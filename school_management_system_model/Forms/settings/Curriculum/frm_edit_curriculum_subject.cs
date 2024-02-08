@@ -1,5 +1,7 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
 {
     public partial class frm_edit_curriculum_subject : KryptonForm
     {
-
+        CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
         public frm_edit_curriculum_subject(int id, string email)
         {
             InitializeComponent();
@@ -26,10 +28,11 @@ namespace school_management_system_model.Forms.settings.Curriculum
             loadRecords();
         }
 
-        private void loadRecords() 
+        private async void loadRecords()
         {
-            var curriculumSubject = new CurriculumSubjects().GetCurriculumSubjects().FirstOrDefault(x => x.id == Id);
-            uid = curriculumSubject.curriculum_id + curriculumSubject.code;
+            var a = await _curriculumSubjectsRepo.GetAllAsync();
+            var curriculumSubject = a.FirstOrDefault(x => x.id == Id);
+            uid = curriculumSubject.curriculum + curriculumSubject.code;
             tYearLevel.Text = curriculumSubject.year_level;
             tSemester.Text = curriculumSubject.semester;
             tCode.Text = curriculumSubject.code;
@@ -41,7 +44,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
             tTotalHoursPerWeek.Text = curriculumSubject.total_hrs_per_week;
         }
 
-        private void UpdateSubject()
+        private async void UpdateSubject()
         {
             try
             {
@@ -59,7 +62,7 @@ namespace school_management_system_model.Forms.settings.Curriculum
                     pre_requisite = tPreRequisite.Text,
                     total_hrs_per_week = tTotalHoursPerWeek.Text,
                 };
-                update.UpdateCurriculumSubjects(update);
+                await _curriculumSubjectsRepo.UpdateRecords(update);
                 new Classes.Toastr("Information", "Curriculum Subject Updated");
                 new ActivityLogger().activityLogger(Email, "Curriculum Subject Update: " + Id);
                 Close();

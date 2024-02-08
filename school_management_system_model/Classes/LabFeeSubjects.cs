@@ -14,7 +14,7 @@ namespace school_management_system_model.Classes
         public string subject_code { get; set; }
         public string descriptive_title { get; set; }
 
-        public List<LabFeeSubjects> GetLabFeeSubjects()
+        public async Task<List<LabFeeSubjects>> GetLabFeeSubjects()
         {
             var list = new List<LabFeeSubjects>();
             using (var con = new MySqlConnection(connection.con()))
@@ -27,14 +27,15 @@ namespace school_management_system_model.Classes
                     {
                         while (reader.Read())
                         {
-                            var lab_fee_id = new LabFeeSetup().GetLabFeeSetups()
+                            var lab_fee_id = await new LabFeeSetup().GetLabFeeSetups();
+                            var a = lab_fee_id
                                 .FirstOrDefault(x => x.id == reader.GetInt32("lab_fee_id"));
                             if (lab_fee_id != null)
                             {
                                 var labFeeSubjects = new LabFeeSubjects
                                 {
                                     id = reader.GetInt32("id"),
-                                    lab_fee = lab_fee_id.description,
+                                    lab_fee = a.description,
                                     subject_code = reader.GetString("subject_code"),
                                     descriptive_title = reader.GetString("descriptive_title")
                                 };

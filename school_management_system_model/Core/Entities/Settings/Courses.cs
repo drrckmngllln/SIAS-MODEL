@@ -1,9 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace school_management_system_model.Core.Entities
+﻿namespace school_management_system_model.Core.Entities
 {
     internal class Courses
     {

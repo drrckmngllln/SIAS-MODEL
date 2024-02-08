@@ -14,6 +14,7 @@ namespace school_management_system_model.Forms.settings
     {
         CourseRepository _courseRepo = new CourseRepository();
         CurriculumRepository _curriculumRepo = new CurriculumRepository();
+        CampusRepository _campusRepo = new CampusRepository();
         string ID;
 
         public string Email { get; }
@@ -52,9 +53,9 @@ namespace school_management_system_model.Forms.settings
             tCourse.DataSource = course;
         }
 
-        private void loadCampus()
+        private async void loadCampus()
         {
-            var campus = new Campuses().GetCampuses();
+            var campus = await _campusRepo.GetAllAsync();
 
             tCampus.ValueMember = "id";
             tCampus.DisplayMember = "code";
@@ -156,7 +157,7 @@ namespace school_management_system_model.Forms.settings
         private async void delete()
         {
             var delete = new Curriculums();
-            delete.deleteRecords(dgv.CurrentRow.Cells["id"].Value.ToString());
+            delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
             await _curriculumRepo.DeleteRecords(delete);
 
             new Classes.Toastr("Information", "Curriculum Deleted");

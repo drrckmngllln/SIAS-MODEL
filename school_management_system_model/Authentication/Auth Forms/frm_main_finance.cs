@@ -2,19 +2,12 @@
 using school_management_system_model.Authentication.Login;
 using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.FeeSetup;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
 using school_management_system_model.Forms.settings.UserManagement;
 using school_management_system_model.Forms.transactions;
 using school_management_system_model.Forms.transactions.Collection;
 using school_management_system_model.Forms.transactions.StudentDiscounts;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Authentication.Auth_Forms

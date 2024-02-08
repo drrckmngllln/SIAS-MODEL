@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
@@ -16,6 +17,7 @@ namespace school_management_system_model.Forms.settings
     public partial class frm_instructors : Form
     {
         DepartmentRepository _departmentRepo = new DepartmentRepository();
+        InstructorRepository _instructorRepo = new InstructorRepository();
         public string Email { get; }
 
         public frm_instructors(string email)
@@ -38,17 +40,17 @@ namespace school_management_system_model.Forms.settings
             tDepartment.DataSource = departments;
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            //var data = new Instructors().GetInstructors();
-            //dgv.DataSource = data;
-            //dgv.Columns["id"].Visible = false;
-            //dgv.Columns["fullname"].HeaderText = "Full Name";
-            //dgv.Columns["department_id"].HeaderText = "Department";
-            //dgv.Columns["position"].HeaderText = "Position";
+            var data = await _instructorRepo.GetAllAsync();
+            dgv.DataSource = data;
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["fullname"].HeaderText = "Full Name";
+            dgv.Columns["department_id"].HeaderText = "Department";
+            dgv.Columns["position"].HeaderText = "Position";
         }
 
-        private void addRecords()
+        private async void addRecords()
         {
             if (btn_save.Text == "Save")
             {
@@ -58,7 +60,7 @@ namespace school_management_system_model.Forms.settings
                     department_id = tDepartment.SelectedValue.ToString(),
                     position = tPosition.Text
                 };
-                data.addRecords();
+                await _instructorRepo.AddRecords(data);
           
                 new Classes.Toastr("Success", "Instructor Added");
                 new ActivityLogger().activityLogger(Email, "Instructor Add: " + tFullname.Text);
@@ -75,7 +77,7 @@ namespace school_management_system_model.Forms.settings
                     department_id = tDepartment.SelectedValue.ToString(),
                     position = tPosition.Text
                 };
-                data.editRecords();
+                await _instructorRepo.UpdateRecords(data);
                
                 new Classes.Toastr("Information", "Instructor Updated");
                 new ActivityLogger().activityLogger(Email, "Instructor Edit: " + tFullname.Text);
@@ -93,13 +95,13 @@ namespace school_management_system_model.Forms.settings
             btn_save.Text = "Save";
         }
 
-        private void deleteRecords()
+        private async void deleteRecords()
         {
             var delete = new Instructors
             {
                 id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString())
             };
-            delete.deleteRecords();
+            await _instructorRepo.DeleteRecords(delete);
             
             new Classes.Toastr("Information", "Instructor Deleted");
             new ActivityLogger().activityLogger(Email, "Instructor Delete: " + dgv.CurrentRow.Cells["fullname"].Value.ToString());

@@ -1,17 +1,8 @@
-﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Crypto.Modes.Gcm;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using school_management_system_model.Classes;
-using school_management_system_model.Loggers;
-using school_management_system_model.Forms.settings.TuitionFeeDummy;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Core.Entities;
 
@@ -21,6 +12,8 @@ namespace school_management_system_model.Forms.settings
     {
         CourseRepository _courseRepo = new CourseRepository();
         DepartmentRepository _departmentRepo = new DepartmentRepository();
+        LevelsRepository _levelsRepo = new LevelsRepository();
+        CampusRepository _campusRepo = new CampusRepository();  
         public bool isAdd { get; set; }
         public bool isEdit { get; set; }
         public bool isDelete { get; set; }
@@ -54,18 +47,18 @@ namespace school_management_system_model.Forms.settings
             tDepartment.DataSource = department;
         }
 
-        private void loadCampus()
+        private async void loadCampus()
         {
-            var campus = new Campuses().GetCampuses();
+            var campus = await _campusRepo.GetAllAsync();
 
             tCampus.ValueMember = "id";
             tCampus.DisplayMember = "code";
             tCampus.DataSource = campus;
         }
 
-        private void loadLevel()
+        private async void loadLevel()
         {
-            var level = new Levels().GetLevels();
+            var level = await _levelsRepo.GetAllAsync();
 
             tLevel.ValueMember = "id";
             tLevel.DisplayMember = "code";

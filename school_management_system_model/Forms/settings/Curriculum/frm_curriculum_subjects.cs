@@ -2,6 +2,8 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Forms.settings.Curriculum;
 using school_management_system_model.Loggers;
 using System;
@@ -13,6 +15,8 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_curriculum_subjects : KryptonForm
     {
+        CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
+        CurriculumRepository _curriculumRepository = new CurriculumRepository();
         public int CurriculumId { get; set; }
         private string id { get; set; }
         public string Email { get; }
@@ -34,38 +38,38 @@ namespace school_management_system_model.Forms.settings
 
        
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            
-            //var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id.ToString() == CurriculumId.ToString())
-            //    .Skip(pagination.pageSize * (pagination.pageNumber - 1)).Take(pagination.pageSize).ToList();
-            //dgv.DataSource = curriculumSubjects;
+            var a = await _curriculumSubjectsRepo.GetAllAsync();
+            var curriculumSubjects =a.Where(x => x.curriculum.ToString() == CurriculumId.ToString())
+                .Skip(pagination.pageSize * (pagination.pageNumber - 1)).Take(pagination.pageSize).ToList();
+            dgv.DataSource = curriculumSubjects;
 
 
-            //dgv.Columns["id"].Visible = false;
-            //dgv.Columns["uid"].Visible = false;
-            //dgv.Columns["curriculum_id"].Visible = false;
-            //dgv.Columns["year_level"].HeaderText = "Year Level";
-            //dgv.Columns["semester"].HeaderText = "Semester";
-            //dgv.Columns["code"].HeaderText = "Code";
-            //dgv.Columns["descriptive_title"].HeaderText = "Descriptive Tittle";
-            //dgv.Columns["descriptive_title"].Width = 300;
-            //dgv.Columns["total_units"].HeaderText = "Total Units";
-            //dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
-            //dgv.Columns["lab_units"].HeaderText = "Lab Units";
-            //dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
-            //dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["uid"].Visible = false;
+            dgv.Columns["curriculum"].Visible = false;
+            dgv.Columns["year_level"].HeaderText = "Year Level";
+            dgv.Columns["semester"].HeaderText = "Semester";
+            dgv.Columns["code"].HeaderText = "Code";
+            dgv.Columns["descriptive_title"].HeaderText = "Descriptive Tittle";
+            dgv.Columns["descriptive_title"].Width = 300;
+            dgv.Columns["total_units"].HeaderText = "Total Units";
+            dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
+            dgv.Columns["lab_units"].HeaderText = "Lab Units";
+            dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
+            dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
 
-
-            //var curriculums = new Curriculums().GetCurriculums().FirstOrDefault(x => x.id == CurriculumId);
-            ////var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == curriculums.id);
-            ////var course = new Courses().GetCourses().FirstOrDefault(x => x.id == curriculums.id);
-            //tcode.Text = curriculums.code;
-            //tdescription.Text = curriculums.description;
-            //tcampus.Text = curriculums.campus_id;
-            //tcourse.Text = curriculums.course_id;
-            //teffective.Text = curriculums.effective;
-            //texpires.Text = curriculums.expires;
+            var b = await _curriculumRepository.GetAllAsync();
+            var curriculums = b.FirstOrDefault(x => x.id == CurriculumId);
+            //var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == curriculums.id);
+            //var course = new Courses().GetCourses().FirstOrDefault(x => x.id == curriculums.id);
+            tcode.Text = curriculums.code;
+            tdescription.Text = curriculums.description;
+            tcampus.Text = curriculums.campus_id;
+            tcourse.Text = curriculums.course_id;
+            teffective.Text = curriculums.effective;
+            texpires.Text = curriculums.expires;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -120,26 +124,28 @@ namespace school_management_system_model.Forms.settings
             loadrecords();
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
+        private async void kryptonButton3_Click(object sender, EventArgs e)
         {
-            //if (MessageBox.Show("are you sure you want to delete all subjects in this curriculum?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
-            //   DialogResult.Yes)
-            //{
-            //    var curriculum_id = new Curriculums().GetCurriculums()
-            //        .FirstOrDefault(x => x.code == tcode.Text);
+            if (MessageBox.Show("are you sure you want to delete all subjects in this curriculum?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+               DialogResult.Yes)
+            {
+                var a = await _curriculumRepository.GetAllAsync();
+                var curriculum_id = a
+                    .FirstOrDefault(x => x.code == tcode.Text);
 
-            //    deleteAll(curriculum_id.id);
-            //    new Classes.Toastr("Information", "Curriculum Subject Deleted");
-            //    new ActivityLogger().activityLogger(Email, "Deleted All Curriculum: " + tdescription.Text);
-            //    loadrecords();
-            //}
+                deleteAll(curriculum_id.id);
+                new Classes.Toastr("Information", "Curriculum Subject Deleted");
+                new ActivityLogger().activityLogger(Email, "Deleted All Curriculum: " + tdescription.Text);
+                loadrecords();
+            }
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.code.ToLower().Contains(tsearch.Text) 
+                var a = await _curriculumSubjectsRepo.GetAllAsync();
+                var search = a.Where(x => x.code.ToLower().Contains(tsearch.Text) 
                 || x.descriptive_title.ToLower().Contains(tsearch.Text)).ToList();
                 dgv.DataSource = search;
             }
@@ -154,7 +160,7 @@ namespace school_management_system_model.Forms.settings
             var curriculumSubject = new CurriculumSubjects
             {
                 uid = dgv.CurrentRow.Cells["uid"].Value.ToString(),
-                curriculum_id = dgv.CurrentRow.Cells["curriculum_id"].Value.ToString(),
+                curriculum = dgv.CurrentRow.Cells["curriculum"].Value.ToString(),
                 year_level = dgv.CurrentRow.Cells["year_level"].Value.ToString(),
                 semester = dgv.CurrentRow.Cells["semester"].Value.ToString(),
                 code = dgv.CurrentRow.Cells["code"].Value.ToString(),

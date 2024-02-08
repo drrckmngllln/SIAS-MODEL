@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Loggers;
 using System;
@@ -15,6 +16,8 @@ namespace school_management_system_model.Forms.settings
     {
         SectionRepository _sectionRepo = new SectionRepository();
         SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
+        CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
+
         public static frm_section_subject_add instance;
         public string sectionCode { get; set; }
         public string curriculum_id { get; set; }
@@ -161,9 +164,10 @@ namespace school_management_system_model.Forms.settings
             }
         }
 
-        private void btnFilter_Click(object sender, EventArgs e)
+        private async void btnFilter_Click(object sender, EventArgs e)
         {
-            var subjects = new CurriculumSubjects().GetCurriculumSubjects().Where(x => x.curriculum_id == curriculum_id && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
+            var a = await _curriculumSubjectsRepo.GetAllAsync();
+            var subjects = a.Where(x => x.curriculum == curriculum_id && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
             dgv.DataSource = subjects.ToList();
         }
     }

@@ -23,6 +23,8 @@ namespace school_management_system_model.Forms.transactions
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         StudentCourseRepository _studentCoursesRepo = new StudentCourseRepository();
         CourseRepository _courseRepo = new CourseRepository();
+        CampusRepository _campusRepo = new CampusRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
 
         public static frm_create_account instance;
 
@@ -56,7 +58,8 @@ namespace school_management_system_model.Forms.transactions
                 var a = await _studentAccountRepo.GetAllAsync();
                 var update = a.FirstOrDefault(x => x.id_number == Id_Number.ToString());
 
-                var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id.ToString() == School_Year);
+                var b = await _schoolYearRepo.GetAllAsync();
+                var school_year = b.FirstOrDefault(x => x.id.ToString() == School_Year);
 
                 tIdNumber.Text = update.id_number;
                 tSchoolyear.Text = school_year.ToString();
@@ -90,10 +93,10 @@ namespace school_management_system_model.Forms.transactions
 
 
                 var UpdateCourseData = await _studentCoursesRepo.GetAllAsync();
-                var b = UpdateCourseData.FirstOrDefault(x => x.course == tCourse.Text);
+                var c = UpdateCourseData.FirstOrDefault(x => x.course == tCourse.Text);
 
-                tCourse.Text = b.course;
-                tCampus.Text = b.campus;
+                tCourse.Text = c.course;
+                tCampus.Text = c.campus;
 
 
                 btnCreate.Text = "Update Account";
@@ -147,8 +150,8 @@ namespace school_management_system_model.Forms.transactions
             {
                 if (this.Text == "Create Account")
                 {
-
-                    var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == School_Year);
+                    var a = await _schoolYearRepo.GetAllAsync();
+                    var school_year = a.FirstOrDefault(x => x.code == School_Year);
                     var add = new StudentAccount
                     {
                         id_number = tIdNumber.Text,
@@ -185,15 +188,16 @@ namespace school_management_system_model.Forms.transactions
                     };
                     add.AddStudentAccount();
 
-                    var a = await _studentAccountRepo.GetAllAsync();
-                    var id_number_id = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+                    var b = await _studentAccountRepo.GetAllAsync();
+                    var id_number_id = b.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
-                    var b = await _courseRepo.GetAllAsync();
+                    var c = await _courseRepo.GetAllAsync();
+                    var d = await _campusRepo.GetAllAsync();
                     var course = new StudentCourses
                     {
                         id_number = id_number_id.id.ToString(),
-                        course = b.FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
-                        campus = new Campuses().GetCampuses().FirstOrDefault(x => x.code == tCampus.Text).id.ToString(),
+                        course = c.FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
+                        campus = d.FirstOrDefault(x => x.code == tCampus.Text).id.ToString(),
                         curriculum = "Not Set",
                         year_level = "Not Set",
                         section = "Not Set",
@@ -291,7 +295,7 @@ namespace school_management_system_model.Forms.transactions
         {
 
         }
-        
+
         private void btnCreate_Click_1(object sender, EventArgs e)
         {
             addRecord();
@@ -311,7 +315,9 @@ namespace school_management_system_model.Forms.transactions
                 var a = await _courseRepo.GetAllAsync();
 
                 tCourse.Text = a.FirstOrDefault(x => x.code == course).code;
-                tCampus.Text = new Campuses().GetCampuses().FirstOrDefault(x => x.code == campus).code;
+
+                var b = await _campusRepo.GetAllAsync();
+                tCampus.Text = b.FirstOrDefault(x => x.code == campus).code;
             }
         }
     }

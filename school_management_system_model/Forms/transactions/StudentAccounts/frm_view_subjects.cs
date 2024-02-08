@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Reports.Accounting;
 using System;
@@ -20,6 +21,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
     public partial class frm_view_subjects : KryptonForm
     {
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+
         public static frm_view_subjects instance;
         public bool IsAdministrator { get; set; }
         
@@ -81,7 +84,9 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         {
             var a = await _studentAccountRepo.GetAllAsync();
             var idnumber = a.FirstOrDefault(x => x.id_number == idNumber);
-            var schoolyear = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == schoolYear);
+
+            var b = await _schoolYearRepo.GetAllAsync();
+            var schoolyear = b.FirstOrDefault(x => x.code == schoolYear);
             //var studentSubjects = new StudentSubject().GetStudentSubjects()
             //    .Where(x => x.id_number_id == idnumber.id.ToString() && x.school_year_id == schoolyear.id.ToString()).ToList();
             //dgv.DataSource = studentSubjects;

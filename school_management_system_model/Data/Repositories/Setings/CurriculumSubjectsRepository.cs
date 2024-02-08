@@ -9,14 +9,32 @@ namespace school_management_system_model.Data.Repositories.Setings
     internal class CurriculumSubjectsRepository : IGenericRepository<CurriculumSubjects>
     {
         MySqlConnection con = new MySqlConnection(connection.con());
-        public Task AddRecords(CurriculumSubjects entity)
+        public async Task AddRecords(CurriculumSubjects entity)
         {
-            throw new System.NotImplementedException();
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("insert into curriculum_subjects(uid, curriculum_id, year_level, semester, code, descriptive_title, total_units, lecture_units, lab_units, " +
+                "pre_requisite, total_hrs_per_week) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)", con);
+            cmd.Parameters.AddWithValue("@1", entity.uid);
+            cmd.Parameters.AddWithValue("@2", entity.curriculum);
+            cmd.Parameters.AddWithValue("@3", entity.year_level);
+            cmd.Parameters.AddWithValue("@4", entity.semester);
+            cmd.Parameters.AddWithValue("@5", entity.code);
+            cmd.Parameters.AddWithValue("@6", entity.descriptive_title);
+            cmd.Parameters.AddWithValue("@7", entity.total_units);
+            cmd.Parameters.AddWithValue("@8", entity.lecture_units);
+            cmd.Parameters.AddWithValue("@9", entity.lab_units);
+            cmd.Parameters.AddWithValue("@10", entity.pre_requisite);
+            cmd.Parameters.AddWithValue("@11", entity.total_hrs_per_week);
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
         }
 
-        public Task DeleteRecords(CurriculumSubjects entity)
+        public async Task DeleteRecords(CurriculumSubjects entity)
         {
-            throw new System.NotImplementedException();
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("delete from curriculum_subjects where curriculum_id='" + entity.curriculum + "'", con);
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
         }
 
         public async Task<IReadOnlyList<CurriculumSubjects>> GetAllAsync()
@@ -31,7 +49,7 @@ namespace school_management_system_model.Data.Repositories.Setings
                 {
                     id = reader.GetInt32("id"),
                     uid = reader.GetString("uid"),
-                    curriculum_id = reader.GetString("curriculum_id"),
+                    curriculum = reader.GetString("curriculum_id"),
                     year_level = reader.GetString("year_level"),
                     semester = reader.GetString("semester"),
                     code = reader.GetString("code"),
@@ -48,9 +66,24 @@ namespace school_management_system_model.Data.Repositories.Setings
             return list;
         }
 
-        public Task UpdateRecords(CurriculumSubjects entity)
+        public async Task UpdateRecords(CurriculumSubjects entity)
         {
-            throw new System.NotImplementedException();
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("update curriculum_subjects set uid=@1, year_level=@3, semester=@4, code=@5, descriptive_title=@6, " +
+                "total_units=@7, lecture_units=@8, lab_units=@9, pre_requisite=@10, total_hrs_per_week=@11 where id='" + entity.id + "'", con);
+            cmd.Parameters.AddWithValue("@1", entity.uid);
+            cmd.Parameters.AddWithValue("@2", entity.curriculum);
+            cmd.Parameters.AddWithValue("@3", entity.year_level);
+            cmd.Parameters.AddWithValue("@4", entity.semester);
+            cmd.Parameters.AddWithValue("@5", entity.code);
+            cmd.Parameters.AddWithValue("@6", entity.descriptive_title);
+            cmd.Parameters.AddWithValue("@7", entity.total_units);
+            cmd.Parameters.AddWithValue("@8", entity.lecture_units);
+            cmd.Parameters.AddWithValue("@9", entity.lab_units);
+            cmd.Parameters.AddWithValue("@10", entity.pre_requisite);
+            cmd.Parameters.AddWithValue("@11", entity.total_hrs_per_week);
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
         }
     }
 }

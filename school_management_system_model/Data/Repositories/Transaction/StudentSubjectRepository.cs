@@ -2,6 +2,7 @@
 using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
     internal class StudentSubjectRepository : IGenericRepository<StudentSubject>
     {
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        InstructorRepository _instructorRepo = new InstructorRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
         public Task AddRecords(StudentSubject entity)
         {
             throw new NotImplementedException();
@@ -36,8 +39,12 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                 {
                     var a = await _studentAccountRepo.GetAllAsync();
                     var id_number = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
-                    var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
-                    var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
+
+                    var b = await _schoolYearRepo.GetAllAsync();
+                    var school_year = b.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
+
+                    var c = await _instructorRepo.GetAllAsync();
+                    var instructor = c.FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
 
                     var studentSubjects = new StudentSubject
                     {

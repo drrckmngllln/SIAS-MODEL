@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Forms.transactions.StudentAccounts;
 using System;
@@ -18,6 +19,7 @@ namespace school_management_system_model.Forms.transactions
     public partial class frm_student_accounts : Form
     {
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();  
         public int id { get; set; }
         public bool IsAdd { get; set; }
         public bool IsEdit { get; set; }
@@ -108,9 +110,10 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns["date_of_admission"].Visible = false;
         }
 
-        private void loadSchoolYear()
+        private async void loadSchoolYear()
         {
-            var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.is_current == "Yes");
+            var a = await _schoolYearRepo.GetAllAsync();
+            var school_year = a.FirstOrDefault(x => x.is_current == "Yes");
             ;
             tSchoolYear.Text = school_year.code;
             tSemester.Text = school_year.semester;
@@ -127,9 +130,10 @@ namespace school_management_system_model.Forms.transactions
             loadRecords();
         }
 
-        private void CreateAccount()
+        private async void CreateAccount()
         {
-            var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
+            var a = await _schoolYearRepo.GetAllAsync();
+            var school_year = a.FirstOrDefault(x => x.code == tSchoolYear.Text);
             var frm = new frm_create_account
             //(id_number_id, school_year.id.ToString(), school_year.semester);
             {
@@ -140,10 +144,12 @@ namespace school_management_system_model.Forms.transactions
             frm.ShowDialog();
             loadRecords();
         }
-        private void UpdateAccount()
+        private async void UpdateAccount()
         {
             var id_number_id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
-            var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.code == tSchoolYear.Text);
+
+            var a = await _schoolYearRepo.GetAllAsync();
+            var school_year = a.FirstOrDefault(x => x.code == tSchoolYear.Text);
             var frm = new frm_create_account
             //(id_number_id, school_year.id.ToString(), school_year.semester);
             {

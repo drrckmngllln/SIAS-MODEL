@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
 {
     public partial class frm_link_subjects : KryptonForm
     {
+        CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
         public string Description { get; set; }
         public string Email { get; set; }
 
@@ -37,14 +39,15 @@ namespace school_management_system_model.Forms.settings.FeeSetup
         }
 
 
-        private void loadRecords()
+        private async void loadRecords()
         {
             if (this.Text == "Select")
             {
                 paging.pageSize = 10;
                 tTitle.Text = "Select Subjects: " + Description;
                 tPageSize.Text = paging.pageNumber.ToString();
-                var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects()
+                var a = await _curriculumSubjectsRepo.GetAllAsync();
+                var curriculumSubjects =a
                     .Select(x => new
                     {
                         x.code,
@@ -54,11 +57,6 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                     .Skip(paging.pageSize * (paging.pageNumber - 1))
                     .Take(paging.pageSize)
                     .ToList();
-
-                //var con = new MySqlConnection(connection.con());
-                //var da = new MySqlDataAdapter("select code, descriptive_title from curriculum_subjects order by code asc", con);
-                //var dt = new DataTable();
-                //da.Fill(dt);
 
                 dgv.DataSource = curriculumSubjects;
 
@@ -73,14 +71,12 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             {
                 tTitle.Text = "Linked Subjects: " + Description;
 
-                var labFeeSubjects = new LabFeeSubjects().GetLabFeeSubjects()
+                var labFeeSubjects = await new LabFeeSubjects().GetLabFeeSubjects();
+                var a = labFeeSubjects
                     .Where(x => x.lab_fee == Description).ToList();
 
-                //var con = new MySqlConnection(connection.con());
-                //var da = new MySqlDataAdapter("select * from lab_fee_subjects where lab_fee_id='"+ Id + "'", con);
-                //var dt = new DataTable();
-                //da.Fill(dt);
-                dgv.DataSource = labFeeSubjects;
+                
+                dgv.DataSource = a;
 
                 dgv.Columns["id"].Visible = false;
                 //dgv.Columns["lab_fee_id"].Visible = false;
@@ -92,13 +88,14 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             }
         }
 
-        private void linkSubject(string code, string descriptiveTitle)
+        private async void linkSubject(string code, string descriptiveTitle)
         {
-            var labDescription = new LabFeeSetup().GetLabFeeSetups()
+            var labDescription = await new LabFeeSetup().GetLabFeeSetups();
+            var a = labDescription
                 .FirstOrDefault(x => x.description == Description);
             var linkSubject = new LabFeeSubjects
             {
-                lab_fee = labDescription.id.ToString(),
+                lab_fee = a.id.ToString(),
                 subject_code = code,
                 descriptive_title = descriptiveTitle
             };
@@ -106,14 +103,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             new Classes.Toastr("Success", "Subject Linked");
             Close();
 
-            //var con = new MySqlConnection (connection.con());
-            //con.Open();
-            //var cmd = new MySqlCommand("insert into lab_fee_subjects(lab_fee_id, subject_code, descriptive_title) " +
-            //    "values('" + Id + "','" + code + "','"+ descriptiveTitle +"')", con);
-            //cmd.ExecuteNonQuery();
-            //con.Close();
-            //MessageBox.Show("Subject Linked","Success!",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            //Close();
+            ;
         }
 
         private void removeLink(int id)
@@ -157,13 +147,14 @@ namespace school_management_system_model.Forms.settings.FeeSetup
 
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (this.Text == "Select")
             {
                 if (tsearch.Text.Length > 2)
                 {
-                    var curriculumSubjects = new CurriculumSubjects().GetCurriculumSubjects()
+                    var a = await _curriculumSubjectsRepo.GetAllAsync();
+                    var curriculumSubjects = a
                         .Where(x => x.code.ToLower().Contains(tsearch.Text) || x.descriptive_title.ToLower().Contains(tsearch.Text))
                         .Select(x => new
                         {
@@ -182,10 +173,11 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             {
                 if (tsearch.Text.Length > 2)
                 {
-                    var labFeeSubjects = new LabFeeSubjects().GetLabFeeSubjects()
+                    var labFeeSubjects = await new LabFeeSubjects().GetLabFeeSubjects();
+                    var a = labFeeSubjects
                         .Where(x => x.lab_fee == Description && x.subject_code.ToLower().Contains(tsearch.Text) || x.descriptive_title.ToLower().Contains(tsearch.Text))
                         .ToList();
-                    dgv.DataSource = labFeeSubjects;
+                    dgv.DataSource = a;
                 }
                 else if (tsearch.Text.Length == 0)
                 {

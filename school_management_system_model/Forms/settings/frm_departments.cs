@@ -18,6 +18,7 @@ namespace school_management_system_model.Forms.settings
     public partial class frm_departments : Form
     {
         DepartmentRepository _departmentRepo = new DepartmentRepository();
+        CampusRepository _campusRepo = new CampusRepository();
         public frm_departments(string email)
         {
             InitializeComponent();
@@ -30,9 +31,9 @@ namespace school_management_system_model.Forms.settings
             loadCampus();
         }
 
-        private void loadCampus()
+        private async void loadCampus()
         {
-            var campus = new Campuses().GetCampuses();
+            var campus = await _campusRepo.GetAllAsync();
 
             tCampus.ValueMember = "id";
             tCampus.DisplayMember = "code";

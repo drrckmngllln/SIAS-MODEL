@@ -3,6 +3,7 @@ using Org.BouncyCastle.Asn1.X509;
 using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
+using school_management_system_model.Data.Repositories.Setings;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,9 +16,10 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
 {
     internal class StudentAccountRepository : IGenericRepository<StudentAccount>
     {
+        MySqlConnection con = new MySqlConnection(connection.con());
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
         public async Task AddRecords(StudentAccount entity)
         {
-            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("insert into student_accounts(id_number, school_year, fullname, last_name, " +
                 "first_name, middle_name, gender, civil_status, date_of_birth, place_of_birth, nationality, " +
@@ -54,7 +56,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
             cmd.Parameters.AddWithValue("@30", entity.f_occupation);
             cmd.Parameters.AddWithValue("@31", entity.type_of_student);
             cmd.Parameters.AddWithValue("@32", entity.date_of_admission);
-            cmd.ExecuteNonQuery();
+            await cmd.ExecuteNonQueryAsync();
             await con.CloseAsync();
         }
 
@@ -72,7 +74,8 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var school_year = new SchoolYear().GetSchoolYears().FirstOrDefault(x => x.id == reader.GetInt32("school_year"));
+                var a = await _schoolYearRepo.GetAllAsync();
+                var school_year = a.FirstOrDefault(x => x.id == reader.GetInt32("school_year"));
                 var student = new StudentAccount
                 {
                     id = reader.GetInt32("id"),
