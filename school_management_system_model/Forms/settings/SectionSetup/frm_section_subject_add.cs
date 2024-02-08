@@ -1,6 +1,8 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
@@ -11,11 +13,14 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_section_subject_add : KryptonForm
     {
+        SectionRepository _sectionRepo = new SectionRepository();
+        SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
         public static frm_section_subject_add instance;
         public string sectionCode { get; set; }
         public string curriculum_id { get; set; }
         public string course { get; set; }
         public string year_level { get; set; }
+        public string section { get; set; }
         public string semester { get; set; }
         public string remarks { get; set; }
         public string Email { get; }
@@ -84,52 +89,50 @@ namespace school_management_system_model.Forms.settings
 
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        private void saveAllSectionSubjects()
+        private async void saveAllSectionSubjects()
         {
-                foreach (DataGridViewRow row in dgv.Rows)
-                {
-                    var sections = new sections().GetSections().FirstOrDefault(x => x.id == Convert.ToInt32(sectionCode));
-                    var uid = sections.section_code + sections.course_id + sections.year_level + sections.section + sections.semester
-                        + row.Cells["code"].Value.ToString();
-                    var course_id = new Courses().GetCourses().FirstOrDefault(x => x.code == sections.course_id);
-                    var instructor = new Instructors().GetInstructors().FirstOrDefault();
-                    var SaveSectionSubjects = new SectionSubjects
-                    {
-                        unique_id = uid,
-                        section_code_id = sectionCode,
-                        //curriculum_id = curriculum_id,
-                        //course_id = course_id.id.ToString(),
-                        year_level = year_level,
-                        semester = semester,
-                        subject_code = row.Cells["code"].Value.ToString(),
-                        descriptive_title = row.Cells["descriptive_title"].Value.ToString(),
-                        total_units = row.Cells["total_units"].Value.ToString(),
-                        lecture_units = row.Cells["lecture_units"].Value.ToString(),
-                        lab_units = row.Cells["lab_units"].Value.ToString(),
-                        pre_requisite = row.Cells["pre_requisite"].Value.ToString(),
-                        instructor_id = instructor.id.ToString()
-                    };
-                    SaveSectionSubjects.AddSectionSubjects();
-                }
-                new Classes.Toastr("Success", "Subjects Imported");
-                new ActivityLogger().activityLogger(Email, "Section Subject Select All");
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                //var sections = await _sectionRepo.GetAllAsync();
+                //    var a = sections.FirstOrDefault(x => x.id == Convert.ToInt32(sectionCode));
+                var uid = sectionCode + course + year_level + section + semester
+                    + row.Cells["code"].Value.ToString();
 
-                Close();
+
+                var SaveSectionSubjects = new SectionSubjects
+                {
+                    unique_id = uid,
+                    section_code = sectionCode,
+                    year_level = year_level,
+                    semester = semester,
+                    subject_code = row.Cells["code"].Value.ToString(),
+                    descriptive_title = row.Cells["descriptive_title"].Value.ToString(),
+                    total_units = row.Cells["total_units"].Value.ToString(),
+                    lecture_units = row.Cells["lecture_units"].Value.ToString(),
+                    lab_units = row.Cells["lab_units"].Value.ToString(),
+                    pre_requisite = row.Cells["pre_requisite"].Value.ToString()
+                };
+                await _sectionSubjectRepo.AddRecords(SaveSectionSubjects);
+            }
+            new Classes.Toastr("Success", "Subjects Imported");
+            new ActivityLogger().activityLogger(Email, "Section Subject Select All");
+
+            Close();
             try
             {
-                
+
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -151,7 +154,7 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to add these set of subjects?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==
+            if (MessageBox.Show("Are you sure you want to add these set of subjects?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                 DialogResult.Yes)
             {
                 saveAllSectionSubjects();

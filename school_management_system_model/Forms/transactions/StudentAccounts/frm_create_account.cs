@@ -33,7 +33,7 @@ namespace school_management_system_model.Forms.transactions
             InitializeComponent();
         }
 
-        private void frm_create_account_Load(object sender, EventArgs e)
+        private async void frm_create_account_Load(object sender, EventArgs e)
         {
             if (this.Text == "Create Account")
             {
@@ -43,7 +43,7 @@ namespace school_management_system_model.Forms.transactions
             }
             else if (this.Text == "Update Account")
             {
-                
+
                 tTitle.Text = this.Text;
                 var update = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == Id_Number.ToString());
 
@@ -78,13 +78,14 @@ namespace school_management_system_model.Forms.transactions
                 tStatus.Text = update.status;
                 ctype.Text = update.type_of_student;
                 kryptonDateTimePicker1 = new KryptonDateTimePicker();
-               
 
-                var UpdateCourseData = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.course == tCourse.Text);
 
-                tCourse.Text = UpdateCourseData.course;
-                tCampus.Text = UpdateCourseData.campus;
-                    
+                var UpdateCourseData = await new StudentCourses().GetStudentCourses();
+                    var a = UpdateCourseData.FirstOrDefault(x => x.course == tCourse.Text);
+
+                tCourse.Text = a.course;
+                tCampus.Text = a.campus;
+
 
                 btnCreate.Text = "Update Account";
             }
@@ -96,13 +97,13 @@ namespace school_management_system_model.Forms.transactions
         }
         private void loadIdNumber()
         {
-            
+
             var data = new StudentAccount().GetStudentAccounts().Where(x => x.sy_enrolled == School_Year).Count();
             int count = 0;
             count = data;
             var idNumber = DateTime.Now.Year.ToString();
 
-           
+
             idNumber += "-" + Semester;
 
             if (count < 9)
@@ -129,8 +130,8 @@ namespace school_management_system_model.Forms.transactions
             tLastname.Select();
         }
 
-        
-       
+
+
         private void addRecord()
         {
             try
@@ -237,7 +238,7 @@ namespace school_management_system_model.Forms.transactions
                     new Classes.Toastr("Information", "Account Updated");
                     Close();
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -310,5 +311,5 @@ namespace school_management_system_model.Forms.transactions
             }
         }
     }
-    }
+}
 

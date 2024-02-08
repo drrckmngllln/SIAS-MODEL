@@ -1,5 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -18,6 +21,8 @@ namespace school_management_system_model.Forms.settings
         string ID;
 
         public string Email { get; }
+
+        SectionRepository _sectionRepo = new SectionRepository();
 
         public frm_sections(string email)
         {
@@ -38,14 +43,14 @@ namespace school_management_system_model.Forms.settings
             tCourse.DataSource = new Courses().GetCourses();
         }
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            var data = new sections().GetSections();
+            var data = await _sectionRepo.GetAllAsync();
             dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
             dgv.Columns["section_code"].HeaderText = "Section Code";
-            dgv.Columns["course_id"].HeaderText = "Course";
+            dgv.Columns["course"].HeaderText = "Course";
             dgv.Columns["year_level"].HeaderText = "Year Level";
             dgv.Columns["section"].HeaderText = "Section";
             dgv.Columns["semester"].HeaderText = "Semester";
@@ -55,17 +60,18 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["remarks"].HeaderText = "Remarks";
         }
 
-        private void add_records()
+        private async void add_records()
         {
             try
             {
                 if (btn_save.Text == "Save")
                 {
-                    var add = new sections
+
+                    var add = new Sections
                     {
                         unique_id = tSectionCode.Text + tCourse.Text + tYearLevel.Text + tSemester.Text,
                         section_code = tSectionCode.Text,
-                        course_id = tCourse.SelectedValue.ToString(),
+                        course = tCourse.Text,
                         year_level = Convert.ToInt32(tYearLevel.Text),
                         section = tSection.Text,
                         semester = tSemester.Text,
@@ -74,8 +80,8 @@ namespace school_management_system_model.Forms.settings
                         status = tStatus.Text,
                         remarks = tRemarks.Text
                     };
-                    add.AddSection();
-                    
+                    await _sectionRepo.AddRecords(add);
+
                     new Classes.Toastr("Success", "Section Add Success");
                     new ActivityLogger().activityLogger(Email, "Section Add: " + tSectionCode.Text);
 
@@ -83,11 +89,12 @@ namespace school_management_system_model.Forms.settings
                 }
                 else if (btn_save.Text == "Update")
                 {
-                    var edit = new sections
+                    var edit = new Sections
                     {
+                        id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                         unique_id = tSectionCode.Text + tCourse.Text + tYearLevel.Text + tSemester.Text,
                         section_code = tSectionCode.Text,
-                        course_id = tCourse.SelectedValue.ToString(),
+                        course = tCourse.Text,
                         year_level = Convert.ToInt32(tYearLevel.Text),
                         section = tSection.Text,
                         semester = tSemester.Text,
@@ -96,7 +103,8 @@ namespace school_management_system_model.Forms.settings
                         status = tStatus.Text,
                         remarks = tRemarks.Text
                     };
-                    edit.EditSection(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                    await _sectionRepo.UpdateRecords(edit);
+
                     new Classes.Toastr("Information", "Section Update Success");
                     new ActivityLogger().activityLogger(Email, "Section Edit: " + tSectionCode.Text);
 
@@ -112,11 +120,12 @@ namespace school_management_system_model.Forms.settings
 
         }
 
-        private void delete()
+        private async void delete()
         {
-            var delete = new sections();
-            delete.DeleteSection(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-            MessageBox.Show("Section Delete Success");
+            var delete = new Sections();
+            delete.section_code = dgv.CurrentRow.Cells["section_code"].Value.ToString();
+            await _sectionRepo.DeleteRecords(delete);
+            new Classes.Toastr("Information", "Section Deleted");
             new ActivityLogger().activityLogger(Email, "Section Delete: " + tSectionCode.Text);
 
             loadrecords();
@@ -140,7 +149,7 @@ namespace school_management_system_model.Forms.settings
             ID = dgv.CurrentRow.Cells[0].Value.ToString();
             tSectionCode.Text = dgv.CurrentRow.Cells["section_code"].Value.ToString();
             tYearLevel.Text = dgv.CurrentRow.Cells["year_level"].Value.ToString();
-            tCourse.Text = dgv.CurrentRow.Cells["course_id"].Value.ToString();
+            tCourse.Text = dgv.CurrentRow.Cells["course"].Value.ToString();
             tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
             tNumberOfStudents.Text = dgv.CurrentRow.Cells["number_of_students"].Value.ToString();
             tMaxStudent.Text = dgv.CurrentRow.Cells["max_number_of_students"].Value.ToString();
@@ -199,8 +208,8 @@ namespace school_management_system_model.Forms.settings
         {
             if (tRemarks.Text == "Regular")
             {
-                var id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-                var frm = new frm_section_subjects(id, Email);
+                var subject_code = dgv.CurrentRow.Cells["section_code"].Value.ToString();
+                var frm = new frm_section_subjects(subject_code, Email);
                 frm.Text = "Section Subjects";
                 frm.ShowDialog();
             }
@@ -215,12 +224,13 @@ namespace school_management_system_model.Forms.settings
             tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
         }
 
-        private void tSearch_TextChanged(object sender, EventArgs e)
+        private async void tSearch_TextChanged(object sender, EventArgs e)
         {
             if (tSearch.Text.Length > 2)
             {
-                var search = new sections().GetSections().Where(x => x.section_code.ToLower().Contains(tSearch.Text));
-                dgv.DataSource = search;
+                var search = await _sectionRepo.GetAllAsync();
+                    var a = search.Where(x => x.section_code.ToLower().Contains(tSearch.Text));
+                dgv.DataSource = a;
             }
             else if (tSearch.Text.Length == 0)
             {

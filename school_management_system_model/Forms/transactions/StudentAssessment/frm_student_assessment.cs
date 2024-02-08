@@ -54,7 +54,7 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns.Add("computation", "Computation");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_student();
             frm.Text = "Select Student";
@@ -69,14 +69,14 @@ namespace school_management_system_model.Forms.transactions
 
                 // Getting Student Course
 
-                var studentCourse = new StudentCourses().GetStudentCourses()
-                    .FirstOrDefault(x => x.id_number == studentID);
+                var studentCourse = await new StudentCourses().GetStudentCourses();
+                var a = studentCourse.FirstOrDefault(x => x.id_number == studentID);
 
                 tIdNumber.Text = studentID.ToString();
-                tCourse.Text = studentCourse.course.ToString();
-                tYearLevel.Text = studentCourse.year_level;
-                tSemester.Text = studentCourse.semester;
-                tCampus.Text = studentCourse.campus;
+                tCourse.Text = a.course.ToString();
+                tYearLevel.Text = a.year_level;
+                tSemester.Text = a.semester;
+                tCampus.Text = a.campus;
             }
         }
 

@@ -24,16 +24,19 @@ namespace school_management_system_model.Toastr
             {
                 case "Success":
                     icon.Image = Properties.Resources.check;
+                    toastColor.BackColor = Color.DarkGreen;
                     break;
                 case "Error":
                     icon.Image = Properties.Resources.error;
-
+                    toastColor.BackColor = Color.Maroon;
                     break;
                 case "Information":
                     icon.Image = Properties.Resources.information;
+                    toastColor.BackColor = Color.DarkBlue;
 
                     break;
                 case "Warning":
+                    toastColor.BackColor = Color.DarkOrange;
                     icon.Image = Properties.Resources.warning;
                     break;
             }

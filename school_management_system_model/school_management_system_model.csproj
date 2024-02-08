@@ -227,10 +227,14 @@
     <Compile Include="Classes\Parameters\PaginationParams.cs" />
     <Compile Include="Classes\Parameters\SaveAssessmentBreakdownParams.cs" />
     <Compile Include="Classes\SchoolYear.cs" />
-    <Compile Include="Classes\SectionSubjects.cs" />
+    <Compile Include="Core\Entities\Section-Settings\SectionSubjects.cs" />
     <Compile Include="Classes\Specification\BaseSpecification.cs" />
     <Compile Include="Classes\Specification\ISpecification.cs" />
     <Compile Include="Classes\StudentSubject.cs" />
+    <Compile Include="Core\Entities\Section-Settings\Sections.cs" />
+    <Compile Include="Data\Interfaces\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\Section\SectionRepository.cs" />
+    <Compile Include="Data\Repositories\Setings\Section\SectionSubjectRepository.cs" />
     <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -637,7 +641,7 @@
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
     <Compile Include="TestFolder\SectionSubjectss.cs" />
-    <Compile Include="TestFolder\StoreContext.cs" />
+    <Compile Include="Data\StoreContext.cs" />
     <Compile Include="ToastrNotification\frm_toastr.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using school_management_system_model.Data.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,8 @@ namespace school_management_system_model.TestFolder
 {
     public partial class frmTest : Form
     {
-        private StoreContext _context = new StoreContext();
+        //private SectionRepository _sectionRepo = new SectionRepository();
+
         public frmTest()
         {
             InitializeComponent();
@@ -20,14 +22,10 @@ namespace school_management_system_model.TestFolder
 
         private async void frmTest_Load(object sender, EventArgs e)
         {
-            dgv.DataSource = await GetSectionSubjectssesAsync();
+            //var sectionsubjects = await _sectionRepo.GetAllAsync();
+            //dgv.DataSource = sectionsubjects.Where(x => x.section_code == "41").ToList();
         }
 
-        private async Task<IReadOnlyList<SectionSubjectss>> GetSectionSubjectssesAsync()
-        {
-            var studentSubjects = await _context.SectionSubjects();
-            var subjects = studentSubjects.ToList();
-            return subjects;
-        }
+        
     }
 }

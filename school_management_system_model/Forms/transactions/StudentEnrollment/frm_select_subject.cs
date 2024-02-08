@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_select_subject : KryptonForm
     {
+        SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
         public frm_select_subject()
         {
             InitializeComponent();
@@ -25,14 +27,11 @@ namespace school_management_system_model.Forms.transactions
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
             tLoading.Visible = true;
-            var sectionSubjects = new SectionSubjects().GetSectionSubjects();
-            //var con = new MySqlConnection(connection.con());
-            //var da = new MySqlDataAdapter("select * from section_subjects", con);
-            //var dt = new DataTable();
-            //da.Fill(dt);
+            var sectionSubjects = await _sectionSubjectRepo.GetAllAsync();
+            
             dgv.DataSource = sectionSubjects;
             tLoading.Visible = false;
             dgv.Columns["id"].Visible = false;
@@ -60,7 +59,7 @@ namespace school_management_system_model.Forms.transactions
         private async void searchRecords(string search)
         {
             tLoading.Visible = true;
-            var searchSubjects = await new SectionSubjects().GetSectionSubjects();
+            var searchSubjects = await _sectionSubjectRepo.GetAllAsync();
                 searchSubjects.Where(x => x.subject_code.ToLower().Contains(tSearch.Text) || x.descriptive_title.ToLower().Contains(tSearch.Text));
             dgv.DataSource = searchSubjects.ToList();
             tLoading.Visible = false;

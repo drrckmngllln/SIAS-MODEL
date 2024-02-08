@@ -56,18 +56,18 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             tStudentName.Text = Student_Name;
 
             await Task.Delay(100);
-            var studentCourse = new StudentCourses().GetStudentCourses()
-                .Where(x => x.id_number == Id_Number).FirstOrDefault();
+            var studentCourse = await new StudentCourses().GetStudentCourses();
+            var a = studentCourse.Where(x => x.id_number == Id_Number).FirstOrDefault();
 
             if (studentCourse != null)
             {
                 messageBox("Success", "");
-                tCourse.Text = studentCourse.course;
-                tCampus.Text = studentCourse.campus;
-                tCurriculum.Text = studentCourse.curriculum;
-                tYearLevel.Text = studentCourse.year_level;
-                tSection.Text = studentCourse.section;
-                tSemester.Text = studentCourse.semester;
+                tCourse.Text = a.course;
+                tCampus.Text = a.campus;
+                tCurriculum.Text = a.curriculum;
+                tYearLevel.Text = a.year_level;
+                tSection.Text = a.section;
+                tSemester.Text = a.semester;
             }
             else
             {

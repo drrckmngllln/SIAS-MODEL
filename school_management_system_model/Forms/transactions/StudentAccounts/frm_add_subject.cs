@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
     public partial class frm_add_subject : KryptonForm
     {
+        SectionSubjectRepository _sectionSubjectsRepo = new SectionSubjectRepository();
         public string idnumber { get; set; }
         public string schoolyear { get; set; }
 
@@ -39,7 +41,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             await Task.Delay(100);
             tLoading.Visible = false;
             paging.pageSize = 10;
-            var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+            var sectionSubjects = await _sectionSubjectsRepo.GetAllAsync();
                 sectionSubjects.Skip(paging.pageSize * (paging.pageNumber - 1))
                 .Take(paging.pageSize).ToList();
 
@@ -71,7 +73,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         }
         private async void searchRecords(string search)
         {
-            var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
+            var sectionSubjects = await _sectionSubjectsRepo.GetAllAsync();
                 sectionSubjects.Where(x => x.subject_code.ToLower().Contains(search) || x.descriptive_title.ToLower().Contains(search)).ToList();
             
             dgv.DataSource = sectionSubjects;

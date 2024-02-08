@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Forms.transactions;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,11 @@ namespace school_management_system_model.Classes
         public string section { get; set; }
         public string semester { get; set; }
 
-        public List<StudentCourses> GetStudentCourses()
+
+        SectionRepository _sections = new SectionRepository();
+
+
+        public async Task<List<StudentCourses>> GetStudentCourses()
         {
             var list = new List<StudentCourses>();
             using (var con = new MySqlConnection(connection.con()))
@@ -65,12 +70,19 @@ namespace school_management_system_model.Classes
                                 : new Curriculums().GetCurriculums()
                                 .FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id"))
                                 .code;
-                            var section_id = reader.GetString("section_id") == "Not Set"
-                                ? "Not Set"
-                                : new sections().GetSections()
-                                .FirstOrDefault(x => x.id == reader.GetInt32("section_id"))
+                            var section_id = reader.GetString("section_id");
+                            if (section_id == "Not Set")
+                            {
+                                section_id = "Not Set";
+                            }
+                            else
+                            {
+                                var section = await _sections.GetAllAsync();
+                                section_id = section.FirstOrDefault(x => x.id == reader.GetInt32("section_id"))
                                 .section_code;
-
+                            }
+                            
+                           
                             var studentCourses = new StudentCourses
                             {
                                 id = reader.GetInt32("id"),

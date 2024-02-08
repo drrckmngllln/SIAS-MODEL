@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Forms.transactions.StudentEnrollment;
 using school_management_system_model.Loggers;
 using System;
@@ -14,6 +15,8 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_enrollment : KryptonForm
     {
+        SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
+        SectionRepository _sectionRepository = new SectionRepository();
         public int Id { get; set; }
         public string id_number { get; set; }
         public string studentName { get; set; }
@@ -45,20 +48,20 @@ namespace school_management_system_model.Forms.transactions
 
         }
 
-        private void loadSection()
+        private async void loadSection()
         {
             try
             {
-                var section = new sections().GetSections()
-                    .FirstOrDefault(x => x.course_id.ToString() == tCourse.Text && x.semester == tSemester.Text && x.year_level.ToString() == tYearLevel.Text);
+                var section = await _sectionRepository.GetAllAsync();
+                var a = section.FirstOrDefault(x => x.course.ToString() == tCourse.Text && x.semester == tSemester.Text && x.year_level.ToString() == tYearLevel.Text);
 
-                if (section == null)
+                if (a == null)
                 {
                     tSection.Text = "No Section Exist";
                 }
                 else
                 {
-                    tSection.Text = section.section_code;
+                    tSection.Text = a.section_code;
                 }
 
                 loadSectionSubjects();
@@ -97,21 +100,18 @@ namespace school_management_system_model.Forms.transactions
             await Task.Delay(250);
             tStudentLoading.Visible = false;
             var student_account = new StudentAccount().GetStudentAccounts().FirstOrDefault(x => x.id_number == id_number);
-            var student_course = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number == id_number);
-
+            var student_course = await new StudentCourses().GetStudentCourses();
+            var a = student_course.FirstOrDefault(x => x.id_number == id_number);
             tIdNumber.Text = student_account.id_number;
             tStudentName.Text = student_account.fullname;
-            tCourse.Text = student_course.course;
-            tCampus.Text = student_course.campus;
-            tCurriculum.Text = student_course.curriculum;
-            tSection.Text = student_course.section;
-            tYearLevel.Text = student_course.year_level;
-            tSemester.Text = student_course.semester;
+            tCourse.Text = a.course;
+            tCampus.Text = a.campus;
+            tCurriculum.Text = a.curriculum;
+            tSection.Text = a.section;
+            tYearLevel.Text = a.year_level;
+            tSemester.Text = a.semester;
             tYearLevel.Select();
-            if (student_account != null & student_course != null)
-            {
 
-            }
 
 
 
@@ -143,8 +143,8 @@ namespace school_management_system_model.Forms.transactions
                 totalUnits = 0;
                 totalLectureUnits = 0;
                 totalLabUnits = 0;
-                var sectionSubjects = await new SectionSubjects().GetSectionSubjects();
-                sectionSubjects.Where(x => x.section_code_id == tSection.Text && x.year_level == tYearLevel.Text)
+                var sectionSubjects = await _sectionSubjectRepo.GetAllAsync();
+                sectionSubjects.Where(x => x.section_code == tSection.Text && x.year_level == tYearLevel.Text)
                 .ToList();
 
                 if (tSection.Text == "No Section Exist")
@@ -157,7 +157,7 @@ namespace school_management_system_model.Forms.transactions
                     {
                         dgv.Rows.Add(
                             item.subject_code, item.descriptive_title, item.pre_requisite, item.total_units,
-                            item.lecture_units, item.lab_units, item.time, item.day, item.room, item.instructor_id
+                            item.lecture_units, item.lab_units, item.time, item.day, item.room, item.instructor
                             );
                         totalUnits += Convert.ToDecimal(item.total_units);
                         totalLectureUnits += Convert.ToDecimal(item.lecture_units);
@@ -200,22 +200,25 @@ namespace school_management_system_model.Forms.transactions
             dgv.Rows.Remove(dgv.CurrentRow);
         }
 
-        private void SaveStudentCourse()
+        private async void SaveStudentCourse()
         {
-            var id = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number == tIdNumber.Text);
-            var section = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
+            var id = await new StudentCourses().GetStudentCourses();
+            var a = id.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+            var section = await _sectionRepository.GetAllAsync();
+                var b = section.FirstOrDefault(x => x.section_code == tSection.Text);
             var enrollStudent = new StudentCourses();
-            enrollStudent.EnrolStudent(id.id, tYearLevel.Text, section.id.ToString());
+            enrollStudent.EnrolStudent(a.id, tYearLevel.Text, b.id.ToString());
         }
 
-        private void IncrementingSectionNumber()
+        private async void IncrementingSectionNumber()
         {
-            var sections = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
-            var numberOfStudent = sections.number_of_students + 1;
+            var sections = await _sectionRepository.GetAllAsync();
+                var a = sections.FirstOrDefault(x => x.section_code == tSection.Text);
+            var numberOfStudent = a.number_of_students + 1;
 
-            var section = new sections();
-            var sectionId = section.GetSections().FirstOrDefault(x => x.section_code == tSection.Text).id;
-            section.IncrementNumberOfStudent(sectionId, numberOfStudent);
+            var section = await _sectionRepository.GetAllAsync();
+            var sectionId = section.FirstOrDefault(x => x.section_code == tSection.Text).id;
+            _sectionRepository.IncrementNumberOfStudent(sectionId, numberOfStudent);
         }
 
         private void SavingOfSubjects()
@@ -263,14 +266,16 @@ namespace school_management_system_model.Forms.transactions
             studentStatus.ApproveStudent(tIdNumber.Text);
         }
 
-        private void saveAllChanges()
+        private async void saveAllChanges()
         {
             // INCREMENTING OF SECTIONS
 
-            var section = new sections().GetSections().FirstOrDefault(x => x.section_code == tSection.Text);
-            var studentCourse = new StudentCourses().GetStudentCourses().FirstOrDefault(x => x.id_number == tIdNumber.Text);
+            var section = await _sectionRepository.GetAllAsync();
+                var a = section.FirstOrDefault(x => x.section_code == tSection.Text);
+            var studentCourse = await new StudentCourses().GetStudentCourses();
+                var b = studentCourse.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
-            if (section.number_of_students <= section.max_number_of_students)
+            if (a.number_of_students <= a.max_number_of_students)
             {
                 // STUDENT COURSE
                 SaveStudentCourse();
@@ -288,9 +293,9 @@ namespace school_management_system_model.Forms.transactions
             else
             {
                 new Classes.Toastr("Warning", "Section is Full!");
-                var sections = new sections();
-                var sectionId = sections.GetSections().FirstOrDefault(x => x.section_code == tSection.Text).id;
-                sections.FullStudent(sectionId);
+                var sections = await _sectionRepository.GetAllAsync();
+                var sectionId = sections.FirstOrDefault(x => x.section_code == tSection.Text).id;
+                _sectionRepository.FullStudent(sectionId);
             }
 
         }
@@ -332,7 +337,7 @@ namespace school_management_system_model.Forms.transactions
             frm.ShowDialog();
 
 
-            var customSubject = await new SectionSubjects().GetSectionSubjects();
+            var customSubject = await _sectionSubjectRepo.GetAllAsync();
 
             var subject = customSubject.FirstOrDefault(x => x.id == Id);
 
@@ -340,19 +345,19 @@ namespace school_management_system_model.Forms.transactions
             if (Id != 0)
             {
 
-                 dgv.Rows.Add
-                    (
-                        subject.subject_code,
-                        subject.descriptive_title,
-                        subject.pre_requisite,
-                        subject.total_units,
-                        subject.lecture_units,
-                        subject.lab_units,
-                        subject.time,
-                        subject.day,
-                        subject.room,
-                        subject.instructor_id
-                    );
+                dgv.Rows.Add
+                   (
+                       subject.subject_code,
+                       subject.descriptive_title,
+                       subject.pre_requisite,
+                       subject.total_units,
+                       subject.lecture_units,
+                       subject.lab_units,
+                       subject.time,
+                       subject.day,
+                       subject.room,
+                       subject.instructor
+                   );
 
                 int lastRow = dgv.Rows.Count - 1;
                 //totalUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["total_units"].Value);
