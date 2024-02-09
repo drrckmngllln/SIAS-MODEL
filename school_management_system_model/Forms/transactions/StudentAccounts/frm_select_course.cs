@@ -34,9 +34,9 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
-            dgv.Columns["level_id"].HeaderText = "Level";
-            dgv.Columns["campus_id"].HeaderText = "Campus";
-            dgv.Columns["department_id"].HeaderText = "Department";
+            dgv.Columns["level"].HeaderText = "Level";
+            dgv.Columns["campus"].HeaderText = "Campus";
+            dgv.Columns["department"].HeaderText = "Department";
             dgv.Columns["max_units"].HeaderText = "Max Units";
             dgv.Columns["status"].Visible = false;
         }
@@ -70,10 +70,10 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         private void btnSelect_Click(object sender, EventArgs e)
         {
             var course = (int)dgv.CurrentRow.Cells["id"].Value;
-            var campus = dgv.CurrentRow.Cells["campus_id"].Value.ToString();
+            var campus = dgv.CurrentRow.Cells["campus"].Value.ToString();
 
             frm_create_account.instance.course = dgv.CurrentRow.Cells["id"].Value.ToString();
-            frm_create_account.instance.campus = dgv.CurrentRow.Cells["campus_id"].Value.ToString();
+            frm_create_account.instance.campus = dgv.CurrentRow.Cells["campus"].Value.ToString();
             Close();
         }
     }

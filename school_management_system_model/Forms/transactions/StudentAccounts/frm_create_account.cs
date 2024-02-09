@@ -186,34 +186,36 @@ namespace school_management_system_model.Forms.transactions
                         sy_enrolled = tSchoolyear.Text,
                         date_of_admission = kryptonDateTimePicker1.Text,
                     };
-                    add.AddStudentAccount();
+                    await _studentAccountRepo.AddRecords(add);
 
                     var b = await _studentAccountRepo.GetAllAsync();
                     var id_number_id = b.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
                     var c = await _courseRepo.GetAllAsync();
-                    var d = await _campusRepo.GetAllAsync();
                     var course = new StudentCourses
                     {
                         id_number = id_number_id.id.ToString(),
                         course = c.FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
-                        campus = d.FirstOrDefault(x => x.code == tCampus.Text).id.ToString(),
+                        campus = c.FirstOrDefault(x => x.campus == tCampus.Text).id.ToString(),
                         curriculum = "Not Set",
                         year_level = "Not Set",
                         section = "Not Set",
                         semester = Semester
                     };
-                    course.AddStudentCourse();
+                    await _studentCoursesRepo.AddRecords(course);
                     new Classes.Toastr("Success", "Account Saved");
                     Close();
 
                 }
                 else if (this.Text == "Update Account")
                 {
-                    var parameter = new SaveStudentAccountsParams
+                    var a = await _schoolYearRepo.GetAllAsync();
+                    var school_year = a.FirstOrDefault(x => x.code == School_Year);
+                    var edit = new StudentAccount
                     {
+                        id = Id_Number,
                         id_number = tIdNumber.Text,
-                        school_year = tSchoolyear.Text,
+                        school_year_id = school_year.id.ToString(),
                         fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
@@ -243,13 +245,9 @@ namespace school_management_system_model.Forms.transactions
                         status = tStatus.Text,
                         sy_enrolled = tSchoolyear.Text,
                         date_of_admission = kryptonDateTimePicker1.Text,
-                        course = tCourse.Text,
-                        campus = tCampus.Text
-                    };
-                    var edit = new StudentAccount();
-                    edit.editRecord(parameter);
 
-                    edit = new StudentAccount();
+                    };
+                    await _studentAccountRepo.UpdateRecords(edit);
 
 
                     new Classes.Toastr("Information", "Account Updated");
@@ -310,11 +308,12 @@ namespace school_management_system_model.Forms.transactions
         {
             var frm = new frm_select_course();
             frm.ShowDialog();
+
             if (course != null)
             {
                 var a = await _courseRepo.GetAllAsync();
 
-                tCourse.Text = a.FirstOrDefault(x => x.code == course).code;
+                tCourse.Text = a.FirstOrDefault(x => x.id.ToString() == course).code;
 
                 var b = await _campusRepo.GetAllAsync();
                 tCampus.Text = b.FirstOrDefault(x => x.code == campus).code;

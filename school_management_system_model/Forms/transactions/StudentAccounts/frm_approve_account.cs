@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Reports.Datasets;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
     public partial class frm_approve_account : KryptonForm
     {
         CourseRepository _courseRepo = new CourseRepository();
+        StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
         public static frm_approve_account instance;
         public string course { get; set; }
         public string id_number_id { get; set; }
@@ -34,21 +36,21 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             
         }
 
-        private string loadStudentCourse()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select course_id from student_course where id_number_id='" + id_number_id + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt.Rows[0]["course_id"].ToString();
-        }
+        //private async string loadStudentCourse()
+        //{
+        //    var a = await _studentCourseRepo.GetAllAsync();
+        //    var studentCourseId = a.FirstOrDefault(x => x.id_number ==  id_number_id);
+        //    return studentCourseId.course.ToString();
+        //}
 
         private async void loadRecords()
         {
-            var studentCourse = loadStudentCourse();
+            //var studentCourse = loadStudentCourse();
             tName.Text = fullname;
+            var a = await _studentCourseRepo.GetAllAsync();
+            var studentCourseId = a.FirstOrDefault(x => x.id_number == id_number_id).course;
             var courses = await _courseRepo.GetAllAsync();
-            course = courses.FirstOrDefault(x => x.id.ToString() == studentCourse).code;
+            course = courses.FirstOrDefault(x => x.id.ToString() == studentCourseId).code;
             tCourse.Text = course;
 
             //tCurriculum.ValueMember = "id";

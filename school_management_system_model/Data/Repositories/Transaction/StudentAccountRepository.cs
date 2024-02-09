@@ -161,5 +161,15 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
             cmd.ExecuteNonQuery();
             await con.CloseAsync();
         }
+
+        public async Task ApproveStudent(string idNumber)
+        {
+            var con = new MySqlConnection(connection.con());
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("update student_accounts set Status='Accounting' " +
+                "where id_number='" + idNumber + "'", con);
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
     }
 }

@@ -219,7 +219,7 @@ namespace school_management_system_model.Forms.transactions
             var section = await _sectionRepository.GetAllAsync();
                 var b = section.FirstOrDefault(x => x.section_code == tSection.Text);
             var enrollStudent = new StudentCourses();
-            enrollStudent.EnrolStudent(a.id, tYearLevel.Text, b.id.ToString());
+            await _studentCourseRepo.EnrolStudent(a.id, tYearLevel.Text, b.id.ToString());
         }
 
         private async void IncrementingSectionNumber()
@@ -279,10 +279,10 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void ChangeStudentStatus()
+        private async void ChangeStudentStatus()
         {
             var studentStatus = new StudentAccount();
-            studentStatus.ApproveStudent(tIdNumber.Text);
+            await _studentAccountRepo.ApproveStudent(tIdNumber.Text);
         }
 
         private async void saveAllChanges()
