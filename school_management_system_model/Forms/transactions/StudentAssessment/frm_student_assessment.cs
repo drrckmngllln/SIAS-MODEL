@@ -20,6 +20,11 @@ namespace school_management_system_model.Forms.transactions
         CourseRepository _courseRepo = new CourseRepository();
         CampusRepository _campusRepo = new CampusRepository();
         SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+        MiscFeeRepository _miscFeeRepo = new MiscFeeRepository();
+        TuitionFeeRepository _tuitionFeeRepo = new TuitionFeeRepository();
+        LabFeeSubjectRepository _labFeeSubjectRepo = new LabFeeSubjectRepository();
+        LabFeeRepository _labFeeRepo = new LabFeeRepository();
+        OtherFeeRepository _otherFeeRepo = new OtherFeeRepository();
 
 
         public static frm_student_assessment instance;
@@ -96,7 +101,7 @@ namespace school_management_system_model.Forms.transactions
 
             int yearLevel = Convert.ToInt32(tYearLevel.Text);
 
-            var tuitionFeeSetup = await new TuitionFeeSetup().GetTuitionFeeSetups();
+            var tuitionFeeSetup = await _tuitionFeeRepo.GetAllAsync();
             var b = tuitionFeeSetup
                 .FirstOrDefault(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text);
 
@@ -112,7 +117,7 @@ namespace school_management_system_model.Forms.transactions
 
         private async void loadMiscFeePerUnit()
         {
-            var getMiscFeeSetup = await new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups();
+            var getMiscFeeSetup = await _miscFeeRepo.GetAllAsync();
             var a = getMiscFeeSetup
                 .Where(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text).ToList();
 
@@ -143,7 +148,7 @@ namespace school_management_system_model.Forms.transactions
 
         private async void loadOtherFees()
         {
-            var otherFees = await new OtherFeesSetup().GetOtherFeesSetups();
+            var otherFees = await _otherFeeRepo.GetAllAsync();
             var a = otherFees
                 .Where(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text).ToList();
 
@@ -159,14 +164,14 @@ namespace school_management_system_model.Forms.transactions
             var studentSubjects = a
                 .Where(x => x.id_number_id == tIdNumber.Text && x.school_year_id == tSchoolYear.Text).ToList();
 
-            var labFeeSubjects = await new LabFeeSubjects().GetLabFeeSubjects();
+            var labFeeSubjects = await _labFeeSubjectRepo.GetAllAsync();
             if (labFeeSubjects != null)
             {
                 foreach (var studentSubjectItem in studentSubjects)
                 {
                     foreach (var labFeeSubjectItems in labFeeSubjects)
                     {
-                        var labFee = await new LabFeeSetup().GetLabFeeSetups();
+                        var labFee = await _labFeeRepo.GetAllAsync();
                         var b = labFee
                             .FirstOrDefault(x => x.description == labFeeSubjectItems.lab_fee);
 

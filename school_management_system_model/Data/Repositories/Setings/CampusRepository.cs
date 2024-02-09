@@ -37,6 +37,7 @@ namespace school_management_system_model.Data.Repositories.Setings
         public async Task<IReadOnlyList<Campuses>> GetAllAsync()
         {
             var list = new List<Campuses>();
+            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("select * from campuses", con);
             var reader = cmd.ExecuteReader();

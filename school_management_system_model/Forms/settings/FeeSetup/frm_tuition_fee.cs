@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
@@ -12,6 +13,7 @@ namespace school_management_system_model.Forms.settings
     {
         LevelsRepository _levelRepo = new LevelsRepository();
         CampusRepository _campusRepo = new CampusRepository();
+        TuitionFeeRepository _tuitionFeeRepo = new TuitionFeeRepository();
         public string Email { get; }
 
         public frm_tuition_fee(string email)
@@ -45,7 +47,7 @@ namespace school_management_system_model.Forms.settings
 
         private async void loadRecords(string campus, string level, string yearLevel, string semester)
         {
-            var tuition = await new TuitionFeeSetup().GetTuitionFeeSetups();
+            var tuition = await _tuitionFeeRepo.GetAllAsync();
             var a = tuition
                 .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel && x.semester == semester)
                 .ToList();
@@ -62,11 +64,11 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["amount"].HeaderText = "Amount";
         }
 
-        private void addRecords()
+        private async void addRecords()
         {
             if (btn_save.Text == "Save")
             {
-                var AddRecords = new TuitionFeeSetup
+                var AddRecords = new TuitionFee
                 {
                     uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                     category = tCategory.Text,
@@ -77,15 +79,16 @@ namespace school_management_system_model.Forms.settings
                     semester = tSemester.Text,
                     amount = Convert.ToDecimal(tAmount.Text),
                 };
-                AddRecords.AddRecords();
+                await _tuitionFeeRepo.AddRecords(AddRecords);
                 new Classes.Toastr("Success", "Miscellaneous fee Added");
                 new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
             }
             else if (btn_save.Text == "Update")
             {
-                var EditRecords = new TuitionFeeSetup
+                var EditRecords = new TuitionFee
                 {
+                    id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                     uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                     category = tCategory.Text,
                     description = tDescription.Text,
@@ -95,17 +98,19 @@ namespace school_management_system_model.Forms.settings
                     semester = tSemester.Text,
                     amount = Convert.ToDecimal(tAmount.Text),
                 };
-                EditRecords.EditRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                await _tuitionFeeRepo.UpdateRecords(EditRecords);
                 new Classes.Toastr("Success", "Miscellaneous fee Added");
                 new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
             }
         }
 
-        private void deleteRecords()
+        private async void deleteRecords()
         {
-            var delete = new TuitionFeeSetup();
-            delete.DeleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()));
+            var delete = new TuitionFee();
+            delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+            await _tuitionFeeRepo.DeleteRecords(delete);
+
             MessageBox.Show("Tuition Fee Deleted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
 
@@ -151,7 +156,7 @@ namespace school_management_system_model.Forms.settings
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = await new TuitionFeeSetup().GetTuitionFeeSetups();
+                var search = await _tuitionFeeRepo.GetAllAsync();
                 var a = search
                     .Where(x => x.category.ToLower().Contains(tsearch.Text) && x.description.ToLower().Contains(tsearch.Text))
                     .ToList();

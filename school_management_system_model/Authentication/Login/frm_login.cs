@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using school_management_system_model.Authentication.Auth_Forms;
 using school_management_system_model.Authentication.Auth_Forms.Registrar;
 using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Forms.main;
 using school_management_system_model.Loggers.Authentication;
 using System;
@@ -15,6 +16,8 @@ namespace school_management_system_model.Authentication.Login
 {
     public partial class frm_login : KryptonForm
     {
+        UserRepository _userRepo = new UserRepository();
+
         private const int CS_DropShadow = 0x20000;
 
         public string UserName { get; set; }
@@ -47,35 +50,28 @@ namespace school_management_system_model.Authentication.Login
 
         
 
-        private void loginAuthentication(string email, string password)
+        private async void loginAuthentication(string email, string password)
         {
-            try
+
+            var user = await _userRepo.GetAllAsync();
+
+            var loginAttempt = user.FirstOrDefault(x => x.email == email);
+
+            if (loginAttempt != null)
             {
-                //var userEmail = await new UserManagement().GetUserManagementsAsync();
-                //userEmail.FirstOrDefault(x => x.email == email);
-
-                //if (userEmail != null)
-                //{
-
-                //}
-
-                var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select * from users where email='" + email + "'", con);
-                var dt = new DataTable();
-                da.Fill(dt);
-                var compare = dt.Rows[0]["password"].ToString();
+                var compare = loginAttempt.password;
                 bool passwordMatching = BCrypt.Net.BCrypt.Verify(password, compare);
                 if (passwordMatching)
                 {
-                    UserName = dt.Rows[0]["fullname"].ToString();
-                    Email = dt.Rows[0]["email"].ToString();
-                    Password = dt.Rows[0]["password"].ToString();
-                    AccessLevel = dt.Rows[0]["access_level"].ToString();
-                    Department = dt.Rows[0]["department"].ToString();
-                    isAdd = Convert.ToBoolean(dt.Rows[0]["is_add"]);
-                    isEdit = Convert.ToBoolean(dt.Rows[0]["is_edit"]);
-                    isDelete = Convert.ToBoolean(dt.Rows[0]["is_delete"]);
-                    isAdministrator = Convert.ToBoolean(dt.Rows[0]["is_administrator"]);
+                    UserName = loginAttempt.fullname;
+                    Email = loginAttempt.email;
+                    Password = loginAttempt.password;
+                    AccessLevel = loginAttempt.access_level;
+                    Department = loginAttempt.department;
+                    isAdd = Convert.ToBoolean(loginAttempt.add);
+                    isEdit = Convert.ToBoolean(loginAttempt.edit);
+                    isDelete = Convert.ToBoolean(loginAttempt.delete);
+                    isAdministrator = Convert.ToBoolean(loginAttempt.administrator);
                     switch (Department)
                     {
                         case "Registrar":
@@ -150,15 +146,13 @@ namespace school_management_system_model.Authentication.Login
                     tPassword.Select();
                 }
             }
-            catch
+            else
             {
                 new Classes.Toastr("Warning", "Access Denied, Error Username or Password");
                 tPassword.Clear();
                 tUserName.Clear();
                 tUserName.Select();
             }
-            
-
         }
 
         private void developersOptionsRegistrar()

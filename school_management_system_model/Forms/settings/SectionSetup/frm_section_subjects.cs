@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Loggers;
 using System;
@@ -15,6 +16,7 @@ namespace school_management_system_model.Forms.settings
     {
         SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
         SectionRepository _sectionRepo = new SectionRepository();
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
 
 
         public static frm_section_subjects instance;
@@ -78,61 +80,63 @@ namespace school_management_system_model.Forms.settings
 
         private async void loadSections()
         {
-            //var section = await _sectionRepo.GetAllAsync();
-            //var a = section.FirstOrDefault(x => x.section_code == Section_Code);
-            //tSectionCode.Text = Section_Code;
-            //tCourse.Text = a.course;
-            //tYearLevel.Text = a.year_level.ToString();
-            //tSemester.Text = a.semester;
+            var section = await _sectionRepo.GetAllAsync();
+            var a = section.FirstOrDefault(x => x.section_code == Section_Code);
+            tSectionCode.Text = Section_Code;
+            tCourse.Text = a.course;
+            tYearLevel.Text = a.year_level.ToString();
+            tSemester.Text = a.semester;
 
-            //if (dgv.Rows.Count == 0)
-            //{
-            //    var curriculum = new Curriculums().GetCurriculums().Where(x => x.course_id == tCourse.Text).ToList();
-            //    tCurriculum.DataSource = curriculum;
-            //    tCurriculum.ValueMember = "id";
-            //    tCurriculum.DisplayMember = "code";
-            //}
-            //else
-            //{
-            //    tCurriculum.Text = dgv.Rows[0].Cells["curriculum"].Value.ToString();
-            //}
+            if (dgv.Rows.Count == 0)
+            {
+                var b = await _curriculumRepo.GetAllAsync();
+                var curriculum = b.Where(x => x.course_id == tCourse.Text).ToList();
+                tCurriculum.DataSource = curriculum;
+                tCurriculum.ValueMember = "id";
+                tCurriculum.DisplayMember = "code";
+            }
+            else
+            {
+                tCurriculum.Text = dgv.Rows[0].Cells["curriculum"].Value.ToString();
+            }
         }
 
         private async void btn_save_Click(object sender, EventArgs e)
         {
-            //if (btn_save.Text == "Add Subject")
-            //{
-            //    var curriculum_id = new Curriculums().GetCurriculums().FirstOrDefault(x => x.code == tCurriculum.Text);
+            if (btn_save.Text == "Add Subject")
+            {
+                var a = await _curriculumRepo.GetAllAsync();
+                var curriculum_id = a.FirstOrDefault(x => x.code == tCurriculum.Text);
 
-            //    var section_id = await _sectionRepo.GetAllAsync();
-            //    var a = section_id.FirstOrDefault(x => x.section_code == tSectionCode.Text);
-            //    var frm = new frm_section_subject_add(Email);
-            //    frm_section_subject_add.instance.curriculum_id = curriculum_id.id.ToString();
-            //    frm_section_subject_add.instance.sectionCode = tSectionCode.Text;
-            //    frm_section_subject_add.instance.course = tCourse.Text;
-            //    frm_section_subject_add.instance.year_level = tYearLevel.Text;
-            //    frm_section_subject_add.instance.semester = tSemester.Text;
-            //    frm.Text = "Subjects";
-            //    frm.ShowDialog();
-            //    loadRecords();
-            //}
-            //else if (btn_save.Text == "Update Subject")
-            //{
+                var b = await _sectionRepo.GetAllAsync();
+                var section_id = b.FirstOrDefault(x => x.section_code == tSectionCode.Text);
+                var frm = new frm_section_subject_add(Email);
+                frm_section_subject_add.instance.curriculum_id = curriculum_id.id.ToString();
+                frm_section_subject_add.instance.sectionCode = tSectionCode.Text;
+                frm_section_subject_add.instance.course = tCourse.Text;
+                frm_section_subject_add.instance.year_level = tYearLevel.Text;
+                frm_section_subject_add.instance.semester = tSemester.Text;
+                frm.Text = "Subjects";
+                frm.ShowDialog();
+                loadRecords();
+            }
+            else if (btn_save.Text == "Update Subject")
+            {
 
-            //    var update = new SectionSubjects
-            //    {
-            //        id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
-            //        time = tTime.Text,
-            //        day = tDay.Text,
-            //        room = tRoom.Text,
-            //        instructor = instructor
-            //    };
-            //    await _sectionSubjectRepo.UpdateRecords(update);
+                var update = new SectionSubjects
+                {
+                    id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
+                    time = tTime.Text,
+                    day = tDay.Text,
+                    room = tRoom.Text,
+                    instructor = instructor
+                };
+                await _sectionSubjectRepo.UpdateRecords(update);
 
-            //    new Classes.Toastr("Information", "Schedule Updated");
-            //    new ActivityLogger().activityLogger(Email, "Updating Sections: " + tSectionCode.Text);
-            //    loadRecords();
-            //}
+                new Classes.Toastr("Information", "Schedule Updated");
+                new ActivityLogger().activityLogger(Email, "Updating Sections: " + tSectionCode.Text);
+                loadRecords();
+            }
         }
 
         private async void delete()

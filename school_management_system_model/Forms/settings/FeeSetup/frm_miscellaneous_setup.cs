@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
@@ -12,11 +13,10 @@ namespace school_management_system_model.Forms.settings
     {
         LevelsRepository _levelRepo = new LevelsRepository();
         CampusRepository _campusRepo = new CampusRepository();
-        public static frm_miscellaneous_setup instance;
-        public DataTable dt = new DataTable();
-        public DataTable coursesDt = new DataTable();
-        string ID;
+        MiscFeeRepository _miscFeeRepo = new MiscFeeRepository();
 
+        public static frm_miscellaneous_setup instance;
+        public string ID { get; set; }
         public string Email { get; }
 
         public frm_miscellaneous_setup(string email)
@@ -51,8 +51,8 @@ namespace school_management_system_model.Forms.settings
 
         private async void loadRecords(string campus, string level, string yearLevel)
         {
-            var misc = await new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups();
-            var a = misc
+            var a = await _miscFeeRepo.GetAllAsync();
+            var misc = a
                 .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel)
                 .ToList();
             dgv.DataSource = misc;
@@ -68,11 +68,11 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["amount"].HeaderText = "Amount";
         }   
 
-        private void addRecords()
+        private async void addRecords()
         {
             if (btn_save.Text == "Save")
             {
-                var AddRecords = new MiscellaneousFeeSetup
+                var AddRecords = new MiscellaneousFee
                 {
                     uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                     category = tCategory.Text,
@@ -83,7 +83,7 @@ namespace school_management_system_model.Forms.settings
                     semester = tSemester.Text,
                     amount = Convert.ToDecimal(tAmount.Text),
                 };
-                AddRecords.AddMiscFee();
+                await _miscFeeRepo.AddRecords(AddRecords);
                 new Classes.Toastr("Success", "Miscellaneous fee Added");
                 new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
@@ -91,8 +91,9 @@ namespace school_management_system_model.Forms.settings
             }
             else if (btn_save.Text == "Update")
             {
-                var editRecords = new MiscellaneousFeeSetup
+                var editRecords = new MiscellaneousFee
                 {
+                    id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                     uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                     category = tCategory.Text,
                     description = tDescription.Text,
@@ -102,7 +103,7 @@ namespace school_management_system_model.Forms.settings
                     semester = tSemester.Text,
                     amount = Convert.ToDecimal(tAmount.Text),
                 };
-                editRecords.EditMiscFee(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                await _miscFeeRepo.UpdateRecords(editRecords);
                 new Classes.Toastr("Success", "Miscellaneous fee Added");
                 new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
@@ -122,15 +123,16 @@ namespace school_management_system_model.Forms.settings
             addRecords();
         }
 
-        private void deleteRecords(int id)
+        private async void deleteRecords(int id)
         {
-            var delete = new MiscellaneousFeeSetup();
-            delete.DeleteMiscFee(id);
+            var delete = new MiscellaneousFee();
+            delete.id = id;
+            await _miscFeeRepo.DeleteRecords(delete);
         }
 
         private async void searchRecords(string search)
         {
-            var searchRecord = await new MiscellaneousFeeSetup().GetMiscellaneousFeeSetups(); 
+            var searchRecord = await _miscFeeRepo.GetAllAsync();
             var a = searchRecord
                 .Where(x => x.category.ToLower().Contains(search) || x.description.ToLower().Contains(search))
                 .ToList();

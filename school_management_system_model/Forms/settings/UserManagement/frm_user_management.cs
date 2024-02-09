@@ -1,4 +1,6 @@
-﻿using System;
+﻿using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Data.Repositories.Setings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace school_management_system_model.Forms.settings.UserManagement
 {
     public partial class frm_user_management : Form
     {
+        UserRepository _userRepo = new UserRepository();
+
         int add, edit, delete, administrator = 0;
 
         public string Office { get; }
@@ -22,6 +26,13 @@ namespace school_management_system_model.Forms.settings.UserManagement
             Office = office;
         }
 
+        
+
+        private async Task UserQuery()
+        {
+            var query = await _userRepo.GetAllAsync();
+        }
+
         private void frm_user_management_Load(object sender, EventArgs e)
         {
             loadRecords();
@@ -29,8 +40,9 @@ namespace school_management_system_model.Forms.settings.UserManagement
 
         private async void loadRecords()
         {
-            var users = await new Classes.UserManagement().GetUserManagementsAsync();
-            users.Where(x => x.department == Office).ToList();
+            var a = await _userRepo.GetAllAsync();
+            var users = a
+            .Where(x => x.department == Office).ToList();
             dgv.DataSource = users;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["last_name"].Visible = false;
@@ -49,11 +61,13 @@ namespace school_management_system_model.Forms.settings.UserManagement
             dgv.Columns["administrator"].Visible = false;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (txtSearch.Text.Length > 2)
             {
-                dgv.DataSource = new Classes.UserManagement().searchRecords(txtSearch.Text);
+                var a = await _userRepo.GetAllAsync();
+                var search = a.Where(x => x.fullname.ToLower().Contains(txtSearch.Text.ToLower()));
+                dgv.DataSource = search;
             }
             else if (txtSearch.Text.Length == 0)
             {
@@ -61,7 +75,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
             }
         }
 
-        private void addUser()
+        private async void addUser()
         {
             try
             {
@@ -69,7 +83,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                 {
                     var password = BCrypt.Net.BCrypt.HashPassword(tPassword.Text);
 
-                    var addUser = new Classes.UserManagement
+                    var addUser = new User
                     {
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
@@ -85,7 +99,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         delete = delete,
                         administrator = administrator
                     };
-                    addUser.addUser();
+                    await _userRepo.AddRecords(addUser);
                     new Classes.Toastr("Success", "User Successfully Saved");
                     loadRecords();
                     txtclear();
@@ -95,7 +109,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                     int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
                     var password = BCrypt.Net.BCrypt.HashPassword(tPassword.Text);
 
-                    var addUser = new Classes.UserManagement
+                    var EditUser = new User
                     {
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
@@ -111,7 +125,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         delete = delete,
                         administrator = administrator
                     };
-                    addUser.editUser(id);
+                    await _userRepo.UpdateRecords(EditUser);
                     new Classes.Toastr("Information", "User Successfully Updated");
                     loadRecords();
                     txtclear();
@@ -197,12 +211,13 @@ namespace school_management_system_model.Forms.settings.UserManagement
             txtclear();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private async void kryptonButton1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete user?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                var delete = new Classes.UserManagement();
-                delete.deleteUser(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                var delete = new User();
+                delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+                await _userRepo.DeleteRecords(delete);
                 new Classes.Toastr("Success", "User Deleted Successfully");
                 loadRecords();
                 txtclear();

@@ -113,34 +113,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             decimal lectureUnits = 0;
             decimal labUnits = 0;
             dgv.Rows.Clear();
-
-           
-
-            //foreach (DataRow row in dt.Rows)
-            //{
-            //    var instructor = new Instructors().GetInstructors().FirstOrDefault(x => x.id == Convert.ToInt32(row["instructor_id"])).fullname;
-            //    dgv.Rows.Add(
-            //        row["subject_code"],
-            //        row["descriptive_title"],
-            //        row["pre_requisite"],
-            //        row["total_units"],
-            //        row["lecture_units"],
-            //        row["lab_units"],
-            //        row["time"],
-            //        row["day"],
-            //        row["room"],
-            //        instructor,
-            //        row["grade"],
-            //        row["remarks"]
-            //        );
-            //    totalUnits += Convert.ToDecimal(row["total_units"]);
-            //    lectureUnits += Convert.ToDecimal(row["lecture_units"]);
-            //    labUnits += Convert.ToDecimal(row["lab_units"]);
-            //}
-            //dgv.Rows.Add("", "Total:", "", totalUnits, lectureUnits, labUnits);
-
-
-
             dgv.Columns["subject_code"].HeaderText = "Subject Code";
             dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
             dgv.Columns["descriptive_title"].Width = 350;

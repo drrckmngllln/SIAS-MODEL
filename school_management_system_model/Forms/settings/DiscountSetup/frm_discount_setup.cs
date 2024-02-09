@@ -1,4 +1,6 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_discount_setup : Form
     {
+        DiscountRepository _discountRepo = new DiscountRepository();
         public string Email { get; }
 
         public frm_discount_setup(string email)
@@ -27,10 +30,10 @@ namespace school_management_system_model.Forms.settings
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var data = new DiscountSetup();
-            dgv.DataSource = data.loadRecords();
+            var data = await _discountRepo.GetAllAsync();
+            dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["discount_target"].HeaderText = "Discount Target";
@@ -38,7 +41,7 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["description"].Width = 400;
             dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
         }
-        private void addRecords()
+        private async void addRecords()
         {
             try
             {
@@ -46,47 +49,47 @@ namespace school_management_system_model.Forms.settings
                 {
                     if (cTuition.Checked)
                     {
-                        var add = new DiscountSetup
+                        var add = new Discount
                         {
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cTuition.Text,
                             discount_percentage = Convert.ToInt32(tPercentage.Text)
                         };
-                        add.addRecords();
+                        await _discountRepo.AddRecords(add);
                     }
                     if (cMisc.Checked)
                     {
-                        var add = new DiscountSetup
+                        var add = new Discount
                         {
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cMisc.Text,
                             discount_percentage = Convert.ToInt32(tPercentage.Text)
                         };
-                        add.addRecords();
+                        await _discountRepo.AddRecords(add);
                     }
                     if (cOther.Checked)
                     {
-                        var add = new DiscountSetup
+                        var add = new Discount
                         {
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cOther.Text,
                             discount_percentage = Convert.ToInt32(tPercentage.Text)
                         };
-                        add.addRecords();
+                        await _discountRepo.AddRecords(add);
                     }
                     if (cLab.Checked)
                     {
-                        var add = new DiscountSetup
+                        var add = new Discount
                         {
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cLab.Text,
                             discount_percentage = Convert.ToInt32(tPercentage.Text)
                         };
-                        add.addRecords();
+                        await _discountRepo.AddRecords(add);
                     }
 
 
@@ -99,47 +102,47 @@ namespace school_management_system_model.Forms.settings
                 {
                     if (cTuition.Checked)
                     {
-                        var edit = new DiscountSetup
+                        var edit = new Discount
                         {
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cTuition.Text,
                             discount_percentage = Convert.ToInt32(tPercentage.Text)
                         };
-                        edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                        await _discountRepo.UpdateRecords(edit);
                     }
                     if (cMisc.Checked)
                     {
-                        var edit = new DiscountSetup
+                        var edit = new Discount
                         {
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cMisc.Text,
                             discount_percentage = Convert.ToInt32(tPercentage.Text)
                         };
-                        edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                        await _discountRepo.UpdateRecords(edit);
                     }
                     if (cOther.Checked)
                     {
-                        var edit = new DiscountSetup
+                        var edit = new Discount
                         {
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cOther.Text,
                             discount_percentage = Convert.ToInt32(tPercentage.Text)
                         };
-                        edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                        await _discountRepo.UpdateRecords(edit);
                     }
                     if (cLab.Checked)
                     {
-                        var edit = new DiscountSetup
+                        var edit = new Discount
                         {
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cLab.Text,
                             discount_percentage = Convert.ToInt32(tPercentage.Text)
                         };
-                        edit.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                        await _discountRepo.UpdateRecords(edit);
                     }
 
                     new Classes.Toastr("Success", "Discount Setup Updated");
@@ -152,7 +155,7 @@ namespace school_management_system_model.Forms.settings
             {
                 new Classes.Toastr("Warning", ex.Message);
             }
-            
+
         }
 
         private void txtClear()
@@ -225,10 +228,11 @@ namespace school_management_system_model.Forms.settings
 
             btn_save.Text = "Update";
         }
-        private void deleteRecords()
+        private async void deleteRecords()
         {
-            var delete = new DiscountSetup();
-            delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+            var delete = new Discount();
+            delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+            await _discountRepo.DeleteRecords(delete);
             MessageBox.Show("Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             new Classes.Toastr("Success", "Discount Setup Deleted");
 
@@ -238,18 +242,19 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Delete this record?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Delete this record?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 deleteRecords();
             }
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var data = new DiscountSetup();
-                var search = data.searchRecords(tsearch.Text);
+                var data = await _discountRepo.GetAllAsync();
+                var search = data.Where(x => x.code.ToLower().Contains(tsearch.Text.ToLower()) || x.description.ToLower().Contains(tsearch.Text))
+                    .ToList();
                 dgv.DataSource = search;
             }
             else if (tsearch.Text.Length == 0)

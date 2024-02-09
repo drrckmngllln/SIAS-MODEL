@@ -2,6 +2,8 @@
 using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,9 @@ namespace school_management_system_model.Forms.settings.Curriculum
 {
     public partial class frm_curriculum_subjects_excel_import : KryptonForm
     {
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
+        CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
+
         public int id { get; set; }
         public string uid { get; set; }
         public string curriculum { get; set; }
@@ -138,26 +143,25 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
         private async Task saveRecords()
         {
-            //await SaveLoading();
-            //var curriculum_id = new Curriculums().GetCurriculums().FirstOrDefault(x => x.code == curriculum).id;
-            //var subjects = new CurriculumSubjects
-            //{
-            //    uid = curriculum + code,
-            //    curriculum_id = curriculum_id.ToString(),
-            //    year_level = year_level,
-            //    semester = semester,
-            //    code = code.ToString(),
-            //    descriptive_title = descriptive_title.ToString(),
-            //    total_units = total_units,
-            //    lecture_units = lecture_units,
-            //    lab_units = lab_units,
-            //    pre_requisite = pre_requisite.ToString(),
-            //    total_hrs_per_week = total_hrs_per_week.ToString()
+            await SaveLoading();
+            var a = await _curriculumRepo.GetAllAsync();
+            var curriculum_id = a.FirstOrDefault(x => x.code == curriculum).id;
+            var subjects = new CurriculumSubjects
+            {
+                uid = curriculum + code,
+                curriculum = curriculum_id.ToString(),
+                year_level = year_level,
+                semester = semester,
+                code = code.ToString(),
+                descriptive_title = descriptive_title.ToString(),
+                total_units = total_units,
+                lecture_units = lecture_units,
+                lab_units = lab_units,
+                pre_requisite = pre_requisite.ToString(),
+                total_hrs_per_week = total_hrs_per_week.ToString()
 
-            //};
-            //new CurriculumSubjects().AddCurriculumSubjects(subjects);
-
-            
+            };
+            await _curriculumSubjectsRepo.AddRecords(subjects);
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)

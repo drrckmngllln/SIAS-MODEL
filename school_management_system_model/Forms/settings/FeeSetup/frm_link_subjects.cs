@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
@@ -20,6 +21,9 @@ namespace school_management_system_model.Forms.settings.FeeSetup
     public partial class frm_link_subjects : KryptonForm
     {
         CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
+        LabFeeSubjectRepository _labFeeSubjectRepo = new LabFeeSubjectRepository();
+        LabFeeRepository _labFeeRepo = new LabFeeRepository();
+
         public string Description { get; set; }
         public string Email { get; set; }
 
@@ -71,7 +75,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             {
                 tTitle.Text = "Linked Subjects: " + Description;
 
-                var labFeeSubjects = await new LabFeeSubjects().GetLabFeeSubjects();
+                var labFeeSubjects = await _labFeeSubjectRepo.GetAllAsync();
                 var a = labFeeSubjects
                     .Where(x => x.lab_fee == Description).ToList();
 
@@ -79,7 +83,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                 dgv.DataSource = a;
 
                 dgv.Columns["id"].Visible = false;
-                //dgv.Columns["lab_fee_id"].Visible = false;
+                dgv.Columns["lab_fee"].Visible = false;
                 dgv.Columns["subject_code"].HeaderText = "Subject Code";
                 dgv.Columns["subject_code"].Width = 100;
                 dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
@@ -90,7 +94,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
 
         private async void linkSubject(string code, string descriptiveTitle)
         {
-            var labDescription = await new LabFeeSetup().GetLabFeeSetups();
+            var labDescription = await _labFeeRepo.GetAllAsync();
             var a = labDescription
                 .FirstOrDefault(x => x.description == Description);
             var linkSubject = new LabFeeSubjects
@@ -99,7 +103,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                 subject_code = code,
                 descriptive_title = descriptiveTitle
             };
-            linkSubject.AddRecords();
+            await _labFeeSubjectRepo.AddRecords(linkSubject);
             new Classes.Toastr("Success", "Subject Linked");
             Close();
 
@@ -173,7 +177,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             {
                 if (tsearch.Text.Length > 2)
                 {
-                    var labFeeSubjects = await new LabFeeSubjects().GetLabFeeSubjects();
+                    var labFeeSubjects = await _labFeeSubjectRepo.GetAllAsync();
                     var a = labFeeSubjects
                         .Where(x => x.lab_fee == Description && x.subject_code.ToLower().Contains(tsearch.Text) || x.descriptive_title.ToLower().Contains(tsearch.Text))
                         .ToList();

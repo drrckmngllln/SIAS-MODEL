@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
@@ -12,6 +13,8 @@ namespace school_management_system_model.Forms.settings.FeeSetup
     {
         LevelsRepository _levelRepo = new LevelsRepository();
         CampusRepository _campusRepo = new CampusRepository();
+        OtherFeeRepository _otherFeeRepo = new OtherFeeRepository();
+
         public string Email { get; }
 
         public frm_other_fees(string email)
@@ -45,7 +48,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
 
         private async void loadRecords(string campus, string level, string yearLevel)
         {
-            var misc = await new OtherFeesSetup().GetOtherFeesSetups();
+            var misc = await _otherFeeRepo.GetAllAsync();
             var a = misc
                 .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel)
                 .ToList();
@@ -62,11 +65,11 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             dgv.Columns["amount"].HeaderText = "Amount";
         }
 
-        private void addRecords()
+        private async void addRecords()
         {
             if (btn_save.Text == "Save")
             {
-                var AddRecords = new OtherFeesSetup
+                var AddRecords = new OtherFee
                 {
                     uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                     category = tCategory.Text,
@@ -77,7 +80,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                     semester = tSemester.Text,
                     amount = Convert.ToDecimal(tAmount.Text),
                 };
-                AddRecords.addRecords();
+                await _otherFeeRepo.AddRecords(AddRecords);
                 new Classes.Toastr("Success", "Miscellaneous fee Added");
                 new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
@@ -85,8 +88,9 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             }
             else if (btn_save.Text == "Update")
             {
-                var editRecords = new OtherFeesSetup
+                var editRecords = new OtherFee
                 {
+                    id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                     uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                     category = tCategory.Text,
                     description = tDescription.Text,
@@ -96,7 +100,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                     semester = tSemester.Text,
                     amount = Convert.ToDecimal(tAmount.Text),
                 };
-                editRecords.editRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                await _otherFeeRepo.UpdateRecords(editRecords);
                 new Classes.Toastr("Success", "Miscellaneous fee Added");
                 new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
@@ -125,7 +129,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
         {
             if (tsearch.Text.Length > 2)
             {
-                var searchRecord = await new OtherFeesSetup().GetOtherFeesSetups();
+                var searchRecord = await _otherFeeRepo.GetAllAsync();
                 var a = searchRecord
                 .Where(x => x.category.ToLower().Contains(tsearch.Text) || x.description.ToLower().Contains(tsearch.Text))
                 .ToList();
@@ -160,8 +164,8 @@ namespace school_management_system_model.Forms.settings.FeeSetup
         {
             if (MessageBox.Show("Are you sure you want to delete this fee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                var delete = new OtherFeesSetup();
-                delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                var delete = new OtherFee();
+                delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
                 new Classes.Toastr("Information", "Other fee Deleted!");
                 new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
