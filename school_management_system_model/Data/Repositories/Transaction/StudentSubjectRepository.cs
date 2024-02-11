@@ -74,8 +74,12 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                     {
                         instructor = c.FirstOrDefault(x => x.id == reader.GetInt32("instructor_id")).fullname;
                     }
-                        
-                        //c.FirstOrDefault(x => x.id == reader.GetInt32("instructor_id"));
+
+                    string grade;
+                    if (reader.GetDecimal("grade") != 0)
+                    {
+
+                    }
 
                     var studentSubjects = new StudentSubject
                     {
