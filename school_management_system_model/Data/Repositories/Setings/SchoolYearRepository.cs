@@ -38,6 +38,7 @@ namespace school_management_system_model.Data.Repositories.Setings
         public async Task<IReadOnlyList<SchoolYear>> GetAllAsync()
         {
             var list = new List<SchoolYear>();
+            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("select * from school_year", con);
             var reader = cmd.ExecuteReader();

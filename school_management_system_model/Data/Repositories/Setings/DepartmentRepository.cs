@@ -43,6 +43,7 @@ namespace school_management_system_model.Data.Repositories.Setings
         {
             var list = new List<Departments>();
 
+            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("select * from departments", con);
             var reader = cmd.ExecuteReader();

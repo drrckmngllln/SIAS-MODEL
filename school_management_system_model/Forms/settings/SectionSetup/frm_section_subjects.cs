@@ -90,7 +90,7 @@ namespace school_management_system_model.Forms.settings
             if (dgv.Rows.Count == 0)
             {
                 var b = await _curriculumRepo.GetAllAsync();
-                var curriculum = b.Where(x => x.course_id == tCourse.Text).ToList();
+                var curriculum = b.Where(x => x.course == tCourse.Text).ToList();
                 tCurriculum.DataSource = curriculum;
                 tCurriculum.ValueMember = "id";
                 tCurriculum.DisplayMember = "code";

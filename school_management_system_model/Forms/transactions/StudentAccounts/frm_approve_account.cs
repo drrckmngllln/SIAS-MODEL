@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Reports.Datasets;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,12 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
     {
         CourseRepository _courseRepo = new CourseRepository();
         StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+
         public static frm_approve_account instance;
         public string course { get; set; }
-        public string id_number_id { get; set; }
+        public string id_number { get; set; }
         public string fullname { get; set; }
         public frm_approve_account()
         {
@@ -30,61 +34,51 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             InitializeComponent();
         }
 
-        private void frm_approve_account_Load(object sender, EventArgs e)
+        private async void frm_approve_account_Load(object sender, EventArgs e)
         {
-            loadRecords();
-            
+            await loadRecords();
+            await LoadCurriculum();
+
         }
-
-        //private async string loadStudentCourse()
-        //{
-        //    var a = await _studentCourseRepo.GetAllAsync();
-        //    var studentCourseId = a.FirstOrDefault(x => x.id_number ==  id_number_id);
-        //    return studentCourseId.course.ToString();
-        //}
-
-        private async void loadRecords()
+        private async Task loadRecords()
         {
-            //var studentCourse = loadStudentCourse();
             tName.Text = fullname;
             var a = await _studentCourseRepo.GetAllAsync();
-            var studentCourseId = a.FirstOrDefault(x => x.id_number == id_number_id).course;
-            var courses = await _courseRepo.GetAllAsync();
-            course = courses.FirstOrDefault(x => x.id.ToString() == studentCourseId).code;
-            tCourse.Text = course;
-
-            //tCurriculum.ValueMember = "id";
-            //tCurriculum.DisplayMember = "code";
-            //tCurriculum.DataSource = new Curriculums().GetCurriculums()
-            //    .Where(x => x.course_id == tCourse.Text)
-            //    .ToList();
+            var studentCourse = a.FirstOrDefault(x => x.id_number.ToString() == id_number).course;
+            tCourse.Text = studentCourse;
         }
 
-        private void approveStudent(string idNumber)
+        private async Task LoadCurriculum()
+        {
+            tCurriculum.ValueMember = "id";
+            tCurriculum.DisplayMember = "code";
+            var curriculum = await _curriculumRepo.GetAllAsync();
+            var curriculumLoad = curriculum.Where(x => x.course == tCourse.Text).ToList();
+            if (curriculumLoad.Count != 0)
+            {
+                tCurriculum.DataSource = curriculumLoad;
+            }
+            else
+            {
+                new Classes.Toastr("Warning", "No Curriculum Saved for this Course!");
+            }
+        }
+
+        private async Task approveStudent(int idNumber, int curriculum_id)
         {
             try
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("update student_course set curriculum_id='" + tCurriculum.SelectedValue.ToString() + "' where id_number_id='" + idNumber + "'", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                await _studentCourseRepo.ApproveStudent(idNumber, curriculum_id);
+                await _studentAccountRepo.ApproveStudent(idNumber.ToString());
 
-                con.Open();
-                cmd = new MySqlCommand("update student_accounts set status='For Enrollment' where id='" + idNumber + "'", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                
                 new Classes.Toastr("Success", "Student Approved");
-
-
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -92,16 +86,22 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             Close();
         }
 
-        private void btnApprove_Click(object sender, EventArgs e)
+        private async void btnApprove_Click(object sender, EventArgs e)
         {
             if (tCurriculum.Text == "")
             {
-                
+
                 new Classes.Toastr("Error", "Please select a curriculum");
             }
             else
             {
-                approveStudent(id_number_id);
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var curriculum = await _curriculumRepo.GetAllAsync();
+
+                var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == id_number).id;
+                var curriculum_id = curriculum.FirstOrDefault(x => x.code == tCurriculum.Text).id;
+
+                await approveStudent(id_number_id, curriculum_id);
             }
         }
     }

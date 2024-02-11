@@ -21,8 +21,8 @@ namespace school_management_system_model.Data.Repositories.Setings
                 "values(@1,@2,@3,@4,@5,@6,@7)", con);
             cmd.Parameters.AddWithValue("@1", entity.code);
             cmd.Parameters.AddWithValue("@2", entity.description);
-            cmd.Parameters.AddWithValue("@3", entity.campus_id);
-            cmd.Parameters.AddWithValue("@4", entity.course_id);
+            cmd.Parameters.AddWithValue("@3", entity.campus);
+            cmd.Parameters.AddWithValue("@4", entity.course);
             cmd.Parameters.AddWithValue("@5", entity.effective);
             cmd.Parameters.AddWithValue("@6", entity.expires);
             cmd.Parameters.AddWithValue("@7", entity.status);
@@ -60,8 +60,8 @@ namespace school_management_system_model.Data.Repositories.Setings
                     id = reader.GetInt32("id"),
                     code = reader.GetString("code"),
                     description = reader.GetString("description"),
-                    campus_id = campus,
-                    course_id = course,
+                    campus = campus,
+                    course = course,
                     effective = reader.GetString("effective"),
                     expires = reader.GetString("expires"),
                     status = reader.GetString("status")
@@ -79,8 +79,8 @@ namespace school_management_system_model.Data.Repositories.Setings
                 "status=@7 where id='" + entity.id + "'", con);
             cmd.Parameters.AddWithValue("@1", entity.code);
             cmd.Parameters.AddWithValue("@2", entity.description);
-            cmd.Parameters.AddWithValue("@3", entity.campus_id);
-            cmd.Parameters.AddWithValue("@4", entity.course_id);
+            cmd.Parameters.AddWithValue("@3", entity.campus);
+            cmd.Parameters.AddWithValue("@4", entity.course);
             cmd.Parameters.AddWithValue("@5", entity.effective);
             cmd.Parameters.AddWithValue("@6", entity.expires);
             cmd.Parameters.AddWithValue("@7", entity.status);

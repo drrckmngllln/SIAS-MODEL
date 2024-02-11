@@ -5,8 +5,8 @@
         public int id { get; set; }
         public string code { get; set; }
         public string description { get; set; }
-        public string campus_id { get; set; }
-        public string course_id { get; set; }
+        public string campus { get; set; }
+        public string course { get; set; }
         public string effective { get; set; }
         public string expires { get; set; }
         public string status { get; set; }

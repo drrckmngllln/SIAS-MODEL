@@ -192,11 +192,12 @@ namespace school_management_system_model.Forms.transactions
                     var id_number_id = b.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
                     var c = await _courseRepo.GetAllAsync();
+                    var d  = await _campusRepo.GetAllAsync();
                     var course = new StudentCourses
                     {
                         id_number = id_number_id.id.ToString(),
                         course = c.FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
-                        campus = c.FirstOrDefault(x => x.campus == tCampus.Text).id.ToString(),
+                        campus = d.FirstOrDefault(x => x.code == tCampus.Text).id.ToString(),
                         curriculum = "Not Set",
                         year_level = "Not Set",
                         section = "Not Set",

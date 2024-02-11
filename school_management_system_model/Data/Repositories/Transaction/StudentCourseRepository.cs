@@ -6,6 +6,7 @@ using school_management_system_model.Data.Repositories.Transaction.StudentAccoun
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using static System.Collections.Specialized.BitVector32;
 
@@ -127,6 +128,20 @@ namespace school_management_system_model.Data.Repositories.Transaction
                 {
                     cmd.Parameters.AddWithValue("@1", year_level);
                     cmd.Parameters.AddWithValue("@2", section_id);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                await con.CloseAsync();
+            }
+        }
+
+        public async Task ApproveStudent(int id_number_id, int curriculum_id)
+        {
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "update student_course set curriculum_id='" + curriculum_id + "' where id_number_id='" + id_number_id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
                     await cmd.ExecuteNonQueryAsync();
                 }
                 await con.CloseAsync();

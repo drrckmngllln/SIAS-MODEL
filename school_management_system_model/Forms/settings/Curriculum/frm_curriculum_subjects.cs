@@ -66,8 +66,8 @@ namespace school_management_system_model.Forms.settings
             //var course = new Courses().GetCourses().FirstOrDefault(x => x.id == curriculums.id);
             tcode.Text = curriculums.code;
             tdescription.Text = curriculums.description;
-            tcampus.Text = curriculums.campus_id;
-            tcourse.Text = curriculums.course_id;
+            tcampus.Text = curriculums.campus;
+            tcourse.Text = curriculums.course;
             teffective.Text = curriculums.effective;
             texpires.Text = curriculums.expires;
         }

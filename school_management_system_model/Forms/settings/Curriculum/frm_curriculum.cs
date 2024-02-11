@@ -91,8 +91,8 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["code"].HeaderText = "Curriculum Code";
             dgv.Columns["description"].HeaderText = "Curriculum Description";
             dgv.Columns["description"].Width = 400;
-            dgv.Columns["campus_id"].HeaderText = "Campus";
-            dgv.Columns["course_id"].HeaderText = "Course";
+            dgv.Columns["campus"].HeaderText = "Campus";
+            dgv.Columns["course"].HeaderText = "Course";
             dgv.Columns["effective"].HeaderText = "Effective";
             dgv.Columns["expires"].HeaderText = "Expires";
             dgv.Columns["status"].HeaderText = "Status";
@@ -106,8 +106,8 @@ namespace school_management_system_model.Forms.settings
                 {
                     code = tCode.Text,
                     description = tDescription.Text,
-                    campus_id = tCampus.SelectedValue.ToString(),
-                    course_id = tCourse.SelectedValue.ToString(),
+                    campus = tCampus.SelectedValue.ToString(),
+                    course = tCourse.SelectedValue.ToString(),
                     effective = tEffective.Text,
                     expires = tExpires.Text,
                     status = tStatus.Text
@@ -126,8 +126,8 @@ namespace school_management_system_model.Forms.settings
                 {
                     code = tCode.Text,
                     description = tDescription.Text,
-                    campus_id = tCampus.SelectedValue.ToString(),
-                    course_id = tCourse.SelectedValue.ToString(),
+                    campus = tCampus.SelectedValue.ToString(),
+                    course = tCourse.SelectedValue.ToString(),
                     effective = tEffective.Text,
                     expires = tExpires.Text,
                     status = tStatus.Text

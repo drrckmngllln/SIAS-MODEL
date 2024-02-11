@@ -34,6 +34,7 @@ namespace school_management_system_model.Data.Repositories.Setings
         public async Task<IReadOnlyList<Instructors>> GetAllAsync()
         {
             var list = new List<Instructors>();
+            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("select * from instructors", con);
             var reader = cmd.ExecuteReader();

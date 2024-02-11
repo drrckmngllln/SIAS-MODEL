@@ -254,7 +254,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 var frm = new frm_approve_account
                 {
-                    id_number_id = dgv.CurrentRow.Cells["id"].Value.ToString(),
+                    id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString(),
                     fullname = dgv.CurrentRow.Cells["fullname"].Value.ToString()
                 };
                 frm.ShowDialog();
