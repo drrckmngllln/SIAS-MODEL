@@ -1,13 +1,17 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Core.Entities.Transaction;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using school_management_system_model.Forms.transactions.StudentAssessment;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Reports.Accounting;
 using System;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.transactions
@@ -25,6 +29,8 @@ namespace school_management_system_model.Forms.transactions
         LabFeeSubjectRepository _labFeeSubjectRepo = new LabFeeSubjectRepository();
         LabFeeRepository _labFeeRepo = new LabFeeRepository();
         OtherFeeRepository _otherFeeRepo = new OtherFeeRepository();
+        FeeBreakdownRepository _feeBreakdownRepo = new FeeBreakdownRepository();
+        FeeSummaryRepository _feeSummaryRepo = new FeeSummaryRepository();
 
 
         public static frm_student_assessment instance;
@@ -87,7 +93,7 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private async void loadTuitionFeePerUnit()
+        private async Task loadTuitionFeePerUnit()
         {
             var a = await _studentSubjectRepo.GetAllAsync();
             var getStudentTuitionFee = a
@@ -115,7 +121,7 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private async void loadMiscFeePerUnit()
+        private async Task loadMiscFeePerUnit()
         {
             var getMiscFeeSetup = await _miscFeeRepo.GetAllAsync();
             var a = getMiscFeeSetup
@@ -134,19 +140,21 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void addAssessmentRecords()
+        private async Task addAssessmentRecords()
         {
             // Loading of Tuition Fee/Unit
-            loadTuitionFeePerUnit();
+            await loadTuitionFeePerUnit();
             // Loading of Miscellaneous Fee
-            loadMiscFeePerUnit();
+            await loadMiscFeePerUnit();
             // Loading of Lab Fee
-            loadLabFee();
+            await loadLabFee();
             // Loading of Other Fee
-            loadOtherFees();
+            await loadOtherFees();
+            // Loading of Fee Breakdown
+            await FeeBreakDown();
         }
 
-        private async void loadOtherFees()
+        private async Task loadOtherFees()
         {
             var otherFees = await _otherFeeRepo.GetAllAsync();
             var a = otherFees
@@ -158,7 +166,7 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private async void loadLabFee()
+        private async Task loadLabFee()
         {
             var a = await _studentSubjectRepo.GetAllAsync();
             var studentSubjects = a
@@ -192,9 +200,9 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void loadAssessment()
+        private async Task loadAssessment()
         {
-            addAssessmentRecords();
+            await addAssessmentRecords();
         }
 
         private void addLabFee()
@@ -202,7 +210,7 @@ namespace school_management_system_model.Forms.transactions
             dgv.Rows.Add(labFeeCategory, labFee, 1, 1 * labFee);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_student();
             frm.Text = "Select School Year";
@@ -212,7 +220,7 @@ namespace school_management_system_model.Forms.transactions
                 dgv.Rows.Clear();
                 // Loading the assessment
                 tSchoolYear.Text = schoolYear.ToString();
-                loadAssessment();
+                await loadAssessment();
 
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
@@ -235,7 +243,7 @@ namespace school_management_system_model.Forms.transactions
                 }
                 loadDiscounts();
 
-                FeeBreakDown();
+
             }
         }
 
@@ -387,7 +395,7 @@ namespace school_management_system_model.Forms.transactions
                     var school_year = d.FirstOrDefault(x => x.code == tSchoolYear.Text);
                     if (id_number != null && school_year != null)
                     {
-                        var saveFeeSummary = new FeeSummaries
+                        var saveFeeSummary = new FeeSummary
                         {
                             id_number = id_number.id.ToString(),
                             school_year = school_year.id.ToString(),
@@ -396,7 +404,7 @@ namespace school_management_system_model.Forms.transactions
                             previous_balance = b.balance,
                             current_receivable = (assessmentTotal + b.balance) - currentDiscount
                         };
-                        saveFeeSummary.saveFeeSummary();
+                        await _feeSummaryRepo.AddRecords(saveFeeSummary);
                     }
                 }
             }
@@ -409,7 +417,7 @@ namespace school_management_system_model.Forms.transactions
 
             var b = await _schoolYearRepo.GetAllAsync();
             var school_year = b.FirstOrDefault(x => x.code == tSchoolYear.Text);
-            var add = new FeeBreakdowns
+            var add = new FeeBreakdown
             {
                 id_number = id_number.id.ToString(),
                 school_year = school_year.id.ToString(),
@@ -420,19 +428,23 @@ namespace school_management_system_model.Forms.transactions
                 finals = Convert.ToDecimal(tFinals.Text),
                 total = Convert.ToDecimal(tDownpayment.Text) + Convert.ToDecimal(tPrelims.Text) + Convert.ToDecimal(tMidterms.Text) + Convert.ToDecimal(tSemiFinals.Text) + Convert.ToDecimal(tFinals.Text)
             };
-            add.saveRecords();
+            await _feeBreakdownRepo.AddRecords(add);
         }
 
-        private void FeeBreakDown()
+        private async Task FeeBreakDown()
         {
-
             decimal total = 0;
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                total += (decimal)row.Cells["computation"].Value;
-            }
-            total -= totalDiscount;
 
+            await Task.Run(() =>
+            {
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    total += (decimal)row.Cells["computation"].Value;
+                }
+                total -= totalDiscount;
+
+
+            });
             decimal downpayment = total * Convert.ToDecimal(0.20);
             decimal prelim = total * Convert.ToDecimal(0.20);
             decimal midterm = total * Convert.ToDecimal(0.20);
@@ -446,7 +458,7 @@ namespace school_management_system_model.Forms.transactions
             tFinals.Text = finals.ToString();
         }
 
-        private async void saveStatementsOfAccounts()
+        private async Task saveStatementsOfAccounts()
         {
             var dataBalance = await new StatementsOfAccounts().GetStatementsOfAccounts();
             var b = dataBalance
@@ -685,30 +697,30 @@ namespace school_management_system_model.Forms.transactions
             printAssessment();
         }
 
-        private async void printAssessment()
+        private void printAssessment()
         {
-            var a = await _studentAccountRepo.GetAllAsync();
-            var id_number_id = a
-                .FirstOrDefault(x => x.id_number == tIdNumber.Text);
+            //var a = await _studentAccountRepo.GetAllAsync();
+            //var id_number_id = a
+            //    .FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
-            var b = await _schoolYearRepo.GetAllAsync();
-            var school_year_id = b
-                .FirstOrDefault(x => x.code == tSchoolYear.Text);
+            //var b = await _schoolYearRepo.GetAllAsync();
+            //var school_year_id = b
+            //    .FirstOrDefault(x => x.code == tSchoolYear.Text);
 
-            var c = await _campusRepo.GetAllAsync();
-            var campus_id = c
-                .FirstOrDefault(x => x.code == tCampus.Text);
+            //var c = await _campusRepo.GetAllAsync();
+            //var campus_id = c
+            //    .FirstOrDefault(x => x.code == tCampus.Text);
 
-            if (id_number_id != null && school_year_id != null && campus_id != null)
+            var frm = new frm_isap_assessment
             {
-                var frm = new frm_isap_assessment
-                {
-                    id_number = tIdNumber.Text,
-                    school_year = tSchoolYear.Text,
-                    campus = tCampus.Text,
-                };
-                frm.ShowDialog();
-            }
+                id_number = tIdNumber.Text,
+                school_year = tSchoolYear.Text,
+                campus = tCampus.Text,
+            };
+            frm.ShowDialog();
+            //if (id_number_id != null && school_year_id != null && campus_id != null)
+            //{
+            //}
         }
     }
 }

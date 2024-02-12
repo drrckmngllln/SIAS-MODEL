@@ -1,4 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
@@ -7,32 +11,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace school_management_system_model.Classes
+namespace school_management_system_model.Infrastructure.Data.Repositories.Transaction
 {
-    internal class FeeBreakdowns
+    internal class FeeBreakdownRepository : IGenericRepository<FeeBreakdown>
     {
-        public int id { get; set; }
-        public string id_number { get; set; }
-        public string school_year { get; set; }
-        public decimal downpayment { get; set; }
-        public decimal prelim { get; set; }
-        public decimal midterm { get; set; }
-        public decimal semi_finals { get; set; }
-        public decimal finals { get; set; }
-        public decimal total { get; set; }
-
-        public decimal downpayment_original { get; set; }
-        public decimal prelim_original { get; set; }
-        public decimal midterm_original { get; set; }
-        public decimal semi_finals_original { get; set; }
-        public decimal finals_original { get; set; }
-        public decimal total_original { get; set; }
-
-        public async Task<List<FeeBreakdowns>> GetFeeBreakdowns()
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+        public async Task AddRecords(FeeBreakdown entity)
         {
-            var _studentAccountRepo = new StudentAccountRepository();
-            var _schoolYearRepo = new SchoolYearRepository();
-            var list = new List<FeeBreakdowns>();
+            var con = new MySqlConnection(connection.con());
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("insert into fee_breakdown(id_number_id, school_year_id,prelim, midterm, semi_finals, finals, total, prelim_original, midterm_original, semi_finals_original,finals_original, " +
+                "total_original, downpayment, downpayment_original) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14)", con);
+            cmd.Parameters.AddWithValue("@1", entity.id_number);
+            cmd.Parameters.AddWithValue("@2", entity.school_year);
+            cmd.Parameters.AddWithValue("@3", entity.prelim);
+            cmd.Parameters.AddWithValue("@4", entity.midterm);
+            cmd.Parameters.AddWithValue("@5", entity.semi_finals);
+            cmd.Parameters.AddWithValue("@6", entity.finals);
+            cmd.Parameters.AddWithValue("@7", entity.total);
+            cmd.Parameters.AddWithValue("@8", entity.prelim);
+            cmd.Parameters.AddWithValue("@9", entity.midterm);
+            cmd.Parameters.AddWithValue("@10", entity.semi_finals);
+            cmd.Parameters.AddWithValue("@11", entity.finals);
+            cmd.Parameters.AddWithValue("@12", entity.total);
+            cmd.Parameters.AddWithValue("@13", entity.downpayment);
+            cmd.Parameters.AddWithValue("@14", entity.downpayment);
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
+        public Task DeleteRecords(FeeBreakdown entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IReadOnlyList<FeeBreakdown>> GetAllAsync()
+        {
+            var list = new List<FeeBreakdown>();
             using (var con = new MySqlConnection(connection.con()))
             {
                 await con.OpenAsync();
@@ -50,7 +66,7 @@ namespace school_management_system_model.Classes
                             var school_year_id = c.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
                             if (id_number_id != null && school_year_id != null)
                             {
-                                var feeBreakdown = new FeeBreakdowns
+                                var feeBreakdown = new FeeBreakdown
                                 {
                                     id = reader.GetInt32("id"),
                                     id_number = id_number_id.id_number,
@@ -77,28 +93,9 @@ namespace school_management_system_model.Classes
             }
         }
 
-        public void saveRecords()
+        public Task UpdateRecords(FeeBreakdown entity)
         {
-            var con = new MySqlConnection(connection.con());
-            con.Open();
-            var cmd = new MySqlCommand("insert into fee_breakdown(id_number_id, school_year_id,prelim, midterm, semi_finals, finals, total, prelim_original, midterm_original, semi_finals_original,finals_original, " +
-                "total_original, downpayment, downpayment_original) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14)", con);
-            cmd.Parameters.AddWithValue("@1", id_number);
-            cmd.Parameters.AddWithValue("@2", school_year);
-            cmd.Parameters.AddWithValue("@3", prelim);
-            cmd.Parameters.AddWithValue("@4", midterm);
-            cmd.Parameters.AddWithValue("@5", semi_finals);
-            cmd.Parameters.AddWithValue("@6", finals);
-            cmd.Parameters.AddWithValue("@7", total);
-            cmd.Parameters.AddWithValue("@8", prelim);
-            cmd.Parameters.AddWithValue("@9", midterm);
-            cmd.Parameters.AddWithValue("@10", semi_finals);
-            cmd.Parameters.AddWithValue("@11", finals);
-            cmd.Parameters.AddWithValue("@12", total);
-            cmd.Parameters.AddWithValue("@13", downpayment);
-            cmd.Parameters.AddWithValue("@14", downpayment);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            throw new NotImplementedException();
         }
     }
 }

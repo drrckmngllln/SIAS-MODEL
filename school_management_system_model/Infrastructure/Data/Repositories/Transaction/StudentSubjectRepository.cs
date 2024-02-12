@@ -23,8 +23,8 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
             var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("insert into student_subjects(id_number_id, unique_id, school_year_id, subject_code, descriptive_title, " +
-                "pre_requisite, total_units, lecture_units, lab_units, time, day, room, instructor_id) " +
-                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13)", con);
+                "pre_requisite, total_units, lecture_units, lab_units, time, day, room, instructor_id, grade, remarks) " +
+                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15)", con);
             cmd.Parameters.AddWithValue("@1", entity.id_number_id);
             cmd.Parameters.AddWithValue("@2", entity.unique_id);
             cmd.Parameters.AddWithValue("@3", entity.school_year_id);
@@ -38,6 +38,8 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
             cmd.Parameters.AddWithValue("@11", entity.day);
             cmd.Parameters.AddWithValue("@12", entity.room);
             cmd.Parameters.AddWithValue("@13", entity.instructor_id);
+            cmd.Parameters.AddWithValue("@14", "No Grade");
+            cmd.Parameters.AddWithValue("@15", "N/A");
 
             await cmd.ExecuteNonQueryAsync();
             await con.CloseAsync();
@@ -76,9 +78,13 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                     }
 
                     string grade;
-                    if (reader.GetDecimal("grade") != 0)
+                    if (reader.GetString("grade") == "No Grade")
                     {
-
+                        grade = "No Grade";
+                    }
+                    else
+                    {
+                        grade = reader.GetString("grade");
                     }
 
                     var studentSubjects = new StudentSubject
@@ -104,7 +110,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                 }
                 await con.CloseAsync();
             }
-            
+
             return list;
         }
 

@@ -214,10 +214,9 @@
     <Compile Include="Core\Entities\Settings\Curriculums.cs" />
     <Compile Include="Core\Entities\Settings\CurriculumSubjects.cs" />
     <Compile Include="Core\Entities\Settings\Departments.cs" />
-    <Compile Include="Classes\FeeBreakdowns.cs" />
     <Compile Include="Classes\FeeCollection.cs" />
-    <Compile Include="Classes\FeeSummaries.cs" />
     <Compile Include="Core\Entities\Settings\Discount.cs" />
+    <Compile Include="Core\Entities\Transaction\FeeBreakdown.cs" />
     <Compile Include="Core\Entities\Settings\Instructors.cs" />
     <Compile Include="Core\Entities\Settings\LabFeeSubjects.cs" />
     <Compile Include="Classes\MainRegistrar.cs" />
@@ -232,29 +231,35 @@
     <Compile Include="Classes\Specification\ISpecification.cs" />
     <Compile Include="Core\Entities\Settings\TuitionFee.cs" />
     <Compile Include="Core\Entities\Settings\User.cs" />
+    <Compile Include="Core\Entities\Transaction\FeeSummary.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentAssessment.cs" />
     <Compile Include="Core\Entities\Transaction\StudentSubject.cs" />
     <Compile Include="Core\Entities\Settings\Sections.cs" />
-    <Compile Include="Data\Interfaces\IGenericRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\CampusRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\CourseRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\CurriculumRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\CurriculumSubjectsRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\DepartmentRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\DiscountRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\InstructorRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\LabFeeRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\LabFeeSubjectRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\LevelsRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\MiscFeeRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\OtherFeeRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\SchoolYearRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\SectionRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\SectionSubjectRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\TuitionFeeRepository.cs" />
-    <Compile Include="Data\Repositories\Setings\UserRepository.cs" />
-    <Compile Include="Data\Repositories\Transaction\StudentAccountRepository.cs" />
-    <Compile Include="Data\Repositories\Transaction\StudentSubjectRepository.cs" />
-    <Compile Include="Data\Repositories\Transaction\StudentCourseRepository.cs" />
+    <Compile Include="Infrastructure\Data\Interfaces\IGenericRepository.cs" />
+    <Compile Include="Core\Extensions\DataTableExtensions.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\CampusRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\CourseRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\CurriculumRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\CurriculumSubjectsRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\DepartmentRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\DiscountRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\InstructorRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\LabFeeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\LabFeeSubjectRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\LevelsRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\MiscFeeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\OtherFeeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\SchoolYearRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\SectionRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\SectionSubjectRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\TuitionFeeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\UserRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeBreakdownRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeSummaryRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentAccountRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentAssessmentRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentSubjectRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentCourseRepository.cs" />
     <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,7 +282,7 @@
     <Compile Include="Classes\student_assessment.cs" />
     <Compile Include="Core\Entities\Transaction\StudentCourses.cs" />
     <Compile Include="Classes\Toastr.cs" />
-    <Compile Include="Data\connection.cs" />
+    <Compile Include="Infrastructure\Data\connection.cs" />
     <Compile Include="Forms\main\main_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -659,7 +664,6 @@
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
     <Compile Include="TestFolder\SectionSubjectss.cs" />
-    <Compile Include="Data\StoreContext.cs" />
     <Compile Include="ToastrNotification\frm_toastr.cs">
       <SubType>Form</SubType>
     </Compile>
