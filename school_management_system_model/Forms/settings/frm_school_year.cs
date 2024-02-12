@@ -3,6 +3,8 @@ using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
@@ -109,11 +111,12 @@ namespace school_management_system_model.Forms.settings
             tSemester.Clear();
             btn_save.Text = "Save";
         }
-        private void deleteRecords()
+        private async Task deleteRecords()
         {
             int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-            var delete = new SchoolYearSetup();
-            delete.deleteRecords(id);
+            var delete = new SchoolYear();
+            delete.id = id;
+            await _schoolYearRepo.DeleteRecords(delete);
             
             new Classes.Toastr("Information", "Successfully Deleted");
             new ActivityLogger().activityLogger(Email, "School Year Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
@@ -144,21 +147,22 @@ namespace school_management_system_model.Forms.settings
             btn_save.Text = "Update";
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private async void kryptonButton1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("are you sure you want to delete records?", "Warning", MessageBoxButtons.YesNo, 
                 MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                deleteRecords();
+                await deleteRecords();
             }
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new SchoolYearSetup();
-                dgv.DataSource = search.searchRecords(tsearch.Text);
+                var data = await _schoolYearRepo.GetAllAsync();
+                var search = data.Where(x => x.code.ToLower().Contains(tsearch.Text) || x.description.ToLower().Contains(tsearch.Text));
+                dgv.DataSource = search.ToList();
             }
             else if (tsearch.Text.Length == 0)
             {

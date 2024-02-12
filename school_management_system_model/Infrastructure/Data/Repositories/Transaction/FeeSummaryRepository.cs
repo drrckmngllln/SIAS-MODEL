@@ -23,7 +23,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
         {
             var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
-            var cmd = new MySqlCommand("insert into fee_summary(id_number, school_year, current_assessment, discounts, previous_balance, current_receivable) " +
+            var cmd = new MySqlCommand("insert into fee_summary(id_number_id, school_year_id, current_assessment, discounts, previous_balance, current_receivable) " +
                 "values(@1,@2,@3,@4,@5,@6)", con);
             cmd.Parameters.AddWithValue("@1", entity.id_number);
             cmd.Parameters.AddWithValue("@2", entity.school_year);

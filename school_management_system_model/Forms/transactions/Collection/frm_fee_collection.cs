@@ -299,14 +299,14 @@ namespace school_management_system_model.Forms.transactions.Collection
 
             foreach (DataGridViewRow row in dgvAssessmentBreakdown.Rows)
             {
-                var parameter = new SaveAssessmentBreakdownParams
-                {
-                    id_number = tIdNumber.Text,
-                    fee_type = row.Cells["fee_type"].Value.ToString(),
-                    amount = Convert.ToDecimal(row.Cells["amount"].Value)
-                };
-                var x = new FeeCollection();
-                x.assessmentBreakdownSave(parameter.id_number, parameter.amount, parameter.fee_type);
+                //var parameter = new SaveAssessmentBreakdownParams
+                //{
+                //    id_number = tIdNumber.Text,
+                //    fee_type = row.Cells["fee_type"].Value.ToString(),
+                //    amount = Convert.ToDecimal(row.Cells["amount"].Value)
+                //};
+                //var x = new FeeCollection();
+                //x.assessmentBreakdownSave(parameter.id_number, parameter.amount, parameter.fee_type);
             }
         }
 

@@ -5,6 +5,15 @@ include repository for student accounts
 
 fix the reporting services?
 
-view subjects functionality in the student assessment
-view discounts functionality
+
+
 add functionality to update the assessment when there is detected
+
+courses with description
+curriculum subject delayed saving
+create account - update, approve,
+
+finance
+
+discount separate tuition and lab fee
+discount pagination

@@ -5,7 +5,9 @@ using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
+using school_management_system_model.Forms.transactions.Collection;
 using school_management_system_model.Forms.transactions.StudentAssessment;
+using school_management_system_model.Infrastructure.Data.Repositories;
 using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Reports.Accounting;
 using System;
@@ -31,6 +33,9 @@ namespace school_management_system_model.Forms.transactions
         OtherFeeRepository _otherFeeRepo = new OtherFeeRepository();
         FeeBreakdownRepository _feeBreakdownRepo = new FeeBreakdownRepository();
         FeeSummaryRepository _feeSummaryRepo = new FeeSummaryRepository();
+        StatementOfAccountsRepository _statementOfAccountsRepo = new StatementOfAccountsRepository();
+        StudentDiscountRepository _studentDiscountRepo = new StudentDiscountRepository();
+        
 
 
         public static frm_student_assessment instance;
@@ -297,23 +302,23 @@ namespace school_management_system_model.Forms.transactions
             computeAssessment();
         }
 
-        private void saveAssessment()
+        private async Task saveAssessment()
         {
 
             // Save to Student Assessment
-            saveStudentAssessment();
+            await saveStudentAssessment();
 
             // Saving Fee Summary
-            saveFeeSummary();
+            await saveFeeSummary();
 
             // Saving to Statements of Accounts
-            saveStatementsOfAccounts();
+            await saveStatementsOfAccounts();
 
             // Saving Fee Breakdown
-            saveFeeBreakdown();
+            await saveFeeBreakdown();
 
             // Saving Assessment Breakdown
-            saveAssessmentBreakdown();
+            await saveAssessmentBreakdown();
 
             new Classes.Toastr("Success", "Assessment Saved");
 
@@ -321,7 +326,7 @@ namespace school_management_system_model.Forms.transactions
 
         }
 
-        private async void saveAssessmentBreakdown()
+        private async Task saveAssessmentBreakdown()
         {
             var a = await _studentAccountRepo.GetAllAsync();
             var id_number_id = a
@@ -344,7 +349,7 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private async void saveStudentAssessment()
+        private async Task saveStudentAssessment()
         {
             var a = await _studentAccountRepo.GetAllAsync();
             var id_number_id = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
@@ -370,47 +375,58 @@ namespace school_management_system_model.Forms.transactions
 
         }
 
-        private async void saveFeeSummary()
+        private async Task saveFeeSummary()
         {
-            var latestSOA = await new StatementsOfAccounts().GetStatementsOfAccounts();
-            var a = latestSOA.Where(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text)
-            .OrderByDescending(x => x.id)
-            .ToList();
+            var statementsOfAccounts = await _statementOfAccountsRepo.GetAllAsync();
+            var soa = statementsOfAccounts
+                .Where(x => x.id_number == tIdNumber.Text)
+                .OrderByDescending(x => x.id)
+                .ToList();
 
-            if (a != null)
+            var dt = soa.ToDataTable();
+
+            if (dt.Rows.Count != 0)
             {
-                var lastBalance = await new StatementsOfAccounts().GetStatementsOfAccounts();
-                var b = lastBalance.OrderByDescending(x => x.id)
-                .FirstOrDefault(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text);
+                decimal previousBalance = Convert.ToDecimal(dt.Rows[0]["balance"]);
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text).id;
 
-                if (b != null)
+                var schoolYears = await _schoolYearRepo.GetAllAsync();
+                var school_year_id = schoolYears.FirstOrDefault(x => x.code == tSchoolYear.Text).id;
+
+                var saveFeeSummary = new FeeSummary
                 {
-                    decimal assessmentTotal = Convert.ToDecimal(tTotal.Text);
-                    decimal currentDiscount = Convert.ToDecimal(discountTotal.Text);
+                    id_number = id_number_id.ToString(),
+                    school_year = school_year_id.ToString(),
+                    current_assessment = Convert.ToDecimal(tTotal.Text),
+                    discounts = Convert.ToDecimal(totalDiscount),
+                    previous_balance = previousBalance,
+                    current_receivable = Convert.ToDecimal(tTotal.Text) + previousBalance
+                };
+                await _feeSummaryRepo.AddRecords(saveFeeSummary);
+            }
+            else
+            {
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text).id;
 
-                    var c = await _studentAccountRepo.GetAllAsync();
-                    var id_number = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+                var schoolYears = await _schoolYearRepo.GetAllAsync();
+                var school_year_id = schoolYears.FirstOrDefault(x => x.code == tSchoolYear.Text).id;
 
-                    var d = await _schoolYearRepo.GetAllAsync();
-                    var school_year = d.FirstOrDefault(x => x.code == tSchoolYear.Text);
-                    if (id_number != null && school_year != null)
-                    {
-                        var saveFeeSummary = new FeeSummary
-                        {
-                            id_number = id_number.id.ToString(),
-                            school_year = school_year.id.ToString(),
-                            current_assessment = assessmentTotal,
-                            discounts = currentDiscount,
-                            previous_balance = b.balance,
-                            current_receivable = (assessmentTotal + b.balance) - currentDiscount
-                        };
-                        await _feeSummaryRepo.AddRecords(saveFeeSummary);
-                    }
-                }
+                var saveFeeSummary = new FeeSummary
+                {
+                    id_number = id_number_id.ToString(),
+                    school_year = school_year_id.ToString(),
+                    current_assessment = Convert.ToDecimal(tTotal.Text),
+                    discounts = Convert.ToDecimal(totalDiscount),
+                    previous_balance = 0,
+                    current_receivable = Convert.ToDecimal(tTotal.Text)
+                };
+                await _feeSummaryRepo.AddRecords(saveFeeSummary);
             }
         }
 
-        private async void saveFeeBreakdown()
+        private async Task saveFeeBreakdown()
         {
             var a = await _studentAccountRepo.GetAllAsync();
             var id_number = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
@@ -460,7 +476,7 @@ namespace school_management_system_model.Forms.transactions
 
         private async Task saveStatementsOfAccounts()
         {
-            var dataBalance = await new StatementsOfAccounts().GetStatementsOfAccounts();
+            var dataBalance = await _statementOfAccountsRepo.GetAllAsync();
             var b = dataBalance
                 .Where(x => x.school_year == tSchoolYear.Text && x.id_number == tIdNumber.Text)
                 .OrderByDescending(x => x.id)
@@ -480,14 +496,14 @@ namespace school_management_system_model.Forms.transactions
 
             if (dataBalance == null)
             {
-                var soa = await new StatementsOfAccounts().GetStatementsOfAccounts();
+                var soa = await _statementOfAccountsRepo.GetAllAsync();
                 var e = soa
                     .OrderByDescending(x => x.id)
                     .FirstOrDefault(x => x.school_year == tSchoolYear.Text && x.id_number == tIdNumber.Text);
                 var previousBalance = Convert.ToDecimal(e.balance);
                 var currentDebit = Convert.ToDecimal(tTotal.Text);
 
-                var SaveSOA = new StatementsOfAccounts
+                var SaveSOA = new StatementOfAccount
                 {
                     id_number = id_number_id.id.ToString(),
                     school_year = school_year_id.id.ToString(),
@@ -502,10 +518,10 @@ namespace school_management_system_model.Forms.transactions
                     // Name of Cashier
                     cashier_in_charge = ""
                 };
-                SaveSOA.saveStatementOfAccount();
+                await _statementOfAccountsRepo.AddRecords(SaveSOA);
 
                 // For the discounts if any
-                var discounts = await new StudentDiscount().GetStudentDiscounts();
+                var discounts = await _studentDiscountRepo.GetAllAsync();
                 var f = discounts
                     .Where(x => x.id_number == tIdNumber.Text)
                     .ToList();
@@ -518,11 +534,11 @@ namespace school_management_system_model.Forms.transactions
                             var discountPercentage = Convert.ToDecimal(discount.discount_percentage);
                             var computation = (discountPercentage / 100) * totalTuitionFee;
 
-                            var debit = await new StatementsOfAccounts().GetStatementsOfAccounts();
+                            var debit = await _statementOfAccountsRepo.GetAllAsync();
                             decimal g = debit
                                 .FirstOrDefault(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text).balance;
 
-                            var saveSoaDiscount = new StatementsOfAccounts
+                            var saveSoaDiscount = new StatementOfAccount
                             {
                                 id_number = id_number_id.id.ToString(),
                                 course = course_id.id.ToString(),
@@ -536,7 +552,7 @@ namespace school_management_system_model.Forms.transactions
                                 // Cashier in charge assignment
                                 cashier_in_charge = ""
                             };
-                            saveSoaDiscount.saveStatementOfAccount();
+                            await _statementOfAccountsRepo.AddRecords(saveSoaDiscount);
                         }
                     }
                 }
@@ -545,7 +561,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 var currentDebit = Convert.ToDecimal(tTotal.Text);
 
-                var data = new StatementsOfAccounts
+                var data = new StatementOfAccount
                 {
                     id_number = id_number_id.id.ToString(),
                     school_year = school_year_id.id.ToString(),
@@ -560,9 +576,9 @@ namespace school_management_system_model.Forms.transactions
                     // Cashier in charge
                     cashier_in_charge = ""
                 };
-                data.saveStatementOfAccount();
+                await _statementOfAccountsRepo.AddRecords(data);
 
-                var discounts = await new StudentDiscount().GetStudentDiscounts();
+                var discounts = await _studentDiscountRepo.GetAllAsync();
                 var g = discounts
                     .Where(x => x.id_number == tIdNumber.Text)
                     .ToList();
@@ -575,11 +591,11 @@ namespace school_management_system_model.Forms.transactions
                             var discountPercentage = Convert.ToDecimal(discount.discount_percentage);
                             var computation = (discountPercentage / 100) * totalTuitionFee;
 
-                            var e = await new StatementsOfAccounts().GetStatementsOfAccounts();
+                            var e = await _statementOfAccountsRepo.GetAllAsync();
                             decimal debit = e
                                 .FirstOrDefault(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text).balance;
 
-                            var saveSoaDiscount = new StatementsOfAccounts
+                            var saveSoaDiscount = new StatementOfAccount
                             {
                                 id_number = id_number_id.id.ToString(),
                                 course = course_id.id.ToString(),
@@ -593,7 +609,7 @@ namespace school_management_system_model.Forms.transactions
                                 // Cashier in charge assignment
                                 cashier_in_charge = ""
                             };
-                            saveSoaDiscount.saveStatementOfAccount();
+                            await _statementOfAccountsRepo.AddRecords(saveSoaDiscount);
                         }
                     }
                 }
@@ -601,10 +617,10 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private async void loadDiscounts()
+        private async Task loadDiscounts()
         {
             // Loading the discount of the student
-            var a = await new StudentDiscount().GetStudentDiscounts();
+            var a = await _studentDiscountRepo.GetAllAsync();
             var getStudentDiscount = a
                 .Where(x => x.id_number == tIdNumber.Text);
 
@@ -663,7 +679,7 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
             if (tIdNumber.Text == "")
             {
@@ -673,7 +689,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 if (MessageBox.Show("Are you sure you want to save this assessment?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    saveAssessment();
+                    await saveAssessment();
                 }
             }
         }

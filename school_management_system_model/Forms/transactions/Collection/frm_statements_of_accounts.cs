@@ -1,4 +1,7 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Transaction;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +16,11 @@ namespace school_management_system_model.Forms.transactions.Collection
 {
     public partial class frm_statements_of_accounts : Form
     {
+        StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
+        StatementOfAccountsRepository _statementOfAccountsRepo = new StatementOfAccountsRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+
+
         public static frm_statements_of_accounts instance;
         public string fullname { get; set; }
         public string id_number { get; set; }
@@ -22,44 +30,44 @@ namespace school_management_system_model.Forms.transactions.Collection
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_student();
             frm.Text = "Statements Of Accounts";
             frm.ShowDialog();
             if (id_number != null)
             {
-                loadStudentRecords();
+                await loadStudentRecords();
                 loadRecords();
             }
         }
 
-        private void loadStudentRecords()
+        private async Task loadStudentRecords()
         {
-            var data = new StatementsOfAccounts();
-            var studentDetails = data.loadStudentRecords(id_number);
-            tIdNumber.Text = studentDetails.Rows[0]["id_number"].ToString();
-            tCourse.Text = studentDetails.Rows[0]["course"].ToString();
-            tCampus.Text = studentDetails.Rows[0]["campus"].ToString();
-            tYearLevel.Text = studentDetails.Rows[0]["year_level"].ToString();
-            tSemester.Text = studentDetails.Rows[0]["campus"].ToString();
+            var studentCourses = await _studentCourseRepo.GetAllAsync();
+            var data = studentCourses.FirstOrDefault(x => x.id_number == id_number);
+
+            tIdNumber.Text = data.id_number;
+            tCourse.Text = data.course;
+            tCampus.Text = data.campus;
+            tYearLevel.Text = data.year_level;
+            tSemester.Text = data.semester;
         }
 
-        private void loadSchoolYear()
+        private async Task loadSchoolYear()
         {
-            var schoolYear = new StatementsOfAccounts().loadSchoolYear();
-            
-            foreach (DataRow row in schoolYear.Rows)
-            {
-                cmbSchoolYear.Items.Add(row["code"]);
-            }
-            cmbSchoolYear.Text = schoolYear.Rows[0]["code"].ToString();
+            var schoolYear = await _schoolYearRepo.GetAllAsync();
+
+            cmbSchoolYear.ValueMember = "id";
+            cmbSchoolYear.DisplayMember = "code";
+            cmbSchoolYear.DataSource = schoolYear;
         }
 
-        private void loadRecords()
+        private async Task loadRecords()
         {
-            var data = new StatementsOfAccounts();
-            var soa = data.loadLatestSOA(tIdNumber.Text, cmbSchoolYear.Text);
+            var data = await _statementOfAccountsRepo.GetAllAsync();
+            var soa = data.Where(x =>  x.id_number == id_number)
+                .ToList();
             dgv.DataSource = soa;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].Visible = false;
@@ -78,28 +86,28 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         }
 
-        private void tSearch_TextChanged(object sender, EventArgs e)
+        private async void tSearch_TextChanged(object sender, EventArgs e)
         {
             if (tSearch.Text.Length > 2)
             {
-                var data = new StatementsOfAccounts();
-                var search = data.searchRecords(tIdNumber.Text, tSearch.Text);
+                var data = await _statementOfAccountsRepo.GetAllAsync();
+                var search = data.Where(x => x.id_number.ToLower().Contains(tSearch.Text.ToLower())).ToList();
                 dgv.DataSource = search;
             }
             else if (tSearch.Text.Length == 0)
             {
-                loadRecords();
+                await loadRecords();
             }
         }
 
-        private void frm_statements_of_accounts_Load(object sender, EventArgs e)
+        private async void frm_statements_of_accounts_Load(object sender, EventArgs e)
         {
-            loadSchoolYear();
+            await loadSchoolYear();
         }
 
-        private void cmbSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadRecords();
+            await loadRecords();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,24 +15,27 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
 {
     public partial class frm_view_discount : KryptonForm
     {
+        StudentDiscountRepository _studentDiscountRepo = new StudentDiscountRepository();
         public string id_number { get; set; }
         public frm_view_discount()
         {
             InitializeComponent();
         }
 
-        private void frm_view_discount_Load(object sender, EventArgs e)
+        private async void frm_view_discount_Load(object sender, EventArgs e)
         {
-            loadRecords();
+            await loadRecords();
         }
 
-        private void loadRecords()
+        private async Task loadRecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_discounts where id_number='" + id_number + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var studentDiscounts = await _studentDiscountRepo.GetAllAsync();
+            var discount = studentDiscounts.Where(x => x.id_number == id_number).ToList();
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from student_discounts where id_number='" + id_number + "'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
+            dgv.DataSource = discount;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].Visible = false;
             dgv.Columns["code"].Visible = false;

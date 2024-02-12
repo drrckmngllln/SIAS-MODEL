@@ -68,6 +68,7 @@ namespace school_management_system_model.Data.Repositories.Setings
                 };
                 list.Add(curriculum);
             }
+            
             await con.CloseAsync();
             return list;
         }

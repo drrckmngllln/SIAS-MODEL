@@ -1,4 +1,6 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Transaction;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
 {
     public partial class frm_student_discounts : Form
     {
+        StudentDiscountRepository _studentDiscountRepo = new StudentDiscountRepository();
         public static frm_student_discounts instance;
         public string fullname { get; set; }
         public string idNumber { get; set; }
@@ -44,7 +47,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
 
         private async void loadRecords()
         {
-            var a = await new StudentDiscount().GetStudentDiscounts();
+            var a = await _studentDiscountRepo.GetAllAsync();
             var studentDiscount = a
                 .Where(x => x.id_number == idNumber).ToList();
             //var data = new StudentDiscount();
@@ -84,12 +87,13 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
 
 
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        private async void kryptonButton2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete discount?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var delete = new StudentDiscount();
-                delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                delete.id = (Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                await _studentDiscountRepo.DeleteRecords(delete);
                 new Classes.Toastr("Information", "Discount Removed");
                 new ActivityLogger().activityLogger(Email, "Remove discount: " + tStudentName.Text);
                 loadRecords();
@@ -98,7 +102,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
 
 
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             var save = new StudentDiscount
             {
@@ -109,7 +113,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
                 discount_percentage = Convert.ToInt32(tDiscountPercentage.Text),
 
             };
-            save.addRecords();
+            await _studentDiscountRepo.AddRecords(save);
             loadRecords();
             txtClear();
             new Classes.Toastr("Success", "Student Discount Added");
