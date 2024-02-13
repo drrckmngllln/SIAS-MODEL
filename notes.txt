@@ -5,7 +5,9 @@ include repository for student accounts
 
 fix the reporting services?
 
+the add subject in the student enrollment must be paginated
 
+add pagination next and previous in student accounts
 
 add functionality to update the assessment when there is detected
 

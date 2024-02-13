@@ -73,7 +73,12 @@ namespace school_management_system_model.Forms.transactions
         private async void loadRecords()
         {
             var data = await _studentAccountRepo.GetAllAsync();
-            var studentAccount = data.Where(x => x.school_year_id == tSchoolYear.Text).Skip(paging.pageSize * (paging.pageNumber - 1)).Take(paging.pageSize).ToList();
+            var studentAccount = data
+                .Where(x => x.school_year_id == tSchoolYear.Text)
+                .OrderByDescending(x => x.id)
+                .Skip(paging.pageSize * (paging.pageNumber - 1))
+                .Take(paging.pageSize)
+                .ToList();
             dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].HeaderText = "Student Number";
@@ -319,6 +324,35 @@ namespace school_management_system_model.Forms.transactions
         {
             var frm = new frm_student_details(dgv.CurrentRow.Cells["id_number"].Value.ToString(), dgv.CurrentRow.Cells["fullname"].Value.ToString());
             frm.ShowDialog();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber++;
+            tPageSize.Text = paging.pageNumber.ToString();
+            loadRecords();
+            if (dgv.Rows.Count < paging.pageSize)
+            {
+                btnNext.Enabled = false;
+            }
+            btnPrev.Enabled = true;
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber--;
+            tPageSize.Text = paging.pageNumber.ToString();
+            loadRecords();
+            if (tPageSize.Text == "1")
+            {
+                btnPrev.Enabled = false;
+            }
+            btnNext.Enabled = true;
+        }
+
+        private void tPageSize_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

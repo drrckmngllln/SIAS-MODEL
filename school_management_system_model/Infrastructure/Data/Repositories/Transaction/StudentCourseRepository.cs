@@ -2,6 +2,7 @@
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace school_management_system_model.Data.Repositories.Transaction
         CourseRepository _courseRepo = new CourseRepository();
         CampusRepository _campusRepo = new CampusRepository();
         CurriculumRepository _curriculumRepo = new CurriculumRepository();
+        SectionRepository _sectionRepo = new SectionRepository();
 
 
         public async Task AddRecords(StudentCourses entity)
@@ -76,6 +78,17 @@ namespace school_management_system_model.Data.Repositories.Transaction
                             var d = await _campusRepo.GetAllAsync();
                             var campus_id = d.FirstOrDefault(x => x.id == reader.GetInt32("campus_id"));
 
+                            var sections = await _sectionRepo.GetAllAsync();
+                            string section_id;
+                            if (reader.GetString("section_id") == "Not Set")
+                            {
+                                section_id = "Not Set";
+                            }
+                            else
+                            {
+                                section_id = sections.FirstOrDefault(x => x.id == reader.GetInt32("section_id")).section_code;
+                            }
+
                             var studentCourse = new StudentCourses
                             {
                                 id = reader.GetInt32("id"),
@@ -84,7 +97,7 @@ namespace school_management_system_model.Data.Repositories.Transaction
                                 campus = campus_id.code,
                                 curriculum = curriculum_id,
                                 year_level = reader.GetString("year_level"),
-                                section = reader.GetString("section_id"),
+                                section = section_id,
                                 semester = reader.GetString("semester")
                             };
                             list.Add(studentCourse);

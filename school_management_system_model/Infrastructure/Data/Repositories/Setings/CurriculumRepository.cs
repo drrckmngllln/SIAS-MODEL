@@ -3,6 +3,7 @@ using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -44,6 +45,7 @@ namespace school_management_system_model.Data.Repositories.Setings
         public async Task<IReadOnlyList<Curriculums>> GetAllAsync()
         {
             var list = new List<Curriculums>();
+            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("select * from curriculums", con);
             var reader = cmd.ExecuteReader();

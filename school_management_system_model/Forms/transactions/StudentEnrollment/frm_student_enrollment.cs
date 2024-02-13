@@ -11,6 +11,7 @@ using school_management_system_model.Forms.transactions.StudentEnrollment;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,7 +59,19 @@ namespace school_management_system_model.Forms.transactions
         private async void frm_student_enrollment_Load(object sender, EventArgs e)
         {
             await loadRecords();
+            await LoadingStudent();
+        }
 
+        private async Task LoadingStudent()
+        {
+            await Task.Delay(500);
+            tStudentLoading.Visible = false;
+        }
+
+        private async Task EnrollingStudent()
+        {
+            await Task.Delay(200);
+            tLoading.Visible = true;
         }
 
         private async Task loadSection()
@@ -223,7 +236,7 @@ namespace school_management_system_model.Forms.transactions
             dgv.Rows.Remove(dgv.CurrentRow);
         }
 
-        private async void SaveStudentCourse()
+        private async Task SaveStudentCourse()
         {
             var id = await _studentCourseRepo.GetAllAsync();
             var a = id.FirstOrDefault(x => x.id_number == tIdNumber.Text);
@@ -233,7 +246,7 @@ namespace school_management_system_model.Forms.transactions
             await _studentCourseRepo.EnrolStudent(a.id, tYearLevel.Text, b.id.ToString());
         }
 
-        private async void IncrementingSectionNumber()
+        private async Task IncrementingSectionNumber()
         {
             var sections = await _sectionRepository.GetAllAsync();
             var a = sections.FirstOrDefault(x => x.section_code == tSection.Text);
@@ -244,7 +257,7 @@ namespace school_management_system_model.Forms.transactions
             _sectionRepository.IncrementNumberOfStudent(sectionId, numberOfStudent);
         }
 
-        private async void SavingOfSubjects()
+        private async Task SavingOfSubjects()
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
@@ -254,7 +267,7 @@ namespace school_management_system_model.Forms.transactions
                 var b = await _schoolYearRepo.GetAllAsync();
                 var school_year = b.FirstOrDefault(x => x.code == school_year_id).id;
                 var subject_code = row.Cells["subject_code"].Value.ToString();
-                var unique_id = id_number + school_year + subject_code;
+                var unique_id = id_number.ToString() + school_year.ToString() + subject_code.ToString();
                 var descriptive_title = row.Cells["descriptive_title"].Value.ToString();
                 var pre_requisite = row.Cells["pre_requisite"].Value.ToString();
                 var total_units = row.Cells["total_units"].Value.ToString();
@@ -297,12 +310,12 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private async void ChangeStudentStatus()
+        private async Task ChangeStudentStatus()
         {
             await _studentAccountRepo.ChangeStudentStatus(tIdNumber.Text);
         }
 
-        private async void saveAllChanges()
+        private async Task saveAllChanges()
         {
             // INCREMENTING OF SECTIONS
 
@@ -314,13 +327,13 @@ namespace school_management_system_model.Forms.transactions
             if (a.number_of_students <= a.max_number_of_students)
             {
                 // STUDENT COURSE
-                SaveStudentCourse();
+                await SaveStudentCourse();
                 // INCREMENTING NUMBER OF STUDENTS IN SECTIONS
-                IncrementingSectionNumber();
+                await IncrementingSectionNumber();
                 // SAVING THE SUBJECTS
-                SavingOfSubjects();
+                await SavingOfSubjects();
                 // CHANGING THE STATUS OF STUDENT ACCOUNT TO ACCOUNTING
-                ChangeStudentStatus();
+                await ChangeStudentStatus();
 
                 new Classes.Toastr("Success", "Student Enrolled!");
                 new ActivityLogger().activityLogger(Email, "Student Enrollment: " + tIdNumber.Text);
@@ -336,11 +349,12 @@ namespace school_management_system_model.Forms.transactions
 
         }
 
-        private void kryptonButton4_Click(object sender, EventArgs e)
+        private async void kryptonButton4_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to enrol these subjects?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                saveAllChanges();
+                await EnrollingStudent();
+                await saveAllChanges();
             }
         }
 
@@ -436,11 +450,7 @@ namespace school_management_system_model.Forms.transactions
         {
             if (tYearLevel.Text.Length == 1)
             {
-                tLoading.Visible = true;
-                await Task.Delay(200);
-                tLoading.Visible = false;
                 await loadSection();
-
             }
             else if (tYearLevel.Text.Length == 0)
             {

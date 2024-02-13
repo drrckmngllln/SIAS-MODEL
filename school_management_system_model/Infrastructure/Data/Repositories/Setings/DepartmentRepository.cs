@@ -16,9 +16,10 @@ namespace school_management_system_model.Data.Repositories.Setings
         CampusRepository _campusRepo = new CampusRepository();
         public async Task AddRecords(Departments entity)
         {
+            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var sql = "insert into departments(code, description, campus_id) " +
-                "values(@1,@2,3)";
+                "values(@1,@2,@3)";
             using (var cmd = new MySqlCommand(sql, con))
             {
                 cmd.Parameters.AddWithValue("@1", entity.code);
@@ -51,6 +52,7 @@ namespace school_management_system_model.Data.Repositories.Setings
             {
                 var a = await _campusRepo.GetAllAsync();
                 var campus = a.FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
+
                 var departments = new Departments
                 {
                     id = reader.GetInt32("id"),
@@ -67,7 +69,7 @@ namespace school_management_system_model.Data.Repositories.Setings
         public async Task UpdateRecords(Departments entity)
         {
             await con.OpenAsync();
-            var sql = "update departments set code=@1, descriptioin=@2, campus_id=@3 where id='"+ entity.id +"'";
+            var sql = "update departments set code=@1, description=@2, campus_id=@3 where id='"+ entity.id +"'";
             using (var cmd = new MySqlCommand(sql, con))
             {
                 cmd.Parameters.AddWithValue("@1", entity.code);
