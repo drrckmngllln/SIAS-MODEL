@@ -7,7 +7,6 @@ fix the reporting services?
 
 the add subject in the student enrollment must be paginated
 
-add pagination next and previous in student accounts
 
 add functionality to update the assessment when there is detected
 
@@ -19,3 +18,53 @@ finance
 
 discount separate tuition and lab fee
 discount pagination
+
+CURRICULUM SETTING
+1. curriculum saving excel
+2. delete curriculum
+3. update
+SECTION SETTING
+FILTER
+USER MANAGEMENT SETTING 
+1. FILTER
+2. UPDATE
+3. SAVING
+
+INSTRUCTORS SETTING
+1. ERROR CANT OPEN
+
+TRANSACTIONS
+STUDENT ACCOUNTS
+ UPDATE ACCOUNT ERROR
+ STUDENT DETAILS - section 
+ VIEWING OF SUBJECTS
+
+FINANCE
+STUDENT ASSESSMENT ERROOR LHAT HAHAHAHHA
+
+2. DISCOUNT SEPERATE TUTION AND LAB FEE
+3. FILTER SETTING UP LAHAT NG FEES
+4. TUTION FEE/OTHER FESS UPDATE
+5. STATEMENT OF ACCOUNT
+6. VIEWING OF DISCOUNTS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
