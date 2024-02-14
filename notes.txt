@@ -5,14 +5,14 @@ include repository for student accounts
 
 fix the reporting services?
 
-the add subject in the student enrollment must be paginated
+
 
 
 add functionality to update the assessment when there is detected
 
-courses with description
-curriculum subject delayed saving
-create account - update, approve,
+
+
+
 
 finance
 
@@ -20,34 +20,62 @@ discount separate tuition and lab fee
 discount pagination
 
 CURRICULUM SETTING
-1. curriculum saving excel
-2. delete curriculum
-3. update
+1. curriculum saving excel --ok
+2. delete curriculum --ok
+3. update --ok
 SECTION SETTING
-FILTER
+FILTER --ok
+filter by course using cmb --ok
 USER MANAGEMENT SETTING 
-1. FILTER
-2. UPDATE
-3. SAVING
+1. FILTER --ok
+2. UPDATE --ok
+3. SAVING --ok
 
 INSTRUCTORS SETTING
-1. ERROR CANT OPEN
+1. ERROR CANT OPEN --OK
 
 TRANSACTIONS
 STUDENT ACCOUNTS
- UPDATE ACCOUNT ERROR
- STUDENT DETAILS - section 
- VIEWING OF SUBJECTS
+ UPDATE ACCOUNT ERROR -- ok
+ STUDENT DETAILS - section --ok
+ VIEWING OF SUBJECTS --ok
 
 FINANCE
-STUDENT ASSESSMENT ERROOR LHAT HAHAHAHHA
+STUDENT ASSESSMENT ERROOR LHAT HAHAHAHHA --ok
 
-2. DISCOUNT SEPERATE TUTION AND LAB FEE
+2. DISCOUNT SEPERATE TUTION AND LAB FEE -- 
 3. FILTER SETTING UP LAHAT NG FEES
-4. TUTION FEE/OTHER FESS UPDATE
-5. STATEMENT OF ACCOUNT
-6. VIEWING OF DISCOUNTS
+4. TUITION FEE/OTHER FEES UPDATE
 
+ miscellaneous --delete
+
+LABORATORY SETTING
+
+1. UPDATE 
+2. LINKED SUBJECTS AND LINKED SUBJECTS- SEARCH BAR
+3. delete
+DISCOUNT SETTING
+1. UPDATE
+other fees setting
+1. delete
+
+
+registrar
+1. student account update course
+2. change toaster duplicate creating account
+3. connection already op0en cre4ate account
+4. enroll students-add subjects error
+5. view subjects- add subject error / drop subjects
+
+
+super admin
+user management no data display
+
+
+
+
+finance
+student assessment- viewing subject search bar
 
 
 

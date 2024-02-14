@@ -81,52 +81,30 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
                     this.Text = Path.GetFileName(ofd.FileName);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private async Task SaveLoading()
+        private async Task SaveLoading(string message)
         {
-            panelWait.Visible = true;
-            btnSave.Enabled = false;
+            if (message == "Saving")
+            {
+                panelWait.Visible = true;
+                btnSave.Enabled = false;
 
-            int totalSubjects = Convert.ToInt32(dgv.Rows.Count);
+                int totalSubjects = Convert.ToInt32(dgv.Rows.Count);
 
-            UpdateProgressBar(totalSubjects);
-            await Task.Delay(1);
+                UpdateProgressBar(totalSubjects);
+                await Task.Delay(1);
+            }
+            else if (message == "Done")
+            {
+                panelWait.Visible = false;
+            }
 
-            panelWait.Visible = false;
-
-            //progressBar1.Minimum = 0;
-            //progressBar1.Maximum = 100;
-            //progressBar1.Value = 0;
-            //try
-            //{
-            //    await Task.Run(async () =>
-            //    {
-            //        int totalSubjects = Convert.ToInt32(dgv.Rows.Count);
-
-            //        for (int i = 1; i <= totalSubjects; i++)
-            //        {
-            //            await Task.Delay(10);
-
-            //            int progress = (int)(i / ((double)totalSubjects) * 100);
-            //            UpdateProgressBar(progress);
-            //        }
-            //    });
-            //}
-            //catch
-            //{
-            //    new Classes.Toastr("Warning", "An Error has occured while saving");
-            //}
-            //finally
-            //{
-            //    panelWait.Visible = false;
-            //    btnSave.Enabled = true;
-            //}
         }
 
         private void UpdateProgressBar(int progress)
@@ -143,12 +121,12 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
         private async Task saveRecords()
         {
-            await SaveLoading();
+
             var a = await _curriculumRepo.GetAllAsync();
             var curriculum_id = a.FirstOrDefault(x => x.code == curriculum).id;
             var subjects = new CurriculumSubjects
             {
-                uid = curriculum + code,
+                uid = curriculum.ToString() + code.ToString(),
                 curriculum = curriculum_id.ToString(),
                 year_level = year_level,
                 semester = semester,
@@ -171,34 +149,41 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
         private async void kryptonButton1_Click(object sender, EventArgs e)
         {
-            
-            try
+            if (dgv.Rows.Count == 0)
             {
-                foreach (DataGridViewRow row in dgv.Rows)
+                new Classes.Toastr("Warning", "Please Upload a File");
+            }
+            else
+            {
+                try
                 {
-                    uid = curriculum + row.Cells["code"].Value.ToString();
-                    year_level = row.Cells["year_level"].Value.ToString();
-                    semester = row.Cells["semester"].Value.ToString();
-                    code = row.Cells["code"].Value.ToString();
-                    descriptive_title = row.Cells["descriptive_title"].Value.ToString();
-                    total_units = row.Cells["total_units"].Value.ToString();
-                    lecture_units = row.Cells["lecture_units"].Value.ToString();
-                    lab_units = row.Cells["lab_units"].Value.ToString();
-                    pre_requisite = row.Cells["pre_requisite"].Value.ToString();
-                    total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
-                    await saveRecords();
+                    await SaveLoading("Saving");
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+                        uid = curriculum + row.Cells["code"].Value.ToString();
+                        year_level = row.Cells["year_level"].Value.ToString();
+                        semester = row.Cells["semester"].Value.ToString();
+                        code = row.Cells["code"].Value.ToString();
+                        descriptive_title = row.Cells["descriptive_title"].Value.ToString();
+                        total_units = row.Cells["total_units"].Value.ToString();
+                        lecture_units = row.Cells["lecture_units"].Value.ToString();
+                        lab_units = row.Cells["lab_units"].Value.ToString();
+                        pre_requisite = row.Cells["pre_requisite"].Value.ToString();
+                        total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
+                        await saveRecords();
+                    }
+                    await SaveLoading("Done");
+
+                    new Classes.Toastr("Success", "Curriculum Import Success");
+                    new ActivityLogger().activityLogger(Email, "Curriculum File Import: " + this.Text);
+                    Close();
                 }
-
-                new Classes.Toastr("Success", "Curriculum Import Success");
-                new ActivityLogger().activityLogger(Email, "Curriculum File Import: " + this.Text);
-                Close();
+                catch (Exception ex)
+                {
+                    new Classes.Toastr("Error", ex.Message);
+                    await SaveLoading("Done");
+                }
             }
-            catch(Exception ex)
-            {
-                new Classes.Toastr("Error", ex.Message);
-                
-            }
-
         }
     }
 }

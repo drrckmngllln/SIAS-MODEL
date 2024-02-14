@@ -38,7 +38,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             if (id_number != null)
             {
                 await loadStudentRecords();
-                loadRecords();
+                await loadRecords();
             }
         }
 

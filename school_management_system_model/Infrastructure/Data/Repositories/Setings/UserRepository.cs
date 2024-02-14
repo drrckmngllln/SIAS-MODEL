@@ -17,6 +17,7 @@ namespace school_management_system_model.Data.Repositories.Setings
         MySqlConnection con = new MySqlConnection(connection.con());
         public async Task AddRecords(User entity)
         {
+            MySqlConnection con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("insert into users(last_name, first_name, middle_name, fullname, employee_id, email, password, access_level, " +
                 "is_add, is_edit, is_delete, department, is_administrator) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13)", con);
@@ -39,6 +40,9 @@ namespace school_management_system_model.Data.Repositories.Setings
 
         public async Task DeleteRecords(User entity)
         {
+            MySqlConnection con = new MySqlConnection(connection.con());
+
+
             await con.OpenAsync();
             var cmd = new MySqlCommand("delete from users where id='" + entity.id + "'", con);
             await cmd.ExecuteNonQueryAsync();
@@ -47,6 +51,8 @@ namespace school_management_system_model.Data.Repositories.Setings
 
         public async Task<IReadOnlyList<User>> GetAllAsync()
         {
+            MySqlConnection con = new MySqlConnection(connection.con());
+
             var list = new List<User>();
             await con.OpenAsync();
             var cmd = new MySqlCommand("select * from users", con);
@@ -78,6 +84,8 @@ namespace school_management_system_model.Data.Repositories.Setings
 
         public async Task UpdateRecords(User entity)
         {
+            MySqlConnection con = new MySqlConnection(connection.con());
+
             await con.OpenAsync();
             var cmd = new MySqlCommand("update users set last_name=@1, first_name=@2, middle_name=@3, fullname=@4, employee_id=@5, email=@6, password=@7, " +
                 "access_level=@8, is_add=@9, is_edit=@10, is_delete=@11, department=@12, is_administrator=@13 where id='" + entity.id + "'", con);

@@ -151,14 +151,14 @@ namespace school_management_system_model.Forms.transactions
         }
         private async void UpdateAccount()
         {
-            var id_number_id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
+            var id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
 
             var a = await _schoolYearRepo.GetAllAsync();
             var school_year = a.FirstOrDefault(x => x.code == tSchoolYear.Text);
             var frm = new frm_create_account
             //(id_number_id, school_year.id.ToString(), school_year.semester);
             {
-                Id_Number = id_number_id,
+                Id_Number = id_number,
                 School_Year = tSchoolYear.Text,
                 Semester = school_year.semester
             };

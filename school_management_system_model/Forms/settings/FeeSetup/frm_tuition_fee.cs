@@ -154,18 +154,7 @@ namespace school_management_system_model.Forms.settings
 
         private async void tsearch_TextChanged(object sender, EventArgs e)
         {
-            if (tsearch.Text.Length > 2)
-            {
-                var search = await _tuitionFeeRepo.GetAllAsync();
-                var a = search
-                    .Where(x => x.category.ToLower().Contains(tsearch.Text) && x.description.ToLower().Contains(tsearch.Text))
-                    .ToList();
-                dgv.DataSource = a;
-            }
-            else if (tsearch.Text.Length == 0)
-            {
-                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
-            }
+            
         }
 
         private void tCampus_SelectedIndexChanged(object sender, EventArgs e)
@@ -219,6 +208,22 @@ namespace school_management_system_model.Forms.settings
             tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
             tAmount.Text = dgv.CurrentRow.Cells["amount"].Value.ToString();
             btn_save.Text = "Update";
+        }
+
+        private async void tsearch_TextChanged_1(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Length > 2)
+            {
+                var search = await _tuitionFeeRepo.GetAllAsync();
+                var a = search
+                    .Where(x => x.category.ToLower().Contains(tsearch.Text) && x.description.ToLower().Contains(tsearch.Text))
+                    .ToList();
+                dgv.DataSource = a;
+            }
+            else if (tsearch.Text.Length == 0)
+            {
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
+            }
         }
     }
 }

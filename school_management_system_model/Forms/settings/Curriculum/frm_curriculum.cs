@@ -6,6 +6,7 @@ using school_management_system_model.Loggers;
 using System;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
@@ -15,6 +16,9 @@ namespace school_management_system_model.Forms.settings
         CourseRepository _courseRepo = new CourseRepository();
         CurriculumRepository _curriculumRepo = new CurriculumRepository();
         CampusRepository _campusRepo = new CampusRepository();
+        CurriculumSubjectsRepository _curriculumSubjectRepo = new CurriculumSubjectsRepository();
+
+
         string ID;
 
         public string Email { get; }
@@ -124,6 +128,7 @@ namespace school_management_system_model.Forms.settings
             {
                 var edit = new Curriculums
                 {
+                    id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                     code = tCode.Text,
                     description = tDescription.Text,
                     campus = tCampus.SelectedValue.ToString(),
@@ -156,9 +161,16 @@ namespace school_management_system_model.Forms.settings
 
         private async void delete()
         {
+            var curriculums = await _curriculumRepo.GetAllAsync();
+
             var delete = new Curriculums();
             delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
             await _curriculumRepo.DeleteRecords(delete);
+
+            var curriculum_id = curriculums.FirstOrDefault(x => x.code ==  tCode.Text).id;
+            var deleteCurriculumSubject = new CurriculumSubjects();
+            deleteCurriculumSubject.curriculum = curriculum_id.ToString();
+            await _curriculumSubjectRepo.DeleteRecords(deleteCurriculumSubject);
 
             new Classes.Toastr("Information", "Curriculum Deleted");
             new ActivityLogger().activityLogger(Email, "Delete Curriculum: " + dgv.CurrentRow.Cells["description"].Value.ToString());

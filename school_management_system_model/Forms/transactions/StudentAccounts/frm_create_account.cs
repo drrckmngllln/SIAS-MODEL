@@ -28,15 +28,12 @@ namespace school_management_system_model.Forms.transactions
 
         public static frm_create_account instance;
 
-        public int Id_Number { get; set; }
+        public string Id_Number { get; set; }
         public string School_Year { get; set; }
         public string Semester { get; set; }
 
-        //public string schoolYear { get; set; }
-        //public int id { get; set; }
         public string course { get; set; }
         public string campus { get; set; }
-        //public string semester { get; set; }
         public frm_create_account()
         {
             instance = this;
@@ -62,7 +59,7 @@ namespace school_management_system_model.Forms.transactions
                 var school_year = b.FirstOrDefault(x => x.id.ToString() == School_Year);
 
                 tIdNumber.Text = update.id_number;
-                tSchoolyear.Text = school_year.ToString();
+                tSchoolyear.Text = update.school_year_id;
                 tLastname.Text = update.last_name;
                 tFirstname.Text = update.first_name;
                 tMiddlename.Text = update.middle_name;
@@ -93,10 +90,13 @@ namespace school_management_system_model.Forms.transactions
 
 
                 var UpdateCourseData = await _studentCoursesRepo.GetAllAsync();
-                var c = UpdateCourseData.FirstOrDefault(x => x.course == tCourse.Text);
+                //var c = UpdateCourseData.FirstOrDefault(x => x.course == tCourse.Text);
 
-                tCourse.Text = c.course;
-                tCampus.Text = c.campus;
+                //tCourse.Text = c.course;
+                //tCampus.Text = c.campus;
+
+                tCourse.Text = UpdateCourseData.FirstOrDefault(x => x.id_number == update.id_number).course;
+                tCampus.Text = UpdateCourseData.FirstOrDefault(x => x.id_number == update.id_number).campus;
 
 
                 btnCreate.Text = "Update Account";
@@ -211,10 +211,12 @@ namespace school_management_system_model.Forms.transactions
                 else if (this.Text == "Update Account")
                 {
                     var a = await _schoolYearRepo.GetAllAsync();
+                    var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                    var studentAccount = studentAccounts.FirstOrDefault(x => x.id_number == Id_Number);
                     var school_year = a.FirstOrDefault(x => x.code == School_Year);
                     var edit = new StudentAccount
                     {
-                        id = Id_Number,
+                        id = studentAccount.id,
                         id_number = tIdNumber.Text,
                         school_year_id = school_year.id.ToString(),
                         fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,

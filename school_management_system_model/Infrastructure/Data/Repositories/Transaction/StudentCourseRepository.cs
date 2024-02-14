@@ -7,9 +7,7 @@ using school_management_system_model.Data.Repositories.Transaction.StudentAccoun
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace school_management_system_model.Data.Repositories.Transaction
 {
@@ -66,10 +64,12 @@ namespace school_management_system_model.Data.Repositories.Transaction
                             var c = await _curriculumRepo.GetAllAsync();
 
                             string curriculum_id;
-                            if (reader.GetString("curriculum_id") == "Not Set")
+                            var curriculumReader = reader.GetString("curriculum_id");
+                            if (curriculumReader == "Not Set")
                             {
                                 curriculum_id = "Not Set";
                             }
+                            
                             else
                             {
                                 curriculum_id = c.FirstOrDefault(x => x.id == reader.GetInt32("curriculum_id")).code;
@@ -80,7 +80,12 @@ namespace school_management_system_model.Data.Repositories.Transaction
 
                             var sections = await _sectionRepo.GetAllAsync();
                             string section_id;
+                            var sectionReader = reader.GetString("section_id");
                             if (reader.GetString("section_id") == "Not Set")
+                            {
+                                section_id = "Not Set";
+                            }
+                            else if (sectionReader == "0")
                             {
                                 section_id = "Not Set";
                             }

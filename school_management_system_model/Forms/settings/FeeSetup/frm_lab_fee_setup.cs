@@ -218,5 +218,16 @@ namespace school_management_system_model.Forms.settings
         {
             deleteRecords();
         }
+
+        private async void tsearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Length > 2)
+            {
+                var labFees = await _labFeeRepo.GetAllAsync();
+                var search = labFees.Where(x => x.category.ToLower().Contains(tsearch.Text.ToLower()) 
+                || x.description.ToLower().Contains(tsearch.Text)).ToList();
+                dgv.DataSource = search;
+            }
+        }
     }
 }

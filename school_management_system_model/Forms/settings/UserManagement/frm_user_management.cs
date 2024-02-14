@@ -26,12 +26,9 @@ namespace school_management_system_model.Forms.settings.UserManagement
             Office = office;
         }
 
-        
 
-        private async Task UserQuery()
-        {
-            var query = await _userRepo.GetAllAsync();
-        }
+
+
 
         private void frm_user_management_Load(object sender, EventArgs e)
         {
@@ -41,9 +38,19 @@ namespace school_management_system_model.Forms.settings.UserManagement
         private async void loadRecords()
         {
             var a = await _userRepo.GetAllAsync();
-            var users = a
-            .Where(x => x.department == Office).ToList();
-            dgv.DataSource = users;
+            List<User> userList;
+
+            if (Office != null)
+            {
+                userList = a.Where(x => x.department == Office).ToList();
+            }
+            else
+            {
+                userList = a.ToList();
+            }
+
+
+            dgv.DataSource = userList;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["last_name"].Visible = false;
             dgv.Columns["first_name"].Visible = false;
@@ -66,7 +73,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
             if (txtSearch.Text.Length > 2)
             {
                 var a = await _userRepo.GetAllAsync();
-                var search = a.Where(x => x.fullname.ToLower().Contains(txtSearch.Text.ToLower()));
+                var search = a.Where(x => x.fullname.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
                 dgv.DataSource = search;
             }
             else if (txtSearch.Text.Length == 0)
@@ -111,6 +118,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
 
                     var EditUser = new User
                     {
+                        id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
                         middle_name = tMiddlename.Text,

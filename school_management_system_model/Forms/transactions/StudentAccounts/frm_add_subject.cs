@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Repositories.Setings.Section;
 using System;
 using System.Collections.Generic;
@@ -139,7 +140,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
         }
 
-        private void addrecords(string idnumber, string schoolyear)
+        private async void addrecords(string idnumber, string schoolyear)
         {
             var subjectcode = dgv.CurrentRow.Cells["subject_code"].Value.ToString();
             var curriculum = dgv.CurrentRow.Cells["curriculum"].Value.ToString();
@@ -158,13 +159,11 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             var instructor = dgv.CurrentRow.Cells["instructor"].Value.ToString();
 
 
-            var add = new section_subject
+            var add = new SectionSubjects
             {
                 unique_id = idnumber + "-" + schoolyear + "-" + subjectcode,
                 section_code = sectioncode,
                 subject_code = subjectcode,
-                curriculum = curriculum,
-                course = course,
                 year_level = yearlevel,
                 semester = semester,
                 descriptive_title = descriptivetitle,
@@ -174,13 +173,12 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 time = time,
                 day = day,
                 room = room,
-                status = status,
                 instructor = instructor
 
 
             };
-            add.saveSectionSubjects();
-            MessageBox.Show("Subject added Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            await _sectionSubjectsRepo.AddRecords(add);
+            new Classes.Toastr("Success", "Subject Added Successfully");
             Close();
 
 

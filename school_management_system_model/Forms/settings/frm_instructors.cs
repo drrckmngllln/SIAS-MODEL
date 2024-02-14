@@ -109,9 +109,11 @@ namespace school_management_system_model.Forms.settings
             loadRecords();
         }
 
-        private void searchRecords()
+        private async Task searchRecords(string search)
         {
-            
+            var instructors = await _instructorRepo.GetAllAsync();
+            var searchInstructor = instructors.Where(x => x.fullname.ToLower().Contains(search)).ToList();
+            dgv.DataSource = instructors;
         }
 
         private void frm_instructors_KeyDown(object sender, KeyEventArgs e)
@@ -140,9 +142,16 @@ namespace school_management_system_model.Forms.settings
             }
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
-            searchRecords();
+            if (tsearch.Text.Length > 2)
+            {
+                await searchRecords(tsearch.Text);
+            }
+            else if (tsearch.Text.Length == 0)
+            {
+                loadRecords();
+            }
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)

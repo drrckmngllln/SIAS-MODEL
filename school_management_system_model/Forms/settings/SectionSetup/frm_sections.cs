@@ -43,6 +43,10 @@ namespace school_management_system_model.Forms.settings
             tCourse.ValueMember = "id";
             tCourse.DisplayMember = "code";
             tCourse.DataSource = await _courseRepo.GetAllAsync();
+
+            cmbCourse.ValueMember = "id";
+            cmbCourse.DisplayMember = "code";
+            cmbCourse.DataSource = await _courseRepo.GetAllAsync();
         }
 
         private async void loadrecords()
@@ -131,6 +135,13 @@ namespace school_management_system_model.Forms.settings
             new ActivityLogger().activityLogger(Email, "Section Delete: " + tSectionCode.Text);
 
             loadrecords();
+        }
+
+        private async Task FilterByCourse()
+        {
+            var sections = await _sectionRepo.GetAllAsync();
+            var sectionFilter = sections.Where(x => x.course == cmbCourse.Text).ToList();
+            dgv.DataSource = sectionFilter;
         }
 
         private void txtclear()
@@ -231,7 +242,8 @@ namespace school_management_system_model.Forms.settings
             if (tSearch.Text.Length > 2)
             {
                 var search = await _sectionRepo.GetAllAsync();
-                    var a = search.Where(x => x.section_code.ToLower().Contains(tSearch.Text));
+                    var a = search.Where(x => x.section_code.ToLower().Contains(tSearch.Text))
+                    .ToList();
                 dgv.DataSource = a;
             }
             else if (tSearch.Text.Length == 0)
@@ -258,6 +270,11 @@ namespace school_management_system_model.Forms.settings
         private void tCourse_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private async void cmbCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await FilterByCourse();
         }
     }
 }

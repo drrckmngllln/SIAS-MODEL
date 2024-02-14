@@ -132,11 +132,11 @@ namespace school_management_system_model.Forms.settings
 
         private async void searchRecords(string search)
         {
-            var searchRecord = await _miscFeeRepo.GetAllAsync();
-            var a = searchRecord
+            var miscFees = await _miscFeeRepo.GetAllAsync();
+            var searchFee = miscFees
                 .Where(x => x.category.ToLower().Contains(search) || x.description.ToLower().Contains(search))
                 .ToList();
-            dgv.DataSource = searchRecord;
+            dgv.DataSource = searchFee;
         }
 
        

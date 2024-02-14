@@ -1,11 +1,9 @@
-﻿using school_management_system_model.Classes;
-using school_management_system_model.Core.Entities.Settings;
+﻿using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Core.Entities.Transaction;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
-using school_management_system_model.Forms.transactions.Collection;
 using school_management_system_model.Forms.transactions.StudentAssessment;
 using school_management_system_model.Infrastructure.Data.Repositories;
 using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
@@ -35,7 +33,8 @@ namespace school_management_system_model.Forms.transactions
         FeeSummaryRepository _feeSummaryRepo = new FeeSummaryRepository();
         StatementOfAccountsRepository _statementOfAccountsRepo = new StatementOfAccountsRepository();
         StudentDiscountRepository _studentDiscountRepo = new StudentDiscountRepository();
-        
+        AssessmentBreakdownRepository _assessmentBreakdownRepo = new AssessmentBreakdownRepository();
+
 
 
         public static frm_student_assessment instance;
@@ -246,7 +245,7 @@ namespace school_management_system_model.Forms.transactions
                         totalOtherFee += Convert.ToDecimal(row.Cells["computation"].Value);
                     }
                 }
-                loadDiscounts();
+                await loadDiscounts();
 
 
             }
@@ -338,14 +337,14 @@ namespace school_management_system_model.Forms.transactions
 
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                var assessmentBreakdown = new AssessmentBreakdowns
+                var assessmentBreakdown = new AssessmentBreakdown
                 {
                     id_number = id_number_id.id.ToString(),
                     school_year = school_year_id.id.ToString(),
                     fee_type = row.Cells["fee_type"].Value.ToString(),
                     amount = Convert.ToDecimal(row.Cells["computation"].Value)
                 };
-                assessmentBreakdown.SaveRecords();
+                await _assessmentBreakdownRepo.AddRecords(assessmentBreakdown);
             }
         }
 

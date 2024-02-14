@@ -17,9 +17,9 @@ namespace school_management_system_model.Core.Entities
         public string semester { get; set; }
         public string subject_code { get; set; }
         public string descriptive_title { get; set; }
-        public string total_units { get; set; }
-        public string lecture_units { get; set; }
-        public string lab_units { get; set; }
+        public decimal total_units { get; set; }
+        public decimal lecture_units { get; set; }
+        public decimal lab_units { get; set; }
         public string pre_requisite { get; set; }
         public string time { get; set; }
         public string day { get; set; }

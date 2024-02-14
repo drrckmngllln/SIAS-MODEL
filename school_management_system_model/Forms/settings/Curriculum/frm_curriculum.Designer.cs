@@ -65,6 +65,7 @@
             this.kryptonButton1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton1.TabIndex = 17;
             this.kryptonButton1.Values.Text = "Delete";
+            this.kryptonButton1.Visible = false;
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // btn_clear

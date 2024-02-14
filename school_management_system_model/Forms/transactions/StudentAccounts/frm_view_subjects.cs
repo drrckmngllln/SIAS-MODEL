@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
+using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using school_management_system_model.Reports.Accounting;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
     {
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+        StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
 
         public static frm_view_subjects instance;
         public bool IsAdministrator { get; set; }
@@ -87,13 +89,16 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
             var b = await _schoolYearRepo.GetAllAsync();
             var schoolyear = b.FirstOrDefault(x => x.code == schoolYear);
-            //var studentSubjects = new StudentSubject().GetStudentSubjects()
-            //    .Where(x => x.id_number_id == idnumber.id.ToString() && x.school_year_id == schoolyear.id.ToString()).ToList();
-            //dgv.DataSource = studentSubjects;
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_subjects where id_number_id='" + idnumber.id + "' and school_year_id='" + schoolyear.id + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
+
+            var studentSubjects = await _studentSubjectRepo.GetAllAsync();
+            var studentsubject = studentSubjects
+                .Where(x => x.id_number_id == idNumber && x.school_year_id == schoolYear)
+                .ToList();
+
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from student_subjects where id_number_id='" + idnumber.id + "' and school_year_id='" + schoolyear.id + "'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
 
             dgv.Columns.Clear();
             dgv.Columns.Add("subject_code", "Subject Code");
@@ -108,23 +113,35 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             dgv.Columns.Add("instructor", "Instructor");
             dgv.Columns.Add("grade", "Grade");
             dgv.Columns.Add("remarks", "Remarks");
+            dgv.Columns["descriptive_title"].Width = 350;
+
 
             decimal totalUnits = 0;
             decimal lectureUnits = 0;
             decimal labUnits = 0;
             dgv.Rows.Clear();
-            dgv.Columns["subject_code"].HeaderText = "Subject Code";
-            dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
-            dgv.Columns["descriptive_title"].Width = 350;
-            dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
-            dgv.Columns["total_units"].HeaderText = "Total Units";
-            dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
-            dgv.Columns["time"].HeaderText = "Time";
-            dgv.Columns["day"].HeaderText = "Day";
-            dgv.Columns["room"].HeaderText = "Room";
-            dgv.Columns["instructor"].HeaderText = "Instructor";
-            dgv.Columns["grade"].HeaderText = "Grade";
-            dgv.Columns["remarks"].HeaderText = "Remarks";
+
+            foreach (var subject in studentsubject)
+            {
+                dgv.Rows.Add(
+                    subject.subject_code,
+                    subject.descriptive_title,
+                    subject.pre_requisite,
+                    subject.total_units,
+                    subject.lecture_units,
+                    subject.lab_units,
+                    subject.time,
+                    subject.day,
+                    subject.room,
+                    subject.instructor_id,
+                    subject.grade,
+                    subject.remarks
+                    );
+                totalUnits += Convert.ToDecimal(subject.total_units);
+                lectureUnits += Convert.ToDecimal(subject.lecture_units);
+                labUnits += Convert.ToDecimal(subject.lab_units);
+            }
+            dgv.Rows.Add("", "", "", totalUnits, lectureUnits, labUnits );
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
