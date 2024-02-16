@@ -45,6 +45,29 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             await con.CloseAsync();
         }
 
+        public async Task FeeCollectionSave(StatementOfAccount entity)
+        {
+            var con = new MySqlConnection(connection.con());
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("insert into statements_of_accounts(id_number_id, date, reference_no, particulars, debit, credit, balance, cashier_in_charge, school_year_id, " +
+                "course_id, year_level, semester) " +
+                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12)", con);
+            cmd.Parameters.AddWithValue("@1", entity.id_number);
+            cmd.Parameters.AddWithValue("@2", DateTime.Now.ToString("MM-dd-yyyy"));
+            cmd.Parameters.AddWithValue("@3", entity.reference_no);
+            cmd.Parameters.AddWithValue("@4", entity.particulars);
+            cmd.Parameters.AddWithValue("@5", entity.debit);
+            cmd.Parameters.AddWithValue("@6", entity.credit);
+            cmd.Parameters.AddWithValue("@7", entity.balance);
+            cmd.Parameters.AddWithValue("@8", entity.cashier_in_charge);
+            cmd.Parameters.AddWithValue("@9", entity.school_year);
+            cmd.Parameters.AddWithValue("@10", entity.course);
+            cmd.Parameters.AddWithValue("@11", entity.year_level);
+            cmd.Parameters.AddWithValue("@12", entity.semester);
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
         public Task DeleteRecords(StatementOfAccount entity)
         {
             throw new NotImplementedException();

@@ -93,9 +93,19 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             }
         }
 
-        public Task UpdateRecords(FeeBreakdown entity)
+        public async Task UpdateRecords(FeeBreakdown entity)
         {
-            throw new NotImplementedException();
+            var con = new MySqlConnection(connection.con());
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("update fee_breakdown set downpayment=@1, prelim=@2, midterm=@3, semi_finals=@4, finals=@5 " +
+                "where id_number_id='"+ entity.id_number +"' and school_year_id='"+ entity.school_year +"'", con);
+            cmd.Parameters.AddWithValue("@1", entity.downpayment);
+            cmd.Parameters.AddWithValue("@2", entity.prelim);
+            cmd.Parameters.AddWithValue("@3", entity.midterm);
+            cmd.Parameters.AddWithValue("@4", entity.semi_finals);
+            cmd.Parameters.AddWithValue("@5", entity.finals);
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
         }
     }
 }

@@ -77,7 +77,7 @@ user management no data display
 finance
 student assessment- viewing subject search bar
 
-
+make the fee collection selecting student paginated
 
 
 

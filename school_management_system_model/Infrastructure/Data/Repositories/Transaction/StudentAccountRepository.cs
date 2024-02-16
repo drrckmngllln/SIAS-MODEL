@@ -180,5 +180,19 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
             await cmd.ExecuteNonQueryAsync();
             await con.CloseAsync();
         }
+
+        public async Task StudentOfficiallyEnroll(string id_number_id, string status)
+        {
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "update student_accounts set status='"+ status +"' where id='"+ id_number_id +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                await con.CloseAsync();
+            }
+        }
     }
 }

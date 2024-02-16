@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Crypto.Prng;
 using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Core.Entities.Transaction;
@@ -83,9 +84,23 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             }
         }
 
-        public Task UpdateRecords(AssessmentBreakdown entity)
+        public async Task UpdateRecords(AssessmentBreakdown entity)
         {
-            throw new NotImplementedException();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "update assessment_breakdown set id_number_id=@1, school_year_id=@2, fee_type=@3, amount=@4 where id_number_id='"+ entity.id_number +"' " +
+                    "and fee_type='"+ entity.fee_type +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@1", entity.id_number);
+                    cmd.Parameters.AddWithValue("@2", entity.school_year);
+                    cmd.Parameters.AddWithValue("@3", entity.fee_type);
+                    cmd.Parameters.AddWithValue("@4", entity.amount);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                await con.CloseAsync();
+            }
         }
     }
 }
