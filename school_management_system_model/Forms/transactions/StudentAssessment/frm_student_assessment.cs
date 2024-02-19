@@ -86,8 +86,8 @@ namespace school_management_system_model.Forms.transactions
 
                 // Getting Student Course
 
-                var b = await _studentCourseRepo.GetAllAsync();
-                var studentCourse = b.FirstOrDefault(x => x.id_number == studentID);
+                var studentCourses = await _studentCourseRepo.GetAllAsync();
+                var studentCourse = studentCourses.FirstOrDefault(x => x.id_number == studentID);
 
                 tIdNumber.Text = studentID.ToString();
                 tCourse.Text = studentCourse.course.ToString();

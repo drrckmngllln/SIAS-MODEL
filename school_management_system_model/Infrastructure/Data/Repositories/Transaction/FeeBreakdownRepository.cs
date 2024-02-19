@@ -59,37 +59,51 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
-                            var a = await _studentAccountRepo.GetAllAsync();
-                            var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
 
-                            var c = await _schoolYearRepo.GetAllAsync();
-                            var school_year_id = c.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
-                            if (id_number_id != null && school_year_id != null)
+                            var feeBreakdown = new FeeBreakdown
                             {
-                                var feeBreakdown = new FeeBreakdown
-                                {
-                                    id = reader.GetInt32("id"),
-                                    id_number = id_number_id.id_number,
-                                    school_year = school_year_id.code,
-                                    downpayment = reader.GetDecimal("downpayment"),
-                                    prelim = reader.GetDecimal("prelim"),
-                                    midterm = reader.GetDecimal("midterm"),
-                                    semi_finals = reader.GetDecimal("semi_finals"),
-                                    finals = reader.GetDecimal("finals"),
-                                    downpayment_original = reader.GetDecimal("downpayment_original"),
-                                    prelim_original = reader.GetDecimal("prelim_original"),
-                                    midterm_original = reader.GetDecimal("midterm_original"),
-                                    semi_finals_original = reader.GetDecimal("semi_finals_original"),
-                                    finals_original = reader.GetDecimal("finals_original"),
-                                    total_original = reader.GetDecimal("total_original")
-                                };
-                                list.Add(feeBreakdown);
-                            }
+                                id = reader.GetInt32("id"),
+                                id_number = reader.GetString("id_number_id"),
+                                school_year = reader.GetString("school_year_id"),
+                                downpayment = reader.GetDecimal("downpayment"),
+                                prelim = reader.GetDecimal("prelim"),
+                                midterm = reader.GetDecimal("midterm"),
+                                semi_finals = reader.GetDecimal("semi_finals"),
+                                finals = reader.GetDecimal("finals"),
+                                downpayment_original = reader.GetDecimal("downpayment_original"),
+                                prelim_original = reader.GetDecimal("prelim_original"),
+                                midterm_original = reader.GetDecimal("midterm_original"),
+                                semi_finals_original = reader.GetDecimal("semi_finals_original"),
+                                finals_original = reader.GetDecimal("finals_original"),
+                                total_original = reader.GetDecimal("total_original")
+                            };
+                            list.Add(feeBreakdown);
                         }
                     }
                 }
+
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+
+                var schoolYears = await _schoolYearRepo.GetAllAsync();
                 await con.CloseAsync();
-                return list;
+                return list.Select(x => new FeeBreakdown
+                {
+                    id = x.id,
+                    id_number = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
+                    school_year = schoolYears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year)).code,
+                    downpayment = x.downpayment,
+                    prelim = x.prelim,
+                    midterm = x.midterm,
+                    semi_finals = x.semi_finals,
+                    finals = x.finals,
+                    total = x.total,
+                    downpayment_original = x.downpayment_original,
+                    prelim_original = x.prelim_original,
+                    midterm_original = x.midterm_original,
+                    semi_finals_original = x.semi_finals_original,
+                    finals_original = x.finals_original,
+                    total_original = x.total_original
+                }).ToList();
             }
         }
 
@@ -98,7 +112,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("update fee_breakdown set downpayment=@1, prelim=@2, midterm=@3, semi_finals=@4, finals=@5 " +
-                "where id_number_id='"+ entity.id_number +"' and school_year_id='"+ entity.school_year +"'", con);
+                "where id_number_id='" + entity.id_number + "' and school_year_id='" + entity.school_year + "'", con);
             cmd.Parameters.AddWithValue("@1", entity.downpayment);
             cmd.Parameters.AddWithValue("@2", entity.prelim);
             cmd.Parameters.AddWithValue("@3", entity.midterm);
@@ -106,6 +120,22 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             cmd.Parameters.AddWithValue("@5", entity.finals);
             await cmd.ExecuteNonQueryAsync();
             await con.CloseAsync();
+        }
+
+        public async Task<IReadOnlyList<FeeBreakdown>> UpdateRecordsAsync(FeeBreakdown entity)
+        {
+            var con = new MySqlConnection(connection.con());
+            await con.OpenAsync();
+            var cmd = new MySqlCommand("update fee_breakdown set downpayment=@1, prelim=@2, midterm=@3, semi_finals=@4, finals=@5 " +
+                "where id_number_id='" + entity.id_number + "' and school_year_id='" + entity.school_year + "'", con);
+            cmd.Parameters.AddWithValue("@1", entity.downpayment);
+            cmd.Parameters.AddWithValue("@2", entity.prelim);
+            cmd.Parameters.AddWithValue("@3", entity.midterm);
+            cmd.Parameters.AddWithValue("@4", entity.semi_finals);
+            cmd.Parameters.AddWithValue("@5", entity.finals);
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+            return await GetAllAsync();
         }
     }
 }

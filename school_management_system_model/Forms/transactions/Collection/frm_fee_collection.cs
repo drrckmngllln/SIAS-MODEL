@@ -229,7 +229,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             // await _statementOfAccountsRepo.FeeCollectionSave(collect);
             //collect.soaCollection(tIdNumber.Text);
 
-            await loadStatementOfAccount();
+            //await loadStatementOfAccount();
 
             incrementOrNumber();
         }
@@ -330,8 +330,8 @@ namespace school_management_system_model.Forms.transactions.Collection
                 finals = Convert.ToDecimal(dgvFeeBreakdown.Rows[4].Cells["amount"].Value),
                 total = totalBreakdown
             };
-            await _feeBreakdownRepo.UpdateRecords(feeBreakdown);
-            await loadFeeBreakdown();
+            await _feeBreakdownRepo.UpdateRecordsAsync(feeBreakdown);
+            //await loadFeeBreakdown();
         }
 
         private async Task assessmentBreakdownSave()
@@ -353,7 +353,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                     fee_type = row.Cells["fee_type"].Value.ToString(),
                     amount = Convert.ToDecimal(row.Cells["amount"].Value)
                 };
-                await _assessmentBreakdownRepo.UpdateRecords(parameter);
+                await _assessmentBreakdownRepo.UpdateRecordsAsync(parameter);
             }
         }
 
@@ -361,6 +361,8 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private async void btnConfirmPayment_Click(object sender, EventArgs e)
         {
+            btnConfirmPayment.Enabled = false;
+            btnConfirmPayment.Text = "Please Wait...";
             if (tAmount.Text == "" && tParticulars.Text == "")
             {
                 new Classes.Toastr("Error", "Missing Fields");
@@ -386,9 +388,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                         await feeBreakDownSave();
                         await assessmentBreakdownSave();
                         
-                        // for printing
-                        var frm = new frm_payment_message(tIdNumber.Text, 0);
-                        frm.ShowDialog();
+                        
                         
 
                         var studentAccounts = await _studentAccountRepo.GetAllAsync();
@@ -400,8 +400,11 @@ namespace school_management_system_model.Forms.transactions.Collection
                         }
 
                         new Classes.Toastr("Success", "Payment Collected");
-                        await loadRecords();
-                        
+                        //await loadRecords();
+
+                        // for printing
+                        var frm = new frm_payment_message(tIdNumber.Text, 0);
+                        frm.Show();
                     }
                 }
                 else
@@ -421,9 +424,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                             await feeBreakDownSave();
                             await assessmentBreakdownSave();
 
-                            var frm = new frm_payment_message(tIdNumber.Text, change);
-                            frm.ShowDialog();
-
+                            
                             var studentAccounts = await _studentAccountRepo.GetAllAsync();
                             var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
@@ -434,11 +435,18 @@ namespace school_management_system_model.Forms.transactions.Collection
 
                             new Classes.Toastr("Success", "Payment Collected");
                             await loadRecords();
-                            
+
+                            var frm = new frm_payment_message(tIdNumber.Text, change);
+                            frm.ShowDialog();
+
                         }
                     }
                 }
             }
+            tAmount.Clear();
+            tParticulars.Clear();
+            btnConfirmPayment.Enabled = true;
+            btnConfirmPayment.Text = "Confirm Payment";
             try
             {
 

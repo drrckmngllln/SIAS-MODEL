@@ -651,13 +651,14 @@
       <DependentUpon>frm_print_receipt_breakdown.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="TestFolder\Coursesss.cs" />
+    <Compile Include="TestFolder\CoursessssRepository.cs" />
     <Compile Include="TestFolder\frmTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TestFolder\frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestFolder\SectionSubjectss.cs" />
     <Compile Include="ToastrNotification\frm_loading.cs">
       <SubType>Form</SubType>
     </Compile>

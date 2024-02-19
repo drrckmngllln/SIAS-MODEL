@@ -74,14 +74,13 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var a = await _schoolYearRepo.GetAllAsync();
-                var school_year = a.FirstOrDefault(x => x.id == reader.GetInt32("school_year"));
+                
                 var student = new StudentAccount
                 {
                     id = reader.GetInt32("id"),
                     id_number = reader.GetString("id_number"),
                     sy_enrolled = reader.GetString("sy_enrolled"),
-                    school_year_id = school_year.code,
+                    school_year_id = reader.GetString("school_year"),
                     fullname = reader.GetString("fullname"),
                     last_name = reader.GetString("last_name"),
                     first_name = reader.GetString("first_name"),
@@ -114,7 +113,43 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                 list.Add(student);
             }
             await con.CloseAsync();
-            return list;
+
+            var schoolYears = await _schoolYearRepo.GetAllAsync();
+            return list.Select(x => new StudentAccount
+            {
+                id = x.id,
+                id_number = x.id_number,
+                sy_enrolled = x.sy_enrolled,
+                school_year_id = schoolYears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year_id)).code,
+                fullname = x.fullname,
+                last_name = x.last_name,
+                first_name = x.first_name,
+                middle_name = x.middle_name,
+                gender = x.gender,
+                civil_status = x.civil_status,
+                date_of_birth = x.date_of_birth,
+                place_of_birth = x.place_of_birth,
+                nationality = x.nationality,
+                religion = x.religion,
+                status = x.status,
+                contact_no = x.contact_no,
+                email = x.email,
+                elem = x.elem,
+                jhs = x.jhs,
+                shs = x.shs,
+                elem_year = x.elem_year,
+                jhs_year = x.jhs_year,
+                shs_year = x.shs_year,
+                mother_name = x.mother_name,
+                mother_no = x.mother_no,
+                father_name = x.father_name,
+                father_no = x.father_no,
+                home_address = x.home_address,
+                m_occupation = x.m_occupation,
+                f_occupation = x.f_occupation,
+                type_of_student = x.type_of_student,
+                date_of_admission = x.date_of_admission
+            }).ToList();
         }
 
         public async Task UpdateRecords(StudentAccount entity)

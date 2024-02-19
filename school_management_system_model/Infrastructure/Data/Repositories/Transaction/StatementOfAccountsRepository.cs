@@ -1,6 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Classes;
-using school_management_system_model.Core.Entities;
 using school_management_system_model.Core.Entities.Transaction;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
@@ -8,9 +6,7 @@ using school_management_system_model.Data.Repositories.Transaction.StudentAccoun
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Infrastructure.Data.Repositories.Transaction
@@ -102,6 +98,55 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             throw new NotImplementedException();
         }
 
+        //public async Task<IReadOnlyList<StatementOfAccount>> GetAllAsync()
+        //{
+        //    var list = new List<StatementOfAccount>();
+        //    using (var con = new MySqlConnection(connection.con()))
+        //    {
+        //        await con.OpenAsync();
+        //        var sql = "select * from statements_of_accounts";
+        //        using (var cmd = new MySqlCommand(sql, con))
+        //        {
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    var a = await _studentAccountRepo.GetAllAsync();
+        //                    var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+
+        //                    var c = await _schoolYearRepo.GetAllAsync();
+        //                    var school_year_id = c.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
+
+        //                    var b = await _courseRepo.GetAllAsync();
+        //                    var course_id = b.FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
+        //                    if (id_number_id != null && school_year_id != null && course_id != null)
+        //                    {
+        //                        var soa = new StatementOfAccount
+        //                        {
+        //                            id = reader.GetInt32("id"),
+        //                            id_number = id_number_id.id_number,
+        //                            school_year = school_year_id.code,
+        //                            date = reader.GetString("date"),
+        //                            course = course_id.code,
+        //                            year_level = reader.GetString("year_level"),
+        //                            semester = reader.GetString("semester"),
+        //                            reference_no = reader.GetInt32("reference_no"),
+        //                            particulars = reader.GetString("particulars"),
+        //                            debit = reader.GetDecimal("debit"),
+        //                            credit = reader.GetDecimal("credit"),
+        //                            balance = reader.GetDecimal("balance"),
+        //                            cashier_in_charge = reader.GetString("cashier_in_charge")
+        //                        };
+        //                        list.Add(soa);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        await con.CloseAsync();
+        //        return list;
+        //    }
+        //}
+
         public async Task<IReadOnlyList<StatementOfAccount>> GetAllAsync()
         {
             var list = new List<StatementOfAccount>();
@@ -115,39 +160,48 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
-                            var a = await _studentAccountRepo.GetAllAsync();
-                            var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
-
-                            var c = await _schoolYearRepo.GetAllAsync();
-                            var school_year_id = c.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
-
-                            var b = await _courseRepo.GetAllAsync();
-                            var course_id = b.FirstOrDefault(x => x.id == reader.GetInt32("course_id"));
-                            if (id_number_id != null && school_year_id != null && course_id != null)
+                            var soa = new StatementOfAccount
                             {
-                                var soa = new StatementOfAccount
-                                {
-                                    id = reader.GetInt32("id"),
-                                    id_number = id_number_id.id_number,
-                                    school_year = school_year_id.code,
-                                    date = reader.GetString("date"),
-                                    course = course_id.code,
-                                    year_level = reader.GetString("year_level"),
-                                    semester = reader.GetString("semester"),
-                                    reference_no = reader.GetInt32("reference_no"),
-                                    particulars = reader.GetString("particulars"),
-                                    debit = reader.GetDecimal("debit"),
-                                    credit = reader.GetDecimal("credit"),
-                                    balance = reader.GetDecimal("balance"),
-                                    cashier_in_charge = reader.GetString("cashier_in_charge")
-                                };
-                                list.Add(soa);
-                            }
+                                id = reader.GetInt32("id"),
+                                id_number = reader.GetString("id_number_id"),
+                                school_year = reader.GetString("school_year_id"),
+                                date = reader.GetString("date"),
+                                course = reader.GetString("course_id"),
+                                year_level = reader.GetString("year_level"),
+                                semester = reader.GetString("semester"),
+                                reference_no = reader.GetInt32("reference_no"),
+                                particulars = reader.GetString("particulars"),
+                                debit = reader.GetDecimal("debit"),
+                                credit = reader.GetDecimal("credit"),
+                                balance = reader.GetDecimal("balance"),
+                                cashier_in_charge = reader.GetString("cashier_in_charge")
+                            };
+                            list.Add(soa);
                         }
                     }
                 }
                 await con.CloseAsync();
-                return list;
+
+                var studentaccouts = await _studentAccountRepo.GetAllAsync();
+                var schoolyears = await _schoolYearRepo.GetAllAsync();
+                var courses = await _courseRepo.GetAllAsync();
+
+                return list.Select(x => new StatementOfAccount
+                {
+                    id = x.id,
+                    id_number = studentaccouts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
+                    school_year = schoolyears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year)).code,
+                    date = x.date,
+                    course = courses.FirstOrDefault(c => c.id == Convert.ToInt32(x.course)).code,
+                    year_level = x.year_level,
+                    semester = x.semester,
+                    reference_no = x.reference_no,
+                    particulars = x.particulars,
+                    debit = x.debit,
+                    credit = x.credit,
+                    balance = x.balance,
+                    cashier_in_charge = x.cashier_in_charge
+                }).ToList();
             }
         }
 

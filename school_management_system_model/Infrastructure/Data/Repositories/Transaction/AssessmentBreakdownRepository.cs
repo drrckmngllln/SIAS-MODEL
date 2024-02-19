@@ -58,29 +58,33 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
-                            var a = await _studentAccountRepo.GetAllAsync();
-                            var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+                            
 
-                            var c = await _schoolYearRepo.GetAllAsync();
-                            var school_year_id = c.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
-
-                            if (id_number_id != null && school_year_id != null)
+                            var assessmentBreakdown = new AssessmentBreakdown
                             {
-                                var assessmentBreakdown = new AssessmentBreakdown
-                                {
-                                    id = reader.GetInt32("id"),
-                                    id_number = id_number_id.id_number,
-                                    school_year = school_year_id.code,
-                                    fee_type = reader.GetString("fee_type"),
-                                    amount = reader.GetDecimal("amount")
-                                };
-                                list.Add(assessmentBreakdown);
-                            }
+                                id = reader.GetInt32("id"),
+                                id_number = reader.GetString("id_number_id"),
+                                school_year = reader.GetString("school_year_id"),
+                                fee_type = reader.GetString("fee_type"),
+                                amount = reader.GetDecimal("amount")
+                            };
+                            list.Add(assessmentBreakdown);
                         }
                     }
                 }
+
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var schoolYears = await _schoolYearRepo.GetAllAsync();
+
                 await con.CloseAsync();
-                return list;
+                return list.Select(x => new AssessmentBreakdown
+                {
+                    id = x.id,
+                    id_number = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
+                    school_year = schoolYears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year)).code,
+                    fee_type = x.fee_type,
+                    amount = x.amount
+                }).ToList();
             }
         }
 
@@ -89,8 +93,8 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             using (var con = new MySqlConnection(connection.con()))
             {
                 await con.OpenAsync();
-                var sql = "update assessment_breakdown set id_number_id=@1, school_year_id=@2, fee_type=@3, amount=@4 where id_number_id='"+ entity.id_number +"' " +
-                    "and fee_type='"+ entity.fee_type +"'";
+                var sql = "update assessment_breakdown set id_number_id=@1, school_year_id=@2, fee_type=@3, amount=@4 where id_number_id='" + entity.id_number + "' " +
+                    "and fee_type='" + entity.fee_type + "'";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@1", entity.id_number);
@@ -101,6 +105,27 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                 }
                 await con.CloseAsync();
             }
+        }
+
+        public async Task<IReadOnlyList<AssessmentBreakdown>> UpdateRecordsAsync(AssessmentBreakdown entity)
+        {
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "update assessment_breakdown set id_number_id=@1, school_year_id=@2, fee_type=@3, amount=@4 where id_number_id='" + entity.id_number + "' " +
+                    "and fee_type='" + entity.fee_type + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@1", entity.id_number);
+                    cmd.Parameters.AddWithValue("@2", entity.school_year);
+                    cmd.Parameters.AddWithValue("@3", entity.fee_type);
+                    cmd.Parameters.AddWithValue("@4", entity.amount);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                await con.CloseAsync();
+            }
+
+            return await GetAllAsync();
         }
     }
 }

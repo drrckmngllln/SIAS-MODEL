@@ -14,16 +14,17 @@ namespace school_management_system_model.TestFolder
     public partial class frmTest : Form
     {
         //private SectionRepository _sectionRepo = new SectionRepository();
+        CoursessssRepository _courseRepo = new CoursessssRepository();
 
         public frmTest()
         {
             InitializeComponent();
         }
 
-        private void frmTest_Load(object sender, EventArgs e)
+        private async void frmTest_Load(object sender, EventArgs e)
         {
-            //var sectionsubjects = await _sectionRepo.GetAllAsync();
-            //dgv.DataSource = sectionsubjects.Where(x => x.section_code == "41").ToList();
+            var courses = await _courseRepo.GetAllAsync();
+            dgv.DataSource = courses;
         }
 
         
