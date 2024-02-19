@@ -54,15 +54,6 @@ namespace school_management_system_model.Forms.transactions.Collection
             var soaDt = soa.ToDataTable();
 
 
-            //var con = new MySqlConnection(connection.con());
-            //var da = new MySqlDataAdapter("select * from student_accounts where id_number='" + IdNumber + "'", con);
-            //var studentAccounts = new DataTable();
-            //da.Fill(studentAccounts);
-
-            //da = new MySqlDataAdapter("select * from statements_of_accounts where id_number='" + IdNumber + "' order by id desc", con);
-            //var statementOfAccounts = new DataTable();
-            //da.Fill(statementOfAccounts);
-
             crv.LocalReport.DataSources.Clear();
             var rpt = new ReportDataSource("StudentAccounts", studentAccountDt);
 

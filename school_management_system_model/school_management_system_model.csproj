@@ -658,6 +658,12 @@
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
     <Compile Include="TestFolder\SectionSubjectss.cs" />
+    <Compile Include="ToastrNotification\frm_loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToastrNotification\frm_loading.Designer.cs">
+      <DependentUpon>frm_loading.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToastrNotification\frm_toastr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -864,6 +870,9 @@
     <EmbeddedResource Include="Reports\Receipts\isap_receipt.rdlc" />
     <EmbeddedResource Include="TestFolder\frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToastrNotification\frm_loading.resx">
+      <DependentUpon>frm_loading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToastrNotification\frm_toastr.resx">
       <DependentUpon>frm_toastr.cs</DependentUpon>

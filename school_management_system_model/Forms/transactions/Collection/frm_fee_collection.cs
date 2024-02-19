@@ -1,6 +1,4 @@
-﻿using school_management_system_model.Classes;
-using school_management_system_model.Classes.Parameters;
-using school_management_system_model.Core.Entities.Settings;
+﻿using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Core.Entities.Transaction;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction;
@@ -9,13 +7,8 @@ using school_management_system_model.Infrastructure.Data.Repositories;
 using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -121,7 +114,6 @@ namespace school_management_system_model.Forms.transactions.Collection
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].Visible = false;
             dgv.Columns["date"].HeaderText = "Date";
-
             dgv.Columns["year_level"].Visible = false;
             dgv.Columns["semester"].Visible = false;
             dgv.Columns["school_year"].Visible = false;
@@ -233,7 +225,8 @@ namespace school_management_system_model.Forms.transactions.Collection
                 balance = latestBalance - latestCredit,
                 cashier_in_charge = ""
             };
-            await _statementOfAccountsRepo.FeeCollectionSave(collect);
+            await _statementOfAccountsRepo.AddRecordsAsync(collect);
+            // await _statementOfAccountsRepo.FeeCollectionSave(collect);
             //collect.soaCollection(tIdNumber.Text);
 
             await loadStatementOfAccount();
@@ -268,7 +261,6 @@ namespace school_management_system_model.Forms.transactions.Collection
                         amount -= term;
                         row.Cells["amount"].Value = amount;
                     }
-
                 }
             }
         }
@@ -393,6 +385,11 @@ namespace school_management_system_model.Forms.transactions.Collection
                         await soaCollection();
                         await feeBreakDownSave();
                         await assessmentBreakdownSave();
+                        
+                        // for printing
+                        var frm = new frm_payment_message(tIdNumber.Text, 0);
+                        frm.ShowDialog();
+                        
 
                         var studentAccounts = await _studentAccountRepo.GetAllAsync();
                         var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
@@ -404,9 +401,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
                         new Classes.Toastr("Success", "Payment Collected");
                         await loadRecords();
-                        // for printing
-                        var frm = new frm_payment_message(tIdNumber.Text, 0);
-                        frm.ShowDialog();
+                        
                     }
                 }
                 else
@@ -421,9 +416,13 @@ namespace school_management_system_model.Forms.transactions.Collection
                     {
                         if (MessageBox.Show("Confirm Payment: " + tAmountPayable.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
+
                             await soaCollection();
                             await feeBreakDownSave();
                             await assessmentBreakdownSave();
+
+                            var frm = new frm_payment_message(tIdNumber.Text, change);
+                            frm.ShowDialog();
 
                             var studentAccounts = await _studentAccountRepo.GetAllAsync();
                             var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
@@ -435,8 +434,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
                             new Classes.Toastr("Success", "Payment Collected");
                             await loadRecords();
-                            var frm = new frm_payment_message(tIdNumber.Text, change);
-                            frm.ShowDialog();
+                            
                         }
                     }
                 }
