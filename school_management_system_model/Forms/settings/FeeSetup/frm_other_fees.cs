@@ -101,8 +101,8 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                     amount = Convert.ToDecimal(tAmount.Text),
                 };
                 await _otherFeeRepo.UpdateRecords(editRecords);
-                new Classes.Toastr("Success", "Miscellaneous fee Added");
-                new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
+                new Classes.Toastr("Success", "Miscellaneous fee Updated");
+                new ActivityLogger().activityLogger(Email, "Misc Fee Setup Updated: " + tCategory.Text);
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
             }
         }
@@ -125,11 +125,6 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             txtClear();
         }
 
-        private async void tsearch_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void frm_other_fees_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -148,12 +143,13 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             txtClear();
         }
 
-        private void kryptonButton1_Click_1(object sender, EventArgs e)
+        private async void kryptonButton1_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete this fee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var delete = new OtherFee();
                 delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+                await _otherFeeRepo.DeleteRecords(delete);
                 new Classes.Toastr("Information", "Other fee Deleted!");
                 new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);

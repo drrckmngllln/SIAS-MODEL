@@ -13,6 +13,7 @@ namespace school_management_system_model.Core.Entities
         public int id { get; set; }
         public string unique_id { get; set; }
         public string section_code { get; set; }
+        public string curriculum { get; set; }
         public string year_level { get; set; }
         public string semester { get; set; }
         public string subject_code { get; set; }

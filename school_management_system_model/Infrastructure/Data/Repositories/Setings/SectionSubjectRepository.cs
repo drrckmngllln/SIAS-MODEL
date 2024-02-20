@@ -3,6 +3,7 @@ using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Data.Repositories.Setings.Section
@@ -10,14 +11,15 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
     internal class SectionSubjectRepository : IGenericRepository<SectionSubjects>
     {
         SectionRepository _sectionRepo = new SectionRepository();
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
         public async Task AddRecords(SectionSubjects entity)
         {
             using (var con = new MySqlConnection(connection.con()))
             {
                 await con.OpenAsync();
                 var cmd = new MySqlCommand("insert into section_subjects(unique_id, section_code, year_level, semester, subject_code, " +
-                    "descriptive_title, total_units, lecture_units, lab_units, pre_requisite, time, day, room, instructor) " +
-                    "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14)", con);
+                    "descriptive_title, total_units, lecture_units, lab_units, pre_requisite, time, day, room, instructor, curriculum_id) " +
+                    "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15)", con);
                 cmd.Parameters.AddWithValue("@1", entity.unique_id);
                 cmd.Parameters.AddWithValue("@2", entity.section_code);
                 cmd.Parameters.AddWithValue("@3", entity.year_level);
@@ -32,7 +34,8 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
                 cmd.Parameters.AddWithValue("@12", "Not Set");
                 cmd.Parameters.AddWithValue("@13", "Not Set");
                 cmd.Parameters.AddWithValue("@14", "Not Set");
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@15", entity.curriculum);
+                await cmd.ExecuteNonQueryAsync();
                 await con.CloseAsync();
             }
         }
@@ -58,6 +61,7 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
                             id = reader.GetInt32("id"),
                             unique_id = reader.GetString("unique_id"),
                             section_code = reader.GetString("section_code"),
+                            curriculum = reader.GetString("curriculum_id"),
                             year_level = reader.GetString("year_level"),
                             semester = reader.GetString("semester"),
                             subject_code = reader.GetString("subject_code"),
@@ -75,7 +79,28 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
                     }
                 }
                 await con.CloseAsync();
-                return list;
+
+                var curriculums = await _curriculumRepo.GetAllAsync();
+
+                return list.Select(x => new SectionSubjects
+                {
+                    id = x.id,
+                    unique_id = x.unique_id,
+                    section_code = x.section_code,
+                    curriculum = curriculums.FirstOrDefault(c => c.id == Convert.ToInt32(x.curriculum)).code,
+                    year_level = x.year_level,
+                    semester = x.semester,
+                    subject_code = x.subject_code,
+                    descriptive_title = x.descriptive_title,
+                    total_units = x.total_units,
+                    lecture_units = x.lecture_units,
+                    lab_units = x.lab_units,
+                    pre_requisite = x.pre_requisite,
+                    time = x.time,
+                    day = x.day,
+                    room = x.room,
+                    instructor = x.instructor,
+                }).ToList();
             }
         }
         public async Task UpdateRecords(SectionSubjects entity)

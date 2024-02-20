@@ -128,6 +128,8 @@ namespace school_management_system_model.Forms.settings
             var delete = new MiscellaneousFee();
             delete.id = id;
             await _miscFeeRepo.DeleteRecords(delete);
+            new Classes.Toastr("Information", "Misc Fee Deleted");
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
         }
 
         private async void searchRecords(string search)

@@ -33,6 +33,9 @@
             this.btnClose = new Krypton.Toolkit.KryptonButton();
             this.btnSelect = new Krypton.Toolkit.KryptonButton();
             this.tSearch = new Krypton.Toolkit.KryptonTextBox();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.tPageSize = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +59,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(815, 386);
+            this.dgv.Size = new System.Drawing.Size(815, 352);
             this.dgv.TabIndex = 157;
             // 
             // tTitle
@@ -119,12 +122,52 @@
             this.tSearch.TabIndex = 161;
             this.tSearch.TextChanged += new System.EventHandler(this.tSearch_TextChanged);
             // 
+            // btnPrev
+            // 
+            this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrev.Location = new System.Drawing.Point(380, 423);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(26, 23);
+            this.btnPrev.TabIndex = 164;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(433, 423);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(26, 23);
+            this.btnNext.TabIndex = 163;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // tPageSize
+            // 
+            this.tPageSize.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tPageSize.AutoSize = true;
+            this.tPageSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPageSize.ForeColor = System.Drawing.SystemColors.Control;
+            this.tPageSize.Location = new System.Drawing.Point(412, 426);
+            this.tPageSize.Name = "tPageSize";
+            this.tPageSize.Size = new System.Drawing.Size(15, 15);
+            this.tPageSize.TabIndex = 162;
+            this.tPageSize.Text = "1";
+            this.tPageSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frm_select_student
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(839, 507);
+            this.Controls.Add(this.btnPrev);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.tPageSize);
             this.Controls.Add(this.tSearch);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.btnClose);
@@ -155,5 +198,8 @@
         private Krypton.Toolkit.KryptonButton btnClose;
         private Krypton.Toolkit.KryptonButton btnSelect;
         private Krypton.Toolkit.KryptonTextBox tSearch;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label tPageSize;
     }
 }

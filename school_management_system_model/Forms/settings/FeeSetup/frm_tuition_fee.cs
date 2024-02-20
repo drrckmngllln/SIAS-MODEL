@@ -51,7 +51,7 @@ namespace school_management_system_model.Forms.settings
             var a = tuition
                 .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel && x.semester == semester)
                 .ToList();
-            dgv.DataSource = tuition;
+            dgv.DataSource = a;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["uid"].Visible = false;
             dgv.Columns["category"].HeaderText = "Category";
@@ -150,11 +150,6 @@ namespace school_management_system_model.Forms.settings
             {
                 addRecords();
             }
-        }
-
-        private async void tsearch_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void tCampus_SelectedIndexChanged(object sender, EventArgs e)

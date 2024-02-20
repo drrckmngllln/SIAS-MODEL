@@ -27,23 +27,18 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         public static frm_view_subjects instance;
         public bool IsAdministrator { get; set; }
-        
+
         public string id_number { get; set; }
         public string fullname { get; set; }
         public string school_year { get; set; }
 
         public string subjectCode { get; set; }
         public int Id { get; set; }
-        int totalUnits = 0;
-        int totalLectureUnits = 0;
-        int totalLabUnits = 0;
-
-        
 
         public frm_view_subjects()
         {
             instance = this;
-            
+
             InitializeComponent();
         }
 
@@ -95,11 +90,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 .Where(x => x.id_number_id == idNumber && x.school_year_id == schoolYear)
                 .ToList();
 
-            //var con = new MySqlConnection(connection.con());
-            //var da = new MySqlDataAdapter("select * from student_subjects where id_number_id='" + idnumber.id + "' and school_year_id='" + schoolyear.id + "'", con);
-            //var dt = new DataTable();
-            //da.Fill(dt);
-
             dgv.Columns.Clear();
             dgv.Columns.Add("subject_code", "Subject Code");
             dgv.Columns.Add("descriptive_title", "Descriptive Title");
@@ -141,7 +131,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 lectureUnits += Convert.ToDecimal(subject.lecture_units);
                 labUnits += Convert.ToDecimal(subject.lab_units);
             }
-            dgv.Rows.Add("", "", "", totalUnits, lectureUnits, labUnits );
+            dgv.Rows.Add("", "", "", totalUnits, lectureUnits, labUnits);
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -167,11 +157,11 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             try
             {
-                int grade = 0;
-                grade = Convert.ToInt32(dgv.CurrentRow.Cells["grade"].Value);
-                if (grade == 0)
+                var grade = dgv.CurrentRow.Cells["grade"].Value.ToString();
+                if (grade == "No Grade")
                 {
                     tGrade.Text = "No Grade";
                 }
@@ -182,24 +172,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Classes.Toastr("Warning", ex.Message);
             }
-        }
-
-        private void dropSubject(string subjectCode)
-        {
-
-
-            if (MessageBox.Show("Are you sure you want to drop this subject?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("update student_subjects where id_number='" + id_number + "' and subject_code='" + subjectCode + "'", con);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Subject Dropped!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                loadRecords(id_number, school_year);
-            }
-
         }
 
         private DataTable addCustomSubject()
@@ -223,45 +197,25 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
             var data = addCustomSubject();
 
-            if (Id != 0)
-            {
-                dgv.Rows.Add(
-                data.Rows[0]["subject_code"],
-                data.Rows[0]["descriptive_title"],
-                data.Rows[0]["pre_requisite"],
-                data.Rows[0]["total_units"],
-                data.Rows[0]["lecture_units"],
-                data.Rows[0]["lab_units"],
-                data.Rows[0]["time"],
-                data.Rows[0]["day"],
-                data.Rows[0]["room"],
-                data.Rows[0]["instructor"]
-                );
-
-                int lastRow = dgv.Rows.Count - 1;
-                totalUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["total_units"].Value);
-                totalLectureUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lecture_units"].Value);
-                totalLabUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lab_units"].Value);
-            }
-
+            loadRecords(id_number, school_year);
         }
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+        private async void kryptonButton2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to drop this subject!", "Warning", MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to drop this subject!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                var idnumber = id_number;
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var idnumber = studentAccounts.FirstOrDefault(x => x.id_number == id_number).id;
                 string subjectcode = dgv.CurrentRow.Cells["subject_code"].Value.ToString();
                 var con = new MySqlConnection(connection.con());
                 con.Open();
-                var cmd = new MySqlCommand("delete from student_subjects where id_number='" + id_number + "' and subject_code='" + dgv.CurrentRow.Cells["subject_code"].Value.ToString() + "'", con);
-            
+                var cmd = new MySqlCommand("delete from student_subjects where id_number_id='" + idnumber + "' and subject_code='" + dgv.CurrentRow.Cells["subject_code"].Value.ToString() + "'", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 MessageBox.Show("Subject Dropped!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadRecords(id_number, tSchoolYear.Text);
             }
-          
+
         }
         public string studentCampus(string idNumber)
         {
@@ -271,8 +225,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             da.Fill(dt);
             return dt.Rows[0]["campus"].ToString();
         }
-
-        
     }
 }
 

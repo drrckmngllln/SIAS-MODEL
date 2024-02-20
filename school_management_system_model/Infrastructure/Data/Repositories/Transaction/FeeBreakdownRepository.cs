@@ -81,11 +81,12 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                         }
                     }
                 }
+                await con.CloseAsync();
 
                 var studentAccounts = await _studentAccountRepo.GetAllAsync();
 
                 var schoolYears = await _schoolYearRepo.GetAllAsync();
-                await con.CloseAsync();
+
                 return list.Select(x => new FeeBreakdown
                 {
                     id = x.id,

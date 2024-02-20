@@ -1,13 +1,3 @@
-include repository for student accounts
-
-
-
-
-fix the reporting services?
-
-
-
-
 add functionality to update the assessment when there is detected
 
 
@@ -19,80 +9,16 @@ finance
 discount separate tuition and lab fee
 discount pagination
 
-CURRICULUM SETTING
-1. curriculum saving excel --ok
-2. delete curriculum --ok
-3. update --ok
-SECTION SETTING
-FILTER --ok
-filter by course using cmb --ok
-USER MANAGEMENT SETTING 
-1. FILTER --ok
-2. UPDATE --ok
-3. SAVING --ok
-
-INSTRUCTORS SETTING
-1. ERROR CANT OPEN --OK
-
 TRANSACTIONS
-STUDENT ACCOUNTS
- UPDATE ACCOUNT ERROR -- ok
- STUDENT DETAILS - section --ok
- VIEWING OF SUBJECTS --ok
 
 FINANCE
-STUDENT ASSESSMENT ERROOR LHAT HAHAHAHHA --ok
 
 2. DISCOUNT SEPERATE TUTION AND LAB FEE -- 
-3. FILTER SETTING UP LAHAT NG FEES
-4. TUITION FEE/OTHER FEES UPDATE
 
- miscellaneous --delete
+2. ALL DISPLAY NUMBERS, 2 DECIMALS ONLY
+3. ERROR PRINTING ASSESSMENT
+5. DISCOUNT COMPUTATION NOT TRUE
+4. STATEMENT OF ACCOUNT DISPLAY STUDENT NAME
+5. STUDENT DISCOUNT PAGINATED
 
-LABORATORY SETTING
-
-1. UPDATE 
-2. LINKED SUBJECTS AND LINKED SUBJECTS- SEARCH BAR
-3. delete
-DISCOUNT SETTING
-1. UPDATE
-other fees setting
-1. delete
-
-
-registrar
-1. student account update course
-2. change toaster duplicate creating account
-3. connection already op0en cre4ate account
-4. enroll students-add subjects error
-5. view subjects- add subject error / drop subjects
-
-
-super admin
-user management no data display
-
-
-
-
-finance
-student assessment- viewing subject search bar
-
-make the fee collection selecting student paginated
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+6. confirm assessment 

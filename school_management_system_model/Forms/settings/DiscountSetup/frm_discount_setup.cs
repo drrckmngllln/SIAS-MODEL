@@ -104,6 +104,7 @@ namespace school_management_system_model.Forms.settings
                     {
                         var edit = new Discount
                         {
+                            id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cTuition.Text,
@@ -115,6 +116,7 @@ namespace school_management_system_model.Forms.settings
                     {
                         var edit = new Discount
                         {
+                            id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cMisc.Text,
@@ -126,6 +128,8 @@ namespace school_management_system_model.Forms.settings
                     {
                         var edit = new Discount
                         {
+                            id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
+
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cOther.Text,
@@ -137,6 +141,7 @@ namespace school_management_system_model.Forms.settings
                     {
                         var edit = new Discount
                         {
+                            id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                             code = tCode.Text,
                             description = tDescription.Text,
                             discount_target = cLab.Text,

@@ -106,7 +106,7 @@ namespace school_management_system_model.Forms.transactions
             decimal tuitionFee = 0;
             foreach (var item in getStudentTuitionFee)
             {
-                tuitionFee += Convert.ToDecimal(item.lecture_units);
+                tuitionFee += Math.Round(Convert.ToDecimal(item.lecture_units), 2);
             }
 
             int yearLevel = Convert.ToInt32(tYearLevel.Text);
@@ -121,7 +121,8 @@ namespace school_management_system_model.Forms.transactions
             }
             else
             {
-                dgv.Rows.Add(b.category, b.description, b.amount, tuitionFee, tuitionFee * b.amount);
+                decimal computation = tuitionFee * b.amount;
+                dgv.Rows.Add(b.category, b.description, b.amount, Math.Round(tuitionFee, 2), Math.Round(computation, 2));
             }
         }
 
@@ -135,7 +136,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 foreach (var item in getMiscFeeSetup)
                 {
-                    dgv.Rows.Add(item.category, item.description, item.amount, 1, 1 * item.amount);
+                    dgv.Rows.Add(item.category, item.description, Math.Round(item.amount, 2), 1, Math.Round(1 * item.amount, 2));
                 }
             }
             else
@@ -144,19 +145,7 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private async Task addAssessmentRecords()
-        {
-            // Loading of Tuition Fee/Unit
-            await loadTuitionFeePerUnit();
-            // Loading of Miscellaneous Fee
-            await loadMiscFeePerUnit();
-            // Loading of Lab Fee
-            await loadLabFee();
-            // Loading of Other Fee
-            await loadOtherFees();
-            // Loading of Fee Breakdown
-            await FeeBreakDown();
-        }
+       
 
         private async Task loadOtherFees()
         {
@@ -166,7 +155,7 @@ namespace school_management_system_model.Forms.transactions
 
             foreach (var item in a)
             {
-                dgv.Rows.Add(item.category, item.description, item.amount, 1, item.amount * 1);
+                dgv.Rows.Add(item.category, item.description, Math.Round(item.amount, 2), 1, Math.Round(item.amount * 1, 2));
             }
         }
 
@@ -202,6 +191,20 @@ namespace school_management_system_model.Forms.transactions
                     }
                 }
             }
+        }
+
+        private async Task addAssessmentRecords()
+        {
+            // Loading of Tuition Fee/Unit
+            await loadTuitionFeePerUnit();
+            // Loading of Miscellaneous Fee
+            await loadMiscFeePerUnit();
+            // Loading of Lab Fee
+            await loadLabFee();
+            // Loading of Other Fee
+            await loadOtherFees();
+            // Loading of Fee Breakdown
+            await FeeBreakDown();
         }
 
         private async Task loadAssessment()
@@ -246,8 +249,6 @@ namespace school_management_system_model.Forms.transactions
                     }
                 }
                 await loadDiscounts();
-
-
             }
         }
 
@@ -460,11 +461,11 @@ namespace school_management_system_model.Forms.transactions
 
 
             });
-            decimal downpayment = total * Convert.ToDecimal(0.20);
-            decimal prelim = total * Convert.ToDecimal(0.20);
-            decimal midterm = total * Convert.ToDecimal(0.20);
-            decimal semiFinal = total * Convert.ToDecimal(0.20);
-            decimal finals = total * Convert.ToDecimal(0.20);
+            decimal downpayment = Math.Round(total * Convert.ToDecimal(0.20), 2);
+            decimal prelim = Math.Round(total * Convert.ToDecimal(0.20), 2);
+            decimal midterm = Math.Round(total * Convert.ToDecimal(0.20),2);
+            decimal semiFinal = Math.Round(total * Convert.ToDecimal(0.20), 2);
+            decimal finals = Math.Round(total * Convert.ToDecimal(0.20), 2);
 
             tDownpayment.Text = downpayment.ToString();
             tPrelims.Text = prelim.ToString();
@@ -631,7 +632,13 @@ namespace school_management_system_model.Forms.transactions
                 {
                     if (item.discount_target == "Tuition Fee")
                     {
-                        initialBreakdown = totalTuitionFee + totalLabFee;
+                        initialBreakdown = totalTuitionFee;
+                        decimal computation = (Convert.ToDecimal(item.discount_percentage) / 100) * initialBreakdown;
+                        totalDiscount += computation;
+                    }
+                    else if (item.discount_target == "Laboratory Fee")
+                    {
+                        initialBreakdown = totalLabFee;
                         decimal computation = (Convert.ToDecimal(item.discount_percentage) / 100) * initialBreakdown;
                         totalDiscount += computation;
                     }

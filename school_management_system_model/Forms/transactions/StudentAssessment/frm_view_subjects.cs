@@ -62,5 +62,27 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
                 Close();
             }
         }
+
+        private async void tSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tSearch.Text.Length > 2)
+            {
+                var studentSubjects = await _studentSubjectRepo.GetAllAsync();
+                var subjects = studentSubjects
+                    .Where(x => x.id_number_id == id_number && x.subject_code.ToLower().Contains(tSearch.Text) || x.descriptive_title.ToLower().Contains(tSearch.Text))
+                    .ToList();
+
+                dgv.Rows.Clear();
+                foreach (var subject in subjects)
+                {
+                    dgv.Rows.Add(subject.id_number_id, subject.subject_code, subject.descriptive_title, subject.pre_requisite, subject.total_units,
+                        subject.lecture_units, subject.lab_units);
+                }
+            }
+            else if (tSearch.Text.Length == 0)
+            {
+                await loadRecords();
+            }
+        }
     }
 }

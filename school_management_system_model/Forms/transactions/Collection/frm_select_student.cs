@@ -1,5 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,18 +16,21 @@ namespace school_management_system_model.Forms.transactions.Collection
 {
     public partial class frm_select_student : KryptonForm
     {
+        readonly StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+
+        PaginationParams paging = new PaginationParams();
         public frm_select_student()
         {
             InitializeComponent();
         }
 
-        private void frm_select_student_Load(object sender, EventArgs e)
+        private async void frm_select_student_Load(object sender, EventArgs e)
         {
             tTitle.Text = this.Text;
-            loadRecords();
+            await loadRecords();
         }
 
-        private void loadRecords()
+        private async Task loadRecords()
         {
             if (this.Text == "Statements Of Accounts")
             {
@@ -40,11 +45,23 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
             else if (this.Text == "Fee Collection")
             {
-                var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select id_number, fullname from student_accounts", con);
-                var dt = new DataTable();
-                da.Fill(dt);
-                dgv.DataSource = dt;
+                paging.pageSize = 10;
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var student = studentAccounts
+                    .Select(x => new
+                    {
+                        x.id_number,
+                        x.fullname
+                    })
+                    .Skip(paging.pageSize * (paging.pageNumber - 1))
+                    .Take(paging.pageSize)
+                    .ToList();
+
+                //var con = new MySqlConnection(connection.con());
+                //var da = new MySqlDataAdapter("select id_number, fullname from student_accounts", con);
+                //var dt = new DataTable();
+                //da.Fill(dt);
+                dgv.DataSource = student;
                 dgv.Columns["id_number"].HeaderText = "Student Number";
                 dgv.Columns["id_number"].Width = 150;
                 dgv.Columns["fullname"].HeaderText = "Student Name";
@@ -106,7 +123,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             return dt;
         }
 
-        private void tSearch_TextChanged(object sender, EventArgs e)
+        private async void tSearch_TextChanged(object sender, EventArgs e)
         {
             if (tSearch.Text.Length > 2)
             {
@@ -114,8 +131,32 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
             else if (tSearch.Text.Length == 0)
             {
-                loadRecords();
+                await loadRecords();
             }
+        }
+
+        private async void btnNext_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber++;
+            tPageSize.Text = paging.pageNumber.ToString();
+            await loadRecords();
+            if (dgv.Rows.Count < paging.pageSize)
+            {
+                btnNext.Enabled = false;
+            }
+            btnPrev.Enabled = true;
+        }
+
+        private async void btnPrev_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber--;
+            tPageSize.Text = paging.pageNumber.ToString();
+            await loadRecords();
+            if (tPageSize.Text == "1")
+            {
+                btnPrev.Enabled = false;
+            }
+            btnNext.Enabled = true;
         }
     }
 }

@@ -93,6 +93,7 @@
             this.btnPrev.TabIndex = 134;
             this.btnPrev.Text = "<";
             this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnNext
             // 
@@ -104,6 +105,7 @@
             this.btnNext.TabIndex = 133;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // tPageSize
             // 

@@ -51,7 +51,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                 tTitle.Text = "Select Subjects: " + Description;
                 tPageSize.Text = paging.pageNumber.ToString();
                 var a = await _curriculumSubjectsRepo.GetAllAsync();
-                var curriculumSubjects =a
+                var curriculumSubjects = a
                     .Select(x => new
                     {
                         x.code,
@@ -79,7 +79,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                 var a = labFeeSubjects
                     .Where(x => x.lab_fee == Description).ToList();
 
-                
+
                 dgv.DataSource = a;
 
                 dgv.Columns["id"].Visible = false;
@@ -94,20 +94,26 @@ namespace school_management_system_model.Forms.settings.FeeSetup
 
         private async void linkSubject(string code, string descriptiveTitle)
         {
-            var labDescription = await _labFeeRepo.GetAllAsync();
-            var a = labDescription
-                .FirstOrDefault(x => x.description == Description);
-            var linkSubject = new LabFeeSubjects
+            try
             {
-                lab_fee = a.id.ToString(),
-                subject_code = code,
-                descriptive_title = descriptiveTitle
-            };
-            await _labFeeSubjectRepo.AddRecords(linkSubject);
-            new Classes.Toastr("Success", "Subject Linked");
-            Close();
-
-            ;
+                var labDescription = await _labFeeRepo.GetAllAsync();
+                var a = labDescription
+                    .FirstOrDefault(x => x.description == Description);
+                var linkSubject = new LabFeeSubjects
+                {
+                    uid = a.id.ToString() + code.ToString(),
+                    lab_fee = a.id.ToString(),
+                    subject_code = code,
+                    descriptive_title = descriptiveTitle
+                };
+                await _labFeeSubjectRepo.AddRecords(linkSubject);
+                new Classes.Toastr("Success", "Subject Linked");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                new Classes.Toastr("Warning", ex.Message);
+            }
         }
 
         private void removeLink(int id)

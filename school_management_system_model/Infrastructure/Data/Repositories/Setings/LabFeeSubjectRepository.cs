@@ -18,13 +18,14 @@ namespace school_management_system_model.Data.Repositories.Setings
             using (var con = new MySqlConnection(connection.con()))
             {
                 await con.OpenAsync();
-                var sql = "insert into lab_fee_subjects(lab_fee_id, subject_code, descriptive_title) " +
-                    "values(@1,@2,@3)";
+                var sql = "insert into lab_fee_subjects(lab_fee_id, subject_code, descriptive_title, uid) " +
+                    "values(@1,@2,@3,@4)";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@1", entity.lab_fee);
                     cmd.Parameters.AddWithValue("@2", entity.subject_code);
                     cmd.Parameters.AddWithValue("@3", entity.descriptive_title);
+                    cmd.Parameters.AddWithValue("@4", entity.uid);
                     cmd.ExecuteNonQuery();
                 }
                 await con.CloseAsync();

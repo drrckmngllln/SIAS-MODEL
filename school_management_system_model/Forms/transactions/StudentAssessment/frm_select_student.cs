@@ -32,12 +32,12 @@ namespace school_management_system_model.Forms.transactions
             InitializeComponent();
         }
 
-        private void frm_select_student_Load(object sender, EventArgs e)
+        private async void frm_select_student_Load(object sender, EventArgs e)
         {
-            loadRecords();
+            await loadRecords();
         }
 
-        private async void loadRecords()
+        private async Task loadRecords()
         {
             if (this.Text == "Select Student")
             {
@@ -50,10 +50,6 @@ namespace school_management_system_model.Forms.transactions
                     .Take(paging.pageSize)
                     .ToList();
 
-                //var con = new MySqlConnection(connection.con());
-                //var da = new MySqlDataAdapter("select * from student_accounts order by fullname asc", con);
-                //var dt = new DataTable();
-                //da.Fill(dt);
                 dgv.DataSource = student;
                 dgv.Columns["id"].Visible = false;
                 dgv.Columns["id_number"].HeaderText = "ID Number";
@@ -247,6 +243,30 @@ namespace school_management_system_model.Forms.transactions
         private void btnSelect_Click(object sender, EventArgs e)
         {
             SelectFunc();
+        }
+
+        private async void btnNext_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber++;
+            tPageSize.Text = paging.pageNumber.ToString();
+            await loadRecords();
+            if (dgv.Rows.Count < paging.pageSize)
+            {
+                btnNext.Enabled = false;
+            }
+            btnPrev.Enabled = true;
+        }
+
+        private async void btnPrev_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber--;
+            tPageSize.Text = paging.pageNumber.ToString();
+            await loadRecords();
+            if (tPageSize.Text == "1")
+            {
+                btnPrev.Enabled = false;
+            }
+            btnNext.Enabled = true;
         }
     }
 }

@@ -75,6 +75,7 @@
             this.tSearch.Name = "tSearch";
             this.tSearch.Size = new System.Drawing.Size(776, 23);
             this.tSearch.TabIndex = 132;
+            this.tSearch.TextChanged += new System.EventHandler(this.tSearch_TextChanged);
             // 
             // frm_view_subjects
             // 

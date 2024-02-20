@@ -1,15 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
+using school_management_system_model.Infrastructure.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace school_management_system_model.Data.Repositories.Transaction.StudentAssessment
 {
@@ -60,39 +58,12 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    var a = await _studentAccountRepo.GetAllAsync();
-                    var id_number = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
-
-                    var b = await _schoolYearRepo.GetAllAsync();
-                    var school_year = b.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
-
-                    var c = await _instructorRepo.GetAllAsync();
-                    string instructor;
-                    if (reader.GetString("instructor_id") == "Not Set")
-                    {
-                        instructor = "Not Set";
-                    }
-                    else
-                    {
-                        instructor = c.FirstOrDefault(x => x.id == reader.GetInt32("instructor_id")).fullname;
-                    }
-
-                    string grade;
-                    if (reader.GetString("grade") == "No Grade")
-                    {
-                        grade = "No Grade";
-                    }
-                    else
-                    {
-                        grade = reader.GetString("grade");
-                    }
-
                     var studentSubjects = new StudentSubject
                     {
                         id = reader.GetInt32("id"),
-                        id_number_id = id_number.id_number,
+                        id_number_id = reader.GetString("id_number_id"),
                         unique_id = reader.GetString("unique_id"),
-                        school_year_id = school_year.code,
+                        school_year_id = reader.GetString("school_year_id"),
                         subject_code = reader.GetString("subject_code"),
                         descriptive_title = reader.GetString("descriptive_title"),
                         pre_requisite = reader.GetString("pre_requisite"),
@@ -102,7 +73,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                         time = reader.GetString("time"),
                         day = reader.GetString("day"),
                         room = reader.GetString("room"),
-                        instructor_id = instructor,
+                        instructor_id = reader.GetString("instructor_id"),
                         grade = reader.GetString("grade"),
                         remarks = reader.GetString("remarks")
                     };
@@ -111,12 +82,94 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                 await con.CloseAsync();
             }
 
-            return list;
+            var studentAccounts = await _studentAccountRepo.GetAllAsync();
+
+            var schoolYears = await _schoolYearRepo.GetAllAsync();
+
+            var instructors = await _instructorRepo.GetAllAsync();
+
+            var listDt = list.ToDataTable();
+
+            var lastRow = listDt.Rows.Count - 1;
+
+            if (listDt.Rows[lastRow]["instructor_id"].ToString() == "Not Set")
+            {
+                return list.Select(x => new StudentSubject
+                {
+                    id = x.id,
+                    id_number_id = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number_id)).id_number,
+                    unique_id = x.unique_id,
+                    school_year_id = schoolYears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year_id)).code,
+                    subject_code = x.subject_code,
+                    descriptive_title = x.descriptive_title,
+                    pre_requisite = x.pre_requisite,
+                    total_units = x.total_units,
+                    lecture_units = x.lecture_units,
+                    lab_units = x.lab_units,
+                    time = x.time,
+                    day = x.day,
+                    room = x.room,
+                    instructor_id = "Not Set",
+                    grade = x.grade,
+                    remarks = x.remarks,
+                }).ToList();
+            }
+
+            return list.Select(x => new StudentSubject
+            {
+                id = x.id,
+                id_number_id = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number_id)).id_number,
+                unique_id = x.unique_id,
+                school_year_id = schoolYears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year_id)).code,
+                subject_code = x.subject_code,
+                descriptive_title = x.descriptive_title,
+                pre_requisite = x.pre_requisite,
+                total_units = x.total_units,
+                lecture_units = x.lecture_units,
+                lab_units = x.lab_units,
+                time = x.time,
+                day = x.day,
+                room = x.room,
+                instructor_id = instructors.FirstOrDefault(i => i.id == Convert.ToInt32(x.instructor_id)).fullname,
+                grade = x.grade,
+                remarks = x.remarks,
+            }).ToList();
         }
 
         public Task UpdateRecords(StudentSubject entity)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IReadOnlyList<StudentSubject>> AddSubjectAsync(StudentSubject entity)
+        {
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "insert into student_subjects(unique_id, school_year_id, subject_code, descriptive_title, lecture_units, pre_requisite, total_units, lab_units, " +
+                    "time, day, room, instructor_id, id_number_id, grade, remarks) values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14,@15)";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@1", entity.unique_id);
+                    cmd.Parameters.AddWithValue("@2", entity.school_year_id);
+                    cmd.Parameters.AddWithValue("@3", entity.subject_code);
+                    cmd.Parameters.AddWithValue("@4", entity.descriptive_title);
+                    cmd.Parameters.AddWithValue("@5", entity.lecture_units);
+                    cmd.Parameters.AddWithValue("@6", entity.pre_requisite);
+                    cmd.Parameters.AddWithValue("@7", entity.total_units);
+                    cmd.Parameters.AddWithValue("@8", entity.lab_units);
+                    cmd.Parameters.AddWithValue("@9", entity.time);
+                    cmd.Parameters.AddWithValue("@10", entity.day);
+                    cmd.Parameters.AddWithValue("@11", entity.room);
+                    cmd.Parameters.AddWithValue("@12", entity.instructor_id);
+                    cmd.Parameters.AddWithValue("@13", entity.id_number_id);
+                    cmd.Parameters.AddWithValue("@14", entity.grade);
+                    cmd.Parameters.AddWithValue("@15", entity.remarks);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                await con.CloseAsync();
+            }
+            return await GetAllAsync();
         }
     }
 }

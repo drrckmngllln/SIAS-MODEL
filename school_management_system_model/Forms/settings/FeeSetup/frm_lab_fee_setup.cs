@@ -92,6 +92,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     var LabEdit = new LabFee
                     {
+                        id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                         uid = tCategory.Text + tDescription.Text + tCampus.SelectedValue.ToString() + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                         category = tCategory.Text,
                         description = tDescription.Text,
@@ -143,12 +144,13 @@ namespace school_management_system_model.Forms.settings
             txtClear();
         }
 
-        private void deleteRecords()
+        private async void deleteRecords()
         {
             if (MessageBox.Show("Are you sure you want to delete this fee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var delete = new LabFee();
                 delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
+                await _labFeeRepo.DeleteRecords(delete);
                 new Classes.Toastr("Information", "Lab Fee Deleted");
                 new ActivityLogger().activityLogger(Email, "Lab Fee Deletion: " + tDescription.Text);
                 loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
@@ -228,6 +230,11 @@ namespace school_management_system_model.Forms.settings
                 || x.description.ToLower().Contains(tsearch.Text)).ToList();
                 dgv.DataSource = search;
             }
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            txtClear();
         }
     }
 }

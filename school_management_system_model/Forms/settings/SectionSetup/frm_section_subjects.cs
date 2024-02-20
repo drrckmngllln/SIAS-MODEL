@@ -55,6 +55,7 @@ namespace school_management_system_model.Forms.settings
                 dgv.Columns["id"].Visible = false;
                 dgv.Columns["unique_id"].Visible = false;
                 dgv.Columns["section_code"].Visible = false;
+                dgv.Columns["curriculum"].Visible = false;
                 dgv.Columns["year_level"].Visible = false;
                 dgv.Columns["semester"].Visible = false;
                 dgv.Columns["subject_code"].HeaderText = "Subject Code";
@@ -110,15 +111,25 @@ namespace school_management_system_model.Forms.settings
 
                 var b = await _sectionRepo.GetAllAsync();
                 var section_id = b.FirstOrDefault(x => x.section_code == tSectionCode.Text);
-                var frm = new frm_section_subject_add(Email);
-                frm_section_subject_add.instance.curriculum_id = curriculum_id.id.ToString();
-                frm_section_subject_add.instance.sectionCode = tSectionCode.Text;
-                frm_section_subject_add.instance.course = tCourse.Text;
-                frm_section_subject_add.instance.year_level = tYearLevel.Text;
-                frm_section_subject_add.instance.semester = tSemester.Text;
-                frm.Text = "Subjects";
-                frm.ShowDialog();
-                loadRecords();
+
+
+                if (curriculum_id != null)
+                {
+                    var frm = new frm_section_subject_add(Email);
+                    frm_section_subject_add.instance.curriculum = curriculum_id.id.ToString();
+                    frm_section_subject_add.instance.sectionCode = tSectionCode.Text;
+                    frm_section_subject_add.instance.course = tCourse.Text;
+                    frm_section_subject_add.instance.year_level = tYearLevel.Text;
+                    frm_section_subject_add.instance.semester = tSemester.Text;
+                    frm.Text = "Subjects";
+                    frm.ShowDialog();
+                    loadRecords();
+                }
+                else
+                {
+                    new Classes.Toastr("Warning", "No Curriculum added for this course");
+                }
+                
             }
             else if (btn_save.Text == "Update Subject")
             {

@@ -20,7 +20,7 @@ namespace school_management_system_model.Forms.settings
 
         public static frm_section_subject_add instance;
         public string sectionCode { get; set; }
-        public string curriculum_id { get; set; }
+        public string curriculum { get; set; }
         public string course { get; set; }
         public string year_level { get; set; }
         public string section { get; set; }
@@ -28,7 +28,7 @@ namespace school_management_system_model.Forms.settings
         public string remarks { get; set; }
         public string Email { get; }
 
-        Curriculums curriculum = new Curriculums();
+        //Curriculums curriculum = new Curriculums();
         public frm_section_subject_add(string email)
         {
             instance = this;
@@ -47,10 +47,10 @@ namespace school_management_system_model.Forms.settings
             var curriculumSubjects = await _curriculumSubjectsRepo.GetAllAsync();
 
 
-            tCurriculum.Text = curriculums.FirstOrDefault(x => x.id == Convert.ToInt32(curriculum_id)).description;
+            tCurriculum.Text = curriculums.FirstOrDefault(x => x.id == Convert.ToInt32(curriculum)).description;
             tYearLevel.Text = year_level;
             tSemester.Text = semester;
-            var subjects = curriculumSubjects.Where(x => x.curriculum == curriculum_id && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
+            var subjects = curriculumSubjects.Where(x => x.curriculum == curriculum && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
             dgv.DataSource = subjects.ToList();
             dgv.Columns["id"].Visible = false;
             dgv.Columns["uid"].Visible = false;
@@ -73,7 +73,7 @@ namespace school_management_system_model.Forms.settings
             {
                 var save = new SectionSubjects
                 {
-                    unique_id = sectionCode + "-" + curriculum_id + "-" + course + "-" + year_level + "-" + semester + "-" +
+                    unique_id = sectionCode + "-" + curriculum + "-" + course + "-" + year_level + "-" + semester + "-" +
                         dgv.CurrentRow.Cells["code"].Value.ToString(),
                     section_code = sectionCode,
                     year_level = year_level,
@@ -113,6 +113,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     unique_id = uid,
                     section_code = sectionCode,
+                    curriculum = curriculum,
                     year_level = year_level,
                     semester = semester,
                     subject_code = row.Cells["code"].Value.ToString(),
@@ -169,7 +170,7 @@ namespace school_management_system_model.Forms.settings
         private async void btnFilter_Click(object sender, EventArgs e)
         {
             var a = await _curriculumSubjectsRepo.GetAllAsync();
-            var subjects = a.Where(x => x.curriculum == curriculum_id && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
+            var subjects = a.Where(x => x.curriculum == curriculum && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
             dgv.DataSource = subjects.ToList();
         }
     }
