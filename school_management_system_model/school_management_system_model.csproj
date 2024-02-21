@@ -239,12 +239,6 @@
     <Compile Include="Forms\transactions\Cashier\frm_cashier_logs.Designer.cs">
       <DependentUpon>frm_cashier_logs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\transactions\Cashier\frm_select_cashier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\transactions\Cashier\frm_select_cashier.Designer.cs">
-      <DependentUpon>frm_select_cashier.cs</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\Data\Interfaces\IGenericRepository.cs" />
     <Compile Include="Core\Extensions\DataTableExtensions.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CampusRepository.cs" />
@@ -781,12 +775,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\UserManagement\frm_user_management.resx">
       <DependentUpon>frm_user_management.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\transactions\Cashier\frm_cashier_logs.resx">
-      <DependentUpon>frm_cashier_logs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\transactions\Cashier\frm_select_cashier.resx">
-      <DependentUpon>frm_select_cashier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_fee_collection.resx">
       <DependentUpon>frm_fee_collection.cs</DependentUpon>
