@@ -28,8 +28,7 @@ CREATE TABLE IF NOT EXISTS `access_level` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.access_level: ~1 rows (approximately)
-DELETE FROM `access_level`;
-INSERT INTO `access_level` (`id`, `access_level`, `office`) VALUES
+REPLACE INTO `access_level` (`id`, `access_level`, `office`) VALUES
 	(1, 'Administrator', '');
 
 -- Dumping structure for table model_test_db.activity_logger
@@ -41,11 +40,10 @@ CREATE TABLE IF NOT EXISTS `activity_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=256 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=304 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.activity_logger: ~206 rows (approximately)
-DELETE FROM `activity_logger`;
-INSERT INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`, `time`) VALUES
+-- Dumping data for table model_test_db.activity_logger: ~298 rows (approximately)
+REPLACE INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`, `time`) VALUES
 	(1, 'Registrar, Administrator ', 'Administrator', 'Add: Bachelor of Science in Nursing 2021-2022', '00-16-2024', '03:00:55 pm'),
 	(2, 'Registrar, Administrator ', 'Administrator', 'Edit: Bachelor of Science in Nursing Curriculum 2021-2022', '01-16-2024', '03:01:13 pm'),
 	(3, 'Registrar, Administrator ', 'Administrator', 'Section Edit: BSCA-1-', '16-17-2024', '02:16:01 pm'),
@@ -300,7 +298,55 @@ INSERT INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`,
 	(252, 'Manglallan, Derrick Daniel', 'Administrator', 'Misc Fee Setup Add: Other Fee', '36-14-2024', '02:36:29 pm'),
 	(253, 'Manglallan, Derrick Daniel', 'Administrator', 'Misc Fee Setup Add: Tuition Fee', '38-14-2024', '02:38:18 pm'),
 	(254, 'Manglallan, Derrick ', '', 'Add: Bachelor of Science in Custom Administration', '04-14-2024', '03:04:43 pm'),
-	(255, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0003', '14-14-2024', '03:14:07 pm');
+	(255, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0003', '14-14-2024', '03:14:07 pm'),
+	(256, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0001', '30-16-2024', '03:30:09 pm'),
+	(257, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0002', '56-16-2024', '03:56:35 pm'),
+	(258, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0003', '01-16-2024', '04:01:09 pm'),
+	(259, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0004', '15-16-2024', '04:15:18 pm'),
+	(260, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0005', '26-16-2024', '04:26:31 pm'),
+	(261, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0006', '34-19-2024', '11:34:24 am'),
+	(262, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0001', '38-19-2024', '04:38:16 pm'),
+	(263, 'Finance, Admin ', '', 'Miscelaneous fee Add: aksjdhaskdjhqwqeiuh', '06-20-2024', '08:06:40 am'),
+	(264, 'Finance, Admin ', '', 'Miscelaneous fee Add: Rad Tech Laboratory', '45-20-2024', '08:45:17 am'),
+	(265, 'Finance, Admin ', '', 'Miscelaneous fee Add: 123213', '46-20-2024', '08:46:44 am'),
+	(266, 'Finance, Admin ', '', 'Lab Fee Deletion: 123213', '46-20-2024', '08:46:48 am'),
+	(267, 'Finance, Admin ', '', 'Lab Fee Deletion: 123213', '47-20-2024', '08:47:42 am'),
+	(268, 'Finance, Admin ', '', 'Add Discount: adqwe12', '48-20-2024', '08:48:17 am'),
+	(269, 'Finance, Admin ', '', 'Miscellaneous Setup Delete: das', '50-20-2024', '08:50:25 am'),
+	(270, 'Finance, Admin ', '', 'Miscellaneous Setup Delete: Learning Management System', '51-20-2024', '08:51:22 am'),
+	(271, 'Manglallan, Derrick ', '', 'Section Subject Select All', '09-20-2024', '09:09:12 am'),
+	(272, 'Manglallan, Derrick ', '', 'Section Subject Select All', '10-20-2024', '09:10:14 am'),
+	(273, 'Manglallan, Derrick ', '', 'Section Subject Select All', '13-20-2024', '09:13:21 am'),
+	(274, 'Manglallan, Derrick ', '', 'Section Add: BSN-1-A', '15-20-2024', '09:15:30 am'),
+	(275, 'Manglallan, Derrick ', '', 'Add: Bachelor of Science in Nursing', '21-20-2024', '09:21:46 am'),
+	(276, 'Manglallan, Derrick ', '', 'Section Add: BSPharma-1-A', '25-20-2024', '09:25:37 am'),
+	(277, 'Finance, Admin ', '', 'Misc Fee Setup Add: Miscellaneous Fee', '35-20-2024', '02:35:04 pm'),
+	(278, 'Finance, Admin ', '', 'Misc Fee Setup Add: Miscellaneous Fee', '37-20-2024', '02:37:24 pm'),
+	(279, 'Finance, Admin ', '', 'Misc Fee Setup Add: Tuition Fee', '37-20-2024', '02:37:56 pm'),
+	(280, 'Finance, Admin ', '', 'Misc Fee Setup Add: Other Fee', '38-20-2024', '02:38:16 pm'),
+	(281, 'Finance, Admin ', '', 'Misc Fee Setup Add: Other Fee', '38-20-2024', '02:38:25 pm'),
+	(282, 'Finance, Admin ', '', 'Misc Fee Setup Updated: Other Fee', '39-20-2024', '02:39:19 pm'),
+	(283, 'Finance, Admin ', '', 'Select Link Subject: Zoology', '44-20-2024', '02:44:36 pm'),
+	(284, 'Finance, Admin ', '', 'Select Link Subject: Zoology', '48-20-2024', '02:48:14 pm'),
+	(285, 'Finance, Admin ', '', 'Select Link Subject: Zoology', '48-20-2024', '02:48:50 pm'),
+	(286, 'Finance, Admin ', '', 'Select Link Subject: Zoology', '49-20-2024', '02:49:00 pm'),
+	(287, 'Finance, Admin ', '', 'Select Link Subject: Zoology', '49-20-2024', '02:49:07 pm'),
+	(288, 'Finance, Admin ', '', 'Select Link Subject: Zoology', '50-20-2024', '02:50:06 pm'),
+	(289, 'Finance, Admin ', '', 'Select Link Subject: Zoology', '50-20-2024', '02:50:15 pm'),
+	(290, 'Manglallan, Derrick ', '', 'Section Subject Select All', '50-20-2024', '02:50:49 pm'),
+	(291, 'Manglallan, Derrick ', '', 'Curriculum File Import: BSCA.xlsx', '54-20-2024', '02:54:06 pm'),
+	(292, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0002', '56-20-2024', '02:56:54 pm'),
+	(293, 'Finance, Admin ', '', 'Misc Fee Setup Add: Tuition Fee', '58-20-2024', '02:58:48 pm'),
+	(294, 'Manglallan, Derrick ', '', 'Edit: Bachelor of Science in Physical Therapy', '05-20-2024', '03:05:51 pm'),
+	(295, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0001', '06-20-2024', '03:06:58 pm'),
+	(296, 'Finance, Admin ', '', 'Adding discount to student: Alan, Charity ', '08-20-2024', '03:08:41 pm'),
+	(297, 'Finance, Admin ', '', 'Adding discount to student: Alan, Charity ', '09-20-2024', '03:09:08 pm'),
+	(298, 'Finance, Admin ', '', 'Remove discount: Alan, Charity ', '09-20-2024', '03:09:15 pm'),
+	(299, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0001', '30-21-2024', '11:30:18 am'),
+	(300, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0002', '34-21-2024', '11:34:26 am'),
+	(301, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0003', '19-21-2024', '01:19:26 pm'),
+	(302, 'Manglallan, Derrick ', '', 'Section Subject Select All', '22-21-2024', '01:22:20 pm'),
+	(303, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0004', '22-21-2024', '01:22:44 pm');
 
 -- Dumping structure for table model_test_db.admission_schedule
 CREATE TABLE IF NOT EXISTS `admission_schedule` (
@@ -314,8 +360,7 @@ CREATE TABLE IF NOT EXISTS `admission_schedule` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.admission_schedule: ~2 rows (approximately)
-DELETE FROM `admission_schedule`;
-INSERT INTO `admission_schedule` (`id`, `code`, `description`, `schedule_from`, `schedule_to`) VALUES
+REPLACE INTO `admission_schedule` (`id`, `code`, `description`, `schedule_from`, `schedule_to`) VALUES
 	(1, 'Enrollment', 'Enrollment schedule for school year 2023-2024, 1st semester', '2024-01-07', '2024-02-29'),
 	(3, 'Adding and Dropping', 'Schedule for adding and dropping of students', '2024-01-12', '2024-01-19');
 
@@ -327,100 +372,43 @@ CREATE TABLE IF NOT EXISTS `assessment_breakdown` (
   `fee_type` varchar(50) NOT NULL,
   `amount` decimal(18,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.assessment_breakdown: ~89 rows (approximately)
-DELETE FROM `assessment_breakdown`;
-INSERT INTO `assessment_breakdown` (`id`, `id_number_id`, `school_year_id`, `fee_type`, `amount`) VALUES
-	(26, '171', '9', 'TUITION FEE PER UNIT', 8427.12),
-	(27, '171', '9', 'PE Uniform', 123.00),
-	(28, '171', '9', 'POWER FEE', 563.12),
-	(29, '171', '9', 'INTERNET FEE', 563.12),
-	(30, '171', '9', 'Nursing Laboratory', 246.00),
-	(31, '171', '9', 'Learning Management System', 465.23),
-	(32, '171', '9', 'Student Management System', 543.12),
-	(33, '171', '9', 'TUITION FEE PER UNIT', 8427.12),
-	(34, '171', '9', 'PE Uniform', 123.00),
-	(35, '171', '9', 'POWER FEE', 563.12),
-	(36, '171', '9', 'INTERNET FEE', 563.12),
-	(37, '171', '9', 'Nursing Laboratory', 246.00),
-	(38, '171', '9', 'Learning Management System', 465.23),
-	(39, '171', '9', 'Student Management System', 543.12),
-	(40, '172', '9', 'TUITION FEE PER UNIT', 8427.12),
-	(41, '172', '9', 'PE Uniform', 123.00),
-	(42, '172', '9', 'POWER FEE', 563.12),
-	(43, '172', '9', 'INTERNET FEE', 563.12),
-	(44, '172', '9', 'Nursing Laboratory', 246.00),
-	(45, '172', '9', 'Learning Management System', 465.23),
-	(46, '172', '9', 'Student Management System', 543.12),
-	(47, '173', '9', 'TUITION FEE PER UNIT', 7454.76),
-	(48, '173', '9', 'PE Uniform', 123.00),
-	(49, '173', '9', 'POWER FEE', 563.12),
-	(50, '173', '9', 'INTERNET FEE', 563.12),
-	(51, '173', '9', 'Learning Management System', 465.23),
-	(52, '173', '9', 'Student Management System', 543.12),
-	(53, '184', '9', 'TUITION FEE PER UNIT', 7454.76),
-	(54, '184', '9', 'PE Uniform', 123.00),
-	(55, '184', '9', 'POWER FEE', 563.12),
-	(56, '184', '9', 'INTERNET FEE', 563.12),
-	(57, '184', '9', 'Learning Management System', 465.23),
-	(58, '184', '9', 'Student Management System', 543.12),
-	(59, '184', '9', 'Website Maintenance Fee', 235.12),
-	(60, '184', '9', 'TUITION FEE PER UNIT', 7454.76),
-	(61, '184', '9', 'PE Uniform', 123.00),
-	(62, '184', '9', 'POWER FEE', 563.12),
-	(63, '184', '9', 'INTERNET FEE', 563.12),
-	(64, '184', '9', 'Learning Management System', 465.23),
-	(65, '184', '9', 'Student Management System', 543.12),
-	(66, '184', '9', 'Website Maintenance Fee', 235.12),
-	(67, '185', '9', 'TUITION FEE PER UNIT', 13010.88),
-	(68, '185', '9', 'PE Uniform', 123.00),
-	(69, '185', '9', 'POWER FEE', 563.12),
-	(70, '185', '9', 'INTERNET FEE', 563.12),
-	(71, '185', '9', 'Student Management System', 543.12),
-	(72, '185', '9', 'Learning Management System', 345.12),
-	(73, '186', '9', 'TUITION FEE PER UNIT', 13010.88),
-	(74, '186', '9', 'PE Uniform', 123.00),
-	(75, '186', '9', 'POWER FEE', 563.12),
-	(76, '186', '9', 'INTERNET FEE', 563.12),
-	(77, '186', '9', 'Student Management System', 543.12),
-	(78, '186', '9', 'Learning Management System', 345.12),
-	(79, '187', '9', 'TUITION FEE PER UNIT', 13010.88),
-	(80, '187', '9', 'PE Uniform', 123.00),
-	(81, '187', '9', 'POWER FEE', 563.12),
-	(82, '187', '9', 'INTERNET FEE', 563.12),
-	(83, '187', '9', 'Student Management System', 543.12),
-	(84, '187', '9', 'Learning Management System', 345.12),
-	(85, '188', '9', 'TUITION FEE PER UNIT', 13010.88),
-	(86, '188', '9', 'PE Uniform', 123.00),
-	(87, '188', '9', 'POWER FEE', 563.12),
-	(88, '188', '9', 'INTERNET FEE', 563.12),
-	(89, '188', '9', 'Student Management System', 543.12),
-	(90, '188', '9', 'Learning Management System', 345.12),
-	(91, '189', '9', 'TUITION FEE PER UNIT', 13010.88),
-	(92, '189', '9', 'PE Uniform', 123.00),
-	(93, '189', '9', 'POWER FEE', 563.12),
-	(94, '189', '9', 'INTERNET FEE', 563.12),
-	(95, '189', '9', 'Student Management System', 543.12),
-	(96, '189', '9', 'Learning Management System', 345.12),
-	(97, '190', '9', 'TUITION FEE PER UNIT', 13010.88),
-	(98, '190', '9', 'PE Uniform', 123.00),
-	(99, '190', '9', 'POWER FEE', 563.12),
-	(100, '190', '9', 'INTERNET FEE', 563.12),
-	(101, '190', '9', 'Student Management System', 543.12),
-	(102, '190', '9', 'Learning Management System', 345.12),
-	(103, '194', '9', 'TUITION FEE PER UNIT', 10842.40),
-	(104, '194', '9', 'PE Uniform', 123.00),
-	(105, '194', '9', 'POWER FEE', 563.12),
-	(106, '194', '9', 'INTERNET FEE', 563.12),
-	(107, '194', '9', 'Student Management System', 543.12),
-	(108, '194', '9', 'Learning Management System', 345.12),
-	(109, '197', '9', 'TUITION FEE PER UNIT', 7454.76),
-	(110, '197', '9', 'PE Uniform', 123.00),
-	(111, '197', '9', 'POWER FEE', 563.12),
-	(112, '197', '9', 'Learning Management System', 465.23),
-	(113, '197', '9', 'Student Management System', 543.12),
-	(114, '197', '9', 'Website Maintenance Fee', 235.12);
+-- Dumping data for table model_test_db.assessment_breakdown: ~23 rows (approximately)
+REPLACE INTO `assessment_breakdown` (`id`, `id_number_id`, `school_year_id`, `fee_type`, `amount`) VALUES
+	(187, '207', '9', 'Tuition Fee per Unit', 8632.00),
+	(188, '207', '9', 'PE Uniform', 123.00),
+	(189, '207', '9', 'POWER FEE', 563.12),
+	(190, '207', '9', 'Rad Tech Laboratory', 468.24),
+	(191, '207', '9', 'Physics Laboratory', 648.90),
+	(192, '207', '9', 'Nursing Laboratory', 246.00),
+	(193, '207', '9', 'dasasdasdasd', 1213.00),
+	(194, '207', '9', 'Website Maintenance Fee', 235.12),
+	(195, '207', '9', 'awan lang', 1213.00),
+	(196, '208', '9', 'Tuition Fee per Unit', 432.00),
+	(197, '208', '9', 'PE Uniform', 123.00),
+	(198, '208', '9', 'POWER FEE', 563.12),
+	(199, '208', '9', 'Rad Tech Laboratory', 468.24),
+	(200, '208', '9', 'Physics Laboratory', 648.90),
+	(201, '208', '9', 'Nursing Laboratory', 246.00),
+	(202, '208', '9', 'dasasdasdasd', 1213.00),
+	(203, '208', '9', 'Website Maintenance Fee', 235.12),
+	(204, '208', '9', 'awan lang', 1213.00),
+	(205, '209', '9', 'Tuition Fee per Unit', 632.00),
+	(206, '209', '9', 'PE Uniform', 123.00),
+	(207, '209', '9', 'POWER FEE', 563.12),
+	(208, '209', '9', 'Rad Tech Laboratory', 468.24),
+	(209, '209', '9', 'Physics Laboratory', 648.90),
+	(210, '209', '9', 'Nursing Laboratory', 246.00),
+	(211, '209', '9', 'dasasdasdasd', 1213.00),
+	(212, '209', '9', 'Website Maintenance Fee', 235.12),
+	(213, '209', '9', 'awan lang', 1213.00),
+	(214, '210', '9', 'Tuition Fee per Unit', 5136.00),
+	(215, '210', '9', 'PE Uniform', 123.00),
+	(216, '210', '9', 'POWER FEE', 563.12),
+	(217, '210', '9', 'dasasdasdasd', 1213.00),
+	(218, '210', '9', 'Website Maintenance Fee', 235.12),
+	(219, '210', '9', 'awan lang', 1213.00);
 
 -- Dumping structure for table model_test_db.authentication_logger
 CREATE TABLE IF NOT EXISTS `authentication_logger` (
@@ -430,11 +418,10 @@ CREATE TABLE IF NOT EXISTS `authentication_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1284 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1552 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.authentication_logger: ~1,201 rows (approximately)
-DELETE FROM `authentication_logger`;
-INSERT INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time`) VALUES
+-- Dumping data for table model_test_db.authentication_logger: ~1,513 rows (approximately)
+REPLACE INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time`) VALUES
 	(1, 'Manglallan, Derrick Daniel', 'Administrator', '01-08-2024', '08:35:02 am'),
 	(2, 'Alan, Charity T', 'Cashier', '01-08-2024', '09:28:40 am'),
 	(3, 'Alan, Charity T', 'Cashier', '01-08-2024', '09:30:41 am'),
@@ -1717,7 +1704,275 @@ INSERT INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time
 	(1280, 'Finance, Admin ', '', '02-14-2024', '04:13:43 pm'),
 	(1281, 'Finance, Admin ', '', '02-14-2024', '04:14:39 pm'),
 	(1282, 'Finance, Admin ', '', '02-14-2024', '04:16:07 pm'),
-	(1283, 'Finance, Admin ', '', '02-14-2024', '04:17:54 pm');
+	(1283, 'Finance, Admin ', '', '02-14-2024', '04:17:54 pm'),
+	(1284, 'Finance, Admin ', '', '02-15-2024', '02:52:26 pm'),
+	(1285, 'Manglallan, Derrick ', '', '02-16-2024', '02:31:41 pm'),
+	(1286, 'Finance, Admin ', '', '02-16-2024', '02:32:41 pm'),
+	(1287, 'Finance, Admin ', '', '02-16-2024', '02:35:01 pm'),
+	(1288, 'Finance, Admin ', '', '02-16-2024', '02:38:33 pm'),
+	(1289, 'Finance, Admin ', '', '02-16-2024', '02:42:11 pm'),
+	(1290, 'Finance, Admin ', '', '02-16-2024', '02:43:05 pm'),
+	(1291, 'Manglallan, Derrick ', '', '02-16-2024', '02:45:56 pm'),
+	(1292, 'Finance, Admin ', '', '02-16-2024', '02:46:05 pm'),
+	(1293, 'Finance, Admin ', '', '02-16-2024', '02:47:44 pm'),
+	(1294, 'Finance, Admin ', '', '02-16-2024', '02:48:48 pm'),
+	(1295, 'Finance, Admin ', '', '02-16-2024', '02:52:04 pm'),
+	(1296, 'Finance, Admin ', '', '02-16-2024', '02:58:22 pm'),
+	(1297, 'Finance, Admin ', '', '02-16-2024', '03:05:12 pm'),
+	(1298, 'Finance, Admin ', '', '02-16-2024', '03:07:25 pm'),
+	(1299, 'Finance, Admin ', '', '02-16-2024', '03:13:07 pm'),
+	(1300, 'Finance, Admin ', '', '02-16-2024', '03:14:00 pm'),
+	(1301, 'Finance, Admin ', '', '02-16-2024', '03:14:39 pm'),
+	(1302, 'Finance, Admin ', '', '02-16-2024', '03:16:54 pm'),
+	(1303, 'Manglallan, Derrick ', '', '02-16-2024', '03:29:10 pm'),
+	(1304, 'Finance, Admin ', '', '02-16-2024', '03:30:15 pm'),
+	(1305, 'Finance, Admin ', '', '02-16-2024', '03:55:38 pm'),
+	(1306, 'Manglallan, Derrick ', '', '02-16-2024', '03:55:46 pm'),
+	(1307, 'Finance, Admin ', '', '02-16-2024', '03:56:39 pm'),
+	(1308, 'Manglallan, Derrick ', '', '02-16-2024', '04:00:18 pm'),
+	(1309, 'Finance, Admin ', '', '02-16-2024', '04:01:12 pm'),
+	(1310, 'Finance, Admin ', '', '02-16-2024', '04:03:14 pm'),
+	(1311, 'Finance, Admin ', '', '02-16-2024', '04:11:32 pm'),
+	(1312, 'Manglallan, Derrick ', '', '02-16-2024', '04:13:11 pm'),
+	(1313, 'A, B ', 'Administrator', '02-16-2024', '04:15:24 pm'),
+	(1314, 'A, B ', 'Administrator', '02-16-2024', '04:16:00 pm'),
+	(1315, 'A, B ', 'Administrator', '02-16-2024', '04:19:48 pm'),
+	(1316, 'A, B ', 'Administrator', '02-16-2024', '04:20:49 pm'),
+	(1317, 'Manglallan, Derrick ', '', '02-16-2024', '04:24:32 pm'),
+	(1318, 'A, B ', 'Administrator', '02-16-2024', '04:26:57 pm'),
+	(1319, 'A, B ', 'Administrator', '02-16-2024', '04:27:34 pm'),
+	(1320, 'Finance, Admin ', '', '02-19-2024', '08:42:46 am'),
+	(1321, 'Finance, Admin ', '', '02-19-2024', '11:19:34 am'),
+	(1322, 'Finance, Admin ', '', '02-19-2024', '11:24:46 am'),
+	(1323, 'Finance, Admin ', '', '02-19-2024', '11:30:01 am'),
+	(1324, 'Manglallan, Derrick ', '', '02-19-2024', '11:33:01 am'),
+	(1325, 'Finance, Admin ', '', '02-19-2024', '11:34:47 am'),
+	(1326, 'Finance, Admin ', '', '02-19-2024', '11:35:07 am'),
+	(1327, 'Manglallan, Derrick ', '', '02-19-2024', '01:15:03 pm'),
+	(1328, 'Finance, Admin ', '', '02-19-2024', '01:15:15 pm'),
+	(1329, 'Finance, Admin ', '', '02-19-2024', '01:16:37 pm'),
+	(1330, 'Finance, Admin ', '', '02-19-2024', '01:25:03 pm'),
+	(1331, 'Finance, Admin ', '', '02-19-2024', '01:36:47 pm'),
+	(1332, 'Finance, Admin ', '', '02-19-2024', '01:37:05 pm'),
+	(1333, 'Finance, Admin ', '', '02-19-2024', '01:44:38 pm'),
+	(1334, 'Finance, Admin ', '', '02-19-2024', '01:47:45 pm'),
+	(1335, 'Finance, Admin ', '', '02-19-2024', '01:53:47 pm'),
+	(1336, 'Finance, Admin ', '', '02-19-2024', '01:57:17 pm'),
+	(1337, 'Finance, Admin ', '', '02-19-2024', '02:05:59 pm'),
+	(1338, 'Finance, Admin ', '', '02-19-2024', '02:17:47 pm'),
+	(1339, 'Finance, Admin ', '', '02-19-2024', '02:22:28 pm'),
+	(1340, 'Finance, Admin ', '', '02-19-2024', '03:27:07 pm'),
+	(1341, 'Finance, Admin ', '', '02-19-2024', '03:27:39 pm'),
+	(1342, 'Finance, Admin ', '', '02-19-2024', '03:28:15 pm'),
+	(1343, 'Finance, Admin ', '', '02-19-2024', '03:36:53 pm'),
+	(1344, 'Finance, Admin ', '', '02-19-2024', '03:53:35 pm'),
+	(1345, 'Finance, Admin ', '', '02-19-2024', '03:54:55 pm'),
+	(1346, 'Manglallan, Derrick ', '', '02-19-2024', '04:06:24 pm'),
+	(1347, 'Manglallan, Derrick ', '', '02-19-2024', '04:10:16 pm'),
+	(1348, 'Finance, Admin ', '', '02-19-2024', '04:29:51 pm'),
+	(1349, 'Manglallan, Derrick ', '', '02-19-2024', '04:29:59 pm'),
+	(1350, 'Manglallan, Derrick ', '', '02-19-2024', '04:30:56 pm'),
+	(1351, 'Manglallan, Derrick ', '', '02-19-2024', '04:31:11 pm'),
+	(1352, 'Manglallan, Derrick ', '', '02-19-2024', '04:31:45 pm'),
+	(1353, 'Manglallan, Derrick ', '', '02-19-2024', '04:33:10 pm'),
+	(1354, 'Manglallan, Derrick ', '', '02-19-2024', '04:36:04 pm'),
+	(1355, 'Manglallan, Derrick ', '', '02-19-2024', '04:37:44 pm'),
+	(1356, 'Finance, Admin ', '', '02-19-2024', '04:38:20 pm'),
+	(1357, 'Finance, Admin ', '', '02-19-2024', '04:39:05 pm'),
+	(1358, 'Finance, Admin ', '', '02-19-2024', '04:40:23 pm'),
+	(1359, 'Finance, Admin ', '', '02-19-2024', '04:41:19 pm'),
+	(1360, 'Finance, Admin ', '', '02-19-2024', '04:44:15 pm'),
+	(1361, 'Finance, Admin ', '', '02-19-2024', '04:45:06 pm'),
+	(1362, 'Finance, Admin ', '', '02-19-2024', '04:46:41 pm'),
+	(1363, 'Finance, Admin ', '', '02-19-2024', '04:47:59 pm'),
+	(1364, 'Manglallan, Derrick ', '', '02-20-2024', '08:06:09 am'),
+	(1365, 'Finance, Admin ', '', '02-20-2024', '08:06:24 am'),
+	(1366, 'Manglallan, Derrick ', '', '02-20-2024', '08:46:04 am'),
+	(1367, 'Finance, Admin ', '', '02-20-2024', '08:46:22 am'),
+	(1368, 'Finance, Admin ', '', '02-20-2024', '08:47:32 am'),
+	(1369, 'Finance, Admin ', '', '02-20-2024', '08:49:56 am'),
+	(1370, 'Finance, Admin ', '', '02-20-2024', '08:51:09 am'),
+	(1371, 'Manglallan, Derrick ', '', '02-20-2024', '08:51:40 am'),
+	(1372, 'Manglallan, Derrick ', '', '02-20-2024', '08:58:01 am'),
+	(1373, 'Manglallan, Derrick ', '', '02-20-2024', '08:58:30 am'),
+	(1374, 'Finance, Admin ', '', '02-20-2024', '09:01:43 am'),
+	(1375, 'Manglallan, Derrick ', '', '02-20-2024', '09:01:51 am'),
+	(1376, 'Manglallan, Derrick ', '', '02-20-2024', '09:03:10 am'),
+	(1377, 'Manglallan, Derrick ', '', '02-20-2024', '09:03:50 am'),
+	(1378, 'Manglallan, Derrick ', '', '02-20-2024', '09:08:06 am'),
+	(1379, 'Manglallan, Derrick ', '', '02-20-2024', '09:09:54 am'),
+	(1380, 'Manglallan, Derrick ', '', '02-20-2024', '09:12:14 am'),
+	(1381, 'Manglallan, Derrick ', '', '02-20-2024', '09:13:01 am'),
+	(1382, 'Manglallan, Derrick ', '', '02-20-2024', '09:14:01 am'),
+	(1383, 'Manglallan, Derrick ', '', '02-20-2024', '09:14:52 am'),
+	(1384, 'Manglallan, Derrick ', '', '02-20-2024', '09:15:50 am'),
+	(1385, 'Manglallan, Derrick ', '', '02-20-2024', '09:18:44 am'),
+	(1386, 'Manglallan, Derrick ', '', '02-20-2024', '09:25:13 am'),
+	(1387, 'Manglallan, Derrick ', '', '02-20-2024', '09:26:09 am'),
+	(1388, 'Finance, Admin ', '', '02-20-2024', '09:27:01 am'),
+	(1389, 'Manglallan, Derrick ', '', '02-20-2024', '09:27:12 am'),
+	(1390, 'Manglallan, Derrick ', '', '02-20-2024', '09:29:03 am'),
+	(1391, 'Manglallan, Derrick ', '', '02-20-2024', '09:31:59 am'),
+	(1392, 'Manglallan, Derrick ', '', '02-20-2024', '09:33:15 am'),
+	(1393, 'Manglallan, Derrick ', '', '02-20-2024', '09:35:55 am'),
+	(1394, 'Manglallan, Derrick ', '', '02-20-2024', '09:39:32 am'),
+	(1395, 'Manglallan, Derrick ', '', '02-20-2024', '09:40:07 am'),
+	(1396, 'Manglallan, Derrick ', '', '02-20-2024', '10:04:29 am'),
+	(1397, 'Manglallan, Derrick ', '', '02-20-2024', '10:04:44 am'),
+	(1398, 'Manglallan, Derrick ', '', '02-20-2024', '10:05:26 am'),
+	(1399, 'Manglallan, Derrick ', '', '02-20-2024', '10:07:10 am'),
+	(1400, 'Manglallan, Derrick ', '', '02-20-2024', '10:07:59 am'),
+	(1401, 'Manglallan, Derrick ', '', '02-20-2024', '10:08:15 am'),
+	(1402, 'Manglallan, Derrick ', '', '02-20-2024', '10:09:32 am'),
+	(1403, 'Manglallan, Derrick ', '', '02-20-2024', '10:10:07 am'),
+	(1404, 'Manglallan, Derrick ', '', '02-20-2024', '10:24:02 am'),
+	(1405, 'Manglallan, Derrick ', '', '02-20-2024', '10:25:09 am'),
+	(1406, 'Manglallan, Derrick ', '', '02-20-2024', '10:25:59 am'),
+	(1407, 'Manglallan, Derrick ', '', '02-20-2024', '10:28:57 am'),
+	(1408, 'Manglallan, Derrick ', '', '02-20-2024', '10:31:29 am'),
+	(1409, 'Manglallan, Derrick ', '', '02-20-2024', '10:40:44 am'),
+	(1410, 'Manglallan, Derrick ', '', '02-20-2024', '01:33:47 pm'),
+	(1411, 'Manglallan, Derrick ', '', '02-20-2024', '01:34:19 pm'),
+	(1412, 'Manglallan, Derrick ', '', '02-20-2024', '01:39:56 pm'),
+	(1413, 'Manglallan, Derrick ', '', '02-20-2024', '01:55:43 pm'),
+	(1414, 'Manglallan, Derrick ', '', '02-20-2024', '01:56:49 pm'),
+	(1415, 'Manglallan, Derrick ', '', '02-20-2024', '01:58:10 pm'),
+	(1416, 'Manglallan, Derrick ', '', '02-20-2024', '02:01:45 pm'),
+	(1417, 'Manglallan, Derrick ', '', '02-20-2024', '02:03:50 pm'),
+	(1418, 'Manglallan, Derrick ', '', '02-20-2024', '02:04:05 pm'),
+	(1419, 'Manglallan, Derrick ', '', '02-20-2024', '02:05:35 pm'),
+	(1420, 'Manglallan, Derrick ', '', '02-20-2024', '02:06:17 pm'),
+	(1421, 'Manglallan, Derrick ', '', '02-20-2024', '02:10:40 pm'),
+	(1422, 'Manglallan, Derrick ', '', '02-20-2024', '02:13:06 pm'),
+	(1423, 'Manglallan, Derrick ', '', '02-20-2024', '02:13:33 pm'),
+	(1424, 'Manglallan, Derrick ', '', '02-20-2024', '02:14:30 pm'),
+	(1425, 'Manglallan, Derrick ', '', '02-20-2024', '02:14:50 pm'),
+	(1426, 'Manglallan, Derrick ', '', '02-20-2024', '02:15:52 pm'),
+	(1427, 'Finance, Admin ', '', '02-20-2024', '02:16:56 pm'),
+	(1428, 'Manglallan, Derrick ', '', '02-20-2024', '02:19:53 pm'),
+	(1429, 'Finance, Admin ', '', '02-20-2024', '02:20:01 pm'),
+	(1430, 'Manglallan, Derrick ', '', '02-20-2024', '02:20:58 pm'),
+	(1431, 'Finance, Admin ', '', '02-20-2024', '02:21:03 pm'),
+	(1432, 'Finance, Admin ', '', '02-20-2024', '02:21:46 pm'),
+	(1433, 'Manglallan, Derrick ', '', '02-20-2024', '02:22:34 pm'),
+	(1434, 'Finance, Admin ', '', '02-20-2024', '02:22:39 pm'),
+	(1435, 'Manglallan, Derrick ', '', '02-20-2024', '02:23:58 pm'),
+	(1436, 'Finance, Admin ', '', '02-20-2024', '02:24:03 pm'),
+	(1437, 'Finance, Admin ', '', '02-20-2024', '02:27:30 pm'),
+	(1438, 'Manglallan, Derrick ', '', '02-20-2024', '02:30:43 pm'),
+	(1439, 'Finance, Admin ', '', '02-20-2024', '02:30:48 pm'),
+	(1440, 'Finance, Admin ', '', '02-20-2024', '02:33:56 pm'),
+	(1441, 'Manglallan, Derrick ', '', '02-20-2024', '02:36:48 pm'),
+	(1442, 'Finance, Admin ', '', '02-20-2024', '02:36:56 pm'),
+	(1443, 'Finance, Admin ', '', '02-20-2024', '02:39:02 pm'),
+	(1444, 'Finance, Admin ', '', '02-20-2024', '02:40:35 pm'),
+	(1445, 'Finance, Admin ', '', '02-20-2024', '02:41:19 pm'),
+	(1446, 'Finance, Admin ', '', '02-20-2024', '02:44:17 pm'),
+	(1447, 'Finance, Admin ', '', '02-20-2024', '02:48:01 pm'),
+	(1448, 'Finance, Admin ', '', '02-20-2024', '02:48:34 pm'),
+	(1449, 'Finance, Admin ', '', '02-20-2024', '02:49:53 pm'),
+	(1450, 'Manglallan, Derrick ', '', '02-20-2024', '02:50:30 pm'),
+	(1451, 'Finance, Admin ', '', '02-20-2024', '02:56:57 pm'),
+	(1452, 'Finance, Admin ', '', '02-20-2024', '02:58:20 pm'),
+	(1453, 'Finance, Admin ', '', '02-20-2024', '03:03:57 pm'),
+	(1454, 'Manglallan, Derrick ', '', '02-20-2024', '03:05:12 pm'),
+	(1455, 'Manglallan, Derrick ', '', '02-20-2024', '03:07:19 pm'),
+	(1456, 'Finance, Admin ', '', '02-20-2024', '03:07:39 pm'),
+	(1457, 'Finance, Admin ', '', '02-20-2024', '03:09:29 pm'),
+	(1458, 'Finance, Admin ', '', '02-20-2024', '03:13:26 pm'),
+	(1459, 'Finance, Admin ', '', '02-20-2024', '03:15:41 pm'),
+	(1460, 'Finance, Admin ', '', '02-20-2024', '03:21:18 pm'),
+	(1461, 'Finance, Admin ', '', '02-20-2024', '03:24:23 pm'),
+	(1462, 'Finance, Admin ', '', '02-20-2024', '03:28:01 pm'),
+	(1463, 'Finance, Admin ', '', '02-20-2024', '03:34:22 pm'),
+	(1464, 'Finance, Admin ', '', '02-20-2024', '03:36:13 pm'),
+	(1465, 'Finance, Admin ', '', '02-20-2024', '03:44:57 pm'),
+	(1466, 'Finance, Admin ', '', '02-20-2024', '03:46:25 pm'),
+	(1467, 'Finance, Admin ', '', '02-20-2024', '03:47:23 pm'),
+	(1468, 'Finance, Admin ', '', '02-20-2024', '03:48:41 pm'),
+	(1469, 'Finance, Admin ', '', '02-20-2024', '03:49:56 pm'),
+	(1470, 'Finance, Admin ', '', '02-20-2024', '03:51:08 pm'),
+	(1471, 'Finance, Admin ', '', '02-20-2024', '03:54:49 pm'),
+	(1472, 'Finance, Admin ', '', '02-20-2024', '03:55:45 pm'),
+	(1473, 'Finance, Admin ', '', '02-20-2024', '03:58:50 pm'),
+	(1474, 'Finance, Admin ', '', '02-20-2024', '04:00:53 pm'),
+	(1475, 'Finance, Admin ', '', '02-20-2024', '04:02:16 pm'),
+	(1476, 'Finance, Admin ', '', '02-20-2024', '04:03:16 pm'),
+	(1477, 'Finance, Admin ', '', '02-20-2024', '04:04:42 pm'),
+	(1478, 'Finance, Admin ', '', '02-20-2024', '04:09:02 pm'),
+	(1479, 'Finance, Admin ', '', '02-20-2024', '04:12:13 pm'),
+	(1480, 'Finance, Admin ', '', '02-20-2024', '04:15:29 pm'),
+	(1481, 'Finance, Admin ', '', '02-20-2024', '04:17:08 pm'),
+	(1482, 'Finance, Admin ', '', '02-20-2024', '04:18:06 pm'),
+	(1483, 'Finance, Admin ', '', '02-20-2024', '04:20:41 pm'),
+	(1484, 'Finance, Admin ', '', '02-20-2024', '04:24:16 pm'),
+	(1485, 'Finance, Admin ', '', '02-20-2024', '04:31:50 pm'),
+	(1486, 'Finance, Admin ', '', '02-20-2024', '04:32:03 pm'),
+	(1487, 'Finance, Admin ', '', '02-20-2024', '04:35:13 pm'),
+	(1488, 'Finance, Admin ', '', '02-21-2024', '08:16:48 am'),
+	(1489, 'Manglallan, Derrick ', '', '02-21-2024', '08:21:54 am'),
+	(1490, 'Finance, Admin ', '', '02-21-2024', '08:22:03 am'),
+	(1491, 'Finance, Admin ', '', '02-21-2024', '09:52:00 am'),
+	(1492, 'Finance, Admin ', '', '02-21-2024', '10:23:05 am'),
+	(1493, 'Finance, Admin ', '', '02-21-2024', '10:23:44 am'),
+	(1494, 'Finance, Admin ', '', '02-21-2024', '10:25:33 am'),
+	(1495, 'Finance, Admin ', '', '02-21-2024', '10:26:31 am'),
+	(1496, 'Finance, Admin ', '', '02-21-2024', '10:27:02 am'),
+	(1497, 'Finance, Admin ', '', '02-21-2024', '10:30:07 am'),
+	(1498, 'Finance, Admin ', '', '02-21-2024', '10:31:03 am'),
+	(1499, 'Finance, Admin ', '', '02-21-2024', '10:36:56 am'),
+	(1500, 'Finance, Admin ', '', '02-21-2024', '10:37:22 am'),
+	(1501, 'Finance, Admin ', '', '02-21-2024', '10:38:41 am'),
+	(1502, 'Finance, Admin ', '', '02-21-2024', '10:39:21 am'),
+	(1503, 'Finance, Admin ', '', '02-21-2024', '10:39:57 am'),
+	(1504, 'Finance, Admin ', '', '02-21-2024', '10:40:13 am'),
+	(1505, 'Finance, Admin ', '', '02-21-2024', '10:43:20 am'),
+	(1506, 'Finance, Admin ', '', '02-21-2024', '10:43:46 am'),
+	(1507, 'Finance, Admin ', '', '02-21-2024', '10:44:42 am'),
+	(1508, 'A, B ', 'Administrator', '02-21-2024', '10:45:18 am'),
+	(1509, 'Finance, Admin ', '', '02-21-2024', '10:46:18 am'),
+	(1510, 'Finance, Admin ', '', '02-21-2024', '10:48:51 am'),
+	(1511, 'Finance, Admin ', '', '02-21-2024', '10:50:01 am'),
+	(1512, 'Finance, Admin ', '', '02-21-2024', '10:55:08 am'),
+	(1513, 'Finance, Admin ', '', '02-21-2024', '10:57:45 am'),
+	(1514, 'Finance, Admin ', '', '02-21-2024', '11:28:16 am'),
+	(1515, 'Manglallan, Derrick ', '', '02-21-2024', '11:29:29 am'),
+	(1516, 'Finance, Admin ', '', '02-21-2024', '11:30:21 am'),
+	(1517, 'Manglallan, Derrick ', '', '02-21-2024', '11:32:13 am'),
+	(1518, 'Finance, Admin ', '', '02-21-2024', '11:32:20 am'),
+	(1519, 'Manglallan, Derrick ', '', '02-21-2024', '11:33:49 am'),
+	(1520, 'Finance, Admin ', '', '02-21-2024', '11:34:31 am'),
+	(1521, 'Finance, Admin ', '', '02-21-2024', '11:37:42 am'),
+	(1522, 'Finance, Admin ', '', '02-21-2024', '11:40:33 am'),
+	(1523, 'Finance, Admin ', '', '02-21-2024', '01:09:04 pm'),
+	(1524, 'Finance, Admin ', '', '02-21-2024', '01:11:37 pm'),
+	(1525, 'Finance, Admin ', '', '02-21-2024', '01:15:14 pm'),
+	(1526, 'Manglallan, Derrick ', '', '02-21-2024', '01:18:01 pm'),
+	(1527, 'Finance, Admin ', '', '02-21-2024', '01:22:47 pm'),
+	(1528, 'Finance, Admin ', '', '02-21-2024', '01:23:04 pm'),
+	(1529, 'Finance, Admin ', '', '02-21-2024', '01:25:20 pm'),
+	(1530, 'Finance, Admin ', '', '02-21-2024', '01:46:44 pm'),
+	(1531, 'Finance, Admin ', '', '02-21-2024', '02:30:02 pm'),
+	(1532, 'Finance, Admin ', '', '02-21-2024', '02:30:29 pm'),
+	(1533, 'Finance, Admin ', '', '02-21-2024', '02:30:54 pm'),
+	(1534, 'Finance, Admin ', '', '02-21-2024', '02:36:27 pm'),
+	(1535, 'Finance, Admin ', '', '02-21-2024', '02:37:09 pm'),
+	(1536, 'Alan, Charity T', 'Cashier', '02-21-2024', '02:37:55 pm'),
+	(1537, 'Finance, Admin ', '', '02-21-2024', '02:39:15 pm'),
+	(1538, 'Alan, Charity T', 'Cashier', '02-21-2024', '02:39:22 pm'),
+	(1539, 'Finance, Admin ', '', '02-21-2024', '02:40:05 pm'),
+	(1540, 'Finance, Admin ', '', '02-21-2024', '02:40:56 pm'),
+	(1541, 'Finance, Admin ', '', '02-21-2024', '02:44:20 pm'),
+	(1542, 'Finance, Admin ', '', '02-21-2024', '02:44:45 pm'),
+	(1543, 'Finance, Admin ', '', '02-21-2024', '02:45:55 pm'),
+	(1544, 'Finance, Admin ', '', '02-21-2024', '02:46:54 pm'),
+	(1545, 'Finance, Admin ', '', '02-21-2024', '02:47:56 pm'),
+	(1546, 'Finance, Admin ', '', '02-21-2024', '02:51:02 pm'),
+	(1547, 'Finance, Admin ', '', '02-21-2024', '02:52:38 pm'),
+	(1548, 'Finance, Admin ', '', '02-21-2024', '02:54:22 pm'),
+	(1549, 'Finance, Admin ', '', '02-21-2024', '02:54:48 pm'),
+	(1550, 'Finance, Admin ', '', '02-21-2024', '02:55:36 pm'),
+	(1551, 'Finance, Admin ', '', '02-21-2024', '03:21:53 pm');
 
 -- Dumping structure for table model_test_db.campuses
 CREATE TABLE IF NOT EXISTS `campuses` (
@@ -1731,10 +1986,36 @@ CREATE TABLE IF NOT EXISTS `campuses` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.campuses: ~2 rows (approximately)
-DELETE FROM `campuses`;
-INSERT INTO `campuses` (`id`, `code`, `description`, `address`, `status`) VALUES
+REPLACE INTO `campuses` (`id`, `code`, `description`, `address`, `status`) VALUES
 	(6, 'MCNP', 'MEDICAL COLLEGES OF NORTHERN PHILIPPINES', '', 'Active'),
 	(7, 'ISAP', 'INTERNATIONAL SCHOOL OF ASIA AND THE PACIFIC', '', 'Active');
+
+-- Dumping structure for table model_test_db.cashier_log
+CREATE TABLE IF NOT EXISTS `cashier_log` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `date` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `reference_no` varchar(100) NOT NULL,
+  `particulars` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `school_year_id` varchar(100) NOT NULL,
+  `department` varchar(100) NOT NULL,
+  `credit` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `debit` decimal(18,2) NOT NULL DEFAULT '0.00',
+  `balance` decimal(18,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `reference_no` (`reference_no`),
+  KEY `school_year_id` (`school_year_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table model_test_db.cashier_log: ~0 rows (approximately)
+REPLACE INTO `cashier_log` (`id`, `date`, `name`, `reference_no`, `particulars`, `school_year_id`, `department`, `credit`, `debit`, `balance`) VALUES
+	(1, '02-21-2024', 'Finanace, Admin', '123123123', 'Downpayment', '9', 'Finance', 500.00, 13342.38, 12842.38),
+	(2, '02-21-2024', 'Finance, Admin ', '123456', 'Prelim Exam Payment', '9', 'Finance', 2168.48, 12842.38, 10673.90),
+	(4, '02-21-2024', 'Finance, Admin ', '123457', 'Downpayment', '9', 'Finance', 2636.96, 8036.94, 5399.98),
+	(5, '02-21-2024', 'Finance, Admin ', '100001', 'first down payment', '9', 'Finance', 5000.00, 13342.38, 8342.38),
+	(6, '02-21-2024', 'Finance, Admin ', '100002', 'first downpayment', '9', 'Finance', 2196.65, 10983.24, 8786.59),
+	(7, '02-21-2024', 'Finance, Admin ', '123', 'TF', '9', 'Finance', 2305.44, 5399.98, 3094.54),
+	(8, '02-21-2024', 'Alan, Charity T', '22364', 'Prelim Payment', '9', 'Finance', 3000.00, 8342.38, 5342.38);
 
 -- Dumping structure for table model_test_db.courses
 CREATE TABLE IF NOT EXISTS `courses` (
@@ -1750,9 +2031,8 @@ CREATE TABLE IF NOT EXISTS `courses` (
   UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.courses: ~6 rows (approximately)
-DELETE FROM `courses`;
-INSERT INTO `courses` (`id`, `code`, `description`, `level_id`, `campus_id`, `department_id`, `max_units`, `status`) VALUES
+-- Dumping data for table model_test_db.courses: ~7 rows (approximately)
+REPLACE INTO `courses` (`id`, `code`, `description`, `level_id`, `campus_id`, `department_id`, `max_units`, `status`) VALUES
 	(10, 'BSN', 'Bachelor of Science in Nursing', 7, 6, '11', 50, 'Active'),
 	(11, 'BSCA', 'Bachelor of Science in Customs Administration', 7, 7, '10', 50, 'Active'),
 	(12, 'BSPT', 'Bachelor of Science in Physical Therapy', 7, 6, '12', 50, 'Active'),
@@ -1774,7 +2054,6 @@ CREATE TABLE IF NOT EXISTS `course_fees` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.course_fees: ~0 rows (approximately)
-DELETE FROM `course_fees`;
 
 -- Dumping structure for table model_test_db.curriculums
 CREATE TABLE IF NOT EXISTS `curriculums` (
@@ -1788,16 +2067,16 @@ CREATE TABLE IF NOT EXISTS `curriculums` (
   `status` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.curriculums: ~4 rows (approximately)
-DELETE FROM `curriculums`;
-INSERT INTO `curriculums` (`id`, `code`, `description`, `campus_id`, `course_id`, `effective`, `expires`, `status`) VALUES
+-- Dumping data for table model_test_db.curriculums: ~6 rows (approximately)
+REPLACE INTO `curriculums` (`id`, `code`, `description`, `campus_id`, `course_id`, `effective`, `expires`, `status`) VALUES
 	(13, 'BSRT 2021-2022', 'Bachelor of Science in Radiologic Technology', 6, 13, '06-02-2024', '07-03-2024', ''),
 	(14, 'BSCOE', 'Bachelor of Science in Computer Engineering', 7, 14, '01-02-2024', '29-02-2024', 'Active'),
-	(15, 'BSPT 2021-2022', 'Bachelor of Science in Phusycal Therapy', 6, 12, '01-02-2024', '29-02-2024', 'Active'),
+	(15, 'BSPT 2021-2022', 'Bachelor of Science in Physical Therapy', 6, 12, '01-02-2024', '29-02-2024', 'Active'),
 	(20, 'BSSW 2021-2022', 'Bachelor of Science in Social Work', 7, 16, '01-02-2024', '29-02-2024', ''),
-	(21, 'BSCA 2021-2022', 'Bachelor of Science in Custom Administration', 7, 11, '14-02-2024', '31-03-2024', '');
+	(21, 'BSCA 2021-2022', 'Bachelor of Science in Custom Administration', 7, 11, '14-02-2024', '31-03-2024', ''),
+	(22, 'BSN 2021-2022', 'Bachelor of Science in Nursing', 6, 10, '01-02-2024', '29-02-2024', 'Active');
 
 -- Dumping structure for table model_test_db.curriculum_subjects
 CREATE TABLE IF NOT EXISTS `curriculum_subjects` (
@@ -1815,11 +2094,10 @@ CREATE TABLE IF NOT EXISTS `curriculum_subjects` (
   `total_hrs_per_week` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `curriculumIdCode` (`uid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1277 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1400 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.curriculum_subjects: ~252 rows (approximately)
-DELETE FROM `curriculum_subjects`;
-INSERT INTO `curriculum_subjects` (`id`, `uid`, `curriculum_id`, `year_level`, `semester`, `code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `total_hrs_per_week`) VALUES
+-- Dumping data for table model_test_db.curriculum_subjects: ~311 rows (approximately)
+REPLACE INTO `curriculum_subjects` (`id`, `uid`, `curriculum_id`, `year_level`, `semester`, `code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `total_hrs_per_week`) VALUES
 	(699, '13GEC 1', '13', '1', '1', 'GEC 1', 'Understanding the Self', '3', '3', '0', 'None', '3'),
 	(700, '13GEC 2', '13', '1', '1', 'GEC 2', 'Readings in Philippine History ', '3', '3', '0', 'None', '3'),
 	(701, 'BSRT 2021-2022GEC 3', '13', '1', '1', 'GEC 3', 'The Contemporary World', '3', '3', '0', 'None', '3'),
@@ -1881,66 +2159,6 @@ INSERT INTO `curriculum_subjects` (`id`, `uid`, `curriculum_id`, `year_level`, `
 	(757, 'BSRT 2021-2022INSTI 3', '13', '4', '1', 'INSTI 3', 'Competency Appraisal 1', '3', '3', 'o', 'Prof. Subj.', '3'),
 	(758, 'BSRT 2021-2022ITP 2', '13', '4', '2', 'ITP 2', 'Clinical Education Program 2', '18', 'o', '18', 'Prof. Subj', '40'),
 	(759, 'BSRT 2021-2022INSTI 4', '13', '4', '2', 'INSTI 4', 'Competency Appraisal 2', '3', '3', 'o', 'INSTI 3', '3'),
-	(772, 'BSCA 2021-2022GEC 1', '11', '1', '1', 'GEC 1', 'Understanding the Self', '3', '3', '0', 'None', '3'),
-	(773, 'BSCA 2021-2022GEC 2', '11', '1', '1', 'GEC 2', 'Readings in the Philippine History', '3', '3', '0', 'None', '3'),
-	(774, 'BSCA 2021-2022GEC 3', '11', '1', '1', 'GEC 3', 'The Contemporary World', '3', '3', '0', 'None', '3'),
-	(775, 'BSCA 2021-2022GEC 4', '11', '1', '1', 'GEC 4', 'Mathematics in the Modern World', '3', '3', '0', 'None', '3'),
-	(776, 'BSCA 2021-2022SBEC 100', '11', '1', '1', 'SBEC 100', 'International Trade', '3', '3', '0', 'None', '3'),
-	(777, 'BSCA 2021-2022GEC 5', '11', '1', '1', 'GEC 5', 'Purposive Communication', '3', '3', '0', 'None', '3'),
-	(778, 'BSCA 2021-2022PE 101', '11', '1', '1', 'PE 101', 'Physical Education 1 (Physical Fitness)', '2', '2', '0', 'None', '2'),
-	(779, 'BSCA 2021-2022NSTP 1', '11', '1', '1', 'NSTP 1', 'National Service Training Program 1', '3', '3', '0', 'None', '3'),
-	(780, 'BSCA 2021-2022ETHICS 100', '11', '1', '1', 'ETHICS 100', 'ISAPian Education with Values Formation', '1.5', '1.5', '0', 'None', '1.5'),
-	(781, 'BSCA 2021-2022MSCED 201', '11', '1', '1', 'MSCED 201', 'Advisorship Time', '0', '1', '0', 'None', '1'),
-	(782, 'BSCA 2021-2022GEC 6', '11', '1', '2', 'GEC 6', 'Art Apreciation', '3', '3', '0', 'None', '3'),
-	(783, 'BSCA 2021-2022GEC 7', '11', '1', '2', 'GEC 7', 'Science, Technology and Society', '3', '3', '0', 'None', '3'),
-	(784, 'BSCA 2021-2022SCM 101', '11', '1', '2', 'SCM 101', 'Introduction to Supply Chain Management', '3', '3', '0', 'SBEC 100', '3'),
-	(785, 'BSCA 2021-2022CM 101', '11', '1', '2', 'CM 101', 'Border Control and Security', '3', '3', '0', 'SBEC 100', '3'),
-	(786, 'BSCA 2021-2022TM 101', '11', '1', '2', 'TM 101', 'Fundamentals of Customs and Tariff Management', '3', '3', '0', 'SBEC 100', '3'),
-	(787, 'BSCA 2021-2022GEC 8', '11', '1', '2', 'GEC 8', 'Ethics', '3', '3', '0', 'None', '3'),
-	(788, 'BSCA 2021-2022ECON 101', '11', '1', '2', 'ECON 101', 'International Economics', '3', '3', '0', 'SBEC 100', '3'),
-	(789, 'BSCA 2021-2022PE 102', '11', '1', '2', 'PE 102', 'Physical Education 2 (Gymnastics)', '2', '2', '0', 'PE 1', '2'),
-	(790, 'BSCA 2021-2022NSTP 2', '11', '1', '2', 'NSTP 2', 'National Service Training Program 2', '3', '3', '0', 'NSTP 1', '3'),
-	(791, 'BSCA 2021-2022MSCED 202', '11', '1', '2', 'MSCED 202', 'Advisorship Time', '0', '1', '0', 'MSCED 201', '1'),
-	(792, 'BSCA 2021-2022GEC 9', '11', '2', '1', 'GEC 9', 'Rizal\'s Life and Works', '3', '3', '0', 'None', '3'),
-	(793, 'BSCA 2021-2022LIT 101', '11', '2', '1', 'LIT 101', 'Panitikang Pilipino ', '3', '3', '0', 'None', '3'),
-	(794, 'BSCA 2021-2022SBEC 101', '11', '2', '1', 'SBEC 101', 'Income and Business Taxation', '3', '3', '0', 'SBEC 100', '3'),
-	(795, 'BSCA 2021-2022SCM102', '11', '2', '1', 'SCM102', 'Warehoues Operations Management', '3', '3', '0', 'SCM 100', '3'),
-	(796, 'BSCA 2021-2022SBEC 102', '11', '2', '1', 'SBEC 102', 'Business Law', '3', '3', '0', 'SBEC 100', '3'),
-	(797, 'BSCA 2021-2022CM 102', '11', '2', '1', 'CM 102', 'Customs Operations and Cargo Handling with Educ. Tour', '3', '3', '0', 'CM 101', '3'),
-	(798, 'BSCA 2021-2022CM 103', '11', '2', '1', 'CM 103', 'Customs Warehousing', '5', '5', '0', 'CM 101', '5'),
-	(799, 'BSCA 2021-2022TM 102', '11', '2', '1', 'TM 102', 'Commodity Classification System', '3', '3', '0', 'TM 101', '3'),
-	(800, 'BSCA 2021-2022PE 103', '11', '2', '1', 'PE 103', 'Physical Education  3 (Swimming)', '2', '2', '0', 'PE 102', '2'),
-	(801, 'BSCA 2021-2022MSCED 203', '11', '2', '1', 'MSCED 203', 'Advisorship Time', '0', '1', '0', 'MSCED 202', '1'),
-	(802, 'BSCA 2021-2022GEE 101', '11', '2', '2', 'GEE 101', 'Philippine Popular Culture', '3', '3', '0', 'None', '3'),
-	(803, 'BSCA 2021-2022CBMEC 101', '11', '2', '2', 'CBMEC 101', 'Strategic Management', '3', '3', '0', 'None', '3'),
-	(804, 'BSCA 2021-2022EC 101', '11', '2', '2', 'EC 101', 'International Marketing', '3', '3', '0', 'ECON 101', '3'),
-	(805, 'BSCA 2021-2022EC 102', '11', '2', '2', 'EC 102', 'Enterpreneurial Management', '3', '3', '0', 'ECON 101', '3'),
-	(806, 'BSCA 2021-2022SCM 103', '11', '2', '2', 'SCM 103', 'Procurement and Inventory Management', '3', '3', '0', 'SCM 102', '3'),
-	(807, 'BSCA 2021-2022CM 104', '11', '2', '2', 'CM 104', 'Customs Proceedings', '5', '3', '0', 'CM 103', '3'),
-	(808, 'BSCA 2021-2022TM 103', '11', '2', '2', 'TM 103', 'Customs Valuation System', '5', '5', '0', 'TM 102', '5'),
-	(809, 'BSCA 2021-2022PE 104', '11', '2', '2', 'PE 104', 'Physical Education 4 (Team Sports)', '2', '2', '0', 'PE 103', '2'),
-	(810, 'BSCA 2021-2022MSCED 204', '11', '2', '2', 'MSCED 204', 'Advisorship Time', '0', '1', '0', 'MSCED 203', '1'),
-	(811, 'BSCA 2021-2022FL 102', '11', '3', '1', 'FL 102', 'Foreign Language 2', '2', '2', '0', 'FL 101', '2'),
-	(812, 'BSCA 2021-2022FIL 102', '11', '3', '1', 'FIL 102', 'Kontekstwalissadong Filipino', '3', '3', '0', 'FIL 101', '3'),
-	(813, 'BSCA 2021-2022LIT 102', '11', '3', '1', 'LIT 102', 'Philippine Literature', '3', '3', '0', 'LIT 101', '3'),
-	(814, 'BSCA 2021-2022LED 1', '11', '3', '1', 'LED 1', 'Labor Education', '3', '3', '0', 'None', '3'),
-	(815, 'BSCA 2021-2022GEE 103', '11', '3', '1', 'GEE 103', 'Philippine Indigenous Communities', '3', '3', '0', 'GEE 102', '3'),
-	(816, 'BSCA 2021-2022CM 106', '11', '3', '1', 'CM 106', 'Customs Post Clearance Audit and Fraud Detection', '5', '5', '0', 'CM 105', '5'),
-	(817, 'BSCA 2021-2022TM 105', '11', '3', '1', 'TM 105', 'Excise Taxes, Liquidation of Duty and Surcharges', '5', '5', '0', 'TM 104', '5'),
-	(818, 'BSCA 2021-2022CA RES 102', '11', '3', '1', 'CA RES 102', 'Customs Research 2', '3', '3', '0', 'CA RES 101', '3'),
-	(819, 'BSCA 2021-2022MSCED 206', '11', '3', '1', 'MSCED 206', 'Advisorship Time', '0', '1', '0', 'MSCED 205', '1'),
-	(820, 'BSCA 2021-2022FIL 103', '11', '3', '3', 'FIL 103', 'Malayuning Komunikasyon', '3', '3', '0', 'FIL 102', '9'),
-	(821, 'BSCA 2021-2022CM 107', '11', '3', '3', 'CM 107', 'Ethics and Standards of Custom Broker', '3', '3', '0', 'CM 106', '9'),
-	(822, 'BSCA 2021-2022TM 106', '11', '3', '3', 'TM 106', 'Special Duties and Trade Remedies', '3', '3', '0', 'TM 105', '9'),
-	(823, 'BSCA 2021-2022CA 101', '11', '4', '1', 'CA 101', 'Integration Review for Cutoms Laws', '1.5', '1.5', '0', '4th Year Standing', '1.5 (3)'),
-	(824, 'BSCA 2021-2022CA 102', '11', '4', '1', 'CA 102', 'IntegrationReview for Tariff Management', '1.5', '1.5', '0', '4th Year Standing', '1.5 (3)'),
-	(825, 'BSCA 2021-2022TM 107', '11', '4', '1', 'TM 107', 'International Trade Organizations, Agreements and Rules of Origin', '5', '5', '0', 'TM 106', '5'),
-	(826, 'BSCA 2021-2022CBMEC 102', '11', '4', '1', 'CBMEC 102', 'Operations Management', '3', '3', '0', 'CBMEC 101', '3'),
-	(827, 'BSCA 2021-2022MSCED 207', '11', '4', '1', 'MSCED 207', 'Advisorship Time', '0', '1', '0', 'MSCED 206', '1'),
-	(828, 'BSCA 2021-2022CM 108', '11', '4', '2', 'CM 108', 'Competency Assessment in Customs Management', '5', '5', '0', '4th Year Standing', '5'),
-	(829, 'BSCA 2021-2022TM 108', '11', '4', '2', 'TM 108', 'Competency Assessment in Tariff Management', '5', '5', '0', '4th Year Standing', '5'),
-	(830, 'BSCA 2021-2022CA OCL', '11', '4', '2', 'CA OCL', 'Off-Campus Learning, Customs Brokerage Industry (200 hrs), Freight Forwarding/Logistics/Shipping  or Airline Companies, Govenrment Agencies(200hrs)', '3', '', 'Field', '4th Year Standing', '24'),
-	(831, 'BSCA 2021-2022MSCED 208', '11', '4', '2', 'MSCED 208', 'Advisorship Time', '0', '1', '1', 'MS CED 207', '1'),
 	(948, 'BSPT 2021-2022GEC 1', '15', '1', '1', 'GEC 1', 'Understanding the Self', '3', '3', '0', 'None', '3'),
 	(949, 'BSPT 2021-2022GEC 8', '15', '1', '1', 'GEC 8', 'Ethics', '3', '3', '0', 'None', '3'),
 	(950, 'BSPT 2021-2022GEC 7', '15', '1', '1', 'GEC 7', 'Science, Technology and Society', '3', '3', '0', 'None', '3'),
@@ -2071,7 +2289,126 @@ INSERT INTO `curriculum_subjects` (`id`, `uid`, `curriculum_id`, `year_level`, `
 	(1271, 'BSSW 2021-2022MSCED 206', '20', '3', '2', 'MSCED 206', 'Advisorship Time 2', '0', '0', '0', 'None', '1'),
 	(1272, 'BSSW 2021-2022SW 219', '20', '4', '1', 'SW 219', 'Field Intruction I (500 Hours)', '15', '15', '0', 'All Major', '32'),
 	(1273, 'BSSW 2021-2022CA 1', '20', '4', '1', 'CA 1', 'Course Audit 1', '3', '3', '0', 'All Major', '3'),
-	(1274, 'BSSW 2021-2022MSCED 207', '20', '4', '1', 'MSCED 207', 'Advisorship Time 1', '0', '0', '0', 'None', '32');
+	(1274, 'BSSW 2021-2022MSCED 207', '20', '4', '1', 'MSCED 207', 'Advisorship Time 1', '0', '0', '0', 'None', '32'),
+	(1277, 'BSN 2021-2022GEC 5', '22', '1', '1', 'GEC 5', 'Purposive Communication', '3', '3', '0', 'None', '3'),
+	(1278, 'BSN 2021-2022GEC 7', '22', '1', '1', 'GEC 7', 'Science, Technology and Society', '3', '3', '0', 'None', '3'),
+	(1279, 'BSN 2021-2022MC 4', '22', '1', '1', 'MC 4', 'Inorganic and Organic Chemistry', '4', '2', '2', 'None', '8'),
+	(1280, 'BSN 2021-2022MT 101', '22', '1', '1', 'MT 101', 'Principles of Medical Laboratory Science Practice 1 (Introduction toto Med Lab Science, Lab Safety, and Waste Management', '3', '3', '0', 'None', '3'),
+	(1281, 'BSN 2021-2022MC 6', '22', '1', '1', 'MC 6', 'HeaIth Information System for Med Lab Science', '3', '2', '1', 'None', '5'),
+	(1282, 'BSN 2021-2022MC 1', '22', '1', '1', 'MC 1', 'Human Anatomy and Physiology with Pathophysiology', '4', '2', '2', 'None', '8'),
+	(1283, 'BSN 2021-2022PE 1', '22', '1', '1', 'PE 1', 'Physical Education 1 (Physical Fitness)', '2', '2', '0', 'None', '2'),
+	(1284, 'BSN 2021-2022NSTP 1', '22', '1', '1', 'NSTP 1', 'National Service Training Program 1', '3', '3', '0', 'None', '3'),
+	(1285, 'BSN 2021-2022MSCED 201', '22', '1', '1', 'MSCED 201', 'Advisorship Time 1', '0', '0', '0', 'None', '1'),
+	(1286, 'BSN 2021-2022GEC 6', '22', '1', '2', 'GEC 6', 'Art Appreciation', '3', '3', '0', 'None', '3'),
+	(1287, 'BSN 2021-2022GEC 1', '22', '1', '2', 'GEC 1', 'Understanding the Self', '3', '3', '0', 'None', '3'),
+	(1288, 'BSN 2021-2022MT 103', '22', '1', '2', 'MT 103', 'Community and Public Health for Med Lab Sci.', '4', '2', '2', 'None', '8'),
+	(1289, 'BSN 2021-2022MT 102', '22', '1', '2', 'MT 102', 'Principles of Medical Laboratory Science Practice 2 (Clinical Laboratory Assistance and Phlebotomy)\n\n', '3', '2', '1', 'MT 101', '5'),
+	(1290, 'BSN 2021-2022MC5', '22', '1', '2', 'MC5', 'Analytical Chemistry( Qualitative and Quantitative)', '4', '2', '2', 'MC 4', '8'),
+	(1291, 'BSN 2021-2022GEC 4', '22', '1', '2', 'GEC 4', 'Mathematics in the Modern World', '3', '3', '0', 'None', '3'),
+	(1292, 'BSN 2021-2022FIL 3', '22', '1', '2', 'FIL 3', 'Kontekstwalisadong Filipino', '3', '3', '0', 'None', '3'),
+	(1293, 'BSN 2021-2022PE 2', '22', '1', '2', 'PE 2', 'Physical Education 2 (Gymnastics)', '2', '2', '0', 'PEI', '2'),
+	(1294, 'BSN 2021-2022NSTP 2', '22', '1', '2', 'NSTP 2', 'National Service Training Program 2', '3', '3', '0', 'NSTP 1', '3'),
+	(1295, 'BSN 2021-2022MSCED 202', '22', '1', '2', 'MSCED 202', 'Advisorship Time 2', '0', '0', '0', 'None', '1'),
+	(1296, 'BSN 2021-2022GEC ELEC 2', '22', '1', '3', 'GEC ELEC 2', 'Environmental Science', '3', '3', '0', 'None', '3'),
+	(1297, 'BSN 2021-2022GEC2', '22', '1', '3', 'GEC2', 'Reading in Philippine History', '3', '3', '0', 'None', '3'),
+	(1298, 'BSN 2021-2022GEC ELECT 1', '22', '1', '3', 'GEC ELECT 1', 'Living in the IT Era', '3', '3', '0', 'None', '3'),
+	(1299, 'BSN 2021-2022GEC3', '22', '2', '1', 'GEC3', 'The Contemporary World', '3', '3', '0', 'None', '3'),
+	(1300, 'BSN 2021-2022MC 8', '22', '2', '1', 'MC 8', 'Epidemiology with Biostatistics', '3', '2', '1', 'None', '5'),
+	(1301, 'BSN 2021-2022MC 2', '22', '2', '1', 'MC 2', 'Biochemistry for Med Lab Science', '5', '3', '2', 'MC5', '9'),
+	(1302, 'BSN 2021-2022MC 7', '22', '2', '1', 'MC 7', 'Principles & Strategies of Teaching in MLS', '2', '2', '0', 'None', '2'),
+	(1303, 'BSN 2021-2022MT 104', '22', '2', '1', 'MT 104', 'Cytogenetics', '2', '2', '0', 'MCI', '2'),
+	(1304, 'BSN 2021-2022GEC ELECT 3', '22', '2', '1', 'GEC ELECT 3', 'The Entrepreneurial Mind', '3', '3', '0', 'None', '3'),
+	(1305, 'BSN 2021-2022FIL 2', '22', '2', '1', 'FIL 2', 'Masining na Pagpapahayag', '3', '3', '0', 'None', '3'),
+	(1306, 'BSN 2021-2022PE 3', '22', '2', '1', 'PE 3', 'Physical Education (Rhythmic Activities) 3', '2', '2', '0', 'PE 2', '2'),
+	(1307, 'BSN 2021-2022MSCED 103', '22', '2', '1', 'MSCED 103', 'Advisorship Time 3', '0', '0', '0', 'None', '1'),
+	(1308, 'BSN 2021-2022GEC 8', '22', '2', '2', 'GEC 8', 'Ethics', '3', '3', '0', 'None', '3'),
+	(1309, 'BSN 2021-2022MT 107', '22', '2', '2', 'MT 107', 'Med Tech Laws & Bioethics', '3', '3', '0', 'MT101, MT 102', '3'),
+	(1310, 'BSN 2021-2022GEC 10', '22', '2', '2', 'GEC 10', 'Philippine Literature', '3', '3', '0', 'None', '3'),
+	(1311, 'BSN 2021-2022MT 108', '22', '2', '2', 'MT 108', 'Human Histology', '2', '1', '1', 'MCI', '4'),
+	(1312, 'BSN 2021-2022MT 109', '22', '2', '2', 'MT 109', 'Clinical Chemistry 1', '5', '3', '2', 'MC2', '9'),
+	(1313, 'BSN 2021-2022MT 106', '22', '2', '2', 'MT 106', 'Clinical Parasitology', '3', '2', '1', 'MCI MC2', '5'),
+	(1314, 'BSN 2021-2022PE 4', '22', '2', '2', 'PE 4', 'Physical Education 4 (Team Sports)', '2', '2', '0', 'PE 3', '2'),
+	(1315, 'BSN 2021-2022PER DEV ', '22', '2', '2', 'PER DEV ', 'Euthenics', '3', '3', '0', 'None', '3'),
+	(1316, 'BSN 2021-2022GEC 9', '22', '2', '2', 'GEC 9', 'Life and Works of Rizal', '3', '3', '0', 'None', '3'),
+	(1317, 'BSN 2021-2022MSCED 1 ', '22', '2', '2', 'MSCED 1 ', 'Advisorship Time 4', '0', '0', '0', 'None', '1'),
+	(1318, 'BSN 2021-2022MT 115', '22', '3', '1', 'MT 115', 'Clinical Chemistry 2', '5', '3', '2', 'MT 109', '9'),
+	(1319, 'BSN 2021-2022MT 110', '22', '3', '1', 'MT 110', 'Clinical Bacteriology', '5', '3', '2', 'MC2', '9'),
+	(1320, 'BSN 2021-2022MT 111', '22', '3', '1', 'MT 111', 'Analysis of Urine and Body Fluids', '3', '2', '1', 'MCI MC2', '5'),
+	(1321, 'BSN 2021-2022MT 105', '22', '3', '1', 'MT 105', 'Laboratory Management', '2', '2', '0', 'None', '2'),
+	(1322, 'BSN 2021-2022MT 112', '22', '3', '1', 'MT 112', 'Hematology 1', '4', '3', '1', 'MCI', '6'),
+	(1323, 'BSN 2021-2022MT 114', '22', '3', '1', 'MT 114', 'Intro to Med Lab Science Research', '2', '1', '1', 'None', '4'),
+	(1327, 'BSCA 2021-2022GEC 1', '21', '1', '1', 'GEC 1', 'Understanding the Self', '3', '3', '0', 'None', '3'),
+	(1328, 'BSCA 2021-2022GEC 2', '21', '1', '1', 'GEC 2', 'Readings in the Philippine History', '3', '3', '0', 'None', '3'),
+	(1329, 'BSCA 2021-2022GEC 3', '21', '1', '1', 'GEC 3', 'The Contemporary World', '3', '3', '0', 'None', '3'),
+	(1330, 'BSCA 2021-2022GEC 4', '21', '1', '1', 'GEC 4', 'Mathematics in the Modern World', '3', '3', '0', 'None', '3'),
+	(1331, 'BSCA 2021-2022SBEC 100', '21', '1', '1', 'SBEC 100', 'International Trade', '3', '3', '0', 'None', '3'),
+	(1332, 'BSCA 2021-2022GEC 5', '21', '1', '1', 'GEC 5', 'Purposive Communication', '3', '3', '0', 'None', '3'),
+	(1333, 'BSCA 2021-2022PE 101', '21', '1', '1', 'PE 101', 'Physical Education 1 (Physical Fitness)', '2', '2', '0', 'None', '2'),
+	(1334, 'BSCA 2021-2022NSTP 1', '21', '1', '1', 'NSTP 1', 'National Service Training Program 1', '3', '3', '0', 'None', '3'),
+	(1335, 'BSCA 2021-2022ETHICS 100', '21', '1', '1', 'ETHICS 100', 'ISAPian Education with Values Formation', '1.5', '1.5', '0', 'None', '1.5'),
+	(1336, 'BSCA 2021-2022MSCED 201', '21', '1', '1', 'MSCED 201', 'Advisorship Time', '0', '1', '0', 'None', '1'),
+	(1337, 'BSCA 2021-2022GEC 6', '21', '1', '2', 'GEC 6', 'Art Apreciation', '3', '3', '0', 'None', '3'),
+	(1338, 'BSCA 2021-2022GEC 7', '21', '1', '2', 'GEC 7', 'Science, Technology and Society', '3', '3', '0', 'None', '3'),
+	(1339, 'BSCA 2021-2022SCM 101', '21', '1', '2', 'SCM 101', 'Introduction to Supply Chain Management', '3', '3', '0', 'SBEC 100', '3'),
+	(1340, 'BSCA 2021-2022CM 101', '21', '1', '2', 'CM 101', 'Border Control and Security', '3', '3', '0', 'SBEC 100', '3'),
+	(1341, 'BSCA 2021-2022TM 101', '21', '1', '2', 'TM 101', 'Fundamentals of Customs and Tariff Management', '3', '3', '0', 'SBEC 100', '3'),
+	(1342, 'BSCA 2021-2022GEC 8', '21', '1', '2', 'GEC 8', 'Ethics', '3', '3', '0', 'None', '3'),
+	(1343, 'BSCA 2021-2022ECON 101', '21', '1', '2', 'ECON 101', 'International Economics', '3', '3', '0', 'SBEC 100', '3'),
+	(1344, 'BSCA 2021-2022PE 102', '21', '1', '2', 'PE 102', 'Physical Education 2 (Gymnastics)', '2', '2', '0', 'PE 1', '2'),
+	(1345, 'BSCA 2021-2022NSTP 2', '21', '1', '2', 'NSTP 2', 'National Service Training Program 2', '3', '3', '0', 'NSTP 1', '3'),
+	(1346, 'BSCA 2021-2022MSCED 202', '21', '1', '2', 'MSCED 202', 'Advisorship Time', '0', '1', '0', 'MSCED 201', '1'),
+	(1347, 'BSCA 2021-2022GEC 9', '21', '2', '1', 'GEC 9', 'Rizal\'s Life and Works', '3', '3', '0', 'None', '3'),
+	(1348, 'BSCA 2021-2022LIT 101', '21', '2', '1', 'LIT 101', 'Panitikang Pilipino ', '3', '3', '0', 'None', '3'),
+	(1349, 'BSCA 2021-2022SBEC 101', '21', '2', '1', 'SBEC 101', 'Income and Business Taxation', '3', '3', '0', 'SBEC 100', '3'),
+	(1350, 'BSCA 2021-2022SCM102', '21', '2', '1', 'SCM102', 'Warehoues Operations Management', '3', '3', '0', 'SCM 100', '3'),
+	(1351, 'BSCA 2021-2022SBEC 102', '21', '2', '1', 'SBEC 102', 'Business Law', '3', '3', '0', 'SBEC 100', '3'),
+	(1352, 'BSCA 2021-2022CM 102', '21', '2', '1', 'CM 102', 'Customs Operations and Cargo Handling with Educ. Tour', '3', '3', '0', 'CM 101', '3'),
+	(1353, 'BSCA 2021-2022CM 103', '21', '2', '1', 'CM 103', 'Customs Warehousing', '5', '5', '0', 'CM 101', '5'),
+	(1354, 'BSCA 2021-2022TM 102', '21', '2', '1', 'TM 102', 'Commodity Classification System', '3', '3', '0', 'TM 101', '3'),
+	(1355, 'BSCA 2021-2022PE 103', '21', '2', '1', 'PE 103', 'Physical Education  3 (Swimming)', '2', '2', '0', 'PE 102', '2'),
+	(1356, 'BSCA 2021-2022MSCED 203', '21', '2', '1', 'MSCED 203', 'Advisorship Time', '0', '1', '0', 'MSCED 202', '1'),
+	(1357, 'BSCA 2021-2022GEE 101', '21', '2', '2', 'GEE 101', 'Philippine Popular Culture', '3', '3', '0', 'None', '3'),
+	(1358, 'BSCA 2021-2022CBMEC 101', '21', '2', '2', 'CBMEC 101', 'Strategic Management', '3', '3', '0', 'None', '3'),
+	(1359, 'BSCA 2021-2022EC 101', '21', '2', '2', 'EC 101', 'International Marketing', '3', '3', '0', 'ECON 101', '3'),
+	(1360, 'BSCA 2021-2022EC 102', '21', '2', '2', 'EC 102', 'Enterpreneurial Management', '3', '3', '0', 'ECON 101', '3'),
+	(1361, 'BSCA 2021-2022SCM 103', '21', '2', '2', 'SCM 103', 'Procurement and Inventory Management', '3', '3', '0', 'SCM 102', '3'),
+	(1362, 'BSCA 2021-2022CM 104', '21', '2', '2', 'CM 104', 'Customs Proceedings', '5', '3', '0', 'CM 103', '3'),
+	(1363, 'BSCA 2021-2022TM 103', '21', '2', '2', 'TM 103', 'Customs Valuation System', '5', '5', '0', 'TM 102', '5'),
+	(1364, 'BSCA 2021-2022PE 104', '21', '2', '2', 'PE 104', 'Physical Education 4 (Team Sports)', '2', '2', '0', 'PE 103', '2'),
+	(1365, 'BSCA 2021-2022MSCED 204', '21', '2', '2', 'MSCED 204', 'Advisorship Time', '0', '1', '0', 'MSCED 203', '1'),
+	(1366, 'BSCA 2021-2022FL 102', '21', '3', '1', 'FL 102', 'Foreign Language 2', '2', '2', '0', 'FL 101', '2'),
+	(1367, 'BSCA 2021-2022FIL 102', '21', '3', '1', 'FIL 102', 'Kontekstwalissadong Filipino', '3', '3', '0', 'FIL 101', '3'),
+	(1368, 'BSCA 2021-2022LIT 102', '21', '3', '1', 'LIT 102', 'Philippine Literature', '3', '3', '0', 'LIT 101', '3'),
+	(1369, 'BSCA 2021-2022LED 1', '21', '3', '1', 'LED 1', 'Labor Education', '3', '3', '0', 'None', '3'),
+	(1370, 'BSCA 2021-2022GEE 103', '21', '3', '1', 'GEE 103', 'Philippine Indigenous Communities', '3', '3', '0', 'GEE 102', '3'),
+	(1371, 'BSCA 2021-2022CM 106', '21', '3', '1', 'CM 106', 'Customs Post Clearance Audit and Fraud Detection', '5', '5', '0', 'CM 105', '5'),
+	(1372, 'BSCA 2021-2022TM 105', '21', '3', '1', 'TM 105', 'Excise Taxes, Liquidation of Duty and Surcharges', '5', '5', '0', 'TM 104', '5'),
+	(1373, 'BSCA 2021-2022CA RES 102', '21', '3', '1', 'CA RES 102', 'Customs Research 2', '3', '3', '0', 'CA RES 101', '3'),
+	(1374, 'BSCA 2021-2022MSCED 206', '21', '3', '1', 'MSCED 206', 'Advisorship Time', '0', '1', '0', 'MSCED 205', '1'),
+	(1375, 'BSCA 2021-2022FIL 103', '21', '3', '3', 'FIL 103', 'Malayuning Komunikasyon', '3', '3', '0', 'FIL 102', '9'),
+	(1376, 'BSCA 2021-2022CM 107', '21', '3', '3', 'CM 107', 'Ethics and Standards of Custom Broker', '3', '3', '0', 'CM 106', '9'),
+	(1377, 'BSCA 2021-2022TM 106', '21', '3', '3', 'TM 106', 'Special Duties and Trade Remedies', '3', '3', '0', 'TM 105', '9'),
+	(1378, 'BSCA 2021-2022CA 101', '21', '4', '1', 'CA 101', 'Integration Review for Cutoms Laws', '1.5', '1.5', '0', '4th Year Standing', '1.5 (3)'),
+	(1379, 'BSCA 2021-2022CA 102', '21', '4', '1', 'CA 102', 'IntegrationReview for Tariff Management', '1.5', '1.5', '0', '4th Year Standing', '1.5 (3)'),
+	(1380, 'BSCA 2021-2022TM 107', '21', '4', '1', 'TM 107', 'International Trade Organizations, Agreements and Rules of Origin', '5', '5', '0', 'TM 106', '5'),
+	(1381, 'BSCA 2021-2022CBMEC 102', '21', '4', '1', 'CBMEC 102', 'Operations Management', '3', '3', '0', 'CBMEC 101', '3'),
+	(1382, 'BSCA 2021-2022MSCED 207', '21', '4', '1', 'MSCED 207', 'Advisorship Time', '0', '1', '0', 'MSCED 206', '1'),
+	(1383, 'BSCA 2021-2022CM 108', '21', '4', '2', 'CM 108', 'Competency Assessment in Customs Management', '5', '5', '0', '4th Year Standing', '5'),
+	(1384, 'BSCA 2021-2022TM 108', '21', '4', '2', 'TM 108', 'Competency Assessment in Tariff Management', '5', '5', '0', '4th Year Standing', '5'),
+	(1385, 'BSCA 2021-2022CA OCL', '21', '4', '2', 'CA OCL', 'Off-Campus Learning, Customs Brokerage Industry (200 hrs), Freight Forwarding/Logistics/Shipping  or Airline Companies, Govenrment Agencies(200hrs)', '3', '', 'Field', '4th Year Standing', '24'),
+	(1386, 'BSCA 2021-2022MSCED 208', '21', '4', '2', 'MSCED 208', 'Advisorship Time', '0', '1', '1', 'MS CED 207', '1'),
+	(1387, 'BSCOEGEC 1', '14', '1', '1', 'GEC 1', 'Mathematics in the Modern World', '3', '3', '0', 'None', '3'),
+	(1388, 'BSCOEGEC 7', '14', '1', '1', 'GEC 7', 'Science, Technology and Society', '3', '3', '0', 'None', '3'),
+	(1389, 'BSCOEMATH 1', '14', '1', '1', 'MATH 1', 'Calculus 1', '3', '3', '0', 'None', '3'),
+	(1390, 'BSCOENS 1', '14', '1', '1', 'NS 1', 'Chemistry for Engineers', '4', '3', '1', 'None', '6'),
+	(1391, 'BSCOECPE 1', '14', '1', '1', 'CPE 1', 'Programming Logic and Design', '2', '0', '2', 'None', '6'),
+	(1392, 'BSCOECPE 2', '14', '1', '1', 'CPE 2', 'Computer Engineering as a Discipline', '1', '1', '0', 'None', '1'),
+	(1393, 'BSCOEPE 1', '14', '1', '1', 'PE 1', 'Physical Education 1', '2', '2', '0', 'None', '2'),
+	(1394, 'BSCOENSTP 1', '14', '1', '1', 'NSTP 1', 'National Service Training Program 1', '3', '3', '0', 'None', '3'),
+	(1395, 'BSCOEMATH 100', '14', '1', '1', 'MATH 100', 'Trigonometry w/ Analytic Geometry', '3', '3', '0', 'None', '3'),
+	(1396, 'BSCOENAT Sci 1', '14', '1', '1', 'NAT Sci 1', 'College Physics', '5', '3', '2', 'NONE', '9'),
+	(1397, 'BSCOEMSCED 201', '14', '1', '1', 'MSCED 201', 'Advisorship Time 1', '0', '0', '0', 'None', '1'),
+	(1398, 'BSCOEGEC 2', '14', '1', '2', 'GEC 2', 'Readings in Philippine History', '3', '3', '0', 'NONE', '3');
 
 -- Dumping structure for table model_test_db.departments
 CREATE TABLE IF NOT EXISTS `departments` (
@@ -2084,8 +2421,7 @@ CREATE TABLE IF NOT EXISTS `departments` (
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.departments: ~7 rows (approximately)
-DELETE FROM `departments`;
-INSERT INTO `departments` (`id`, `code`, `description`, `campus_id`) VALUES
+REPLACE INTO `departments` (`id`, `code`, `description`, `campus_id`) VALUES
 	(10, 'CBEM', 'College of Business Education Management', 6),
 	(11, 'NURSING', 'College of Nursing', 6),
 	(12, 'PHYSICAL-THERAPY', 'PHYSICAL-THERAPY', 6),
@@ -2102,14 +2438,14 @@ CREATE TABLE IF NOT EXISTS `discount_setup` (
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `discount_percentage` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.discount_setup: ~4 rows (approximately)
-DELETE FROM `discount_setup`;
-INSERT INTO `discount_setup` (`id`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
+REPLACE INTO `discount_setup` (`id`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
 	(11, 'TOP 1', 'Tuition Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100),
 	(12, 'TOP 1', 'Miscellaneous Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100),
-	(13, 'TOP 2', 'Tuition Fee', '100% TUITION', 100);
+	(13, 'TOP 2', 'Tuition Fee', '100% TUITION', 100),
+	(15, 'Deans Lister', 'Miscellaneous Fee', 'adqwe12', 23);
 
 -- Dumping structure for table model_test_db.fee_breakdown
 CREATE TABLE IF NOT EXISTS `fee_breakdown` (
@@ -2129,13 +2465,14 @@ CREATE TABLE IF NOT EXISTS `fee_breakdown` (
   `finals_original` decimal(20,2) DEFAULT NULL,
   `total_original` decimal(20,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_breakdown: ~2 rows (approximately)
-DELETE FROM `fee_breakdown`;
-INSERT INTO `fee_breakdown` (`id`, `id_number_id`, `school_year_id`, `downpayment`, `prelim`, `midterm`, `semi_finals`, `finals`, `total`, `downpayment_original`, `prelim_original`, `midterm_original`, `semi_finals_original`, `finals_original`, `total_original`) VALUES
-	(29, 194, 9, 2595.98, 2595.98, 2595.98, 2595.98, 2595.98, 12979.88, 2595.98, 2595.98, 2595.98, 2595.98, 2595.98, 12979.88),
-	(30, 197, 9, 2119.47, 2119.47, 2119.47, 2119.47, 2119.47, 10597.35, 2119.47, 2119.47, 2119.47, 2119.47, 2119.47, 10597.35);
+REPLACE INTO `fee_breakdown` (`id`, `id_number_id`, `school_year_id`, `downpayment`, `prelim`, `midterm`, `semi_finals`, `finals`, `total`, `downpayment_original`, `prelim_original`, `midterm_original`, `semi_finals_original`, `finals_original`, `total_original`) VALUES
+	(44, 207, 9, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40),
+	(45, 208, 9, 0.00, 0.00, 0.00, 2473.92, 2668.48, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40),
+	(46, 209, 9, 0.00, 0.00, 5.44, 2668.48, 2668.48, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40),
+	(47, 210, 9, 0.00, 1893.30, 2196.65, 2196.65, 2196.65, 10983.25, 2196.65, 2196.65, 2196.65, 2196.65, 2196.65, 10983.25);
 
 -- Dumping structure for table model_test_db.fee_summary
 CREATE TABLE IF NOT EXISTS `fee_summary` (
@@ -2147,13 +2484,14 @@ CREATE TABLE IF NOT EXISTS `fee_summary` (
   `previous_balance` decimal(20,2) unsigned NOT NULL DEFAULT '0.00',
   `current_receivable` decimal(20,2) unsigned NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.fee_summary: ~0 rows (approximately)
-DELETE FROM `fee_summary`;
-INSERT INTO `fee_summary` (`id`, `id_number_id`, `school_year_id`, `current_assessment`, `discounts`, `previous_balance`, `current_receivable`) VALUES
-	(14, 194, 9, 12979.88, 0.00, 0.00, 12979.88),
-	(15, 197, 9, 9384.35, 0.00, 0.00, 9384.35);
+-- Dumping data for table model_test_db.fee_summary: ~3 rows (approximately)
+REPLACE INTO `fee_summary` (`id`, `id_number_id`, `school_year_id`, `current_assessment`, `discounts`, `previous_balance`, `current_receivable`) VALUES
+	(26, 207, 9, 13342.38, 0.00, 0.00, 13342.38),
+	(27, 208, 9, 13342.38, 0.00, 0.00, 13342.38),
+	(28, 209, 9, 13342.38, 0.00, 0.00, 13342.38),
+	(29, 210, 9, 10983.24, 0.00, 0.00, 10983.24);
 
 -- Dumping structure for table model_test_db.fee_type
 CREATE TABLE IF NOT EXISTS `fee_type` (
@@ -2167,7 +2505,6 @@ CREATE TABLE IF NOT EXISTS `fee_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_type: ~0 rows (approximately)
-DELETE FROM `fee_type`;
 
 -- Dumping structure for table model_test_db.instructors
 CREATE TABLE IF NOT EXISTS `instructors` (
@@ -2178,9 +2515,8 @@ CREATE TABLE IF NOT EXISTS `instructors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.instructors: ~1 rows (approximately)
-DELETE FROM `instructors`;
-INSERT INTO `instructors` (`id`, `fullname`, `department_id`, `position`) VALUES
+-- Dumping data for table model_test_db.instructors: ~3 rows (approximately)
+REPLACE INTO `instructors` (`id`, `fullname`, `department_id`, `position`) VALUES
 	(4, 'No Instructor Assigned', 10, 'N/A'),
 	(6, 'Buguina, Melenio', 10, 'Teacher I'),
 	(7, 'KATOK', 10, 'Nursing na ngayon');
@@ -2197,29 +2533,30 @@ CREATE TABLE IF NOT EXISTS `lab_fee_setup` (
   `semester` varchar(50) NOT NULL,
   `amount` decimal(18,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.lab_fee_setup: ~2 rows (approximately)
-DELETE FROM `lab_fee_setup`;
-INSERT INTO `lab_fee_setup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
+-- Dumping data for table model_test_db.lab_fee_setup: ~3 rows (approximately)
+REPLACE INTO `lab_fee_setup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
 	(11, 'Laboratory FeeNursing Laboratory6711', 'Laboratory Fee', 'Nursing Laboratory', '6', '7', '1', '1', 123.00),
-	(12, 'Laboratory FeePhysics Laboratory6711', 'Laboratory Fee', 'Physics Laboratory', '6', '7', '1', '1', 324.45);
+	(12, 'Laboratory FeePhysics Laboratory6711', 'Laboratory Fee', 'Physics Laboratory', '6', '7', '1', '1', 324.45),
+	(13, 'Laboratory FeeRad Tech Laboratory6711', 'Laboratory Fee', 'Rad Tech Laboratory', '6', '7', '1', '1', 234.12);
 
 -- Dumping structure for table model_test_db.lab_fee_subjects
 CREATE TABLE IF NOT EXISTS `lab_fee_subjects` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `uid` varchar(150) NOT NULL DEFAULT '0',
   `lab_fee_id` int NOT NULL DEFAULT '0',
   `subject_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `descriptive_title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `subject_code` (`subject_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `uid` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.lab_fee_subjects: ~2 rows (approximately)
-DELETE FROM `lab_fee_subjects`;
-INSERT INTO `lab_fee_subjects` (`id`, `lab_fee_id`, `subject_code`, `descriptive_title`) VALUES
-	(3, 11, 'NAT SCI 2', 'Zoology'),
-	(4, 12, 'ANA I', 'Regional Anatomy');
+-- Dumping data for table model_test_db.lab_fee_subjects: ~3 rows (approximately)
+REPLACE INTO `lab_fee_subjects` (`id`, `uid`, `lab_fee_id`, `subject_code`, `descriptive_title`) VALUES
+	(8, '13NAT SCI 2', 13, 'NAT SCI 2', 'Zoology'),
+	(9, '12NAT SCI 2', 12, 'NAT SCI 2', 'Zoology'),
+	(11, '11NAT SCI 2', 11, 'NAT SCI 2', 'Zoology');
 
 -- Dumping structure for table model_test_db.levels
 CREATE TABLE IF NOT EXISTS `levels` (
@@ -2232,8 +2569,7 @@ CREATE TABLE IF NOT EXISTS `levels` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.levels: ~3 rows (approximately)
-DELETE FROM `levels`;
-INSERT INTO `levels` (`id`, `code`, `description`, `status`) VALUES
+REPLACE INTO `levels` (`id`, `code`, `description`, `status`) VALUES
 	(7, 'COL', 'COLLEGE', 'Active'),
 	(8, 'JHS', 'Junior High School', 'Active'),
 	(9, 'SHS', 'Senior High School', 'Active');
@@ -2251,11 +2587,10 @@ CREATE TABLE IF NOT EXISTS `miscellaneous_fee_setup` (
   `amount` decimal(18,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.miscellaneous_fee_setup: ~3 rows (approximately)
-DELETE FROM `miscellaneous_fee_setup`;
-INSERT INTO `miscellaneous_fee_setup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
+-- Dumping data for table model_test_db.miscellaneous_fee_setup: ~2 rows (approximately)
+REPLACE INTO `miscellaneous_fee_setup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
 	(25, 'Miscellaneous Fee6PE Uniform711', 'Miscellaneous Fee', 'PE Uniform', '6', '7', '1', '1', 123.00),
 	(28, 'Miscellaneous Fee6POWER FEE711', 'Miscellaneous Fee', 'POWER FEE', '6', '7', '1', '1', 563.12);
 
@@ -2275,14 +2610,12 @@ CREATE TABLE IF NOT EXISTS `other_fees` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.other_fees: ~5 rows (approximately)
-DELETE FROM `other_fees`;
-INSERT INTO `other_fees` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
-	(6, 'Other Fee6Learning Management System711', 'Other Fee', 'Learning Management System', '6', '7', '1', '1', 465.23),
-	(7, 'Other Fee6Student Management System711', 'Other Fee', 'Student Management System', '6', '7', '1', '1', 543.12),
+REPLACE INTO `other_fees` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
+	(7, 'Other Fee6dasasdasdasd711', 'Other Fee', 'dasasdasdasd', '6', '7', '1', '1', 1213.00),
 	(8, 'Other Fee7Student Management System711', 'Other Fee', 'Student Management System', '7', '7', '1', '1', 543.12),
 	(9, 'Other Fee7Learning Management System711', 'Other Fee', 'Learning Management System', '7', '7', '1', '1', 345.12),
 	(10, 'Other Fee6Website Maintenance Fee711', 'Other Fee', 'Website Maintenance Fee', '6', '7', '1', '1', 235.12),
-	(11, 'Other Fee6das711', 'Other Fee', 'das', '6', '7', '1', '1', 1213.00);
+	(11, 'Other Fee6awan lang711', 'Other Fee', 'awan lang', '6', '7', '1', '1', 1213.00);
 
 -- Dumping structure for table model_test_db.reference_number_setup
 CREATE TABLE IF NOT EXISTS `reference_number_setup` (
@@ -2292,9 +2625,8 @@ CREATE TABLE IF NOT EXISTS `reference_number_setup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.reference_number_setup: ~1 rows (approximately)
-DELETE FROM `reference_number_setup`;
-INSERT INTO `reference_number_setup` (`id`, `reference_number`) VALUES
-	(1, 1000352);
+REPLACE INTO `reference_number_setup` (`id`, `reference_number`) VALUES
+	(1, 1000400);
 
 -- Dumping structure for table model_test_db.school_year
 CREATE TABLE IF NOT EXISTS `school_year` (
@@ -2310,8 +2642,7 @@ CREATE TABLE IF NOT EXISTS `school_year` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.school_year: ~3 rows (approximately)
-DELETE FROM `school_year`;
-INSERT INTO `school_year` (`id`, `code`, `description`, `school_year_from`, `school_year_to`, `semester`, `is_current`) VALUES
+REPLACE INTO `school_year` (`id`, `code`, `description`, `school_year_from`, `school_year_to`, `semester`, `is_current`) VALUES
 	(9, '2023-2024-1', 'SY 2023-2024, 1ST Semester', '12-06-2023', '12-13-2023', '1', 'Yes'),
 	(10, '2023-2024-2', 'SY 2023-2024, 2nd Semester', '01-01-2024', '01-31-2024', '2', 'No'),
 	(11, '2023-2024-3', 'SY 2023-2024-3', '02-01-2024', '02-29-2024', '3', 'No');
@@ -2331,24 +2662,26 @@ CREATE TABLE IF NOT EXISTS `sections` (
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`unique_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.sections: ~5 rows (approximately)
-DELETE FROM `sections`;
-INSERT INTO `sections` (`id`, `unique_id`, `section_code`, `course`, `year_level`, `section`, `semester`, `number_of_students`, `max_number_of_students`, `status`, `remarks`) VALUES
+-- Dumping data for table model_test_db.sections: ~9 rows (approximately)
+REPLACE INTO `sections` (`id`, `unique_id`, `section_code`, `course`, `year_level`, `section`, `semester`, `number_of_students`, `max_number_of_students`, `status`, `remarks`) VALUES
 	(1, 'BSCA-1-ABSCA11', 'BSCA-1-A', 'BSCA', 1, 'A', '1', 0, 50, 'Available', 'Regular'),
-	(41, 'BSPT-1-ABSPT11', 'BSPT-1-A', 'BSPT', 1, 'A', '1', 22, 50, 'Available', 'Regular'),
+	(41, 'BSPT-1-ABSPT11', 'BSPT-1-A', 'BSPT', 1, 'A', '1', 29, 50, 'Available', 'Regular'),
 	(42, 'BSPT-1-BBSPT11', 'BSPT-1-B', 'BSPT', 1, 'B', '1', 0, 50, 'Available', 'Regular'),
-	(43, 'BSRT-1-ABSRT11', 'BSRT-1-A', 'BSRT', 1, 'A', '1', 6, 50, 'Available', 'Regular'),
-	(44, 'BSCOE-1-ABSCOE11', 'BSCOE-1-A', 'BSCOE', 1, 'A', '1', 9, 50, 'Available', 'Regular'),
+	(43, 'BSRT-1-ABSRT11', 'BSRT-1-A', 'BSRT', 1, 'A', '1', 7, 50, 'Available', 'Regular'),
+	(44, 'BSCOE-1-ABSCOE11', 'BSCOE-1-A', 'BSCOE', 1, 'A', '1', 12, 50, 'Available', 'Regular'),
 	(45, 'BSCA-1-BBSCA12', 'BSCA-1-B', 'BSCA', 1, 'B', '2', 0, 50, 'Available', 'Regular'),
-	(46, 'BSSW-1-ABSSW11', 'BSSW-1-A', 'BSSW', 1, 'A', '1', 1, 50, 'Available', 'Regular');
+	(46, 'BSSW-1-ABSSW11', 'BSSW-1-A', 'BSSW', 1, 'A', '1', 3, 50, 'Available', 'Regular'),
+	(47, 'BSN-1-ABSN11', 'BSN-1-A', 'BSN', 1, 'A', '1', 0, 50, 'Available', 'Regular'),
+	(48, 'BSPharma-1-ABSPharma11', 'BSPharma-1-A', 'BSPharma', 1, 'A', '1', 0, 50, 'Available', 'Regular');
 
 -- Dumping structure for table model_test_db.section_subjects
 CREATE TABLE IF NOT EXISTS `section_subjects` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `unique_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
   `section_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `curriculum_id` varchar(50) DEFAULT NULL,
   `year_level` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `semester` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `subject_code` varchar(50) NOT NULL,
@@ -2364,59 +2697,48 @@ CREATE TABLE IF NOT EXISTS `section_subjects` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`unique_id`),
   KEY `section_code_id` (`section_code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=312 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=361 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.section_subjects: ~40 rows (approximately)
-DELETE FROM `section_subjects`;
-INSERT INTO `section_subjects` (`id`, `unique_id`, `section_code`, `year_level`, `semester`, `subject_code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `time`, `day`, `room`, `instructor`) VALUES
-	(263, 'BSCOE-1-ABSCOE11GEC 1', 'BSCOE-1-A', '1', '1', 'GEC 1', 'Mathematics in the Modern World', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(264, 'BSCOE-1-ABSCOE11GEC 7', 'BSCOE-1-A', '1', '1', 'GEC 7', 'Science, Technology and Society', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(265, 'BSCOE-1-ABSCOE11MATH 1', 'BSCOE-1-A', '1', '1', 'MATH 1', 'Calculus 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(266, 'BSCOE-1-ABSCOE11NS 1', 'BSCOE-1-A', '1', '1', 'NS 1', 'Chemistry for Engineers', 4.0, 3.0, 1.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(267, 'BSCOE-1-ABSCOE11CPE 1', 'BSCOE-1-A', '1', '1', 'CPE 1', 'Programming Logic and Design', 2.0, 0.0, 2.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(268, 'BSCOE-1-ABSCOE11CPE 2', 'BSCOE-1-A', '1', '1', 'CPE 2', 'Computer Engineering as a Discipline', 1.0, 1.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(269, 'BSCOE-1-ABSCOE11PE 1', 'BSCOE-1-A', '1', '1', 'PE 1', 'Physical Education 1', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(270, 'BSCOE-1-ABSCOE11NSTP 1', 'BSCOE-1-A', '1', '1', 'NSTP 1', 'National Service Training Program 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(271, 'BSCOE-1-ABSCOE11MATH 100', 'BSCOE-1-A', '1', '1', 'MATH 100', 'Trigonometry w/ Analytic Geometry', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(272, 'BSCOE-1-ABSCOE11NAT Sci 1', 'BSCOE-1-A', '1', '1', 'NAT Sci 1', 'College Physics', 5.0, 3.0, 2.0, 'NONE', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(273, 'BSCOE-1-ABSCOE11MSCED 201', 'BSCOE-1-A', '1', '1', 'MSCED 201', 'Advisorship Time 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(274, 'BSPT-1-ABSPT11GEC 1', 'BSPT-1-A', '1', '1', 'GEC 1', 'Understanding the Self love', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(275, 'BSPT-1-ABSPT11GEC 8', 'BSPT-1-A', '1', '1', 'GEC 8', 'Ethics', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(276, 'BSPT-1-ABSPT11GEC 7', 'BSPT-1-A', '1', '1', 'GEC 7', 'Science, Technology and Society', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(277, 'BSPT-1-ABSPT11GEC 5', 'BSPT-1-A', '1', '1', 'GEC 5', 'Purposive Communication', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(278, 'BSPT-1-ABSPT11PE 1', 'BSPT-1-A', '1', '1', 'PE 1', 'Physical Education 1 (wellness & fitness)', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(279, 'BSPT-1-ABSPT11NSTP 1', 'BSPT-1-A', '1', '1', 'NSTP 1', 'National Service Training Program 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(280, 'BSPT-1-ABSPT11FIL 1', 'BSPT-1-A', '1', '1', 'FIL 1', 'Panitikang Filipino', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(281, 'BSPT-1-ABSPT11MT 100', 'BSPT-1-A', '1', '1', 'MT 100', 'Medical Terminology', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(282, 'BSPT-1-ABSPT11NAT SCI 2', 'BSPT-1-A', '1', '1', 'NAT SCI 2', 'Zoology', 5.0, 3.0, 2.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(283, 'BSPT-1-ABSPT11MSCED 201', 'BSPT-1-A', '1', '1', 'MSCED 201', 'Advisorship Time 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(284, 'BSPT-1-BBSPT11GEC 1', 'BSPT-1-B', '1', '1', 'GEC 1', 'Understanding the Self love', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(285, 'BSPT-1-BBSPT11GEC 8', 'BSPT-1-B', '1', '1', 'GEC 8', 'Ethics', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(286, 'BSPT-1-BBSPT11GEC 7', 'BSPT-1-B', '1', '1', 'GEC 7', 'Science, Technology and Society', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(287, 'BSPT-1-BBSPT11GEC 5', 'BSPT-1-B', '1', '1', 'GEC 5', 'Purposive Communication', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(288, 'BSPT-1-BBSPT11PE 1', 'BSPT-1-B', '1', '1', 'PE 1', 'Physical Education 1 (wellness & fitness)', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(289, 'BSPT-1-BBSPT11NSTP 1', 'BSPT-1-B', '1', '1', 'NSTP 1', 'National Service Training Program 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(290, 'BSPT-1-BBSPT11FIL 1', 'BSPT-1-B', '1', '1', 'FIL 1', 'Panitikang Filipino', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(291, 'BSPT-1-BBSPT11MT 100', 'BSPT-1-B', '1', '1', 'MT 100', 'Medical Terminology', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(292, 'BSPT-1-BBSPT11NAT SCI 2', 'BSPT-1-B', '1', '1', 'NAT SCI 2', 'Zoology', 5.0, 3.0, 2.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(293, 'BSPT-1-BBSPT11MSCED 201', 'BSPT-1-B', '1', '1', 'MSCED 201', 'Advisorship Time 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(294, 'BSRT-1-ABSRT11GEC 1', 'BSRT-1-A', '1', '1', 'GEC 1', 'Understanding the Self', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(295, 'BSRT-1-ABSRT11GEC 2', 'BSRT-1-A', '1', '1', 'GEC 2', 'Readings in Philippine History ', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(296, 'BSRT-1-ABSRT11GEC 3', 'BSRT-1-A', '1', '1', 'GEC 3', 'The Contemporary World', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(297, 'BSRT-1-ABSRT11GEC 7', 'BSRT-1-A', '1', '1', 'GEC 7', 'Science, Technology and Society', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(298, 'BSRT-1-ABSRT11GEC 5', 'BSRT-1-A', '1', '1', 'GEC 5', 'Purposive Communication', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(299, 'BSRT-1-ABSRT11RT 100', 'BSRT-1-A', '1', '1', 'RT 100', 'Introduction to Radiologic Technology and Health Care', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(300, 'BSRT-1-ABSRT11PATHFit 1', 'BSRT-1-A', '1', '1', 'PATHFit 1', 'Physical Activities Towards Health & Fitness: Movement Competency Training', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(301, 'BSRT-1-ABSRT11NSTP 1', 'BSRT-1-A', '1', '1', 'NSTP 1', 'National Service Training Program 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(302, 'BSRT-1-ABSRT11MSCED 201', 'BSRT-1-A', '1', '1', 'MSCED 201', 'Advisorship Program 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(304, 'BSSW-1-ABSSW11GEC 2', 'BSSW-1-A', '1', '1', 'GEC 2', 'Readings in the Philippine History', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(305, 'BSSW-1-ABSSW11GEC 4', 'BSSW-1-A', '1', '1', 'GEC 4', 'Mathematics in the Modern World', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(306, 'BSSW-1-ABSSW11GEC 6', 'BSSW-1-A', '1', '1', 'GEC 6', 'Art Appreciation', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(307, 'BSSW-1-ABSSW11SW 201', 'BSSW-1-A', '1', '1', 'SW 201', 'Knowledge and Philosophical Foundations of the Social Work Profession', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(308, 'BSSW-1-ABSSW11ETHICS 100', 'BSSW-1-A', '1', '1', 'ETHICS 100', 'ISAPian Education w/ Values Formation', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(309, 'BSSW-1-ABSSW11PE 1', 'BSSW-1-A', '1', '1', 'PE 1', 'Physical Education', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(310, 'BSSW-1-ABSSW11NSTP 1', 'BSSW-1-A', '1', '1', 'NSTP 1', 'National Service Training Program ', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
-	(311, 'BSSW-1-ABSSW11MSCED 201', 'BSSW-1-A', '1', '1', 'MSCED 201', 'Advisorship Time 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set');
+-- Dumping data for table model_test_db.section_subjects: ~29 rows (approximately)
+REPLACE INTO `section_subjects` (`id`, `unique_id`, `section_code`, `curriculum_id`, `year_level`, `semester`, `subject_code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `time`, `day`, `room`, `instructor`) VALUES
+	(322, 'BSPT-1-BBSPT11GEC 1', 'BSPT-1-B', '15', '1', '1', 'GEC 1', 'Understanding the Self', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(323, 'BSPT-1-BBSPT11GEC 8', 'BSPT-1-B', '15', '1', '1', 'GEC 8', 'Ethics', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(324, 'BSPT-1-BBSPT11GEC 7', 'BSPT-1-B', '15', '1', '1', 'GEC 7', 'Science, Technology and Society', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(325, 'BSPT-1-BBSPT11GEC 5', 'BSPT-1-B', '15', '1', '1', 'GEC 5', 'Purposive Communication', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(326, 'BSPT-1-BBSPT11PE 1', 'BSPT-1-B', '15', '1', '1', 'PE 1', 'Physical Education 1 (wellness & fitness)', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(327, 'BSPT-1-BBSPT11NSTP 1', 'BSPT-1-B', '15', '1', '1', 'NSTP 1', 'National Service Training Program 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(328, 'BSPT-1-BBSPT11FIL 1', 'BSPT-1-B', '15', '1', '1', 'FIL 1', 'Panitikang Filipino', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(329, 'BSPT-1-BBSPT11MT 100', 'BSPT-1-B', '15', '1', '1', 'MT 100', 'Medical Terminology', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(330, 'BSPT-1-BBSPT11NAT SCI 2', 'BSPT-1-B', '15', '1', '1', 'NAT SCI 2', 'Zoology', 5.0, 3.0, 2.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(331, 'BSPT-1-BBSPT11MSCED 201', 'BSPT-1-B', '15', '1', '1', 'MSCED 201', 'Advisorship Time 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(332, 'BSPT-1-ABSPT11GEC 1', 'BSPT-1-A', '15', '1', '1', 'GEC 1', 'Understanding the Self', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(333, 'BSPT-1-ABSPT11GEC 8', 'BSPT-1-A', '15', '1', '1', 'GEC 8', 'Ethics', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(334, 'BSPT-1-ABSPT11GEC 7', 'BSPT-1-A', '15', '1', '1', 'GEC 7', 'Science, Technology and Society', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(335, 'BSPT-1-ABSPT11GEC 5', 'BSPT-1-A', '15', '1', '1', 'GEC 5', 'Purposive Communication', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(336, 'BSPT-1-ABSPT11PE 1', 'BSPT-1-A', '15', '1', '1', 'PE 1', 'Physical Education 1 (wellness & fitness)', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(337, 'BSPT-1-ABSPT11NSTP 1', 'BSPT-1-A', '15', '1', '1', 'NSTP 1', 'National Service Training Program 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(338, 'BSPT-1-ABSPT11FIL 1', 'BSPT-1-A', '15', '1', '1', 'FIL 1', 'Panitikang Filipino', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(339, 'BSPT-1-ABSPT11MT 100', 'BSPT-1-A', '15', '1', '1', 'MT 100', 'Medical Terminology', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(340, 'BSPT-1-ABSPT11NAT SCI 2', 'BSPT-1-A', '15', '1', '1', 'NAT SCI 2', 'Zoology', 5.0, 3.0, 2.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(341, 'BSPT-1-ABSPT11MSCED 201', 'BSPT-1-A', '15', '1', '1', 'MSCED 201', 'Advisorship Time 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(343, 'BSN-1-ABSN11GEC 5', 'BSN-1-A', '22', '1', '1', 'GEC 5', 'Purposive Communication', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(344, 'BSN-1-ABSN11GEC 7', 'BSN-1-A', '22', '1', '1', 'GEC 7', 'Science, Technology and Society', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(345, 'BSN-1-ABSN11MC 4', 'BSN-1-A', '22', '1', '1', 'MC 4', 'Inorganic and Organic Chemistry', 4.0, 2.0, 2.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(346, 'BSN-1-ABSN11MT 101', 'BSN-1-A', '22', '1', '1', 'MT 101', 'Principles of Medical Laboratory Science Practice 1 (Introduction toto Med Lab Science, Lab Safety, and Waste Management', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(347, 'BSN-1-ABSN11MC 6', 'BSN-1-A', '22', '1', '1', 'MC 6', 'HeaIth Information System for Med Lab Science', 3.0, 2.0, 1.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(348, 'BSN-1-ABSN11MC 1', 'BSN-1-A', '22', '1', '1', 'MC 1', 'Human Anatomy and Physiology with Pathophysiology', 4.0, 2.0, 2.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(349, 'BSN-1-ABSN11PE 1', 'BSN-1-A', '22', '1', '1', 'PE 1', 'Physical Education 1 (Physical Fitness)', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(350, 'BSN-1-ABSN11NSTP 1', 'BSN-1-A', '22', '1', '1', 'NSTP 1', 'National Service Training Program 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(351, 'BSN-1-ABSN11MSCED 201', 'BSN-1-A', '22', '1', '1', 'MSCED 201', 'Advisorship Time 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(352, 'BSRT-1-ABSRT11GEC 1', 'BSRT-1-A', '13', '1', '1', 'GEC 1', 'Understanding the Self', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(353, 'BSRT-1-ABSRT11GEC 2', 'BSRT-1-A', '13', '1', '1', 'GEC 2', 'Readings in Philippine History ', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(354, 'BSRT-1-ABSRT11GEC 3', 'BSRT-1-A', '13', '1', '1', 'GEC 3', 'The Contemporary World', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(355, 'BSRT-1-ABSRT11GEC 7', 'BSRT-1-A', '13', '1', '1', 'GEC 7', 'Science, Technology and Society', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(356, 'BSRT-1-ABSRT11GEC 5', 'BSRT-1-A', '13', '1', '1', 'GEC 5', 'Purposive Communication', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(357, 'BSRT-1-ABSRT11RT 100', 'BSRT-1-A', '13', '1', '1', 'RT 100', 'Introduction to Radiologic Technology and Health Care', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(358, 'BSRT-1-ABSRT11PATHFit 1', 'BSRT-1-A', '13', '1', '1', 'PATHFit 1', 'Physical Activities Towards Health & Fitness: Movement Competency Training', 2.0, 2.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(359, 'BSRT-1-ABSRT11NSTP 1', 'BSRT-1-A', '13', '1', '1', 'NSTP 1', 'National Service Training Program 1', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
+	(360, 'BSRT-1-ABSRT11MSCED 201', 'BSRT-1-A', '13', '1', '1', 'MSCED 201', 'Advisorship Program 1', 0.0, 0.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set');
 
 -- Dumping structure for table model_test_db.statements_of_accounts
 CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
@@ -2435,13 +2757,24 @@ CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
   `cashier_in_charge` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `reference_no` (`reference_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.statements_of_accounts: ~0 rows (approximately)
-DELETE FROM `statements_of_accounts`;
-INSERT INTO `statements_of_accounts` (`id`, `id_number_id`, `school_year_id`, `date`, `course_id`, `year_level`, `semester`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
-	(115, '194', '9', '02-14-2024', '16', '1', '1', '1000351', 'Total Assessment as of: 2023-2024-1', 12979.88, 0.00, 12979.88, ''),
-	(116, '197', '9', '02-14-2024', '13', '1', '1', '1000352', 'Total Assessment as of: 2023-2024-1', 9384.35, 0.00, 9384.35, '');
+-- Dumping data for table model_test_db.statements_of_accounts: ~2 rows (approximately)
+REPLACE INTO `statements_of_accounts` (`id`, `id_number_id`, `school_year_id`, `date`, `course_id`, `year_level`, `semester`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
+	(159, '207', '9', '02-21-2024', '12', '1', '1', '1000393', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
+	(160, '207', '9', '02-21-2024', '12', '1', '1', '1000394', 'Downpayment', 13342.38, 500.00, 12842.38, 'Finance, Admin '),
+	(161, '207', '9', '02-21-2024', '12', '1', '1', '1000395', 'Prelims', 12842.38, 2668.48, 10173.90, 'Finance, Admin '),
+	(162, '208', '9', '02-21-2024', '12', '1', '1', '1000396', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
+	(163, '208', '9', '02-21-2024', '12', '1', '1', '1000397', 'Downpayment', 13342.38, 500.00, 12842.38, 'Finance, Admin '),
+	(164, '208', '9', '02-21-2024', '12', '1', '1', '1000398', 'Prelim Exam Payment', 12842.38, 2168.48, 10673.90, 'Finance, Admin '),
+	(165, '208', '9', '02-21-2024', '12', '1', '1', '123456', 'Midterm Payment', 10673.90, 2636.96, 8036.94, 'Finance, Admin '),
+	(166, '208', '9', '02-21-2024', '12', '1', '1', '123457', 'Downpayment', 8036.94, 2636.96, 5399.98, 'Finance, Admin '),
+	(167, '209', '9', '02-21-2024', '12', '1', '1', '1000399', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
+	(168, '210', '9', '02-21-2024', '13', '1', '1', '1000400', 'Total Assessment as of: 2023-2024-1', 10983.24, 0.00, 10983.24, ''),
+	(169, '209', '9', '02-21-2024', '12', '1', '1', '100001', 'first down payment', 13342.38, 5000.00, 8342.38, 'Finance, Admin '),
+	(170, '210', '9', '02-21-2024', '13', '1', '1', '100002', 'first downpayment', 10983.24, 2196.65, 8786.59, 'Finance, Admin '),
+	(171, '208', '9', '02-21-2024', '12', '1', '1', '123', 'TF', 5399.98, 2305.44, 3094.54, 'Finance, Admin '),
+	(172, '209', '9', '02-21-2024', '12', '1', '1', '22364', 'Prelim Payment', 8342.38, 3000.00, 5342.38, 'Alan, Charity T');
 
 -- Dumping structure for table model_test_db.student_accounts
 CREATE TABLE IF NOT EXISTS `student_accounts` (
@@ -2480,14 +2813,14 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number`),
   UNIQUE KEY `fullname` (`fullname`)
-) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_accounts: ~3 rows (approximately)
-DELETE FROM `student_accounts`;
-INSERT INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`, `date_of_admission`) VALUES
-	(194, '2024-1-0001', '2023-2024-1', '9', 'Manglallan, Derrick ', 'Manglallan', 'Derrick', '', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '14/02/2024'),
-	(195, '2024-1-0002', '2023-2024-1', '9', 'Alan, Charity ', 'Alan', 'Charity', '', '', '', '', '', '', '', 'Pending', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', ''),
-	(197, '2024-1-0003', '2023-2024-1', '9', 'Geron, Richard ', 'Geron', 'Richard', '', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '14/02/2024');
+-- Dumping data for table model_test_db.student_accounts: ~1 rows (approximately)
+REPLACE INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`, `date_of_admission`) VALUES
+	(207, '2024-1-0001', '2023-2024-1', '9', 'Manglallan, Derrick Manglallan', 'Manglallan', 'Derrick', 'Manglallan', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '21/02/2024'),
+	(208, '2024-1-0002', '2023-2024-1', '9', 'Alan, Charity ', 'Alan', 'Charity', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '21/02/2024'),
+	(209, '2024-1-0003', '2023-2024-1', '9', 'Pingad, Aron ', 'Pingad', 'Aron', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '21/02/2024'),
+	(210, '2024-1-0004', '2023-2024-1', '9', 'Geron, Richard ', 'Geron', 'Richard', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '21/02/2024');
 
 -- Dumping structure for table model_test_db.student_assessment
 CREATE TABLE IF NOT EXISTS `student_assessment` (
@@ -2499,23 +2832,43 @@ CREATE TABLE IF NOT EXISTS `student_assessment` (
   `units` decimal(20,2) NOT NULL DEFAULT '0.00',
   `computation` decimal(20,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=463 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_assessment: ~0 rows (approximately)
-DELETE FROM `student_assessment`;
-INSERT INTO `student_assessment` (`id`, `id_number_id`, `school_year_id`, `fee_type`, `amount`, `units`, `computation`) VALUES
-	(451, '194', '9', 'TUITION FEE PER UNIT', 0.00, 20.00, 10842.40),
-	(452, '194', '9', 'PE Uniform', 0.00, 1.00, 123.00),
-	(453, '194', '9', 'POWER FEE', 0.00, 1.00, 563.12),
-	(454, '194', '9', 'INTERNET FEE', 0.00, 1.00, 563.12),
-	(455, '194', '9', 'Student Management System', 0.00, 1.00, 543.12),
-	(456, '194', '9', 'Learning Management System', 0.00, 1.00, 345.12),
-	(457, '197', '9', 'TUITION FEE PER UNIT', 0.00, 23.00, 7454.76),
-	(458, '197', '9', 'PE Uniform', 0.00, 1.00, 123.00),
-	(459, '197', '9', 'POWER FEE', 0.00, 1.00, 563.12),
-	(460, '197', '9', 'Learning Management System', 0.00, 1.00, 465.23),
-	(461, '197', '9', 'Student Management System', 0.00, 1.00, 543.12),
-	(462, '197', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12);
+-- Dumping data for table model_test_db.student_assessment: ~9 rows (approximately)
+REPLACE INTO `student_assessment` (`id`, `id_number_id`, `school_year_id`, `fee_type`, `amount`, `units`, `computation`) VALUES
+	(529, '207', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
+	(530, '207', '9', 'PE Uniform', 0.00, 1.00, 123.00),
+	(531, '207', '9', 'POWER FEE', 0.00, 1.00, 563.12),
+	(532, '207', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
+	(533, '207', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
+	(534, '207', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
+	(535, '207', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
+	(536, '207', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
+	(537, '207', '9', 'awan lang', 0.00, 1.00, 1213.00),
+	(538, '208', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
+	(539, '208', '9', 'PE Uniform', 0.00, 1.00, 123.00),
+	(540, '208', '9', 'POWER FEE', 0.00, 1.00, 563.12),
+	(541, '208', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
+	(542, '208', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
+	(543, '208', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
+	(544, '208', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
+	(545, '208', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
+	(546, '208', '9', 'awan lang', 0.00, 1.00, 1213.00),
+	(547, '209', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
+	(548, '209', '9', 'PE Uniform', 0.00, 1.00, 123.00),
+	(549, '209', '9', 'POWER FEE', 0.00, 1.00, 563.12),
+	(550, '209', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
+	(551, '209', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
+	(552, '209', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
+	(553, '209', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
+	(554, '209', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
+	(555, '209', '9', 'awan lang', 0.00, 1.00, 1213.00),
+	(556, '210', '9', 'Tuition Fee per Unit', 0.00, 23.00, 7636.00),
+	(557, '210', '9', 'PE Uniform', 0.00, 1.00, 123.00),
+	(558, '210', '9', 'POWER FEE', 0.00, 1.00, 563.12),
+	(559, '210', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
+	(560, '210', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
+	(561, '210', '9', 'awan lang', 0.00, 1.00, 1213.00);
 
 -- Dumping structure for table model_test_db.student_course
 CREATE TABLE IF NOT EXISTS `student_course` (
@@ -2529,14 +2882,14 @@ CREATE TABLE IF NOT EXISTS `student_course` (
   `semester` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_course: ~0 rows (approximately)
-DELETE FROM `student_course`;
-INSERT INTO `student_course` (`id`, `id_number_id`, `course_id`, `campus_id`, `curriculum_id`, `year_level`, `section_id`, `semester`) VALUES
-	(136, '194', '16', '7', '20', '1', '46', 1),
-	(137, '195', '11', '7', 'Not Set', 'Not Set', 'Not Set', 1),
-	(138, '197', '13', '6', '13', '1', '43', 1);
+-- Dumping data for table model_test_db.student_course: ~1 rows (approximately)
+REPLACE INTO `student_course` (`id`, `id_number_id`, `course_id`, `campus_id`, `curriculum_id`, `year_level`, `section_id`, `semester`) VALUES
+	(148, '207', '12', '6', '15', '1', '41', 1),
+	(149, '208', '12', '6', '15', '1', '41', 1),
+	(150, '209', '12', '6', '15', '1', '41', 1),
+	(151, '210', '13', '6', '13', '1', '43', 1);
 
 -- Dumping structure for table model_test_db.student_discounts
 CREATE TABLE IF NOT EXISTS `student_discounts` (
@@ -2547,14 +2900,14 @@ CREATE TABLE IF NOT EXISTS `student_discounts` (
   `description` varchar(50) NOT NULL,
   `discount_percentage` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_discounts: ~3 rows (approximately)
-DELETE FROM `student_discounts`;
-INSERT INTO `student_discounts` (`id`, `id_number_id`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
+-- Dumping data for table model_test_db.student_discounts: ~4 rows (approximately)
+REPLACE INTO `student_discounts` (`id`, `id_number_id`, `code`, `discount_target`, `description`, `discount_percentage`) VALUES
 	(30, '172', 'TOP 1', 'Tuition Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100),
 	(31, '172', 'TOP 1', 'Miscellaneous Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100),
-	(32, '189', 'Relative0-1', 'Tuition Fee', 'Relative Discount', 50);
+	(32, '189', 'Relative0-1', 'Tuition Fee', 'Relative Discount', 50),
+	(33, '206', 'TOP 1', 'Tuition Fee', '100% DISCOUNT TUITION AND MISCELLANEOUS', 100);
 
 -- Dumping structure for table model_test_db.student_documents
 CREATE TABLE IF NOT EXISTS `student_documents` (
@@ -2566,7 +2919,6 @@ CREATE TABLE IF NOT EXISTS `student_documents` (
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.student_documents: ~0 rows (approximately)
-DELETE FROM `student_documents`;
 
 -- Dumping structure for table model_test_db.student_subjects
 CREATE TABLE IF NOT EXISTS `student_subjects` (
@@ -2591,28 +2943,49 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   KEY `instructor_id` (`instructor_id`),
   KEY `id_number_id` (`id_number_id`),
   KEY `school_year_id` (`school_year_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=912 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1045 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_subjects: ~0 rows (approximately)
-DELETE FROM `student_subjects`;
-INSERT INTO `student_subjects` (`id`, `id_number_id`, `unique_id`, `school_year_id`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor_id`, `grade`, `remarks`) VALUES
-	(895, '194', '1949GEC 2', '9', 'GEC 2', 'Readings in the Philippine History', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(896, '194', '1949GEC 4', '9', 'GEC 4', 'Mathematics in the Modern World', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(897, '194', '1949GEC 6', '9', 'GEC 6', 'Art Appreciation', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(898, '194', '1949SW 201', '9', 'SW 201', 'Knowledge and Philosophical Foundations of the Social Work Profession', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(899, '194', '1949ETHICS 100', '9', 'ETHICS 100', 'ISAPian Education w/ Values Formation', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(900, '194', '1949PE 1', '9', 'PE 1', 'Physical Education', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(901, '194', '1949NSTP 1', '9', 'NSTP 1', 'National Service Training Program ', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(902, '194', '1949MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(903, '197', '1979GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(904, '197', '1979GEC 2', '9', 'GEC 2', 'Readings in Philippine History ', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(905, '197', '1979GEC 3', '9', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(906, '197', '1979GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(907, '197', '1979GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(908, '197', '1979RT 100', '9', 'RT 100', 'Introduction to Radiologic Technology and Health Care', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(909, '197', '1979PATHFit 1', '9', 'PATHFit 1', 'Physical Activities Towards Health & Fitness: Movement Competency Training', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(910, '197', '1979NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(911, '197', '1979MSCED 201', '9', 'MSCED 201', 'Advisorship Program 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A');
+-- Dumping data for table model_test_db.student_subjects: ~10 rows (approximately)
+REPLACE INTO `student_subjects` (`id`, `id_number_id`, `unique_id`, `school_year_id`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor_id`, `grade`, `remarks`) VALUES
+	(1006, '207', '2079GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1007, '207', '2079GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1008, '207', '2079GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1009, '207', '2079GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1010, '207', '2079PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1011, '207', '2079NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1012, '207', '2079FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1013, '207', '2079MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1014, '207', '2079NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1015, '207', '2079MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1016, '208', '2089GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1017, '208', '2089GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1018, '208', '2089GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1019, '208', '2089GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1020, '208', '2089PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1021, '208', '2089NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1022, '208', '2089FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1023, '208', '2089MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1024, '208', '2089NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1025, '208', '2089MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1026, '209', '2099GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1027, '209', '2099GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1028, '209', '2099GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1029, '209', '2099GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1030, '209', '2099PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1031, '209', '2099NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1032, '209', '2099FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1033, '209', '2099MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1034, '209', '2099NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1035, '209', '2099MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1036, '210', '2109GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1037, '210', '2109GEC 2', '9', 'GEC 2', 'Readings in Philippine History ', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1038, '210', '2109GEC 3', '9', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1039, '210', '2109GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1040, '210', '2109GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1041, '210', '2109RT 100', '9', 'RT 100', 'Introduction to Radiologic Technology and Health Care', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1042, '210', '2109PATHFit 1', '9', 'PATHFit 1', 'Physical Activities Towards Health & Fitness: Movement Competency Training', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1043, '210', '2109NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1044, '210', '2109MSCED 201', '9', 'MSCED 201', 'Advisorship Program 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A');
 
 -- Dumping structure for table model_test_db.subjects
 CREATE TABLE IF NOT EXISTS `subjects` (
@@ -2631,7 +3004,6 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.subjects: ~0 rows (approximately)
-DELETE FROM `subjects`;
 
 -- Dumping structure for table model_test_db.tuitionfeesetup
 CREATE TABLE IF NOT EXISTS `tuitionfeesetup` (
@@ -2649,8 +3021,7 @@ CREATE TABLE IF NOT EXISTS `tuitionfeesetup` (
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.tuitionfeesetup: ~7 rows (approximately)
-DELETE FROM `tuitionfeesetup`;
-INSERT INTO `tuitionfeesetup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
+REPLACE INTO `tuitionfeesetup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
 	(26, 'Tuition Fee611', 'Tuition Fee', 'Tuition Fee Per Unit', 6, 7, '1', '1', 123.32),
 	(27, 'Tuition Fee621', 'Tuition Fee', 'Tuition Fee Per Unit', 6, 7, '2', '1', 234.45),
 	(28, 'Tuition Fee631', 'Tuition Fee', 'Tuition Fee Per Unit', 6, 7, '3', '1', 345.34),
@@ -2672,13 +3043,13 @@ CREATE TABLE IF NOT EXISTS `tuition_fee_setup` (
   `amount` decimal(18,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.tuition_fee_setup: ~2 rows (approximately)
-DELETE FROM `tuition_fee_setup`;
-INSERT INTO `tuition_fee_setup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
-	(11, 'Tuition Fee6TUITION FEE PER UNIT711', 'Tuition Fee', 'TUITION FEE PER UNIT', '6', '7', '1', '1', 324.12),
-	(13, 'Tuition Fee7TUITION FEE PER UNIT711', 'Tuition Fee', 'TUITION FEE PER UNIT', '7', '7', '1', '1', 390.00);
+-- Dumping data for table model_test_db.tuition_fee_setup: ~3 rows (approximately)
+REPLACE INTO `tuition_fee_setup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
+	(11, 'Tuition Fee7TUITION FEE PER UNIT aksjdhkajh711', 'Tuition Fee', 'TUITION FEE PER UNIT aksjdhkajh', '7', '7', '1', '1', 390.00),
+	(13, 'Tuition Fee7TUITION FEE PER UNIT711', 'Tuition Fee', 'TUITION FEE PER UNIT', '7', '7', '1', '1', 390.00),
+	(14, 'Tuition Fee6Tuition Fee per Unit711', 'Tuition Fee', 'Tuition Fee per Unit', '6', '7', '1', '1', 332.00);
 
 -- Dumping structure for table model_test_db.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -2703,8 +3074,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.users: ~6 rows (approximately)
-DELETE FROM `users`;
-INSERT INTO `users` (`id`, `last_name`, `first_name`, `middle_name`, `fullname`, `employee_id`, `email`, `password`, `department`, `access_level`, `is_add`, `is_edit`, `is_delete`, `is_administrator`, `picture`) VALUES
+REPLACE INTO `users` (`id`, `last_name`, `first_name`, `middle_name`, `fullname`, `employee_id`, `email`, `password`, `department`, `access_level`, `is_add`, `is_edit`, `is_delete`, `is_administrator`, `picture`) VALUES
 	(5, 'Pingad', 'Airon', 'Jim', 'Pingad, Airon Jim', '465', 'apingad@isap.edu.ph', '$2a$11$UcXUgEDrguxicXmZHDc8W.j1HXpp4EsZcfyWLV68S3ABSpdp8mFy.', '', 'Finance User', 1, 0, 0, 0, NULL),
 	(6, 'Alan', 'Charity', 'T', 'Alan, Charity T', '437', 'charlan@isap.edu.ph', '$2a$11$DPX8ta.xEPMBuHJf8ml6y.biLFItS0F7Oz901aewnDYleGO3DB5iu', 'Finance', 'Cashier', 1, 1, 0, 0, NULL),
 	(11, 'user', 'number 2', '', 'user, number 2 ', '238273', 'user2', '$2a$11$S/KkAWnxaD5D0aLi9BegROQ2Cf/mKpoUdv/bIb3rKYztyS6xCm81y', 'Registrar', 'Registrar ', 1, 1, 0, 0, NULL),
