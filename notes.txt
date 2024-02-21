@@ -1,24 +1,8 @@
-add functionality to update the assessment when there is detected
+-include non assessed collections
+-include fee adjustments in the discounts
 
-
-
-
-
-finance
-
-discount separate tuition and lab fee
-discount pagination
-
-TRANSACTIONS
-
-FINANCE
-
-2. DISCOUNT SEPERATE TUTION AND LAB FEE -- 
-
-2. ALL DISPLAY NUMBERS, 2 DECIMALS ONLY
-3. ERROR PRINTING ASSESSMENT
-5. DISCOUNT COMPUTATION NOT TRUE
-4. STATEMENT OF ACCOUNT DISPLAY STUDENT NAME
-5. STUDENT DISCOUNT PAGINATED
-
-6. confirm assessment 
+- include input of grades
+-types of discounts
+- adding discounts for students
+- fees breakdowns - for lab fees 
+-

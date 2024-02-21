@@ -9,6 +9,7 @@ using school_management_system_model.Infrastructure.Data.Repositories;
 using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Reports.Accounting;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,22 +19,23 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_assessment : Form
     {
-        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
-        StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
-        StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
-        CourseRepository _courseRepo = new CourseRepository();
-        CampusRepository _campusRepo = new CampusRepository();
-        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
-        MiscFeeRepository _miscFeeRepo = new MiscFeeRepository();
-        TuitionFeeRepository _tuitionFeeRepo = new TuitionFeeRepository();
-        LabFeeSubjectRepository _labFeeSubjectRepo = new LabFeeSubjectRepository();
-        LabFeeRepository _labFeeRepo = new LabFeeRepository();
-        OtherFeeRepository _otherFeeRepo = new OtherFeeRepository();
-        FeeBreakdownRepository _feeBreakdownRepo = new FeeBreakdownRepository();
-        FeeSummaryRepository _feeSummaryRepo = new FeeSummaryRepository();
-        StatementOfAccountsRepository _statementOfAccountsRepo = new StatementOfAccountsRepository();
-        StudentDiscountRepository _studentDiscountRepo = new StudentDiscountRepository();
-        AssessmentBreakdownRepository _assessmentBreakdownRepo = new AssessmentBreakdownRepository();
+        private readonly StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        private readonly StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
+        private readonly StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
+        private readonly CourseRepository _courseRepo = new CourseRepository();
+        private readonly CampusRepository _campusRepo = new CampusRepository();
+        private readonly SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+        private readonly MiscFeeRepository _miscFeeRepo = new MiscFeeRepository();
+        private readonly TuitionFeeRepository _tuitionFeeRepo = new TuitionFeeRepository();
+        private readonly LabFeeSubjectRepository _labFeeSubjectRepo = new LabFeeSubjectRepository();
+        private readonly LabFeeRepository _labFeeRepo = new LabFeeRepository();
+        private readonly OtherFeeRepository _otherFeeRepo = new OtherFeeRepository();
+        private readonly FeeBreakdownRepository _feeBreakdownRepo = new FeeBreakdownRepository();
+        private readonly FeeSummaryRepository _feeSummaryRepo = new FeeSummaryRepository();
+        private readonly StatementOfAccountsRepository _statementOfAccountsRepo = new StatementOfAccountsRepository();
+        private readonly StudentDiscountRepository _studentDiscountRepo = new StudentDiscountRepository();
+        private readonly AssessmentBreakdownRepository _assessmentBreakdownRepo = new AssessmentBreakdownRepository();
+        private readonly StudentAssessmentRepository _studentAssessmentRepo = new StudentAssessmentRepository();
 
 
 
@@ -145,7 +147,7 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-       
+
 
         private async Task loadOtherFees()
         {
@@ -219,6 +221,7 @@ namespace school_management_system_model.Forms.transactions
 
         private async void button2_Click(object sender, EventArgs e)
         {
+
             var frm = new frm_select_student();
             frm.Text = "Select School Year";
             frm.ShowDialog();
@@ -227,6 +230,7 @@ namespace school_management_system_model.Forms.transactions
                 dgv.Rows.Clear();
                 // Loading the assessment
                 tSchoolYear.Text = schoolYear.ToString();
+
                 await loadAssessment();
 
                 foreach (DataGridViewRow row in dgv.Rows)
@@ -463,7 +467,7 @@ namespace school_management_system_model.Forms.transactions
             });
             decimal downpayment = Math.Round(total * Convert.ToDecimal(0.20), 2);
             decimal prelim = Math.Round(total * Convert.ToDecimal(0.20), 2);
-            decimal midterm = Math.Round(total * Convert.ToDecimal(0.20),2);
+            decimal midterm = Math.Round(total * Convert.ToDecimal(0.20), 2);
             decimal semiFinal = Math.Round(total * Convert.ToDecimal(0.20), 2);
             decimal finals = Math.Round(total * Convert.ToDecimal(0.20), 2);
 
@@ -685,17 +689,32 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
+        private async Task<bool> CheckExistingAssessment(string id_number, string school_year)
+        {
+            var studentAssessments = await _studentAssessmentRepo.GetAllAsync();
+            var existing = studentAssessments.Where(x => x.id_number == id_number && x.school_year == school_year).ToList();
+            if (existing.Count > 0) return true;
+            return false;
+        }
+
         private async void btn_save_Click(object sender, EventArgs e)
         {
+            var checkExisting = await CheckExistingAssessment(tIdNumber.Text, tSchoolYear.Text);
             if (tIdNumber.Text == "")
             {
                 MessageBox.Show("Please select Student and school year", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (checkExisting)
+            {
+                new Classes.Toastr("Warning", "Student Already Assessed");
+                btn_save.Enabled = false;
             }
             else
             {
                 if (MessageBox.Show("Are you sure you want to save this assessment?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     await saveAssessment();
+                    btn_save.Enabled = true;
                 }
             }
         }

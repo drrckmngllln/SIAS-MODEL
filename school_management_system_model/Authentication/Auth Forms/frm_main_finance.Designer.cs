@@ -43,6 +43,8 @@
             this.btnSettings = new System.Windows.Forms.Button();
             this.icons = new System.Windows.Forms.ImageList(this.components);
             this.panelTransaction = new System.Windows.Forms.Panel();
+            this.btnCashierLogs = new System.Windows.Forms.Button();
+            this.btnNonAssessedCollection = new System.Windows.Forms.Button();
             this.btnFeeAdjustment = new System.Windows.Forms.Button();
             this.btnStatementofAccounts = new System.Windows.Forms.Button();
             this.btnFeeCollection = new System.Windows.Forms.Button();
@@ -102,7 +104,7 @@
             this.panelSettings.Controls.Add(this.btnTuitionFee);
             this.panelSettings.Controls.Add(this.btnMiscellaneous);
             this.panelSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSettings.Location = new System.Drawing.Point(0, 261);
+            this.panelSettings.Location = new System.Drawing.Point(0, 332);
             this.panelSettings.Name = "panelSettings";
             this.panelSettings.Size = new System.Drawing.Size(250, 229);
             this.panelSettings.TabIndex = 3;
@@ -237,7 +239,7 @@
             this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSettings.ImageKey = "icons8-setup-60.png";
             this.btnSettings.ImageList = this.icons;
-            this.btnSettings.Location = new System.Drawing.Point(0, 211);
+            this.btnSettings.Location = new System.Drawing.Point(0, 282);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.btnSettings.Size = new System.Drawing.Size(250, 50);
@@ -260,6 +262,8 @@
             // 
             // panelTransaction
             // 
+            this.panelTransaction.Controls.Add(this.btnCashierLogs);
+            this.panelTransaction.Controls.Add(this.btnNonAssessedCollection);
             this.panelTransaction.Controls.Add(this.btnFeeAdjustment);
             this.panelTransaction.Controls.Add(this.btnStatementofAccounts);
             this.panelTransaction.Controls.Add(this.btnFeeCollection);
@@ -268,9 +272,44 @@
             this.panelTransaction.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTransaction.Location = new System.Drawing.Point(0, 50);
             this.panelTransaction.Name = "panelTransaction";
-            this.panelTransaction.Size = new System.Drawing.Size(250, 161);
+            this.panelTransaction.Size = new System.Drawing.Size(250, 232);
             this.panelTransaction.TabIndex = 1;
             this.panelTransaction.Visible = false;
+            // 
+            // btnCashierLogs
+            // 
+            this.btnCashierLogs.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCashierLogs.FlatAppearance.BorderSize = 0;
+            this.btnCashierLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCashierLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCashierLogs.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCashierLogs.Location = new System.Drawing.Point(0, 180);
+            this.btnCashierLogs.Name = "btnCashierLogs";
+            this.btnCashierLogs.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnCashierLogs.Size = new System.Drawing.Size(250, 30);
+            this.btnCashierLogs.TabIndex = 7;
+            this.btnCashierLogs.Text = "Cashier Logs";
+            this.btnCashierLogs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCashierLogs.UseVisualStyleBackColor = true;
+            this.btnCashierLogs.Visible = false;
+            this.btnCashierLogs.Click += new System.EventHandler(this.btnCashierLogs_Click);
+            // 
+            // btnNonAssessedCollection
+            // 
+            this.btnNonAssessedCollection.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNonAssessedCollection.FlatAppearance.BorderSize = 0;
+            this.btnNonAssessedCollection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNonAssessedCollection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNonAssessedCollection.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnNonAssessedCollection.Location = new System.Drawing.Point(0, 150);
+            this.btnNonAssessedCollection.Name = "btnNonAssessedCollection";
+            this.btnNonAssessedCollection.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnNonAssessedCollection.Size = new System.Drawing.Size(250, 30);
+            this.btnNonAssessedCollection.TabIndex = 6;
+            this.btnNonAssessedCollection.Text = "Non-Assessed Collection";
+            this.btnNonAssessedCollection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNonAssessedCollection.UseVisualStyleBackColor = true;
+            this.btnNonAssessedCollection.Visible = false;
             // 
             // btnFeeAdjustment
             // 
@@ -586,5 +625,7 @@
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.Label tSystemDescription;
         private System.Windows.Forms.Button btnStudentAssessmentOR;
+        private System.Windows.Forms.Button btnCashierLogs;
+        private System.Windows.Forms.Button btnNonAssessedCollection;
     }
 }

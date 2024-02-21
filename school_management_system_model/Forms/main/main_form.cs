@@ -296,7 +296,7 @@ namespace school_management_system_model.Forms.main
 
         private void button31_Click(object sender, EventArgs e)
         {
-            var frm = new frm_fee_collection();
+            var frm = new frm_fee_collection(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

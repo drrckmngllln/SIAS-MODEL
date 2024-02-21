@@ -1,11 +1,14 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,26 +17,40 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
 {
     public partial class frm_select_student : KryptonForm
     {
+        private readonly StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+
+        PaginationParams paging = new PaginationParams();
+
         public frm_select_student()
         {
             InitializeComponent();
         }
 
-        private void frm_select_student_Load(object sender, EventArgs e)
+        private async void frm_select_student_Load(object sender, EventArgs e)
         {
-            loadRecords();
+            await loadRecords();
         }
 
-        private void loadRecords()
+        private async Task loadRecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_accounts", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            paging.pageSize = 10;
+            var studentAccounts = await _studentAccountRepo.GetAllAsync();
+
+            var students = studentAccounts.Skip(paging.pageSize * (paging.pageNumber - 1)).Take(paging.pageNumber).ToList();
+
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from student_accounts", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
+            //dgv.DataSource = dt;
+
+            dgv.DataSource = students;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].HeaderText = "Student Number";
-            dgv.Columns["school_year"].Visible = false;
+            dgv.Columns["sy_enrolled"].Visible = false;
+            dgv.Columns["type_of_student"].Visible = false;
+            dgv.Columns["date_of_admission"].Visible = false;
+            dgv.Columns["school_year_id"].Visible = false;
             dgv.Columns["fullname"].HeaderText = "Student Name";
             dgv.Columns["last_name"].Visible = false;
             dgv.Columns["first_name"].Visible = false;
@@ -87,31 +104,69 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
                 Close();
             }
         }
-        private DataTable searchRecords(string search)
+        private async Task searchRecords(string search)
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_accounts where concat(id_number, fullname) " +
-                "like '%" + search + "%'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
+            var studentAccounts = await _studentAccountRepo.GetAllAsync();
+
+            var searchAccount = studentAccounts
+                .Where(x => x.fullname.ToLower().Contains(search) || x.id_number.ToLower().Contains(search))
+                .ToList();
+
+            dgv.DataSource = searchAccount;
+
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from student_accounts where concat(id_number, fullname) " +
+            //    "like '%" + search + "%'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
         }
 
-        private void tSearch_TextChanged(object sender, EventArgs e)
+        private async void tSearch_TextChanged(object sender, EventArgs e)
         {
             if (tSearch.Text.Length > 2)
             {
-                dgv.DataSource = searchRecords(tSearch.Text);
+                await searchRecords(tSearch.Text);
             }
             else if (tSearch.Text.Length == 0)
             {
-                loadRecords();
+                await loadRecords();
             }
         }
 
-        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void kryptonButton1_Click(object sender, EventArgs e)
         {
+            Close();
+        }
 
+        private async void btnNext_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber++;
+            tPageSize.Text = paging.pageNumber.ToString();
+            await loadRecords();
+            if (dgv.Rows.Count < paging.pageSize)
+            {
+                btnNext.Enabled = false;
+            }
+            btnPrev.Enabled = true;
+        }
+
+        private async void btnPrev_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber--;
+            tPageSize.Text = paging.pageNumber.ToString();
+            await loadRecords();
+            if (tPageSize.Text == "1")
+            {
+                btnPrev.Enabled = false;
+            }
+            btnNext.Enabled = true;
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            frm_student_discounts.instance.idNumber = selectStudentId();
+            frm_student_discounts.instance.fullname = selectStudentName();
+            Close();
         }
     }
 }

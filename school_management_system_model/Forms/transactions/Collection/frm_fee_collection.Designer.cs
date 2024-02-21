@@ -72,9 +72,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tTime = new System.Windows.Forms.Label();
             this.timerTime = new System.Windows.Forms.Timer(this.components);
-            this.panelLoading = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pg = new System.Windows.Forms.ProgressBar();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.tCashier = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -86,7 +85,7 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelLoading.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -94,7 +93,6 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.panelLoading);
             this.groupBox1.Controls.Add(this.dgv);
             this.groupBox1.Location = new System.Drawing.Point(12, 105);
             this.groupBox1.Name = "groupBox1";
@@ -596,40 +594,33 @@
             this.timerTime.Enabled = true;
             this.timerTime.Tick += new System.EventHandler(this.timerTime_Tick);
             // 
-            // panelLoading
+            // groupBox8
             // 
-            this.panelLoading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.panelLoading.Controls.Add(this.pg);
-            this.panelLoading.Controls.Add(this.label5);
-            this.panelLoading.Location = new System.Drawing.Point(288, 104);
-            this.panelLoading.Name = "panelLoading";
-            this.panelLoading.Size = new System.Drawing.Size(381, 163);
-            this.panelLoading.TabIndex = 158;
-            this.panelLoading.Visible = false;
+            this.groupBox8.Controls.Add(this.tCashier);
+            this.groupBox8.Location = new System.Drawing.Point(12, 46);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(293, 53);
+            this.groupBox8.TabIndex = 195;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Cashier in Charge";
             // 
-            // label5
+            // tCashier
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(83, 51);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(216, 25);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Collecting Payment...";
-            // 
-            // pg
-            // 
-            this.pg.Location = new System.Drawing.Point(3, 134);
-            this.pg.Name = "pg";
-            this.pg.Size = new System.Drawing.Size(372, 23);
-            this.pg.TabIndex = 1;
+            this.tCashier.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tCashier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tCashier.Location = new System.Drawing.Point(3, 16);
+            this.tCashier.Name = "tCashier";
+            this.tCashier.Size = new System.Drawing.Size(287, 34);
+            this.tCashier.TabIndex = 183;
+            this.tCashier.Text = "...";
+            this.tCashier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frm_fee_collection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1321, 869);
+            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.tTime);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox7);
@@ -661,8 +652,7 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelLoading.ResumeLayout(false);
-            this.panelLoading.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -712,8 +702,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label tTime;
         private System.Windows.Forms.Timer timerTime;
-        private System.Windows.Forms.Panel panelLoading;
-        private System.Windows.Forms.ProgressBar pg;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label tCashier;
     }
 }

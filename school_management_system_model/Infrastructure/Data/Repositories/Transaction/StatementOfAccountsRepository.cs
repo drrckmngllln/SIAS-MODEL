@@ -19,8 +19,6 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
 
         public async Task<IReadOnlyList<StatementOfAccount>> AddRecordsAsync(StatementOfAccount entity)
         {
-            entity.reference_no = referenceNumber();
-            incrementReferenceNumber(entity.reference_no);
             var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var cmd = new MySqlCommand("insert into statements_of_accounts(id_number_id, date, reference_no, particulars, debit, credit, balance, cashier_in_charge, school_year_id, " +

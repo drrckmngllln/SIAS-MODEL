@@ -214,6 +214,7 @@
     <Compile Include="Classes\FeeCollection.cs" />
     <Compile Include="Core\Entities\Settings\Discount.cs" />
     <Compile Include="Core\Entities\Transaction\AssessmentBreakdown.cs" />
+    <Compile Include="Core\Entities\Transaction\CashierLog.cs" />
     <Compile Include="Core\Entities\Transaction\FeeBreakdown.cs" />
     <Compile Include="Core\Entities\Settings\Instructors.cs" />
     <Compile Include="Core\Entities\Settings\LabFeeSubjects.cs" />
@@ -232,6 +233,18 @@
     <Compile Include="Core\Entities\Transaction\StudentAssessment.cs" />
     <Compile Include="Core\Entities\Transaction\StudentSubject.cs" />
     <Compile Include="Core\Entities\Settings\Sections.cs" />
+    <Compile Include="Forms\transactions\Cashier\frm_cashier_logs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Cashier\frm_cashier_logs.Designer.cs">
+      <DependentUpon>frm_cashier_logs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\Cashier\frm_select_cashier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Cashier\frm_select_cashier.Designer.cs">
+      <DependentUpon>frm_select_cashier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Data\Interfaces\IGenericRepository.cs" />
     <Compile Include="Core\Extensions\DataTableExtensions.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CampusRepository.cs" />
@@ -252,6 +265,7 @@
     <Compile Include="Infrastructure\Data\Repositories\Setings\TuitionFeeRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\UserRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\AssessmentBreakdownRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\CashierLogRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeBreakdownRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeSummaryRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StatementOfAccountsRepository.cs" />
@@ -767,6 +781,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\UserManagement\frm_user_management.resx">
       <DependentUpon>frm_user_management.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Cashier\frm_cashier_logs.resx">
+      <DependentUpon>frm_cashier_logs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Cashier\frm_select_cashier.resx">
+      <DependentUpon>frm_select_cashier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_fee_collection.resx">
       <DependentUpon>frm_fee_collection.cs</DependentUpon>

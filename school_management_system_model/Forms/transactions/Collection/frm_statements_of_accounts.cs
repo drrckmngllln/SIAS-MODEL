@@ -37,6 +37,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             frm.ShowDialog();
             if (id_number != null)
             {
+                tStudentName.Text = fullname.ToString();
                 await loadStudentRecords();
                 await loadRecords();
             }
