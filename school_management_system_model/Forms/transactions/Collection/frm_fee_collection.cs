@@ -246,7 +246,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
             var cashierLog = new CashierLog
             {
-                date = DateTime.Now.ToString("MM-dd-yyyy"),
+                date = DateTime.Now,
                 name = tCashier.Text,
                 reference_no = referenceNo.ToString(),
                 particulars = latestParticulars,

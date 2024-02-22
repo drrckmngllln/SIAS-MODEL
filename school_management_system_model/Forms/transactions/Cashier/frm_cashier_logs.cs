@@ -23,56 +23,43 @@ namespace school_management_system_model.Forms.transactions.Cashier
             InitializeComponent();
         }
 
-        internal class CashierLogDto
-        {
-            public int id { get; set; }
-            public DateTime date { get; set; }
-            public string name { get; set; }
-            public string reference_no { get; set; }
-            public string particulars { get; set; }
-            public string school_year { get; set; }
-            public string department { get; set; }
-            public string credit { get; set; }
-            public string debit { get; set; }
-            public string balance { get; set; }
-        }
-
+        
         private async Task loadRecords()
         {
             var logs = await _cashierLogRepo.GetAllAsync();
 
-            var lists = new List<CashierLogDto>();
-            foreach (var log in logs)
+            
+        }
+        private void frm_cashier_logs_Load(object sender, EventArgs e)
+        {
+            tFrom.Text = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+
+        private void tDateSet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tDateSet.Text == "Daily")
             {
-
-                var a = new CashierLogDto
-                {
-
-                    id = log.id,
-                    date = Convert.ToDateTime(log.date),
-                    name = log.name,
-                    reference_no = log.reference_no,
-                    particulars = log.particulars,
-                    school_year = log.school_year,
-                    department = log.department,
-                    credit = log.credit,
-                    debit = log.debit,
-                    balance = log.balance,
-                };
-                lists.Add(a);
+                tTo.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
-
-
+            else if (tDateSet.Text == "Weekly")
+            {
+                tTo.Text = DateTime.Now.AddDays(7).ToString("yyyy-MM-dd");
+            }
+            else if (tDateSet.Text == "Monthly")
+            {
+                tTo.Text = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+            }
+            else if (tDateSet.Text == "Yearly")
+            {
+                tTo.Text = DateTime.Now.AddYears(1).ToString("yyyy-MM-dd");
+            }
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void btnSelect_Click(object sender, EventArgs e)
         {
-            tFrom.Text = dateTimePicker1.Value.ToString("MM-dd-yyyy");
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            tTo.Text = dateTimePicker2.Value.ToString("MM-dd-yyyy");
+            var frm = new frm_select_cashier();
+            frm.Text = "Select Cashier";
+            frm.ShowDialog();
         }
     }
 }

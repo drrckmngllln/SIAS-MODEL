@@ -58,7 +58,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                             var cashier = new CashierLog
                             {
                                 id = reader.GetInt32("id"),
-                                date = reader.GetString("date"),
+                                date = reader.GetDateTime("date"),
                                 name = reader.GetString("name"),
                                 reference_no = reader.GetString("reference_no"),
                                 particulars = reader.GetString("particulars"),

@@ -9,7 +9,7 @@ namespace school_management_system_model.Core.Entities.Transaction
     internal class CashierLog
     {
         public int id { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public string name { get; set; }
         public string reference_no { get; set; }
         public string particulars { get; set; }
