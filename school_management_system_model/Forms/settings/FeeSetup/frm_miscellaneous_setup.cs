@@ -1,19 +1,22 @@
-﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Classes;
+﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
 {
     public partial class frm_miscellaneous_setup : Form
     {
-        public static frm_miscellaneous_setup instance;
-        public DataTable dt = new DataTable();
-        public DataTable coursesDt = new DataTable();
-        string ID;
+        LevelsRepository _levelRepo = new LevelsRepository();
+        CampusRepository _campusRepo = new CampusRepository();
+        MiscFeeRepository _miscFeeRepo = new MiscFeeRepository();
 
+        public static frm_miscellaneous_setup instance;
+        public string ID { get; set; }
         public string Email { get; }
 
         public frm_miscellaneous_setup(string email)
@@ -25,99 +28,93 @@ namespace school_management_system_model.Forms.settings
 
         private void frm_fees_Load(object sender, EventArgs e)
         {
-            loadRecords();
             loadCampuses();
+            loadLevels();
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
         }
 
-        private void loadCampuses()
+        private async void loadLevels()
         {
-            var courses = new MiscellaneousFeeSetup();
-            var data = courses.loadCampuses();
-            foreach(DataRow row in data.Rows)
-            {
-                tCampus.Items.Add(row["code"]);
-                
-            }
+            var level = await _levelRepo.GetAllAsync();
+            tLevel.ValueMember = "id";
+            tLevel.DisplayMember = "code";
+            tLevel.DataSource = level;
         }
 
-        private void loadRecords()
+        private async void loadCampuses()
         {
-            var data = new MiscellaneousFeeSetup();
-            dgv.DataSource = data.loadRecords();
+            var campus = await _campusRepo.GetAllAsync();
+            tCampus.ValueMember = "id";
+            tCampus.DisplayMember = "code";
+            tCampus.DataSource = campus;
+        }
+
+        private async void loadRecords(string campus, string level, string yearLevel)
+        {
+            var a = await _miscFeeRepo.GetAllAsync();
+            var misc = a
+                .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel)
+                .ToList();
+            dgv.DataSource = misc;
             dgv.Columns["id"].Visible = false;
-            dgv.Columns["category"].Visible = false;
+            dgv.Columns["uid"].Visible = false;
+            dgv.Columns["category"].HeaderText = "Category";
             dgv.Columns["description"].HeaderText = "Description";
             dgv.Columns["description"].Width = 250;
             dgv.Columns["campus"].HeaderText = "Campus";
-            dgv.Columns["first_year"].HeaderText = "1st Year";
-            dgv.Columns["second_year"].HeaderText = "2nd Year";
-            dgv.Columns["third_year"].HeaderText = "3rd Year";
-            dgv.Columns["fourth_year"].HeaderText = "4th Year";
+            dgv.Columns["level"].HeaderText = "Level";
+            dgv.Columns["year_level"].HeaderText = "Year Level";
+            dgv.Columns["semester"].HeaderText = "Semester";
+            dgv.Columns["amount"].HeaderText = "Amount";
         }   
 
-        private void addRecords()
+        private async void addRecords()
         {
             if (btn_save.Text == "Save")
             {
-                try
+                var AddRecords = new MiscellaneousFee
                 {
-                    var add = new MiscellaneousFeeSetup
-                    {
-                        category = tCategory.Text,
-                        campus = tCampus.Text,
-                        description = tDescription.Text,
-                        first_year = Convert.ToDecimal(tFirstYear.Text),
-                        second_year = Convert.ToDecimal(tSecondYear.Text),
-                        third_year = Convert.ToDecimal(tThirdYear.Text),
-                        fourth_year = Convert.ToDecimal(tFourthYear.Text)
-                        
-                    };
-                    add.AddRecords();
-                    MessageBox.Show("Successfully Saved","Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Add: " + tDescription.Text);
-                    loadRecords();
-                    txtClear();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
+                    category = tCategory.Text,
+                    description = tDescription.Text,
+                    campus = tCampus.SelectedValue.ToString(),
+                    level = tLevel.SelectedValue.ToString(),
+                    year_level = tYearLevel.Text,
+                    semester = tSemester.Text,
+                    amount = Convert.ToDecimal(tAmount.Text),
+                };
+                await _miscFeeRepo.AddRecords(AddRecords);
+                new Classes.Toastr("Success", "Miscellaneous fee Added");
+                new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
+                
             }
             else if (btn_save.Text == "Update")
             {
-                try
+                var editRecords = new MiscellaneousFee
                 {
-                    var add = new MiscellaneousFeeSetup
-                    {
-                        id = Convert.ToInt32(ID),
-                        category = tCategory.Text,
-                        description= tDescription.Text,
-                        campus = tCampus.Text,
-                        first_year = Convert.ToDecimal(tFirstYear.Text),
-                        second_year = Convert.ToDecimal(tSecondYear.Text),
-                        third_year = Convert.ToDecimal(tThirdYear.Text),
-                        fourth_year = Convert.ToDecimal(tFourthYear.Text)
-                    };
-                    add.editRecords();
-                    MessageBox.Show("Successfully Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Edit: " + tDescription.Text);
-                    txtClear();
-                    loadRecords();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
+                    uid = tCategory.Text + tCampus.SelectedValue.ToString() + tDescription.Text + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
+                    category = tCategory.Text,
+                    description = tDescription.Text,
+                    campus = tCampus.SelectedValue.ToString(),
+                    level = tLevel.SelectedValue.ToString(),
+                    year_level = tYearLevel.Text,
+                    semester = tSemester.Text,
+                    amount = Convert.ToDecimal(tAmount.Text),
+                };
+                await _miscFeeRepo.UpdateRecords(editRecords);
+                new Classes.Toastr("Success", "Miscellaneous fee Added");
+                new ActivityLogger().activityLogger(Email, "Misc Fee Setup Add: " + tCategory.Text);
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
             }
         }
 
         private void txtClear()
         {
-            tCampus.Text = "";
-            tFirstYear.Clear();
-            tSecondYear.Clear();
-            tThirdYear.Clear();
-            tFourthYear.Clear();
+            tDescription.Clear();
+            tSemester.Clear();
+            tAmount.Clear();
             btn_save.Text = "Save";
         }
 
@@ -126,51 +123,31 @@ namespace school_management_system_model.Forms.settings
             addRecords();
         }
 
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void deleteRecords(int id)
         {
-            
+            var delete = new MiscellaneousFee();
+            delete.id = id;
+            await _miscFeeRepo.DeleteRecords(delete);
+            new Classes.Toastr("Information", "Misc Fee Deleted");
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
         }
 
-        private void deleteRecords()
+        private async void searchRecords(string search)
         {
-            var delete = new MiscellaneousFeeSetup();
-            delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-            MessageBox.Show("Deleted Successfully","Success",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            new ActivityLogger().activityLogger(Email, "Miscellaneous Setup Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
-
-            loadRecords();
+            var miscFees = await _miscFeeRepo.GetAllAsync();
+            var searchFee = miscFees
+                .Where(x => x.category.ToLower().Contains(search) || x.description.ToLower().Contains(search))
+                .ToList();
+            dgv.DataSource = searchFee;
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("are you sure you want to delete records?","Warning!",
-                MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation) == DialogResult.Yes)
-            {
-                deleteRecords();
-            }
-        }
-
+       
         private void btn_clear_Click(object sender, EventArgs e)
         {
             txtClear();
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
-        {
-            if (tsearch.Text.Length > 2)
-            {
-                var search = new MiscellaneousFeeSetup();
-                var searchData = search.searchRecords(tsearch.Text);
-                dgv.DataSource = searchData;
-            }
-            else if (tsearch.Text.Length == 0)
-            {
-                loadRecords();
-            }
-        }
-
         
-
         private void btn_save_Click_1(object sender, EventArgs e)
         {
             addRecords();
@@ -194,7 +171,8 @@ namespace school_management_system_model.Forms.settings
             if (MessageBox.Show("are you sure you want to delete this record?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                 DialogResult.Yes)
             {
-                deleteRecords();
+                deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+               
             }
         }
 
@@ -204,10 +182,11 @@ namespace school_management_system_model.Forms.settings
             tCategory.Text = dgv.CurrentRow.Cells["category"].Value.ToString();
             tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
             tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
-            tFirstYear.Text = dgv.CurrentRow.Cells["first_year"].Value.ToString();
-            tSecondYear.Text = dgv.CurrentRow.Cells["second_year"].Value.ToString();
-            tThirdYear.Text = dgv.CurrentRow.Cells["third_year"].Value.ToString();
-            tFourthYear.Text = dgv.CurrentRow.Cells["fourth_year"].Value.ToString();
+            tYearLevel.Text = dgv.CurrentRow.Cells["year_level"].Value.ToString();
+            tLevel.Text = dgv.CurrentRow.Cells["level"].Value.ToString();
+            tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
+            tAmount.Text = dgv.CurrentRow.Cells["amount"].Value.ToString();
+            
             btn_save.Text = "Update";
         }
 
@@ -215,14 +194,27 @@ namespace school_management_system_model.Forms.settings
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new MiscellaneousFeeSetup();
-                var searchData = search.searchRecords(tsearch.Text);
-                dgv.DataSource = searchData;
+                searchRecords(tsearch.Text);
             }
             else if (tsearch.Text.Length == 0)
             {
-                loadRecords();
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
             }
+        }
+
+        private void tCampus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
+        }
+
+        private void tLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
+        }
+
+        private void tYearLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text);
         }
     }
 }

@@ -1,0 +1,8 @@
+-include non assessed collections
+-include fee adjustments in the discounts
+
+- include input of grades
+-types of discounts
+- adding discounts for students
+- fees breakdowns - for lab fees 
+-

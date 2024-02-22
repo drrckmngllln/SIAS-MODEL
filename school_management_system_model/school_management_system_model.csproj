@@ -206,33 +206,91 @@
     <Compile Include="Classes\add_section.cs" />
     <Compile Include="Classes\add_subjects.cs" />
     <Compile Include="Classes\AdmissionSchedule.cs" />
-    <Compile Include="Classes\course_fees.cs" />
-    <Compile Include="Classes\Curriculums.cs" />
-    <Compile Include="Classes\DiscountSetup.cs" />
-    <Compile Include="Classes\FeeBreakdown.cs" />
+    <Compile Include="Core\Entities\Settings\Campuses.cs" />
+    <Compile Include="Core\Entities\Settings\Courses.cs" />
+    <Compile Include="Core\Entities\Settings\Curriculums.cs" />
+    <Compile Include="Core\Entities\Settings\CurriculumSubjects.cs" />
+    <Compile Include="Core\Entities\Settings\Departments.cs" />
     <Compile Include="Classes\FeeCollection.cs" />
-    <Compile Include="Classes\FeeSummary.cs" />
-    <Compile Include="Classes\Instructors.cs" />
-    <Compile Include="Classes\LabFeeSetup.cs" />
+    <Compile Include="Core\Entities\Settings\Discount.cs" />
+    <Compile Include="Core\Entities\Transaction\AssessmentBreakdown.cs" />
+    <Compile Include="Core\Entities\Transaction\CashierLog.cs" />
+    <Compile Include="Core\Entities\Transaction\FeeBreakdown.cs" />
+    <Compile Include="Core\Entities\Settings\Instructors.cs" />
+    <Compile Include="Core\Entities\Settings\LabFeeSubjects.cs" />
     <Compile Include="Classes\MainRegistrar.cs" />
-    <Compile Include="Classes\MiscellaneousFeeSetup.cs" />
-    <Compile Include="Classes\OtherFeesSetup.cs" />
-    <Compile Include="Classes\Parameters\SaveAssessmentBreakdownParams.cs" />
-    <Compile Include="Classes\Parameters\SaveStudentAccountsParams.cs" />
-    <Compile Include="Classes\PrintingAssessment.cs" />
-    <Compile Include="Classes\proceed_to_enrollment.cs" />
-    <Compile Include="Classes\SchoolYearSetup.cs" />
-    <Compile Include="Classes\sections.cs" />
-    <Compile Include="Classes\section_subject.cs" />
-    <Compile Include="Classes\StatementsOfAccounts.cs" />
-    <Compile Include="Classes\StudentAccount.cs" />
-    <Compile Include="Classes\StudentDiscount.cs" />
-    <Compile Include="Classes\student_assessment.cs" />
-    <Compile Include="Classes\student_course.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentDiscount.cs" />
+    <Compile Include="Core\Helpers\PaginationParams.cs" />
+    <Compile Include="Core\Entities\Settings\LabFee.cs" />
+    <Compile Include="Core\Entities\Settings\MiscellaneousFee.cs" />
+    <Compile Include="Core\Entities\Settings\OtherFee.cs" />
+    <Compile Include="Core\Entities\Settings\SchoolYear.cs" />
+    <Compile Include="Core\Entities\Settings\SectionSubjects.cs" />
+    <Compile Include="Core\Entities\Settings\TuitionFee.cs" />
+    <Compile Include="Core\Entities\Settings\User.cs" />
+    <Compile Include="Core\Entities\Transaction\FeeSummary.cs" />
+    <Compile Include="Core\Entities\Transaction\StatementOfAccount.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentAssessment.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentSubject.cs" />
+    <Compile Include="Core\Entities\Settings\Sections.cs" />
+    <Compile Include="Forms\transactions\Cashier\frm_cashier_logs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Cashier\frm_cashier_logs.Designer.cs">
+      <DependentUpon>frm_cashier_logs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\Cashier\frm_select_cashier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Cashier\frm_select_cashier.Designer.cs">
+      <DependentUpon>frm_select_cashier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Data\Interfaces\IGenericRepository.cs" />
+    <Compile Include="Core\Extensions\DataTableExtensions.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\CampusRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\CourseRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\CurriculumRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\CurriculumSubjectsRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\DepartmentRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\DiscountRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\InstructorRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\LabFeeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\LabFeeSubjectRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\LevelsRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\MiscFeeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\OtherFeeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\SchoolYearRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\SectionRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\SectionSubjectRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\TuitionFeeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Setings\UserRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\AssessmentBreakdownRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\CashierLogRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeBreakdownRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeSummaryRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StatementOfAccountsRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentAccountRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentAssessmentRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentDiscountRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentSubjectRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentCourseRepository.cs" />
+    <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.Designer.cs">
+      <DependentUpon>frm_edit_curriculum_subject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_student_details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_student_details.Designer.cs">
+      <DependentUpon>frm_student_details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\SaveStudentAccountsParams.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentAccount.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentCourses.cs" />
     <Compile Include="Classes\Toastr.cs" />
-    <Compile Include="Classes\TuitionFeeSetup.cs" />
-    <Compile Include="Classes\UserManagement.cs" />
-    <Compile Include="Data\connection.cs" />
+    <Compile Include="Infrastructure\Data\connection.cs" />
     <Compile Include="Forms\main\main_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -359,10 +417,10 @@
     <Compile Include="Forms\settings\SectionSetup\frm_section_subject_add.Designer.cs">
       <DependentUpon>frm_section_subject_add.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\settings\frm_select_instructor.cs">
+    <Compile Include="Forms\settings\SectionSetup\frm_select_instructor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\settings\frm_select_instructor.Designer.cs">
+    <Compile Include="Forms\settings\SectionSetup\frm_select_instructor.Designer.cs">
       <DependentUpon>frm_select_instructor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\settings\frm_subjects.cs">
@@ -377,6 +435,7 @@
     <Compile Include="Forms\settings\FeeSetup\frm_tuition_fee.Designer.cs">
       <DependentUpon>frm_tuition_fee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Entities\Settings\Levels.cs" />
     <Compile Include="Forms\settings\UserManagement\frm_set_accessLevel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -485,6 +544,7 @@
     <Compile Include="Forms\transactions\StudentAssessment\frm_view_subjects.Designer.cs">
       <DependentUpon>frm_view_subjects.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\StudentAssessments.cs" />
     <Compile Include="Forms\transactions\StudentEnrollment\frm_select_course.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -605,6 +665,20 @@
       <DependentUpon>frm_print_receipt_breakdown.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="TestFolder\Coursesss.cs" />
+    <Compile Include="TestFolder\CoursessssRepository.cs" />
+    <Compile Include="TestFolder\frmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestFolder\frmTest.Designer.cs">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToastrNotification\frm_loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToastrNotification\frm_loading.Designer.cs">
+      <DependentUpon>frm_loading.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToastrNotification\frm_toastr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -629,6 +703,9 @@
     <EmbeddedResource Include="bin\Debug\Reports\mcnp_assessment.rdlc" />
     <EmbeddedResource Include="Forms\main\main_form.resx">
       <DependentUpon>main_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.resx">
+      <DependentUpon>frm_edit_curriculum_subject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\Schedule\frm_admission_schedule.resx">
       <DependentUpon>frm_admission_schedule.cs</DependentUpon>
@@ -690,7 +767,7 @@
     <EmbeddedResource Include="Forms\settings\SectionSetup\frm_section_subject_add.resx">
       <DependentUpon>frm_section_subject_add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\settings\frm_select_instructor.resx">
+    <EmbeddedResource Include="Forms\settings\SectionSetup\frm_select_instructor.resx">
       <DependentUpon>frm_select_instructor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\frm_subjects.resx">
@@ -704,6 +781,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\UserManagement\frm_user_management.resx">
       <DependentUpon>frm_user_management.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Cashier\frm_cashier_logs.resx">
+      <DependentUpon>frm_cashier_logs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_fee_collection.resx">
       <DependentUpon>frm_fee_collection.cs</DependentUpon>
@@ -737,6 +817,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_select_school_year.resx">
       <DependentUpon>frm_select_school_year.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_student_details.resx">
+      <DependentUpon>frm_student_details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_student_promotion.resx">
       <DependentUpon>frm_student_promotion.cs</DependentUpon>
@@ -803,6 +886,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Receipts\isap_assessment_breakdown.rdlc" />
     <EmbeddedResource Include="Reports\Receipts\isap_receipt.rdlc" />
+    <EmbeddedResource Include="TestFolder\frmTest.resx">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToastrNotification\frm_loading.resx">
+      <DependentUpon>frm_loading.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToastrNotification\frm_toastr.resx">
       <DependentUpon>frm_toastr.cs</DependentUpon>
     </EmbeddedResource>
@@ -928,6 +1017,7 @@
     <None Include="Resources\warning.png" />
     <None Include="Resources\information.png" />
     <None Include="Resources\check.png" />
+    <None Include="Resources\1ICT LOGO black1.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -1,6 +1,9 @@
 ﻿using ExcelDataReader;
 using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -17,8 +20,11 @@ namespace school_management_system_model.Forms.settings.Curriculum
 {
     public partial class frm_curriculum_subjects_excel_import : KryptonForm
     {
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
+        CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
+
         public int id { get; set; }
-        public string curriculumIdCode { get; set; }
+        public string uid { get; set; }
         public string curriculum { get; set; }
         public string year_level { get; set; }
         public string semester { get; set; }
@@ -75,33 +81,65 @@ namespace school_management_system_model.Forms.settings.Curriculum
 
                     this.Text = Path.GetFileName(ofd.FileName);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private void saveRecords()
+        private async Task SaveLoading(string message)
         {
-            var con = new MySqlConnection(connection.con());
-            con.Open();
-            var cmd = new MySqlCommand("insert into curriculum_subjects(curriculumIdCode, curriculum, year_level, semester, code, descriptive_title, " +
-                "total_units, lecture_units, lab_units, pre_requisite, total_hrs_per_week) " +
-                "values(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11)", con);
-            cmd.Parameters.AddWithValue("@1", curriculumIdCode);
-            cmd.Parameters.AddWithValue("@2", curriculum);
-            cmd.Parameters.AddWithValue("@3", year_level);
-            cmd.Parameters.AddWithValue("@4", semester);
-            cmd.Parameters.AddWithValue("@5", code);
-            cmd.Parameters.AddWithValue("@6", descriptive_title);
-            cmd.Parameters.AddWithValue("@7", total_units);
-            cmd.Parameters.AddWithValue("@8", lecture_units);
-            cmd.Parameters.AddWithValue("@9", lab_units);
-            cmd.Parameters.AddWithValue("@10", pre_requisite);
-            cmd.Parameters.AddWithValue("@11", total_hrs_per_week);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            if (message == "Saving")
+            {
+                panelWait.Visible = true;
+                btnSave.Enabled = false;
+
+                int totalSubjects = Convert.ToInt32(dgv.Rows.Count);
+
+                UpdateProgressBar(totalSubjects);
+                await Task.Delay(1);
+            }
+            else if (message == "Done")
+            {
+                panelWait.Visible = false;
+            }
+
+        }
+
+        private void UpdateProgressBar(int progress)
+        {
+            if (progressBar1.InvokeRequired)
+            {
+                progressBar1.Invoke(new Action<int>(UpdateProgressBar), progress);
+            }
+            else
+            {
+                progressBar1.Value = progress;
+            }
+        }
+
+        private async Task saveRecords()
+        {
+
+            var a = await _curriculumRepo.GetAllAsync();
+            var curriculum_id = a.FirstOrDefault(x => x.code == curriculum).id;
+            var subjects = new CurriculumSubjects
+            {
+                uid = curriculum.ToString() + code.ToString(),
+                curriculum = curriculum_id.ToString(),
+                year_level = year_level,
+                semester = semester,
+                code = code.ToString(),
+                descriptive_title = descriptive_title.ToString(),
+                total_units = total_units,
+                lecture_units = lecture_units,
+                lab_units = lab_units,
+                pre_requisite = pre_requisite.ToString(),
+                total_hrs_per_week = total_hrs_per_week.ToString()
+
+            };
+            await _curriculumSubjectsRepo.AddRecords(subjects);
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -109,35 +147,43 @@ namespace school_management_system_model.Forms.settings.Curriculum
             excelImport();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private async void kryptonButton1_Click(object sender, EventArgs e)
         {
-            try
+            if (dgv.Rows.Count == 0)
             {
-                foreach (DataGridViewRow row in dgv.Rows)
+                new Classes.Toastr("Warning", "Please Upload a File");
+            }
+            else
+            {
+                try
                 {
-                    curriculumIdCode = curriculum + row.Cells["code"].Value.ToString();
-                    year_level = row.Cells["year_level"].Value.ToString();
-                    semester = row.Cells["semester"].Value.ToString();
-                    code = row.Cells["code"].Value.ToString();
-                    descriptive_title = row.Cells["descriptive_title"].Value.ToString();
-                    total_units = row.Cells["total_units"].Value.ToString();
-                    lecture_units = row.Cells["lecture_units"].Value.ToString();
-                    lab_units = row.Cells["lab_units"].Value.ToString();
-                    pre_requisite = row.Cells["pre_requisite"].Value.ToString();
-                    total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
-                    saveRecords();
+                    await SaveLoading("Saving");
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+                        uid = curriculum + row.Cells["code"].Value.ToString();
+                        year_level = row.Cells["year_level"].Value.ToString();
+                        semester = row.Cells["semester"].Value.ToString();
+                        code = row.Cells["code"].Value.ToString();
+                        descriptive_title = row.Cells["descriptive_title"].Value.ToString();
+                        total_units = row.Cells["total_units"].Value.ToString();
+                        lecture_units = row.Cells["lecture_units"].Value.ToString();
+                        lab_units = row.Cells["lab_units"].Value.ToString();
+                        pre_requisite = row.Cells["pre_requisite"].Value.ToString();
+                        total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
+                        await saveRecords();
+                    }
+                    await SaveLoading("Done");
+
+                    new Classes.Toastr("Success", "Curriculum Import Success");
+                    new ActivityLogger().activityLogger(Email, "Curriculum File Import: " + this.Text);
+                    Close();
                 }
-
-                new Classes.Toastr("Success", "Curriculum Import Success");
-                new ActivityLogger().activityLogger(Email, "Curriculum File Import: " + this.Text);
-                Close();
+                catch (Exception ex)
+                {
+                    new Classes.Toastr("Error", ex.Message);
+                    await SaveLoading("Done");
+                }
             }
-            catch(Exception ex)
-            {
-                new Classes.Toastr("Error", ex.Message);
-                MessageBox.Show(ex.Message);
-            }
-
         }
     }
 }

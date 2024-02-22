@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,6 +72,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tTime = new System.Windows.Forms.Label();
             this.timerTime = new System.Windows.Forms.Timer(this.components);
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.tCashier = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -83,6 +85,7 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -108,14 +111,14 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(6, 19);
             this.dgv.Name = "dgv";
@@ -591,11 +594,33 @@
             this.timerTime.Enabled = true;
             this.timerTime.Tick += new System.EventHandler(this.timerTime_Tick);
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.tCashier);
+            this.groupBox8.Location = new System.Drawing.Point(12, 46);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(293, 53);
+            this.groupBox8.TabIndex = 195;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Cashier in Charge";
+            // 
+            // tCashier
+            // 
+            this.tCashier.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tCashier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tCashier.Location = new System.Drawing.Point(3, 16);
+            this.tCashier.Name = "tCashier";
+            this.tCashier.Size = new System.Drawing.Size(287, 34);
+            this.tCashier.TabIndex = 183;
+            this.tCashier.Text = "...";
+            this.tCashier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frm_fee_collection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1321, 869);
+            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.tTime);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox7);
@@ -627,6 +652,7 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox8.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -676,5 +702,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label tTime;
         private System.Windows.Forms.Timer timerTime;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label tCashier;
     }
 }

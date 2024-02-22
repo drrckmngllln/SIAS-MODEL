@@ -1,12 +1,9 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +11,7 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
 {
     public partial class frm_view_subjects : KryptonForm
     {
+        StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
         public static frm_view_subjects instance;
         public string id_number { get; set; }
         public frm_view_subjects()
@@ -22,35 +20,35 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
             InitializeComponent();
         }
 
-        private void frm_view_subjects_Load(object sender, EventArgs e)
+        private async void frm_view_subjects_Load(object sender, EventArgs e)
         {
-            loadRecords();
+            await loadRecords();
         }
 
-        private void loadRecords()
+        private async Task loadRecords()
         {
             tTitle.Text = this.Text;
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_subjects where id_number='" + id_number + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
-            dgv.Columns["id"].Visible = false;
-            dgv.Columns["id_number"].Visible = false;
-            dgv.Columns["unique_id"].Visible = false;
-            dgv.Columns["subject_code"].HeaderText = "Subject Code";
-            dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
+            
+            dgv.Columns.Add("id_number_id", "ID Number");
+            dgv.Columns.Add("subject_code", "Subject Code");
+            dgv.Columns.Add("descriptive_title", "Descriptive Title");
+            dgv.Columns.Add("pre_requisite", "Pre Requisite");
+            dgv.Columns.Add("total_units", "Total Units");
+            dgv.Columns.Add("lecture_units", "Lecture Units");
+            dgv.Columns.Add("lab_units", "Lab Units");
+
             dgv.Columns["descriptive_title"].Width = 300;
-            dgv.Columns["pre_requisite"].Visible = false;
-            dgv.Columns["total_units"].HeaderText = "Total Units";
-            dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
-            dgv.Columns["lab_units"].HeaderText = "Lab Units";
-            dgv.Columns["time"].Visible = false;
-            dgv.Columns["day"].Visible = false;
-            dgv.Columns["room"].Visible = false;
-            dgv.Columns["instructor"].Visible = false;
-            dgv.Columns["grade"].Visible = false;
-            dgv.Columns["remarks"].Visible = false;
+            
+
+
+            var studentSubjects = await _studentSubjectRepo.GetAllAsync();
+            var subjects = studentSubjects.Where(x => x.id_number_id == id_number).ToList();
+
+            foreach ( var subject in subjects )
+            {
+                dgv.Rows.Add(subject.id_number_id, subject.subject_code, subject.descriptive_title, subject.pre_requisite, subject.total_units, 
+                    subject.lecture_units, subject.lab_units);
+            }
         }
 
         private void frm_view_subjects_KeyDown(object sender, KeyEventArgs e)
@@ -62,6 +60,28 @@ namespace school_management_system_model.Forms.transactions.StudentAssessment
             else if (e.KeyCode == Keys.Escape)
             {
                 Close();
+            }
+        }
+
+        private async void tSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tSearch.Text.Length > 2)
+            {
+                var studentSubjects = await _studentSubjectRepo.GetAllAsync();
+                var subjects = studentSubjects
+                    .Where(x => x.id_number_id == id_number && x.subject_code.ToLower().Contains(tSearch.Text) || x.descriptive_title.ToLower().Contains(tSearch.Text))
+                    .ToList();
+
+                dgv.Rows.Clear();
+                foreach (var subject in subjects)
+                {
+                    dgv.Rows.Add(subject.id_number_id, subject.subject_code, subject.descriptive_title, subject.pre_requisite, subject.total_units,
+                        subject.lecture_units, subject.lab_units);
+                }
+            }
+            else if (tSearch.Text.Length == 0)
+            {
+                await loadRecords();
             }
         }
     }

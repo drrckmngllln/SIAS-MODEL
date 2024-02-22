@@ -28,17 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tFourthYear = new System.Windows.Forms.TextBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tCampus = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.tThirdYear = new System.Windows.Forms.TextBox();
+            this.tAmount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.tSecondYear = new System.Windows.Forms.TextBox();
+            this.tSemester = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tFirstYear = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tCategory = new System.Windows.Forms.TextBox();
@@ -50,26 +47,11 @@
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.tDescription = new System.Windows.Forms.TextBox();
+            this.tLevel = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tYearLevel = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 335);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 15);
-            this.label7.TabIndex = 114;
-            this.label7.Text = "4th Year:";
-            // 
-            // tFourthYear
-            // 
-            this.tFourthYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tFourthYear.Location = new System.Drawing.Point(106, 332);
-            this.tFourthYear.Name = "tFourthYear";
-            this.tFourthYear.Size = new System.Drawing.Size(236, 21);
-            this.tFourthYear.TabIndex = 113;
             // 
             // tCampus
             // 
@@ -79,60 +61,53 @@
             this.tCampus.Name = "tCampus";
             this.tCampus.Size = new System.Drawing.Size(236, 23);
             this.tCampus.TabIndex = 112;
+            this.tCampus.SelectedIndexChanged += new System.EventHandler(this.tCampus_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(29, 308);
+            this.label6.Location = new System.Drawing.Point(29, 339);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 15);
+            this.label6.Size = new System.Drawing.Size(52, 15);
             this.label6.TabIndex = 111;
-            this.label6.Text = "3rd Year:";
+            this.label6.Text = "Amount:";
             // 
-            // tThirdYear
+            // tAmount
             // 
-            this.tThirdYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tThirdYear.Location = new System.Drawing.Point(106, 305);
-            this.tThirdYear.Name = "tThirdYear";
-            this.tThirdYear.Size = new System.Drawing.Size(236, 21);
-            this.tThirdYear.TabIndex = 110;
+            this.tAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tAmount.Location = new System.Drawing.Point(106, 336);
+            this.tAmount.Name = "tAmount";
+            this.tAmount.Size = new System.Drawing.Size(236, 21);
+            this.tAmount.TabIndex = 110;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(29, 281);
+            this.label5.Location = new System.Drawing.Point(29, 312);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 15);
+            this.label5.Size = new System.Drawing.Size(63, 15);
             this.label5.TabIndex = 109;
-            this.label5.Text = "2nd Year:";
+            this.label5.Text = "Semester:";
             // 
-            // tSecondYear
+            // tSemester
             // 
-            this.tSecondYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tSecondYear.Location = new System.Drawing.Point(106, 278);
-            this.tSecondYear.Name = "tSecondYear";
-            this.tSecondYear.Size = new System.Drawing.Size(236, 21);
-            this.tSecondYear.TabIndex = 108;
+            this.tSemester.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSemester.Location = new System.Drawing.Point(106, 309);
+            this.tSemester.Name = "tSemester";
+            this.tSemester.Size = new System.Drawing.Size(236, 21);
+            this.tSemester.TabIndex = 108;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(29, 254);
+            this.label4.Location = new System.Drawing.Point(29, 285);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 15);
+            this.label4.Size = new System.Drawing.Size(67, 15);
             this.label4.TabIndex = 107;
-            this.label4.Text = "1st Year:";
-            // 
-            // tFirstYear
-            // 
-            this.tFirstYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tFirstYear.Location = new System.Drawing.Point(106, 251);
-            this.tFirstYear.Name = "tFirstYear";
-            this.tFirstYear.Size = new System.Drawing.Size(236, 21);
-            this.tFirstYear.TabIndex = 106;
+            this.label4.Text = "Year Level:";
             // 
             // label3
             // 
@@ -177,7 +152,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.CornerRoundingRadius = 15F;
-            this.kryptonButton1.Location = new System.Drawing.Point(123, 442);
+            this.kryptonButton1.Location = new System.Drawing.Point(118, 442);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(133, 44);
             this.kryptonButton1.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -192,7 +167,7 @@
             // btn_clear
             // 
             this.btn_clear.CornerRoundingRadius = 15F;
-            this.btn_clear.Location = new System.Drawing.Point(197, 392);
+            this.btn_clear.Location = new System.Drawing.Point(192, 392);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(133, 44);
             this.btn_clear.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -207,7 +182,7 @@
             // btn_save
             // 
             this.btn_save.CornerRoundingRadius = 15F;
-            this.btn_save.Location = new System.Drawing.Point(58, 392);
+            this.btn_save.Location = new System.Drawing.Point(53, 392);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(133, 44);
             this.btn_save.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -238,23 +213,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgv.Location = new System.Drawing.Point(388, 111);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -287,22 +262,58 @@
             this.tDescription.Size = new System.Drawing.Size(236, 78);
             this.tDescription.TabIndex = 137;
             // 
+            // tLevel
+            // 
+            this.tLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLevel.FormattingEnabled = true;
+            this.tLevel.Location = new System.Drawing.Point(106, 251);
+            this.tLevel.Name = "tLevel";
+            this.tLevel.Size = new System.Drawing.Size(236, 23);
+            this.tLevel.TabIndex = 140;
+            this.tLevel.SelectedIndexChanged += new System.EventHandler(this.tLevel_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(29, 256);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 15);
+            this.label9.TabIndex = 139;
+            this.label9.Text = "Level:";
+            // 
+            // tYearLevel
+            // 
+            this.tYearLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tYearLevel.FormattingEnabled = true;
+            this.tYearLevel.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.tYearLevel.Location = new System.Drawing.Point(106, 280);
+            this.tYearLevel.Name = "tYearLevel";
+            this.tYearLevel.Size = new System.Drawing.Size(236, 23);
+            this.tYearLevel.TabIndex = 141;
+            this.tYearLevel.Text = "1";
+            this.tYearLevel.SelectedIndexChanged += new System.EventHandler(this.tYearLevel_SelectedIndexChanged);
+            // 
             // frm_miscellaneous_setup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 737);
+            this.Controls.Add(this.tYearLevel);
+            this.Controls.Add(this.tLevel);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.tDescription);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.tFourthYear);
             this.Controls.Add(this.tCampus);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.tThirdYear);
+            this.Controls.Add(this.tAmount);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.tSecondYear);
+            this.Controls.Add(this.tSemester);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tFirstYear);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tCategory);
@@ -326,16 +337,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tFourthYear;
         private System.Windows.Forms.ComboBox tCampus;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tThirdYear;
+        private System.Windows.Forms.TextBox tAmount;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tSecondYear;
+        private System.Windows.Forms.TextBox tSemester;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tFirstYear;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tCategory;
@@ -347,5 +354,8 @@
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tDescription;
+        private System.Windows.Forms.ComboBox tLevel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox tYearLevel;
     }
 }

@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,7 @@ namespace school_management_system_model.Forms.transactions.StudentEnrollment
 {
     public partial class frm_select_section : Form
     {
+        SectionRepository _sectionRepo = new SectionRepository();
         public frm_select_section(string course, string semester, string year_level)
         {
             InitializeComponent();
@@ -30,17 +33,20 @@ namespace school_management_system_model.Forms.transactions.StudentEnrollment
             loadSection();
         }
 
-        private void loadSection()
+        private async void loadSection()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from sections where course='" + Course + "' and semester='" + Semester + "' and year_level='" + Year_Level + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var section = await _sectionRepo.GetAllAsync();
+                var a = section.Where(x => x.course == Course && x.semester == Semester && x.year_level.ToString() == Year_Level).ToList();
+
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter("select * from sections where course='" + Course + "' and semester='" + Semester + "' and year_level='" + Year_Level + "'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
+            dgv.DataSource = section;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
             dgv.Columns["section_code"].HeaderText = "Section Code";
-            dgv.Columns["course"].HeaderText = "Course";
+            dgv.Columns["course_id"].HeaderText = "Course";
             dgv.Columns["year_level"].HeaderText = "Year Level";
             dgv.Columns["section"].Visible = false;
             dgv.Columns["semester"].HeaderText = "Semester";

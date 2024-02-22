@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.tsearch = new Krypton.Toolkit.KryptonTextBox();
             this.tTitle = new System.Windows.Forms.Label();
             this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             this.btnSelect = new Krypton.Toolkit.KryptonButton();
             this.btnRemove = new Krypton.Toolkit.KryptonButton();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.tPageSize = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,23 +52,23 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgv.Location = new System.Drawing.Point(12, 65);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -75,7 +78,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(894, 381);
+            this.dgv.Size = new System.Drawing.Size(894, 336);
             this.dgv.TabIndex = 119;
             // 
             // tsearch
@@ -160,12 +163,53 @@
             this.btnRemove.Values.Text = "Remove";
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // btnPrev
+            // 
+            this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPrev.Enabled = false;
+            this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrev.Location = new System.Drawing.Point(422, 407);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(26, 23);
+            this.btnPrev.TabIndex = 141;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(475, 407);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(26, 23);
+            this.btnNext.TabIndex = 140;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // tPageSize
+            // 
+            this.tPageSize.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tPageSize.AutoSize = true;
+            this.tPageSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPageSize.ForeColor = System.Drawing.SystemColors.Control;
+            this.tPageSize.Location = new System.Drawing.Point(454, 410);
+            this.tPageSize.Name = "tPageSize";
+            this.tPageSize.Size = new System.Drawing.Size(15, 15);
+            this.tPageSize.TabIndex = 139;
+            this.tPageSize.Text = "1";
+            this.tPageSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frm_link_subjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.ClientSize = new System.Drawing.Size(918, 499);
+            this.Controls.Add(this.btnPrev);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.tPageSize);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.kryptonButton3);
@@ -198,5 +242,8 @@
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private Krypton.Toolkit.KryptonButton btnSelect;
         private Krypton.Toolkit.KryptonButton btnRemove;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label tPageSize;
     }
 }

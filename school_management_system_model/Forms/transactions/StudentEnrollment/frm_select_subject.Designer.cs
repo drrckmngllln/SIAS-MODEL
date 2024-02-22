@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tSearch = new Krypton.Toolkit.KryptonTextBox();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +41,12 @@
             this.tTime = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tLoading = new System.Windows.Forms.Label();
+            this.btnSelect = new Krypton.Toolkit.KryptonButton();
+            this.btnClose = new Krypton.Toolkit.KryptonButton();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.tPageSize = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -64,23 +70,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgv.Location = new System.Drawing.Point(12, 158);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -91,10 +97,9 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(739, 347);
+            this.dgv.Size = new System.Drawing.Size(739, 298);
             this.dgv.TabIndex = 83;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
-            this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             // 
             // label1
             // 
@@ -135,7 +140,6 @@
             this.groupBox1.TabIndex = 86;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Subject Details";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // tInstructor
             // 
@@ -202,13 +206,112 @@
             this.label3.TabIndex = 86;
             this.label3.Text = "Room:";
             // 
+            // tLoading
+            // 
+            this.tLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tLoading.AutoSize = true;
+            this.tLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLoading.ForeColor = System.Drawing.Color.White;
+            this.tLoading.Location = new System.Drawing.Point(316, 307);
+            this.tLoading.Name = "tLoading";
+            this.tLoading.Size = new System.Drawing.Size(144, 20);
+            this.tLoading.TabIndex = 92;
+            this.tLoading.Text = "Loading Subjects...";
+            this.tLoading.Visible = false;
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.CornerRoundingRadius = 10F;
+            this.btnSelect.Location = new System.Drawing.Point(537, 504);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(104, 38);
+            this.btnSelect.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.btnSelect.StateCommon.Back.Color2 = System.Drawing.Color.White;
+            this.btnSelect.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(25)))), ((int)(((byte)(0)))));
+            this.btnSelect.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnSelect.StateCommon.Border.Rounding = 10F;
+            this.btnSelect.StateCommon.Border.Width = 2;
+            this.btnSelect.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnSelect.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnSelect.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelect.TabIndex = 116;
+            this.btnSelect.Values.Text = "Select";
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.CornerRoundingRadius = 10F;
+            this.btnClose.Location = new System.Drawing.Point(647, 504);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(104, 38);
+            this.btnClose.StateCommon.Back.Color1 = System.Drawing.Color.White;
+            this.btnClose.StateCommon.Back.Color2 = System.Drawing.Color.White;
+            this.btnClose.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(25)))), ((int)(((byte)(0)))));
+            this.btnClose.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.btnClose.StateCommon.Border.Rounding = 10F;
+            this.btnClose.StateCommon.Border.Width = 2;
+            this.btnClose.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btnClose.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
+            this.btnClose.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.TabIndex = 117;
+            this.btnClose.Values.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPrev.Enabled = false;
+            this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrev.Location = new System.Drawing.Point(350, 462);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(26, 23);
+            this.btnPrev.TabIndex = 120;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(403, 462);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(26, 23);
+            this.btnNext.TabIndex = 119;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // tPageSize
+            // 
+            this.tPageSize.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tPageSize.AutoSize = true;
+            this.tPageSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPageSize.ForeColor = System.Drawing.SystemColors.Control;
+            this.tPageSize.Location = new System.Drawing.Point(382, 465);
+            this.tPageSize.Name = "tPageSize";
+            this.tPageSize.Size = new System.Drawing.Size(15, 15);
+            this.tPageSize.TabIndex = 118;
+            this.tPageSize.Text = "1";
+            this.tPageSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frm_select_subject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(763, 517);
+            this.ClientSize = new System.Drawing.Size(763, 554);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPrev);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.tPageSize);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnSelect);
+            this.Controls.Add(this.tLoading);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.tSearch);
@@ -239,7 +342,6 @@
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 15F;
             this.Text = "frm_select_subject";
-            
             this.Load += new System.EventHandler(this.frm_select_subject_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_select_subject_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
@@ -263,5 +365,11 @@
         private System.Windows.Forms.Label tTime;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label tLoading;
+        private Krypton.Toolkit.KryptonButton btnSelect;
+        private Krypton.Toolkit.KryptonButton btnClose;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label tPageSize;
     }
 }

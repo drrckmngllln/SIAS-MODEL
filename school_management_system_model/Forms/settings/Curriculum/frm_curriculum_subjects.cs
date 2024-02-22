@@ -1,25 +1,34 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Forms.settings.Curriculum;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
 {
     public partial class frm_curriculum_subjects : KryptonForm
     {
-        public string Curriculum;
-        private string ID { get; set; }
+        CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
+        CurriculumRepository _curriculumRepository = new CurriculumRepository();
+        public int CurriculumId { get; set; }
+        private string id { get; set; }
         public string Email { get; }
+        PaginationParams pagination = new PaginationParams();
 
         public static frm_curriculum_subjects instance;
-        public frm_curriculum_subjects(string email)
+        public frm_curriculum_subjects(string email, int curriculum_id)
         {
             instance = this;
             InitializeComponent();
             Email = email;
+            CurriculumId = curriculum_id;
         }
 
         private void frm_curriculum_subjects_Load(object sender, EventArgs e)
@@ -27,15 +36,18 @@ namespace school_management_system_model.Forms.settings
             loadrecords();
         }
 
-        private void loadrecords()
+       
+
+        private async void loadrecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculum_subjects where curriculum='"+ Curriculum +"'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var a = await _curriculumSubjectsRepo.GetAllAsync();
+            var curriculumSubjects =a.Where(x => x.curriculum.ToString() == CurriculumId.ToString())
+                .Skip(pagination.pageSize * (pagination.pageNumber - 1)).Take(pagination.pageSize).ToList();
+            dgv.DataSource = curriculumSubjects;
+
+
             dgv.Columns["id"].Visible = false;
-            dgv.Columns["curriculumIdCode"].Visible = false;
+            dgv.Columns["uid"].Visible = false;
             dgv.Columns["curriculum"].Visible = false;
             dgv.Columns["year_level"].HeaderText = "Year Level";
             dgv.Columns["semester"].HeaderText = "Semester";
@@ -48,41 +60,40 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
             dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
 
-            con = new MySqlConnection(connection.con());
-            da = new MySqlDataAdapter("select * from curriculums where code='" + Curriculum + "'", con);
-            var ds = new DataTable();
-            da.Fill(ds);
-            
-            tcode.Text = ds.Rows[0]["code"].ToString();
-            tdescription.Text = ds.Rows[0]["description"].ToString();
-            tcampus.Text = ds.Rows[0]["campus"].ToString();
-            tcourse.Text = ds.Rows[0]["course"].ToString();
-            teffective.Text = ds.Rows[0]["effective"].ToString();
-            texpires.Text = ds.Rows[0]["expires"].ToString();
+            var b = await _curriculumRepository.GetAllAsync();
+            var curriculums = b.FirstOrDefault(x => x.id == CurriculumId);
+            //var campus = new Campuses().GetCampuses().FirstOrDefault(x => x.id == curriculums.id);
+            //var course = new Courses().GetCourses().FirstOrDefault(x => x.id == curriculums.id);
+            tcode.Text = curriculums.code;
+            tdescription.Text = curriculums.description;
+            tcampus.Text = curriculums.campus;
+            tcourse.Text = curriculums.course;
+            teffective.Text = curriculums.effective;
+            texpires.Text = curriculums.expires;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            var frm = new frm_add_curriculum_subjects();
-            frm.Text = "Add Subjects";
-            frm_add_curriculum_subjects.instance.curriculum = Curriculum;
-            frm.ShowDialog();
-            loadrecords();
+            //var frm = new frm_add_curriculum_subjects();
+            //frm.Text = "Add Subjects";
+            //frm_add_curriculum_subjects.instance.curriculum = Curriculum;
+            //frm.ShowDialog();
+            //loadrecords();
         }
         
         private void delete()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter();
-            da.SelectCommand = new MySqlCommand("delete from curriculum_subjects where id='" + ID + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
+            //var con = new MySqlConnection(connection.con());
+            //var da = new MySqlDataAdapter();
+            //da.SelectCommand = new MySqlCommand("delete from curriculum_subjects where id='" + ID + "'", con);
+            //var dt = new DataTable();
+            //da.Fill(dt);
         }
-        private void deleteAll(string curriculum)
+        private void deleteAll(int curriculum)
         {
             var con = new MySqlConnection(connection.con());
             var da = new MySqlDataAdapter();
-            da.SelectCommand = new MySqlCommand("delete from curriculum_subjects where curriculum='" + curriculum + "'", con);
+            da.SelectCommand = new MySqlCommand("delete from curriculum_subjects where curriculum_id='" + curriculum + "'", con);
             var dt = new DataTable();
             da.Fill(dt);
         }
@@ -93,7 +104,6 @@ namespace school_management_system_model.Forms.settings
                 DialogResult.Yes)
             {
                 delete();
-                
                 new Classes.Toastr("Information", "Curriculum Subject Deleted");
                 new ActivityLogger().activityLogger(Email, "Curriculum Subject Delete: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
                 loadrecords();
@@ -102,7 +112,7 @@ namespace school_management_system_model.Forms.settings
 
         private void dgv_CellClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
-            ID = dgv.CurrentRow.Cells["id"].Value.ToString();
+            id = dgv.CurrentRow.Cells["id"].Value.ToString();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -114,37 +124,86 @@ namespace school_management_system_model.Forms.settings
             loadrecords();
         }
 
-        private void kryptonButton3_Click(object sender, EventArgs e)
+        private async void kryptonButton3_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("are you sure you want to delete all subjects in this curriculum?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                DialogResult.Yes)
             {
-                deleteAll(tcode.Text);
-                MessageBox.Show("Curriculum Subject Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var a = await _curriculumRepository.GetAllAsync();
+                var curriculum_id = a
+                    .FirstOrDefault(x => x.code == tcode.Text);
+
+                deleteAll(curriculum_id.id);
                 new Classes.Toastr("Information", "Curriculum Subject Deleted");
                 new ActivityLogger().activityLogger(Email, "Deleted All Curriculum: " + tdescription.Text);
                 loadrecords();
             }
         }
 
-        private DataTable onSearch(string search)
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculum_subjects where concat(curriculum, code, descriptive_title) like '%" + search + "%'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                dgv.DataSource = onSearch(tsearch.Text);
+                var a = await _curriculumSubjectsRepo.GetAllAsync();
+                var search = a.Where(x => x.code.ToLower().Contains(tsearch.Text) 
+                || x.descriptive_title.ToLower().Contains(tsearch.Text)).ToList();
+                dgv.DataSource = search;
             }
             else if (tsearch.Text.Length == 0)
             {
                 loadrecords();
+            }
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            var curriculumSubject = new CurriculumSubjects
+            {
+                uid = dgv.CurrentRow.Cells["uid"].Value.ToString(),
+                curriculum = dgv.CurrentRow.Cells["curriculum"].Value.ToString(),
+                year_level = dgv.CurrentRow.Cells["year_level"].Value.ToString(),
+                semester = dgv.CurrentRow.Cells["semester"].Value.ToString(),
+                code = dgv.CurrentRow.Cells["code"].Value.ToString(),
+                descriptive_title = dgv.CurrentRow.Cells["descriptive_title"].Value.ToString(),
+                total_units = dgv.CurrentRow.Cells["total_units"].Value.ToString(),
+                lecture_units = dgv.CurrentRow.Cells["lecture_units"].Value.ToString(),
+                lab_units = dgv.CurrentRow.Cells["lab_units"].Value.ToString(),
+                pre_requisite = dgv.CurrentRow.Cells["pre_requisite"].Value.ToString(),
+                total_hrs_per_week = dgv.CurrentRow.Cells["total_hrs_per_week"].Value.ToString(),
+            };
+            var frm = new frm_edit_curriculum_subject(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value), Email);
+            frm.Text = "Update Curriculum Subject";
+            frm.ShowDialog();
+            loadrecords();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (dgv.Rows.Count < pagination.pageSize)
+            {
+                btnNext.Enabled = false;
+            }
+            else
+            {
+                pagination.pageNumber++;
+                tPageNumber.Text = pagination.pageNumber.ToString();
+                loadrecords();
+                btnPrevious.Enabled = true;
+            }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (pagination.pageNumber == 1)
+            {
+                btnPrevious.Enabled = false;
+            }
+            else
+            {
+                pagination.pageNumber--;
+                tPageNumber.Text = pagination.pageNumber.ToString();
+                loadrecords();
+                btnNext.Enabled = true;
             }
         }
     }

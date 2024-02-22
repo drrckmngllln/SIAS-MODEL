@@ -1,16 +1,17 @@
-﻿using Krypton.Toolkit;
-using school_management_system_model.Classes;
-using school_management_system_model.Classes.Parameters;
+﻿using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Core.Entities.Transaction;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Transaction;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
+using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using school_management_system_model.Forms.transactions.StudentAssessment;
+using school_management_system_model.Infrastructure.Data.Repositories;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Reports.Accounting;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,14 +19,34 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_assessment : Form
     {
+        private readonly StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        private readonly StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
+        private readonly StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
+        private readonly CourseRepository _courseRepo = new CourseRepository();
+        private readonly CampusRepository _campusRepo = new CampusRepository();
+        private readonly SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+        private readonly MiscFeeRepository _miscFeeRepo = new MiscFeeRepository();
+        private readonly TuitionFeeRepository _tuitionFeeRepo = new TuitionFeeRepository();
+        private readonly LabFeeSubjectRepository _labFeeSubjectRepo = new LabFeeSubjectRepository();
+        private readonly LabFeeRepository _labFeeRepo = new LabFeeRepository();
+        private readonly OtherFeeRepository _otherFeeRepo = new OtherFeeRepository();
+        private readonly FeeBreakdownRepository _feeBreakdownRepo = new FeeBreakdownRepository();
+        private readonly FeeSummaryRepository _feeSummaryRepo = new FeeSummaryRepository();
+        private readonly StatementOfAccountsRepository _statementOfAccountsRepo = new StatementOfAccountsRepository();
+        private readonly StudentDiscountRepository _studentDiscountRepo = new StudentDiscountRepository();
+        private readonly AssessmentBreakdownRepository _assessmentBreakdownRepo = new AssessmentBreakdownRepository();
+        private readonly StudentAssessmentRepository _studentAssessmentRepo = new StudentAssessmentRepository();
+
+
+
         public static frm_student_assessment instance;
         public string studentID { get; set; }
         public string schoolYear { get; set; }
         public decimal totalUnits { get; set; }
-        public decimal totalTuitionFee{ get; set; }
-        public decimal totalMiscFee{ get; set; }
+        public decimal totalTuitionFee { get; set; }
+        public decimal totalMiscFee { get; set; }
         public decimal totalLabFee { get; set; }
-        public decimal totalOtherFee{ get; set; }
+        public decimal totalOtherFee { get; set; }
         public decimal totalFee { get; set; }
         public decimal labFee { get; set; }
         public decimal totalDiscount { get; set; }
@@ -52,7 +73,7 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns.Add("computation", "Computation");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_student();
             frm.Text = "Select Student";
@@ -60,281 +81,137 @@ namespace school_management_system_model.Forms.transactions
             if (studentID != null)
             {
                 // Getting Student Name
-                var name = new student_assessment
-                {
-                    id_number = studentID
-                };
-                tStudentName.Text = name.getStudentName();
+
+                var a = await _studentAccountRepo.GetAllAsync();
+                var studentName = a.FirstOrDefault(x => x.id_number == studentID);
+                tStudentName.Text = studentName.fullname;
 
                 // Getting Student Course
+
+                var studentCourses = await _studentCourseRepo.GetAllAsync();
+                var studentCourse = studentCourses.FirstOrDefault(x => x.id_number == studentID);
+
                 tIdNumber.Text = studentID.ToString();
-                var studentDetails = new student_assessment
-                {
-                    id_number = tIdNumber.Text
-                };
-                var data = studentDetails.getStudentDetails();
-                tCourse.Text = data.Rows[0]["course"].ToString();
-                tYearLevel.Text = data.Rows[0]["year_level"].ToString();
-                tSemester.Text = data.Rows[0]["semester"].ToString();
-                tCampus.Text = data.Rows[0]["campus"].ToString();
-                
+                tCourse.Text = studentCourse.course.ToString();
+                tYearLevel.Text = studentCourse.year_level;
+                tSemester.Text = studentCourse.semester;
+                tCampus.Text = studentCourse.campus;
             }
         }
 
-        private void addAssessmentRecords()
+        private async Task loadTuitionFeePerUnit()
         {
-            // Loading of Tuition Fee/Unit
-            
-            var lectureFee = new student_assessment();
-            decimal tuitionUnit = 0;
-            tuitionUnit = lectureFee.getTuitionFeeUnits(tIdNumber.Text, tSchoolYear.Text);
-
-            var tuition = new student_assessment();
-            var data = tuition.getTuitionFee(tCampus.Text);
-            if (tYearLevel.Text == "1")
+            var a = await _studentSubjectRepo.GetAllAsync();
+            var getStudentTuitionFee = a
+                .Where(x => x.id_number_id == tIdNumber.Text && x.school_year_id == tSchoolYear.Text)
+                .ToList();
+            decimal tuitionFee = 0;
+            foreach (var item in getStudentTuitionFee)
             {
-                dgv.Rows.Add(
-                    data.Rows[0]["category"],
-                    data.Rows[0]["description"],
-                    data.Rows[0]["first_year"],
-                    tuitionUnit,
-                    tuitionUnit * Convert.ToDecimal(data.Rows[0]["first_year"])
-                    );
-            }
-            else if (tYearLevel.Text == "2")
-            {
-                dgv.Rows.Add(
-                    data.Rows[0]["category"],
-                   data.Rows[0]["description"],
-                   data.Rows[0]["second_year"],
-                   tuitionUnit,
-                    tuitionUnit * Convert.ToDecimal(data.Rows[0]["second_year"])
-                   );
-            }
-            else if (tYearLevel.Text == "3")
-            {
-                dgv.Rows.Add(
-                    data.Rows[0]["category"],
-                   data.Rows[0]["description"],
-                   data.Rows[0]["third_year"],
-                   tuitionUnit,
-                   tuitionUnit * Convert.ToDecimal(data.Rows[0]["third_year"])
-                   );
-            }
-            else if (tYearLevel.Text == "4")
-            {
-                dgv.Rows.Add(
-                    data.Rows[0]["category"],
-                   data.Rows[0]["description"],
-                   data.Rows[0]["fourth_year"],
-                   tuitionUnit,
-                   tuitionUnit * Convert.ToDecimal(data.Rows[0]["fourth_year"])
-                   );
-            }
-            
-            
-            // Loading of Miscellaneous Fee
-            
-            var misc = new student_assessment();
-            var miscData = misc.getMiscellaneousFee(tCampus.Text);
-            foreach(DataRow row in miscData.Rows)
-            {
-                if (tYearLevel.Text == "1")
-                {
-                    dgv.Rows.Add(
-                        row["category"],
-                        row["description"],
-                        row["first_year"],
-                        1,
-                        1 * Convert.ToDecimal(row["first_year"])
-                        );
-                }
-                else if (tYearLevel.Text == "2")
-                {
-                    dgv.Rows.Add(
-                       row["category"],
-                       row["description"],
-                       row["second_year"],
-                       1,
-                       1 * Convert.ToDecimal(row["second_year"])
-                       );
-                }
-                else if (tYearLevel.Text == "3")
-                {
-                    dgv.Rows.Add(
-                        row["category"],
-                       row["description"],
-                       row["third_year"],
-                       1,
-                       1 * Convert.ToDecimal(row["third_year"])
-                       );
-                }
-                else if (tYearLevel.Text == "4")
-                {
-                    dgv.Rows.Add(
-                        row["category"],
-                       row["description"],
-                       row["fourth_year"],
-                       1,
-                       1 * Convert.ToDecimal(row["fourth_year"])
-                       );
-                }
+                tuitionFee += Math.Round(Convert.ToDecimal(item.lecture_units), 2);
             }
 
-            // Loading of Lab Fee
-            loadLabFee();
+            //int yearLevel = Convert.ToInt32(tYearLevel.Text);
 
-            // Loading of Other Fee
-            loadOtherFees();
-        }
+            var tuitionFeeSetup = await _tuitionFeeRepo.GetAllAsync();
+            var b = tuitionFeeSetup
+                .FirstOrDefault(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text);
 
-        private void loadOtherFees()
-        {
-            var other = new student_assessment();
-            var otherFee = other.getOtherFee(tCampus.Text);
-            foreach (DataRow row in otherFee.Rows)
+            if (b == null)
             {
-                if (tYearLevel.Text == "1")
-                {
-                    dgv.Rows.Add(
-                        row["category"],
-                        row["description"],
-                        row["first_year"],
-                        1,
-                        1 * Convert.ToDecimal(row["first_year"])
-                        );
-                }
-                else if (tYearLevel.Text == "2")
-                {
-                    dgv.Rows.Add(
-                       row["category"],
-                       row["description"],
-                       row["second_year"],
-                       1,
-                       1 * Convert.ToDecimal(row["second_year"])
-                       );
-                }
-                else if (tYearLevel.Text == "3")
-                {
-                    dgv.Rows.Add(
-                        row["category"],
-                       row["description"],
-                       row["third_year"],
-                       1,
-                       1 * Convert.ToDecimal(row["third_year"])
-                       );
-                }
-                else if (tYearLevel.Text == "4")
-                {
-                    dgv.Rows.Add(
-                        row["category"],
-                       row["description"],
-                       row["fourth_year"],
-                       1,
-                       1 * Convert.ToDecimal(row["fourth_year"])
-                       );
-                }
+                new Classes.Toastr("Warning", "No Tuition Fee Set");
+            }
+            else
+            {
+                decimal computation = tuitionFee * b.amount;
+                dgv.Rows.Add(b.category, b.description, b.amount, Math.Round(tuitionFee, 2), Math.Round(computation, 2));
             }
         }
 
-        private void loadLabFee()
+        private async Task loadMiscFeePerUnit()
         {
-            var data = new student_assessment();
-            var schoolYear = data.getStudentSchoolYear(tIdNumber.Text);
-            var enrolledSubjects = data.loadEnrolledSubjects(tIdNumber.Text, schoolYear);
-            var labFeeSubjects = data.loadLabFeeSubjects();
-            
+            var getMiscFeeSetup = await _miscFeeRepo.GetAllAsync();
+            var a = getMiscFeeSetup
+                .Where(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text).ToList();
 
-            foreach(DataRow row in enrolledSubjects.Rows)
+            if (getMiscFeeSetup != null)
             {
-                foreach(DataRow rows in labFeeSubjects.Rows)
+                foreach (var item in getMiscFeeSetup)
                 {
-                    if (rows["subject_code"].ToString() == row["subject_code"].ToString())
+                    dgv.Rows.Add(item.category, item.description, Math.Round(item.amount, 2), 1, Math.Round(1 * item.amount, 2));
+                }
+            }
+            else
+            {
+                new Classes.Toastr("Warning", "No Miscellaneous Fee Set");
+            }
+        }
+
+
+
+        private async Task loadOtherFees()
+        {
+            var otherFees = await _otherFeeRepo.GetAllAsync();
+            var a = otherFees
+                .Where(x => x.campus == tCampus.Text && x.year_level == tYearLevel.Text).ToList();
+
+            foreach (var item in a)
+            {
+                dgv.Rows.Add(item.category, item.description, Math.Round(item.amount, 2), 1, Math.Round(item.amount * 1, 2));
+            }
+        }
+
+        private async Task loadLabFee()
+        {
+            var a = await _studentSubjectRepo.GetAllAsync();
+            var studentSubjects = a
+                .Where(x => x.id_number_id == tIdNumber.Text && x.school_year_id == tSchoolYear.Text).ToList();
+
+            var labFeeSubjects = await _labFeeSubjectRepo.GetAllAsync();
+            if (labFeeSubjects != null)
+            {
+                foreach (var studentSubjectItem in studentSubjects)
+                {
+                    foreach (var labFeeSubjectItems in labFeeSubjects)
                     {
-                        var labFee = data.loadLabFee(Convert.ToInt32(rows["lab_fee_id"]));
-                        if (tYearLevel.Text == "1")
+                        var labFee = await _labFeeRepo.GetAllAsync();
+                        var b = labFee
+                            .FirstOrDefault(x => x.description == labFeeSubjectItems.lab_fee);
+
+                        if (b != null)
                         {
-                            decimal computation= 1 * Convert.ToDecimal(labFee.Rows[0]["first_year"]);
-                            totalLabFee = 0;
-                            dgv.Rows.Add(
-                                labFee.Rows[0]["category"],
-                                labFee.Rows[0]["description"],
-                                labFee.Rows[0]["first_year"],
-                                1,
-                                computation
-                                );
-                            totalLabFee = computation;
-                        }
-                        else if (tYearLevel.Text == "2")
-                        {
-                            decimal computation = 1 * Convert.ToDecimal(labFee.Rows[0]["second_year"]);
-                            dgv.Rows.Add(
-                                labFee.Rows[0]["category"],
-                                labFee.Rows[0]["description"],
-                                labFee.Rows[0]["second_year"],
-                                1,
-                                1 * Convert.ToDecimal(labFee.Rows[0]["second_year"])
-                                );
-                            totalLabFee = computation;
-                        }
-                        else if(tYearLevel.Text == "3")
-                        {
-                            decimal computation = 1 * Convert.ToDecimal(labFee.Rows[0]["third_year"]);
-                            dgv.Rows.Add(
-                                labFee.Rows[0]["category"],
-                                labFee.Rows[0]["description"],
-                                labFee.Rows[0]["third_year"],
-                                1,
-                                1 * Convert.ToDecimal(labFee.Rows[0]["third_year"])
-                                );
-                            totalLabFee = computation;
-                        }
-                        else if(tYearLevel.Text == "4")
-                        {
-                            decimal computation = 1 * Convert.ToDecimal(labFee.Rows[0]["fourth_year"]);
-                            dgv.Rows.Add(
-                                labFee.Rows[0]["category"],
-                                labFee.Rows[0]["description"],
-                                labFee.Rows[0]["fourth_year"],
-                                1,
-                                1 * Convert.ToDecimal(labFee.Rows[0]["fourth_year"])
-                                );
-                            totalLabFee = computation;
+                            if (studentSubjectItem.subject_code == labFeeSubjectItems.subject_code)
+                            {
+                                decimal unitsComputation = Convert.ToDecimal(studentSubjectItem.lab_units) * Convert.ToDecimal(b.amount);
+                                unitsComputation = Math.Round(unitsComputation, 2);
+                                if (unitsComputation != 0)
+                                {
+                                    dgv.Rows.Add(b.category, b.description, b.amount, studentSubjectItem.lab_units, unitsComputation);
+                                }
+                            }
                         }
                     }
                 }
             }
         }
 
-        private void loadAssessment()
+        private async Task addAssessmentRecords()
         {
+            // Loading of Tuition Fee/Unit
+            await loadTuitionFeePerUnit();
+            // Loading of Miscellaneous Fee
+            await loadMiscFeePerUnit();
+            // Loading of Lab Fee
+            await loadLabFee();
+            // Loading of Other Fee
+            await loadOtherFees();
+            // Loading of Fee Breakdown
+            await FeeBreakDown();
+        }
 
-            var assessment = new student_assessment();
-            var data = assessment.loadRecords(schoolYear, tIdNumber.Text);
-            if (data.Rows.Count > 0)
-            {
-                
-
-                MessageBox.Show("Student Already Assessed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //tIdNumber.Clear();
-                //tCourse.Clear();
-                //tCampus.Clear();
-                //tYearLevel.Clear();
-                //tSemester.Clear();
-                //tSchoolYear.Clear();
-                //tStudentName.Text = "...";
-            }
-            else
-            {
-                dgv.Columns.Clear();
-                dgv.Columns.Add("category", "Category");
-                //dgv.Columns["category"].Visible = false;
-                dgv.Columns.Add("fee_type", "Fee Type");
-                dgv.Columns.Add("amount", "Amount");
-                dgv.Columns.Add("units", "Units");
-                dgv.Columns.Add("computation", "Computation");
-                addAssessmentRecords();
-            }
+        private async Task loadAssessment()
+        {
+            await addAssessmentRecords();
         }
 
         private void addLabFee()
@@ -342,8 +219,9 @@ namespace school_management_system_model.Forms.transactions
             dgv.Rows.Add(labFeeCategory, labFee, 1, 1 * labFee);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
+
             var frm = new frm_select_student();
             frm.Text = "Select School Year";
             frm.ShowDialog();
@@ -352,7 +230,8 @@ namespace school_management_system_model.Forms.transactions
                 dgv.Rows.Clear();
                 // Loading the assessment
                 tSchoolYear.Text = schoolYear.ToString();
-                loadAssessment();
+
+                await loadAssessment();
 
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
@@ -368,20 +247,18 @@ namespace school_management_system_model.Forms.transactions
                     {
                         totalLabFee += Convert.ToDecimal(row.Cells["computation"].Value);
                     }
-                    else if (row.Cells["category"].Value.ToString() == "Other Fees")
+                    else if (row.Cells["category"].Value.ToString() == "Other Fee")
                     {
                         totalOtherFee += Convert.ToDecimal(row.Cells["computation"].Value);
                     }
                 }
-                loadDiscounts();
-
-                FeeBreakDown();
+                await loadDiscounts();
             }
         }
 
         private void totalTimer_Tick(object sender, EventArgs e)
         {
-            
+
             tuitionFeeTotal.Text = totalTuitionFee.ToString();
             miscellaneousFeeTotal.Text = totalMiscFee.ToString();
             otherFeesTotal.Text = totalOtherFee.ToString();
@@ -429,121 +306,170 @@ namespace school_management_system_model.Forms.transactions
             computeAssessment();
         }
 
-        private void saveAssessment()
+        private async Task saveAssessment()
         {
 
             // Save to Student Assessment
-            saveStudentAssessment();
-           
+            await saveStudentAssessment();
+
             // Saving Fee Summary
-            saveFeeSummary();
+            await saveFeeSummary();
 
             // Saving to Statements of Accounts
-            saveStatementsOfAccounts();
+            await saveStatementsOfAccounts();
 
             // Saving Fee Breakdown
-            saveFeeBreakdown();
+            await saveFeeBreakdown();
 
             // Saving Assessment Breakdown
-            saveAssessmentBreakdown();
+            await saveAssessmentBreakdown();
 
-
-            MessageBox.Show("Assessment Saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            new Classes.Toastr("Success", "Assessment Saved");
 
             printAssessment();
 
         }
 
-        private void saveAssessmentBreakdown()
+        private async Task saveAssessmentBreakdown()
         {
+            var a = await _studentAccountRepo.GetAllAsync();
+            var id_number_id = a
+                .FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+            var b = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = b
+                .FirstOrDefault(x => x.code == tSchoolYear.Text);
+
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                var parameter = new SaveAssessmentBreakdownParams
+                var assessmentBreakdown = new AssessmentBreakdown
                 {
-                    id_number = tIdNumber.Text,
-                    school_year = tSchoolYear.Text,
+                    id_number = id_number_id.id.ToString(),
+                    school_year = school_year_id.id.ToString(),
                     fee_type = row.Cells["fee_type"].Value.ToString(),
                     amount = Convert.ToDecimal(row.Cells["computation"].Value)
                 };
-                var assessmentBreakdown = new student_assessment();
-                assessmentBreakdown.saveAssessmentBreakdown(
-                    parameter.id_number, 
-                    parameter.school_year, 
-                    parameter.fee_type, 
-                    parameter.amount
-                    );
+                await _assessmentBreakdownRepo.AddRecords(assessmentBreakdown);
             }
         }
 
-        private void saveStudentAssessment()
+        private async Task saveStudentAssessment()
         {
-            foreach (DataGridViewRow row in dgv.Rows)
+            var a = await _studentAccountRepo.GetAllAsync();
+            var id_number_id = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+            var b = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = b.FirstOrDefault(x => x.code == tSchoolYear.Text);
+            if (id_number_id != null && school_year_id != null)
             {
-                var assessment = new student_assessment
+                foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    id_number = tIdNumber.Text,
-                    school_year = tSchoolYear.Text,
-                    fee_type = row.Cells["fee_type"].Value.ToString(),
-                    amount = Convert.ToDecimal(row.Cells["amount"].Value),
-                    units = Convert.ToInt32(row.Cells["units"].Value),
-                    computation = Convert.ToDecimal(row.Cells["computation"].Value)
+
+                    var savingStudentAssessment = new StudentAssessments
+                    {
+                        id_number = id_number_id.id.ToString(),
+                        school_year = school_year_id.id.ToString(),
+                        fee_type = row.Cells["fee_type"].Value.ToString(),
+                        units = Convert.ToDecimal(row.Cells["units"].Value),
+                        computation = Convert.ToDecimal(row.Cells["computation"].Value)
+                    };
+                    savingStudentAssessment.SaveStudentAssessment();
+                }
+            }
+
+        }
+
+        private async Task saveFeeSummary()
+        {
+            var statementsOfAccounts = await _statementOfAccountsRepo.GetAllAsync();
+            var soa = statementsOfAccounts
+                .Where(x => x.id_number == tIdNumber.Text)
+                .OrderByDescending(x => x.id)
+                .ToList();
+
+            var dt = soa.ToDataTable();
+
+            if (dt.Rows.Count != 0)
+            {
+                decimal previousBalance = Convert.ToDecimal(dt.Rows[0]["balance"]);
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text).id;
+
+                var schoolYears = await _schoolYearRepo.GetAllAsync();
+                var school_year_id = schoolYears.FirstOrDefault(x => x.code == tSchoolYear.Text).id;
+
+                var saveFeeSummary = new FeeSummary
+                {
+                    id_number = id_number_id.ToString(),
+                    school_year = school_year_id.ToString(),
+                    current_assessment = Convert.ToDecimal(tTotal.Text),
+                    discounts = Convert.ToDecimal(totalDiscount),
+                    previous_balance = previousBalance,
+                    current_receivable = Convert.ToDecimal(tTotal.Text) + previousBalance
                 };
-                assessment.saveAssessment(tIdNumber.Text);
+                await _feeSummaryRepo.AddRecords(saveFeeSummary);
+            }
+            else
+            {
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text).id;
+
+                var schoolYears = await _schoolYearRepo.GetAllAsync();
+                var school_year_id = schoolYears.FirstOrDefault(x => x.code == tSchoolYear.Text).id;
+
+                var saveFeeSummary = new FeeSummary
+                {
+                    id_number = id_number_id.ToString(),
+                    school_year = school_year_id.ToString(),
+                    current_assessment = Convert.ToDecimal(tTotal.Text),
+                    discounts = Convert.ToDecimal(totalDiscount),
+                    previous_balance = 0,
+                    current_receivable = Convert.ToDecimal(tTotal.Text)
+                };
+                await _feeSummaryRepo.AddRecords(saveFeeSummary);
             }
         }
 
-        private void saveFeeSummary()
+        private async Task saveFeeBreakdown()
         {
-            var data = new FeeSummary
-            {
-                id_number = tIdNumber.Text
-            };
-            decimal previousBalance = data.loadPreviousBalance();
-            decimal currentAssessment = Convert.ToDecimal(tTotal.Text);
-            decimal discounts = Convert.ToDecimal(discountTotal.Text);
+            var a = await _studentAccountRepo.GetAllAsync();
+            var id_number = a.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
-            var add = new FeeSummary
-            {
-                id_number = tIdNumber.Text,
-                school_year = tSchoolYear.Text,
-                current_assessment = currentAssessment,
-                discounts = discounts,
-                previous_balance = previousBalance,
-                current_receivable = (currentAssessment + previousBalance) - discounts
-            };
-            add.saveFeeSummary();
-        }
-
-        private void saveFeeBreakdown()
-        {
+            var b = await _schoolYearRepo.GetAllAsync();
+            var school_year = b.FirstOrDefault(x => x.code == tSchoolYear.Text);
             var add = new FeeBreakdown
             {
-                school_year = tSchoolYear.Text,
+                id_number = id_number.id.ToString(),
+                school_year = school_year.id.ToString(),
                 prelim = Convert.ToDecimal(tPrelims.Text),
                 downpayment = Convert.ToDecimal(tDownpayment.Text),
-                midterms = Convert.ToDecimal(tMidterms.Text),
+                midterm = Convert.ToDecimal(tMidterms.Text),
                 semi_finals = Convert.ToDecimal(tSemiFinals.Text),
                 finals = Convert.ToDecimal(tFinals.Text),
                 total = Convert.ToDecimal(tDownpayment.Text) + Convert.ToDecimal(tPrelims.Text) + Convert.ToDecimal(tMidterms.Text) + Convert.ToDecimal(tSemiFinals.Text) + Convert.ToDecimal(tFinals.Text)
             };
-            add.saveRecords(tIdNumber.Text);
+            await _feeBreakdownRepo.AddRecords(add);
         }
 
-        private void FeeBreakDown()
+        private async Task FeeBreakDown()
         {
-            
             decimal total = 0;
-            foreach(DataGridViewRow row in dgv.Rows)
-            {
-                total += (decimal)row.Cells["computation"].Value;
-            }
-            total -= totalDiscount;
 
-            decimal downpayment = total * Convert.ToDecimal(0.20);
-            decimal prelim = total * Convert.ToDecimal(0.20);
-            decimal midterm = total * Convert.ToDecimal(0.20);
-            decimal semiFinal = total * Convert.ToDecimal(0.20);
-            decimal finals = total * Convert.ToDecimal(0.20);
+            await Task.Run(() =>
+            {
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    total += (decimal)row.Cells["computation"].Value;
+                }
+                total -= totalDiscount;
+
+
+            });
+            decimal downpayment = Math.Round(total * Convert.ToDecimal(0.20), 2);
+            decimal prelim = Math.Round(total * Convert.ToDecimal(0.20), 2);
+            decimal midterm = Math.Round(total * Convert.ToDecimal(0.20), 2);
+            decimal semiFinal = Math.Round(total * Convert.ToDecimal(0.20), 2);
+            decimal finals = Math.Round(total * Convert.ToDecimal(0.20), 2);
 
             tDownpayment.Text = downpayment.ToString();
             tPrelims.Text = prelim.ToString();
@@ -552,143 +478,186 @@ namespace school_management_system_model.Forms.transactions
             tFinals.Text = finals.ToString();
         }
 
-        private void saveStatementsOfAccounts()
+        private async Task saveStatementsOfAccounts()
         {
-            // Checking for Previous Assessment if there are negatives
-            var dataBalance = new student_assessment();
-            var balance = dataBalance.checkPreviousSoa(tIdNumber.Text);
-            if (balance.Rows.Count > 0)
+            var dataBalance = await _statementOfAccountsRepo.GetAllAsync();
+            var b = dataBalance
+                .Where(x => x.school_year == tSchoolYear.Text && x.id_number == tIdNumber.Text)
+                .OrderByDescending(x => x.id)
+                .ToList();
+
+            var a = await _studentAccountRepo.GetAllAsync();
+            var id_number_id = a
+                .FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+            var c = await _courseRepo.GetAllAsync();
+            var course_id = c
+                .FirstOrDefault(x => x.code == tCourse.Text);
+
+            var d = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = d
+                .FirstOrDefault(x => x.code == tSchoolYear.Text);
+
+            if (dataBalance == null)
             {
-                var previousBalance = Convert.ToDecimal(balance.Rows[0]["balance"]);
-                var debitCurrent = Convert.ToDecimal(tTotal.Text);
-                var data = new StatementsOfAccounts
+                var soa = await _statementOfAccountsRepo.GetAllAsync();
+                var e = soa
+                    .OrderByDescending(x => x.id)
+                    .FirstOrDefault(x => x.school_year == tSchoolYear.Text && x.id_number == tIdNumber.Text);
+                var previousBalance = Convert.ToDecimal(e.balance);
+                var currentDebit = Convert.ToDecimal(tTotal.Text);
+
+                var SaveSOA = new StatementOfAccount
                 {
-                    id_number = tIdNumber.Text,
-                    school_year = schoolYear,
+                    id_number = id_number_id.id.ToString(),
+                    school_year = school_year_id.id.ToString(),
                     date = DateTime.Now.ToString("MM-dd-yyyy"),
-                    course = tCourse.Text,
+                    course = course_id.id.ToString(),
+                    year_level = tYearLevel.Text,
+                    semester = tSemester.Text,
+                    particulars = "Total Assessment as of:" + tSchoolYear.Text,
+                    debit = currentDebit,
+                    credit = previousBalance,
+                    balance = currentDebit + previousBalance,
+                    // Name of Cashier
+                    cashier_in_charge = ""
+                };
+                await _statementOfAccountsRepo.AddRecords(SaveSOA);
+
+                // For the discounts if any
+                var discounts = await _studentDiscountRepo.GetAllAsync();
+                var f = discounts
+                    .Where(x => x.id_number == tIdNumber.Text)
+                    .ToList();
+                if (discounts != null)
+                {
+                    foreach (var discount in f)
+                    {
+                        if (discount.discount_target == "Tuition Fee")
+                        {
+                            var discountPercentage = Convert.ToDecimal(discount.discount_percentage);
+                            var computation = (discountPercentage / 100) * totalTuitionFee;
+
+                            var debit = await _statementOfAccountsRepo.GetAllAsync();
+                            decimal g = debit
+                                .FirstOrDefault(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text).balance;
+
+                            var saveSoaDiscount = new StatementOfAccount
+                            {
+                                id_number = id_number_id.id.ToString(),
+                                course = course_id.id.ToString(),
+                                year_level = tYearLevel.Text,
+                                semester = tSemester.Text,
+                                school_year = school_year_id.id.ToString(),
+                                particulars = discount.description,
+                                debit = currentDebit,
+                                credit = computation,
+                                balance = g - computation,
+                                // Cashier in charge assignment
+                                cashier_in_charge = ""
+                            };
+                            await _statementOfAccountsRepo.AddRecords(saveSoaDiscount);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var currentDebit = Convert.ToDecimal(tTotal.Text);
+
+                var data = new StatementOfAccount
+                {
+                    id_number = id_number_id.id.ToString(),
+                    school_year = school_year_id.id.ToString(),
+                    date = DateTime.Now.ToString("MM-dd-yyyy"),
+                    course = course_id.id.ToString(),
                     year_level = tYearLevel.Text,
                     semester = tSemester.Text,
                     particulars = "Total Assessment as of: " + tSchoolYear.Text,
-                    debit = debitCurrent,
-                    credit = previousBalance,
-                    balance = debitCurrent + previousBalance,
-                    cashier_in_charge = ""
-                };
-                data.saveStatementOfAccount(tIdNumber.Text, tSchoolYear.Text);
-
-                var discounts = new student_assessment();
-                var disc = discounts.loadDiscounts(tIdNumber.Text);
-
-                // For the discount
-                foreach (DataRow row in disc.Rows)
-                {
-                    var latest = new StatementsOfAccounts();
-                    var soaLatest = latest.loadLatestSOA(tIdNumber.Text, tSchoolYear.Text);
-                    decimal debit = Convert.ToDecimal(soaLatest.Rows[0]["balance"]);
-                    if (row["discount_target"].ToString() == "Tuition Fee")
-                    {
-                        var computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * totalTuitionFee;
-                        var soaDiscount = new StatementsOfAccounts
-                        {
-                            id_number = tIdNumber.Text,
-                            course = tCourse.Text,
-                            year_level = tYearLevel.Text,
-                            semester = tSemester.Text,
-                            school_year = schoolYear,
-                            particulars = row["description"].ToString(),
-                            debit = debit,
-                            credit = computation,
-                            balance = debit - computation,
-                            cashier_in_charge = ""
-                        };
-                        soaDiscount.saveStatementOfAccount(tIdNumber.Text, tSchoolYear.Text);
-                    }
-                }
-            }
-            else if (balance.Rows.Count == 0)
-            {
-                var data = new StatementsOfAccounts
-                {
-                    id_number = tIdNumber.Text,
-                    school_year = schoolYear,
-                    date = DateTime.Now.ToString("MM-dd-yyyy"),
-                    course = tCourse.Text,
-                    year_level = tYearLevel.Text,
-                    semester = tSemester.Text,
-                    particulars = "Total Assessment as of: " + schoolYear,
                     debit = Convert.ToDecimal(tTotal.Text),
                     credit = 0,
                     balance = Convert.ToDecimal(tTotal.Text),
-                    cashier_in_charge = "",
+                    // Cashier in charge
+                    cashier_in_charge = ""
                 };
-                data.saveStatementOfAccount(tIdNumber.Text, tSchoolYear.Text);
-                var discounts = new student_assessment();
-                var disc = discounts.loadDiscounts(tIdNumber.Text);
+                await _statementOfAccountsRepo.AddRecords(data);
 
-                // For the discount
-                foreach (DataRow row in disc.Rows)
+                var discounts = await _studentDiscountRepo.GetAllAsync();
+                var g = discounts
+                    .Where(x => x.id_number == tIdNumber.Text)
+                    .ToList();
+                if (c != null)
                 {
-                    var latest = new StatementsOfAccounts();
-                    var soaLatest = latest.loadLatestSOA(tIdNumber.Text, tSchoolYear.Text);
-                    decimal debit = Convert.ToDecimal(soaLatest.Rows[0]["balance"]);
-                    if (row["discount_target"].ToString() == "Tuition Fee")
+                    foreach (var discount in g)
                     {
-                        var computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * totalTuitionFee;
-                        var soaDiscount = new StatementsOfAccounts
+                        if (discount.discount_target == "Tuition Fee")
                         {
-                            id_number = tIdNumber.Text,
-                            course = tCourse.Text,
-                            year_level = tYearLevel.Text,
-                            semester = tSemester.Text,
-                            particulars = row["description"].ToString(),
-                            debit = debit,
-                            credit = computation,
-                            balance = debit - computation,
-                            cashier_in_charge = ""
-                        };
-                        soaDiscount.saveStatementOfAccount(tIdNumber.Text, tSchoolYear.Text);
+                            var discountPercentage = Convert.ToDecimal(discount.discount_percentage);
+                            var computation = (discountPercentage / 100) * totalTuitionFee;
+
+                            var e = await _statementOfAccountsRepo.GetAllAsync();
+                            decimal debit = e
+                                .FirstOrDefault(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text).balance;
+
+                            var saveSoaDiscount = new StatementOfAccount
+                            {
+                                id_number = id_number_id.id.ToString(),
+                                course = course_id.id.ToString(),
+                                year_level = tYearLevel.Text,
+                                semester = tSemester.Text,
+                                school_year = school_year_id.id.ToString(),
+                                particulars = discount.description,
+                                debit = currentDebit,
+                                credit = computation,
+                                balance = debit - computation,
+                                // Cashier in charge assignment
+                                cashier_in_charge = ""
+                            };
+                            await _statementOfAccountsRepo.AddRecords(saveSoaDiscount);
+                        }
                     }
                 }
+
             }
         }
 
-        private void loadDiscounts()
+        private async Task loadDiscounts()
         {
             // Loading the discount of the student
-            var data = new student_assessment();
-            var studentDiscounts = data.loadDiscounts(tIdNumber.Text);
-            decimal initialBreakdown = 0;
-            foreach (DataRow row in studentDiscounts.Rows)
+            var a = await _studentDiscountRepo.GetAllAsync();
+            var getStudentDiscount = a
+                .Where(x => x.id_number == tIdNumber.Text);
+
+            if (getStudentDiscount != null)
             {
-                if (row["discount_target"].ToString() == "Tuition Fee")
+                decimal initialBreakdown = 0;
+
+                foreach (var item in getStudentDiscount)
                 {
-                    initialBreakdown = totalTuitionFee;
-                    
-                    decimal amount = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
-                    decimal computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
-                    totalDiscount += computation;
-                }
-                else if (row["discount_target"].ToString() == "Miscellaneous Fee")
-                {
-                    initialBreakdown = totalTuitionFee;
-                    decimal amount = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
-                    decimal computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
-                    totalDiscount += computation;
-                }
-                else if (row["discount_target"].ToString() == "Laboratory Fee")
-                {
-                    initialBreakdown = totalTuitionFee;
-                    decimal amount = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
-                    decimal computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
-                    totalDiscount += computation;
-                }
-                else if (row["discount_target"].ToString() == "Other Fee")
-                {
-                    initialBreakdown = totalTuitionFee;
-                    decimal amount = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;
-                    decimal computation = (Convert.ToDecimal(row["discount_percentage"]) / 100) * initialBreakdown;                  
-                    totalDiscount += computation;
+                    if (item.discount_target == "Tuition Fee")
+                    {
+                        initialBreakdown = totalTuitionFee;
+                        decimal computation = (Convert.ToDecimal(item.discount_percentage) / 100) * initialBreakdown;
+                        totalDiscount += computation;
+                    }
+                    else if (item.discount_target == "Laboratory Fee")
+                    {
+                        initialBreakdown = totalLabFee;
+                        decimal computation = (Convert.ToDecimal(item.discount_percentage) / 100) * initialBreakdown;
+                        totalDiscount += computation;
+                    }
+                    else if (item.discount_target == "Miscellaneous Fee")
+                    {
+                        initialBreakdown = totalMiscFee;
+                        decimal computation = (Convert.ToDecimal(item.discount_percentage) / 100) * initialBreakdown;
+                        totalDiscount += computation;
+                    }
+                    else if (item.discount_target == "Other Fee")
+                    {
+                        initialBreakdown = totalOtherFee;
+                        decimal computation = (Convert.ToDecimal(item.discount_percentage) / 100) * initialBreakdown;
+                        totalDiscount += computation;
+                    }
                 }
             }
         }
@@ -713,26 +682,41 @@ namespace school_management_system_model.Forms.transactions
                 {
                     totalLabFee += Convert.ToDecimal(row.Cells["computation"].Value);
                 }
-                else if (row.Cells["category"].Value.ToString() == "Other Fees")
+                else if (row.Cells["category"].Value.ToString() == "Other Fee")
                 {
                     totalOtherFee += Convert.ToDecimal(row.Cells["computation"].Value);
                 }
             }
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async Task<bool> CheckExistingAssessment(string id_number, string school_year)
         {
+            var studentAssessments = await _studentAssessmentRepo.GetAllAsync();
+            var existing = studentAssessments.Where(x => x.id_number == id_number && x.school_year == school_year).ToList();
+            if (existing.Count > 0) return true;
+            return false;
+        }
+
+        private async void btn_save_Click(object sender, EventArgs e)
+        {
+            var checkExisting = await CheckExistingAssessment(tIdNumber.Text, tSchoolYear.Text);
             if (tIdNumber.Text == "")
             {
                 MessageBox.Show("Please select Student and school year", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (checkExisting)
+            {
+                new Classes.Toastr("Warning", "Student Already Assessed");
+                btn_save.Enabled = false;
             }
             else
             {
                 if (MessageBox.Show("Are you sure you want to save this assessment?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    saveAssessment();
+                    await saveAssessment();
+                    btn_save.Enabled = true;
                 }
-            }   
+            }
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -756,6 +740,18 @@ namespace school_management_system_model.Forms.transactions
 
         private void printAssessment()
         {
+            //var a = await _studentAccountRepo.GetAllAsync();
+            //var id_number_id = a
+            //    .FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+            //var b = await _schoolYearRepo.GetAllAsync();
+            //var school_year_id = b
+            //    .FirstOrDefault(x => x.code == tSchoolYear.Text);
+
+            //var c = await _campusRepo.GetAllAsync();
+            //var campus_id = c
+            //    .FirstOrDefault(x => x.code == tCampus.Text);
+
             var frm = new frm_isap_assessment
             {
                 id_number = tIdNumber.Text,
@@ -763,11 +759,9 @@ namespace school_management_system_model.Forms.transactions
                 campus = tCampus.Text,
             };
             frm.ShowDialog();
-        }
-
-        private void tSemester_TextChanged(object sender, EventArgs e)
-        {
-
+            //if (id_number_id != null && school_year_id != null && campus_id != null)
+            //{
+            //}
         }
     }
 }

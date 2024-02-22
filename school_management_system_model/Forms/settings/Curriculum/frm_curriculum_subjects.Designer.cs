@@ -32,8 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsearch = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.btn_clear = new Krypton.Toolkit.KryptonButton();
-            this.btn_add = new Krypton.Toolkit.KryptonButton();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,6 +48,10 @@
             this.texpires = new System.Windows.Forms.Label();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            this.kryptonButton4 = new Krypton.Toolkit.KryptonButton();
+            this.tPageNumber = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,46 +69,23 @@
             // kryptonButton1
             // 
             this.kryptonButton1.CornerRoundingRadius = 15F;
-            this.kryptonButton1.Location = new System.Drawing.Point(64, 532);
+            this.kryptonButton1.Location = new System.Drawing.Point(527, 74);
             this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(133, 44);
+            this.kryptonButton1.Size = new System.Drawing.Size(133, 31);
+            this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.Red;
+            this.kryptonButton1.StateCommon.Back.Color2 = System.Drawing.Color.Red;
+            this.kryptonButton1.StateCommon.Border.Color1 = System.Drawing.Color.Red;
+            this.kryptonButton1.StateCommon.Border.Color2 = System.Drawing.Color.Red;
             this.kryptonButton1.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonButton1.StateCommon.Border.Rounding = 15F;
-            this.kryptonButton1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonButton1.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
+            this.kryptonButton1.StateCommon.Content.ShortText.Color2 = System.Drawing.SystemColors.Control;
+            this.kryptonButton1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton1.TabIndex = 12;
             this.kryptonButton1.Values.Text = "Delete";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
-            // 
-            // btn_clear
-            // 
-            this.btn_clear.CornerRoundingRadius = 15F;
-            this.btn_clear.Location = new System.Drawing.Point(203, 482);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(133, 44);
-            this.btn_clear.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btn_clear.StateCommon.Border.Rounding = 15F;
-            this.btn_clear.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.TabIndex = 11;
-            this.btn_clear.Values.Text = "Clear";
-            // 
-            // btn_add
-            // 
-            this.btn_add.CornerRoundingRadius = 15F;
-            this.btn_add.Location = new System.Drawing.Point(64, 482);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(133, 44);
-            this.btn_add.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btn_add.StateCommon.Border.Rounding = 15F;
-            this.btn_add.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_add.TabIndex = 10;
-            this.btn_add.Values.Text = "Add Subject";
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // label1
             // 
@@ -154,7 +133,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(970, 626);
+            this.dgv.Size = new System.Drawing.Size(970, 577);
             this.dgv.TabIndex = 26;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -302,23 +281,87 @@
             // kryptonButton3
             // 
             this.kryptonButton3.CornerRoundingRadius = 15F;
-            this.kryptonButton3.Location = new System.Drawing.Point(203, 532);
+            this.kryptonButton3.Location = new System.Drawing.Point(666, 74);
             this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Size = new System.Drawing.Size(133, 44);
+            this.kryptonButton3.Size = new System.Drawing.Size(133, 31);
+            this.kryptonButton3.StateCommon.Back.Color1 = System.Drawing.Color.Maroon;
+            this.kryptonButton3.StateCommon.Back.Color2 = System.Drawing.Color.Maroon;
+            this.kryptonButton3.StateCommon.Border.Color1 = System.Drawing.Color.Maroon;
             this.kryptonButton3.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonButton3.StateCommon.Border.Rounding = 15F;
-            this.kryptonButton3.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonButton3.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
+            this.kryptonButton3.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton3.TabIndex = 54;
             this.kryptonButton3.Values.Text = "Delete All";
             this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
+            // 
+            // kryptonButton4
+            // 
+            this.kryptonButton4.CornerRoundingRadius = 15F;
+            this.kryptonButton4.Location = new System.Drawing.Point(388, 74);
+            this.kryptonButton4.Name = "kryptonButton4";
+            this.kryptonButton4.Size = new System.Drawing.Size(133, 31);
+            this.kryptonButton4.StateCommon.Back.Color1 = System.Drawing.Color.DarkBlue;
+            this.kryptonButton4.StateCommon.Back.Color2 = System.Drawing.Color.DarkBlue;
+            this.kryptonButton4.StateCommon.Border.Color1 = System.Drawing.Color.DarkBlue;
+            this.kryptonButton4.StateCommon.Border.Color2 = System.Drawing.SystemColors.Control;
+            this.kryptonButton4.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton4.StateCommon.Border.Rounding = 15F;
+            this.kryptonButton4.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
+            this.kryptonButton4.StateCommon.Content.ShortText.Color2 = System.Drawing.SystemColors.Control;
+            this.kryptonButton4.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonButton4.TabIndex = 55;
+            this.kryptonButton4.Values.Text = "Edit";
+            this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
+            // 
+            // tPageNumber
+            // 
+            this.tPageNumber.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tPageNumber.AutoSize = true;
+            this.tPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPageNumber.Location = new System.Drawing.Point(867, 698);
+            this.tPageNumber.Name = "tPageNumber";
+            this.tPageNumber.Size = new System.Drawing.Size(15, 15);
+            this.tPageNumber.TabIndex = 56;
+            this.tPageNumber.Text = "1";
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(888, 694);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(26, 23);
+            this.btnNext.TabIndex = 57;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrevious.Location = new System.Drawing.Point(835, 694);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(26, 23);
+            this.btnPrevious.TabIndex = 58;
+            this.btnPrevious.Text = "<";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // frm_curriculum_subjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.btnPrevious);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.tPageNumber);
+            this.Controls.Add(this.kryptonButton4);
             this.Controls.Add(this.kryptonButton3);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.texpires);
@@ -335,8 +378,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tsearch);
             this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.btn_clear);
-            this.Controls.Add(this.btn_add);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.CornerRoundingRadius = 10F;
@@ -389,8 +430,6 @@
 
         private Krypton.Toolkit.KryptonTextBox tsearch;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonButton btn_clear;
-        private Krypton.Toolkit.KryptonButton btn_add;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Label label2;
@@ -407,5 +446,9 @@
         private System.Windows.Forms.Label texpires;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private Krypton.Toolkit.KryptonButton kryptonButton3;
+        private Krypton.Toolkit.KryptonButton kryptonButton4;
+        private System.Windows.Forms.Label tPageNumber;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrevious;
     }
 }

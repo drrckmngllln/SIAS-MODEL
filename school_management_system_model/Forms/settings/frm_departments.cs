@@ -1,4 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +17,8 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_departments : Form
     {
+        DepartmentRepository _departmentRepo = new DepartmentRepository();
+        CampusRepository _campusRepo = new CampusRepository();
         public frm_departments(string email)
         {
             InitializeComponent();
@@ -23,29 +28,22 @@ namespace school_management_system_model.Forms.settings
         private void frm_departments_Load(object sender, EventArgs e)
         {
             loadrecords();
-            loadcombobox();
+            loadCampus();
         }
 
-        private void loadcombobox()
+        private async void loadCampus()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from campuses", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            
-            foreach (DataRow item in dt.Rows)
-            {
-                t3.Items.Add(item["code"]);
-            }
+            var campus = await _campusRepo.GetAllAsync();
+
+            tCampus.ValueMember = "id";
+            tCampus.DisplayMember = "code";
+            tCampus.DataSource = campus;
         }
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from departments", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var departments = await _departmentRepo.GetAllAsync();
+            dgv.DataSource = departments;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
@@ -56,38 +54,37 @@ namespace school_management_system_model.Forms.settings
 
         public string Email { get; }
 
-        private void add_records()
+        private async void add_records()
         {
             if (btn_save.Text == "Save")
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("insert into departments(code, description, campus) values(@1,@2,@3)", con);
-                cmd.Parameters.AddWithValue("@1", t1.Text);
-                cmd.Parameters.AddWithValue("@2", t2.Text);
-                cmd.Parameters.AddWithValue("@3", t3.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                var AddDepartment = new Departments
+                {
+                    code = tCode.Text,
+                    description = tDescription.Text,
+                    campus = tCampus.SelectedValue.ToString()
+                };
+                await _departmentRepo.AddRecords(AddDepartment);
                 
                 new Classes.Toastr("Success", "Department Added");
-                new ActivityLogger().activityLogger(Email, "Department Add: " + t2.Text);
+                new ActivityLogger().activityLogger(Email, "Department Add: " + tDescription.Text);
 
                 loadrecords();
                 txtclear();
             }
             else
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("update departments set code=@1, description=@2, campus=@3 where id='"+ ID +"'", con);
-                cmd.Parameters.AddWithValue("@1", t1.Text);
-                cmd.Parameters.AddWithValue("@2", t2.Text);
-                cmd.Parameters.AddWithValue("@3", t3.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                var EditDepartment = new Departments
+                {
+                    id = Convert.ToInt32(ID),
+                    code = tCode.Text,
+                    description = tDescription.Text,
+                    campus = tCampus.SelectedValue.ToString()
+                };
+                await _departmentRepo.UpdateRecords(EditDepartment);
                
                 new Classes.Toastr("Information", "Department Updated");
-                new ActivityLogger().activityLogger(Email, "Department Edit: " + t2.Text);
+                new ActivityLogger().activityLogger(Email, "Department Edit: " + tDescription.Text);
 
                 loadrecords();
                 txtclear();
@@ -96,19 +93,19 @@ namespace school_management_system_model.Forms.settings
 
         private void txtclear()
         {
-            t1.Clear();
-            t2.Clear();
-            t3.Text = "";
-            t1.Select();
+            tCode.Clear();
+            tDescription.Clear();
+            tCampus.Text = "";
+            tCode.Select();
             btn_save.Text = "Save";
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = dgv.CurrentRow.Cells[0].Value.ToString();
-            t1.Text = dgv.CurrentRow.Cells[1].Value.ToString();
-            t2.Text = dgv.CurrentRow.Cells[2].Value.ToString();
-            t3.Text = dgv.CurrentRow.Cells[3].Value.ToString();
+            tCode.Text = dgv.CurrentRow.Cells[1].Value.ToString();
+            tDescription.Text = dgv.CurrentRow.Cells[2].Value.ToString();
+            tCampus.Text = dgv.CurrentRow.Cells[3].Value.ToString();
             btn_save.Text = "Update";
         }
 
@@ -130,16 +127,15 @@ namespace school_management_system_model.Forms.settings
             txtclear();
         }
 
-        private void delete()
+        private async void delete()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter();
-
-            da.SelectCommand = new MySqlCommand("delete from departments where id='" + ID + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
+            var Delete = new Departments
+            {
+                id = Convert.ToInt32(ID)
+            };
+            await _departmentRepo.DeleteRecords(Delete);
             new Classes.Toastr("Information", "Department Deleted");
-            new ActivityLogger().activityLogger(Email, "Department Delete: " + t2.Text);
+            new ActivityLogger().activityLogger(Email, "Department Delete: " + tDescription.Text);
 
             loadrecords();
         }

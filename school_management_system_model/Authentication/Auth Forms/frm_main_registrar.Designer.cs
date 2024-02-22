@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main_registrar));
             this.panelUserDetails = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
+            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.tLogout = new System.Windows.Forms.Label();
             this.tAccesslevel = new System.Windows.Forms.Label();
             this.tUsername = new System.Windows.Forms.Label();
@@ -55,10 +56,9 @@
             this.btnStudentAccounts = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
             this.panelStatus = new System.Windows.Forms.Panel();
+            this.tSystemDescription = new System.Windows.Forms.Label();
             this.tTime = new System.Windows.Forms.Label();
             this.timerTime = new System.Windows.Forms.Timer(this.components);
-            this.tSystemDescription = new System.Windows.Forms.Label();
-            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.panelUserDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPic)).BeginInit();
             this.panelSidebar.SuspendLayout();
@@ -99,6 +99,16 @@
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
+            // icons
+            // 
+            this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
+            this.icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.icons.Images.SetKeyName(0, "icons8-setup-60.png");
+            this.icons.Images.SetKeyName(1, "icons8-process-64.png");
+            this.icons.Images.SetKeyName(2, "icons8-memo-66.png");
+            this.icons.Images.SetKeyName(3, "icons8-computer-50.png");
+            this.icons.Images.SetKeyName(4, "home.png");
+            // 
             // tLogout
             // 
             this.tLogout.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -138,9 +148,11 @@
             // 
             // userPic
             // 
+            this.userPic.Image = global::school_management_system_model.Properties.Resources._1ICT_LOGO_black1;
             this.userPic.Location = new System.Drawing.Point(78, 12);
             this.userPic.Name = "userPic";
             this.userPic.Size = new System.Drawing.Size(88, 61);
+            this.userPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.userPic.TabIndex = 0;
             this.userPic.TabStop = false;
             // 
@@ -450,6 +462,17 @@
             this.panelStatus.Size = new System.Drawing.Size(1043, 26);
             this.panelStatus.TabIndex = 4;
             // 
+            // tSystemDescription
+            // 
+            this.tSystemDescription.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tSystemDescription.AutoSize = true;
+            this.tSystemDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSystemDescription.Location = new System.Drawing.Point(6, 7);
+            this.tSystemDescription.Name = "tSystemDescription";
+            this.tSystemDescription.Size = new System.Drawing.Size(183, 13);
+            this.tSystemDescription.TabIndex = 1;
+            this.tSystemDescription.Text = "Developed by: ICT Office 2024\r\n";
+            // 
             // tTime
             // 
             this.tTime.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -465,27 +488,6 @@
             // 
             this.timerTime.Enabled = true;
             this.timerTime.Tick += new System.EventHandler(this.timerTime_Tick);
-            // 
-            // tSystemDescription
-            // 
-            this.tSystemDescription.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tSystemDescription.AutoSize = true;
-            this.tSystemDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tSystemDescription.Location = new System.Drawing.Point(6, 7);
-            this.tSystemDescription.Name = "tSystemDescription";
-            this.tSystemDescription.Size = new System.Drawing.Size(183, 13);
-            this.tSystemDescription.TabIndex = 1;
-            this.tSystemDescription.Text = "Developed by: ICT Office 2024\r\n";
-            // 
-            // icons
-            // 
-            this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
-            this.icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.icons.Images.SetKeyName(0, "icons8-setup-60.png");
-            this.icons.Images.SetKeyName(1, "icons8-process-64.png");
-            this.icons.Images.SetKeyName(2, "icons8-memo-66.png");
-            this.icons.Images.SetKeyName(3, "icons8-computer-50.png");
-            this.icons.Images.SetKeyName(4, "home.png");
             // 
             // frm_main_registrar
             // 

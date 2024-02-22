@@ -1,4 +1,6 @@
-﻿using System;
+﻿using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Data.Repositories.Setings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace school_management_system_model.Forms.settings.UserManagement
 {
     public partial class frm_user_management : Form
     {
+        UserRepository _userRepo = new UserRepository();
+
         int add, edit, delete, administrator = 0;
 
         public string Office { get; }
@@ -22,14 +26,31 @@ namespace school_management_system_model.Forms.settings.UserManagement
             Office = office;
         }
 
+
+
+
+
         private void frm_user_management_Load(object sender, EventArgs e)
         {
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            dgv.DataSource = new Classes.UserManagement().loadRecords(Office);
+            var a = await _userRepo.GetAllAsync();
+            List<User> userList;
+
+            if (Office != null)
+            {
+                userList = a.Where(x => x.department == Office).ToList();
+            }
+            else
+            {
+                userList = a.ToList();
+            }
+
+
+            dgv.DataSource = userList;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["last_name"].Visible = false;
             dgv.Columns["first_name"].Visible = false;
@@ -41,17 +62,19 @@ namespace school_management_system_model.Forms.settings.UserManagement
             dgv.Columns["password"].Visible = false;
             dgv.Columns["access_level"].HeaderText = "Access Level";
             dgv.Columns["department"].HeaderText = "Department";
-            dgv.Columns["is_add"].HeaderText = "Add Authorization";
-            dgv.Columns["is_edit"].HeaderText = "Edit Authorization";
-            dgv.Columns["is_delete"].HeaderText = "Delete Authorization";
-            dgv.Columns["is_administrator"].HeaderText = "Administrator Authorization";
+            dgv.Columns["add"].Visible = false;
+            dgv.Columns["edit"].Visible = false;
+            dgv.Columns["delete"].Visible = false;
+            dgv.Columns["administrator"].Visible = false;
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private async void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (txtSearch.Text.Length > 2)
             {
-                dgv.DataSource = new Classes.UserManagement().searchRecords(txtSearch.Text);
+                var a = await _userRepo.GetAllAsync();
+                var search = a.Where(x => x.fullname.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                dgv.DataSource = search;
             }
             else if (txtSearch.Text.Length == 0)
             {
@@ -59,7 +82,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
             }
         }
 
-        private void addUser()
+        private async void addUser()
         {
             try
             {
@@ -67,7 +90,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                 {
                     var password = BCrypt.Net.BCrypt.HashPassword(tPassword.Text);
 
-                    var addUser = new Classes.UserManagement
+                    var addUser = new User
                     {
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
@@ -83,7 +106,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         delete = delete,
                         administrator = administrator
                     };
-                    addUser.addUser();
+                    await _userRepo.AddRecords(addUser);
                     new Classes.Toastr("Success", "User Successfully Saved");
                     loadRecords();
                     txtclear();
@@ -93,8 +116,9 @@ namespace school_management_system_model.Forms.settings.UserManagement
                     int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
                     var password = BCrypt.Net.BCrypt.HashPassword(tPassword.Text);
 
-                    var addUser = new Classes.UserManagement
+                    var EditUser = new User
                     {
+                        id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                         last_name = tLastname.Text,
                         first_name = tFirstname.Text,
                         middle_name = tMiddlename.Text,
@@ -109,17 +133,17 @@ namespace school_management_system_model.Forms.settings.UserManagement
                         delete = delete,
                         administrator = administrator
                     };
-                    addUser.editUser(id);
+                    await _userRepo.UpdateRecords(EditUser);
                     new Classes.Toastr("Information", "User Successfully Updated");
                     loadRecords();
                     txtclear();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 new Classes.Toastr("Error", ex.Message);
             }
-            
+
         }
 
         private void cAdd_CheckedChanged(object sender, EventArgs e)
@@ -149,7 +173,7 @@ namespace school_management_system_model.Forms.settings.UserManagement
             {
                 delete = 1;
             }
-            else {  delete = 0; }
+            else { delete = 0; }
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -157,33 +181,37 @@ namespace school_management_system_model.Forms.settings.UserManagement
             tLastname.Text = dgv.CurrentRow.Cells["last_name"].Value.ToString();
             tFirstname.Text = dgv.CurrentRow.Cells["first_name"].Value.ToString();
             tMiddlename.Text = dgv.CurrentRow.Cells["middle_name"].Value.ToString();
-            tEmployeeId.Text = dgv.CurrentRow.Cells["employee_id"].Value.ToString(); 
-            tEmail.Text = dgv.CurrentRow.Cells["email"].Value.ToString(); 
+            tEmployeeId.Text = dgv.CurrentRow.Cells["employee_id"].Value.ToString();
+            tEmail.Text = dgv.CurrentRow.Cells["email"].Value.ToString();
             tAccessLevel.Text = dgv.CurrentRow.Cells["access_level"].Value.ToString();
             tDepartment.Text = dgv.CurrentRow.Cells["department"].Value.ToString();
-            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_add"].Value))
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["add"].Value))
             {
                 cAdd.Checked = true;
-            }else { cAdd.Checked = false; }
+            }
+            else { cAdd.Checked = false; }
 
-            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_edit"].Value))
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["edit"].Value))
             {
                 cEdit.Checked = true;
-            }else { cEdit.Checked = false; }
-            
-            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_delete"].Value))
+            }
+            else { cEdit.Checked = false; }
+
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["delete"].Value))
             {
                 cDelete.Checked = true;
-            }else { cDelete.Checked = false; }
+            }
+            else { cDelete.Checked = false; }
 
-            if (Convert.ToBoolean(dgv.CurrentRow.Cells["is_administrator"].Value))
+            if (Convert.ToBoolean(dgv.CurrentRow.Cells["administrator"].Value))
             {
                 cAdministrator.Checked = true;
-            }else { cAdministrator.Checked = false; }
+            }
+            else { cAdministrator.Checked = false; }
 
             btn_save.Text = "Update";
-            
-            
+
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -191,12 +219,13 @@ namespace school_management_system_model.Forms.settings.UserManagement
             txtclear();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private async void kryptonButton1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete user?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                var delete = new Classes.UserManagement();
-                delete.deleteUser(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                var delete = new User();
+                delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+                await _userRepo.DeleteRecords(delete);
                 new Classes.Toastr("Success", "User Deleted Successfully");
                 loadRecords();
                 txtclear();

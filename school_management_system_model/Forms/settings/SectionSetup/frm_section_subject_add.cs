@@ -1,24 +1,34 @@
 ﻿using Krypton.Toolkit;
-using MySql.Data.MySqlClient;
-using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
 {
     public partial class frm_section_subject_add : KryptonForm
     {
+        SectionRepository _sectionRepo = new SectionRepository();
+        SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
+        CurriculumSubjectsRepository _curriculumSubjectsRepo = new CurriculumSubjectsRepository();
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
+
         public static frm_section_subject_add instance;
         public string sectionCode { get; set; }
         public string curriculum { get; set; }
         public string course { get; set; }
         public string year_level { get; set; }
+        public string section { get; set; }
         public string semester { get; set; }
         public string remarks { get; set; }
         public string Email { get; }
 
+        //Curriculums curriculum = new Curriculums();
         public frm_section_subject_add(string email)
         {
             instance = this;
@@ -26,19 +36,24 @@ namespace school_management_system_model.Forms.settings
             Email = email;
         }
 
-        private void frm_section_subject_add_Load(object sender, EventArgs e)
+        private async void frm_section_subject_add_Load(object sender, EventArgs e)
         {
-            loadRecords();
+            await loadRecords();
         }
 
-        private void loadRecords()
+        private async Task loadRecords()
         {
-            tCurriculum.Text = curriculum;
+            var curriculums = await _curriculumRepo.GetAllAsync();
+            var curriculumSubjects = await _curriculumSubjectsRepo.GetAllAsync();
+
+
+            tCurriculum.Text = curriculums.FirstOrDefault(x => x.id == Convert.ToInt32(curriculum)).description;
             tYearLevel.Text = year_level;
-            tSemester.Text = semester; 
-            dgv.DataSource = filterSubjects(tCurriculum.Text, tYearLevel.Text, tSemester.Text);
+            tSemester.Text = semester;
+            var subjects = curriculumSubjects.Where(x => x.curriculum == curriculum && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
+            dgv.DataSource = subjects.ToList();
             dgv.Columns["id"].Visible = false;
-            dgv.Columns["curriculumIdCode"].Visible = false;
+            dgv.Columns["uid"].Visible = false;
             dgv.Columns["curriculum"].Visible = false;
             dgv.Columns["year_level"].Visible = false;
             dgv.Columns["semester"].Visible = false;
@@ -50,23 +65,17 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["lab_units"].HeaderText = "Lab Units";
             dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
             dgv.Columns["total_hrs_per_week"].HeaderText = "Total Hours Per Week";
-            
-
-            tCurriculum.Text = curriculum.ToString();
-
         }
 
-        private void SaveSectionSubjects()
+        private async void SaveSectionSubjects()
         {
             try
             {
-                var save = new section_subject
+                var save = new SectionSubjects
                 {
                     unique_id = sectionCode + "-" + curriculum + "-" + course + "-" + year_level + "-" + semester + "-" +
                         dgv.CurrentRow.Cells["code"].Value.ToString(),
                     section_code = sectionCode,
-                    curriculum = curriculum,
-                    course = course,
                     year_level = year_level,
                     semester = semester,
                     subject_code = dgv.CurrentRow.Cells["code"].Value.ToString(),
@@ -75,84 +84,66 @@ namespace school_management_system_model.Forms.settings
                     lecture_units = Convert.ToDecimal(dgv.CurrentRow.Cells["lecture_units"].Value.ToString()),
                     lab_units = Convert.ToDecimal(dgv.CurrentRow.Cells["lab_units"].Value.ToString()),
                     pre_requisite = dgv.CurrentRow.Cells["pre_requisite"].Value.ToString(),
-                    time = tTime.Text,
-                    day = tDay.Text,
-                    room = tRoom.Text
+                    //time = tTime.Text,
+                    //day = tDay.Text,
+                    //room = tRoom.Text
                 };
-                save.saveSectionSubjects();
+                await _sectionSubjectRepo.AddRecords(save);
                 new Classes.Toastr("Success", "Subject Imported");
                 new ActivityLogger().activityLogger(Email, "Section Subject Add: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
 
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        private void saveAllSectionSubjects()
+        private async void saveAllSectionSubjects()
         {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                //var sections = await _sectionRepo.GetAllAsync();
+                //    var a = sections.FirstOrDefault(x => x.id == Convert.ToInt32(sectionCode));
+                var uid = sectionCode + course + year_level + section + semester
+                    + row.Cells["code"].Value.ToString();
+
+
+                var SaveSectionSubjects = new SectionSubjects
+                {
+                    unique_id = uid,
+                    section_code = sectionCode,
+                    curriculum = curriculum,
+                    year_level = year_level,
+                    semester = semester,
+                    subject_code = row.Cells["code"].Value.ToString(),
+                    descriptive_title = row.Cells["descriptive_title"].Value.ToString(),
+                    total_units = Convert.ToDecimal(row.Cells["total_units"].Value.ToString()),
+                    lecture_units = Convert.ToDecimal(row.Cells["lecture_units"].Value.ToString()),
+                    lab_units = Convert.ToDecimal(row.Cells["lab_units"].Value.ToString()),
+                    pre_requisite = row.Cells["pre_requisite"].Value.ToString()
+                };
+                await _sectionSubjectRepo.AddRecords(SaveSectionSubjects);
+            }
+            new Classes.Toastr("Success", "Subjects Imported");
+            new ActivityLogger().activityLogger(Email, "Section Subject Select All");
+
+            Close();
             try
             {
-                foreach (DataGridViewRow row in dgv.Rows)
-                {
-                    var save = new section_subject
-                    {
-                        unique_id = sectionCode + "-" + curriculum + "-" + course + "-" + year_level + "-" + semester + "-" +
-                        row.Cells["code"].Value.ToString(),
-                        section_code = sectionCode,
-                        curriculum = curriculum,
-                        course = course,
-                        year_level = year_level,
-                        semester = semester,
-                        subject_code = row.Cells["code"].Value.ToString(),
-                        descriptive_title = row.Cells["descriptive_title"].Value.ToString(),
-                        total_units = Convert.ToDecimal(row.Cells["total_units"].Value.ToString()),
-                        lecture_units = Convert.ToDecimal(row.Cells["lecture_units"].Value.ToString()),
-                        lab_units = Convert.ToDecimal(row.Cells["lab_units"].Value.ToString()),
-                        pre_requisite = row.Cells["pre_requisite"].Value.ToString(),
-                        time = tTime.Text,
-                        day = tDay.Text,
-                        room = tRoom.Text
-                    };
-                    save.saveSectionSubjects();
-                    
-                    
-                }
-                new Classes.Toastr("Success", "Subjects Imported");
-                new ActivityLogger().activityLogger(Email, "Section Subject Select All");
 
-                Close();
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             SaveSectionSubjects();
-        }
-
-        private void tsearch_TextChanged(object sender, EventArgs e)
-        {
-            
-            if (tsearch.Text.Length > 2)
-            {
-                var search = new section_subject
-                {
-                    search = tsearch.Text,
-                    curriculumCode = tCurriculum.Text
-                };
-                dgv.DataSource = search.searchSectionSubjectRegular();
-                
-            }
-            else if (tsearch.Text.Length == 0)
-            {
-                loadRecords();
-            }
         }
 
         private void frm_section_subject_add_KeyDown(object sender, KeyEventArgs e)
@@ -169,27 +160,18 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to add these set of subjects?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==
+            if (MessageBox.Show("Are you sure you want to add these set of subjects?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                 DialogResult.Yes)
             {
                 saveAllSectionSubjects();
             }
         }
 
-        private DataTable filterSubjects(string curriculum, string yearLevel, string semester)
+        private async void btnFilter_Click(object sender, EventArgs e)
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from curriculum_subjects where curriculum='" + curriculum + "' and year_level='" + yearLevel + "' and " +
-                "semester='" + semester + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            return dt;
-        }
-
-        private void btnFilter_Click(object sender, EventArgs e)
-        {
-            var data = filterSubjects(tCurriculum.Text, tYearLevel.Text, tSemester.Text);
-            dgv.DataSource = data;
+            var a = await _curriculumSubjectsRepo.GetAllAsync();
+            var subjects = a.Where(x => x.curriculum == curriculum && x.year_level == tYearLevel.Text && x.semester == tSemester.Text);
+            dgv.DataSource = subjects.ToList();
         }
     }
 }

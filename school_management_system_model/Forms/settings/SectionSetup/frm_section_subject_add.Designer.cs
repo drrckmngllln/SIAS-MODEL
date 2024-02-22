@@ -28,19 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.tCurriculum = new System.Windows.Forms.Label();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.tsearch = new Krypton.Toolkit.KryptonTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tTime = new Krypton.Toolkit.KryptonTextBox();
-            this.tDay = new Krypton.Toolkit.KryptonTextBox();
-            this.tRoom = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFilter = new Krypton.Toolkit.KryptonButton();
@@ -62,30 +55,30 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgv.Location = new System.Drawing.Point(12, 166);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv.Location = new System.Drawing.Point(12, 137);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgv.RowTemplate.Height = 40;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1057, 328);
+            this.dgv.Size = new System.Drawing.Size(1057, 357);
             this.dgv.TabIndex = 52;
             // 
             // label1
@@ -123,68 +116,6 @@
             this.kryptonButton1.TabIndex = 55;
             this.kryptonButton1.Values.Text = "Select";
             this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
-            // 
-            // tsearch
-            // 
-            this.tsearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tsearch.CueHint.CueHintText = "Search";
-            this.tsearch.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.tsearch.Location = new System.Drawing.Point(735, 137);
-            this.tsearch.Name = "tsearch";
-            this.tsearch.Size = new System.Drawing.Size(334, 23);
-            this.tsearch.TabIndex = 56;
-            this.tsearch.TextChanged += new System.EventHandler(this.tsearch_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 17);
-            this.label2.TabIndex = 57;
-            this.label2.Text = "Time:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 17);
-            this.label3.TabIndex = 58;
-            this.label3.Text = "Day:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 94);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 17);
-            this.label4.TabIndex = 59;
-            this.label4.Text = "Room:";
-            // 
-            // tTime
-            // 
-            this.tTime.Location = new System.Drawing.Point(100, 31);
-            this.tTime.Name = "tTime";
-            this.tTime.Size = new System.Drawing.Size(139, 23);
-            this.tTime.TabIndex = 60;
-            // 
-            // tDay
-            // 
-            this.tDay.Location = new System.Drawing.Point(100, 60);
-            this.tDay.Name = "tDay";
-            this.tDay.Size = new System.Drawing.Size(139, 23);
-            this.tDay.TabIndex = 61;
-            // 
-            // tRoom
-            // 
-            this.tRoom.Location = new System.Drawing.Point(100, 89);
-            this.tRoom.Name = "tRoom";
-            this.tRoom.Size = new System.Drawing.Size(139, 23);
-            this.tRoom.TabIndex = 62;
             // 
             // kryptonButton2
             // 
@@ -282,13 +213,6 @@
             this.ClientSize = new System.Drawing.Size(1081, 545);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.tRoom);
-            this.Controls.Add(this.tDay);
-            this.Controls.Add(this.tTime);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.tsearch);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.tCurriculum);
             this.Controls.Add(this.label1);
@@ -347,13 +271,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label tCurriculum;
         private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonTextBox tsearch;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private Krypton.Toolkit.KryptonTextBox tTime;
-        private Krypton.Toolkit.KryptonTextBox tDay;
-        private Krypton.Toolkit.KryptonTextBox tRoom;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;

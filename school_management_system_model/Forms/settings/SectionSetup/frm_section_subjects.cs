@@ -1,81 +1,100 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
 {
     public partial class frm_section_subjects : KryptonForm
     {
-        public static frm_section_subjects instance;
-        public string sectionCode { get; set; }
-        public string course { get; set; }
-        public string yearLevel { get; set; }
-        public string semester { get; set; }
-        public string remarks { get; set; }
-        public string instructor { get; set; }
-        public string Email { get; }
+        SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
+        SectionRepository _sectionRepo = new SectionRepository();
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
 
-        public frm_section_subjects(string email)
+
+        public static frm_section_subjects instance;
+
+        public string Section_Code { get; }
+
+        public string Email { get; }
+        public string instructor { get; set; }
+
+        public frm_section_subjects(string section_code, string email)
         {
             instance = this;
             InitializeComponent();
+            Section_Code = section_code;
             Email = email;
         }
 
-        private void frm_section_subjects_Load(object sender, EventArgs e)
+        private async void frm_section_subjects_Load(object sender, EventArgs e)
         {
+            tLoading.Visible = true;
+            await Task.Delay(500);
+            tLoading.Visible = false;
+            loadSections();
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var data = new section_subject
+            //x.semester == tSemester.Text && 
+            var sectionSubjects = await _sectionSubjectRepo.GetAllAsync();
+            var data = sectionSubjects.Where(x => x.section_code == tSectionCode.Text).ToList();
+
+            if (data != null)
             {
-                section_code = sectionCode,
-                course = course,
-                year_level = yearLevel,
-                semester = semester 
-            };
-            dgv.DataSource = data.getData();
-            dgv.Columns["id"].Visible =false;
-            dgv.Columns["unique_id"].Visible = false;
-            dgv.Columns["section_code"].Visible = false;
-            dgv.Columns["curriculum"].Visible = false;
-            dgv.Columns["course"].Visible = false;
-            dgv.Columns["year_level"].Visible = false;
-            dgv.Columns["semester"].Visible = false;
-            dgv.Columns["subject_code"].HeaderText = "Subject Code";
-            dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
-            dgv.Columns["total_units"].HeaderText = "Total Units";
-            dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
-            dgv.Columns["lab_units"].HeaderText = "Lab Units";
-            dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
-            dgv.Columns["time"].HeaderText = "Time";
-            dgv.Columns["day"].HeaderText = "Day";
-            dgv.Columns["room"].HeaderText = "Room";
-            dgv.Columns["instructor"].HeaderText = "Instructor";
-            dgv.Columns["status"].Visible = false;
+                dgv.DataSource = data;
+                dgv.Columns["id"].Visible = false;
+                dgv.Columns["unique_id"].Visible = false;
+                dgv.Columns["section_code"].Visible = false;
+                dgv.Columns["curriculum"].Visible = false;
+                dgv.Columns["year_level"].Visible = false;
+                dgv.Columns["semester"].Visible = false;
+                dgv.Columns["subject_code"].HeaderText = "Subject Code";
+                dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
+                dgv.Columns["total_units"].HeaderText = "Total Units";
+                dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
+                dgv.Columns["lab_units"].HeaderText = "Lab Units";
+                dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
+                dgv.Columns["time"].HeaderText = "Time";
+                dgv.Columns["day"].HeaderText = "Day";
+                dgv.Columns["room"].HeaderText = "Room";
+                dgv.Columns["instructor"].HeaderText = "Instructor";
 
-            dgv.Columns["descriptive_title"].Width = 400;
-            dgv.Columns["instructor"].Width = 350;
-            dgv.Columns["time"].Width = 300;
+                dgv.Columns["descriptive_title"].Width = 400;
+                dgv.Columns["instructor"].Width = 350;
+                dgv.Columns["time"].Width = 300;
+            }
 
-            tSectionCode.Text = sectionCode;
-            tCourse.Text = course;
-            tYearLevel.Text = yearLevel;
-            tSemester.Text = semester;
-           
+
+
+            tLoading.Visible = false;
+        }
+
+        private async void loadSections()
+        {
+            var section = await _sectionRepo.GetAllAsync();
+            var a = section.FirstOrDefault(x => x.section_code == Section_Code);
+            tSectionCode.Text = Section_Code;
+            tCourse.Text = a.course;
+            tYearLevel.Text = a.year_level.ToString();
+            tSemester.Text = a.semester;
+
             if (dgv.Rows.Count == 0)
             {
-                var curriculum = data.getCurriculums();
-                foreach (DataRow row in curriculum.Rows)
-                {
-                    tCurriculum.Items.Add(row["code"]);
-                }
-                tCurriculum.Text = curriculum.Rows[0]["code"].ToString();
+                var b = await _curriculumRepo.GetAllAsync();
+                var curriculum = b.Where(x => x.course == tCourse.Text).ToList();
+                tCurriculum.DataSource = curriculum;
+                tCurriculum.ValueMember = "id";
+                tCurriculum.DisplayMember = "code";
             }
             else
             {
@@ -83,54 +102,82 @@ namespace school_management_system_model.Forms.settings
             }
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
             if (btn_save.Text == "Add Subject")
             {
-                var frm = new frm_section_subject_add(Email);
-                frm_section_subject_add.instance.curriculum = tCurriculum.Text;
-                frm_section_subject_add.instance.sectionCode = tSectionCode.Text;
-                frm_section_subject_add.instance.course = tCourse.Text;
-                frm_section_subject_add.instance.year_level = tYearLevel.Text;
-                frm_section_subject_add.instance.semester = tSemester.Text;
-                frm.Text = "Subjects";
-                frm.ShowDialog();
-                loadRecords();
+                var a = await _curriculumRepo.GetAllAsync();
+                var curriculum_id = a.FirstOrDefault(x => x.code == tCurriculum.Text);
+
+                var b = await _sectionRepo.GetAllAsync();
+                var section_id = b.FirstOrDefault(x => x.section_code == tSectionCode.Text);
+
+
+                if (curriculum_id != null)
+                {
+                    var frm = new frm_section_subject_add(Email);
+                    frm_section_subject_add.instance.curriculum = curriculum_id.id.ToString();
+                    frm_section_subject_add.instance.sectionCode = tSectionCode.Text;
+                    frm_section_subject_add.instance.course = tCourse.Text;
+                    frm_section_subject_add.instance.year_level = tYearLevel.Text;
+                    frm_section_subject_add.instance.semester = tSemester.Text;
+                    frm.Text = "Subjects";
+                    frm.ShowDialog();
+                    loadRecords();
+                }
+                else
+                {
+                    new Classes.Toastr("Warning", "No Curriculum added for this course");
+                }
+                
             }
             else if (btn_save.Text == "Update Subject")
             {
-                var update = new section_subject
+
+                var update = new SectionSubjects
                 {
                     id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
                     time = tTime.Text,
                     day = tDay.Text,
                     room = tRoom.Text,
-                    instructor = tInstructor.Text
+                    instructor = instructor
                 };
-                update.updateSectionSubject();
-                
+                await _sectionSubjectRepo.UpdateRecords(update);
+
                 new Classes.Toastr("Information", "Schedule Updated");
                 new ActivityLogger().activityLogger(Email, "Updating Sections: " + tSectionCode.Text);
                 loadRecords();
             }
         }
 
-        private void delete()
+        private async void delete()
         {
-            var delete = new section_subject
-            {
-                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString())
-            };
-            delete.deleteSectionSubjects();
-            MessageBox.Show("Subject Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            var delete = new SectionSubjects();
+            delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
+            await _sectionSubjectRepo.DeleteRecords(delete);
+
+            new Classes.Toastr("Information", "Subject Deleted");
             new ActivityLogger().activityLogger(Email, "Section Subject Delete: " + dgv.CurrentRow.Cells["descriptive_title"].Value.ToString());
 
+            loadRecords();
+        }
+        private async void DeleteAll()
+        {
+            var deleteAll = new SectionSubjects
+            {
+                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value)
+            };
+            await _sectionSubjectRepo.DeleteRecords(deleteAll);
+
+
+            new Classes.Toastr("Information", "All Subjects Deleted");
+            new ActivityLogger().activityLogger(Email, "All Section Deleted: " + Section_Code);
             loadRecords();
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this subject?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == 
+            if (MessageBox.Show("Are you sure you want to delete this subject?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                 DialogResult.Yes)
             {
                 delete();
@@ -139,7 +186,7 @@ namespace school_management_system_model.Forms.settings
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            tCurriculum.Text = dgv.CurrentRow.Cells["curriculum"].Value.ToString();
+            //tCurriculum.Text = dgv.CurrentRow.Cells["curriculum_id"].Value.ToString();
             tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
             tTime.Text = dgv.CurrentRow.Cells["time"].Value.ToString();
             tDay.Text = dgv.CurrentRow.Cells["day"].Value.ToString();
@@ -157,7 +204,15 @@ namespace school_management_system_model.Forms.settings
         {
             var frm = new frm_select_instructor();
             frm.ShowDialog();
-            tInstructor.Text = instructor;
+            tInstructor.Text = dgv.CurrentRow.Cells["instructor"].Value.ToString();
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete all this subjects?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DeleteAll();
+            }
         }
     }
 }

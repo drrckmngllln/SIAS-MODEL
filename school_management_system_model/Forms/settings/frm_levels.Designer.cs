@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             this.btn_clear = new Krypton.Toolkit.KryptonButton();
             this.btn_save = new Krypton.Toolkit.KryptonButton();
-            this.t3 = new Krypton.Toolkit.KryptonComboBox();
-            this.t2 = new Krypton.Toolkit.KryptonRichTextBox();
-            this.t1 = new Krypton.Toolkit.KryptonTextBox();
+            this.tStatus = new Krypton.Toolkit.KryptonComboBox();
+            this.tDescription = new Krypton.Toolkit.KryptonRichTextBox();
+            this.tCode = new Krypton.Toolkit.KryptonTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.t3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,40 +87,40 @@
             this.btn_save.Values.Text = "Save";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // t3
+            // tStatus
             // 
-            this.t3.CornerRoundingRadius = -1F;
-            this.t3.CueHint.CueHintText = "Status";
-            this.t3.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t3.DropDownWidth = 196;
-            this.t3.IntegralHeight = false;
-            this.t3.Items.AddRange(new object[] {
+            this.tStatus.CornerRoundingRadius = -1F;
+            this.tStatus.CueHint.CueHintText = "Status";
+            this.tStatus.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tStatus.DropDownWidth = 196;
+            this.tStatus.IntegralHeight = false;
+            this.tStatus.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.t3.Location = new System.Drawing.Point(25, 247);
-            this.t3.Name = "t3";
-            this.t3.Size = new System.Drawing.Size(196, 21);
-            this.t3.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.t3.TabIndex = 22;
+            this.tStatus.Location = new System.Drawing.Point(25, 247);
+            this.tStatus.Name = "tStatus";
+            this.tStatus.Size = new System.Drawing.Size(196, 21);
+            this.tStatus.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.tStatus.TabIndex = 22;
             // 
-            // t2
+            // tDescription
             // 
-            this.t2.CueHint.CueHintText = "Description";
-            this.t2.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t2.Location = new System.Drawing.Point(25, 140);
-            this.t2.Name = "t2";
-            this.t2.Size = new System.Drawing.Size(327, 101);
-            this.t2.TabIndex = 21;
-            this.t2.Text = "";
+            this.tDescription.CueHint.CueHintText = "Description";
+            this.tDescription.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tDescription.Location = new System.Drawing.Point(25, 140);
+            this.tDescription.Name = "tDescription";
+            this.tDescription.Size = new System.Drawing.Size(327, 101);
+            this.tDescription.TabIndex = 21;
+            this.tDescription.Text = "";
             // 
-            // t1
+            // tCode
             // 
-            this.t1.CueHint.CueHintText = "Code";
-            this.t1.CueHint.Padding = new System.Windows.Forms.Padding(0);
-            this.t1.Location = new System.Drawing.Point(25, 111);
-            this.t1.Name = "t1";
-            this.t1.Size = new System.Drawing.Size(258, 23);
-            this.t1.TabIndex = 20;
+            this.tCode.CueHint.CueHintText = "Code";
+            this.tCode.CueHint.Padding = new System.Windows.Forms.Padding(0);
+            this.tCode.Location = new System.Drawing.Point(25, 111);
+            this.tCode.Name = "tCode";
+            this.tCode.Size = new System.Drawing.Size(258, 23);
+            this.tCode.TabIndex = 20;
             // 
             // label1
             // 
@@ -142,23 +142,23 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Location = new System.Drawing.Point(393, 111);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -177,9 +177,9 @@
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.btn_save);
-            this.Controls.Add(this.t3);
-            this.Controls.Add(this.t2);
-            this.Controls.Add(this.t1);
+            this.Controls.Add(this.tStatus);
+            this.Controls.Add(this.tDescription);
+            this.Controls.Add(this.tCode);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -189,7 +189,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_levels_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_levels_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.t3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -201,9 +201,9 @@
         private Krypton.Toolkit.KryptonButton kryptonButton1;
         private Krypton.Toolkit.KryptonButton btn_clear;
         private Krypton.Toolkit.KryptonButton btn_save;
-        private Krypton.Toolkit.KryptonComboBox t3;
-        private Krypton.Toolkit.KryptonRichTextBox t2;
-        private Krypton.Toolkit.KryptonTextBox t1;
+        private Krypton.Toolkit.KryptonComboBox tStatus;
+        private Krypton.Toolkit.KryptonRichTextBox tDescription;
+        private Krypton.Toolkit.KryptonTextBox tCode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv;
     }

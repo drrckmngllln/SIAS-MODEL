@@ -1,98 +1,155 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Setings.Section;
+using school_management_system_model.Data.Repositories.Transaction;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
+using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using school_management_system_model.Forms.transactions.StudentEnrollment;
+using school_management_system_model.Loggers;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_enrollment : KryptonForm
     {
+        SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
+        SectionRepository _sectionRepository = new SectionRepository();
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
+        StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
+        InstructorRepository _instructorRepo = new InstructorRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+        CurriculumRepository _curriculumRepo = new CurriculumRepository();
+
+
         public int Id { get; set; }
         public string id_number { get; set; }
         public string studentName { get; set; }
         public string course { get; set; }
         public string section { get; set; }
         public string section_code { get; set; }
-        public string school_year { get; set; }
+        public string school_year_id { get; set; }
+        public string Email { get; }
 
-        int totalUnits = 0;
-        int totalLectureUnits = 0;
-        int totalLabUnits = 0;
+        decimal totalUnits = 0;
+        decimal totalLectureUnits = 0;
+        decimal totalLabUnits = 0;
 
 
         public DataTable dt = new DataTable();
 
         public static frm_student_enrollment instance;
-        
-        public frm_student_enrollment()
+
+        public frm_student_enrollment(string Email)
         {
             instance = this;
             InitializeComponent();
+            this.Email = Email;
         }
 
-        private void frm_student_enrollment_Load(object sender, EventArgs e)
+        private async void frm_student_enrollment_Load(object sender, EventArgs e)
         {
-            loadRecords();
-            
+            await loadRecords();
+            await LoadingStudent();
         }
 
-        private void loadSection()
+        private async Task LoadingStudent()
+        {
+            await Task.Delay(500);
+            tStudentLoading.Visible = false;
+        }
+
+        private async Task EnrollingStudent()
+        {
+            await Task.Delay(200);
+            tLoading.Visible = true;
+        }
+
+        private async Task loadSection()
         {
             try
             {
-                var section = new proceed_to_enrollment();
-            
-                var data = section.loadSection(tCourse.Text, tSemester.Text, tYearLevel.Text.Length == 0 ? "1" : tYearLevel.Text);
+                var section = await _sectionRepository.GetAllAsync();
+                var a = section.FirstOrDefault(x => x.course.ToString() == tCourse.Text && x.semester == tSemester.Text && x.year_level.ToString() == tYearLevel.Text);
 
-                tSection.Text = data.Rows[0]["section_code"].ToString();
+                if (a == null)
+                {
+                    tSection.Text = "No Section Exist";
+                }
+                else
+                {
+                    tSection.Text = a.section_code;
+                }
+
+                await loadSectionSubjects(tSection.Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 new Classes.Toastr("Warning", ex.Message);
             }
         }
 
-        private void loadCurriculum()
+        private async Task loadCurriculum(string course)
         {
-            tCurriculum.Items.Clear();
-            var curriculum = new proceed_to_enrollment
-            {
-                course = tCourse.Text
-            };
-            var data = curriculum.loadCurriculum();
+            var curriculums = await _curriculumRepo.GetAllAsync();
+            var loadCurriculum = curriculums.Where(x => x.course == course).ToList();
 
-            foreach(DataRow row in data.Rows)
-            {
-                tCurriculum.Items.Add(row["code"]);
-            }
+            tCurriculum.ValueMember = "id";
+            tCurriculum.DisplayMember = "code";
 
-            var campus = new proceed_to_enrollment { course = tCourse.Text };
-            tCampus.Text = campus.getCampus();
+            tCurriculum.DataSource = loadCurriculum;
+
+            //var curriculums = new Curriculums().GetCurriculums().Where(x => x.course_id == tCourse.Text);
+            //tCurriculum.ValueMember = "id";
+            //tCurriculum.DisplayMember = "code";
+            //tCurriculum.DataSource = curriculums.ToList();
+
+
+            //var campuses = curriculums.FirstOrDefault(x => x.course_id == tCourse.Text);
+
+            //if (campuses == null)
+            //{
+            //    tCampus.Text = "No Campus Set";
+            //}
+            //else
+            //{
+            //    tCampus.Text = campuses.campus_id;
+            //}
         }
 
-        
 
-        private void loadRecords()
+
+        private async Task loadRecords()
         {
-            
-            var loadCourse = new proceed_to_enrollment
-            {
-                id_number = id_number
-            };
-            var data = loadCourse.loadStudentIdAndCourse();
+            //tStudentLoading.Visible = true;
+            //await Task.Delay(250);
+            //tStudentLoading.Visible = false;
 
-            tIdNumber.Text = id_number;
-            tStudentName.Text = studentName;
-            tCourse.Text = data.Rows[0]["course"].ToString();
-            tCampus.Text = data.Rows[0]["campus"].ToString();
-            tCurriculum.Text = data.Rows[0]["curriculum"].ToString();
-            tYearLevel.Text = data.Rows[0]["year_level"].ToString();
-            tSection.Text = data.Rows[0]["section"].ToString();
-            tSemester.Text = data.Rows[0]["semester"].ToString();
+            var a = await _studentAccountRepo.GetAllAsync();
+            var student_account = a.FirstOrDefault(x => x.id_number == id_number);
+            var student_course = await _studentCourseRepo.GetAllAsync();
+            var b = student_course.FirstOrDefault(x => x.id_number == id_number);
+            tIdNumber.Text = student_account.id_number;
+            tStudentName.Text = student_account.fullname;
+            tCourse.Text = b.course;
+            tCampus.Text = b.campus;
+            tCurriculum.Text = b.curriculum;
+            tSection.Text = b.section;
+            tYearLevel.Text = b.year_level;
+            tSemester.Text = b.semester;
             tYearLevel.Select();
+
+
+
 
             dgv.Columns.Add("subject_code", "Subject Code");
             dgv.Columns.Add("descriptive_title", "Descriptive Title");
@@ -101,19 +158,19 @@ namespace school_management_system_model.Forms.transactions
             dgv.Columns.Add("lecture_units", "Lecture Units");
             dgv.Columns.Add("lab_units", "Lab Units");
             dgv.Columns.Add("time", "Time");
-            dgv.Columns.Add("day","Day");
-            dgv.Columns.Add("room","Room");
+            dgv.Columns.Add("day", "Day");
+            dgv.Columns.Add("room", "Room");
             dgv.Columns.Add("instructor", "Instructor");
             dgv.Columns["instructor"].Width = 300;
             dgv.Columns["descriptive_title"].Width = 400;
-            
+
         }
 
-        private void loadSectionSubjects()
+        private async Task loadSectionSubjects(string section_code)
         {
             if (tCurriculum.Text.Length == 0 && tSemester.Text.Length == 0)
             {
-                
+
                 new Classes.Toastr("Warning", "Please select a Curriculum and Semester");
             }
             else
@@ -122,22 +179,30 @@ namespace school_management_system_model.Forms.transactions
                 totalUnits = 0;
                 totalLectureUnits = 0;
                 totalLabUnits = 0;
-                var sectionSubjects = new proceed_to_enrollment();
-                var data = sectionSubjects.loadSubjects(tSection.Text, tSemester.Text);
-                foreach (DataRow row in data.Rows)
-                {
-                    dgv.Rows.Add(
-                        row["subject_code"], row["descriptive_title"], row["pre_requisite"], row["total_units"],
-                        row["lecture_units"], row["lab_units"], row["time"], row["day"], row["room"], row["instructor"]
-                        );
-                    totalUnits += Convert.ToInt32(row["total_units"]);
-                    totalLectureUnits += Convert.ToInt32(row["lecture_units"]);
-                    totalLabUnits += Convert.ToInt32(row["lab_units"]);
-                }
+                var sectionSubjects = await _sectionSubjectRepo.GetAllAsync();
+                var loadSubjects = sectionSubjects.Where(x => x.section_code == section_code)
+                .ToList();
 
+                if (tSection.Text == "No Section Exist")
+                {
+                    dgv.Rows.Clear();
+                }
+                else
+                {
+                    foreach (var item in loadSubjects)
+                    {
+                        dgv.Rows.Add(
+                            item.subject_code, item.descriptive_title, item.pre_requisite, item.total_units,
+                            item.lecture_units, item.lab_units, item.time, item.day, item.room, item.instructor
+                            );
+                        totalUnits += Convert.ToDecimal(item.total_units);
+                        totalLectureUnits += Convert.ToDecimal(item.lecture_units);
+                        totalLabUnits += Convert.ToDecimal(item.lab_units);
+                    }
+                }
             }
         }
-        
+
 
         private void kryptonTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -156,7 +221,7 @@ namespace school_management_system_model.Forms.transactions
                 curriculum = course
             };
             curriculum.loadCurriculum();
-            foreach(DataRow item in dt.Rows)
+            foreach (DataRow item in dt.Rows)
             {
                 tCurriculum.Items.Add(item["code"]);
             }
@@ -164,118 +229,132 @@ namespace school_management_system_model.Forms.transactions
 
         private void tCurriculum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
             dgv.Rows.Remove(dgv.CurrentRow);
         }
-        private void saveAllChanges()
+
+        private async Task SaveStudentCourse()
         {
-            try
-            {
-                
+            var id = await _studentCourseRepo.GetAllAsync();
+            var a = id.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+            var section = await _sectionRepository.GetAllAsync();
+            var b = section.FirstOrDefault(x => x.section_code == tSection.Text);
+            var enrollStudent = new StudentCourses();
+            await _studentCourseRepo.EnrolStudent(a.id, tYearLevel.Text, b.id.ToString());
+        }
 
-                // INCREMENTING OF SECTIONS
-                var sectionCheck = new add_subjects
+        private async Task IncrementingSectionNumber()
+        {
+            var sections = await _sectionRepository.GetAllAsync();
+            var a = sections.FirstOrDefault(x => x.section_code == tSection.Text);
+            var numberOfStudent = a.number_of_students + 1;
+
+            var section = await _sectionRepository.GetAllAsync();
+            var sectionId = section.FirstOrDefault(x => x.section_code == tSection.Text).id;
+            _sectionRepository.IncrementNumberOfStudent(sectionId, numberOfStudent);
+        }
+
+        private async Task SavingOfSubjects()
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                var a = await _studentAccountRepo.GetAllAsync();
+                var id_number = a.FirstOrDefault(x => x.id_number == tIdNumber.Text).id;
+
+                var b = await _schoolYearRepo.GetAllAsync();
+                var school_year = b.FirstOrDefault(x => x.code == school_year_id).id;
+                var subject_code = row.Cells["subject_code"].Value.ToString();
+                var unique_id = id_number.ToString() + school_year.ToString() + subject_code.ToString();
+                var descriptive_title = row.Cells["descriptive_title"].Value.ToString();
+                var pre_requisite = row.Cells["pre_requisite"].Value.ToString();
+                var total_units = row.Cells["total_units"].Value.ToString();
+                var lecture_units = row.Cells["lecture_units"].Value.ToString();
+                var lab_units = row.Cells["lab_units"].Value.ToString();
+                var time = row.Cells["time"].Value.ToString();
+                var day = row.Cells["day"].Value.ToString();
+                var room = row.Cells["room"].Value.ToString();
+
+                var ins = await _instructorRepo.GetAllAsync();
+                string instructor;
+                if (row.Cells["instructor"].Value.ToString() == "Not Set")
                 {
-                    section_code = tSection.Text,
-                    course = tCourse.Text,
-                    year_level = tYearLevel.Text,
-                    semester = tSemester.Text
+                    instructor = "Not Set";
+                }
+                else
+                {
+                    instructor = ins.FirstOrDefault(x => x.fullname == row.Cells["instructor"].Value.ToString()).fullname;
+                }
+
+
+                var studentSubject = new StudentSubject
+                {
+                    id_number_id = id_number.ToString(),
+                    school_year_id = school_year.ToString(),
+                    subject_code = subject_code,
+                    unique_id = unique_id,
+                    descriptive_title = descriptive_title,
+                    pre_requisite = pre_requisite,
+                    total_units = total_units,
+                    lecture_units = lecture_units,
+                    lab_units = lab_units,
+                    time = time,
+                    day = day,
+                    room = room,
+                    instructor_id = instructor
                 };
-                var increment = sectionCheck.CheckMaximum();
-                if (increment == "Available")
-                {
-                    // student course
-                    var save = new proceed_to_enrollment
-                    {
-                        id_number = id_number,
-                        course = tCourse.Text,
-                        curriculum = tCurriculum.Text,
-                        year_level = tYearLevel.Text,
-                        section = tSection.Text,
-                        semester = tSemester.Text,
-                        campus = tCampus.Text
-                    };
-                    save.saveStudentCourse();
+                await _studentSubjectRepo.AddRecords(studentSubject);
 
-                    // incrementing number of students in sections
-                    var sectionIncrement = new add_subjects
-                    {
-                        section_code = tSection.Text,
-                        course = tCourse.Text,
-                        year_level = tYearLevel.Text,
-                        semester = tSemester.Text
-                    };
-                    sectionIncrement.incrementSection();
-
-                    // save subjects
-                    string schoolYear = DateTime.Now.Year.ToString();
-                    foreach (DataGridViewRow row in dgv.Rows)
-                    {
-                        var subjects = new add_subjects
-                        {
-                            id_number = id_number,
-                            unique_id = id_number + "-" + schoolYear + "-" + tSemester.Text + "-" + row.Cells["subject_code"].Value.ToString(),
-                            school_year = school_year,
-                            subject_code = row.Cells["subject_code"].Value.ToString(),
-                            descriptive_title = row.Cells["descriptive_title"].Value.ToString(),
-                            pre_requisite = row.Cells["pre_requisite"].Value.ToString(),
-                            total_units = row.Cells["total_units"].Value.ToString(),
-                            lecture_units = row.Cells["lecture_units"].Value.ToString(),
-                            lab_units = row.Cells["lab_units"].Value.ToString(),
-                            time = row.Cells["time"].Value.ToString(),
-                            day = row.Cells["day"].Value.ToString(),
-                            room = row.Cells["room"].Value.ToString(),
-                            instructor = row.Cells["instructor"].Value.ToString()
-                        };
-                        subjects.saveStudentSubjects();
-                    }
-
-                    // changing the status of the accounts
-                    var parameter = new SaveStudentAccountsParams
-                    {
-                        id_number = tIdNumber.Text,
-                        status = "Accounting"
-                    };
-                    var status = new StudentAccount();
-                    status.approveStudent(parameter.id_number);
-
-                   
-                    new Classes.Toastr("Success", "Student Enrolled, Proceed to Accounting");
-
-                    Close();
-                }
-                else if (increment == "Full")
-                {
-                    
-                    new Classes.Toastr("Error", "Section Full");
-
-                    var data = new add_subjects
-                    {
-                        section_code = tSection.Text,
-                        course = tCourse.Text,
-                        year_level = tYearLevel.Text,
-                        semester = tSemester.Text
-                    };
-                    data.disableFullSubject();
-                    tSection.Text = "";
-                    loadSection();
-                }
             }
-            catch(Exception ex)
+        }
+
+        private async Task ChangeStudentStatus()
+        {
+            await _studentAccountRepo.ChangeStudentStatus(tIdNumber.Text);
+        }
+
+        private async Task saveAllChanges()
+        {
+            // INCREMENTING OF SECTIONS
+
+            var section = await _sectionRepository.GetAllAsync();
+            var a = section.FirstOrDefault(x => x.section_code == tSection.Text);
+            var studentCourse = await _studentCourseRepo.GetAllAsync();
+            var b = studentCourse.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+            if (a.number_of_students <= a.max_number_of_students)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // STUDENT COURSE
+                await SaveStudentCourse();
+                // INCREMENTING NUMBER OF STUDENTS IN SECTIONS
+                await IncrementingSectionNumber();
+                // SAVING THE SUBJECTS
+                await SavingOfSubjects();
+                // CHANGING THE STATUS OF STUDENT ACCOUNT TO ACCOUNTING
+                await ChangeStudentStatus();
+
+                new Classes.Toastr("Success", "Student Enrolled!");
+                new ActivityLogger().activityLogger(Email, "Student Enrollment: " + tIdNumber.Text);
+                Close();
+            }
+            else
+            {
+                new Classes.Toastr("Warning", "Section is Full!");
+                var sections = await _sectionRepository.GetAllAsync();
+                var sectionId = sections.FirstOrDefault(x => x.section_code == tSection.Text).id;
+                _sectionRepository.FullStudent(sectionId);
             }
 
         }
 
-        private void kryptonButton4_Click(object sender, EventArgs e)
+        private async void kryptonButton4_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to enrol these subjects?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to enrol these subjects?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                saveAllChanges();
+                await EnrollingStudent();
+                await saveAllChanges();
             }
         }
 
@@ -296,54 +375,60 @@ namespace school_management_system_model.Forms.transactions
             //}
         }
 
-        private void tCourse_SelectedIndexChanged(object sender, EventArgs e)
+        private async void tCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadCurriculum();
+            await loadCurriculum(course);
         }
 
-        private void kryptonButton1_Click_1(object sender, EventArgs e)
+        private async void kryptonButton1_Click_1(object sender, EventArgs e)
         {
             var frm = new frm_select_subject();
             frm.Text = "Add Subject";
             frm.ShowDialog();
 
-            var addCustomSubject = new proceed_to_enrollment
-            {
-                id = Id
-            };
-            var data = addCustomSubject.addCustomSubject();
+
+            var customSubject = await _sectionSubjectRepo.GetAllAsync();
+
+            var subject = customSubject.FirstOrDefault(x => x.id == Id);
+
 
             if (Id != 0)
             {
-                dgv.Rows.Add(
-                data.Rows[0]["subject_code"],
-                data.Rows[0]["descriptive_title"],
-                data.Rows[0]["pre_requisite"],
-                data.Rows[0]["total_units"],
-                data.Rows[0]["lecture_units"],
-                data.Rows[0]["lab_units"],
-                data.Rows[0]["time"],
-                data.Rows[0]["day"],
-                data.Rows[0]["room"],
-                data.Rows[0]["instructor"]
-                );
-                
+
+                dgv.Rows.Add
+                   (
+                       subject.subject_code,
+                       subject.descriptive_title,
+                       subject.pre_requisite,
+                       subject.total_units,
+                       subject.lecture_units,
+                       subject.lab_units,
+                       subject.time,
+                       subject.day,
+                       subject.room,
+                       subject.instructor
+                   );
+
                 int lastRow = dgv.Rows.Count - 1;
-                totalUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["total_units"].Value);
-                totalLectureUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lecture_units"].Value);
-                totalLabUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lab_units"].Value);
+                //totalUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["total_units"].Value);
+                totalUnits += Convert.ToDecimal(subject.total_units);
+                //totalLectureUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lecture_units"].Value);
+                totalLectureUnits += Convert.ToDecimal(subject.lecture_units);
+                //totalLabUnits += Convert.ToInt32(dgv.Rows[lastRow].Cells["lab_units"].Value);
+                totalLabUnits += Convert.ToDecimal(subject.lecture_units);
             }
-            
-            
-            
+
+
+
         }
         private void tSemester_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void timerCounter_Tick(object sender, EventArgs e)
         {
+            //CountUnits();
             tTotalUnits.Text = totalUnits.ToString();
             tLectureUnits.Text = totalLectureUnits.ToString();
             tLabUnits.Text = totalLabUnits.ToString();
@@ -351,19 +436,21 @@ namespace school_management_system_model.Forms.transactions
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to remove this subject?", "Warning", 
+            if (MessageBox.Show("Are you sure you want to remove this subject?", "Warning",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                totalUnits -= Convert.ToDecimal(dgv.CurrentRow.Cells["total_units"].Value);
+                totalLectureUnits -= Convert.ToDecimal(dgv.CurrentRow.Cells["lecture_units"].Value);
+                totalLabUnits -= Convert.ToDecimal(dgv.CurrentRow.Cells["lab_units"].Value);
                 dgv.Rows.Remove(dgv.CurrentRow);
             }
         }
 
-        private void tYearLevel_TextChanged(object sender, EventArgs e)
+        private async void tYearLevel_TextChanged(object sender, EventArgs e)
         {
             if (tYearLevel.Text.Length == 1)
             {
-                loadSection();
-                loadSectionSubjects();
+                await loadSection();
             }
             else if (tYearLevel.Text.Length == 0)
             {
@@ -371,18 +458,25 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_course();
             frm.Text = "Select Course";
             frm.ShowDialog();
             if (course != null)
             {
+                //tLoading.Visible = true;
+                //await Task.Delay(200);
+                //tLoading.Visible = false;
+
                 tCourse.Text = course;
+
+                await loadSection();
+                await loadCurriculum(course);
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_section(tCourse.Text, tSemester.Text, tYearLevel.Text);
             frm.Text = "Select Subjects";
@@ -390,6 +484,7 @@ namespace school_management_system_model.Forms.transactions
             if (section != null)
             {
                 tSection.Text = section;
+                await loadSectionSubjects(tSection.Text);
             }
         }
     }

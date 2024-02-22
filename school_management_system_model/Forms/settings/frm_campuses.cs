@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_campuses : Form
     {
+        CampusRepository _campusRepo = new CampusRepository();
         public frm_campuses(string email)
         {
             InitializeComponent();
@@ -26,13 +29,10 @@ namespace school_management_system_model.Forms.settings
             loadrecords();
         }
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from campuses", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var campuses = await _campusRepo.GetAllAsync();
+            dgv.DataSource = campuses;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
@@ -41,19 +41,18 @@ namespace school_management_system_model.Forms.settings
 
         }
 
-        private void add_records()
+        private async void add_records()
         {
             if (btn_save.Text == "Save")
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("insert into campuses(code, description, address, status) values(@1,@2,@3,@4)", con);
-                cmd.Parameters.AddWithValue("@1", t1.Text);
-                cmd.Parameters.AddWithValue("@2", t2.Text);
-                cmd.Parameters.AddWithValue("@3", t3.Text);
-                cmd.Parameters.AddWithValue("@4", t4.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                var AddCampus = new Campuses
+                {
+                    code = t1.Text,
+                    description = t2.Text,
+                    address = t3.Text,
+                    status = t4.Text
+                };
+                await _campusRepo.AddRecords(AddCampus);
                 
                 new Classes.Toastr("Success", "Campus Add Success");
                 new ActivityLogger().activityLogger(Email, "Campus Add: " + t2.Text);
@@ -63,15 +62,15 @@ namespace school_management_system_model.Forms.settings
             }
             else if (btn_save.Text == "Update")
             {
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("update campuses set code=@1, description=@2, address=@3, status=@4 where id='"+ ID +"'", con);
-                cmd.Parameters.AddWithValue("@1", t1.Text);
-                cmd.Parameters.AddWithValue("@2", t2.Text);
-                cmd.Parameters.AddWithValue("@3", t3.Text);
-                cmd.Parameters.AddWithValue("@4", t4.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                var UpdateCampus = new Campuses
+                {
+                    id = Convert.ToInt32(ID), 
+                    code = t1.Text,
+                    description = t2.Text,
+                    address = t3.Text,
+                    status = t4.Text
+                };
+                await _campusRepo.UpdateRecords(UpdateCampus);
                 
                 new Classes.Toastr("Information", "Campus Update Success");
                 new ActivityLogger().activityLogger(Email, "Campus Edit: " + t2.Text);
@@ -122,13 +121,13 @@ namespace school_management_system_model.Forms.settings
             txtclear();
         }
 
-        private void delete()
+        private async void delete()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter();
-            da.SelectCommand = new MySqlCommand("delete from campuses where id='" + ID + "'", con);
-            var dt = new DataTable();
-            da.Fill(dt);
+            var Delete = new Campuses
+            {
+                id = Convert.ToInt32(ID)
+            };
+            await _campusRepo.DeleteRecords(Delete);
             
             new Classes.Toastr("Information", "Campus Deleted");
             new ActivityLogger().activityLogger(Email, "Campus Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());

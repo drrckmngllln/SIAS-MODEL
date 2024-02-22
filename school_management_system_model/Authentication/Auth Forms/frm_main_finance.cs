@@ -4,16 +4,11 @@ using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.FeeSetup;
 using school_management_system_model.Forms.settings.UserManagement;
 using school_management_system_model.Forms.transactions;
+using school_management_system_model.Forms.transactions.Cashier;
 using school_management_system_model.Forms.transactions.Collection;
 using school_management_system_model.Forms.transactions.StudentDiscounts;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Authentication.Auth_Forms
@@ -54,6 +49,8 @@ namespace school_management_system_model.Authentication.Auth_Forms
                 btnFeeCollection.Visible = true;
                 btnStatementofAccounts.Visible = true;
                 btnFeeAdjustment.Visible = true;
+                btnCashierLogs.Visible = true;
+                btnNonAssessedCollection.Visible = true;
             }
             else
             {
@@ -63,6 +60,8 @@ namespace school_management_system_model.Authentication.Auth_Forms
             if (AccessLevel == "Cashier")
             {
                 btnFeeCollection.Visible = true;
+                btnCashierLogs.Visible = true;
+                btnNonAssessedCollection.Visible = true;
             }
             else if (AccessLevel == "Student Accounts")
             {
@@ -122,7 +121,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnDiscounts_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_discounts();
+            var frm = new frm_student_discounts(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -131,7 +130,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnFeeCollection_Click(object sender, EventArgs e)
         {
-            var frm = new frm_fee_collection();
+            var frm = new frm_fee_collection(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -221,6 +220,22 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
             btnTransaction.BackColor = Color.FromArgb(0, 0, 25);
             btnSettings.BackColor = Color.FromArgb(0, 0, 25);
+        }
+
+        private void btnStudentAssessmentOR_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_or_number_setup();
+            frm.Text = "Student Assessment OR Number Setup";
+            frm.ShowDialog();
+        }
+
+        private void btnCashierLogs_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_cashier_logs();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
         }
     }
 }

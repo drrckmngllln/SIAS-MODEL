@@ -1,21 +1,20 @@
-﻿using Org.BouncyCastle.Crypto.Modes.Gcm;
-using school_management_system_model.Classes;
+﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Forms.settings.FeeSetup;
 using school_management_system_model.Loggers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.settings
 {
     public partial class frm_lab_fee_setup : Form
     {
+        LevelsRepository _levelRepo = new LevelsRepository();
+        CampusRepository _campusRepo = new CampusRepository();
+        LabFeeRepository _labFeeRepo = new LabFeeRepository();
         public string Email { get; set; }
 
         public frm_lab_fee_setup(string email)
@@ -26,89 +25,95 @@ namespace school_management_system_model.Forms.settings
 
         private void frm_lab_fee_setup_Load(object sender, EventArgs e)
         {
-            loadRecords();
             loadCampuses();
+            loadLevels();
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
         }
 
-        private void loadCampuses()
+        private async void loadLevels()
         {
-            var courses = new LabFeeSetup();
-            var data = courses.loadCampuses();
-
-            foreach(DataRow row in data.Rows)
-            {
-                tCampus.Items.Add(row["code"]);
-            }
+            var levels = await _levelRepo.GetAllAsync();
+            tLevel.ValueMember = "id";
+            tLevel.DisplayMember = "code";
+            tLevel.DataSource = levels;
         }
 
-        private void loadRecords()
+        private async void loadCampuses()
         {
-            var data = new LabFeeSetup();
-            dgv.DataSource = data.loadRecords();
+            var campuses = await _campusRepo.GetAllAsync();
+            tCampus.ValueMember = "id";
+            tCampus.DisplayMember = "code";
+            tCampus.DataSource = campuses;
+        }
+
+        private async void loadRecords(string campus, string level, string yearLevel, string semester)
+        {
+            var lab = await _labFeeRepo.GetAllAsync();
+            var a = lab
+                .Where(x => x.campus == campus && x.level == level && x.year_level == yearLevel && x.semester == semester)
+                .ToList();
+            dgv.DataSource = lab;
             dgv.Columns["id"].Visible = false;
+            dgv.Columns["uid"].Visible = false;
             dgv.Columns["category"].Visible = false;
             dgv.Columns["description"].HeaderText = "Description";
             dgv.Columns["description"].Width = 250;
             dgv.Columns["campus"].HeaderText = "Campus";
-            dgv.Columns["first_year"].HeaderText = "1st Year";
-            dgv.Columns["second_year"].HeaderText = "2nd Year";
-            dgv.Columns["third_year"].HeaderText = "3rd Year";
-            dgv.Columns["fourth_year"].HeaderText = "4th Year";
+            dgv.Columns["level"].HeaderText = "Level";
+            dgv.Columns["year_level"].HeaderText = "Year Level";
+            dgv.Columns["semester"].HeaderText = "Semester";
+            dgv.Columns["amount"].HeaderText = "Amount";
         }
 
-        private void addRecords()
+        private async void addRecords()
         {
             try
             {
                 if (btn_save.Text == "Save")
                 {
-                    var add = new LabFeeSetup
+                    var LabAdd = new LabFee
                     {
+                        uid = tCategory.Text + tDescription.Text + tCampus.SelectedValue.ToString() + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                         category = tCategory.Text,
                         description = tDescription.Text,
-                        campus = tCampus.Text,
-                        first_year = Convert.ToDecimal(tFirstYear.Text),
-                        second_year = Convert.ToDecimal(tSecondYear.Text),
-                        third_year = Convert.ToDecimal(tThirdYear.Text),
-                        fourth_year = Convert.ToDecimal(tFourthYear.Text),
+                        campus = tCampus.SelectedValue.ToString(),
+                        level = tLevel.SelectedValue.ToString(),
+                        year_level = tYearLevel.Text,
+                        semester = tSemester.Text,
+                        amount = Convert.ToDecimal(tAmount.Text)
                     };
-                    add.addRecords();
-                    MessageBox.Show("Miscellaneous Fee Added", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await _labFeeRepo.AddRecords(LabAdd);
+                    new Classes.Toastr("Success", "Miscellaneous Fee Added");
                     new ActivityLogger().activityLogger(Email, "Miscelaneous fee Add: " + tDescription.Text);
-                    loadRecords();
+                    loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
                     txtClear();
                 }
                 else if (btn_save.Text == "Update")
                 {
-                    var edit = new LabFeeSetup
+                    var LabEdit = new LabFee
                     {
                         id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
+                        uid = tCategory.Text + tDescription.Text + tCampus.SelectedValue.ToString() + tLevel.SelectedValue.ToString() + tYearLevel.Text + tSemester.Text,
                         category = tCategory.Text,
-                        campus = tCampus.Text,
                         description = tDescription.Text,
-                        first_year = Convert.ToDecimal(tFirstYear.Text),
-                        second_year = Convert.ToDecimal(tSecondYear.Text),
-                        third_year = Convert.ToDecimal(tThirdYear.Text),
-                        fourth_year = Convert.ToDecimal(tFourthYear.Text),
+                        campus = tCampus.SelectedValue.ToString(),
+                        level = tLevel.SelectedValue.ToString(),
+                        year_level = tYearLevel.Text,
+                        semester = tSemester.Text,
+                        amount = Convert.ToDecimal(tAmount.Text)
                     };
-                    edit.editRecords();
-                    MessageBox.Show("Miscellaneous Fee Updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadRecords();
+                    await _labFeeRepo.UpdateRecords(LabEdit);
+                    new Classes.Toastr("Information", "Miscellaneous Fee Updated");
+                    new ActivityLogger().activityLogger(Email, "Miscelaneous fee Add: " + tDescription.Text);
+                    loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
                     txtClear();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-        }
-        
-        private void deleteRecords()
-        {
-            var delete = new LabFeeSetup();
-            delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()));
-            MessageBox.Show("Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information );
+
         }
 
         private void frm_lab_fee_setup_KeyDown(object sender, KeyEventArgs e)
@@ -124,33 +129,14 @@ namespace school_management_system_model.Forms.settings
             addRecords();
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            deleteRecords();
-        }
-
+       
         private void txtClear()
         {
             tCampus.Text = "";
             tDescription.Clear();
-            tFirstYear.Clear();
-            tSecondYear.Clear();
-            tThirdYear.Clear();
-            tFourthYear.Clear();
-
+            tSemester.Clear();
+            tAmount.Clear();
             btn_save.Text = "Save";
-        }
-
-        
-
-       
-        private void tsearch_TextChanged(object sender, EventArgs e)
-        {
-            if (tsearch.Text.Length > 2)
-            {
-                var search = new LabFeeSetup();
-                dgv.DataSource = search.searchRecords(tsearch.Text);
-            }
         }
 
         private void btn_clear_Click_1(object sender, EventArgs e)
@@ -158,14 +144,16 @@ namespace school_management_system_model.Forms.settings
             txtClear();
         }
 
-        private void kryptonButton1_Click_1(object sender, EventArgs e)
+        private async void deleteRecords()
         {
             if (MessageBox.Show("Are you sure you want to delete this fee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                var delete = new LabFeeSetup();
-                delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                new ActivityLogger().activityLogger(Email, "Lab fee Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
-                loadRecords();
+                var delete = new LabFee();
+                delete.id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
+                await _labFeeRepo.DeleteRecords(delete);
+                new Classes.Toastr("Information", "Lab Fee Deleted");
+                new ActivityLogger().activityLogger(Email, "Lab Fee Deletion: " + tDescription.Text);
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
             }
         }
 
@@ -174,45 +162,79 @@ namespace school_management_system_model.Forms.settings
             addRecords();
         }
 
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            tCategory.Text = dgv.CurrentRow.Cells["category"].Value.ToString();
-            tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
-            tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
-            tFirstYear.Text = dgv.CurrentRow.Cells["first_year"].Value.ToString();
-            tSecondYear.Text = dgv.CurrentRow.Cells["second_year"].Value.ToString();
-            tThirdYear.Text = dgv.CurrentRow.Cells["third_year"].Value.ToString();
-            tFourthYear.Text = dgv.CurrentRow.Cells["fourth_year"].Value.ToString();
-            btn_save.Text = "Update";
-        }
-
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            var frm = new frm_link_subjects(Email, Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+            var frm = new frm_link_subjects(Email, dgv.CurrentRow.Cells["description"].Value.ToString());
             frm.Text = "Select";
             frm.ShowDialog();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            var frm = new frm_link_subjects(Email, Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-            
+            var frm = new frm_link_subjects(Email, dgv.CurrentRow.Cells["description"].Value.ToString());
+
             frm.Text = "View";
             frm.ShowDialog();
         }
 
-        private void tsearch_TextChanged_1(object sender, EventArgs e)
+        private async void tsearch_TextChanged_1(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var data = new LabFeeSetup();
-                var search = data.searchRecords(tsearch.Text);
-                dgv.DataSource = search;
+                var search = await _labFeeRepo.GetAllAsync();
+                var a = search
+                    .Where(x => x.category.ToLower().Contains(tsearch.Text) && x.description.ToLower().Contains(tsearch.Text))
+                    .ToList();
+                dgv.DataSource = a;
             }
             else if (tsearch.Text.Length == 0)
             {
-                loadRecords();
+                loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
             }
+        }
+
+        private void btn_save_Click_2(object sender, EventArgs e)
+        {
+            addRecords();
+        }
+
+        private void dgv_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            tCategory.Text = dgv.CurrentRow.Cells["category"].Value.ToString();
+            tDescription.Text = dgv.CurrentRow.Cells["description"].Value.ToString();
+            tCampus.Text = dgv.CurrentRow.Cells["campus"].Value.ToString();
+            tLevel.Text = dgv.CurrentRow.Cells["level"].Value.ToString();
+            tYearLevel.Text = dgv.CurrentRow.Cells["year_level"].Value.ToString();
+            tSemester.Text = dgv.CurrentRow.Cells["semester"].Value.ToString();
+            tAmount.Text = dgv.CurrentRow.Cells["amount"].Value.ToString();
+            btn_save.Text = "Update";
+        }
+
+        private void tCampus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadRecords(tCampus.Text, tLevel.Text, tYearLevel.Text, tSemester.Text);
+
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            deleteRecords();
+        }
+
+        private async void tsearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tsearch.Text.Length > 2)
+            {
+                var labFees = await _labFeeRepo.GetAllAsync();
+                var search = labFees.Where(x => x.category.ToLower().Contains(tsearch.Text.ToLower()) 
+                || x.description.ToLower().Contains(tsearch.Text)).ToList();
+                dgv.DataSource = search;
+            }
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            txtClear();
         }
     }
 }

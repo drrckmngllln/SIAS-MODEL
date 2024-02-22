@@ -141,7 +141,7 @@
             this.tCourse.Name = "tCourse";
             this.tCourse.Size = new System.Drawing.Size(372, 24);
             this.tCourse.TabIndex = 121;
-            this.tCourse.Text = "Student Course";
+            this.tCourse.Text = "...";
             // 
             // tName
             // 

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,6 +60,8 @@
             this.tCourse = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.tSection = new System.Windows.Forms.TextBox();
+            this.tLoading = new System.Windows.Forms.Label();
+            this.tStudentLoading = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -73,23 +75,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv.Location = new System.Drawing.Point(494, 54);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -264,7 +266,7 @@
             this.tLectureUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tLectureUnits.AutoSize = true;
             this.tLectureUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLectureUnits.Location = new System.Drawing.Point(704, 606);
+            this.tLectureUnits.Location = new System.Drawing.Point(733, 606);
             this.tLectureUnits.Name = "tLectureUnits";
             this.tLectureUnits.Size = new System.Drawing.Size(23, 17);
             this.tLectureUnits.TabIndex = 112;
@@ -275,7 +277,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(606, 606);
+            this.label9.Location = new System.Drawing.Point(635, 606);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 17);
             this.label9.TabIndex = 111;
@@ -286,7 +288,7 @@
             this.tLabUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tLabUnits.AutoSize = true;
             this.tLabUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLabUnits.Location = new System.Drawing.Point(811, 606);
+            this.tLabUnits.Location = new System.Drawing.Point(861, 606);
             this.tLabUnits.Name = "tLabUnits";
             this.tLabUnits.Size = new System.Drawing.Size(23, 17);
             this.tLabUnits.TabIndex = 114;
@@ -297,7 +299,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(733, 606);
+            this.label11.Location = new System.Drawing.Point(783, 606);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 17);
             this.label11.TabIndex = 113;
@@ -401,11 +403,35 @@
             this.tSection.Size = new System.Drawing.Size(225, 20);
             this.tSection.TabIndex = 122;
             // 
+            // tLoading
+            // 
+            this.tLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tLoading.AutoSize = true;
+            this.tLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLoading.Location = new System.Drawing.Point(721, 537);
+            this.tLoading.Name = "tLoading";
+            this.tLoading.Size = new System.Drawing.Size(163, 20);
+            this.tLoading.TabIndex = 123;
+            this.tLoading.Text = "Enrolling Student...";
+            this.tLoading.Visible = false;
+            // 
+            // tStudentLoading
+            // 
+            this.tStudentLoading.AutoSize = true;
+            this.tStudentLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStudentLoading.Location = new System.Drawing.Point(161, 85);
+            this.tStudentLoading.Name = "tStudentLoading";
+            this.tStudentLoading.Size = new System.Drawing.Size(132, 20);
+            this.tStudentLoading.TabIndex = 124;
+            this.tStudentLoading.Text = "Loading Data...";
+            // 
             // frm_student_enrollment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 632);
+            this.Controls.Add(this.tStudentLoading);
+            this.Controls.Add(this.tLoading);
             this.Controls.Add(this.tSection);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tCourse);
@@ -511,5 +537,7 @@
         private System.Windows.Forms.TextBox tCourse;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox tSection;
+        private System.Windows.Forms.Label tLoading;
+        private System.Windows.Forms.Label tStudentLoading;
     }
 }

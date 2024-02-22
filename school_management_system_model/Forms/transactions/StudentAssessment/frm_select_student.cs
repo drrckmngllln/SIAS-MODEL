@@ -1,5 +1,8 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Classes.Parameters;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,37 +17,46 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_select_student : KryptonForm
     {
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         public string campus { get; set; }
         public string yearLevel { get; set; }
         public string id_number { get; set; }
         public static frm_select_student instance;
+
+        PaginationParams paging = new PaginationParams();
+
+
         public frm_select_student()
         {
             instance = this;
             InitializeComponent();
         }
 
-        private void frm_select_student_Load(object sender, EventArgs e)
+        private async void frm_select_student_Load(object sender, EventArgs e)
         {
-            loadRecords();
+            await loadRecords();
         }
 
-        private void loadRecords()
+        private async Task loadRecords()
         {
             if (this.Text == "Select Student")
             {
                 tTitle.Text = this.Text;
-                var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select * from student_accounts order by fullname asc", con);
-                var dt = new DataTable();
-                da.Fill(dt);
-                dgv.DataSource = dt;
+                tPageSize.Text = paging.pageNumber.ToString();
+                var a = await _studentAccountRepo.GetAllAsync();
+                var student = a
+                    .OrderByDescending(x => x.id)
+                    .Skip(paging.pageSize * (paging.pageNumber - 1))
+                    .Take(paging.pageSize)
+                    .ToList();
+
+                dgv.DataSource = student;
                 dgv.Columns["id"].Visible = false;
                 dgv.Columns["id_number"].HeaderText = "ID Number";
                 dgv.Columns["sy_enrolled"].Visible = false;
-                dgv.Columns["school_year"].HeaderText = "School Year";
+                dgv.Columns["school_year_id"].HeaderText = "School Year";
                 dgv.Columns["fullname"].HeaderText = "Student Name";
-                dgv.Columns["fullname"].Width = 250;
+                dgv.Columns["fullname"].Width = 150;
                 dgv.Columns["last_name"].Visible = false;
                 dgv.Columns["first_name"].Visible = false;
                 dgv.Columns["middle_name"].Visible = false;
@@ -89,6 +101,7 @@ namespace school_management_system_model.Forms.transactions
                 dgv.Columns["school_year_from"].HeaderText = "From";
                 dgv.Columns["school_year_to"].HeaderText = "To";
                 dgv.Columns["semester"].HeaderText = "Semester";
+                dgv.Columns["is_current"].HeaderText = "Default";
             }
             else if (this.Text == "Select Lab Fee")
             {
@@ -111,48 +124,53 @@ namespace school_management_system_model.Forms.transactions
                 
             }
         }
+
+        private void SelectFunc()
+        {
+            if (this.Text == "Select Student")
+            {
+                frm_student_assessment.instance.studentID = dgv.CurrentRow.Cells["id_number"].Value.ToString();
+                this.Close();
+            }
+            else if (this.Text == "Select School Year")
+            {
+                frm_student_assessment.instance.schoolYear = dgv.CurrentRow.Cells["code"].Value.ToString();
+                this.Close();
+            }
+            else if (this.Text == "Select Lab Fee")
+            {
+                if (yearLevel == "1")
+                {
+                    frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["first_year"].Value);
+                    frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
+                    this.Close();
+                }
+                else if (yearLevel == "2")
+                {
+                    frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["second_year"].Value);
+                    frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
+                    this.Close();
+                }
+                else if (yearLevel == "3")
+                {
+                    frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["third_year"].Value);
+                    frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
+                    this.Close();
+                }
+                else if (yearLevel == "4")
+                {
+                    frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["fourth_year"].Value);
+                    frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
+                    this.Close();
+                }
+            }
+        }
+
         private void frm_select_student_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if(this.Text == "Select Student")
-                {
-                    frm_student_assessment.instance.studentID = dgv.CurrentRow.Cells["id_number"].Value.ToString();
-                    this.Close();
-                }
-                else if (this.Text == "Select School Year")
-                {
-                    frm_student_assessment.instance.schoolYear = dgv.CurrentRow.Cells["code"].Value.ToString();
-                    this.Close();
-                }
-                else if (this.Text == "Select Lab Fee")
-                {
-                    if (yearLevel == "1")
-                    {
-                        frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["first_year"].Value);
-                        frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
-                        this.Close();
-                    }
-                    else if (yearLevel == "2")
-                    {
-                        frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["second_year"].Value);
-                        frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
-                        this.Close();
-                    }
-                    else if(yearLevel == "3")
-                    {
-                        frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["third_year"].Value);
-                        frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
-                        this.Close();
-                    }
-                    else if (yearLevel == "4")
-                    {
-                        frm_student_assessment.instance.labFee = Convert.ToDecimal(dgv.CurrentRow.Cells["fourth_year"].Value);
-                        frm_student_assessment.instance.labFeeCategory = dgv.CurrentRow.Cells["category"].Value.ToString();
-                        this.Close();
-                    }
-                }
-                
+                SelectFunc();
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -215,6 +233,40 @@ namespace school_management_system_model.Forms.transactions
             {
 
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            SelectFunc();
+        }
+
+        private async void btnNext_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber++;
+            tPageSize.Text = paging.pageNumber.ToString();
+            await loadRecords();
+            if (dgv.Rows.Count < paging.pageSize)
+            {
+                btnNext.Enabled = false;
+            }
+            btnPrev.Enabled = true;
+        }
+
+        private async void btnPrev_Click(object sender, EventArgs e)
+        {
+            paging.pageNumber--;
+            tPageSize.Text = paging.pageNumber.ToString();
+            await loadRecords();
+            if (tPageSize.Text == "1")
+            {
+                btnPrev.Enabled = false;
+            }
+            btnNext.Enabled = true;
         }
     }
 }

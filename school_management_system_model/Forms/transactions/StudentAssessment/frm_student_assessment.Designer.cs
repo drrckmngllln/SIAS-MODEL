@@ -150,20 +150,20 @@
             // 
             // btn_save
             // 
-            this.btn_save.CornerRoundingRadius = 15F;
-            this.btn_save.Location = new System.Drawing.Point(110, 296);
+            this.btn_save.CornerRoundingRadius = 10F;
+            this.btn_save.Location = new System.Drawing.Point(78, 293);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(155, 37);
-            this.btn_save.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.btn_save.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.btn_save.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btn_save.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn_save.Size = new System.Drawing.Size(220, 37);
+            this.btn_save.StateCommon.Back.Color1 = System.Drawing.Color.DarkGreen;
+            this.btn_save.StateCommon.Back.Color2 = System.Drawing.Color.DarkGreen;
+            this.btn_save.StateCommon.Border.Color1 = System.Drawing.Color.DarkGreen;
+            this.btn_save.StateCommon.Border.Color2 = System.Drawing.Color.DarkGreen;
             this.btn_save.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btn_save.StateCommon.Border.Rounding = 15F;
+            this.btn_save.StateCommon.Border.Rounding = 10F;
             this.btn_save.StateCommon.Border.Width = 2;
-            this.btn_save.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
+            this.btn_save.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
             this.btn_save.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.Black;
             this.btn_save.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.TabIndex = 126;
@@ -268,7 +268,6 @@
             this.tSemester.Name = "tSemester";
             this.tSemester.Size = new System.Drawing.Size(220, 21);
             this.tSemester.TabIndex = 142;
-            this.tSemester.TextChanged += new System.EventHandler(this.tSemester_TextChanged);
             // 
             // label7
             // 
@@ -687,6 +686,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1417, 743);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.kryptonButton6);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -714,7 +714,6 @@
             this.Controls.Add(this.tCourse);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tIdNumber);
-            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.tTotalFee);

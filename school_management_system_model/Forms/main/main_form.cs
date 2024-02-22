@@ -142,14 +142,14 @@ namespace school_management_system_model.Forms.main
             panelTask.Controls.Clear();
         }
 
-        public void open_curriculum_subjects()
-        {
-            var frm = new frm_curriculum_subjects(Email);
-            frm.TopLevel = false;
-            panelTask.Controls.Clear();
-            panelTask.Controls.Add(frm);
-            frm.Show();
-        }
+        //public void open_curriculum_subjects()
+        //{
+        //    var frm = new frm_curriculum_subjects(Email);
+        //    frm.TopLevel = false;
+        //    panelTask.Controls.Clear();
+        //    panelTask.Controls.Add(frm);
+        //    frm.Show();
+        //}
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -165,7 +165,7 @@ namespace school_management_system_model.Forms.main
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_accounts();
+            var frm = new frm_student_accounts(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -250,7 +250,7 @@ namespace school_management_system_model.Forms.main
 
         private void button27_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_discounts();
+            var frm = new frm_student_discounts(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -296,7 +296,7 @@ namespace school_management_system_model.Forms.main
 
         private void button31_Click(object sender, EventArgs e)
         {
-            var frm = new frm_fee_collection();
+            var frm = new frm_fee_collection(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

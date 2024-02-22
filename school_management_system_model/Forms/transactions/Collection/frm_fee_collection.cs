@@ -1,14 +1,14 @@
-﻿using school_management_system_model.Classes;
-using school_management_system_model.Classes.Parameters;
+﻿using school_management_system_model.Core.Entities.Settings;
+using school_management_system_model.Core.Entities.Transaction;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Transaction;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
+using school_management_system_model.Infrastructure.Data.Repositories;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Reports;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,22 +16,49 @@ namespace school_management_system_model.Forms.transactions.Collection
 {
     public partial class frm_fee_collection : Form
     {
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+        StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
+        StatementOfAccountsRepository _statementOfAccountsRepo = new StatementOfAccountsRepository();
+        FeeBreakdownRepository _feeBreakdownRepo = new FeeBreakdownRepository();
+        AssessmentBreakdownRepository _assessmentBreakdownRepo = new AssessmentBreakdownRepository();
+        CourseRepository _courseRepo = new CourseRepository();
+        private readonly UserRepository _userRepo = new UserRepository();
+        private readonly CashierLogRepository _cashierLogRepo = new CashierLogRepository();
+
+        public string Department { get; set; }
+
+
         public static frm_fee_collection instance;
+        private readonly string _email;
+
         public string id_number { get; set; }
         public int OrNumber { get; set; }
 
-        
-        public frm_fee_collection()
+
+        public frm_fee_collection(string email)
         {
             instance = this;
             InitializeComponent();
+            _email = email;
         }
 
-        private void frm_fee_collection_Load(object sender, EventArgs e)
+        private async Task loadCashier()
         {
+            var users = await _userRepo.GetAllAsync();
+
+            var cashier = users.FirstOrDefault(x => x.email == _email);
+
+            tCashier.Text = cashier.fullname;
+            Department = cashier.department;
+        }
+
+        private async void frm_fee_collection_Load(object sender, EventArgs e)
+        {
+            await loadCashier();
             loadFeeBreakdownDGV();
             loadAssessmentBreakdownDGV();
-            loadSchoolYear();
+            await loadSchoolYear();
         }
 
         private void loadFeeBreakdownDGV()
@@ -39,7 +66,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             dgvFeeBreakdown.Columns.Add("term", "Term");
             dgvFeeBreakdown.Columns.Add("amount", "Amount");
 
-           
+
         }
         private void loadAssessmentBreakdownDGV()
         {
@@ -68,45 +95,42 @@ namespace school_management_system_model.Forms.transactions.Collection
             tOrNumber.Text = OrNumber.ToString();
         }
 
-        private void loadSchoolYear()
+        private async Task loadSchoolYear()
         {
-            var schoolYear = new FeeCollection();
-            var data = schoolYear.loadSchoolYear();
-            foreach(DataRow row in data.Rows)
-            {
-                tSchoolYear.Items.Add(row["code"]);
-                if (row["is_current"].ToString() == "Yes")
-                {
-                    tSchoolYear.Text = row["code"].ToString();
-                }
-            }
+            var schoolYears = await _schoolYearRepo.GetAllAsync();
+            tSchoolYear.ValueMember = "id";
+            tSchoolYear.DisplayMember = "code";
+            tSchoolYear.DataSource = schoolYears.Where(x => x.is_current == "Yes").ToList();
         }
 
-        private void loadStudentAccount()
+        private async Task loadStudentAccount()
         {
-            var data = new FeeCollection();
-            var idNumber = data.loadStudentAccounts(tIdNumber.Text);
-            tStudentName.Text = idNumber.Rows[0]["fullname"].ToString();
-            tStatus.Text = idNumber.Rows[0]["status"].ToString();
+            var studentAccounts = await _studentAccountRepo.GetAllAsync();
+            var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+            tStudentName.Text = student.fullname;
+            tStatus.Text = student.status;
         }
-        private void loadStudentCourse()
+        private async Task loadStudentCourse()
         {
-            var data = new FeeCollection();
-            var idNumber = data.loadStudentCourse(tIdNumber.Text);
-            tCourse.Text = idNumber.Rows[0]["course"].ToString();
-            tYearLevel.Text = idNumber.Rows[0]["year_level"].ToString();
-            tSemester.Text = idNumber.Rows[0]["semester"].ToString();
-            tCampus.Text = idNumber.Rows[0]["campus"].ToString();
+            var studentCourses = await _studentCourseRepo.GetAllAsync();
+            var course = studentCourses.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+            tCourse.Text = course.course;
+            tYearLevel.Text = course.year_level;
+            tSemester.Text = course.semester;
+            tCampus.Text = course.campus;
         }
-        private void loadStatementOfAccount()
+        private async Task loadStatementOfAccount()
         {
-            var data = new FeeCollection();
-            var idNumber = data.loadStatementOfAccounts(tIdNumber.Text, tSchoolYear.Text);
-            dgv.DataSource = idNumber;
+            var statementOfAccounts = await _statementOfAccountsRepo.GetAllAsync();
+            var soa = statementOfAccounts
+                .Where(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text)
+                .ToList();
+
+            dgv.DataSource = soa;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["id_number"].Visible = false;
             dgv.Columns["date"].HeaderText = "Date";
-            
             dgv.Columns["year_level"].Visible = false;
             dgv.Columns["semester"].Visible = false;
             dgv.Columns["school_year"].Visible = false;
@@ -119,72 +143,96 @@ namespace school_management_system_model.Forms.transactions.Collection
             dgv.Columns["cashier_in_charge"].Visible = false;
         }
 
-        private void loadFeeBreakdown()
+        private async Task loadFeeBreakdown()
         {
-            
-            var data = new FeeCollection();
-            var idNumber = data.loadFeeBreakdown(tIdNumber.Text, tSchoolYear.Text);
+            var feeBreakdowns = await _feeBreakdownRepo.GetAllAsync();
+            var feeBreakdown = feeBreakdowns.Where(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text).ToList();
 
-            
+            var dt = feeBreakdown.ToDataTable();
+
+            dgvFeeBreakdown.Rows.Clear();
+
             string[] term = { "Downpayment", "Prelims", "Midterms", "Semi-Finals", "Finals" };
 
-            for (int i = 0;i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
-                dgvFeeBreakdown.Rows.Add(term[i], idNumber.Rows[0][i + 3]);
+                dgvFeeBreakdown.Rows.Add(term[i], dt.Rows[0][i + 3]);
             }
         }
 
-        private void loadRecords()
+        private async Task loadRecords()
         {
+            await loadStudentAccount();
+            await loadStudentCourse();
+            await loadStatementOfAccount();
+            await loadFeeBreakdown();
+            await loadAssessmentBreakdown();
+            await loadAmountPayable();
             try
             {
-                loadStudentAccount();
-                loadStudentCourse();
-                loadStatementOfAccount();
-                loadFeeBreakdown();
-                loadAssessmentBreakdown();
-                loadAmountPayable();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Classes.Toastr("Warning", ex.Message);
                 tAmount.Clear();
                 tAmount.Select();
             }
         }
 
-        private void loadAssessmentBreakdown()
+        private async Task loadAssessmentBreakdown()
         {
-            var data = new FeeCollection().loadAssessmentBreakdown(tIdNumber.Text, tSchoolYear.Text);
-            foreach (DataRow row in data.Rows)
+            dgvAssessmentBreakdown.Rows.Clear();
+            var assessmentBreakdowns = await _assessmentBreakdownRepo.GetAllAsync();
+            var breakdown = assessmentBreakdowns
+                .Where(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text)
+                .ToList();
+
+            foreach (var items in breakdown)
             {
-                dgvAssessmentBreakdown.Rows.Add(row["fee_type"].ToString(), row["amount"].ToString());
+                dgvAssessmentBreakdown.Rows.Add(items.fee_type, items.amount);
             }
         }
 
         private void tSearch_Click(object sender, EventArgs e)
         {
-            
+
         }
 
-        private void soaCollection()
+        private async Task soaCollection()
         {
             int referenceNo = 0;
 
             referenceNo = OrNumber;
-            
 
-            var soa = new FeeCollection();
-            var latestSoa = soa.getLatestSoa(tIdNumber.Text, tSchoolYear.Text);
-            decimal latestBalance = Convert.ToDecimal(latestSoa.Rows[0]["balance"]);
+            var studentAccounts = await _studentAccountRepo.GetAllAsync();
+            var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+            var schoolYears = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = schoolYears.FirstOrDefault(x => x.code == tSchoolYear.Text);
+
+            var courses = await _courseRepo.GetAllAsync();
+            var course_id = courses.FirstOrDefault(x => x.code == tCourse.Text);
+
+            var statementsOfAccounts = await _statementOfAccountsRepo.GetAllAsync();
+            var soaLatest = statementsOfAccounts
+                .Where(x => x.id_number == tIdNumber.Text && x.school_year == tSchoolYear.Text)
+                .ToList();
+            var dt = soaLatest.ToDataTable();
+
+            var lastrow = dt.Rows.Count - 1;
+
+            decimal latestBalance = Convert.ToDecimal(dt.Rows[lastrow]["balance"]);
             decimal latestCredit = cPayment.Checked ? Convert.ToDecimal(tAmount.Text) : Convert.ToDecimal(tAmountPayable.Text);
             string latestParticulars = tParticulars.Text;
 
-            var collect = new FeeCollection
+
+
+            var collect = new StatementOfAccount
             {
-                school_year = tSchoolYear.Text,
+                id_number = id_number_id.id.ToString(),
+                school_year = school_year_id.id.ToString(),
                 date = DateTime.Now.ToString("MM-dd-yyyy"),
-                course = tCourse.Text,
+                course = course_id.id.ToString(),
                 year_level = tYearLevel.Text,
                 semester = tSemester.Text,
                 reference_no = referenceNo,
@@ -192,18 +240,31 @@ namespace school_management_system_model.Forms.transactions.Collection
                 debit = latestBalance,
                 credit = latestCredit,
                 balance = latestBalance - latestCredit,
-                cashier_in_charge = ""
+                cashier_in_charge = tCashier.Text
             };
-            collect.soaCollection(tIdNumber.Text);
-            var referenceNumberIncrement = new FeeCollection();
-            referenceNumberIncrement.incrementReferenceNo(referenceNo);
-            loadStatementOfAccount();
+            await _statementOfAccountsRepo.AddRecordsAsync(collect);
+
+            var cashierLog = new CashierLog
+            {
+                date = DateTime.Now.ToString("MM-dd-yyyy"),
+                name = tCashier.Text,
+                reference_no = referenceNo.ToString(),
+                particulars = latestParticulars,
+                school_year = school_year_id.id.ToString(),
+                department = Department,
+                credit = latestCredit.ToString(),
+                debit = latestBalance.ToString(),
+                balance = Convert.ToString(latestBalance - latestCredit)
+            };
+            await _cashierLogRepo.AddRecords(cashierLog);
 
             incrementOrNumber();
         }
-        private void assessmentBreakdownComputation()
+
+        private async Task assessmentBreakdownComputation()
         {
-            decimal amount = amount = Convert.ToDecimal(tAmount.Text);
+            await Task.Delay(10);
+            decimal amount = Convert.ToDecimal(tAmount.Text);
             decimal fee = 0;
             decimal result = 0;
 
@@ -212,7 +273,6 @@ namespace school_management_system_model.Forms.transactions.Collection
                 fee = Convert.ToDecimal(row.Cells["amount"].Value);
                 if (amount > fee)
                 {
-
                     result = amount - fee;
                     row.Cells["amount"].Value = 0;
                     amount = result;
@@ -229,13 +289,13 @@ namespace school_management_system_model.Forms.transactions.Collection
                         amount -= term;
                         row.Cells["amount"].Value = amount;
                     }
-
                 }
             }
         }
 
-        private void feeBreakdownComputation()
+        private async Task feeBreakdownComputation()
         {
+            await Task.Delay(10);
             decimal amount = amount = Convert.ToDecimal(tAmount.Text);
             decimal fee = 0;
             decimal result = 0;
@@ -267,21 +327,30 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
         }
 
-        private void feeBreakDownSave()
+        private async Task feeBreakDownSave()
         {
-            feeBreakdownComputation();
-            
+            await feeBreakdownComputation();
 
-            var totalBreakdown = 
+
+            var totalBreakdown =
                 Convert.ToDecimal(dgvFeeBreakdown.Rows[0].Cells["amount"].Value) +
                 Convert.ToDecimal(dgvFeeBreakdown.Rows[1].Cells["amount"].Value) +
                 Convert.ToDecimal(dgvFeeBreakdown.Rows[2].Cells["amount"].Value) +
                 Convert.ToDecimal(dgvFeeBreakdown.Rows[3].Cells["amount"].Value) +
                 Convert.ToDecimal(dgvFeeBreakdown.Rows[4].Cells["amount"].Value);
 
+            var feeBreakdowns = await _feeBreakdownRepo.GetAllAsync();
+            var studentAccounts = await _studentAccountRepo.GetAllAsync();
+            var schoolYears = await _schoolYearRepo.GetAllAsync();
 
-            var feeBreakdown = new FeeCollection
+
+            var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+            var school_year_id = schoolYears.FirstOrDefault(x => x.code == tSchoolYear.Text);
+
+            var feeBreakdown = new FeeBreakdown
             {
+                id_number = id_number_id.id.ToString(),
+                school_year = school_year_id.id.ToString(),
                 downpayment = Convert.ToDecimal(dgvFeeBreakdown.Rows[0].Cells["amount"].Value),
                 prelim = Convert.ToDecimal(dgvFeeBreakdown.Rows[1].Cells["amount"].Value),
                 midterm = Convert.ToDecimal(dgvFeeBreakdown.Rows[2].Cells["amount"].Value),
@@ -289,112 +358,144 @@ namespace school_management_system_model.Forms.transactions.Collection
                 finals = Convert.ToDecimal(dgvFeeBreakdown.Rows[4].Cells["amount"].Value),
                 total = totalBreakdown
             };
-            feeBreakdown.feeBreakdownSave(tIdNumber.Text, tSchoolYear.Text);
-            //loadFeeBreakdown();
+            await _feeBreakdownRepo.UpdateRecordsAsync(feeBreakdown);
+            //await loadFeeBreakdown();
         }
 
-        private void assessmentBreakdownSave()
+        private async Task assessmentBreakdownSave()
         {
-            assessmentBreakdownComputation();
+            await assessmentBreakdownComputation();
+
+            var studentAccounts = await _studentAccountRepo.GetAllAsync();
+            var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+            var schoolYears = await _schoolYearRepo.GetAllAsync();
+            var school_year_id = schoolYears.FirstOrDefault(x => x.code == tSchoolYear.Text);
 
             foreach (DataGridViewRow row in dgvAssessmentBreakdown.Rows)
             {
-                var parameter = new SaveAssessmentBreakdownParams
+                var parameter = new AssessmentBreakdown
                 {
-                    id_number = tIdNumber.Text,
+                    id_number = id_number_id.id.ToString(),
+                    school_year = school_year_id.id.ToString(),
                     fee_type = row.Cells["fee_type"].Value.ToString(),
                     amount = Convert.ToDecimal(row.Cells["amount"].Value)
                 };
-                var x = new FeeCollection();
-                x.assessmentBreakdownSave(parameter.id_number, parameter.amount, parameter.fee_type);
+                await _assessmentBreakdownRepo.UpdateRecordsAsync(parameter);
             }
         }
 
-        
 
-        private void btnConfirmPayment_Click(object sender, EventArgs e)
+
+        private async void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-            try
+            btnConfirmPayment.Enabled = false;
+            btnConfirmPayment.Text = "Please Wait...";
+            if (tAmount.Text == "" && tParticulars.Text == "")
             {
-                if (tAmount.Text == "" && tParticulars.Text == "")
+                new Classes.Toastr("Error", "Missing Fields");
+            }
+            else if (tOrNumber.Text == "...")
+            {
+                new Classes.Toastr("Error", "Please set Or Number");
+            }
+            else
+            {
+                decimal collection = 0;
+                decimal payable = 0;
+                decimal change = 0;
+                if (tAmount.Text == "" || tAmountPayable.Text == "" || tParticulars.Text == "")
                 {
-                    new Classes.Toastr("Error", "Missing Fields");
-                }
-                else if (tOrNumber.Text == "...")
-                {
-                    new Classes.Toastr("Error", "Please set Or Number");
+                    new Classes.Toastr("Warning", "Fields Missing");
                 }
                 else
                 {
-                    decimal collection = Convert.ToDecimal(tAmount.Text);
-                    decimal payable = Convert.ToDecimal(tAmountPayable.Text);
-                    decimal change = 0;
-                    if (collection < 500 && (decimal)dgvFeeBreakdown.Rows[0].Cells["amount"].Value > 0)
+                    try
                     {
-                        new Classes.Toastr("Error", "Payment amount not accepted!");
-                    }
-                    else if (cPayment.Checked)
-                    {
-                        if (MessageBox.Show("Confirm Payment: " + tAmount.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        collection = Convert.ToDecimal(tAmount.Text);
+                        payable = Convert.ToDecimal(tAmountPayable.Text);
+                        if (collection < 500 && (decimal)dgvFeeBreakdown.Rows[0].Cells["amount"].Value > 0)
                         {
-                            soaCollection();
-                            feeBreakDownSave();
-                            assessmentBreakdownSave();
-
-                            var data = new FeeCollection();
-                            var studentStatus = data.loadStudentAccounts(tIdNumber.Text);
-
-                            if (studentStatus.Rows[0]["status"].ToString() == "Accounting")
-                            {
-                                var changeStatus = new FeeCollection();
-                                changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
-                            }
-
-                            var frm = new frm_payment_message(tIdNumber.Text, 0);
-                            frm.ShowDialog();
+                            new Classes.Toastr("Error", "Payment amount not accepted!");
                         }
-                    }
-                    else
-                    {
-                        change = collection - payable;
-
-                        if (change < 0)
+                        else if (cPayment.Checked)
                         {
-                            new Classes.Toastr("Error", "Payment not accepted, please provide higher than the payable");
+                            if (MessageBox.Show("Confirm Payment: " + tAmount.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                await soaCollection();
+                                await feeBreakDownSave();
+                                await assessmentBreakdownSave();
+
+                                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                                var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+                                if (student.status == "Accounting")
+                                {
+                                    await _studentAccountRepo.StudentOfficiallyEnroll(student.id.ToString(), "Officially Enrolled for School Year: " + tSchoolYear.Text);
+                                }
+
+                                new Classes.Toastr("Success", "Payment Collected");
+                                await loadRecords();
+
+                                // for printing
+                                var frm = new frm_payment_message(tIdNumber.Text, 0);
+                                frm.Show();
+                            }
                         }
                         else
                         {
-                            if (MessageBox.Show("Confirm Payment: " + tAmountPayable.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            change = collection - payable;
+
+                            if (change < 0)
                             {
-                                soaCollection();
-                                feeBreakDownSave();
-                                assessmentBreakdownSave();
-
-                                var data = new FeeCollection();
-                                var studentStatus = data.loadStudentAccounts(tIdNumber.Text);
-
-                                if (studentStatus.Rows[0]["status"].ToString() == "Accounting")
+                                new Classes.Toastr("Error", "Payment not accepted, please provide higher than the payable");
+                            }
+                            else
+                            {
+                                if (MessageBox.Show("Confirm Payment: " + tAmountPayable.Text + ", Particulars: " + tParticulars.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
-                                    var changeStatus = new FeeCollection();
-                                    changeStatus.StudentStatusChange(tIdNumber.Text, tSchoolYear.Text);
-                                }
 
-                                var frm = new frm_payment_message(tIdNumber.Text, change);
-                                frm.ShowDialog();
+                                    await soaCollection();
+                                    await feeBreakDownSave();
+                                    await assessmentBreakdownSave();
+
+
+                                    var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                                    var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+                                    if (student.status == "Accounting")
+                                    {
+                                        await _studentAccountRepo.StudentOfficiallyEnroll(student.id.ToString(), "Officially Enrolled for School Year: " + tSchoolYear.Text);
+                                    }
+
+                                    new Classes.Toastr("Success", "Payment Collected");
+                                    await loadRecords();
+
+                                    var frm = new frm_payment_message(tIdNumber.Text, change);
+                                    frm.ShowDialog();
+
+                                }
                             }
                         }
                     }
-                }
+                    catch (Exception ex)
+                    {
+                        new Classes.Toastr("Error", ex.Message);
+                    }
 
+                }
+                tAmount.Clear();
+                tParticulars.Clear();
+                btnConfirmPayment.Enabled = true;
+                btnConfirmPayment.Text = "Confirm Payment";
             }
-            catch (Exception ex)
-            {
-                new Classes.Toastr("Error", ex.Message);
-            }
-            
+
+
+
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_student();
             frm.Text = "Fee Collection";
@@ -404,15 +505,15 @@ namespace school_management_system_model.Forms.transactions.Collection
                 dgvFeeBreakdown.Rows.Clear();
                 dgvAssessmentBreakdown.Rows.Clear();
                 tIdNumber.Text = id_number;
-                loadRecords();
-                
+                await loadRecords();
+
             }
         }
 
-        private void loadAmountPayable()
+        private async Task loadAmountPayable()
         {
-            
-            foreach (DataGridViewRow row in dgvFeeBreakdown.Rows )
+            await Task.Delay(50);
+            foreach (DataGridViewRow row in dgvFeeBreakdown.Rows)
             {
                 if ((decimal)row.Cells["amount"].Value > 0)
                 {
@@ -420,6 +521,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                     break;
                 }
             }
+
         }
 
         private void tPrint_Click(object sender, EventArgs e)

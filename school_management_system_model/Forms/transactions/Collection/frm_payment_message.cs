@@ -1,6 +1,9 @@
 ﻿using Krypton.Toolkit;
 using Microsoft.Reporting.WinForms;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
+using school_management_system_model.Infrastructure.Data.Repositories;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +18,8 @@ namespace school_management_system_model.Forms.transactions.Collection
 {
     public partial class frm_payment_message : KryptonForm
     {
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        StatementOfAccountsRepository _statementOfAccountRepo = new StatementOfAccountsRepository();
         public frm_payment_message(string idNumber, decimal change)
         {
             InitializeComponent();
@@ -40,19 +45,19 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private async void loadRecords()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from student_accounts where id_number='" + IdNumber + "'", con);
-            var studentAccounts = new DataTable();
-            da.Fill(studentAccounts);
+            var studentAccounts = await _studentAccountRepo.GetAllAsync();
+            var student = studentAccounts.Where(x => x.id_number == IdNumber).ToList();
+            var studentAccountDt = student.ToDataTable();
 
-            da = new MySqlDataAdapter("select * from statements_of_accounts where id_number='" + IdNumber + "' order by id desc", con);
-            var statementOfAccounts = new DataTable();
-            da.Fill(statementOfAccounts);
+            var statementOfAccounts = await _statementOfAccountRepo.GetAllAsync();
+            var soa = statementOfAccounts.Where(x => x.id_number == student.FirstOrDefault().id.ToString()).ToList();
+            var soaDt = soa.ToDataTable();
+
 
             crv.LocalReport.DataSources.Clear();
-            var rpt = new ReportDataSource("StudentAccounts", studentAccounts);
+            var rpt = new ReportDataSource("StudentAccounts", studentAccountDt);
 
-            var rpt2 = new ReportDataSource("StatementOfAccounts", statementOfAccounts);
+            var rpt2 = new ReportDataSource("StatementOfAccounts", soaDt);
 
             crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_receipt.rdlc";
 

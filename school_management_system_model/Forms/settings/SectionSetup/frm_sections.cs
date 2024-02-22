@@ -1,5 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories;
+using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -15,9 +19,12 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_sections : Form
     {
+        CourseRepository _courseRepo = new CourseRepository();
         string ID;
 
         public string Email { get; }
+
+        SectionRepository _sectionRepo = new SectionRepository();
 
         public frm_sections(string email)
         {
@@ -31,20 +38,21 @@ namespace school_management_system_model.Forms.settings
             loadcourses();
         }
 
-        private void loadcourses()
+        private async void loadcourses()
         {
-            var courses = new sections();
-            var data = courses.getCourses();
-            foreach(DataRow row in data.Rows)
-            {
-                tCourse.Items.Add(row["code"]);
-            }
+            tCourse.ValueMember = "id";
+            tCourse.DisplayMember = "code";
+            tCourse.DataSource = await _courseRepo.GetAllAsync();
+
+            cmbCourse.ValueMember = "id";
+            cmbCourse.DisplayMember = "code";
+            cmbCourse.DataSource = await _courseRepo.GetAllAsync();
         }
 
-        private void loadrecords()
+        private async void loadrecords()
         {
-            var data = new sections();
-            dgv.DataSource = data.getSections();
+            var data = await _sectionRepo.GetAllAsync();
+            dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
             dgv.Columns["section_code"].HeaderText = "Section Code";
@@ -58,27 +66,28 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["remarks"].HeaderText = "Remarks";
         }
 
-        private void add_records()
+        private async void add_records()
         {
             try
             {
                 if (btn_save.Text == "Save")
                 {
-                    var add = new sections
+
+                    var add = new Sections
                     {
                         unique_id = tSectionCode.Text + tCourse.Text + tYearLevel.Text + tSemester.Text,
                         section_code = tSectionCode.Text,
                         course = tCourse.Text,
-                        year_level = tYearLevel.Text,
+                        year_level = Convert.ToInt32(tYearLevel.Text),
                         section = tSection.Text,
                         semester = tSemester.Text,
-                        number_of_students = tNumberOfStudents.Text,
-                        max_number_of_students = tMaxStudent.Text,
+                        number_of_students = Convert.ToInt32(tNumberOfStudents.Text),
+                        max_number_of_students = Convert.ToInt32(tMaxStudent.Text),
                         status = tStatus.Text,
                         remarks = tRemarks.Text
                     };
-                    add.addSection();
-                    
+                    await _sectionRepo.AddRecords(add);
+
                     new Classes.Toastr("Success", "Section Add Success");
                     new ActivityLogger().activityLogger(Email, "Section Add: " + tSectionCode.Text);
 
@@ -86,20 +95,22 @@ namespace school_management_system_model.Forms.settings
                 }
                 else if (btn_save.Text == "Update")
                 {
-                    var edit = new sections
+                    var edit = new Sections
                     {
+                        id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                         unique_id = tSectionCode.Text + tCourse.Text + tYearLevel.Text + tSemester.Text,
                         section_code = tSectionCode.Text,
                         course = tCourse.Text,
-                        year_level = tYearLevel.Text,
+                        year_level = Convert.ToInt32(tYearLevel.Text),
                         section = tSection.Text,
                         semester = tSemester.Text,
-                        number_of_students = tNumberOfStudents.Text,
-                        max_number_of_students = tMaxStudent.Text,
+                        number_of_students = Convert.ToInt32(tNumberOfStudents.Text),
+                        max_number_of_students = Convert.ToInt32(tMaxStudent.Text),
                         status = tStatus.Text,
                         remarks = tRemarks.Text
                     };
-                    edit.editSection(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                    await _sectionRepo.UpdateRecords(edit);
+
                     new Classes.Toastr("Information", "Section Update Success");
                     new ActivityLogger().activityLogger(Email, "Section Edit: " + tSectionCode.Text);
 
@@ -115,18 +126,22 @@ namespace school_management_system_model.Forms.settings
 
         }
 
-        private void delete()
+        private async void delete()
         {
-            var delete = new sections
-            {
-                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString()),
-                section_code = tSectionCode.Text
-            };
-            delete.deleteData();
-            MessageBox.Show("Section Delete Success");
+            var delete = new Sections();
+            delete.section_code = dgv.CurrentRow.Cells["section_code"].Value.ToString();
+            await _sectionRepo.DeleteRecords(delete);
+            new Classes.Toastr("Information", "Section Deleted");
             new ActivityLogger().activityLogger(Email, "Section Delete: " + tSectionCode.Text);
 
             loadrecords();
+        }
+
+        private async Task FilterByCourse()
+        {
+            var sections = await _sectionRepo.GetAllAsync();
+            var sectionFilter = sections.Where(x => x.course == cmbCourse.Text).ToList();
+            dgv.DataSource = sectionFilter;
         }
 
         private void txtclear()
@@ -206,12 +221,8 @@ namespace school_management_system_model.Forms.settings
         {
             if (tRemarks.Text == "Regular")
             {
-                var frm = new frm_section_subjects(Email);
-                frm_section_subjects.instance.sectionCode = dgv.CurrentRow.Cells["section_code"].Value.ToString();
-                frm_section_subjects.instance.course = dgv.CurrentRow.Cells["course"].Value.ToString();
-                frm_section_subjects.instance.yearLevel = dgv.CurrentRow.Cells["year_level"].Value.ToString();
-                frm_section_subjects.instance.remarks = dgv.CurrentRow.Cells["remarks"].Value.ToString();
-                frm_section_subjects.instance.semester = dgv.CurrentRow.Cells["semester"].Value.ToString();
+                var subject_code = dgv.CurrentRow.Cells["section_code"].Value.ToString();
+                var frm = new frm_section_subjects(subject_code, Email);
                 frm.Text = "Section Subjects";
                 frm.ShowDialog();
             }
@@ -226,12 +237,14 @@ namespace school_management_system_model.Forms.settings
             tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
         }
 
-        private void tSearch_TextChanged(object sender, EventArgs e)
+        private async void tSearch_TextChanged(object sender, EventArgs e)
         {
             if (tSearch.Text.Length > 2)
             {
-                var search = new sections().searchRecords(tSearch.Text);
-                dgv.DataSource = search;
+                var search = await _sectionRepo.GetAllAsync();
+                    var a = search.Where(x => x.section_code.ToLower().Contains(tSearch.Text))
+                    .ToList();
+                dgv.DataSource = a;
             }
             else if (tSearch.Text.Length == 0)
             {
@@ -257,6 +270,11 @@ namespace school_management_system_model.Forms.settings
         private void tCourse_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             tSectionCode.Text = tCourse.Text + "-" + tYearLevel.Text + "-" + tSection.Text;
+        }
+
+        private async void cmbCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await FilterByCourse();
         }
     }
 }

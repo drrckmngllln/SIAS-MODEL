@@ -1,13 +1,9 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +11,7 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_school_year : Form
     {
+        SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
         public bool isAdd { get; set; }
         public bool isEdit { get; set; }
         public bool isDelete { get; set; }
@@ -42,10 +39,10 @@ namespace school_management_system_model.Forms.settings
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var data = new SchoolYearSetup();
-            dgv.DataSource = data.loadRecords();
+            var data = await _schoolYearRepo.GetAllAsync();
+            dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
@@ -56,22 +53,22 @@ namespace school_management_system_model.Forms.settings
             dgv.Columns["is_current"].HeaderText = "Default";
         }
 
-        private void addRecords()
+        private async void addRecords()
         {
             try
             {
                 if (btn_save.Text == "Save")
                 {
-                    var add = new SchoolYearSetup
+                    var add = new SchoolYear
                     {
                         code = tCode.Text,
                         description = tDescription.Text,
-                        from = tFrom.Text,
-                        to = tTo.Text,
+                        school_year_from = tFrom.Text,
+                        school_year_to = tTo.Text,
                         semester = tSemester.Text,
                         is_current = tCurrent.Text
                     };
-                    add.addRecords();
+                    await _schoolYearRepo.AddRecords(add);
                     new Classes.Toastr("Success", "Successfully Saved");
                     new ActivityLogger().activityLogger(Email, "School Year Add: " + tDescription.Text);
 
@@ -82,16 +79,16 @@ namespace school_management_system_model.Forms.settings
                 else if (btn_save.Text == "Update")
                 {
                     int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-                    var edit = new SchoolYearSetup
+                    var edit = new SchoolYear
                     {
                         code = tCode.Text,
                         description = tDescription.Text,
-                        from = tFrom.Text,
-                        to = tTo.Text,
+                        school_year_from = tFrom.Text,
+                        school_year_to = tTo.Text,
                         semester = tSemester.Text,
                         is_current = tCurrent.Text
                     };
-                    edit.EditRecords(id);
+                    await _schoolYearRepo.UpdateRecords(edit);
                     new Classes.Toastr("Information", "Successfully Updated");
                     new ActivityLogger().activityLogger(Email, "School Year Edit: " + tDescription.Text);
 
@@ -114,11 +111,12 @@ namespace school_management_system_model.Forms.settings
             tSemester.Clear();
             btn_save.Text = "Save";
         }
-        private void deleteRecords()
+        private async Task deleteRecords()
         {
             int id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
-            var delete = new SchoolYearSetup();
-            delete.deleteRecords(id);
+            var delete = new SchoolYear();
+            delete.id = id;
+            await _schoolYearRepo.DeleteRecords(delete);
             
             new Classes.Toastr("Information", "Successfully Deleted");
             new ActivityLogger().activityLogger(Email, "School Year Delete: " + dgv.CurrentRow.Cells["description"].Value.ToString());
@@ -149,21 +147,22 @@ namespace school_management_system_model.Forms.settings
             btn_save.Text = "Update";
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private async void kryptonButton1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("are you sure you want to delete records?", "Warning", MessageBoxButtons.YesNo, 
                 MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                deleteRecords();
+                await deleteRecords();
             }
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
             if (tsearch.Text.Length > 2)
             {
-                var search = new SchoolYearSetup();
-                dgv.DataSource = search.searchRecords(tsearch.Text);
+                var data = await _schoolYearRepo.GetAllAsync();
+                var search = data.Where(x => x.code.ToLower().Contains(tsearch.Text) || x.description.ToLower().Contains(tsearch.Text));
+                dgv.DataSource = search.ToList();
             }
             else if (tsearch.Text.Length == 0)
             {

@@ -1,4 +1,6 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,8 @@ namespace school_management_system_model.Forms.settings
 {
     public partial class frm_instructors : Form
     {
+        DepartmentRepository _departmentRepo = new DepartmentRepository();
+        InstructorRepository _instructorRepo = new InstructorRepository();
         public string Email { get; }
 
         public frm_instructors(string email)
@@ -28,37 +32,35 @@ namespace school_management_system_model.Forms.settings
             loadDepartments();
         }
 
-        private void loadDepartments()
+        private async void loadDepartments()
         {
-            var departments = new Instructors();
-            var data = departments.loadDepartments();
-            foreach(DataRow row in data.Rows)
-            {
-                tDepartment.Items.Add(row["code"]);
-            }
+            var departments = await _departmentRepo.GetAllAsync();
+            tDepartment.ValueMember = "id";
+            tDepartment.DisplayMember = "code";
+            tDepartment.DataSource = departments;
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var data = new Instructors();
-            dgv.DataSource = data.loadRecords();
+            var data = await _instructorRepo.GetAllAsync();
+            dgv.DataSource = data;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["fullname"].HeaderText = "Full Name";
-            dgv.Columns["department"].HeaderText = "Department";
+            dgv.Columns["department_id"].HeaderText = "Department";
             dgv.Columns["position"].HeaderText = "Position";
         }
 
-        private void addRecords()
+        private async void addRecords()
         {
             if (btn_save.Text == "Save")
             {
                 var data = new Instructors
                 {
                     fullname = tFullname.Text,
-                    department = tDepartment.Text,
+                    department_id = tDepartment.SelectedValue.ToString(),
                     position = tPosition.Text
                 };
-                data.addRecords();
+                await _instructorRepo.AddRecords(data);
           
                 new Classes.Toastr("Success", "Instructor Added");
                 new ActivityLogger().activityLogger(Email, "Instructor Add: " + tFullname.Text);
@@ -72,10 +74,10 @@ namespace school_management_system_model.Forms.settings
                 {
                     id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                     fullname = tFullname.Text,
-                    department = tDepartment.Text,
+                    department_id = tDepartment.SelectedValue.ToString(),
                     position = tPosition.Text
                 };
-                data.editRecords();
+                await _instructorRepo.UpdateRecords(data);
                
                 new Classes.Toastr("Information", "Instructor Updated");
                 new ActivityLogger().activityLogger(Email, "Instructor Edit: " + tFullname.Text);
@@ -93,13 +95,13 @@ namespace school_management_system_model.Forms.settings
             btn_save.Text = "Save";
         }
 
-        private void deleteRecords()
+        private async void deleteRecords()
         {
             var delete = new Instructors
             {
                 id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString())
             };
-            delete.deleteRecords();
+            await _instructorRepo.DeleteRecords(delete);
             
             new Classes.Toastr("Information", "Instructor Deleted");
             new ActivityLogger().activityLogger(Email, "Instructor Delete: " + dgv.CurrentRow.Cells["fullname"].Value.ToString());
@@ -107,20 +109,11 @@ namespace school_management_system_model.Forms.settings
             loadRecords();
         }
 
-        private void searchRecords()
+        private async Task searchRecords(string search)
         {
-            if (tsearch.Text.Length > 2)
-            {
-                var search = new Instructors
-                {
-                    search = tsearch.Text
-                };
-                dgv.DataSource = search.searchRecords();
-            }
-            else if (tsearch.Text.Length == 0)
-            {
-                loadRecords();
-            }
+            var instructors = await _instructorRepo.GetAllAsync();
+            var searchInstructor = instructors.Where(x => x.fullname.ToLower().Contains(search)).ToList();
+            dgv.DataSource = instructors;
         }
 
         private void frm_instructors_KeyDown(object sender, KeyEventArgs e)
@@ -149,15 +142,22 @@ namespace school_management_system_model.Forms.settings
             }
         }
 
-        private void tsearch_TextChanged(object sender, EventArgs e)
+        private async void tsearch_TextChanged(object sender, EventArgs e)
         {
-            searchRecords();
+            if (tsearch.Text.Length > 2)
+            {
+                await searchRecords(tsearch.Text);
+            }
+            else if (tsearch.Text.Length == 0)
+            {
+                loadRecords();
+            }
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             tFullname.Text = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-            tDepartment.Text = dgv.CurrentRow.Cells["department"].Value.ToString();
+            tDepartment.Text = dgv.CurrentRow.Cells["department_id"].Value.ToString();
             tPosition.Text = dgv.CurrentRow.Cells["position"].Value.ToString();
             btn_save.Text = "Update";
         }

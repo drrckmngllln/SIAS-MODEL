@@ -1,6 +1,12 @@
 ﻿using Krypton.Toolkit;
 using Microsoft.Reporting.WinForms;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Transaction;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
+using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
+using school_management_system_model.Infrastructure.Data.Repositories;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +21,13 @@ namespace school_management_system_model.Reports.Accounting
 {
     public partial class frm_isap_assessment : KryptonForm
     {
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
+        StudentCourseRepository _studentCourseRepo = new StudentCourseRepository();
+        StudentAssessmentRepository _studentAssessmentRepo = new StudentAssessmentRepository();
+        StudentSubjectRepository _studentSubjectRepo = new StudentSubjectRepository();
+        FeeBreakdownRepository _feeBreakdownRepo = new FeeBreakdownRepository();
+        FeeSummaryRepository _feeSummaryRepo = new FeeSummaryRepository();
+
         public string id_number { get; set; }
         public string school_year { get; set; }
         public string campus { get; set; }
@@ -23,53 +36,49 @@ namespace school_management_system_model.Reports.Accounting
             InitializeComponent();
         }
 
-        private void frm_isap_assessment_Load(object sender, EventArgs e)
+        private async void frm_isap_assessment_Load(object sender, EventArgs e)
         {
-            loadRecords();
+            await loadRecords();
         }
 
         
 
-        private async void loadRecords()
+        private async Task loadRecords()
         {
             if (campus == "ISAP")
             {
-                await Task.Delay(500);
-                var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select * from student_accounts where id_number='" + id_number + "'", con);
-                var studentAccounts = new DataTable();
-                da.Fill(studentAccounts);
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var student = studentAccounts.Where(x => x.id_number == id_number).ToList();
+                var studentAccountDt = student.ToDataTable();
 
+                var studentCourse = await _studentCourseRepo.GetAllAsync();
+                var course = studentCourse.Where(x => x.id_number == id_number).ToList();
+                var studentCourseDt = course.ToDataTable();
 
-                da = new MySqlDataAdapter("select * from student_course where id_number='" + id_number + "'", con);
-                var studentCourse = new DataTable();
-                da.Fill(studentCourse);
+                var studentAssessment = await _studentAssessmentRepo.GetAllAsync();
+                var assessment = studentAssessment.Where(x => x.id_number == id_number).ToList();
+                var studentAssessmentDT = assessment.ToDataTable();
 
-                da = new MySqlDataAdapter("select * from student_assessment where id_number='"+ id_number +"' and school_year='"+ school_year +"'", con);
-                var studentAssessment = new DataTable();
-                da.Fill(studentAssessment);
+                var feeBreakdowns = await _feeBreakdownRepo.GetAllAsync();
+                var breakdown = feeBreakdowns.Where(x => x.id_number == id_number).ToList();
+                var feeBreakdownDt = breakdown.ToDataTable();
 
-                da = new MySqlDataAdapter("select * from fee_breakdown where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
-                var feeBreakdown = new DataTable();
-                da.Fill(feeBreakdown);
+                var studentSubjects = await _studentSubjectRepo.GetAllAsync();
+                var subjects = studentSubjects.Where(x => x.id_number_id == id_number).ToList();
+                var studentSubjectDt = subjects.ToDataTable();
 
-                da = new MySqlDataAdapter("select * from student_subjects where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
-                var studentSubjects = new DataTable();
-                da.Fill(studentSubjects);
-
-                da = new MySqlDataAdapter("select * from fee_summary where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
-                var feeSummary = new DataTable();
-                da.Fill(feeSummary);
+                var feeSummaries = await _feeSummaryRepo.GetAllAsync();
+                var summary = feeSummaries.Where(x => x.id_number == id_number).ToList();
+                var feeSummaryDt = summary.ToDataTable();
 
                 crv.LocalReport.DataSources.Clear();
-                var rpt = new ReportDataSource("StudentAccounts", studentAccounts);
-                var rpt2 = new ReportDataSource("StudentCourse", studentCourse);
-                var rpt3 = new ReportDataSource("StudentAssessment", studentAssessment);
-                var rpt4 = new ReportDataSource("FeeBreakdown", feeBreakdown);
-                var rpt5 = new ReportDataSource("StudentSubjects", studentSubjects);
-                var rpt6 = new ReportDataSource("FeeSummary", feeSummary);
+                var rpt = new ReportDataSource("StudentAccounts", studentAccountDt);
+                var rpt2 = new ReportDataSource("StudentCourse", studentCourseDt);
+                var rpt3 = new ReportDataSource("StudentAssessment", studentAssessmentDT);
+                var rpt4 = new ReportDataSource("FeeBreakdown", feeBreakdownDt);
+                var rpt5 = new ReportDataSource("StudentSubjects", studentSubjectDt);
+                var rpt6 = new ReportDataSource("FeeSummary", feeSummaryDt);
 
-                crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_assessment.rdlc";
 
                 crv.LocalReport.DataSources.Add(rpt);
                 crv.LocalReport.DataSources.Add(rpt2);
@@ -78,6 +87,7 @@ namespace school_management_system_model.Reports.Accounting
                 crv.LocalReport.DataSources.Add(rpt5);
                 crv.LocalReport.DataSources.Add(rpt6);
 
+                crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_assessment.rdlc";
 
                 crv.SetDisplayMode(DisplayMode.PrintLayout);
                 crv.ZoomMode = ZoomMode.Percent;
@@ -87,40 +97,38 @@ namespace school_management_system_model.Reports.Accounting
             }
             else if (campus == "MCNP")
             {
-                await Task.Delay(500);
-                var con = new MySqlConnection(connection.con());
-                var da = new MySqlDataAdapter("select * from student_accounts where id_number='" + id_number + "'", con);
-                var studentAccounts = new DataTable();
-                da.Fill(studentAccounts);
 
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var student = studentAccounts.Where(x => x.id_number == id_number).ToList();
+                var studentAccountDt = student.ToDataTable();
+                
+                var studentCourse = await _studentCourseRepo.GetAllAsync();
+                var course = studentCourse.Where(x => x.id_number == id_number).ToList();
+                var studentCourseDt = course.ToDataTable();
 
-                da = new MySqlDataAdapter("select * from student_course where id_number='" + id_number + "'", con);
-                var studentCourse = new DataTable();
-                da.Fill(studentCourse);
+                var studentAssessment = await _studentAssessmentRepo.GetAllAsync();
+                var assessment = studentAssessment.Where(x => x.id_number == id_number).ToList();
+                var studentAssessmentDT = assessment.ToDataTable();
 
-                da = new MySqlDataAdapter("select * from student_assessment where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
-                var studentAssessment = new DataTable();
-                da.Fill(studentAssessment);
+                var feeBreakdowns = await _feeBreakdownRepo.GetAllAsync();
+                var breakdown = feeBreakdowns.Where(x => x.id_number == id_number).ToList();
+                var feeBreakdownDt = breakdown.ToDataTable();
 
-                da = new MySqlDataAdapter("select * from fee_breakdown where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
-                var feeBreakdown = new DataTable();
-                da.Fill(feeBreakdown);
+                var studentSubjects = await _studentSubjectRepo.GetAllAsync();
+                var subjects = studentSubjects.Where(x => x.id_number_id == id_number).ToList();
+                var studentSubjectDt = subjects.ToDataTable();
 
-                da = new MySqlDataAdapter("select * from student_subjects where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
-                var studentSubjects = new DataTable();
-                da.Fill(studentSubjects);
-
-                da = new MySqlDataAdapter("select * from fee_summary where id_number='" + id_number + "' and school_year='" + school_year + "'", con);
-                var feeSummary = new DataTable();
-                da.Fill(feeSummary);
+                var feeSummaries = await _feeSummaryRepo.GetAllAsync();
+                var summary = feeSummaries.Where(x => x.id_number == id_number).ToList();
+                var feeSummaryDt = summary.ToDataTable();
 
                 crv.LocalReport.DataSources.Clear();
-                var rpt = new ReportDataSource("StudentAccounts", studentAccounts);
-                var rpt2 = new ReportDataSource("StudentCourse", studentCourse);
-                var rpt3 = new ReportDataSource("StudentAssessment", studentAssessment);
-                var rpt4 = new ReportDataSource("FeeBreakdown", feeBreakdown);
-                var rpt5 = new ReportDataSource("StudentSubjects", studentSubjects);
-                var rpt6 = new ReportDataSource("FeeSummary", feeSummary);
+                var rpt = new ReportDataSource("StudentAccounts", studentAccountDt);
+                var rpt2 = new ReportDataSource("StudentCourse", studentCourseDt);
+                var rpt3 = new ReportDataSource("StudentAssessment", studentAssessmentDT);
+                var rpt4 = new ReportDataSource("FeeBreakdown", feeBreakdownDt);
+                var rpt5 = new ReportDataSource("StudentSubjects", studentSubjectDt);
+                var rpt6 = new ReportDataSource("FeeSummary", feeSummaryDt);
 
 
                 crv.LocalReport.DataSources.Add(rpt);

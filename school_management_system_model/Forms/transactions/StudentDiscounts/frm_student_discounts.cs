@@ -1,4 +1,7 @@
 ﻿using school_management_system_model.Classes;
+using school_management_system_model.Core.Entities.Transaction;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
+using school_management_system_model.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +16,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
 {
     public partial class frm_student_discounts : Form
     {
+        StudentDiscountRepository _studentDiscountRepo = new StudentDiscountRepository();
         public static frm_student_discounts instance;
         public string fullname { get; set; }
         public string idNumber { get; set; }
@@ -20,10 +24,13 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
         public string description { get; set; }
         public string discount_target { get; set; }
         public string discount_percentage { get; set; }
-        public frm_student_discounts()
+        public string Email { get; }
+
+        public frm_student_discounts(string email)
         {
             instance = this;
             InitializeComponent();
+            Email = email;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,16 +45,23 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             loadRecords();
         }
 
-        private void loadRecords()
+        private async void loadRecords()
         {
-            var data = new StudentDiscount();
-            dgv.DataSource = data.loadRecords(tIdNumber.Text);
-            dgv.Columns["id"].Visible = false;
-            dgv.Columns["id_number"].Visible = false;
-            dgv.Columns["discount_target"].HeaderText = "Discount Target";
-            dgv.Columns["code"].HeaderText = "Discount Code";
-            dgv.Columns["description"].HeaderText = "Description";
-            dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
+            var a = await _studentDiscountRepo.GetAllAsync();
+            var studentDiscount = a
+                .Where(x => x.id_number == idNumber).ToList();
+            //var data = new StudentDiscount();
+
+            if (studentDiscount != null)
+            {
+                dgv.DataSource = studentDiscount;
+                dgv.Columns["id"].Visible = false;
+                dgv.Columns["id_number"].Visible = false;
+                dgv.Columns["discount_target"].HeaderText = "Discount Target";
+                dgv.Columns["code"].HeaderText = "Discount Code";
+                dgv.Columns["description"].HeaderText = "Description";
+                dgv.Columns["discount_percentage"].HeaderText = "Discount Percentage";
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -67,32 +81,57 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
                     tDescription.Text = description;
                     tDiscountTarget.Text = discount_target;
                     tDiscountPercentage.Text = discount_percentage;
-                    dateTimePicker1.Select();
                 }
             }
         }
 
-        
 
-        private void kryptonButton2_Click(object sender, EventArgs e)
+
+        private async void kryptonButton2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete discount?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var delete = new StudentDiscount();
-                delete.deleteRecords(Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
-                MessageBox.Show("Discount Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                delete.id = (Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value));
+                await _studentDiscountRepo.DeleteRecords(delete);
+                new Classes.Toastr("Information", "Discount Removed");
+                new ActivityLogger().activityLogger(Email, "Remove discount: " + tStudentName.Text);
                 loadRecords();
             }
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+
+
+        private async void btnSave_Click(object sender, EventArgs e)
         {
-            tFrom.Text = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+            var save = new StudentDiscount
+            {
+                id_number = tIdNumber.Text,
+                code = tCode.Text,
+                discount_target = tDiscountTarget.Text,
+                description = tDescription.Text,
+                discount_percentage = Convert.ToInt32(tDiscountPercentage.Text),
+
+            };
+            await _studentDiscountRepo.AddRecords(save);
+            loadRecords();
+            txtClear();
+            new Classes.Toastr("Success", "Student Discount Added");
+            new ActivityLogger().activityLogger(Email, "Adding discount to student: " + tStudentName.Text);
         }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        private void txtClear()
         {
-            tTo.Text = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            tCode.Clear();
+            tDescription.Clear();
+            tDiscountPercentage.Clear();
+            tDiscountTarget.Clear();
+
+        }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

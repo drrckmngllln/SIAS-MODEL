@@ -1,5 +1,7 @@
 ﻿using Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using school_management_system_model.Classes;
+using school_management_system_model.Data.Repositories.Setings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
     public partial class frm_select_course : KryptonForm
     {
+        CourseRepository _courseRepo = new CourseRepository();
         public frm_select_course()
         {
             InitializeComponent();
@@ -24,18 +27,18 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             loadCourses();
         }
 
-        private void loadCourses()
+        private async void loadCourses()
         {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select code, description, level, campus from courses", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            dgv.DataSource = dt;
+            var courses = await _courseRepo.GetAllAsync();
+            dgv.DataSource = courses.ToList();
+            dgv.Columns["id"].Visible = false;
             dgv.Columns["code"].HeaderText = "Code";
             dgv.Columns["description"].HeaderText = "Description";
-            dgv.Columns["description"].Width = 350;
-            dgv.Columns["campus"].HeaderText = "Campus";
             dgv.Columns["level"].HeaderText = "Level";
+            dgv.Columns["campus"].HeaderText = "Campus";
+            dgv.Columns["department"].HeaderText = "Department";
+            dgv.Columns["max_units"].HeaderText = "Max Units";
+            dgv.Columns["status"].Visible = false;
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)
@@ -66,7 +69,10 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            frm_create_account.instance.course = dgv.CurrentRow.Cells["code"].Value.ToString();
+            var course = (int)dgv.CurrentRow.Cells["id"].Value;
+            var campus = dgv.CurrentRow.Cells["campus"].Value.ToString();
+
+            frm_create_account.instance.course = dgv.CurrentRow.Cells["id"].Value.ToString();
             frm_create_account.instance.campus = dgv.CurrentRow.Cells["campus"].Value.ToString();
             Close();
         }
