@@ -435,7 +435,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                                 }
 
                                 new Classes.Toastr("Success", "Payment Collected");
-                                //await loadRecords();
+                                await loadRecords();
 
                                 // for printing
                                 var frm = new frm_payment_message(tIdNumber.Text, 0);

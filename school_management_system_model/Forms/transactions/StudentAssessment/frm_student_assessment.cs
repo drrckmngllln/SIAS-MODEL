@@ -111,7 +111,7 @@ namespace school_management_system_model.Forms.transactions
                 tuitionFee += Math.Round(Convert.ToDecimal(item.lecture_units), 2);
             }
 
-            int yearLevel = Convert.ToInt32(tYearLevel.Text);
+            //int yearLevel = Convert.ToInt32(tYearLevel.Text);
 
             var tuitionFeeSetup = await _tuitionFeeRepo.GetAllAsync();
             var b = tuitionFeeSetup
