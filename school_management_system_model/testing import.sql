@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `authentication_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1554 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1560 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.authentication_logger: ~1,513 rows (approximately)
 REPLACE INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time`) VALUES
@@ -1974,7 +1974,13 @@ REPLACE INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `tim
 	(1550, 'Finance, Admin ', '', '02-21-2024', '02:55:36 pm'),
 	(1551, 'Finance, Admin ', '', '02-21-2024', '03:21:53 pm'),
 	(1552, 'Manglallan, Derrick ', '', '02-22-2024', '07:53:01 am'),
-	(1553, 'Manglallan, Derrick ', '', '02-22-2024', '07:55:24 am');
+	(1553, 'Manglallan, Derrick ', '', '02-22-2024', '07:55:24 am'),
+	(1554, 'Manglallan, Derrick ', '', '02-22-2024', '08:01:19 am'),
+	(1555, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '08:02:42 am'),
+	(1556, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '08:03:33 am'),
+	(1557, 'Finance, Admin ', '', '02-22-2024', '08:03:52 am'),
+	(1558, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '08:04:29 am'),
+	(1559, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '08:07:16 am');
 
 -- Dumping structure for table model_test_db.campuses
 CREATE TABLE IF NOT EXISTS `campuses` (
@@ -2469,7 +2475,7 @@ CREATE TABLE IF NOT EXISTS `fee_breakdown` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.fee_breakdown: ~0 rows (approximately)
+-- Dumping data for table model_test_db.fee_breakdown: ~2 rows (approximately)
 
 -- Dumping structure for table model_test_db.fee_summary
 CREATE TABLE IF NOT EXISTS `fee_summary` (
@@ -2483,7 +2489,7 @@ CREATE TABLE IF NOT EXISTS `fee_summary` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.fee_summary: ~0 rows (approximately)
+-- Dumping data for table model_test_db.fee_summary: ~3 rows (approximately)
 
 -- Dumping structure for table model_test_db.fee_type
 CREATE TABLE IF NOT EXISTS `fee_type` (
@@ -2751,7 +2757,7 @@ CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
   UNIQUE KEY `reference_no` (`reference_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.statements_of_accounts: ~0 rows (approximately)
+-- Dumping data for table model_test_db.statements_of_accounts: ~2 rows (approximately)
 
 -- Dumping structure for table model_test_db.student_accounts
 CREATE TABLE IF NOT EXISTS `student_accounts` (
@@ -2792,7 +2798,7 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
   UNIQUE KEY `fullname` (`fullname`)
 ) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_accounts: ~0 rows (approximately)
+-- Dumping data for table model_test_db.student_accounts: ~1 rows (approximately)
 
 -- Dumping structure for table model_test_db.student_assessment
 CREATE TABLE IF NOT EXISTS `student_assessment` (
@@ -2806,7 +2812,7 @@ CREATE TABLE IF NOT EXISTS `student_assessment` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_assessment: ~0 rows (approximately)
+-- Dumping data for table model_test_db.student_assessment: ~9 rows (approximately)
 
 -- Dumping structure for table model_test_db.student_course
 CREATE TABLE IF NOT EXISTS `student_course` (
@@ -2822,7 +2828,7 @@ CREATE TABLE IF NOT EXISTS `student_course` (
   UNIQUE KEY `id_number` (`id_number_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_course: ~0 rows (approximately)
+-- Dumping data for table model_test_db.student_course: ~1 rows (approximately)
 
 -- Dumping structure for table model_test_db.student_discounts
 CREATE TABLE IF NOT EXISTS `student_discounts` (
@@ -2878,7 +2884,7 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   KEY `school_year_id` (`school_year_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1045 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_subjects: ~0 rows (approximately)
+-- Dumping data for table model_test_db.student_subjects: ~10 rows (approximately)
 
 -- Dumping structure for table model_test_db.subjects
 CREATE TABLE IF NOT EXISTS `subjects` (
@@ -2964,7 +2970,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `employee_id` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.users: ~6 rows (approximately)
 REPLACE INTO `users` (`id`, `last_name`, `first_name`, `middle_name`, `fullname`, `employee_id`, `email`, `password`, `department`, `access_level`, `is_add`, `is_edit`, `is_delete`, `is_administrator`, `picture`) VALUES
@@ -2972,8 +2978,9 @@ REPLACE INTO `users` (`id`, `last_name`, `first_name`, `middle_name`, `fullname`
 	(6, 'Alan', 'Charity', 'T', 'Alan, Charity T', '437', 'charlan@isap.edu.ph', '$2a$11$DPX8ta.xEPMBuHJf8ml6y.biLFItS0F7Oz901aewnDYleGO3DB5iu', 'Finance', 'Cashier', 1, 1, 0, 0, NULL),
 	(11, 'user', 'number 2', '', 'user, number 2 ', '238273', 'user2', '$2a$11$S/KkAWnxaD5D0aLi9BegROQ2Cf/mKpoUdv/bIb3rKYztyS6xCm81y', 'Registrar', 'Registrar ', 1, 1, 0, 0, NULL),
 	(14, 'Manglallan', 'Derrick', '', 'Manglallan, Derrick ', '353', 'reg.admin', '$2a$11$XK8r3VIwHqcUlO0FLuCJYOPPhjs.y8wiVMmtROIUflp1ikid/bzBu', 'Registrar', '', 0, 0, 0, 1, NULL),
-	(15, 'Finance', 'Admin', '', 'Finance, Admin ', '54645', '123', '$2a$11$WRWua6eTEARx7DWNYNArBu3xPgVi3HheH5fGC6MqRyuWOEFJiej4i', 'Finance', '', 0, 0, 0, 1, NULL),
-	(17, 'A', 'B', '', 'A, B ', '12321', '12', '$2a$11$hLgaZofNBfDx4g5.vHmew.XwZvhqblRMsz9ySoH1RYOgwaLOR1IMW', 'Finance', 'Administrator', 1, 1, 1, 1, NULL);
+	(15, 'Finance', 'Admin', '', 'Finance, Admin ', '54645', 'finance@isap.edu.ph', '$2a$11$jJeBSCqjstMcs/waSmIOAebCSYH3X/T9Nb/Qs302pcGv8rgEN9z8.', 'Finance', 'Administrator', 1, 1, 1, 1, NULL),
+	(17, 'A', 'B', '', 'A, B ', '12321', '12', '$2a$11$hLgaZofNBfDx4g5.vHmew.XwZvhqblRMsz9ySoH1RYOgwaLOR1IMW', 'Finance', 'Administrator', 1, 1, 1, 1, NULL),
+	(18, 'Registrar', 'Administrator', '', 'Registrar, Administrator ', '3333', 'registrar@isap.edu.ph', '$2a$11$7wzqe596afXtWYHmMoywEOdkcDW93nQitKcTTB3S3TsbMzfpq0jSa', 'Registrar', 'Administrator', 1, 1, 1, 1, NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
