@@ -490,9 +490,11 @@
             // 
             // picUserImage
             // 
+            this.picUserImage.Image = global::school_management_system_model.Properties.Resources._1ICT_LOGO_black1;
             this.picUserImage.Location = new System.Drawing.Point(74, 12);
             this.picUserImage.Name = "picUserImage";
             this.picUserImage.Size = new System.Drawing.Size(100, 100);
+            this.picUserImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picUserImage.TabIndex = 0;
             this.picUserImage.TabStop = false;
             // 

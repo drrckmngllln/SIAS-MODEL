@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `authentication_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1552 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1554 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.authentication_logger: ~1,513 rows (approximately)
 REPLACE INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time`) VALUES
@@ -1972,7 +1972,9 @@ REPLACE INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `tim
 	(1548, 'Finance, Admin ', '', '02-21-2024', '02:54:22 pm'),
 	(1549, 'Finance, Admin ', '', '02-21-2024', '02:54:48 pm'),
 	(1550, 'Finance, Admin ', '', '02-21-2024', '02:55:36 pm'),
-	(1551, 'Finance, Admin ', '', '02-21-2024', '03:21:53 pm');
+	(1551, 'Finance, Admin ', '', '02-21-2024', '03:21:53 pm'),
+	(1552, 'Manglallan, Derrick ', '', '02-22-2024', '07:53:01 am'),
+	(1553, 'Manglallan, Derrick ', '', '02-22-2024', '07:55:24 am');
 
 -- Dumping structure for table model_test_db.campuses
 CREATE TABLE IF NOT EXISTS `campuses` (
@@ -2467,12 +2469,7 @@ CREATE TABLE IF NOT EXISTS `fee_breakdown` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.fee_breakdown: ~2 rows (approximately)
-REPLACE INTO `fee_breakdown` (`id`, `id_number_id`, `school_year_id`, `downpayment`, `prelim`, `midterm`, `semi_finals`, `finals`, `total`, `downpayment_original`, `prelim_original`, `midterm_original`, `semi_finals_original`, `finals_original`, `total_original`) VALUES
-	(44, 207, 9, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40),
-	(45, 208, 9, 0.00, 0.00, 0.00, 2473.92, 2668.48, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40),
-	(46, 209, 9, 0.00, 0.00, 5.44, 2668.48, 2668.48, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40),
-	(47, 210, 9, 0.00, 1893.30, 2196.65, 2196.65, 2196.65, 10983.25, 2196.65, 2196.65, 2196.65, 2196.65, 2196.65, 10983.25);
+-- Dumping data for table model_test_db.fee_breakdown: ~0 rows (approximately)
 
 -- Dumping structure for table model_test_db.fee_summary
 CREATE TABLE IF NOT EXISTS `fee_summary` (
@@ -2486,12 +2483,7 @@ CREATE TABLE IF NOT EXISTS `fee_summary` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.fee_summary: ~3 rows (approximately)
-REPLACE INTO `fee_summary` (`id`, `id_number_id`, `school_year_id`, `current_assessment`, `discounts`, `previous_balance`, `current_receivable`) VALUES
-	(26, 207, 9, 13342.38, 0.00, 0.00, 13342.38),
-	(27, 208, 9, 13342.38, 0.00, 0.00, 13342.38),
-	(28, 209, 9, 13342.38, 0.00, 0.00, 13342.38),
-	(29, 210, 9, 10983.24, 0.00, 0.00, 10983.24);
+-- Dumping data for table model_test_db.fee_summary: ~0 rows (approximately)
 
 -- Dumping structure for table model_test_db.fee_type
 CREATE TABLE IF NOT EXISTS `fee_type` (
@@ -2759,22 +2751,7 @@ CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
   UNIQUE KEY `reference_no` (`reference_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.statements_of_accounts: ~2 rows (approximately)
-REPLACE INTO `statements_of_accounts` (`id`, `id_number_id`, `school_year_id`, `date`, `course_id`, `year_level`, `semester`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
-	(159, '207', '9', '02-21-2024', '12', '1', '1', '1000393', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
-	(160, '207', '9', '02-21-2024', '12', '1', '1', '1000394', 'Downpayment', 13342.38, 500.00, 12842.38, 'Finance, Admin '),
-	(161, '207', '9', '02-21-2024', '12', '1', '1', '1000395', 'Prelims', 12842.38, 2668.48, 10173.90, 'Finance, Admin '),
-	(162, '208', '9', '02-21-2024', '12', '1', '1', '1000396', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
-	(163, '208', '9', '02-21-2024', '12', '1', '1', '1000397', 'Downpayment', 13342.38, 500.00, 12842.38, 'Finance, Admin '),
-	(164, '208', '9', '02-21-2024', '12', '1', '1', '1000398', 'Prelim Exam Payment', 12842.38, 2168.48, 10673.90, 'Finance, Admin '),
-	(165, '208', '9', '02-21-2024', '12', '1', '1', '123456', 'Midterm Payment', 10673.90, 2636.96, 8036.94, 'Finance, Admin '),
-	(166, '208', '9', '02-21-2024', '12', '1', '1', '123457', 'Downpayment', 8036.94, 2636.96, 5399.98, 'Finance, Admin '),
-	(167, '209', '9', '02-21-2024', '12', '1', '1', '1000399', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
-	(168, '210', '9', '02-21-2024', '13', '1', '1', '1000400', 'Total Assessment as of: 2023-2024-1', 10983.24, 0.00, 10983.24, ''),
-	(169, '209', '9', '02-21-2024', '12', '1', '1', '100001', 'first down payment', 13342.38, 5000.00, 8342.38, 'Finance, Admin '),
-	(170, '210', '9', '02-21-2024', '13', '1', '1', '100002', 'first downpayment', 10983.24, 2196.65, 8786.59, 'Finance, Admin '),
-	(171, '208', '9', '02-21-2024', '12', '1', '1', '123', 'TF', 5399.98, 2305.44, 3094.54, 'Finance, Admin '),
-	(172, '209', '9', '02-21-2024', '12', '1', '1', '22364', 'Prelim Payment', 8342.38, 3000.00, 5342.38, 'Alan, Charity T');
+-- Dumping data for table model_test_db.statements_of_accounts: ~0 rows (approximately)
 
 -- Dumping structure for table model_test_db.student_accounts
 CREATE TABLE IF NOT EXISTS `student_accounts` (
@@ -2815,12 +2792,7 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
   UNIQUE KEY `fullname` (`fullname`)
 ) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_accounts: ~1 rows (approximately)
-REPLACE INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`, `date_of_admission`) VALUES
-	(207, '2024-1-0001', '2023-2024-1', '9', 'Manglallan, Derrick Manglallan', 'Manglallan', 'Derrick', 'Manglallan', '', '', '', '', '', '', 'Accounting', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '21/02/2024'),
-	(208, '2024-1-0002', '2023-2024-1', '9', 'Alan, Charity ', 'Alan', 'Charity', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '21/02/2024'),
-	(209, '2024-1-0003', '2023-2024-1', '9', 'Pingad, Aron ', 'Pingad', 'Aron', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '21/02/2024'),
-	(210, '2024-1-0004', '2023-2024-1', '9', 'Geron, Richard ', 'Geron', 'Richard', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '21/02/2024');
+-- Dumping data for table model_test_db.student_accounts: ~0 rows (approximately)
 
 -- Dumping structure for table model_test_db.student_assessment
 CREATE TABLE IF NOT EXISTS `student_assessment` (
@@ -2834,41 +2806,7 @@ CREATE TABLE IF NOT EXISTS `student_assessment` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_assessment: ~9 rows (approximately)
-REPLACE INTO `student_assessment` (`id`, `id_number_id`, `school_year_id`, `fee_type`, `amount`, `units`, `computation`) VALUES
-	(529, '207', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
-	(530, '207', '9', 'PE Uniform', 0.00, 1.00, 123.00),
-	(531, '207', '9', 'POWER FEE', 0.00, 1.00, 563.12),
-	(532, '207', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
-	(533, '207', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
-	(534, '207', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
-	(535, '207', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
-	(536, '207', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
-	(537, '207', '9', 'awan lang', 0.00, 1.00, 1213.00),
-	(538, '208', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
-	(539, '208', '9', 'PE Uniform', 0.00, 1.00, 123.00),
-	(540, '208', '9', 'POWER FEE', 0.00, 1.00, 563.12),
-	(541, '208', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
-	(542, '208', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
-	(543, '208', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
-	(544, '208', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
-	(545, '208', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
-	(546, '208', '9', 'awan lang', 0.00, 1.00, 1213.00),
-	(547, '209', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
-	(548, '209', '9', 'PE Uniform', 0.00, 1.00, 123.00),
-	(549, '209', '9', 'POWER FEE', 0.00, 1.00, 563.12),
-	(550, '209', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
-	(551, '209', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
-	(552, '209', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
-	(553, '209', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
-	(554, '209', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
-	(555, '209', '9', 'awan lang', 0.00, 1.00, 1213.00),
-	(556, '210', '9', 'Tuition Fee per Unit', 0.00, 23.00, 7636.00),
-	(557, '210', '9', 'PE Uniform', 0.00, 1.00, 123.00),
-	(558, '210', '9', 'POWER FEE', 0.00, 1.00, 563.12),
-	(559, '210', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
-	(560, '210', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
-	(561, '210', '9', 'awan lang', 0.00, 1.00, 1213.00);
+-- Dumping data for table model_test_db.student_assessment: ~0 rows (approximately)
 
 -- Dumping structure for table model_test_db.student_course
 CREATE TABLE IF NOT EXISTS `student_course` (
@@ -2884,12 +2822,7 @@ CREATE TABLE IF NOT EXISTS `student_course` (
   UNIQUE KEY `id_number` (`id_number_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_course: ~1 rows (approximately)
-REPLACE INTO `student_course` (`id`, `id_number_id`, `course_id`, `campus_id`, `curriculum_id`, `year_level`, `section_id`, `semester`) VALUES
-	(148, '207', '12', '6', '15', '1', '41', 1),
-	(149, '208', '12', '6', '15', '1', '41', 1),
-	(150, '209', '12', '6', '15', '1', '41', 1),
-	(151, '210', '13', '6', '13', '1', '43', 1);
+-- Dumping data for table model_test_db.student_course: ~0 rows (approximately)
 
 -- Dumping structure for table model_test_db.student_discounts
 CREATE TABLE IF NOT EXISTS `student_discounts` (
@@ -2945,47 +2878,7 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   KEY `school_year_id` (`school_year_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1045 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_subjects: ~10 rows (approximately)
-REPLACE INTO `student_subjects` (`id`, `id_number_id`, `unique_id`, `school_year_id`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor_id`, `grade`, `remarks`) VALUES
-	(1006, '207', '2079GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1007, '207', '2079GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1008, '207', '2079GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1009, '207', '2079GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1010, '207', '2079PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1011, '207', '2079NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1012, '207', '2079FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1013, '207', '2079MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1014, '207', '2079NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1015, '207', '2079MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1016, '208', '2089GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1017, '208', '2089GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1018, '208', '2089GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1019, '208', '2089GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1020, '208', '2089PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1021, '208', '2089NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1022, '208', '2089FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1023, '208', '2089MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1024, '208', '2089NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1025, '208', '2089MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1026, '209', '2099GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1027, '209', '2099GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1028, '209', '2099GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1029, '209', '2099GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1030, '209', '2099PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1031, '209', '2099NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1032, '209', '2099FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1033, '209', '2099MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1034, '209', '2099NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1035, '209', '2099MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1036, '210', '2109GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1037, '210', '2109GEC 2', '9', 'GEC 2', 'Readings in Philippine History ', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1038, '210', '2109GEC 3', '9', 'GEC 3', 'The Contemporary World', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1039, '210', '2109GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1040, '210', '2109GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1041, '210', '2109RT 100', '9', 'RT 100', 'Introduction to Radiologic Technology and Health Care', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1042, '210', '2109PATHFit 1', '9', 'PATHFit 1', 'Physical Activities Towards Health & Fitness: Movement Competency Training', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1043, '210', '2109NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
-	(1044, '210', '2109MSCED 201', '9', 'MSCED 201', 'Advisorship Program 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A');
+-- Dumping data for table model_test_db.student_subjects: ~0 rows (approximately)
 
 -- Dumping structure for table model_test_db.subjects
 CREATE TABLE IF NOT EXISTS `subjects` (

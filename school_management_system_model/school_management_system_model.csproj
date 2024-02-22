@@ -1017,6 +1017,7 @@
     <None Include="Resources\warning.png" />
     <None Include="Resources\information.png" />
     <None Include="Resources\check.png" />
+    <None Include="Resources\1ICT LOGO black1.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
