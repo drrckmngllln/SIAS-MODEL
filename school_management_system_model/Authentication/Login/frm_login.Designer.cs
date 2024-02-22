@@ -73,7 +73,6 @@
             this.tUserName.Name = "tUserName";
             this.tUserName.Size = new System.Drawing.Size(240, 16);
             this.tUserName.TabIndex = 1;
-            this.tUserName.Text = "reg.admin";
             // 
             // pictureBox2
             // 
@@ -123,7 +122,6 @@
             this.tPassword.PasswordChar = '●';
             this.tPassword.Size = new System.Drawing.Size(240, 16);
             this.tPassword.TabIndex = 2;
-            this.tPassword.Text = "123";
             this.tPassword.UseSystemPasswordChar = true;
             // 
             // label1
