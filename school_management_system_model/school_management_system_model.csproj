@@ -785,6 +785,9 @@
     <EmbeddedResource Include="Forms\transactions\Cashier\frm_cashier_logs.resx">
       <DependentUpon>frm_cashier_logs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Cashier\frm_select_cashier.resx">
+      <DependentUpon>frm_select_cashier.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_fee_collection.resx">
       <DependentUpon>frm_fee_collection.cs</DependentUpon>
     </EmbeddedResource>
