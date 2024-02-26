@@ -35,7 +35,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tDateSet = new System.Windows.Forms.ComboBox();
             this.btnSelect = new Krypton.Toolkit.KryptonButton();
-            this.label5 = new System.Windows.Forms.Label();
+            this.tTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tTo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -100,7 +100,7 @@
             // 
             this.groupBox1.Controls.Add(this.tDateSet);
             this.groupBox1.Controls.Add(this.btnSelect);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.tTotal);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.tTo);
             this.groupBox1.Controls.Add(this.label4);
@@ -151,15 +151,15 @@
             this.btnSelect.Values.Text = "Select";
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
-            // label5
+            // tTotal
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(113, 210);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 20);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Name:";
+            this.tTotal.AutoSize = true;
+            this.tTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tTotal.Location = new System.Drawing.Point(113, 210);
+            this.tTotal.Name = "tTotal";
+            this.tTotal.Size = new System.Drawing.Size(24, 20);
+            this.tTotal.TabIndex = 7;
+            this.tTotal.Text = "...";
             // 
             // label6
             // 
@@ -253,7 +253,7 @@
         private System.Windows.Forms.TextBox tFrom;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label tName;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label tTotal;
         private System.Windows.Forms.Label label6;
         private Krypton.Toolkit.KryptonButton btnSelect;
         private System.Windows.Forms.ComboBox tDateSet;

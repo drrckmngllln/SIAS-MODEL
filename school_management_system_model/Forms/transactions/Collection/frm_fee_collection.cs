@@ -252,9 +252,9 @@ namespace school_management_system_model.Forms.transactions.Collection
                 particulars = latestParticulars,
                 school_year = school_year_id.id.ToString(),
                 department = Department,
-                credit = latestCredit.ToString(),
-                debit = latestBalance.ToString(),
-                balance = Convert.ToString(latestBalance - latestCredit)
+                debit = latestBalance,
+                credit = latestCredit,
+                balance = latestBalance - latestCredit
             };
             await _cashierLogRepo.AddRecords(cashierLog);
 
@@ -543,6 +543,16 @@ namespace school_management_system_model.Forms.transactions.Collection
         private void timerTime_Tick(object sender, EventArgs e)
         {
             tTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tAmountPayable_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

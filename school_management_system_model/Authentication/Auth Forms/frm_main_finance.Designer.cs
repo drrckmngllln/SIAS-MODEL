@@ -310,6 +310,7 @@
             this.btnNonAssessedCollection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNonAssessedCollection.UseVisualStyleBackColor = true;
             this.btnNonAssessedCollection.Visible = false;
+            this.btnNonAssessedCollection.Click += new System.EventHandler(this.btnNonAssessedCollection_Click);
             // 
             // btnFeeAdjustment
             // 

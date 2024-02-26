@@ -18,19 +18,19 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             using (var con = new MySqlConnection(connection.con()))
             {
                 await con.OpenAsync();
-                var sql = "insert into cashier_log(reference_no, particulars, school_year_id, department, credit, debit, balance, date, name) " +
-                    "values(@1,@2,@4,@5,@6,@7,@8,@9,@10)";
+                var sql = "insert into cashier_log(date, name, reference_no, particulars, school_year_id, department, credit, debit, balance) " +
+                    "values(@1,@2,@3,@4,@5,@6,@7,@8,@9)";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@1", entity.reference_no);
-                    cmd.Parameters.AddWithValue("@2", entity.particulars);
-                    cmd.Parameters.AddWithValue("@4", entity.school_year);
-                    cmd.Parameters.AddWithValue("@5", entity.department);
-                    cmd.Parameters.AddWithValue("@6", entity.credit);
-                    cmd.Parameters.AddWithValue("@7", entity.debit);
-                    cmd.Parameters.AddWithValue("@8", entity.balance);
-                    cmd.Parameters.AddWithValue("@9", entity.date);
-                    cmd.Parameters.AddWithValue("@10", entity.name);
+                    cmd.Parameters.AddWithValue("@1", entity.date);
+                    cmd.Parameters.AddWithValue("@2", entity.name);
+                    cmd.Parameters.AddWithValue("@3", entity.reference_no);
+                    cmd.Parameters.AddWithValue("@4", entity.particulars);
+                    cmd.Parameters.AddWithValue("@5", entity.school_year);
+                    cmd.Parameters.AddWithValue("@6", entity.department);
+                    cmd.Parameters.AddWithValue("@7", entity.credit);
+                    cmd.Parameters.AddWithValue("@8", entity.debit);
+                    cmd.Parameters.AddWithValue("@9", entity.balance);
                     await cmd.ExecuteNonQueryAsync();
                 }
                 await con.CloseAsync();
@@ -64,9 +64,9 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                                 particulars = reader.GetString("particulars"),
                                 school_year = reader.GetString("school_year_id"),
                                 department = reader.GetString("department"),
-                                credit = reader.GetString("credit"),
-                                debit = reader.GetString("debit"),
-                                balance = reader.GetString("balance")
+                                credit = reader.GetDecimal("credit"),
+                                debit = reader.GetDecimal("debit"),
+                                balance = reader.GetDecimal("balance")
                             };
                             list.Add(cashier);
                         }

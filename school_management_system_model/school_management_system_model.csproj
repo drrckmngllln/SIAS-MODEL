@@ -219,6 +219,7 @@
     <Compile Include="Core\Entities\Settings\Instructors.cs" />
     <Compile Include="Core\Entities\Settings\LabFeeSubjects.cs" />
     <Compile Include="Classes\MainRegistrar.cs" />
+    <Compile Include="Core\Entities\Transaction\NonAssessment.cs" />
     <Compile Include="Core\Entities\Transaction\StudentDiscount.cs" />
     <Compile Include="Core\Helpers\PaginationParams.cs" />
     <Compile Include="Core\Entities\Settings\LabFee.cs" />
@@ -245,6 +246,12 @@
     <Compile Include="Forms\transactions\Cashier\frm_select_cashier.Designer.cs">
       <DependentUpon>frm_select_cashier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_non_assess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_non_assess.Designer.cs">
+      <DependentUpon>frm_non_assess.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Data\Interfaces\IGenericRepository.cs" />
     <Compile Include="Core\Extensions\DataTableExtensions.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CampusRepository.cs" />
@@ -268,6 +275,7 @@
     <Compile Include="Infrastructure\Data\Repositories\Transaction\CashierLogRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeBreakdownRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeSummaryRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\NonAssessmentRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StatementOfAccountsRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentAccountRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentAssessmentRepository.cs" />
@@ -791,6 +799,9 @@
     <EmbeddedResource Include="Forms\transactions\Collection\frm_fee_collection.resx">
       <DependentUpon>frm_fee_collection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Collection\frm_non_assess.resx">
+      <DependentUpon>frm_non_assess.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_payment_message.resx">
       <DependentUpon>frm_payment_message.cs</DependentUpon>
     </EmbeddedResource>
@@ -898,6 +909,9 @@
     <EmbeddedResource Include="ToastrNotification\frm_toastr.resx">
       <DependentUpon>frm_toastr.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.Curriculums.datasource" />
     <None Include="Properties\DataSources\school_management_system_model.Classes.StudentAccount.datasource" />

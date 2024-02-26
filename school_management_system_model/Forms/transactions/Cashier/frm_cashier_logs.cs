@@ -34,10 +34,13 @@ namespace school_management_system_model.Forms.transactions.Cashier
             DateTime endDate;
             var a = DateTime.TryParseExact(tFrom.Text, "yyyy-MM-dd", null, DateTimeStyles.None, out startDate);
             var b = DateTime.TryParseExact(tTo.Text, "yyyy-MM-dd", null, DateTimeStyles.None, out endDate);
+
+            decimal total = 0;
+
             if (tName.Text == "ALL")
             {
                 var logs = await _cashierLogRepo.GetAllAsync();
-                var logsWithDate = logs.Where(x => x.date <= startDate && x.date <= endDate).ToList();
+                var logsWithDate = logs.Where(x => x.date >= startDate && x.date <= endDate).ToList();
                 dgv.DataSource = logsWithDate;
                 dgv.Columns["id"].Visible = false;
                 dgv.Columns["date"].Visible = false;
@@ -49,6 +52,13 @@ namespace school_management_system_model.Forms.transactions.Cashier
                 dgv.Columns["credit"].HeaderText = "Credit";
                 dgv.Columns["debit"].HeaderText = "Debit";
                 dgv.Columns["balance"].HeaderText = "Balance";
+
+                foreach (var item in logsWithDate)
+                {
+                    total += Convert.ToDecimal(item.credit);
+                }
+
+                tTotal.Text = total.ToString();
             }
             else
             {
@@ -107,6 +117,7 @@ namespace school_management_system_model.Forms.transactions.Cashier
             if (CashierName != null)
             {
                 tName.Text = CashierName;
+                await loadRecords();
             }
         }
     }
