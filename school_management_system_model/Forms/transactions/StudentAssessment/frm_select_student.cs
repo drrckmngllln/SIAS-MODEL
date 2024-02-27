@@ -178,7 +178,7 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void tSearch_TextChanged(object sender, EventArgs e)
+        private async void tSearch_TextChanged(object sender, EventArgs e)
         {
             if (this.Text == "Select Student")
             {
@@ -226,7 +226,7 @@ namespace school_management_system_model.Forms.transactions
                 }
                 else if (tSearch.Text.Length == 0)
                 {
-                    loadRecords();
+                    await loadRecords();
                 }
             }
             else if (this.Text == "Select School Year")

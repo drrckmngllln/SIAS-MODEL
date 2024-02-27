@@ -438,7 +438,8 @@ namespace school_management_system_model.Forms.transactions.Collection
                                 await loadRecords();
 
                                 // for printing
-                                var frm = new frm_payment_message(tIdNumber.Text, 0);
+                                var frm = new frm_payment_message(tIdNumber.Text, 0, tCashier.Text, tAmount.Text, "0");
+                                frm.Text = "Fee Collection";
                                 frm.Show();
                             }
                         }
@@ -463,6 +464,10 @@ namespace school_management_system_model.Forms.transactions.Collection
                                     var studentAccounts = await _studentAccountRepo.GetAllAsync();
                                     var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
+                                    //display latest soa balance
+                                    var lastRow = dgv.Rows.Count - 1;
+                                    var remainingBalance = dgv.Rows[lastRow].Cells["balance"].ToString();
+
                                     if (student.status == "Accounting")
                                     {
                                         await _studentAccountRepo.StudentOfficiallyEnroll(student.id.ToString(), "Officially Enrolled for School Year: " + tSchoolYear.Text);
@@ -471,7 +476,8 @@ namespace school_management_system_model.Forms.transactions.Collection
                                     new Classes.Toastr("Success", "Payment Collected");
                                     await loadRecords();
 
-                                    var frm = new frm_payment_message(tIdNumber.Text, change);
+                                    var frm = new frm_payment_message(tIdNumber.Text, change, tCashier.Text, tAmount.Text, remainingBalance);
+                                    frm.Text = "Fee Collection";
                                     frm.ShowDialog();
 
                                 }
@@ -551,6 +557,11 @@ namespace school_management_system_model.Forms.transactions.Collection
         }
 
         private void tAmountPayable_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

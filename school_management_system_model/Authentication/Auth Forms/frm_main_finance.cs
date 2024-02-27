@@ -240,7 +240,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnNonAssessedCollection_Click(object sender, EventArgs e)
         {
-            var frm = new frm_non_assess();
+            var frm = new frm_non_assessed_collection(Email);
             frm.TopLevel= false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

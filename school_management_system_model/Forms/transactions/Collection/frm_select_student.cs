@@ -57,10 +57,25 @@ namespace school_management_system_model.Forms.transactions.Collection
                     .Take(paging.pageSize)
                     .ToList();
 
-                //var con = new MySqlConnection(connection.con());
-                //var da = new MySqlDataAdapter("select id_number, fullname from student_accounts", con);
-                //var dt = new DataTable();
-                //da.Fill(dt);
+                dgv.DataSource = student;
+                dgv.Columns["id_number"].HeaderText = "Student Number";
+                dgv.Columns["id_number"].Width = 150;
+                dgv.Columns["fullname"].HeaderText = "Student Name";
+            }
+            else if (this.Text == "Non Assessed Collection")
+            {
+                paging.pageSize = 10;
+                var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                var student = studentAccounts
+                    .Select(x => new
+                    {
+                        x.id_number,
+                        x.fullname
+                    })
+                    .Skip(paging.pageSize * (paging.pageNumber - 1))
+                    .Take(paging.pageSize)
+                    .ToList();
+
                 dgv.DataSource = student;
                 dgv.Columns["id_number"].HeaderText = "Student Number";
                 dgv.Columns["id_number"].Width = 150;
@@ -88,6 +103,11 @@ namespace school_management_system_model.Forms.transactions.Collection
             else if (this.Text == "Fee Collection")
             {
                 frm_fee_collection.instance.id_number = selectIdNumber();
+                Close();
+            }
+            else if (this.Text == "Non Assessed Collection")
+            {
+                frm_non_assessed_collection.instance.id_number = selectIdNumber();
                 Close();
             }
         }

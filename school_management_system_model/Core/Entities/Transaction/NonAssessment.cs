@@ -17,10 +17,7 @@ namespace school_management_system_model.Core.Entities.Transaction
         public string semester { get; set; }
         public int reference_no { get; set; }
         public string particulars { get; set; }
-        public decimal debit { get; set; }
-
-        public decimal credit { get; set; }
-        public decimal balance { get; set; }
+        public decimal amount { get; set; }
         public string cashier_in_charge { get; set; }
        
     }

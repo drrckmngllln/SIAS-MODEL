@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `access_level` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.access_level: ~1 rows (approximately)
+-- Dumping data for table model_test_db.access_level: ~0 rows (approximately)
 REPLACE INTO `access_level` (`id`, `access_level`, `office`) VALUES
 	(1, 'Administrator', '');
 
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `activity_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=304 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=308 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.activity_logger: ~298 rows (approximately)
+-- Dumping data for table model_test_db.activity_logger: ~278 rows (approximately)
 REPLACE INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`, `time`) VALUES
 	(1, 'Registrar, Administrator ', 'Administrator', 'Add: Bachelor of Science in Nursing 2021-2022', '00-16-2024', '03:00:55 pm'),
 	(2, 'Registrar, Administrator ', 'Administrator', 'Edit: Bachelor of Science in Nursing Curriculum 2021-2022', '01-16-2024', '03:01:13 pm'),
@@ -346,7 +346,11 @@ REPLACE INTO `activity_logger` (`id`, `name`, `access_level`, `activity`, `date`
 	(300, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0002', '34-21-2024', '11:34:26 am'),
 	(301, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0003', '19-21-2024', '01:19:26 pm'),
 	(302, 'Manglallan, Derrick ', '', 'Section Subject Select All', '22-21-2024', '01:22:20 pm'),
-	(303, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0004', '22-21-2024', '01:22:44 pm');
+	(303, 'Manglallan, Derrick ', '', 'Student Enrollment: 2024-1-0004', '22-21-2024', '01:22:44 pm'),
+	(304, 'Registrar, Administrator ', 'Administrator', 'Student Enrollment: 2024-1-0002', '33-22-2024', '02:33:26 pm'),
+	(305, 'Registrar, Administrator ', 'Administrator', 'Student Enrollment: 2024-1-0001', '47-22-2024', '03:47:12 pm'),
+	(306, 'Registrar, Administrator ', 'Administrator', 'Student Enrollment: 2024-1-0002', '52-22-2024', '03:52:05 pm'),
+	(307, 'Registrar, Administrator ', 'Administrator', 'Student Enrollment: 2024-1-0003', '06-22-2024', '04:06:56 pm');
 
 -- Dumping structure for table model_test_db.admission_schedule
 CREATE TABLE IF NOT EXISTS `admission_schedule` (
@@ -372,43 +376,37 @@ CREATE TABLE IF NOT EXISTS `assessment_breakdown` (
   `fee_type` varchar(50) NOT NULL,
   `amount` decimal(18,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=256 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.assessment_breakdown: ~23 rows (approximately)
+-- Dumping data for table model_test_db.assessment_breakdown: ~27 rows (approximately)
 REPLACE INTO `assessment_breakdown` (`id`, `id_number_id`, `school_year_id`, `fee_type`, `amount`) VALUES
-	(187, '207', '9', 'Tuition Fee per Unit', 8632.00),
-	(188, '207', '9', 'PE Uniform', 123.00),
-	(189, '207', '9', 'POWER FEE', 563.12),
-	(190, '207', '9', 'Rad Tech Laboratory', 468.24),
-	(191, '207', '9', 'Physics Laboratory', 648.90),
-	(192, '207', '9', 'Nursing Laboratory', 246.00),
-	(193, '207', '9', 'dasasdasdasd', 1213.00),
-	(194, '207', '9', 'Website Maintenance Fee', 235.12),
-	(195, '207', '9', 'awan lang', 1213.00),
-	(196, '208', '9', 'Tuition Fee per Unit', 432.00),
-	(197, '208', '9', 'PE Uniform', 123.00),
-	(198, '208', '9', 'POWER FEE', 563.12),
-	(199, '208', '9', 'Rad Tech Laboratory', 468.24),
-	(200, '208', '9', 'Physics Laboratory', 648.90),
-	(201, '208', '9', 'Nursing Laboratory', 246.00),
-	(202, '208', '9', 'dasasdasdasd', 1213.00),
-	(203, '208', '9', 'Website Maintenance Fee', 235.12),
-	(204, '208', '9', 'awan lang', 1213.00),
-	(205, '209', '9', 'Tuition Fee per Unit', 632.00),
-	(206, '209', '9', 'PE Uniform', 123.00),
-	(207, '209', '9', 'POWER FEE', 563.12),
-	(208, '209', '9', 'Rad Tech Laboratory', 468.24),
-	(209, '209', '9', 'Physics Laboratory', 648.90),
-	(210, '209', '9', 'Nursing Laboratory', 246.00),
-	(211, '209', '9', 'dasasdasdasd', 1213.00),
-	(212, '209', '9', 'Website Maintenance Fee', 235.12),
-	(213, '209', '9', 'awan lang', 1213.00),
-	(214, '210', '9', 'Tuition Fee per Unit', 5136.00),
-	(215, '210', '9', 'PE Uniform', 123.00),
-	(216, '210', '9', 'POWER FEE', 563.12),
-	(217, '210', '9', 'dasasdasdasd', 1213.00),
-	(218, '210', '9', 'Website Maintenance Fee', 235.12),
-	(219, '210', '9', 'awan lang', 1213.00);
+	(229, '216', '9', 'Tuition Fee per Unit', 0.00),
+	(230, '216', '9', 'PE Uniform', 0.00),
+	(231, '216', '9', 'POWER FEE', 0.00),
+	(232, '216', '9', 'Rad Tech Laboratory', 0.00),
+	(233, '216', '9', 'Physics Laboratory', 0.00),
+	(234, '216', '9', 'Nursing Laboratory', 0.00),
+	(235, '216', '9', 'dasasdasdasd', 0.00),
+	(236, '216', '9', 'Website Maintenance Fee', 0.00),
+	(237, '216', '9', 'awan lang', 0.00),
+	(238, '217', '9', 'Tuition Fee per Unit', 0.00),
+	(239, '217', '9', 'PE Uniform', 0.00),
+	(240, '217', '9', 'POWER FEE', 0.00),
+	(241, '217', '9', 'Rad Tech Laboratory', 0.00),
+	(242, '217', '9', 'Physics Laboratory', 0.00),
+	(243, '217', '9', 'Nursing Laboratory', 0.00),
+	(244, '217', '9', 'dasasdasdasd', 0.00),
+	(245, '217', '9', 'Website Maintenance Fee', 0.00),
+	(246, '217', '9', 'awan lang', 0.00),
+	(247, '218', '9', 'Tuition Fee per Unit', 2932.00),
+	(248, '218', '9', 'PE Uniform', 123.00),
+	(249, '218', '9', 'POWER FEE', 563.12),
+	(250, '218', '9', 'Rad Tech Laboratory', 468.24),
+	(251, '218', '9', 'Physics Laboratory', 648.90),
+	(252, '218', '9', 'Nursing Laboratory', 246.00),
+	(253, '218', '9', 'dasasdasdasd', 1213.00),
+	(254, '218', '9', 'Website Maintenance Fee', 235.12),
+	(255, '218', '9', 'awan lang', 1213.00);
 
 -- Dumping structure for table model_test_db.authentication_logger
 CREATE TABLE IF NOT EXISTS `authentication_logger` (
@@ -418,9 +416,9 @@ CREATE TABLE IF NOT EXISTS `authentication_logger` (
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1560 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1690 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.authentication_logger: ~1,513 rows (approximately)
+-- Dumping data for table model_test_db.authentication_logger: ~1,517 rows (approximately)
 REPLACE INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `time`) VALUES
 	(1, 'Manglallan, Derrick Daniel', 'Administrator', '01-08-2024', '08:35:02 am'),
 	(2, 'Alan, Charity T', 'Cashier', '01-08-2024', '09:28:40 am'),
@@ -1980,7 +1978,137 @@ REPLACE INTO `authentication_logger` (`id`, `name`, `access_level`, `date`, `tim
 	(1556, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '08:03:33 am'),
 	(1557, 'Finance, Admin ', '', '02-22-2024', '08:03:52 am'),
 	(1558, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '08:04:29 am'),
-	(1559, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '08:07:16 am');
+	(1559, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '08:07:16 am'),
+	(1560, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '02:31:58 pm'),
+	(1561, 'Finance, Admin ', 'Administrator', '02-22-2024', '02:33:30 pm'),
+	(1562, 'Finance, Admin ', 'Administrator', '02-22-2024', '02:34:41 pm'),
+	(1563, 'Finance, Admin ', 'Administrator', '02-22-2024', '02:36:23 pm'),
+	(1564, 'Finance, Admin ', 'Administrator', '02-22-2024', '02:47:51 pm'),
+	(1565, 'Finance, Admin ', 'Administrator', '02-22-2024', '02:50:34 pm'),
+	(1566, 'Finance, Admin ', 'Administrator', '02-22-2024', '02:50:59 pm'),
+	(1567, 'Finance, Admin ', 'Administrator', '02-22-2024', '02:51:16 pm'),
+	(1568, 'Finance, Admin ', 'Administrator', '02-22-2024', '02:59:44 pm'),
+	(1569, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:03:20 pm'),
+	(1570, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:03:53 pm'),
+	(1571, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:05:27 pm'),
+	(1572, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:06:26 pm'),
+	(1573, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:07:06 pm'),
+	(1574, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:09:38 pm'),
+	(1575, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:12:15 pm'),
+	(1576, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:12:21 pm'),
+	(1577, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:14:10 pm'),
+	(1578, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:14:55 pm'),
+	(1579, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:15:04 pm'),
+	(1580, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:19:10 pm'),
+	(1581, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:19:16 pm'),
+	(1582, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:42:51 pm'),
+	(1583, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:43:56 pm'),
+	(1584, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:46:00 pm'),
+	(1585, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:46:31 pm'),
+	(1586, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:47:17 pm'),
+	(1587, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:48:28 pm'),
+	(1588, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:49:59 pm'),
+	(1589, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '03:50:34 pm'),
+	(1590, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:52:08 pm'),
+	(1591, 'Finance, Admin ', 'Administrator', '02-22-2024', '03:59:33 pm'),
+	(1592, 'Finance, Admin ', 'Administrator', '02-22-2024', '04:05:48 pm'),
+	(1593, 'Registrar, Administrator ', 'Administrator', '02-22-2024', '04:06:26 pm'),
+	(1594, 'Finance, Admin ', 'Administrator', '02-22-2024', '04:06:59 pm'),
+	(1595, 'Finance, Admin ', 'Administrator', '02-22-2024', '04:17:22 pm'),
+	(1596, 'Finance, Admin ', 'Administrator', '02-22-2024', '04:18:41 pm'),
+	(1597, 'Finance, Admin ', 'Administrator', '02-22-2024', '04:19:35 pm'),
+	(1598, 'Registrar, Administrator ', 'Administrator', '02-23-2024', '10:00:19 am'),
+	(1599, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:32:35 am'),
+	(1600, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:35:54 am'),
+	(1601, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:37:13 am'),
+	(1602, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:37:34 am'),
+	(1603, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:38:08 am'),
+	(1604, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:38:58 am'),
+	(1605, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:39:27 am'),
+	(1606, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:42:26 am'),
+	(1607, 'Finance, Admin ', 'Administrator', '02-23-2024', '11:44:55 am'),
+	(1608, 'Finance, Admin ', 'Administrator', '02-23-2024', '01:33:38 pm'),
+	(1609, 'Finance, Admin ', 'Administrator', '02-23-2024', '01:36:34 pm'),
+	(1610, 'Finance, Admin ', 'Administrator', '02-23-2024', '01:36:58 pm'),
+	(1611, 'Finance, Admin ', 'Administrator', '02-23-2024', '01:51:47 pm'),
+	(1612, 'Finance, Admin ', 'Administrator', '02-23-2024', '01:56:12 pm'),
+	(1613, 'Finance, Admin ', 'Administrator', '02-23-2024', '01:56:49 pm'),
+	(1614, 'Finance, Admin ', 'Administrator', '02-23-2024', '01:57:16 pm'),
+	(1615, 'Finance, Admin ', 'Administrator', '02-23-2024', '01:57:57 pm'),
+	(1616, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:05:50 am'),
+	(1617, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:10:38 am'),
+	(1618, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:16:45 am'),
+	(1619, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:19:35 am'),
+	(1620, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:21:26 am'),
+	(1621, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:25:58 am'),
+	(1622, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:31:43 am'),
+	(1623, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:33:00 am'),
+	(1624, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:36:08 am'),
+	(1625, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:36:42 am'),
+	(1626, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:37:03 am'),
+	(1627, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:37:45 am'),
+	(1628, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:38:10 am'),
+	(1629, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:38:49 am'),
+	(1630, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:43:19 am'),
+	(1631, 'Finance, Admin ', 'Administrator', '02-26-2024', '10:44:42 am'),
+	(1632, 'Finance, Admin ', 'Administrator', '02-26-2024', '11:03:13 am'),
+	(1633, 'Finance, Admin ', 'Administrator', '02-26-2024', '02:52:35 pm'),
+	(1634, 'Finance, Admin ', 'Administrator', '02-26-2024', '04:09:18 pm'),
+	(1635, 'Finance, Admin ', 'Administrator', '02-26-2024', '04:12:39 pm'),
+	(1636, 'Finance, Admin ', 'Administrator', '02-26-2024', '04:13:27 pm'),
+	(1637, 'Finance, Admin ', 'Administrator', '02-26-2024', '04:15:46 pm'),
+	(1638, 'Finance, Admin ', 'Administrator', '02-26-2024', '04:20:33 pm'),
+	(1639, 'Finance, Admin ', 'Administrator', '02-27-2024', '08:39:28 am'),
+	(1640, 'Finance, Admin ', 'Administrator', '02-27-2024', '08:41:08 am'),
+	(1641, 'Finance, Admin ', 'Administrator', '02-27-2024', '08:43:48 am'),
+	(1642, 'Finance, Admin ', 'Administrator', '02-27-2024', '09:03:32 am'),
+	(1643, 'Finance, Admin ', 'Administrator', '02-27-2024', '09:05:25 am'),
+	(1644, 'Finance, Admin ', 'Administrator', '02-27-2024', '09:07:15 am'),
+	(1645, 'Finance, Admin ', 'Administrator', '02-27-2024', '09:24:06 am'),
+	(1646, 'Finance, Admin ', 'Administrator', '02-27-2024', '09:27:13 am'),
+	(1647, 'Finance, Admin ', 'Administrator', '02-27-2024', '09:49:58 am'),
+	(1648, 'Finance, Admin ', 'Administrator', '02-27-2024', '09:51:19 am'),
+	(1649, 'Finance, Admin ', 'Administrator', '02-27-2024', '10:02:03 am'),
+	(1650, 'Finance, Admin ', 'Administrator', '02-27-2024', '10:03:01 am'),
+	(1651, 'Finance, Admin ', 'Administrator', '02-27-2024', '10:08:47 am'),
+	(1652, 'Finance, Admin ', 'Administrator', '02-27-2024', '10:09:27 am'),
+	(1653, 'Finance, Admin ', 'Administrator', '02-27-2024', '10:10:21 am'),
+	(1654, 'Finance, Admin ', 'Administrator', '02-27-2024', '10:13:23 am'),
+	(1655, 'Finance, Admin ', 'Administrator', '02-27-2024', '10:30:28 am'),
+	(1656, 'Finance, Admin ', 'Administrator', '02-27-2024', '10:31:52 am'),
+	(1657, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:11:06 am'),
+	(1658, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:12:23 am'),
+	(1659, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:15:52 am'),
+	(1660, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:18:24 am'),
+	(1661, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:19:29 am'),
+	(1662, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:20:57 am'),
+	(1663, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:24:47 am'),
+	(1664, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:25:28 am'),
+	(1665, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:28:00 am'),
+	(1666, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:30:25 am'),
+	(1667, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:30:45 am'),
+	(1668, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:31:04 am'),
+	(1669, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:31:22 am'),
+	(1670, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:31:38 am'),
+	(1671, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:32:40 am'),
+	(1672, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:34:15 am'),
+	(1673, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:34:40 am'),
+	(1674, 'Finance, Admin ', 'Administrator', '02-27-2024', '11:37:37 am'),
+	(1675, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:19:49 pm'),
+	(1676, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:21:38 pm'),
+	(1677, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:22:18 pm'),
+	(1678, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:23:49 pm'),
+	(1679, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:27:46 pm'),
+	(1680, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:29:15 pm'),
+	(1681, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:36:17 pm'),
+	(1682, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:52:15 pm'),
+	(1683, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:53:13 pm'),
+	(1684, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:54:59 pm'),
+	(1685, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:55:18 pm'),
+	(1686, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:58:39 pm'),
+	(1687, 'Finance, Admin ', 'Administrator', '02-27-2024', '03:59:08 pm'),
+	(1688, 'Finance, Admin ', 'Administrator', '02-27-2024', '04:21:01 pm'),
+	(1689, 'Finance, Admin ', 'Administrator', '02-27-2024', '04:22:20 pm');
 
 -- Dumping structure for table model_test_db.campuses
 CREATE TABLE IF NOT EXISTS `campuses` (
@@ -2013,17 +2141,13 @@ CREATE TABLE IF NOT EXISTS `cashier_log` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `reference_no` (`reference_no`),
   KEY `school_year_id` (`school_year_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.cashier_log: ~0 rows (approximately)
+-- Dumping data for table model_test_db.cashier_log: ~2 rows (approximately)
 REPLACE INTO `cashier_log` (`id`, `date`, `name`, `reference_no`, `particulars`, `school_year_id`, `department`, `credit`, `debit`, `balance`) VALUES
-	(1, '02-21-2024', 'Finanace, Admin', '123123123', 'Downpayment', '9', 'Finance', 500.00, 13342.38, 12842.38),
-	(2, '02-21-2024', 'Finance, Admin ', '123456', 'Prelim Exam Payment', '9', 'Finance', 2168.48, 12842.38, 10673.90),
-	(4, '02-21-2024', 'Finance, Admin ', '123457', 'Downpayment', '9', 'Finance', 2636.96, 8036.94, 5399.98),
-	(5, '02-21-2024', 'Finance, Admin ', '100001', 'first down payment', '9', 'Finance', 5000.00, 13342.38, 8342.38),
-	(6, '02-21-2024', 'Finance, Admin ', '100002', 'first downpayment', '9', 'Finance', 2196.65, 10983.24, 8786.59),
-	(7, '02-21-2024', 'Finance, Admin ', '123', 'TF', '9', 'Finance', 2305.44, 5399.98, 3094.54),
-	(8, '02-21-2024', 'Alan, Charity T', '22364', 'Prelim Payment', '9', 'Finance', 3000.00, 8342.38, 5342.38);
+	(20, '2024-02-26 10:20:17.365389', 'Finance, Admin ', '332454', 'Prelims Payment', '9', 'Finance', 2168.48, 12842.38, 10673.90),
+	(21, '2024-02-26 10:21:50.748629', 'Finance, Admin ', '4444444', 'Prelims', '9', 'Finance', 2636.96, 10673.90, 8036.94),
+	(22, '2024-02-27 15:56:57.222314', 'Finance, Admin ', '1', 'gsgsgsgs', '9', 'Finance', 2642.40, 3163.02, 520.62);
 
 -- Dumping structure for table model_test_db.courses
 CREATE TABLE IF NOT EXISTS `courses` (
@@ -2039,7 +2163,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.courses: ~7 rows (approximately)
+-- Dumping data for table model_test_db.courses: ~6 rows (approximately)
 REPLACE INTO `courses` (`id`, `code`, `description`, `level_id`, `campus_id`, `department_id`, `max_units`, `status`) VALUES
 	(10, 'BSN', 'Bachelor of Science in Nursing', 7, 6, '11', 50, 'Active'),
 	(11, 'BSCA', 'Bachelor of Science in Customs Administration', 7, 7, '10', 50, 'Active'),
@@ -2104,7 +2228,7 @@ CREATE TABLE IF NOT EXISTS `curriculum_subjects` (
   UNIQUE KEY `curriculumIdCode` (`uid`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1400 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.curriculum_subjects: ~311 rows (approximately)
+-- Dumping data for table model_test_db.curriculum_subjects: ~301 rows (approximately)
 REPLACE INTO `curriculum_subjects` (`id`, `uid`, `curriculum_id`, `year_level`, `semester`, `code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `total_hrs_per_week`) VALUES
 	(699, '13GEC 1', '13', '1', '1', 'GEC 1', 'Understanding the Self', '3', '3', '0', 'None', '3'),
 	(700, '13GEC 2', '13', '1', '1', 'GEC 2', 'Readings in Philippine History ', '3', '3', '0', 'None', '3'),
@@ -2473,9 +2597,13 @@ CREATE TABLE IF NOT EXISTS `fee_breakdown` (
   `finals_original` decimal(20,2) DEFAULT NULL,
   `total_original` decimal(20,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table model_test_db.fee_breakdown: ~2 rows (approximately)
+REPLACE INTO `fee_breakdown` (`id`, `id_number_id`, `school_year_id`, `downpayment`, `prelim`, `midterm`, `semi_finals`, `finals`, `total`, `downpayment_original`, `prelim_original`, `midterm_original`, `semi_finals_original`, `finals_original`, `total_original`) VALUES
+	(49, 216, 9, 0.00, 0.00, 0.00, 0.00, 0.00, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40),
+	(50, 217, 9, 0.00, 0.00, 0.00, 0.00, 0.00, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40),
+	(51, 218, 9, 0.00, 0.00, 2305.44, 2668.48, 2668.48, 13342.40, 2668.48, 2668.48, 2668.48, 2668.48, 2668.48, 13342.40);
 
 -- Dumping structure for table model_test_db.fee_summary
 CREATE TABLE IF NOT EXISTS `fee_summary` (
@@ -2487,9 +2615,13 @@ CREATE TABLE IF NOT EXISTS `fee_summary` (
   `previous_balance` decimal(20,2) unsigned NOT NULL DEFAULT '0.00',
   `current_receivable` decimal(20,2) unsigned NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.fee_summary: ~3 rows (approximately)
+-- Dumping data for table model_test_db.fee_summary: ~2 rows (approximately)
+REPLACE INTO `fee_summary` (`id`, `id_number_id`, `school_year_id`, `current_assessment`, `discounts`, `previous_balance`, `current_receivable`) VALUES
+	(31, 216, 9, 13342.38, 0.00, 0.00, 13342.38),
+	(32, 217, 9, 13342.38, 0.00, 0.00, 13342.38),
+	(33, 218, 9, 13342.38, 0.00, 0.00, 13342.38);
 
 -- Dumping structure for table model_test_db.fee_type
 CREATE TABLE IF NOT EXISTS `fee_type` (
@@ -2513,7 +2645,7 @@ CREATE TABLE IF NOT EXISTS `instructors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.instructors: ~3 rows (approximately)
+-- Dumping data for table model_test_db.instructors: ~2 rows (approximately)
 REPLACE INTO `instructors` (`id`, `fullname`, `department_id`, `position`) VALUES
 	(4, 'No Instructor Assigned', 10, 'N/A'),
 	(6, 'Buguina, Melenio', 10, 'Teacher I'),
@@ -2533,7 +2665,7 @@ CREATE TABLE IF NOT EXISTS `lab_fee_setup` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.lab_fee_setup: ~3 rows (approximately)
+-- Dumping data for table model_test_db.lab_fee_setup: ~4 rows (approximately)
 REPLACE INTO `lab_fee_setup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
 	(11, 'Laboratory FeeNursing Laboratory6711', 'Laboratory Fee', 'Nursing Laboratory', '6', '7', '1', '1', 123.00),
 	(12, 'Laboratory FeePhysics Laboratory6711', 'Laboratory Fee', 'Physics Laboratory', '6', '7', '1', '1', 324.45),
@@ -2550,7 +2682,7 @@ CREATE TABLE IF NOT EXISTS `lab_fee_subjects` (
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.lab_fee_subjects: ~3 rows (approximately)
+-- Dumping data for table model_test_db.lab_fee_subjects: ~2 rows (approximately)
 REPLACE INTO `lab_fee_subjects` (`id`, `uid`, `lab_fee_id`, `subject_code`, `descriptive_title`) VALUES
 	(8, '13NAT SCI 2', 13, 'NAT SCI 2', 'Zoology'),
 	(9, '12NAT SCI 2', 12, 'NAT SCI 2', 'Zoology'),
@@ -2587,10 +2719,42 @@ CREATE TABLE IF NOT EXISTS `miscellaneous_fee_setup` (
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.miscellaneous_fee_setup: ~2 rows (approximately)
+-- Dumping data for table model_test_db.miscellaneous_fee_setup: ~3 rows (approximately)
 REPLACE INTO `miscellaneous_fee_setup` (`id`, `uid`, `category`, `description`, `campus_id`, `level_id`, `year_level`, `semester`, `amount`) VALUES
 	(25, 'Miscellaneous Fee6PE Uniform711', 'Miscellaneous Fee', 'PE Uniform', '6', '7', '1', '1', 123.00),
 	(28, 'Miscellaneous Fee6POWER FEE711', 'Miscellaneous Fee', 'POWER FEE', '6', '7', '1', '1', 563.12);
+
+-- Dumping structure for table model_test_db.non_assessment_soa
+CREATE TABLE IF NOT EXISTS `non_assessment_soa` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_number_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `school_year_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `course_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `year_level` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `semester` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `reference_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `particulars` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `amount` decimal(20,2) NOT NULL DEFAULT '0.00',
+  `cashier_in_charge` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `reference_no` (`reference_no`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+
+-- Dumping data for table model_test_db.non_assessment_soa: ~11 rows (approximately)
+REPLACE INTO `non_assessment_soa` (`id`, `id_number_id`, `school_year_id`, `date`, `course_id`, `year_level`, `semester`, `reference_no`, `particulars`, `amount`, `cashier_in_charge`) VALUES
+	(190, '216', '9', '02-27-2024', '12', '1', '1', '12131234', 'Friendship camp', 500.00, 'Finance, Admin '),
+	(191, '218', '9', '02-27-2024', '12', '1', '1', '222323', 'asdasdasd', 220.00, 'Finance, Admin '),
+	(192, '217', '9', '02-27-2024', '12', '1', '1', '22232', 'askdjhasldkjfhlkjhf', 500.00, 'Finance, Admin '),
+	(193, '216', '9', '02-27-2024', '12', '1', '1', '222222', '112qsdasdasdwed', 600.00, 'Finance, Admin '),
+	(195, '216', '9', '02-27-2024', '12', '1', '1', '222323123', 'ID Lost', 250.00, 'Finance, Admin '),
+	(196, '216', '9', '02-27-2024', '12', '1', '1', '1232165', '7364637asdhgajshgd', 600.00, 'Finance, Admin '),
+	(197, '217', '9', '02-27-2024', '12', '1', '1', '1232166', '7364637asdhgajshgd', 600.00, 'Finance, Admin '),
+	(198, '218', '9', '02-27-2024', '12', '1', '1', '2232324', 'asdasdasdasd', 650.00, 'Finance, Admin '),
+	(199, '218', '9', '02-27-2024', '12', '1', '1', '2', 'departmental shirt', 200.00, 'Finance, Admin '),
+	(200, '217', '9', '02-27-2024', '12', '1', '1', '3', 'wala lang', 100.00, 'Finance, Admin '),
+	(201, '218', '9', '02-27-2024', '12', '1', '1', '4', 'wala lang', 100.00, 'Finance, Admin '),
+	(202, '218', '9', '2024-02-Tuesday', '12', '1', '1', '9', 'uniform', 1000.00, 'Finance, Admin ');
 
 -- Dumping structure for table model_test_db.other_fees
 CREATE TABLE IF NOT EXISTS `other_fees` (
@@ -2622,9 +2786,9 @@ CREATE TABLE IF NOT EXISTS `reference_number_setup` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.reference_number_setup: ~1 rows (approximately)
+-- Dumping data for table model_test_db.reference_number_setup: ~0 rows (approximately)
 REPLACE INTO `reference_number_setup` (`id`, `reference_number`) VALUES
-	(1, 1000400);
+	(1, 1000404);
 
 -- Dumping structure for table model_test_db.school_year
 CREATE TABLE IF NOT EXISTS `school_year` (
@@ -2662,10 +2826,10 @@ CREATE TABLE IF NOT EXISTS `sections` (
   UNIQUE KEY `unique_id` (`unique_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.sections: ~9 rows (approximately)
+-- Dumping data for table model_test_db.sections: ~8 rows (approximately)
 REPLACE INTO `sections` (`id`, `unique_id`, `section_code`, `course`, `year_level`, `section`, `semester`, `number_of_students`, `max_number_of_students`, `status`, `remarks`) VALUES
 	(1, 'BSCA-1-ABSCA11', 'BSCA-1-A', 'BSCA', 1, 'A', '1', 0, 50, 'Available', 'Regular'),
-	(41, 'BSPT-1-ABSPT11', 'BSPT-1-A', 'BSPT', 1, 'A', '1', 29, 50, 'Available', 'Regular'),
+	(41, 'BSPT-1-ABSPT11', 'BSPT-1-A', 'BSPT', 1, 'A', '1', 33, 50, 'Available', 'Regular'),
 	(42, 'BSPT-1-BBSPT11', 'BSPT-1-B', 'BSPT', 1, 'B', '1', 0, 50, 'Available', 'Regular'),
 	(43, 'BSRT-1-ABSRT11', 'BSRT-1-A', 'BSRT', 1, 'A', '1', 7, 50, 'Available', 'Regular'),
 	(44, 'BSCOE-1-ABSCOE11', 'BSCOE-1-A', 'BSCOE', 1, 'A', '1', 12, 50, 'Available', 'Regular'),
@@ -2697,7 +2861,7 @@ CREATE TABLE IF NOT EXISTS `section_subjects` (
   KEY `section_code_id` (`section_code`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=361 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.section_subjects: ~29 rows (approximately)
+-- Dumping data for table model_test_db.section_subjects: ~34 rows (approximately)
 REPLACE INTO `section_subjects` (`id`, `unique_id`, `section_code`, `curriculum_id`, `year_level`, `semester`, `subject_code`, `descriptive_title`, `total_units`, `lecture_units`, `lab_units`, `pre_requisite`, `time`, `day`, `room`, `instructor`) VALUES
 	(322, 'BSPT-1-BBSPT11GEC 1', 'BSPT-1-B', '15', '1', '1', 'GEC 1', 'Understanding the Self', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
 	(323, 'BSPT-1-BBSPT11GEC 8', 'BSPT-1-B', '15', '1', '1', 'GEC 8', 'Ethics', 3.0, 3.0, 0.0, 'None', 'Not Set', 'Not Set', 'Not Set', 'Not Set'),
@@ -2755,9 +2919,27 @@ CREATE TABLE IF NOT EXISTS `statements_of_accounts` (
   `cashier_in_charge` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `reference_no` (`reference_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.statements_of_accounts: ~2 rows (approximately)
+-- Dumping data for table model_test_db.statements_of_accounts: ~16 rows (approximately)
+REPLACE INTO `statements_of_accounts` (`id`, `id_number_id`, `school_year_id`, `date`, `course_id`, `year_level`, `semester`, `reference_no`, `particulars`, `debit`, `credit`, `balance`, `cashier_in_charge`) VALUES
+	(174, '216', '9', '02-22-2024', '12', '1', '1', '1000402', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
+	(175, '216', '9', '02-22-2024', '12', '1', '1', '11223', 'Downpayment', 13342.38, 500.00, 12842.38, 'Finance, Admin '),
+	(176, '216', '9', '02-22-2024', '12', '1', '1', '11224', 'Prelims', 12842.38, 2168.48, 10673.90, 'Finance, Admin '),
+	(177, '216', '9', '02-22-2024', '12', '1', '1', '11225', 'Prelim Exam', 10673.90, 2336.96, 8336.94, 'Finance, Admin '),
+	(178, '217', '9', '02-22-2024', '12', '1', '1', '1000403', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
+	(179, '217', '9', '02-22-2024', '12', '1', '1', '44356', 'Downpayment', 13342.38, 500.00, 12842.38, 'Finance, Admin '),
+	(180, '217', '9', '02-22-2024', '12', '1', '1', '44357', 'Regular Payment', 12842.38, 2168.48, 10673.90, 'Finance, Admin '),
+	(181, '217', '9', '02-22-2024', '12', '1', '1', '44358', 'Anonymous payment', 10673.90, 5000.00, 5673.90, 'Finance, Admin '),
+	(182, '217', '9', '02-22-2024', '12', '1', '1', '44359', 'All Payments', 5673.90, 3000.00, 2673.90, 'Finance, Admin '),
+	(183, '216', '9', '02-22-2024', '12', '1', '1', '778635', 'qweqweqwe', 8336.94, 5000.00, 3336.94, 'Finance, Admin '),
+	(184, '218', '9', '02-22-2024', '12', '1', '1', '1000404', 'Total Assessment as of: 2023-2024-1', 13342.38, 0.00, 13342.38, ''),
+	(185, '218', '9', '02-22-2024', '12', '1', '1', '223333', 'Downpayment', 13342.38, 500.00, 12842.38, 'Finance, Admin '),
+	(186, '216', '9', '02-23-2024', '12', '1', '1', '12154', 'asdasd', 3336.94, 173.92, 3163.02, 'Finance, Admin '),
+	(187, '217', '9', '02-26-2024', '12', '1', '1', '1232323', 'askljdhaskdjh', 2673.90, 1000.00, 1673.90, 'Finance, Admin '),
+	(188, '218', '9', '02-26-2024', '12', '1', '1', '332454', 'Prelims Payment', 12842.38, 2168.48, 10673.90, 'Finance, Admin '),
+	(189, '218', '9', '02-26-2024', '12', '1', '1', '4444444', 'Prelims', 10673.90, 2636.96, 8036.94, 'Finance, Admin '),
+	(190, '216', '9', '02-27-2024', '12', '1', '1', '1', 'gsgsgsgs', 3163.02, 2642.40, 520.62, 'Finance, Admin ');
 
 -- Dumping structure for table model_test_db.student_accounts
 CREATE TABLE IF NOT EXISTS `student_accounts` (
@@ -2796,9 +2978,13 @@ CREATE TABLE IF NOT EXISTS `student_accounts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number`),
   UNIQUE KEY `fullname` (`fullname`)
-) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=219 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_accounts: ~1 rows (approximately)
+-- Dumping data for table model_test_db.student_accounts: ~2 rows (approximately)
+REPLACE INTO `student_accounts` (`id`, `id_number`, `sy_enrolled`, `school_year`, `fullname`, `last_name`, `first_name`, `middle_name`, `gender`, `civil_status`, `date_of_birth`, `place_of_birth`, `nationality`, `religion`, `status`, `contact_no`, `email`, `elem`, `jhs`, `shs`, `elem_year`, `jhs_year`, `shs_year`, `mother_name`, `mother_no`, `father_name`, `father_no`, `home_address`, `m_occupation`, `f_occupation`, `type_of_student`, `date_of_admission`) VALUES
+	(216, '2024-1-0001', '2023-2024-1', '9', 'Manglallan, Derrick ', 'Manglallan', 'Derrick', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '22/02/2024'),
+	(217, '2024-1-0002', '2023-2024-1', '9', 'Buguina, Melenio ', 'Buguina', 'Melenio', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '22/02/2024'),
+	(218, '2024-1-0003', '2023-2024-1', '9', 'Pingad, Airon ', 'Pingad', 'Airon', '', '', '', '', '', '', '', 'Officially Enrolled for School Year: 2023-2024-1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'Freshmen', '22/02/2024');
 
 -- Dumping structure for table model_test_db.student_assessment
 CREATE TABLE IF NOT EXISTS `student_assessment` (
@@ -2810,9 +2996,37 @@ CREATE TABLE IF NOT EXISTS `student_assessment` (
   `units` decimal(20,2) NOT NULL DEFAULT '0.00',
   `computation` decimal(20,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=598 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_assessment: ~9 rows (approximately)
+-- Dumping data for table model_test_db.student_assessment: ~27 rows (approximately)
+REPLACE INTO `student_assessment` (`id`, `id_number_id`, `school_year_id`, `fee_type`, `amount`, `units`, `computation`) VALUES
+	(571, '216', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
+	(572, '216', '9', 'PE Uniform', 0.00, 1.00, 123.00),
+	(573, '216', '9', 'POWER FEE', 0.00, 1.00, 563.12),
+	(574, '216', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
+	(575, '216', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
+	(576, '216', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
+	(577, '216', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
+	(578, '216', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
+	(579, '216', '9', 'awan lang', 0.00, 1.00, 1213.00),
+	(580, '217', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
+	(581, '217', '9', 'PE Uniform', 0.00, 1.00, 123.00),
+	(582, '217', '9', 'POWER FEE', 0.00, 1.00, 563.12),
+	(583, '217', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
+	(584, '217', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
+	(585, '217', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
+	(586, '217', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
+	(587, '217', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
+	(588, '217', '9', 'awan lang', 0.00, 1.00, 1213.00),
+	(589, '218', '9', 'Tuition Fee per Unit', 0.00, 26.00, 8632.00),
+	(590, '218', '9', 'PE Uniform', 0.00, 1.00, 123.00),
+	(591, '218', '9', 'POWER FEE', 0.00, 1.00, 563.12),
+	(592, '218', '9', 'Rad Tech Laboratory', 0.00, 2.00, 468.24),
+	(593, '218', '9', 'Physics Laboratory', 0.00, 2.00, 648.90),
+	(594, '218', '9', 'Nursing Laboratory', 0.00, 2.00, 246.00),
+	(595, '218', '9', 'dasasdasdasd', 0.00, 1.00, 1213.00),
+	(596, '218', '9', 'Website Maintenance Fee', 0.00, 1.00, 235.12),
+	(597, '218', '9', 'awan lang', 0.00, 1.00, 1213.00);
 
 -- Dumping structure for table model_test_db.student_course
 CREATE TABLE IF NOT EXISTS `student_course` (
@@ -2826,9 +3040,13 @@ CREATE TABLE IF NOT EXISTS `student_course` (
   `semester` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_number` (`id_number_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_course: ~1 rows (approximately)
+-- Dumping data for table model_test_db.student_course: ~2 rows (approximately)
+REPLACE INTO `student_course` (`id`, `id_number_id`, `course_id`, `campus_id`, `curriculum_id`, `year_level`, `section_id`, `semester`) VALUES
+	(157, '216', '12', '6', '15', '1', '41', 1),
+	(158, '217', '12', '6', '15', '1', '41', 1),
+	(159, '218', '12', '6', '15', '1', '41', 1);
 
 -- Dumping structure for table model_test_db.student_discounts
 CREATE TABLE IF NOT EXISTS `student_discounts` (
@@ -2882,9 +3100,40 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   KEY `instructor_id` (`instructor_id`),
   KEY `id_number_id` (`id_number_id`),
   KEY `school_year_id` (`school_year_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1045 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1085 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.student_subjects: ~10 rows (approximately)
+-- Dumping data for table model_test_db.student_subjects: ~30 rows (approximately)
+REPLACE INTO `student_subjects` (`id`, `id_number_id`, `unique_id`, `school_year_id`, `subject_code`, `descriptive_title`, `pre_requisite`, `total_units`, `lecture_units`, `lab_units`, `time`, `day`, `room`, `instructor_id`, `grade`, `remarks`) VALUES
+	(1055, '216', '2169GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1056, '216', '2169GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1057, '216', '2169GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1058, '216', '2169GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1059, '216', '2169PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1060, '216', '2169NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1061, '216', '2169FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1062, '216', '2169MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1063, '216', '2169NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1064, '216', '2169MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1065, '217', '2179GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1066, '217', '2179GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1067, '217', '2179GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1068, '217', '2179GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1069, '217', '2179PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1070, '217', '2179NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1071, '217', '2179FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1072, '217', '2179MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1073, '217', '2179NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1074, '217', '2179MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1075, '218', '2189GEC 1', '9', 'GEC 1', 'Understanding the Self', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1076, '218', '2189GEC 8', '9', 'GEC 8', 'Ethics', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1077, '218', '2189GEC 7', '9', 'GEC 7', 'Science, Technology and Society', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1078, '218', '2189GEC 5', '9', 'GEC 5', 'Purposive Communication', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1079, '218', '2189PE 1', '9', 'PE 1', 'Physical Education 1 (wellness & fitness)', 'None', '2.0', '2.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1080, '218', '2189NSTP 1', '9', 'NSTP 1', 'National Service Training Program 1', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1081, '218', '2189FIL 1', '9', 'FIL 1', 'Panitikang Filipino', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1082, '218', '2189MT 100', '9', 'MT 100', 'Medical Terminology', 'None', '3.0', '3.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1083, '218', '2189NAT SCI 2', '9', 'NAT SCI 2', 'Zoology', 'None', '5.0', '3.0', '2.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A'),
+	(1084, '218', '2189MSCED 201', '9', 'MSCED 201', 'Advisorship Time 1', 'None', '0.0', '0.0', '0.0', 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'No Grade', 'N/A');
 
 -- Dumping structure for table model_test_db.subjects
 CREATE TABLE IF NOT EXISTS `subjects` (
@@ -2972,7 +3221,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `employee_id` (`employee_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table model_test_db.users: ~6 rows (approximately)
+-- Dumping data for table model_test_db.users: ~7 rows (approximately)
 REPLACE INTO `users` (`id`, `last_name`, `first_name`, `middle_name`, `fullname`, `employee_id`, `email`, `password`, `department`, `access_level`, `is_add`, `is_edit`, `is_delete`, `is_administrator`, `picture`) VALUES
 	(5, 'Pingad', 'Airon', 'Jim', 'Pingad, Airon Jim', '465', 'apingad@isap.edu.ph', '$2a$11$UcXUgEDrguxicXmZHDc8W.j1HXpp4EsZcfyWLV68S3ABSpdp8mFy.', '', 'Finance User', 1, 0, 0, 0, NULL),
 	(6, 'Alan', 'Charity', 'T', 'Alan, Charity T', '437', 'charlan@isap.edu.ph', '$2a$11$DPX8ta.xEPMBuHJf8ml6y.biLFItS0F7Oz901aewnDYleGO3DB5iu', 'Finance', 'Cashier', 1, 1, 0, 0, NULL),

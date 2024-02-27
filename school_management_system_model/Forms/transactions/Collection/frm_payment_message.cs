@@ -20,11 +20,16 @@ namespace school_management_system_model.Forms.transactions.Collection
     {
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         StatementOfAccountsRepository _statementOfAccountRepo = new StatementOfAccountsRepository();
-        public frm_payment_message(string idNumber, decimal change)
+        private readonly string paymentTendered;
+        private readonly string remainingBalance;
+
+        public frm_payment_message(string idNumber, decimal change, string cashier, string paymentTendered, string remainingBalance)
         {
             InitializeComponent();
             IdNumber = idNumber;
             Change = change;
+            this.paymentTendered = paymentTendered;
+            this.remainingBalance = remainingBalance;
         }
 
         public string IdNumber { get; }
@@ -45,37 +50,72 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private async void loadRecords()
         {
-            var studentAccounts = await _studentAccountRepo.GetAllAsync();
-            var student = studentAccounts.Where(x => x.id_number == IdNumber).ToList();
-            var studentAccountDt = student.ToDataTable();
+            if (this.Text == "Fee Collection")
+            {
+                //var studentAccounts = await _studentAccountRepo.GetAllAsync();
+                //var student = studentAccounts.Where(x => x.id_number == IdNumber).ToList();
+                //var studentAccountDt = student.ToDataTable();
 
-            var statementOfAccounts = await _statementOfAccountRepo.GetAllAsync();
-            var soa = statementOfAccounts.Where(x => x.id_number == student.FirstOrDefault().id.ToString()).ToList();
-            var soaDt = soa.ToDataTable();
-
-
-            crv.LocalReport.DataSources.Clear();
-            var rpt = new ReportDataSource("StudentAccounts", studentAccountDt);
-
-            var rpt2 = new ReportDataSource("StatementOfAccounts", soaDt);
-
-            crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_receipt.rdlc";
-
-            var changeParams = new ReportParameterCollection();
-            changeParams.Add(new ReportParameter("ChangeParams", tChange.Text));
-
-            crv.LocalReport.SetParameters(changeParams);
-            crv.LocalReport.DataSources.Add(rpt);
-            crv.LocalReport.DataSources.Add(rpt2);
+                //var statementOfAccounts = await _statementOfAccountRepo.GetAllAsync();
+                //var soa = statementOfAccounts.Where(x => x.id_number == student.FirstOrDefault().id.ToString()).ToList();
+                //var soaDt = soa.ToDataTable();
 
 
+                //crv.LocalReport.DataSources.Clear();
+                //var rpt = new ReportDataSource("StudentAccounts", studentAccountDt);
+
+                //var rpt2 = new ReportDataSource("StatementOfAccounts", soaDt);
+
+                crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_receipt.rdlc";
+
+                var changeParams = new ReportParameterCollection();
+                changeParams.Add(new ReportParameter("ChangeParams", tChange.Text));
+
+                var paymentTenderedParams = new ReportParameterCollection();
+                paymentTenderedParams.Add(new ReportParameter("PaymentTenderedParams", paymentTendered));
+
+                var remainingBalanceParams = new ReportParameterCollection();
+                remainingBalanceParams.Add(new ReportParameter("RemainingBalanceParams", remainingBalance));
+
+                crv.LocalReport.SetParameters(changeParams);
+                crv.LocalReport.SetParameters(paymentTenderedParams);
+                crv.LocalReport.SetParameters(changeParams);
+                //crv.LocalReport.DataSources.Add(rpt);
+                //crv.LocalReport.DataSources.Add(rpt2);
 
 
-            crv.SetDisplayMode(DisplayMode.PrintLayout);
-            crv.ZoomMode = ZoomMode.Percent;
-            crv.ZoomPercent = 100;
-            await Task.Delay(1000);
-            crv.RefreshReport();
+
+
+                crv.SetDisplayMode(DisplayMode.PrintLayout);
+                crv.ZoomMode = ZoomMode.Percent;
+                crv.ZoomPercent = 100;
+                await Task.Delay(1000);
+                crv.RefreshReport();
+            }
+            else if (this.Text == "Non Assessed Collection")
+            {
+                crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_receipt.rdlc";
+
+                var changeParams = new ReportParameterCollection();
+                changeParams.Add(new ReportParameter("ChangeParams", tChange.Text));
+
+                var paymentTenderedParams = new ReportParameterCollection();
+                paymentTenderedParams.Add(new ReportParameter("PaymentTenderedParams", paymentTendered));
+
+                var remainingBalanceParams = new ReportParameterCollection();
+                remainingBalanceParams.Add(new ReportParameter("RemainingBalanceParams", remainingBalance));
+
+                crv.LocalReport.SetParameters(changeParams);
+                crv.LocalReport.SetParameters(paymentTenderedParams);
+                crv.LocalReport.SetParameters(changeParams);
+
+                crv.SetDisplayMode(DisplayMode.PrintLayout);
+                crv.ZoomMode = ZoomMode.Percent;
+                crv.ZoomPercent = 100;
+                await Task.Delay(1000);
+                crv.RefreshReport();
+            }
+            
         }
 
         private void kryptonButton1_Click(object sender, EventArgs e)

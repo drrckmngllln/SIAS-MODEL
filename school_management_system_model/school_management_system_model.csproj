@@ -252,6 +252,12 @@
     <Compile Include="Forms\transactions\Collection\frm_non_assess.Designer.cs">
       <DependentUpon>frm_non_assess.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_non_assessed_collection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\Collection\frm_non_assessed_collection.Designer.cs">
+      <DependentUpon>frm_non_assessed_collection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Data\Interfaces\IGenericRepository.cs" />
     <Compile Include="Core\Extensions\DataTableExtensions.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CampusRepository.cs" />
@@ -801,6 +807,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_non_assess.resx">
       <DependentUpon>frm_non_assess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\Collection\frm_non_assessed_collection.resx">
+      <DependentUpon>frm_non_assessed_collection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\Collection\frm_payment_message.resx">
       <DependentUpon>frm_payment_message.cs</DependentUpon>
