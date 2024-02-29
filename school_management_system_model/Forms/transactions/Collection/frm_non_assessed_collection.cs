@@ -172,13 +172,30 @@ namespace school_management_system_model.Forms.transactions.Collection
                 change = collection - payable;
                 await SoaCollection();
 
+                txtClear();
+
                 //Payment printing
-                var frm = new frm_payment_message(tIdNumber.Text, change, tCashier.Text, tAmount.Text, "0");
+                var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text, change.ToString(), tCashier.Text, "");
                 frm.Text = "Non Assessed Collection";
                 frm.ShowDialog();
 
             }
           
+        }
+
+        private void txtClear()
+        {
+            tIdNumber.Clear();
+            tStudentName.Text = "";
+            tCourse.Text = "";
+            tYearLevel.Text = "";
+            tSemester.Text = "";
+            tCampus.Text = "";
+            tStatus.Text = "";
+            tAmount.Clear();
+            tAmountPayable.Clear();
+            tParticulars.Clear();
+            btnSelectStudent.Select();
         }
     }
 }

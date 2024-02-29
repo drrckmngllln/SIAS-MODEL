@@ -28,7 +28,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         public string Department { get; set; }
 
-
+       
         public static frm_fee_collection instance;
         private readonly string _email;
 
@@ -42,7 +42,6 @@ namespace school_management_system_model.Forms.transactions.Collection
             InitializeComponent();
             _email = email;
         }
-
         private async Task loadCashier()
         {
             var users = await _userRepo.GetAllAsync();
@@ -83,9 +82,16 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
             else
             {
-                OrNumber = Convert.ToInt32(tOrNumberSet.Text);
-                tOrNumber.Text = OrNumber.ToString();
-                tOrNumberSet.Clear();
+                try
+                {
+                    OrNumber = Convert.ToInt32(tOrNumberSet.Text);
+                    tOrNumber.Text = OrNumber.ToString();
+                    tOrNumberSet.Clear();
+                }
+                catch(Exception ex)
+                {
+                    new Classes.Toastr("Warning", ex.Message);
+                }
             }
         }
 
@@ -435,12 +441,15 @@ namespace school_management_system_model.Forms.transactions.Collection
                                 }
 
                                 new Classes.Toastr("Success", "Payment Collected");
-                                await loadRecords();
+                               
 
                                 // for printing
-                                var frm = new frm_payment_message(tIdNumber.Text, 0, tCashier.Text, tAmount.Text, "0");
+                                var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text, 
+                                    change.ToString(), tCashier.Text, "...");
                                 frm.Text = "Fee Collection";
                                 frm.Show();
+
+                                await loadRecords();
                             }
                         }
                         else
@@ -474,11 +483,12 @@ namespace school_management_system_model.Forms.transactions.Collection
                                     }
 
                                     new Classes.Toastr("Success", "Payment Collected");
-                                    await loadRecords();
-
-                                    var frm = new frm_payment_message(tIdNumber.Text, change, tCashier.Text, tAmount.Text, remainingBalance);
+                                    
+                                    var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text,
+                                    change.ToString(), tCashier.Text, "...");
                                     frm.Text = "Fee Collection";
                                     frm.ShowDialog();
+                                    await loadRecords();
 
                                 }
                             }

@@ -194,7 +194,7 @@
             this.tAmount.Location = new System.Drawing.Point(91, 14);
             this.tAmount.Name = "tAmount";
             this.tAmount.Size = new System.Drawing.Size(248, 21);
-            this.tAmount.TabIndex = 171;
+            this.tAmount.TabIndex = 2;
             this.tAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnConfirmPayment
@@ -213,7 +213,7 @@
             this.btnConfirmPayment.StateCommon.Border.Rounding = 10F;
             this.btnConfirmPayment.StateCommon.Border.Width = 2;
             this.btnConfirmPayment.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmPayment.TabIndex = 172;
+            this.btnConfirmPayment.TabIndex = 5;
             this.btnConfirmPayment.Values.Text = "Confirm Payment";
             this.btnConfirmPayment.Click += new System.EventHandler(this.btnConfirmPayment_Click);
             // 
@@ -373,7 +373,7 @@
             this.tIdNumber.Location = new System.Drawing.Point(102, 19);
             this.tIdNumber.Name = "tIdNumber";
             this.tIdNumber.Size = new System.Drawing.Size(205, 21);
-            this.tIdNumber.TabIndex = 179;
+            this.tIdNumber.TabIndex = 1;
             // 
             // label13
             // 
@@ -392,7 +392,7 @@
             this.tParticulars.Multiline = true;
             this.tParticulars.Name = "tParticulars";
             this.tParticulars.Size = new System.Drawing.Size(248, 69);
-            this.tParticulars.TabIndex = 178;
+            this.tParticulars.TabIndex = 4;
             // 
             // label15
             // 
@@ -470,7 +470,7 @@
             this.tAmountPayable.Location = new System.Drawing.Point(91, 66);
             this.tAmountPayable.Name = "tAmountPayable";
             this.tAmountPayable.Size = new System.Drawing.Size(248, 21);
-            this.tAmountPayable.TabIndex = 179;
+            this.tAmountPayable.TabIndex = 3;
             this.tAmountPayable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tAmountPayable.TextChanged += new System.EventHandler(this.tAmountPayable_TextChanged);
             // 

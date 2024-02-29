@@ -2,16 +2,8 @@
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Management.Instrumentation;
 
 namespace school_management_system_model.Forms.transactions.Collection
 {

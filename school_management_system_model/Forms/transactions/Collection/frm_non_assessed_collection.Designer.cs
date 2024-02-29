@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tCampus = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSelectStudent = new System.Windows.Forms.Button();
@@ -242,7 +242,7 @@
             this.tIdNumber.Location = new System.Drawing.Point(102, 19);
             this.tIdNumber.Name = "tIdNumber";
             this.tIdNumber.Size = new System.Drawing.Size(271, 21);
-            this.tIdNumber.TabIndex = 179;
+            this.tIdNumber.TabIndex = 1;
             // 
             // label13
             // 
@@ -270,7 +270,7 @@
             this.tAmountPayable.Location = new System.Drawing.Point(114, 56);
             this.tAmountPayable.Name = "tAmountPayable";
             this.tAmountPayable.Size = new System.Drawing.Size(282, 21);
-            this.tAmountPayable.TabIndex = 181;
+            this.tAmountPayable.TabIndex = 3;
             this.tAmountPayable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label12
@@ -289,7 +289,7 @@
             this.tAmount.Location = new System.Drawing.Point(114, 29);
             this.tAmount.Name = "tAmount";
             this.tAmount.Size = new System.Drawing.Size(282, 21);
-            this.tAmount.TabIndex = 171;
+            this.tAmount.TabIndex = 2;
             this.tAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnConfirmPayment
@@ -308,7 +308,7 @@
             this.btnConfirmPayment.StateCommon.Border.Rounding = 10F;
             this.btnConfirmPayment.StateCommon.Border.Width = 2;
             this.btnConfirmPayment.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmPayment.TabIndex = 172;
+            this.btnConfirmPayment.TabIndex = 5;
             this.btnConfirmPayment.Values.Text = "Confirm Payment";
             this.btnConfirmPayment.Click += new System.EventHandler(this.btnConfirmPayment_Click);
             // 
@@ -319,7 +319,7 @@
             this.tParticulars.Multiline = true;
             this.tParticulars.Name = "tParticulars";
             this.tParticulars.Size = new System.Drawing.Size(282, 69);
-            this.tParticulars.TabIndex = 178;
+            this.tParticulars.TabIndex = 4;
             // 
             // pictureBox1
             // 
@@ -488,14 +488,14 @@
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(11, 19);
             this.dgv.Name = "dgv";
