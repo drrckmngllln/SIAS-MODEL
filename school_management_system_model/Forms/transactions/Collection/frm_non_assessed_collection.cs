@@ -1,4 +1,5 @@
 ﻿using school_management_system_model.Core.Entities.Transaction;
+using school_management_system_model.Core.Helpers;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
@@ -156,31 +157,46 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private async void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-            if (tAmount.Text == "" || tParticulars.Text == "" || tAmountPayable.Text == "" || tOrNumber.Text == "")
+            try
             {
-                new Classes.Toastr("Error", "Missing Fields");
+                if (tAmount.Text == "" || tParticulars.Text == "" || tAmountPayable.Text == "" || tOrNumber.Text == "")
+                {
+                    new Classes.Toastr("Error", "Missing Fields");
+                }
+                else
+                {
+                    decimal collection = 0;
+                    decimal payable = 0;
+                    decimal change = 0;
+
+                    collection = Convert.ToDecimal(tAmount.Text);
+                    payable = Convert.ToDecimal(tAmountPayable.Text);
+
+                    if (collection < payable)
+                    {
+                        new Classes.Toastr("Warning", "Collection must be greater or equal to payable");
+                    }
+                    else
+                    {
+                        change = collection - payable;
+                        await SoaCollection();
+
+                        string numberToWords = NumberToWords.ConvertToWords(Convert.ToInt32(payable)) + " Pesos Only";
+
+                        //Payment printing
+                        var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text, change.ToString(), tCashier.Text, numberToWords);
+                        frm.Text = "Non Assessed Collection";
+                        frm.ShowDialog();
+
+                        txtClear();
+                    }
+                }
             }
-            else 
+            catch (Exception ex)
             {
-                decimal collection = 0;
-                decimal payable = 0;
-                decimal change = 0;
-
-                collection = Convert.ToDecimal(tAmount.Text);
-                payable = Convert.ToDecimal(tAmountPayable.Text);
-
-                change = collection - payable;
-                await SoaCollection();
-
-                txtClear();
-
-                //Payment printing
-                var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text, change.ToString(), tCashier.Text, "");
-                frm.Text = "Non Assessed Collection";
-                frm.ShowDialog();
-
+                new Classes.Toastr("Warning", ex.Message);
             }
-          
+
         }
 
         private void txtClear()

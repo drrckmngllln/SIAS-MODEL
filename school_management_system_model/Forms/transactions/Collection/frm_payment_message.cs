@@ -20,27 +20,27 @@ namespace school_management_system_model.Forms.transactions.Collection
     {
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         StatementOfAccountsRepository _statementOfAccountRepo = new StatementOfAccountsRepository();
-        private readonly string name;
-        private readonly string orNumber;
-        private readonly string date;
-        private readonly string cashAmount;
-        private readonly string amountPaid;
-        private readonly string change;
-        private readonly string cashierInCharge;
-        private readonly string amountInWords;
+        private readonly string _name;
+        private readonly string _orNumber;
+        private readonly string _date;
+        private readonly string _cashAmount;
+        private readonly string _amountPaid;
+        private readonly string _change;
+        private readonly string _cashierInCharge;
+        private readonly string _amountInWords;
 
         public frm_payment_message(string name, string orNumber, string date, string cashAmount, string amountPaid, string change,
             string cashierInCharge, string amountInWords)
         {
             InitializeComponent();
-            this.name = name;
-            this.orNumber = orNumber;
-            this.date = date;
-            this.cashAmount = cashAmount;
-            this.amountPaid = amountPaid;
-            this.change = change;
-            this.cashierInCharge = cashierInCharge;
-            this.amountInWords = amountInWords;
+            _name = name;
+            _orNumber = orNumber;
+            _date = date;
+            _cashAmount = cashAmount;
+            _amountPaid = amountPaid;
+            _change = change;
+            _cashierInCharge = cashierInCharge;
+            _amountInWords = amountInWords;
         }
 
         private void frm_payment_message_Load(object sender, EventArgs e)
@@ -53,52 +53,40 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private void loadChange()
         {
-            tChange.Text = change.ToString();
+            tChange.Text = _change.ToString();
         }
 
         private async void loadRecords()
         {
             if (this.Text == "Fee Collection")
             {
-                //var studentAccounts = await _studentAccountRepo.GetAllAsync();
-                //var student = studentAccounts.Where(x => x.id_number == IdNumber).ToList();
-                //var studentAccountDt = student.ToDataTable();
-
-                //var statementOfAccounts = await _statementOfAccountRepo.GetAllAsync();
-                //var soa = statementOfAccounts.Where(x => x.id_number == student.FirstOrDefault().id.ToString()).ToList();
-                //var soaDt = soa.ToDataTable();
-
-
                 crv.LocalReport.DataSources.Clear();
-                //var rpt = new ReportDataSource("StudentAccounts", studentAccountDt);
-
-                //var rpt2 = new ReportDataSource("StatementOfAccounts", soaDt);
 
                 crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_receipt.rdlc";
 
                 var nameParams = new ReportParameterCollection();
-                nameParams.Add(new ReportParameter("Name", name));
+                nameParams.Add(new ReportParameter("Name", _name));
 
                 var orNumberParams = new ReportParameterCollection();
-                orNumberParams.Add(new ReportParameter("OrNumber", orNumber));
+                orNumberParams.Add(new ReportParameter("OrNumber", _orNumber));
 
                 var datParams = new ReportParameterCollection();
-                datParams.Add(new ReportParameter("Date", date));
+                datParams.Add(new ReportParameter("Date", _date));
 
                 var cashAmountParams = new ReportParameterCollection();
-                cashAmountParams.Add(new ReportParameter("CashAmount", cashAmount));
+                cashAmountParams.Add(new ReportParameter("CashAmount", _cashAmount));
 
                 var amountPaidParams = new ReportParameterCollection();
-                amountPaidParams.Add(new ReportParameter("AmountPaid", amountPaid));
+                amountPaidParams.Add(new ReportParameter("AmountPaid", _amountPaid));
 
                 var changeParams = new ReportParameterCollection();
-                changeParams.Add(new ReportParameter("Change", change));
+                changeParams.Add(new ReportParameter("Change", _change));
 
                 var cashierInChargeParams = new ReportParameterCollection();
-                cashierInChargeParams.Add(new ReportParameter("CashierInCharge", cashierInCharge));
+                cashierInChargeParams.Add(new ReportParameter("CashierInCharge", _cashierInCharge));
 
                 var amountInWordParams = new ReportParameterCollection();
-                amountInWordParams.Add(new ReportParameter("AmountInWords", amountInWords));
+                amountInWordParams.Add(new ReportParameter("AmountInWords", _amountInWords));
 
 
                 crv.LocalReport.SetParameters(nameParams);
@@ -110,12 +98,6 @@ namespace school_management_system_model.Forms.transactions.Collection
                 crv.LocalReport.SetParameters(cashierInChargeParams);
                 crv.LocalReport.SetParameters(amountInWordParams);
 
-                //crv.LocalReport.DataSources.Add(rpt);
-                //crv.LocalReport.DataSources.Add(rpt2);
-
-
-
-
                 crv.SetDisplayMode(DisplayMode.PrintLayout);
                 crv.ZoomMode = ZoomMode.Percent;
                 crv.ZoomPercent = 100;
@@ -124,39 +106,47 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
             else if (this.Text == "Non Assessed Collection")
             {
-                //var studentAccounts = await _studentAccountRepo.GetAllAsync();
-                //var student = studentAccounts.Where(x => x.id_number == IdNumber).ToList();
-                //var studentAccountDt = student.ToDataTable();
+                crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_receipt.rdlc";
 
-                //var statementOfAccounts = await _statementOfAccountRepo.GetAllAsync();
-                //var soa = statementOfAccounts.Where(x => x.id_number == student.FirstOrDefault().id.ToString()).ToList();
-                //var soaDt = soa.ToDataTable();
+                var nameParams = new ReportParameterCollection();
+                nameParams.Add(new ReportParameter("Name", _name));
+
+                var orNumberParams = new ReportParameterCollection();
+                orNumberParams.Add(new ReportParameter("OrNumber", _orNumber));
+
+                var datParams = new ReportParameterCollection();
+                datParams.Add(new ReportParameter("Date", _date));
+
+                var cashAmountParams = new ReportParameterCollection();
+                cashAmountParams.Add(new ReportParameter("CashAmount", _cashAmount));
+
+                var amountPaidParams = new ReportParameterCollection();
+                amountPaidParams.Add(new ReportParameter("AmountPaid", _amountPaid));
+
+                var changeParams = new ReportParameterCollection();
+                changeParams.Add(new ReportParameter("Change", _change));
+
+                var cashierInChargeParams = new ReportParameterCollection();
+                cashierInChargeParams.Add(new ReportParameter("CashierInCharge", _cashierInCharge));
+
+                var amountInWordParams = new ReportParameterCollection();
+                amountInWordParams.Add(new ReportParameter("AmountInWords", _amountInWords));
 
 
-                //crv.LocalReport.DataSources.Clear();
-                //var rpt = new ReportDataSource("StudentAccounts", studentAccountDt);
+                crv.LocalReport.SetParameters(nameParams);
+                crv.LocalReport.SetParameters(orNumberParams);
+                crv.LocalReport.SetParameters(datParams);
+                crv.LocalReport.SetParameters(cashAmountParams);
+                crv.LocalReport.SetParameters(amountPaidParams);
+                crv.LocalReport.SetParameters(changeParams);
+                crv.LocalReport.SetParameters(cashierInChargeParams);
+                crv.LocalReport.SetParameters(amountInWordParams);
 
-                //var rpt2 = new ReportDataSource("StatementOfAccounts", soaDt);
-                //crv.LocalReport.ReportPath = Application.StartupPath + @"\Reports\isap_receipt.rdlc";
-
-                //var changeParams = new ReportParameterCollection();
-                //changeParams.Add(new ReportParameter("ChangeParams", tChange.Text));
-
-                //var paymentTenderedParams = new ReportParameterCollection();
-                //paymentTenderedParams.Add(new ReportParameter("PaymentTenderedParams", paymentTendered));
-
-                //var remainingBalanceParams = new ReportParameterCollection();
-                //remainingBalanceParams.Add(new ReportParameter("RemainingBalanceParams", remainingBalance));
-
-                //crv.LocalReport.SetParameters(changeParams);
-                //crv.LocalReport.SetParameters(paymentTenderedParams);
-                //crv.LocalReport.SetParameters(changeParams);
-
-                //crv.SetDisplayMode(DisplayMode.PrintLayout);
-                //crv.ZoomMode = ZoomMode.Percent;
-                //crv.ZoomPercent = 100;
-                //await Task.Delay(1000);
-                //crv.RefreshReport();
+                crv.SetDisplayMode(DisplayMode.PrintLayout);
+                crv.ZoomMode = ZoomMode.Percent;
+                crv.ZoomPercent = 100;
+                await Task.Delay(1000);
+                crv.RefreshReport();
             }
 
         }

@@ -48,7 +48,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             return await GetAllAsync();
         }
 
-        public async Task AddRecords(NonAssessment entity)
+        public Task AddRecords(NonAssessment entity)
         {
             throw new NotImplementedException();
         }

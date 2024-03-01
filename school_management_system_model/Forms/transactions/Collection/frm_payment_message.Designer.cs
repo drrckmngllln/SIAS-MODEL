@@ -43,7 +43,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(133, 36);
+            this.label1.Location = new System.Drawing.Point(112, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(270, 31);
             this.label1.TabIndex = 0;
@@ -52,9 +52,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::school_management_system_model.Properties.Resources.check;
-            this.pictureBox1.Location = new System.Drawing.Point(86, 36);
+            this.pictureBox1.Location = new System.Drawing.Point(175, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(41, 31);
+            this.pictureBox1.Size = new System.Drawing.Size(149, 114);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -64,7 +64,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(156, 84);
+            this.label2.Location = new System.Drawing.Point(157, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 25);
             this.label2.TabIndex = 2;
@@ -75,7 +75,7 @@
             this.tChange.AutoSize = true;
             this.tChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tChange.ForeColor = System.Drawing.SystemColors.Control;
-            this.tChange.Location = new System.Drawing.Point(263, 84);
+            this.tChange.Location = new System.Drawing.Point(264, 172);
             this.tChange.Name = "tChange";
             this.tChange.Size = new System.Drawing.Size(50, 25);
             this.tChange.TabIndex = 3;
@@ -84,7 +84,7 @@
             // btnConfirmPayment
             // 
             this.btnConfirmPayment.CornerRoundingRadius = 10F;
-            this.btnConfirmPayment.Location = new System.Drawing.Point(126, 129);
+            this.btnConfirmPayment.Location = new System.Drawing.Point(127, 210);
             this.btnConfirmPayment.Name = "btnConfirmPayment";
             this.btnConfirmPayment.Size = new System.Drawing.Size(118, 40);
             this.btnConfirmPayment.StateCommon.Back.Color1 = System.Drawing.Color.DarkGreen;
@@ -104,7 +104,7 @@
             // 
             // crv
             // 
-            this.crv.Location = new System.Drawing.Point(42, 194);
+            this.crv.Location = new System.Drawing.Point(49, 289);
             this.crv.Name = "crv";
             this.crv.ServerReport.BearerToken = null;
             this.crv.Size = new System.Drawing.Size(396, 246);
@@ -113,7 +113,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.CornerRoundingRadius = 10F;
-            this.kryptonButton1.Location = new System.Drawing.Point(250, 129);
+            this.kryptonButton1.Location = new System.Drawing.Point(251, 210);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.Size = new System.Drawing.Size(118, 40);
             this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.Maroon;
@@ -136,7 +136,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(497, 472);
+            this.ClientSize = new System.Drawing.Size(497, 565);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.crv);
             this.Controls.Add(this.btnConfirmPayment);

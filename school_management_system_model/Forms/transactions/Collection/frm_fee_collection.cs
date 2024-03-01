@@ -1,5 +1,6 @@
 ﻿using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Core.Entities.Transaction;
+using school_management_system_model.Core.Helpers;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
@@ -435,6 +436,9 @@ namespace school_management_system_model.Forms.transactions.Collection
                                 var studentAccounts = await _studentAccountRepo.GetAllAsync();
                                 var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
+                                string numberToWords = NumberToWords.ConvertToWords(Convert.ToInt32(collection)) + " Pesos Only";
+
+
                                 if (student.status == "Accounting")
                                 {
                                     await _studentAccountRepo.StudentOfficiallyEnroll(student.id.ToString(), "Officially Enrolled for School Year: " + tSchoolYear.Text);
@@ -445,7 +449,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
                                 // for printing
                                 var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text, 
-                                    change.ToString(), tCashier.Text, "...");
+                                    change.ToString(), tCashier.Text, numberToWords);
                                 frm.Text = "Fee Collection";
                                 frm.Show();
 
@@ -477,6 +481,9 @@ namespace school_management_system_model.Forms.transactions.Collection
                                     var lastRow = dgv.Rows.Count - 1;
                                     var remainingBalance = dgv.Rows[lastRow].Cells["balance"].ToString();
 
+                                    string numberToWords = NumberToWords.ConvertToWords(Convert.ToInt32(payable)) + " Pesos Only";
+
+
                                     if (student.status == "Accounting")
                                     {
                                         await _studentAccountRepo.StudentOfficiallyEnroll(student.id.ToString(), "Officially Enrolled for School Year: " + tSchoolYear.Text);
@@ -485,7 +492,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                                     new Classes.Toastr("Success", "Payment Collected");
                                     
                                     var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text,
-                                    change.ToString(), tCashier.Text, "...");
+                                    change.ToString(), tCashier.Text, numberToWords);
                                     frm.Text = "Fee Collection";
                                     frm.ShowDialog();
                                     await loadRecords();
