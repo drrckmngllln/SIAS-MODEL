@@ -340,7 +340,6 @@
             // btnEnroll
             // 
             this.btnEnroll.CornerRoundingRadius = 10F;
-            this.btnEnroll.Enabled = false;
             this.btnEnroll.Location = new System.Drawing.Point(338, 90);
             this.btnEnroll.Name = "btnEnroll";
             this.btnEnroll.Size = new System.Drawing.Size(154, 34);

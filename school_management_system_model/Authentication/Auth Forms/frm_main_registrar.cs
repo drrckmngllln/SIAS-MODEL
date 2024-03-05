@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Authentication.Auth_Forms.UserCustomization;
 using school_management_system_model.Authentication.Login;
+using school_management_system_model.Forms.Reports.Registrar.MasterlistOfStudentEnrolled;
 using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.Schedule;
 using school_management_system_model.Forms.settings.UserManagement;
@@ -220,6 +221,29 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
         private void timerTime_Tick(object sender, EventArgs e)
         {
             tTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            if (panelReports.Visible == false)
+            {
+                panelReports.Visible = true;
+                btnReports.BackColor = Color.FromArgb(0, 0, 100);
+            }
+            else
+            {
+                panelReports.Visible = false;
+                btnReports.BackColor = Color.FromArgb(0, 0, 25);
+            }
+        }
+
+        private void btnMasterlistOfStudent_Click(object sender, EventArgs e)
+        {
+            var frm = new frmMasterlistOfStudentEnrolledParentModule();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
         }
     }
 }

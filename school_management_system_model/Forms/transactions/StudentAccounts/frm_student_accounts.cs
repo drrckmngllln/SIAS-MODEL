@@ -237,14 +237,14 @@ namespace school_management_system_model.Forms.transactions
                 btnApprove.Enabled = false;
             }
 
-            if (dgv.CurrentRow.Cells["status"].Value.ToString() == "For Enrollment")
-            {
-                btnEnroll.Enabled = true;
-            }
-            else
-            {
-                btnEnroll.Enabled = false;
-            }
+            //if (dgv.CurrentRow.Cells["status"].Value.ToString() == "For Enrollment")
+            //{
+            //    btnEnroll.Enabled = true;
+            //}
+            //else
+            //{
+            //    btnEnroll.Enabled = false;
+            //}
             getStudentCourse();
         }
 
@@ -279,7 +279,7 @@ namespace school_management_system_model.Forms.transactions
                 frm.Text = "Enrollment: " + dgv.CurrentRow.Cells["id_number"].Value.ToString();
                 frm_student_enrollment.instance.id_number = dgv.CurrentRow.Cells["id_number"].Value.ToString();
                 frm_student_enrollment.instance.studentName = dgv.CurrentRow.Cells["fullname"].Value.ToString();
-                frm_student_enrollment.instance.school_year_id = dgv.CurrentRow.Cells["school_year_id"].Value.ToString();
+                frm_student_enrollment.instance.school_year_id = tSchoolYear.Text;
                 frm.ShowDialog();
                 loadRecords();
             }

@@ -1,6 +1,5 @@
 ﻿using Krypton.Toolkit;
 using school_management_system_model.Classes;
-using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Setings.Section;
@@ -10,8 +9,6 @@ using school_management_system_model.Data.Repositories.Transaction.StudentAssess
 using school_management_system_model.Forms.transactions.StudentEnrollment;
 using school_management_system_model.Loggers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -108,31 +105,15 @@ namespace school_management_system_model.Forms.transactions
 
             tCurriculum.DataSource = loadCurriculum;
 
-            //var curriculums = new Curriculums().GetCurriculums().Where(x => x.course_id == tCourse.Text);
-            //tCurriculum.ValueMember = "id";
-            //tCurriculum.DisplayMember = "code";
-            //tCurriculum.DataSource = curriculums.ToList();
-
-
-            //var campuses = curriculums.FirstOrDefault(x => x.course_id == tCourse.Text);
-
-            //if (campuses == null)
-            //{
-            //    tCampus.Text = "No Campus Set";
-            //}
-            //else
-            //{
-            //    tCampus.Text = campuses.campus_id;
-            //}
         }
 
 
 
         private async Task loadRecords()
         {
-            //tStudentLoading.Visible = true;
-            //await Task.Delay(250);
-            //tStudentLoading.Visible = false;
+            var schoolYears = await _schoolYearRepo.GetAllAsync();
+            var sy = schoolYears.FirstOrDefault(x => x.code == school_year_id);
+
 
             var a = await _studentAccountRepo.GetAllAsync();
             var student_account = a.FirstOrDefault(x => x.id_number == id_number);
@@ -145,7 +126,7 @@ namespace school_management_system_model.Forms.transactions
             tCurriculum.Text = b.curriculum;
             tSection.Text = b.section;
             tYearLevel.Text = b.year_level;
-            tSemester.Text = b.semester;
+            tSemester.Text = sy.semester;
             tYearLevel.Select();
 
 

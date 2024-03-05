@@ -540,7 +540,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1222, 772);
-            this.ControlBox = false;
             this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.panelTask);
             this.Controls.Add(this.panelSideBar);

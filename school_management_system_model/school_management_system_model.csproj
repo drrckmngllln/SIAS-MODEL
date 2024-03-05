@@ -202,6 +202,7 @@
     <Compile Include="Classes\add_section.cs" />
     <Compile Include="Classes\add_subjects.cs" />
     <Compile Include="Classes\AdmissionSchedule.cs" />
+    <Compile Include="Core\Dtos\StudentAccountDto.cs" />
     <Compile Include="Core\Entities\Settings\Campuses.cs" />
     <Compile Include="Core\Entities\Settings\Courses.cs" />
     <Compile Include="Core\Entities\Settings\Curriculums.cs" />
@@ -231,6 +232,18 @@
     <Compile Include="Core\Entities\Transaction\StudentAssessment.cs" />
     <Compile Include="Core\Entities\Transaction\StudentSubject.cs" />
     <Compile Include="Core\Entities\Settings\Sections.cs" />
+    <Compile Include="Forms\Reports\Registrar\MasterlistOfStudentEnrolled\frmMasterlistOfStudentChildModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\Registrar\MasterlistOfStudentEnrolled\frmMasterlistOfStudentChildModule.Designer.cs">
+      <DependentUpon>frmMasterlistOfStudentChildModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\Registrar\MasterlistOfStudentEnrolled\frmMasterlistOfStudentEnrolledParentModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\Registrar\MasterlistOfStudentEnrolled\frmMasterlistOfStudentEnrolledParentModule.Designer.cs">
+      <DependentUpon>frmMasterlistOfStudentEnrolledParentModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\Cashier\frm_cashier_logs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -709,6 +722,12 @@
     <EmbeddedResource Include="Forms\main\main_form.resx">
       <DependentUpon>main_form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\Registrar\MasterlistOfStudentEnrolled\frmMasterlistOfStudentChildModule.resx">
+      <DependentUpon>frmMasterlistOfStudentChildModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\Registrar\MasterlistOfStudentEnrolled\frmMasterlistOfStudentEnrolledParentModule.resx">
+      <DependentUpon>frmMasterlistOfStudentEnrolledParentModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.resx">
       <DependentUpon>frm_edit_curriculum_subject.cs</DependentUpon>
     </EmbeddedResource>
@@ -1048,6 +1067,9 @@
     <Content Include="Untitled design.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Forms\Reports\Registrar\InstructorsWithStudentAndSubjects\" />
+    <Folder Include="Forms\Reports\Registrar\StudentWithGrades\" />
+    <Folder Include="Forms\Reports\Registrar\StudentWithSubjectsEnrolled\" />
     <Folder Include="Forms\transactions\FeeAdjustment\" />
   </ItemGroup>
   <ItemGroup>
