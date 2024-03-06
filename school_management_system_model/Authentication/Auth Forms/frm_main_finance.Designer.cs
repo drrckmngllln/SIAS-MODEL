@@ -40,7 +40,6 @@
             this.btnLaboratoryFee = new System.Windows.Forms.Button();
             this.btnTuitionFee = new System.Windows.Forms.Button();
             this.btnMiscellaneous = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.icons = new System.Windows.Forms.ImageList(this.components);
             this.panelTransaction = new System.Windows.Forms.Panel();
             this.btnCashierLogs = new System.Windows.Forms.Button();
@@ -50,24 +49,25 @@
             this.btnFeeCollection = new System.Windows.Forms.Button();
             this.btnDiscounts = new System.Windows.Forms.Button();
             this.btnStudentAssessment = new System.Windows.Forms.Button();
-            this.btnTransaction = new System.Windows.Forms.Button();
             this.panelUserInfo = new System.Windows.Forms.Panel();
-            this.btnHome = new System.Windows.Forms.Button();
             this.tLogout = new System.Windows.Forms.Label();
             this.tAccessLevel = new System.Windows.Forms.Label();
             this.tName = new System.Windows.Forms.Label();
-            this.picUserImage = new System.Windows.Forms.PictureBox();
-            this.panelTask = new System.Windows.Forms.Panel();
             this.timerTime = new System.Windows.Forms.Timer(this.components);
             this.panelStatus = new System.Windows.Forms.Panel();
             this.tSystemDescription = new System.Windows.Forms.Label();
+            this.panelTask = new System.Windows.Forms.Panel();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnTransaction = new System.Windows.Forms.Button();
+            this.btnHome = new System.Windows.Forms.Button();
+            this.picUserImage = new System.Windows.Forms.PictureBox();
             this.panelSideBar.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelSettings.SuspendLayout();
             this.panelTransaction.SuspendLayout();
             this.panelUserInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picUserImage)).BeginInit();
             this.panelStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picUserImage)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSideBar
@@ -78,11 +78,12 @@
             this.panelSideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSideBar.Location = new System.Drawing.Point(0, 0);
             this.panelSideBar.Name = "panelSideBar";
-            this.panelSideBar.Size = new System.Drawing.Size(250, 772);
+            this.panelSideBar.Size = new System.Drawing.Size(200, 772);
             this.panelSideBar.TabIndex = 0;
             // 
             // panelMenu
             // 
+            this.panelMenu.AutoScroll = true;
             this.panelMenu.AutoSize = true;
             this.panelMenu.Controls.Add(this.panelSettings);
             this.panelMenu.Controls.Add(this.btnSettings);
@@ -91,7 +92,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMenu.Location = new System.Drawing.Point(0, 250);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(250, 522);
+            this.panelMenu.Size = new System.Drawing.Size(200, 522);
             this.panelMenu.TabIndex = 1;
             // 
             // panelSettings
@@ -104,9 +105,9 @@
             this.panelSettings.Controls.Add(this.btnTuitionFee);
             this.panelSettings.Controls.Add(this.btnMiscellaneous);
             this.panelSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSettings.Location = new System.Drawing.Point(0, 332);
+            this.panelSettings.Location = new System.Drawing.Point(0, 348);
             this.panelSettings.Name = "panelSettings";
-            this.panelSettings.Size = new System.Drawing.Size(250, 229);
+            this.panelSettings.Size = new System.Drawing.Size(183, 229);
             this.panelSettings.TabIndex = 3;
             this.panelSettings.Visible = false;
             // 
@@ -115,12 +116,12 @@
             this.btnStudentAssessmentOR.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStudentAssessmentOR.FlatAppearance.BorderSize = 0;
             this.btnStudentAssessmentOR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStudentAssessmentOR.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentAssessmentOR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStudentAssessmentOR.ForeColor = System.Drawing.SystemColors.Control;
             this.btnStudentAssessmentOR.Location = new System.Drawing.Point(0, 180);
             this.btnStudentAssessmentOR.Name = "btnStudentAssessmentOR";
             this.btnStudentAssessmentOR.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnStudentAssessmentOR.Size = new System.Drawing.Size(250, 30);
+            this.btnStudentAssessmentOR.Size = new System.Drawing.Size(183, 30);
             this.btnStudentAssessmentOR.TabIndex = 8;
             this.btnStudentAssessmentOR.Text = "Student Assessment OR";
             this.btnStudentAssessmentOR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -132,12 +133,12 @@
             this.btnUserManagement.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnUserManagement.FlatAppearance.BorderSize = 0;
             this.btnUserManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUserManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUserManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUserManagement.ForeColor = System.Drawing.SystemColors.Control;
             this.btnUserManagement.Location = new System.Drawing.Point(0, 150);
             this.btnUserManagement.Name = "btnUserManagement";
             this.btnUserManagement.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnUserManagement.Size = new System.Drawing.Size(250, 30);
+            this.btnUserManagement.Size = new System.Drawing.Size(183, 30);
             this.btnUserManagement.TabIndex = 7;
             this.btnUserManagement.Text = "User Management";
             this.btnUserManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,12 +150,12 @@
             this.btnOtherFees.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnOtherFees.FlatAppearance.BorderSize = 0;
             this.btnOtherFees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOtherFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOtherFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOtherFees.ForeColor = System.Drawing.SystemColors.Control;
             this.btnOtherFees.Location = new System.Drawing.Point(0, 120);
             this.btnOtherFees.Name = "btnOtherFees";
             this.btnOtherFees.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnOtherFees.Size = new System.Drawing.Size(250, 30);
+            this.btnOtherFees.Size = new System.Drawing.Size(183, 30);
             this.btnOtherFees.TabIndex = 5;
             this.btnOtherFees.Text = "Other Fees";
             this.btnOtherFees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,12 +167,12 @@
             this.btnDiscountSetup.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDiscountSetup.FlatAppearance.BorderSize = 0;
             this.btnDiscountSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiscountSetup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDiscountSetup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDiscountSetup.ForeColor = System.Drawing.SystemColors.Control;
             this.btnDiscountSetup.Location = new System.Drawing.Point(0, 90);
             this.btnDiscountSetup.Name = "btnDiscountSetup";
             this.btnDiscountSetup.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnDiscountSetup.Size = new System.Drawing.Size(250, 30);
+            this.btnDiscountSetup.Size = new System.Drawing.Size(183, 30);
             this.btnDiscountSetup.TabIndex = 4;
             this.btnDiscountSetup.Text = "Discounts";
             this.btnDiscountSetup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -183,12 +184,12 @@
             this.btnLaboratoryFee.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnLaboratoryFee.FlatAppearance.BorderSize = 0;
             this.btnLaboratoryFee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLaboratoryFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLaboratoryFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLaboratoryFee.ForeColor = System.Drawing.SystemColors.Control;
             this.btnLaboratoryFee.Location = new System.Drawing.Point(0, 60);
             this.btnLaboratoryFee.Name = "btnLaboratoryFee";
             this.btnLaboratoryFee.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnLaboratoryFee.Size = new System.Drawing.Size(250, 30);
+            this.btnLaboratoryFee.Size = new System.Drawing.Size(183, 30);
             this.btnLaboratoryFee.TabIndex = 3;
             this.btnLaboratoryFee.Text = "Laboratory Fee";
             this.btnLaboratoryFee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -200,12 +201,12 @@
             this.btnTuitionFee.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnTuitionFee.FlatAppearance.BorderSize = 0;
             this.btnTuitionFee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTuitionFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTuitionFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTuitionFee.ForeColor = System.Drawing.SystemColors.Control;
             this.btnTuitionFee.Location = new System.Drawing.Point(0, 30);
             this.btnTuitionFee.Name = "btnTuitionFee";
             this.btnTuitionFee.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnTuitionFee.Size = new System.Drawing.Size(250, 30);
+            this.btnTuitionFee.Size = new System.Drawing.Size(183, 30);
             this.btnTuitionFee.TabIndex = 2;
             this.btnTuitionFee.Text = "Tuition Fee";
             this.btnTuitionFee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -217,38 +218,17 @@
             this.btnMiscellaneous.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnMiscellaneous.FlatAppearance.BorderSize = 0;
             this.btnMiscellaneous.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMiscellaneous.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMiscellaneous.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMiscellaneous.ForeColor = System.Drawing.SystemColors.Control;
             this.btnMiscellaneous.Location = new System.Drawing.Point(0, 0);
             this.btnMiscellaneous.Name = "btnMiscellaneous";
             this.btnMiscellaneous.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnMiscellaneous.Size = new System.Drawing.Size(250, 30);
+            this.btnMiscellaneous.Size = new System.Drawing.Size(183, 30);
             this.btnMiscellaneous.TabIndex = 1;
             this.btnMiscellaneous.Text = "Miscellaneous";
             this.btnMiscellaneous.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMiscellaneous.UseVisualStyleBackColor = true;
             this.btnMiscellaneous.Click += new System.EventHandler(this.btnMiscellaneous_Click);
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSettings.ImageKey = "icons8-setup-60.png";
-            this.btnSettings.ImageList = this.icons;
-            this.btnSettings.Location = new System.Drawing.Point(0, 282);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnSettings.Size = new System.Drawing.Size(250, 50);
-            this.btnSettings.TabIndex = 2;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // icons
             // 
@@ -272,7 +252,7 @@
             this.panelTransaction.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTransaction.Location = new System.Drawing.Point(0, 50);
             this.panelTransaction.Name = "panelTransaction";
-            this.panelTransaction.Size = new System.Drawing.Size(250, 232);
+            this.panelTransaction.Size = new System.Drawing.Size(183, 248);
             this.panelTransaction.TabIndex = 1;
             this.panelTransaction.Visible = false;
             // 
@@ -281,12 +261,12 @@
             this.btnCashierLogs.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnCashierLogs.FlatAppearance.BorderSize = 0;
             this.btnCashierLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCashierLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCashierLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCashierLogs.ForeColor = System.Drawing.SystemColors.Control;
             this.btnCashierLogs.Location = new System.Drawing.Point(0, 180);
             this.btnCashierLogs.Name = "btnCashierLogs";
             this.btnCashierLogs.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnCashierLogs.Size = new System.Drawing.Size(250, 30);
+            this.btnCashierLogs.Size = new System.Drawing.Size(183, 30);
             this.btnCashierLogs.TabIndex = 7;
             this.btnCashierLogs.Text = "Cashier Logs";
             this.btnCashierLogs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -299,12 +279,12 @@
             this.btnNonAssessedCollection.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnNonAssessedCollection.FlatAppearance.BorderSize = 0;
             this.btnNonAssessedCollection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNonAssessedCollection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNonAssessedCollection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNonAssessedCollection.ForeColor = System.Drawing.SystemColors.Control;
             this.btnNonAssessedCollection.Location = new System.Drawing.Point(0, 150);
             this.btnNonAssessedCollection.Name = "btnNonAssessedCollection";
             this.btnNonAssessedCollection.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnNonAssessedCollection.Size = new System.Drawing.Size(250, 30);
+            this.btnNonAssessedCollection.Size = new System.Drawing.Size(183, 30);
             this.btnNonAssessedCollection.TabIndex = 6;
             this.btnNonAssessedCollection.Text = "Non-Assessed Collection";
             this.btnNonAssessedCollection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -317,12 +297,12 @@
             this.btnFeeAdjustment.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnFeeAdjustment.FlatAppearance.BorderSize = 0;
             this.btnFeeAdjustment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFeeAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeeAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFeeAdjustment.ForeColor = System.Drawing.SystemColors.Control;
             this.btnFeeAdjustment.Location = new System.Drawing.Point(0, 120);
             this.btnFeeAdjustment.Name = "btnFeeAdjustment";
             this.btnFeeAdjustment.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnFeeAdjustment.Size = new System.Drawing.Size(250, 30);
+            this.btnFeeAdjustment.Size = new System.Drawing.Size(183, 30);
             this.btnFeeAdjustment.TabIndex = 5;
             this.btnFeeAdjustment.Text = "Fee Adjustment";
             this.btnFeeAdjustment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -335,12 +315,12 @@
             this.btnStatementofAccounts.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStatementofAccounts.FlatAppearance.BorderSize = 0;
             this.btnStatementofAccounts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStatementofAccounts.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStatementofAccounts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStatementofAccounts.ForeColor = System.Drawing.SystemColors.Control;
             this.btnStatementofAccounts.Location = new System.Drawing.Point(0, 90);
             this.btnStatementofAccounts.Name = "btnStatementofAccounts";
             this.btnStatementofAccounts.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnStatementofAccounts.Size = new System.Drawing.Size(250, 30);
+            this.btnStatementofAccounts.Size = new System.Drawing.Size(183, 30);
             this.btnStatementofAccounts.TabIndex = 4;
             this.btnStatementofAccounts.Text = "Statement Of Accounts";
             this.btnStatementofAccounts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -353,14 +333,14 @@
             this.btnFeeCollection.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnFeeCollection.FlatAppearance.BorderSize = 0;
             this.btnFeeCollection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFeeCollection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeeCollection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFeeCollection.ForeColor = System.Drawing.SystemColors.Control;
             this.btnFeeCollection.Location = new System.Drawing.Point(0, 60);
             this.btnFeeCollection.Name = "btnFeeCollection";
             this.btnFeeCollection.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnFeeCollection.Size = new System.Drawing.Size(250, 30);
+            this.btnFeeCollection.Size = new System.Drawing.Size(183, 30);
             this.btnFeeCollection.TabIndex = 3;
-            this.btnFeeCollection.Text = "Fee Collection";
+            this.btnFeeCollection.Text = "Collection";
             this.btnFeeCollection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFeeCollection.UseVisualStyleBackColor = true;
             this.btnFeeCollection.Visible = false;
@@ -371,12 +351,12 @@
             this.btnDiscounts.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDiscounts.FlatAppearance.BorderSize = 0;
             this.btnDiscounts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiscounts.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDiscounts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDiscounts.ForeColor = System.Drawing.SystemColors.Control;
             this.btnDiscounts.Location = new System.Drawing.Point(0, 30);
             this.btnDiscounts.Name = "btnDiscounts";
             this.btnDiscounts.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnDiscounts.Size = new System.Drawing.Size(250, 30);
+            this.btnDiscounts.Size = new System.Drawing.Size(183, 30);
             this.btnDiscounts.TabIndex = 2;
             this.btnDiscounts.Text = "Discounts";
             this.btnDiscounts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -389,18 +369,123 @@
             this.btnStudentAssessment.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnStudentAssessment.FlatAppearance.BorderSize = 0;
             this.btnStudentAssessment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStudentAssessment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentAssessment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStudentAssessment.ForeColor = System.Drawing.SystemColors.Control;
             this.btnStudentAssessment.Location = new System.Drawing.Point(0, 0);
             this.btnStudentAssessment.Name = "btnStudentAssessment";
             this.btnStudentAssessment.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnStudentAssessment.Size = new System.Drawing.Size(250, 30);
+            this.btnStudentAssessment.Size = new System.Drawing.Size(183, 30);
             this.btnStudentAssessment.TabIndex = 1;
             this.btnStudentAssessment.Text = "Student Assessment";
             this.btnStudentAssessment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudentAssessment.UseVisualStyleBackColor = true;
             this.btnStudentAssessment.Visible = false;
             this.btnStudentAssessment.Click += new System.EventHandler(this.btnStudentAssessment_Click);
+            // 
+            // panelUserInfo
+            // 
+            this.panelUserInfo.Controls.Add(this.btnHome);
+            this.panelUserInfo.Controls.Add(this.tLogout);
+            this.panelUserInfo.Controls.Add(this.tAccessLevel);
+            this.panelUserInfo.Controls.Add(this.tName);
+            this.panelUserInfo.Controls.Add(this.picUserImage);
+            this.panelUserInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelUserInfo.Location = new System.Drawing.Point(0, 0);
+            this.panelUserInfo.Name = "panelUserInfo";
+            this.panelUserInfo.Size = new System.Drawing.Size(200, 250);
+            this.panelUserInfo.TabIndex = 1;
+            // 
+            // tLogout
+            // 
+            this.tLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLogout.ForeColor = System.Drawing.SystemColors.Control;
+            this.tLogout.Location = new System.Drawing.Point(12, 161);
+            this.tLogout.Name = "tLogout";
+            this.tLogout.Size = new System.Drawing.Size(188, 23);
+            this.tLogout.TabIndex = 3;
+            this.tLogout.Text = "Logout";
+            this.tLogout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tLogout.Click += new System.EventHandler(this.tLogout_Click);
+            // 
+            // tAccessLevel
+            // 
+            this.tAccessLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tAccessLevel.ForeColor = System.Drawing.SystemColors.Control;
+            this.tAccessLevel.Location = new System.Drawing.Point(12, 138);
+            this.tAccessLevel.Name = "tAccessLevel";
+            this.tAccessLevel.Size = new System.Drawing.Size(188, 23);
+            this.tAccessLevel.TabIndex = 2;
+            this.tAccessLevel.Text = "Access Level";
+            this.tAccessLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tName
+            // 
+            this.tName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tName.ForeColor = System.Drawing.SystemColors.Control;
+            this.tName.Location = new System.Drawing.Point(12, 115);
+            this.tName.Name = "tName";
+            this.tName.Size = new System.Drawing.Size(188, 23);
+            this.tName.TabIndex = 1;
+            this.tName.Text = "Lastname, Firstname MI";
+            this.tName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timerTime
+            // 
+            this.timerTime.Enabled = true;
+            // 
+            // panelStatus
+            // 
+            this.panelStatus.Controls.Add(this.tSystemDescription);
+            this.panelStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelStatus.Location = new System.Drawing.Point(200, 746);
+            this.panelStatus.Name = "panelStatus";
+            this.panelStatus.Size = new System.Drawing.Size(1022, 26);
+            this.panelStatus.TabIndex = 5;
+            // 
+            // tSystemDescription
+            // 
+            this.tSystemDescription.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tSystemDescription.AutoSize = true;
+            this.tSystemDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tSystemDescription.Location = new System.Drawing.Point(6, 7);
+            this.tSystemDescription.Name = "tSystemDescription";
+            this.tSystemDescription.Size = new System.Drawing.Size(183, 13);
+            this.tSystemDescription.TabIndex = 1;
+            this.tSystemDescription.Text = "Developed by: ICT Office 2024\r\n";
+            // 
+            // panelTask
+            // 
+            this.panelTask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelTask.BackgroundImage = global::school_management_system_model.Properties.Resources.Untitled_design;
+            this.panelTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panelTask.Location = new System.Drawing.Point(206, 0);
+            this.panelTask.Name = "panelTask";
+            this.panelTask.Size = new System.Drawing.Size(1016, 743);
+            this.panelTask.TabIndex = 1;
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettings.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.ImageKey = "icons8-setup-60.png";
+            this.btnSettings.ImageList = this.icons;
+            this.btnSettings.Location = new System.Drawing.Point(0, 298);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnSettings.Size = new System.Drawing.Size(183, 50);
+            this.btnSettings.TabIndex = 2;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnTransaction
             // 
@@ -415,26 +500,13 @@
             this.btnTransaction.Location = new System.Drawing.Point(0, 0);
             this.btnTransaction.Name = "btnTransaction";
             this.btnTransaction.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnTransaction.Size = new System.Drawing.Size(250, 50);
+            this.btnTransaction.Size = new System.Drawing.Size(183, 50);
             this.btnTransaction.TabIndex = 0;
             this.btnTransaction.Text = "Transaction";
             this.btnTransaction.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTransaction.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTransaction.UseVisualStyleBackColor = true;
             this.btnTransaction.Click += new System.EventHandler(this.btnTransaction_Click);
-            // 
-            // panelUserInfo
-            // 
-            this.panelUserInfo.Controls.Add(this.btnHome);
-            this.panelUserInfo.Controls.Add(this.tLogout);
-            this.panelUserInfo.Controls.Add(this.tAccessLevel);
-            this.panelUserInfo.Controls.Add(this.tName);
-            this.panelUserInfo.Controls.Add(this.picUserImage);
-            this.panelUserInfo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUserInfo.Location = new System.Drawing.Point(0, 0);
-            this.panelUserInfo.Name = "panelUserInfo";
-            this.panelUserInfo.Size = new System.Drawing.Size(250, 250);
-            this.panelUserInfo.TabIndex = 1;
             // 
             // btnHome
             // 
@@ -447,93 +519,22 @@
             this.btnHome.ImageList = this.icons;
             this.btnHome.Location = new System.Drawing.Point(0, 200);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(250, 50);
+            this.btnHome.Size = new System.Drawing.Size(200, 50);
             this.btnHome.TabIndex = 5;
             this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
-            // tLogout
-            // 
-            this.tLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLogout.ForeColor = System.Drawing.SystemColors.Control;
-            this.tLogout.Location = new System.Drawing.Point(12, 161);
-            this.tLogout.Name = "tLogout";
-            this.tLogout.Size = new System.Drawing.Size(232, 23);
-            this.tLogout.TabIndex = 3;
-            this.tLogout.Text = "Logout";
-            this.tLogout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tLogout.Click += new System.EventHandler(this.tLogout_Click);
-            // 
-            // tAccessLevel
-            // 
-            this.tAccessLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tAccessLevel.ForeColor = System.Drawing.SystemColors.Control;
-            this.tAccessLevel.Location = new System.Drawing.Point(12, 138);
-            this.tAccessLevel.Name = "tAccessLevel";
-            this.tAccessLevel.Size = new System.Drawing.Size(232, 23);
-            this.tAccessLevel.TabIndex = 2;
-            this.tAccessLevel.Text = "Access Level";
-            this.tAccessLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tName
-            // 
-            this.tName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tName.ForeColor = System.Drawing.SystemColors.Control;
-            this.tName.Location = new System.Drawing.Point(12, 115);
-            this.tName.Name = "tName";
-            this.tName.Size = new System.Drawing.Size(232, 23);
-            this.tName.TabIndex = 1;
-            this.tName.Text = "Lastname, Firstname MI";
-            this.tName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // picUserImage
             // 
             this.picUserImage.Image = global::school_management_system_model.Properties.Resources._1ICT_LOGO_black1;
-            this.picUserImage.Location = new System.Drawing.Point(74, 12);
+            this.picUserImage.Location = new System.Drawing.Point(52, 12);
             this.picUserImage.Name = "picUserImage";
             this.picUserImage.Size = new System.Drawing.Size(100, 100);
             this.picUserImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picUserImage.TabIndex = 0;
             this.picUserImage.TabStop = false;
-            // 
-            // panelTask
-            // 
-            this.panelTask.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelTask.BackgroundImage = global::school_management_system_model.Properties.Resources.Untitled_design;
-            this.panelTask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panelTask.Location = new System.Drawing.Point(250, 0);
-            this.panelTask.Name = "panelTask";
-            this.panelTask.Size = new System.Drawing.Size(972, 743);
-            this.panelTask.TabIndex = 1;
-            // 
-            // timerTime
-            // 
-            this.timerTime.Enabled = true;
-            // 
-            // panelStatus
-            // 
-            this.panelStatus.Controls.Add(this.tSystemDescription);
-            this.panelStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelStatus.Location = new System.Drawing.Point(250, 746);
-            this.panelStatus.Name = "panelStatus";
-            this.panelStatus.Size = new System.Drawing.Size(972, 26);
-            this.panelStatus.TabIndex = 5;
-            // 
-            // tSystemDescription
-            // 
-            this.tSystemDescription.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tSystemDescription.AutoSize = true;
-            this.tSystemDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tSystemDescription.Location = new System.Drawing.Point(6, 7);
-            this.tSystemDescription.Name = "tSystemDescription";
-            this.tSystemDescription.Size = new System.Drawing.Size(183, 13);
-            this.tSystemDescription.TabIndex = 1;
-            this.tSystemDescription.Text = "Developed by: ICT Office 2024\r\n";
             // 
             // frm_main_finance
             // 
@@ -589,9 +590,9 @@
             this.panelSettings.ResumeLayout(false);
             this.panelTransaction.ResumeLayout(false);
             this.panelUserInfo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picUserImage)).EndInit();
             this.panelStatus.ResumeLayout(false);
             this.panelStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picUserImage)).EndInit();
             this.ResumeLayout(false);
 
         }

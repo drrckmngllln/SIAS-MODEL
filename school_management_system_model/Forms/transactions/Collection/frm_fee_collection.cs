@@ -36,6 +36,8 @@ namespace school_management_system_model.Forms.transactions.Collection
         public string id_number { get; set; }
         public int OrNumber { get; set; }
 
+        public string Cashier { get; set; }
+
 
         public frm_fee_collection(string email)
         {
@@ -43,23 +45,16 @@ namespace school_management_system_model.Forms.transactions.Collection
             InitializeComponent();
             _email = email;
         }
-        private async Task loadCashier()
-        {
-            var users = await _userRepo.GetAllAsync();
-
-            var cashier = users.FirstOrDefault(x => x.email == _email);
-
-            tCashier.Text = cashier.fullname;
-            Department = cashier.department;
-        }
+        
 
         private async void frm_fee_collection_Load(object sender, EventArgs e)
         {
-            await loadCashier();
             loadFeeBreakdownDGV();
             loadAssessmentBreakdownDGV();
             await loadSchoolYear();
         }
+
+        
 
         private void loadFeeBreakdownDGV()
         {
@@ -75,33 +70,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         }
 
-        private void setOrNumber()
-        {
-            if (tOrNumberSet.Text == "")
-            {
-                new Classes.Toastr("Error", "Fields Missing");
-            }
-            else
-            {
-                try
-                {
-                    OrNumber = Convert.ToInt32(tOrNumberSet.Text);
-                    tOrNumber.Text = OrNumber.ToString();
-                    tOrNumberSet.Clear();
-                }
-                catch(Exception ex)
-                {
-                    new Classes.Toastr("Warning", ex.Message);
-                }
-            }
-        }
-
-        private void incrementOrNumber()
-        {
-            OrNumber++;
-            tOrNumber.Text = OrNumber.ToString();
-        }
-
+        
         private async Task loadSchoolYear()
         {
             var schoolYears = await _schoolYearRepo.GetAllAsync();
@@ -247,14 +216,14 @@ namespace school_management_system_model.Forms.transactions.Collection
                 debit = latestBalance,
                 credit = latestCredit,
                 balance = latestBalance - latestCredit,
-                cashier_in_charge = tCashier.Text
+                cashier_in_charge = Cashier
             };
             await _statementOfAccountsRepo.AddRecordsAsync(collect);
 
             var cashierLog = new CashierLog
             {
                 date = DateTime.Now,
-                name = tCashier.Text,
+                name = Cashier,
                 reference_no = referenceNo.ToString(),
                 particulars = latestParticulars,
                 school_year = school_year_id.id.ToString(),
@@ -265,7 +234,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             };
             await _cashierLogRepo.AddRecords(cashierLog);
 
-            incrementOrNumber();
+            
         }
 
         private async Task assessmentBreakdownComputation()
@@ -392,17 +361,25 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
         }
 
+        private void GetCashierOrNumberAndDepartment()
+        {
+            Cashier = frm_collection_module.instance.CashierInCharge;
+            OrNumber = frm_collection_module.instance.OrNumber;
+            Department = frm_collection_module.instance.Department;
+        }
+
 
 
         private async void btnConfirmPayment_Click(object sender, EventArgs e)
         {
+            GetCashierOrNumberAndDepartment();
             btnConfirmPayment.Enabled = false;
             btnConfirmPayment.Text = "Please Wait...";
             if (tAmount.Text == "" && tParticulars.Text == "")
             {
                 new Classes.Toastr("Error", "Missing Fields");
             }
-            else if (tOrNumber.Text == "...")
+            else if (OrNumber == 0)
             {
                 new Classes.Toastr("Error", "Please set Or Number");
             }
@@ -448,8 +425,8 @@ namespace school_management_system_model.Forms.transactions.Collection
                                
 
                                 // for printing
-                                var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text, 
-                                    change.ToString(), tCashier.Text, numberToWords);
+                                var frm = new frm_payment_message(tStudentName.Text, OrNumber.ToString(), DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text, 
+                                    change.ToString(), Cashier, numberToWords);
                                 frm.Text = "Fee Collection";
                                 frm.Show();
 
@@ -491,8 +468,8 @@ namespace school_management_system_model.Forms.transactions.Collection
 
                                     new Classes.Toastr("Success", "Payment Collected");
                                     
-                                    var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text,
-                                    change.ToString(), tCashier.Text, numberToWords);
+                                    var frm = new frm_payment_message(tStudentName.Text, OrNumber.ToString(), DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text,
+                                    change.ToString(), Cashier, numberToWords);
                                     frm.Text = "Fee Collection";
                                     frm.ShowDialog();
                                     await loadRecords();
@@ -511,6 +488,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                 tParticulars.Clear();
                 btnConfirmPayment.Enabled = true;
                 btnConfirmPayment.Text = "Confirm Payment";
+                frm_collection_module.instance.incrementOrNumber();
             }
 
 
@@ -556,11 +534,6 @@ namespace school_management_system_model.Forms.transactions.Collection
             var frm2 = new frm_print_receipt_breakdown(tIdNumber.Text, tSchoolYear.Text);
             frm.Text = "ISAP";
             frm2.ShowDialog();
-        }
-
-        private void btnSet_Click(object sender, EventArgs e)
-        {
-            setOrNumber();
         }
 
         private void timerTime_Tick(object sender, EventArgs e)

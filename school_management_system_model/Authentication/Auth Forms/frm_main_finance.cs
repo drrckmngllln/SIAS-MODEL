@@ -28,7 +28,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
         public frm_main_finance()
         {
             InitializeComponent();
-            
+
         }
 
         private void frm_main_finance_Load(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
                 btnFeeAdjustment.Visible = true;
                 btnStatementofAccounts.Visible = true;
             }
-            
+
         }
 
         private void btnTransaction_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
             else
             {
                 panelTransaction.Visible = false;
-                btnTransaction.BackColor = Color.FromArgb(0,0, 50);
+                btnTransaction.BackColor = Color.FromArgb(0, 0, 50);
             }
         }
 
@@ -101,7 +101,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void tLogout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to logout?","Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to logout?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var frm = new frm_login();
                 frm.Show();
@@ -130,7 +130,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnFeeCollection_Click(object sender, EventArgs e)
         {
-            var frm = new frm_fee_collection(Email);
+            var frm = new frm_collection_module(Email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -148,7 +148,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
 
         private void btnFeeAdjustment_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         // Settings Menu
@@ -241,7 +241,7 @@ namespace school_management_system_model.Authentication.Auth_Forms
         private void btnNonAssessedCollection_Click(object sender, EventArgs e)
         {
             var frm = new frm_non_assessed_collection(Email);
-            frm.TopLevel= false;
+            frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
             frm.Show();

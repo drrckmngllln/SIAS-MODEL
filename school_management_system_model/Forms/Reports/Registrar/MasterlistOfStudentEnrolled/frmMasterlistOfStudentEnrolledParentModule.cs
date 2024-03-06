@@ -39,5 +39,10 @@ namespace school_management_system_model.Forms.Reports.Registrar.MasterlistOfStu
         {
             await frmMasterlistOfStudentChildModule.instance.enableGender();
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            frmMasterlistOfStudentChildModule.instance.ExcelExport();
+        }
     }
 }

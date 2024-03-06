@@ -64,15 +64,8 @@
             this.tAmountPayable = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dgvAssessmentBreakdown = new System.Windows.Forms.DataGridView();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.btnSet = new Krypton.Toolkit.KryptonButton();
-            this.tOrNumberSet = new System.Windows.Forms.TextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.tOrNumber = new System.Windows.Forms.Label();
             this.tTime = new System.Windows.Forms.Label();
             this.timerTime = new System.Windows.Forms.Timer(this.components);
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.tCashier = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -82,9 +75,6 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssessmentBreakdown)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,9 +84,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dgv);
-            this.groupBox1.Location = new System.Drawing.Point(12, 105);
+            this.groupBox1.Location = new System.Drawing.Point(12, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(943, 382);
+            this.groupBox1.Size = new System.Drawing.Size(943, 441);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Statement of Account";
@@ -129,7 +119,7 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(931, 357);
+            this.dgv.Size = new System.Drawing.Size(931, 416);
             this.dgv.TabIndex = 157;
             this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             // 
@@ -507,68 +497,6 @@
             this.dgvAssessmentBreakdown.Size = new System.Drawing.Size(455, 344);
             this.dgvAssessmentBreakdown.TabIndex = 158;
             // 
-            // groupBox6
-            // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox6.Controls.Add(this.btnSet);
-            this.groupBox6.Controls.Add(this.tOrNumberSet);
-            this.groupBox6.Location = new System.Drawing.Point(388, 46);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(293, 53);
-            this.groupBox6.TabIndex = 183;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Set OR Number";
-            // 
-            // btnSet
-            // 
-            this.btnSet.CornerRoundingRadius = 10F;
-            this.btnSet.Location = new System.Drawing.Point(230, 19);
-            this.btnSet.Name = "btnSet";
-            this.btnSet.Size = new System.Drawing.Size(57, 21);
-            this.btnSet.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
-            this.btnSet.StateCommon.Back.Color2 = System.Drawing.SystemColors.Control;
-            this.btnSet.StateCommon.Border.Color1 = System.Drawing.Color.DarkGreen;
-            this.btnSet.StateCommon.Border.Color2 = System.Drawing.Color.DarkGreen;
-            this.btnSet.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.btnSet.StateCommon.Border.Rounding = 10F;
-            this.btnSet.StateCommon.Border.Width = 2;
-            this.btnSet.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSet.TabIndex = 194;
-            this.btnSet.Values.Text = "Set";
-            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
-            // 
-            // tOrNumberSet
-            // 
-            this.tOrNumberSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tOrNumberSet.Location = new System.Drawing.Point(6, 19);
-            this.tOrNumberSet.Name = "tOrNumberSet";
-            this.tOrNumberSet.Size = new System.Drawing.Size(218, 21);
-            this.tOrNumberSet.TabIndex = 193;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox7.Controls.Add(this.tOrNumber);
-            this.groupBox7.Location = new System.Drawing.Point(687, 46);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(268, 53);
-            this.groupBox7.TabIndex = 195;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "OR Number";
-            // 
-            // tOrNumber
-            // 
-            this.tOrNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tOrNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tOrNumber.Location = new System.Drawing.Point(3, 16);
-            this.tOrNumber.Name = "tOrNumber";
-            this.tOrNumber.Size = new System.Drawing.Size(262, 34);
-            this.tOrNumber.TabIndex = 182;
-            this.tOrNumber.Text = "...";
-            this.tOrNumber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // tTime
             // 
             this.tTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -584,27 +512,6 @@
             // 
             this.timerTime.Enabled = true;
             this.timerTime.Tick += new System.EventHandler(this.timerTime_Tick);
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.tCashier);
-            this.groupBox8.Location = new System.Drawing.Point(12, 46);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(293, 53);
-            this.groupBox8.TabIndex = 195;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Cashier in Charge";
-            // 
-            // tCashier
-            // 
-            this.tCashier.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tCashier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tCashier.Location = new System.Drawing.Point(3, 16);
-            this.tCashier.Name = "tCashier";
-            this.tCashier.Size = new System.Drawing.Size(287, 34);
-            this.tCashier.TabIndex = 183;
-            this.tCashier.Text = "...";
-            this.tCashier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pictureBox1
             // 
@@ -623,11 +530,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1321, 869);
-            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.tTime);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.tSchoolYear);
@@ -651,10 +555,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssessmentBreakdown)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -697,15 +597,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tAmountPayable;
         private System.Windows.Forms.CheckBox cPayment;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox tOrNumberSet;
-        private Krypton.Toolkit.KryptonButton btnSet;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label tOrNumber;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label tTime;
         private System.Windows.Forms.Timer timerTime;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label tCashier;
     }
 }

@@ -13,7 +13,7 @@ namespace school_management_system_model.Forms.settings
         CourseRepository _courseRepo = new CourseRepository();
         DepartmentRepository _departmentRepo = new DepartmentRepository();
         LevelsRepository _levelsRepo = new LevelsRepository();
-        CampusRepository _campusRepo = new CampusRepository();  
+        CampusRepository _campusRepo = new CampusRepository();
         public bool isAdd { get; set; }
         public bool isEdit { get; set; }
         public bool isDelete { get; set; }
@@ -22,7 +22,7 @@ namespace school_management_system_model.Forms.settings
 
         string ID;
 
-        
+
 
         public frm_courses(string email)
         {
@@ -90,7 +90,7 @@ namespace school_management_system_model.Forms.settings
                         code = tCode.Text,
                         description = tDescription.Text,
                         level = tLevel.SelectedValue.ToString(),
-                        campus = tLevel.SelectedValue.ToString(),
+                        campus = tCampus.SelectedValue.ToString(),
                         department = tDepartment.SelectedValue.ToString(),
                         max_units = tMaxUnits.Text,
                         status = tStatus.Text
@@ -98,17 +98,18 @@ namespace school_management_system_model.Forms.settings
                     await _courseRepo.AddRecords(AddCourses);
                     new Classes.Toastr("Success", "Course Added");
                     loadrecords();
-                    
+
 
                 }
                 else if (btn_save.Text == "Update")
                 {
                     var EditCourses = new Courses
                     {
+                        id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                         code = tCode.Text,
                         description = tDescription.Text,
                         level = tLevel.SelectedValue.ToString(),
-                        campus = tLevel.SelectedValue.ToString(),
+                        campus = tCampus.SelectedValue.ToString(),
                         department = tDepartment.SelectedValue.ToString(),
                         max_units = tMaxUnits.Text,
                         status = tStatus.Text
@@ -122,7 +123,7 @@ namespace school_management_system_model.Forms.settings
             {
                 new Classes.Toastr("Error", "Error, Missing Fields or Duplicate Entry");
             }
-            
+
         }
 
         private void txtclear()
@@ -173,7 +174,7 @@ namespace school_management_system_model.Forms.settings
         {
             var delete = new Courses
             {
-                id = Convert.ToInt32(ID)
+                id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value)
             };
             await _courseRepo.DeleteRecords(delete);
             new Classes.Toastr("Information", "Course Deleted");
@@ -182,12 +183,9 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("are you sure you want to delete this record","Warning!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("are you sure you want to delete this record", "Warning!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (isDelete)
-                {
-                    delete();
-                }
+                delete();
             }
         }
 
