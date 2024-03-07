@@ -3,6 +3,7 @@ using school_management_system_model.Core.Dtos;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Infrastructure.Data.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -287,6 +288,11 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
             };
 
             return studentDto;
+        }
+
+        public async Task<IReadOnlyList<StudentAccountsMainDto>> GetStudentAccountsMainAsync(StudentAccountsMainSpecifications accountspec)
+        {
+            
         }
     }
 }

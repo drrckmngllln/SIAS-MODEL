@@ -284,6 +284,7 @@
     <Compile Include="Classes\AdmissionSchedule.cs" />
     <Compile Include="Core\Dtos\StudentAccountDetailDto.cs" />
     <Compile Include="Core\Dtos\StudentAccountDto.cs" />
+    <Compile Include="Core\Dtos\StudentAccountsMainDto.cs" />
     <Compile Include="Core\Entities\Settings\Campuses.cs" />
     <Compile Include="Core\Entities\Settings\Courses.cs" />
     <Compile Include="Core\Entities\Settings\Curriculums.cs" />
@@ -352,6 +353,7 @@
     </Compile>
     <Compile Include="Infrastructure\Data\Interfaces\IGenericRepository.cs" />
     <Compile Include="Core\Extensions\DataTableExtensions.cs" />
+    <Compile Include="Infrastructure\Data\Parameters\StudentAccountsMainParameters.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CampusRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CourseRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CurriculumRepository.cs" />
@@ -705,6 +707,9 @@
     <Compile Include="Forms\transactions\StudentDiscounts\frm_student_discounts.Designer.cs">
       <DependentUpon>frm_student_discounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Data\Specifications\BaseSpecification.cs" />
+    <Compile Include="Infrastructure\Data\Specifications\ISpecification.cs" />
+    <Compile Include="Infrastructure\Data\Specifications\StudentAccountsMainSpecifications.cs" />
     <Compile Include="Loggers\Activities\ActivityLogger.cs" />
     <Compile Include="Loggers\Authentication\AuthenticationLogger.cs" />
     <Compile Include="Program.cs" />
