@@ -155,21 +155,22 @@ namespace school_management_system_model.Forms.settings.Curriculum
             }
             else
             {
+                
                 try
                 {
                     await SaveLoading("Saving");
                     foreach (DataGridViewRow row in dgv.Rows)
                     {
-                        uid = curriculum + row.Cells["code"].Value.ToString();
-                        year_level = row.Cells["year_level"].Value.ToString();
-                        semester = row.Cells["semester"].Value.ToString();
-                        code = row.Cells["code"].Value.ToString();
-                        descriptive_title = row.Cells["descriptive_title"].Value.ToString();
-                        total_units = row.Cells["total_units"].Value.ToString();
-                        lecture_units = row.Cells["lecture_units"].Value.ToString();
-                        lab_units = row.Cells["lab_units"].Value.ToString();
-                        pre_requisite = row.Cells["pre_requisite"].Value.ToString();
-                        total_hrs_per_week = row.Cells["total_hrs_per_week"].Value.ToString();
+                        uid = curriculum + row.Cells["Code"].Value.ToString();
+                        year_level = row.Cells["Year Level"].Value.ToString();
+                        semester = row.Cells["Semester"].Value.ToString();
+                        code = row.Cells["Code"].Value.ToString();
+                        descriptive_title = row.Cells["Descriptive Title"].Value.ToString();
+                        total_units = row.Cells["Total Units"].Value.ToString();
+                        lecture_units = row.Cells["Lecture Units"].Value.ToString();
+                        lab_units = row.Cells["Lab Units"].Value.ToString();
+                        pre_requisite = row.Cells["Pre - Requisites"].Value.ToString();
+                        total_hrs_per_week = row.Cells["Total Hours per Week"].Value.ToString();
                         await saveRecords();
                     }
                     await SaveLoading("Done");

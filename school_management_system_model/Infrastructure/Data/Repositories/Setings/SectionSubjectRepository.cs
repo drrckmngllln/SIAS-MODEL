@@ -107,7 +107,7 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
         {
             var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
-            var cmd = new MySqlCommand("update section_subjects set time=@1, day=@2, room=@3, instructor_id=@4 where id='" + entity.id + "'", con);
+            var cmd = new MySqlCommand("update section_subjects set time=@1, day=@2, room=@3, instructor=@4 where id='" + entity.id + "'", con);
             cmd.Parameters.AddWithValue("@1", entity.time);
             cmd.Parameters.AddWithValue("@2", entity.day);
             cmd.Parameters.AddWithValue("@3", entity.room);

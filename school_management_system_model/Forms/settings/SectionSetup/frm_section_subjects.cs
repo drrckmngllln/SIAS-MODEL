@@ -17,6 +17,7 @@ namespace school_management_system_model.Forms.settings
         SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
         SectionRepository _sectionRepo = new SectionRepository();
         CurriculumRepository _curriculumRepo = new CurriculumRepository();
+        InstructorRepository _instructorRepo = new InstructorRepository();
 
 
         public static frm_section_subjects instance;
@@ -24,7 +25,7 @@ namespace school_management_system_model.Forms.settings
         public string Section_Code { get; }
 
         public string Email { get; }
-        public string instructor { get; set; }
+        public string Instructor { get; set; }
 
         public frm_section_subjects(string section_code, string email)
         {
@@ -45,7 +46,6 @@ namespace school_management_system_model.Forms.settings
 
         private async void loadRecords()
         {
-            //x.semester == tSemester.Text && 
             var sectionSubjects = await _sectionSubjectRepo.GetAllAsync();
             var data = sectionSubjects.Where(x => x.section_code == tSectionCode.Text).ToList();
 
@@ -140,7 +140,7 @@ namespace school_management_system_model.Forms.settings
                     time = tTime.Text,
                     day = tDay.Text,
                     room = tRoom.Text,
-                    instructor = instructor
+                    instructor = tInstructor.Text,
                 };
                 await _sectionSubjectRepo.UpdateRecords(update);
 
@@ -200,11 +200,17 @@ namespace school_management_system_model.Forms.settings
             btn_save.Text = "Add Subject";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_instructor();
             frm.ShowDialog();
-            tInstructor.Text = dgv.CurrentRow.Cells["instructor"].Value.ToString();
+
+            if (Instructor != null)
+            {
+                var instructors = await _instructorRepo.GetAllAsync();
+                var instructor = instructors.FirstOrDefault(x => x.id == Convert.ToInt32(Instructor));
+                tInstructor.Text = instructor.fullname;
+            }
         }
 
         private void kryptonButton3_Click(object sender, EventArgs e)

@@ -232,10 +232,18 @@ namespace school_management_system_model.Forms.settings
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            var curriculum_id = (int)dgv.CurrentRow.Cells["id"].Value;
-            var frm = new frm_curriculum_subjects(Email, curriculum_id);
-            frm.Text = "Curriculum Subjecs";
-            frm.ShowDialog();
+            try
+            {
+                var curriculum_id = (int)dgv.CurrentRow.Cells["id"].Value;
+                var frm = new frm_curriculum_subjects(Email, curriculum_id);
+                frm.Text = "Curriculum Subjecs";
+                frm.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                new Classes.Toastr("Warning", ex.Message);
+            }
+            
         }
 
         

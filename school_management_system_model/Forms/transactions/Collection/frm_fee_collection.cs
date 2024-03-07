@@ -81,6 +81,7 @@ namespace school_management_system_model.Forms.transactions.Collection
 
         private async Task loadStudentAccount()
         {
+
             var studentAccounts = await _studentAccountRepo.GetAllAsync();
             var student = studentAccounts.FirstOrDefault(x => x.id_number == tIdNumber.Text);
             tStudentName.Text = student.fullname;
@@ -368,6 +369,19 @@ namespace school_management_system_model.Forms.transactions.Collection
             Department = frm_collection_module.instance.Department;
         }
 
+        private async Task LoadStudentCredentialBySearch()
+        {
+            id_number = tIdNumber.Text;
+            var student = await _studentAccountRepo.GetStudentDetailAsync(id_number);
+
+            tIdNumber.Text = id_number;
+            tStudentName.Text = student.name;
+            tCourse.Text = student.course;
+            tYearLevel.Text = student.year_level;
+            tSemester.Text = student.semester;
+            tCampus.Text = student.campus;
+            tStatus.Text = student.status;
+        }
 
 
         private async void btnConfirmPayment_Click(object sender, EventArgs e)
@@ -538,24 +552,13 @@ namespace school_management_system_model.Forms.transactions.Collection
             frm2.ShowDialog();
         }
 
-        private void timerTime_Tick(object sender, EventArgs e)
+
+        private async void frm_fee_collection_KeyUp(object sender, KeyEventArgs e)
         {
-            tTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tAmountPayable_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                await LoadStudentCredentialBySearch();
+            }
         }
     }
 }
