@@ -12,8 +12,6 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
 {
     internal class StudentAccountRepository : IGenericRepository<StudentAccount>
     {
-        
-
 
         public async Task AddRecords(StudentAccount entity)
         {
@@ -265,6 +263,30 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                 section = d.section,
                 year_level = d.year_level
             }).ToList();
+        }
+
+        public async Task<StudentAccountDetailDto> GetStudentDetailAsync(string id_number)
+        {
+            var student = await GetAllAsync();
+
+            var _studentCourseRepo = new StudentCourseRepository();
+
+            var studentCourse = await _studentCourseRepo.GetAllAsync();
+
+            var studentDetail = student.FirstOrDefault(x => x.id_number ==  id_number);
+
+            var studentDto = new StudentAccountDetailDto
+            {
+                id = studentDetail.id,
+                name = studentDetail.fullname,
+                course = studentCourse.FirstOrDefault(x => x.id_number == id_number).course,
+                year_level = studentCourse.FirstOrDefault(x => x.id_number == id_number).year_level,
+                semester = studentCourse.FirstOrDefault(x => x.id_number == id_number).semester,
+                campus = studentCourse.FirstOrDefault(x => x.id_number == id_number).campus,
+                status = studentDetail.status
+            };
+
+            return studentDto;
         }
     }
 }

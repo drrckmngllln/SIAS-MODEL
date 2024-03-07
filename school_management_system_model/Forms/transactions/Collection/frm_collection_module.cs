@@ -1,4 +1,5 @@
-﻿using school_management_system_model.Data.Repositories.Setings;
+﻿using school_management_system_model.Core.Entities;
+using school_management_system_model.Data.Repositories.Setings;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -66,6 +67,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                 }
             }
         }
+
 
         public void incrementOrNumber()
         {

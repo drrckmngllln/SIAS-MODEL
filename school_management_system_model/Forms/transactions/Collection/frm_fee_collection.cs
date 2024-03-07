@@ -431,6 +431,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                                 frm.Show();
 
                                 await loadRecords();
+                                frm_collection_module.instance.incrementOrNumber();
                             }
                         }
                         else
@@ -473,6 +474,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                                     frm.Text = "Fee Collection";
                                     frm.ShowDialog();
                                     await loadRecords();
+                                    frm_collection_module.instance.incrementOrNumber();
 
                                 }
                             }
@@ -488,7 +490,7 @@ namespace school_management_system_model.Forms.transactions.Collection
                 tParticulars.Clear();
                 btnConfirmPayment.Enabled = true;
                 btnConfirmPayment.Text = "Confirm Payment";
-                frm_collection_module.instance.incrementOrNumber();
+                
             }
 
 

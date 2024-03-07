@@ -5,12 +5,8 @@ using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,6 +24,10 @@ namespace school_management_system_model.Forms.transactions.Collection
         private readonly string email;
         public string id_number { get; set; }
 
+        public string Cashier { get; set; }
+        public int OrNumber { get; set; }
+        public string Department { get; set; }
+
         public static frm_non_assessed_collection instance;
         public frm_non_assessed_collection(string email)
         {
@@ -35,13 +35,6 @@ namespace school_management_system_model.Forms.transactions.Collection
             InitializeComponent();
             this.email = email;
 
-        }
-
-        private async Task CashierInfo()
-        {
-            var users = await _userRepo.GetAllAsync();
-            var cashier = users.FirstOrDefault(x => x.email == email);
-            tCashier.Text = cashier.fullname;
         }
 
         private async Task LoadSchoolYear()
@@ -52,47 +45,46 @@ namespace school_management_system_model.Forms.transactions.Collection
             tSchoolYear.DataSource = schoolYears;
         }
 
-        private void SetOrNumber()
+        private void GetCashierOrNumberAndDepartment()
         {
-            int orNumber = 0;
-            orNumber = Convert.ToInt32(tOrNumberSet.Text);
-            tOrNumber.Text = orNumber.ToString();
-            tOrNumberSet.Clear();
+            Cashier = frm_collection_module.instance.CashierInCharge;
+            OrNumber = frm_collection_module.instance.OrNumber;
+            Department = frm_collection_module.instance.Department;
         }
 
-        private void incrementORNumber()
-        {
-            int orNumber = Convert.ToInt32(tOrNumber.Text);
-            orNumber++;
-            tOrNumber.Text = orNumber.ToString();
-        }
+
+
 
         private async Task LoadStudentCredential()
         {
-            tIdNumber.Text = id_number.ToString();
-            var studentAccounts = await _studentAccountRepo.GetAllAsync();
-            var studentCourses = await _studentCourseRepo.GetAllAsync();
+            var student = await _studentAccountRepo.GetStudentDetailAsync(id_number);
 
-            var student = studentAccounts.FirstOrDefault(x => x.id_number == id_number);
-            var course = studentCourses.FirstOrDefault(x => x.id_number == id_number);
+            tIdNumber.Text = id_number;
+            tStudentName.Text = student.name;
+            tCourse.Text = student.course;
+            tYearLevel.Text = student.year_level;
+            tSemester.Text = student.semester;
+            tCampus.Text = student.campus;
+            tStatus.Text = student.status;
+        }
 
-            tStudentName.Text = student.fullname;
-            tCourse.Text = course.course;
-            tYearLevel.Text = course.year_level;
-            tSemester.Text = course.semester;
-            tCampus.Text = course.campus;
+        private async Task LoadStudentCredentialBySearch()
+        {
+            id_number = tIdNumber.Text;
+            var student = await _studentAccountRepo.GetStudentDetailAsync(id_number);
+
+            tIdNumber.Text = id_number;
+            tStudentName.Text = student.name;
+            tCourse.Text = student.course;
+            tYearLevel.Text = student.year_level;
+            tSemester.Text = student.semester;
+            tCampus.Text = student.campus;
             tStatus.Text = student.status;
         }
 
         private async void frm_non_assessed_collection_Load(object sender, EventArgs e)
         {
-            await CashierInfo();
             await LoadSchoolYear();
-        }
-
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            SetOrNumber();
         }
 
         private async void btnSelectStudent_Click(object sender, EventArgs e)
@@ -143,23 +135,23 @@ namespace school_management_system_model.Forms.transactions.Collection
                 course_id = course.id.ToString(),
                 year_level = tYearLevel.Text,
                 semester = tSemester.Text,
-                reference_no = Convert.ToInt32(tOrNumber.Text),
+                reference_no = Convert.ToInt32(OrNumber),
                 particulars = tParticulars.Text,
                 amount = Convert.ToDecimal(tAmount.Text),
-                cashier_in_charge = tCashier.Text
+                cashier_in_charge = Cashier
             };
             var result = await _NonAssessmentRepo.AddRecordsAsync(collect);
             new Classes.Toastr("Success", "Fee Collected");
             await loadNonAssessment();
 
-            incrementORNumber();
         }
 
         private async void btnConfirmPayment_Click(object sender, EventArgs e)
         {
+            GetCashierOrNumberAndDepartment();
             try
             {
-                if (tAmount.Text == "" || tParticulars.Text == "" || tAmountPayable.Text == "" || tOrNumber.Text == "")
+                if (tAmount.Text == "" || tParticulars.Text == "" || tAmountPayable.Text == "" || OrNumber == 0)
                 {
                     new Classes.Toastr("Error", "Missing Fields");
                 }
@@ -184,11 +176,14 @@ namespace school_management_system_model.Forms.transactions.Collection
                         string numberToWords = NumberToWords.ConvertToWords(Convert.ToInt32(payable)) + " Pesos Only";
 
                         //Payment printing
-                        var frm = new frm_payment_message(tStudentName.Text, tOrNumber.Text, DateTime.Now.ToString("MM-dd-yyyy"), tAmount.Text, tAmountPayable.Text, change.ToString(), tCashier.Text, numberToWords);
+                        var frm = new frm_payment_message(tStudentName.Text, OrNumber.ToString(), DateTime.Now.ToString("MM-dd-yyyy"),
+                            tAmount.Text, tAmountPayable.Text, change.ToString(), Cashier, numberToWords);
                         frm.Text = "Non Assessed Collection";
                         frm.ShowDialog();
 
                         txtClear();
+
+                        frm_collection_module.instance.incrementOrNumber();
                     }
                 }
             }
@@ -212,6 +207,24 @@ namespace school_management_system_model.Forms.transactions.Collection
             tAmountPayable.Clear();
             tParticulars.Clear();
             btnSelectStudent.Select();
+        }
+
+       
+
+        private async void frm_non_assessed_collection_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    await LoadStudentCredentialBySearch();
+                    await loadNonAssessment();
+                }
+            }
+            catch (Exception ex)
+            {
+                new Classes.Toastr("Warning", ex.Message);
+            }
         }
     }
 }
