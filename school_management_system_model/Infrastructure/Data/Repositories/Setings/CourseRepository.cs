@@ -12,6 +12,7 @@ namespace school_management_system_model.Data.Repositories.Setings
     {
         DepartmentRepository _departmentRepo = new DepartmentRepository();
         LevelsRepository _levelsRepo = new LevelsRepository();
+        CampusRepository _campusRepo = new CampusRepository();
         public async Task AddRecords(Courses entity)
         {
             using (var con = new MySqlConnection(connection.con()))
@@ -58,23 +59,20 @@ namespace school_management_system_model.Data.Repositories.Setings
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var a = await _levelsRepo.GetAllAsync();
-                var level = a.FirstOrDefault(x => x.id == reader.GetInt32("level_id")).code;
+                var level = await _levelsRepo.GetByIdAsync(reader.GetInt32("level_id"));
 
-                var b = await _campusRepo.GetAllAsync();
-                var campus = b.FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
+                var campus = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
 
-                var c = await _departmentRepo.GetAllAsync();
-                var department = c.FirstOrDefault(x => x.id == reader.GetInt32("department_id")).code;
+                var department = await _departmentRepo.GetByIdAsync(reader.GetInt32("department_id"));
 
                 var course = new Courses
                 {
                     id = reader.GetInt32("id"),
                     code = reader.GetString("code"),
                     description = reader.GetString("description"),
-                    level = level,
-                    campus = campus,
-                    department = department,
+                    level = level.code,
+                    campus = campus.code,
+                    department = department.code,
                     max_units = reader.GetString("max_units"),
                     status = reader.GetString("status")
                 };
@@ -82,6 +80,42 @@ namespace school_management_system_model.Data.Repositories.Setings
             }
             await con.CloseAsync();
             return list;
+        }
+
+        public async Task<Courses> GetByIdAsync(int id)
+        {
+            var course = new Courses();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from courses where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var level = await _levelsRepo.GetByIdAsync(reader.GetInt32("level_id"));
+                            var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+                            var department = await _departmentRepo.GetByIdAsync(reader.GetInt32("department_id"));
+                            course = new Courses
+                            {
+                                id = reader.GetInt32("id"),
+                                code = reader.GetString("code"),
+                                description = reader.GetString("description"),
+                                level = level.code,
+                                campus = campuses.code,
+                                department = department.code,
+                                max_units = reader.GetString("max_units"),
+                                status = reader.GetString("status")
+                            };
+                        }
+
+                    }
+                }
+                await con.CloseAsync();
+                return course;
+            }
         }
 
         public async Task UpdateRecords(Courses entity)

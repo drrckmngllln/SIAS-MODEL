@@ -47,7 +47,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
         {
             if (this.Text == "Select")
             {
-                paging.pageSize = 10;
+                paging.PageSize = 10;
                 tTitle.Text = "Select Subjects: " + Description;
                 tPageSize.Text = paging.pageNumber.ToString();
                 var a = await _curriculumSubjectsRepo.GetAllAsync();
@@ -58,8 +58,8 @@ namespace school_management_system_model.Forms.settings.FeeSetup
                         x.descriptive_title,
                         x.lab_units
                     })
-                    .Skip(paging.pageSize * (paging.pageNumber - 1))
-                    .Take(paging.pageSize)
+                    .Skip(paging.PageSize * (paging.pageNumber - 1))
+                    .Take(paging.PageSize)
                     .ToList();
 
                 dgv.DataSource = curriculumSubjects;
@@ -211,7 +211,7 @@ namespace school_management_system_model.Forms.settings.FeeSetup
             paging.pageNumber++;
             tPageSize.Text = paging.pageNumber.ToString();
             loadRecords();
-            if (dgv.Rows.Count < paging.pageSize)
+            if (dgv.Rows.Count < paging.PageSize)
             {
                 btnNext.Enabled = false;
             }

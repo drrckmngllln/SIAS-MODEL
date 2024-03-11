@@ -7,6 +7,7 @@ using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using school_management_system_model.Forms.transactions.StudentEnrollment;
+using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Loggers;
 using System;
 using System.Data;
@@ -16,7 +17,7 @@ using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.transactions
 {
-    public partial class frm_student_enrollment : KryptonForm
+    public partial class frm_student_enrollment : Form
     {
         SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
         SectionRepository _sectionRepository = new SectionRepository();
@@ -26,6 +27,8 @@ namespace school_management_system_model.Forms.transactions
         InstructorRepository _instructorRepo = new InstructorRepository();
         SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
         CurriculumRepository _curriculumRepo = new CurriculumRepository();
+
+        StudentEnrollmentRepository _studentEnrollmentRepo = new StudentEnrollmentRepository();
 
 
         public int Id { get; set; }
@@ -111,23 +114,25 @@ namespace school_management_system_model.Forms.transactions
 
         private async Task loadRecords()
         {
-            var schoolYears = await _schoolYearRepo.GetAllAsync();
-            var sy = schoolYears.FirstOrDefault(x => x.code == school_year_id);
+            //var schoolYears = await _schoolYearRepo.GetAllAsync();
+            //var sy = schoolYears.FirstOrDefault(x => x.code == school_year_id);
 
 
-            var a = await _studentAccountRepo.GetAllAsync();
-            var student_account = a.FirstOrDefault(x => x.id_number == id_number);
-            var student_course = await _studentCourseRepo.GetAllAsync();
-            var b = student_course.FirstOrDefault(x => x.id_number == id_number);
-            tIdNumber.Text = student_account.id_number;
-            tStudentName.Text = student_account.fullname;
-            tCourse.Text = b.course;
-            tCampus.Text = b.campus;
-            tCurriculum.Text = b.curriculum;
-            tSection.Text = b.section;
-            tYearLevel.Text = b.year_level;
-            tSemester.Text = sy.semester;
-            tYearLevel.Select();
+            //var a = await _studentAccountRepo.GetAllAsync();
+            //var student_account = a.FirstOrDefault(x => x.id_number == id_number);
+            //var student_course = await _studentCourseRepo.GetAllAsync();
+            //var b = student_course.FirstOrDefault(x => x.id_number == id_number);
+            //tIdNumber.Text = student_account.id_number;
+            //tStudentName.Text = student_account.fullname;
+            //tCourse.Text = b.course;
+            //tCampus.Text = b.campus;
+            //tCurriculum.Text = b.curriculum;
+            //tSection.Text = b.section;
+            //tYearLevel.Text = b.year_level;
+            //tSemester.Text = sy.semester;
+            //tYearLevel.Select();
+
+            var students = await _studentAccountRepo.GetStudentAccountsMain();
 
 
 
@@ -466,6 +471,26 @@ namespace school_management_system_model.Forms.transactions
             {
                 tSection.Text = section;
                 await loadSectionSubjects(tSection.Text);
+            }
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_select_students();
+            frm.ShowDialog();
+            if (Id != 0)
+            {
+                var studentDetails = await _studentEnrollmentRepo.GetStudentDetails(Id);
+                if (studentDetails != null)
+                {
+                    tStudentName.Text = studentDetails.student_name;
+                    tYearLevel.Text = studentDetails.year_level;
+                    tCourse.Text = studentDetails.course;
+                    tCampus.Text = studentDetails.campus;
+                    tCurriculum.Text = studentDetails.curriculum;
+                    tSemester.Text = studentDetails.semester;
+                    tSection.Text = studentDetails.section;
+                }
             }
         }
     }

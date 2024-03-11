@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using MySql.Data.MySqlClient;
+using school_management_system_model.Core.Dtos;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
@@ -90,9 +92,9 @@ namespace school_management_system_model.Data.Repositories.Transaction
                     return list.Select(x => new StudentCourses
                     {
                         id = x.id,
-                        id_number = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
-                        course = courses.FirstOrDefault(c => c.id == Convert.ToInt32(x.course)).code,
-                        campus = campuses.FirstOrDefault(campus => campus.id == Convert.ToInt32(x.campus)).code,
+                        id_number = studentAccounts.Single(s => s.id == Convert.ToInt32(x.id_number)).id_number,
+                        course = courses.SingleOrDefault(c => c.id == Convert.ToInt32(x.course)).code,
+                        campus = campuses.SingleOrDefault(campus => campus.id == Convert.ToInt32(x.campus)).code,
                         curriculum = "Not Set",
                         year_level = x.year_level,
                         section = "Not Set",
@@ -118,16 +120,102 @@ namespace school_management_system_model.Data.Repositories.Transaction
                     return list.Select(x => new StudentCourses
                     {
                         id = x.id,
-                        id_number = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
-                        course = courses.FirstOrDefault(c => c.id == Convert.ToInt32(x.course)).code,
-                        campus = campuses.FirstOrDefault(campus => campus.id == Convert.ToInt32(x.campus)).code,
+                        id_number = studentAccounts.SingleOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
+                        course = courses.SingleOrDefault(c => c.id == Convert.ToInt32(x.course)).code,
+                        campus = campuses.SingleOrDefault(campus => campus.id == Convert.ToInt32(x.campus)).code,
                         year_level = x.year_level,
-                        curriculum = curriculums.FirstOrDefault(cur => cur.id == Convert.ToInt32(x.curriculum)).code,
-                        section = sections.FirstOrDefault(section => section.id == Convert.ToInt32(x.section)).section_code,
+                        curriculum = curriculums.SingleOrDefault(cur => cur.id == Convert.ToInt32(x.curriculum)).code,
+                        section = sections.SingleOrDefault(section => section.id == Convert.ToInt32(x.section)).section_code,
                         semester = x.semester
                     }).ToList();
                 }
 
+            }
+        }
+
+        public async Task<StudentCourses> GetByIdAsync(int id)
+        {
+            var _studentAccounRepo = new StudentAccountRepository();
+            var _courseRepo = new CourseRepository();
+            var _campusRepo = new CampusRepository();
+            var _curriculumRepo = new CurriculumRepository();
+            var _sectionRepo = new SectionRepository();
+
+
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select student_course where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var student = await _studentAccounRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                        var courses = await _courseRepo.GetByIdAsync(reader.GetInt32("course_id"));
+                        var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+                        var curriculums = await _curriculumRepo.GetByIdAsync(reader.GetInt32("curriculum_id"));
+                        var sections = await _sectionRepo.GetByIdAsync(reader.GetInt32("section_id"));
+
+                        var studentCourses = new StudentCourses
+                        {
+                            id = reader.GetInt32("id"),
+                            id_number = student.id_number,
+                            course = courses.code,
+                            campus = campuses.code,
+                            curriculum = curriculums.code,
+                            year_level = reader.GetString("year_level"),
+                            section = sections.section_code,
+                            semester = reader.GetString("semester")
+                        };
+                        await con.CloseAsync();
+                        return studentCourses;
+                    }
+                }
+            }
+        }
+
+        public async Task<StudentCourses> GetByIdNumberAsync(string id_number)
+        {
+            var _studentAccounRepo = new StudentAccountRepository();
+            var _courseRepo = new CourseRepository();
+            var _campusRepo = new CampusRepository();
+            var _curriculumRepo = new CurriculumRepository();
+            var _sectionRepo = new SectionRepository();
+
+            var studentCourses = new StudentCourses();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from student_course where id_number_id='" + id_number + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var student = await _studentAccounRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                            var courses = await _courseRepo.GetByIdAsync(reader.GetInt32("course_id"));
+                            var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+                            var curriculums = await _curriculumRepo.GetByIdAsync(reader.GetInt32("curriculum_id"));
+                            var sections = await _sectionRepo.GetByIdAsync(reader.GetInt32("section_id"));
+
+                            studentCourses = new StudentCourses
+                            {
+                                id = reader.GetInt32("id"),
+                                id_number = student.id_number,
+                                course = courses.code,
+                                campus = campuses.code,
+                                curriculum = curriculums.code,
+                                year_level = reader.GetString("year_level"),
+                                section = sections.section_code,
+                                semester = reader.GetString("semester")
+                            };
+                        }
+                        
+                    }
+                }
+                await con.CloseAsync();
+                return studentCourses;
             }
         }
 
@@ -182,5 +270,7 @@ namespace school_management_system_model.Data.Repositories.Transaction
                 await con.CloseAsync();
             }
         }
+
+
     }
 }

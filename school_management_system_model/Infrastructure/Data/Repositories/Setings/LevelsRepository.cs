@@ -55,6 +55,34 @@ namespace school_management_system_model.Data.Repositories.Setings
             return list;
         }
 
+        public async Task<Levels> GetByIdAsync(int id)
+        {
+            var level = new Levels();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from levels where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            level = new Levels
+                            {
+                                id = reader.GetInt32("id"),
+                                code = reader.GetString("code"),
+                                description = reader.GetString("description"),
+                                status = reader.GetString("status")
+                            };
+                        }
+                    }
+                }
+            }
+            await con.CloseAsync();
+            return level;
+        }
+
         public async Task UpdateRecords(Levels entity)
         {
             await con.OpenAsync();

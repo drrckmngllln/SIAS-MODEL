@@ -45,7 +45,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
             else if (this.Text == "Fee Collection")
             {
-                paging.pageSize = 10;
+                paging.PageSize = 10;
                 var studentAccounts = await _studentAccountRepo.GetAllAsync();
                 var student = studentAccounts
                     .Select(x => new
@@ -53,8 +53,8 @@ namespace school_management_system_model.Forms.transactions.Collection
                         x.id_number,
                         x.fullname
                     })
-                    .Skip(paging.pageSize * (paging.pageNumber - 1))
-                    .Take(paging.pageSize)
+                    .Skip(paging.PageSize * (paging.pageNumber - 1))
+                    .Take(paging.PageSize)
                     .ToList();
 
                 dgv.DataSource = student;
@@ -64,7 +64,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             }
             else if (this.Text == "Non Assessed Collection")
             {
-                paging.pageSize = 10;
+                paging.PageSize = 10;
                 var studentAccounts = await _studentAccountRepo.GetAllAsync();
                 var student = studentAccounts
                     .Select(x => new
@@ -72,8 +72,8 @@ namespace school_management_system_model.Forms.transactions.Collection
                         x.id_number,
                         x.fullname
                     })
-                    .Skip(paging.pageSize * (paging.pageNumber - 1))
-                    .Take(paging.pageSize)
+                    .Skip(paging.PageSize * (paging.pageNumber - 1))
+                    .Take(paging.PageSize)
                     .ToList();
 
                 dgv.DataSource = student;
@@ -160,7 +160,7 @@ namespace school_management_system_model.Forms.transactions.Collection
             paging.pageNumber++;
             tPageSize.Text = paging.pageNumber.ToString();
             await loadRecords();
-            if (dgv.Rows.Count < paging.pageSize)
+            if (dgv.Rows.Count < paging.PageSize)
             {
                 btnNext.Enabled = false;
             }

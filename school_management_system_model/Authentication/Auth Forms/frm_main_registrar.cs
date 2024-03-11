@@ -6,8 +6,10 @@ using school_management_system_model.Forms.settings;
 using school_management_system_model.Forms.settings.Schedule;
 using school_management_system_model.Forms.settings.UserManagement;
 using school_management_system_model.Forms.transactions;
+using school_management_system_model.Forms.transactions.StudentAccounts;
 using System;
 using System.Drawing;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Authentication.Auth_Forms.Registrar
@@ -99,13 +101,20 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnStudentAccounts_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_accounts(email)
-            {
-                IsAdd = is_add,
-                IsEdit = is_edit,
-                IsDelete = is_delete,
-                IsAdministrator = isAdministrator
-            };
+            //var frm = new frm_student_accounts(email)
+            //{
+            //    IsAdd = is_add,
+            //    IsEdit = is_edit,
+            //    IsDelete = is_delete,
+            //    IsAdministrator = isAdministrator
+            //};
+            //frm.TopLevel = false;
+            //panelTask.Controls.Clear();
+            //panelTask.Controls.Add(frm);
+            //frm.Show();
+
+
+            var frm = new frmStudentAccountModule();
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
@@ -240,6 +249,15 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
         private void btnMasterlistOfStudent_Click(object sender, EventArgs e)
         {
             var frm = new frmMasterlistOfStudentEnrolledParentModule();
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnEnrollment_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_student_enrollment(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

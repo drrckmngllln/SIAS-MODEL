@@ -46,8 +46,8 @@ namespace school_management_system_model.Forms.transactions
                 var a = await _studentAccountRepo.GetAllAsync();
                 var student = a
                     .OrderByDescending(x => x.id)
-                    .Skip(paging.pageSize * (paging.pageNumber - 1))
-                    .Take(paging.pageSize)
+                    .Skip(paging.PageSize * (paging.pageNumber - 1))
+                    .Take(paging.PageSize)
                     .ToList();
 
                 dgv.DataSource = student;
@@ -250,7 +250,7 @@ namespace school_management_system_model.Forms.transactions
             paging.pageNumber++;
             tPageSize.Text = paging.pageNumber.ToString();
             await loadRecords();
-            if (dgv.Rows.Count < paging.pageSize)
+            if (dgv.Rows.Count < paging.PageSize)
             {
                 btnNext.Enabled = false;
             }

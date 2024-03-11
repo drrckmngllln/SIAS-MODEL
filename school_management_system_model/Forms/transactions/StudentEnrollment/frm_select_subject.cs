@@ -32,12 +32,12 @@ namespace school_management_system_model.Forms.transactions
 
         private async void loadRecords()
         {
-            paging.pageSize = 10;
+            paging.PageSize = 10;
             tLoading.Visible = true;
             var sectionSubjects = await _sectionSubjectRepo.GetAllAsync();
             var sectionSubject = sectionSubjects
-                .Skip(paging.pageSize * (paging.pageNumber - 1))
-                .Take(paging.pageSize)
+                .Skip(paging.PageSize * (paging.pageNumber - 1))
+                .Take(paging.PageSize)
                 .ToList();
             
             dgv.DataSource = sectionSubject;
@@ -117,7 +117,7 @@ namespace school_management_system_model.Forms.transactions
             paging.pageNumber++;
             tPageSize.Text = paging.pageNumber.ToString();
             loadRecords();
-            if (dgv.Rows.Count < paging.pageSize)
+            if (dgv.Rows.Count < paging.PageSize)
             {
                 btnNext.Enabled = false;
             }
@@ -145,8 +145,8 @@ namespace school_management_system_model.Forms.transactions
                 || x.subject_code.ToLower().Contains(tSearch.Text)
                 || x.descriptive_title.ToLower().Contains(tSearch.Text)
                 || x.instructor.ToLower().Contains(tSearch.Text))
-                    .Skip(paging.pageSize * (paging.pageNumber - 1))
-                    .Take(paging.pageSize)
+                    .Skip(paging.PageSize * (paging.pageNumber - 1))
+                    .Take(paging.PageSize)
                     .ToList();
                 dgv.DataSource = search;
             }

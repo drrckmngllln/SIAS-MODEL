@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_student_enrollment));
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,8 +46,6 @@
             this.tYearLevel = new System.Windows.Forms.TextBox();
             this.tSemester = new System.Windows.Forms.TextBox();
             this.tCurriculum = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tStudentName = new System.Windows.Forms.Label();
             this.tLectureUnits = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tLabUnits = new System.Windows.Forms.Label();
@@ -62,8 +61,20 @@
             this.tSection = new System.Windows.Forms.TextBox();
             this.tLoading = new System.Windows.Forms.Label();
             this.tStudentLoading = new System.Windows.Forms.Label();
+            this.kryptonGroup1 = new Krypton.Toolkit.KryptonGroup();
+            this.kryptonGroupBox1 = new Krypton.Toolkit.KryptonGroupBox();
+            this.tStudentName = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup1.Panel)).BeginInit();
+            this.kryptonGroup1.Panel.SuspendLayout();
+            this.kryptonGroup1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
+            this.kryptonGroupBox1.Panel.SuspendLayout();
+            this.kryptonGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv
@@ -75,23 +86,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv.Location = new System.Drawing.Point(494, 54);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -102,14 +113,16 @@
             this.dgv.RowTemplate.Height = 30;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(601, 549);
+            this.dgv.Size = new System.Drawing.Size(601, 581);
             this.dgv.TabIndex = 82;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(54, 119);
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(13, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 15);
             this.label1.TabIndex = 83;
@@ -118,8 +131,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(54, 172);
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(13, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 15);
             this.label2.TabIndex = 85;
@@ -128,8 +143,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(54, 224);
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(13, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 15);
             this.label3.TabIndex = 87;
@@ -138,8 +155,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(54, 146);
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(13, 38);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 15);
             this.label4.TabIndex = 89;
@@ -148,8 +167,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(54, 276);
+            this.label5.ForeColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(13, 168);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 15);
             this.label5.TabIndex = 91;
@@ -158,8 +179,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(54, 250);
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(13, 142);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 15);
             this.label6.TabIndex = 94;
@@ -168,7 +191,7 @@
             // kryptonButton4
             // 
             this.kryptonButton4.CornerRoundingRadius = 10F;
-            this.kryptonButton4.Location = new System.Drawing.Point(165, 353);
+            this.kryptonButton4.Location = new System.Drawing.Point(167, 288);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.Size = new System.Drawing.Size(159, 48);
             this.kryptonButton4.StateCommon.Back.Color1 = System.Drawing.SystemColors.Control;
@@ -192,7 +215,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(491, 606);
+            this.label7.Location = new System.Drawing.Point(491, 638);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 17);
             this.label7.TabIndex = 99;
@@ -203,7 +226,7 @@
             this.tTotalUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tTotalUnits.AutoSize = true;
             this.tTotalUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tTotalUnits.Location = new System.Drawing.Point(577, 606);
+            this.tTotalUnits.Location = new System.Drawing.Point(577, 638);
             this.tTotalUnits.Name = "tTotalUnits";
             this.tTotalUnits.Size = new System.Drawing.Size(23, 17);
             this.tTotalUnits.TabIndex = 100;
@@ -211,62 +234,41 @@
             // 
             // tIdNumber
             // 
-            this.tIdNumber.Location = new System.Drawing.Point(174, 119);
+            this.tIdNumber.Location = new System.Drawing.Point(133, 11);
             this.tIdNumber.Name = "tIdNumber";
-            this.tIdNumber.Size = new System.Drawing.Size(225, 20);
+            this.tIdNumber.Size = new System.Drawing.Size(297, 20);
             this.tIdNumber.TabIndex = 101;
             // 
             // tYearLevel
             // 
-            this.tYearLevel.Location = new System.Drawing.Point(174, 145);
+            this.tYearLevel.Location = new System.Drawing.Point(133, 37);
             this.tYearLevel.Name = "tYearLevel";
-            this.tYearLevel.Size = new System.Drawing.Size(225, 20);
+            this.tYearLevel.Size = new System.Drawing.Size(297, 20);
             this.tYearLevel.TabIndex = 102;
             this.tYearLevel.TextChanged += new System.EventHandler(this.tYearLevel_TextChanged);
             // 
             // tSemester
             // 
-            this.tSemester.Location = new System.Drawing.Point(174, 249);
+            this.tSemester.Location = new System.Drawing.Point(133, 141);
             this.tSemester.Name = "tSemester";
-            this.tSemester.Size = new System.Drawing.Size(225, 20);
+            this.tSemester.Size = new System.Drawing.Size(297, 20);
             this.tSemester.TabIndex = 106;
             this.tSemester.TextChanged += new System.EventHandler(this.tSemester_TextChanged);
             // 
             // tCurriculum
             // 
             this.tCurriculum.FormattingEnabled = true;
-            this.tCurriculum.Location = new System.Drawing.Point(174, 223);
+            this.tCurriculum.Location = new System.Drawing.Point(133, 115);
             this.tCurriculum.Name = "tCurriculum";
-            this.tCurriculum.Size = new System.Drawing.Size(225, 21);
+            this.tCurriculum.Size = new System.Drawing.Size(297, 21);
             this.tCurriculum.TabIndex = 107;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tStudentName);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(467, 70);
-            this.groupBox1.TabIndex = 110;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Student Name";
-            // 
-            // tStudentName
-            // 
-            this.tStudentName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tStudentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStudentName.Location = new System.Drawing.Point(3, 19);
-            this.tStudentName.Name = "tStudentName";
-            this.tStudentName.Size = new System.Drawing.Size(461, 48);
-            this.tStudentName.TabIndex = 0;
-            this.tStudentName.Text = "Student Name";
             // 
             // tLectureUnits
             // 
             this.tLectureUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tLectureUnits.AutoSize = true;
             this.tLectureUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLectureUnits.Location = new System.Drawing.Point(733, 606);
+            this.tLectureUnits.Location = new System.Drawing.Point(733, 638);
             this.tLectureUnits.Name = "tLectureUnits";
             this.tLectureUnits.Size = new System.Drawing.Size(23, 17);
             this.tLectureUnits.TabIndex = 112;
@@ -277,7 +279,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(635, 606);
+            this.label9.Location = new System.Drawing.Point(635, 638);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 17);
             this.label9.TabIndex = 111;
@@ -288,7 +290,7 @@
             this.tLabUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tLabUnits.AutoSize = true;
             this.tLabUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLabUnits.Location = new System.Drawing.Point(861, 606);
+            this.tLabUnits.Location = new System.Drawing.Point(861, 638);
             this.tLabUnits.Name = "tLabUnits";
             this.tLabUnits.Size = new System.Drawing.Size(23, 17);
             this.tLabUnits.TabIndex = 114;
@@ -299,7 +301,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(783, 606);
+            this.label11.Location = new System.Drawing.Point(783, 638);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 17);
             this.label11.TabIndex = 113;
@@ -354,16 +356,18 @@
             // 
             // tCampus
             // 
-            this.tCampus.Location = new System.Drawing.Point(174, 197);
+            this.tCampus.Location = new System.Drawing.Point(133, 89);
             this.tCampus.Name = "tCampus";
-            this.tCampus.Size = new System.Drawing.Size(225, 20);
+            this.tCampus.Size = new System.Drawing.Size(297, 20);
             this.tCampus.TabIndex = 118;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(54, 197);
+            this.label8.ForeColor = System.Drawing.SystemColors.Control;
+            this.label8.Location = new System.Drawing.Point(13, 89);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 15);
             this.label8.TabIndex = 117;
@@ -371,7 +375,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(405, 171);
+            this.button1.Location = new System.Drawing.Point(438, 63);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(27, 19);
             this.button1.TabIndex = 119;
@@ -381,14 +385,14 @@
             // 
             // tCourse
             // 
-            this.tCourse.Location = new System.Drawing.Point(174, 170);
+            this.tCourse.Location = new System.Drawing.Point(133, 62);
             this.tCourse.Name = "tCourse";
-            this.tCourse.Size = new System.Drawing.Size(225, 20);
+            this.tCourse.Size = new System.Drawing.Size(297, 20);
             this.tCourse.TabIndex = 120;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(405, 277);
+            this.button2.Location = new System.Drawing.Point(438, 168);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(27, 19);
             this.button2.TabIndex = 121;
@@ -398,9 +402,9 @@
             // 
             // tSection
             // 
-            this.tSection.Location = new System.Drawing.Point(174, 275);
+            this.tSection.Location = new System.Drawing.Point(133, 167);
             this.tSection.Name = "tSection";
-            this.tSection.Size = new System.Drawing.Size(225, 20);
+            this.tSection.Size = new System.Drawing.Size(297, 20);
             this.tSection.TabIndex = 122;
             // 
             // tLoading
@@ -408,7 +412,7 @@
             this.tLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tLoading.AutoSize = true;
             this.tLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tLoading.Location = new System.Drawing.Point(721, 537);
+            this.tLoading.Location = new System.Drawing.Point(721, 553);
             this.tLoading.Name = "tLoading";
             this.tLoading.Size = new System.Drawing.Size(163, 20);
             this.tLoading.TabIndex = 123;
@@ -419,88 +423,133 @@
             // 
             this.tStudentLoading.AutoSize = true;
             this.tStudentLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tStudentLoading.Location = new System.Drawing.Point(161, 85);
+            this.tStudentLoading.Location = new System.Drawing.Point(179, 422);
             this.tStudentLoading.Name = "tStudentLoading";
             this.tStudentLoading.Size = new System.Drawing.Size(132, 20);
             this.tStudentLoading.TabIndex = 124;
             this.tStudentLoading.Text = "Loading Data...";
             // 
+            // kryptonGroup1
+            // 
+            this.kryptonGroup1.Location = new System.Drawing.Point(12, 68);
+            this.kryptonGroup1.Name = "kryptonGroup1";
+            // 
+            // kryptonGroup1.Panel
+            // 
+            this.kryptonGroup1.Panel.Controls.Add(this.label1);
+            this.kryptonGroup1.Panel.Controls.Add(this.label2);
+            this.kryptonGroup1.Panel.Controls.Add(this.label3);
+            this.kryptonGroup1.Panel.Controls.Add(this.tSection);
+            this.kryptonGroup1.Panel.Controls.Add(this.label4);
+            this.kryptonGroup1.Panel.Controls.Add(this.button2);
+            this.kryptonGroup1.Panel.Controls.Add(this.label5);
+            this.kryptonGroup1.Panel.Controls.Add(this.tCourse);
+            this.kryptonGroup1.Panel.Controls.Add(this.label6);
+            this.kryptonGroup1.Panel.Controls.Add(this.button1);
+            this.kryptonGroup1.Panel.Controls.Add(this.tIdNumber);
+            this.kryptonGroup1.Panel.Controls.Add(this.tCampus);
+            this.kryptonGroup1.Panel.Controls.Add(this.tYearLevel);
+            this.kryptonGroup1.Panel.Controls.Add(this.label8);
+            this.kryptonGroup1.Panel.Controls.Add(this.tSemester);
+            this.kryptonGroup1.Panel.Controls.Add(this.tCurriculum);
+            this.kryptonGroup1.Size = new System.Drawing.Size(476, 214);
+            this.kryptonGroup1.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.kryptonGroup1.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonGroup1.StateCommon.Border.Rounding = 10F;
+            this.kryptonGroup1.TabIndex = 125;
+            // 
+            // kryptonGroupBox1
+            // 
+            this.kryptonGroupBox1.CaptionOverlap = 0D;
+            this.kryptonGroupBox1.Location = new System.Drawing.Point(12, 10);
+            this.kryptonGroupBox1.Name = "kryptonGroupBox1";
+            // 
+            // kryptonGroupBox1.Panel
+            // 
+            this.kryptonGroupBox1.Panel.Controls.Add(this.button3);
+            this.kryptonGroupBox1.Panel.Controls.Add(this.tStudentName);
+            this.kryptonGroupBox1.Size = new System.Drawing.Size(476, 52);
+            this.kryptonGroupBox1.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.kryptonGroupBox1.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonGroupBox1.StateCommon.Border.Rounding = 10F;
+            this.kryptonGroupBox1.StateCommon.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
+            this.kryptonGroupBox1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonGroupBox1.TabIndex = 126;
+            this.kryptonGroupBox1.Values.Heading = "Student Name";
+            // 
+            // tStudentName
+            // 
+            this.tStudentName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.tStudentName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tStudentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tStudentName.ForeColor = System.Drawing.SystemColors.Control;
+            this.tStudentName.Location = new System.Drawing.Point(0, 0);
+            this.tStudentName.Name = "tStudentName";
+            this.tStudentName.Size = new System.Drawing.Size(438, 28);
+            this.tStudentName.TabIndex = 1;
+            this.tStudentName.Text = "Student Name";
+            this.tStudentName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.button3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.SystemColors.Control;
+            this.button3.ImageKey = "folder.png";
+            this.button3.ImageList = this.imageList1;
+            this.button3.Location = new System.Drawing.Point(438, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(30, 28);
+            this.button3.TabIndex = 120;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "folder.png");
+            // 
             // frm_student_enrollment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1107, 632);
+            this.ClientSize = new System.Drawing.Size(1107, 664);
+            this.Controls.Add(this.kryptonGroupBox1);
+            this.Controls.Add(this.kryptonGroup1);
             this.Controls.Add(this.tStudentLoading);
             this.Controls.Add(this.tLoading);
-            this.Controls.Add(this.tSection);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.tCourse);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.tCampus);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.tLabUnits);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.tLectureUnits);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tCurriculum);
-            this.Controls.Add(this.tSemester);
-            this.Controls.Add(this.tYearLevel);
-            this.Controls.Add(this.tIdNumber);
             this.Controls.Add(this.tTotalUnits);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.kryptonButton4);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
-            this.CornerRoundingRadius = 10F;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_student_enrollment";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.StateActive.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateActive.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateActive.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateActive.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateActive.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.StateActive.Header.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateActive.Header.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateActive.Header.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateActive.Header.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateActive.Header.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.StateActive.Header.Content.ShortText.Color1 = System.Drawing.SystemColors.Control;
-            this.StateActive.Header.Content.ShortText.Color2 = System.Drawing.SystemColors.Control;
-            this.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.StateCommon.Border.Rounding = 10F;
-            this.StateInactive.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateInactive.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateInactive.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateInactive.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateInactive.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.StateInactive.Header.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateInactive.Header.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateInactive.Header.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateInactive.Header.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
-            this.StateInactive.Header.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.Text = "frm_student_enrollment";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_student_enrollment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup1.Panel)).EndInit();
+            this.kryptonGroup1.Panel.ResumeLayout(false);
+            this.kryptonGroup1.Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup1)).EndInit();
+            this.kryptonGroup1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).EndInit();
+            this.kryptonGroupBox1.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).EndInit();
+            this.kryptonGroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -522,8 +571,6 @@
         private System.Windows.Forms.TextBox tYearLevel;
         private System.Windows.Forms.TextBox tSemester;
         private System.Windows.Forms.ComboBox tCurriculum;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label tStudentName;
         private System.Windows.Forms.Label tLectureUnits;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label tLabUnits;
@@ -539,5 +586,10 @@
         private System.Windows.Forms.TextBox tSection;
         private System.Windows.Forms.Label tLoading;
         private System.Windows.Forms.Label tStudentLoading;
+        private Krypton.Toolkit.KryptonGroup kryptonGroup1;
+        private Krypton.Toolkit.KryptonGroupBox kryptonGroupBox1;
+        private System.Windows.Forms.Label tStudentName;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

@@ -59,6 +59,7 @@
             this.btnSchoolYear = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.panelTransaction = new System.Windows.Forms.Panel();
+            this.btnEnrollment = new System.Windows.Forms.Button();
             this.btnStudentAccounts = new System.Windows.Forms.Button();
             this.panelTask = new System.Windows.Forms.Panel();
             this.panelStatus = new System.Windows.Forms.Panel();
@@ -524,6 +525,7 @@
             // panelTransaction
             // 
             this.panelTransaction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
+            this.panelTransaction.Controls.Add(this.btnEnrollment);
             this.panelTransaction.Controls.Add(this.btnStudentAccounts);
             this.panelTransaction.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTransaction.Location = new System.Drawing.Point(0, 50);
@@ -531,6 +533,23 @@
             this.panelTransaction.Size = new System.Drawing.Size(183, 80);
             this.panelTransaction.TabIndex = 2;
             this.panelTransaction.Visible = false;
+            // 
+            // btnEnrollment
+            // 
+            this.btnEnrollment.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEnrollment.FlatAppearance.BorderSize = 0;
+            this.btnEnrollment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnrollment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnrollment.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnEnrollment.Location = new System.Drawing.Point(0, 30);
+            this.btnEnrollment.Name = "btnEnrollment";
+            this.btnEnrollment.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnEnrollment.Size = new System.Drawing.Size(183, 30);
+            this.btnEnrollment.TabIndex = 3;
+            this.btnEnrollment.Text = "Student Enrollment";
+            this.btnEnrollment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEnrollment.UseVisualStyleBackColor = true;
+            this.btnEnrollment.Click += new System.EventHandler(this.btnEnrollment_Click);
             // 
             // btnStudentAccounts
             // 
@@ -694,5 +713,6 @@
         private System.Windows.Forms.Button btnStudentWithSubject;
         private System.Windows.Forms.Button btnMasterlistOfStudent;
         private System.Windows.Forms.Button btnReports;
+        private System.Windows.Forms.Button btnEnrollment;
     }
 }

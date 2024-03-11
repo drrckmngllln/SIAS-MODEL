@@ -33,10 +33,10 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
 
         private async Task loadRecords()
         {
-            paging.pageSize = 10;
+            paging.PageSize = 10;
             var studentAccounts = await _studentAccountRepo.GetAllAsync();
 
-            var students = studentAccounts.Skip(paging.pageSize * (paging.pageNumber - 1)).Take(paging.pageNumber).ToList();
+            var students = studentAccounts.Skip(paging.PageSize * (paging.pageNumber - 1)).Take(paging.pageNumber).ToList();
 
             //var con = new MySqlConnection(connection.con());
             //var da = new MySqlDataAdapter("select * from student_accounts", con);
@@ -143,7 +143,7 @@ namespace school_management_system_model.Forms.transactions.StudentDiscounts
             paging.pageNumber++;
             tPageSize.Text = paging.pageNumber.ToString();
             await loadRecords();
-            if (dgv.Rows.Count < paging.pageSize)
+            if (dgv.Rows.Count < paging.PageSize)
             {
                 btnNext.Enabled = false;
             }

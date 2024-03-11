@@ -49,10 +49,10 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             tLoading.Visible = true;
             await Task.Delay(100);
             tLoading.Visible = false;
-            paging.pageSize = 10;
+            paging.PageSize = 10;
             var sectionSubjects = await _sectionSubjectsRepo.GetAllAsync();
-            sectionSubjects.Skip(paging.pageSize * (paging.pageNumber - 1))
-            .Take(paging.pageSize).ToList();
+            sectionSubjects.Skip(paging.PageSize * (paging.pageNumber - 1))
+            .Take(paging.PageSize).ToList();
 
             //var con = new MySqlConnection(connection.con());
             //var da = new MySqlDataAdapter("select * from section_subjects", con);
@@ -199,7 +199,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             tLoading.Visible = true;
             await Task.Delay(100);
             tLoading.Visible = false;
-            if (dgv.Rows.Count < paging.pageSize)
+            if (dgv.Rows.Count < paging.PageSize)
             {
                 btnNext.Enabled = false;
             }

@@ -52,18 +52,16 @@ namespace school_management_system_model.Data.Repositories.Setings
 
             while (reader.Read())
             {
-                var a = await _campusRepo.GetAllAsync();
-                var campus = a.FirstOrDefault(x => x.id == reader.GetInt32("campus_id")).code;
+                var a = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
 
-                var b = await _coursesRepo.GetAllAsync();
-                var course = b.FirstOrDefault(x => x.id == reader.GetInt32("course_id")).code;
+                var b = await _coursesRepo.GetByIdAsync(reader.GetInt32("course_id"));
                 var curriculum = new Curriculums
                 {
                     id = reader.GetInt32("id"),
                     code = reader.GetString("code"),
                     description = reader.GetString("description"),
-                    campus = campus,
-                    course = course,
+                    campus = a.code,
+                    course = b.code,
                     effective = reader.GetString("effective"),
                     expires = reader.GetString("expires"),
                     status = reader.GetString("status")
@@ -73,6 +71,36 @@ namespace school_management_system_model.Data.Repositories.Setings
             
             await con.CloseAsync();
             return list;
+        }
+
+        public async Task<Curriculums> GetByIdAsync(int id)
+        {
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from curriculums where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+                        var course = await _coursesRepo.GetByIdAsync(reader.GetInt32("course_id"));
+                        var curriculum = new Curriculums
+                        {
+                            id = reader.GetInt32("id"),
+                            code = reader.GetString("code"),
+                            description = reader.GetString("description"),
+                            campus = campuses.code,
+                            course = course.code,
+                            effective = reader.GetString("effective"),
+                            expires = reader.GetString("expires"),
+                            status = reader.GetString("status")
+                        };
+                        await con.CloseAsync();
+                        return curriculum;
+                    }
+                }
+            }
         }
 
         public async Task UpdateRecords(Curriculums entity)

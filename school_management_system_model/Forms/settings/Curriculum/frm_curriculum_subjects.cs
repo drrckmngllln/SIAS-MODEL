@@ -42,7 +42,7 @@ namespace school_management_system_model.Forms.settings
         {
             var a = await _curriculumSubjectsRepo.GetAllAsync();
             var curriculumSubjects =a.Where(x => x.curriculum.ToString() == CurriculumId.ToString())
-                .Skip(pagination.pageSize * (pagination.pageNumber - 1)).Take(pagination.pageSize).ToList();
+                .Skip(pagination.PageSize * (pagination.pageNumber - 1)).Take(pagination.PageSize).ToList();
             dgv.DataSource = curriculumSubjects;
 
 
@@ -179,7 +179,7 @@ namespace school_management_system_model.Forms.settings
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (dgv.Rows.Count < pagination.pageSize)
+            if (dgv.Rows.Count < pagination.PageSize)
             {
                 btnNext.Enabled = false;
             }

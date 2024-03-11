@@ -3,6 +3,8 @@ using school_management_system_model.Core.Dtos;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Infrastructure.Data.Interfaces;
+using school_management_system_model.Infrastructure.Data.Repositories;
 using school_management_system_model.Infrastructure.Data.Specifications;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
 {
     internal class StudentAccountRepository : IGenericRepository<StudentAccount>
     {
+        UnitOfWork _unitOfWork = new UnitOfWork();
 
         public async Task AddRecords(StudentAccount entity)
         {
@@ -123,7 +126,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                 id = x.id,
                 id_number = x.id_number,
                 sy_enrolled = x.sy_enrolled,
-                school_year_id = schoolYears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year_id)).code,
+                school_year_id = schoolYears.SingleOrDefault(sy => sy.id == Convert.ToInt32(x.school_year_id)).code,
                 fullname = x.fullname,
                 last_name = x.last_name,
                 first_name = x.first_name,
@@ -153,6 +156,67 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                 type_of_student = x.type_of_student,
                 date_of_admission = x.date_of_admission
             }).ToList();
+        }
+
+        public async Task<StudentAccount> GetByIdAsync(int id)
+        {
+            var _schoolYearRepo = new SchoolYearRepository();
+            var student = new StudentAccount();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from student_accounts where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var schoolyears = await _schoolYearRepo.GetAllAsync();
+                            var schoolyear = schoolyears.SingleOrDefault(x => x.id == reader.GetInt32("school_year"));
+
+                            student = new StudentAccount
+                            {
+                                id = reader.GetInt32("id"),
+                                id_number = reader.GetString("id_number"),
+                                sy_enrolled = reader.GetString("sy_enrolled"),
+                                school_year_id = schoolyear.code,
+                                fullname = reader.GetString("fullname"),
+                                last_name = reader.GetString("last_name"),
+                                first_name = reader.GetString("first_name"),
+                                middle_name = reader.GetString("middle_name"),
+                                gender = reader.GetString("gender"),
+                                civil_status = reader.GetString("civil_status"),
+                                date_of_birth = reader.GetString("date_of_birth"),
+                                place_of_birth = reader.GetString("place_of_birth"),
+                                nationality = reader.GetString("nationality"),
+                                religion = reader.GetString("religion"),
+                                status = reader.GetString("status"),
+                                contact_no = reader.GetString("contact_no"),
+                                email = reader.GetString("email"),
+                                elem = reader.GetString("elem"),
+                                jhs = reader.GetString("jhs"),
+                                shs = reader.GetString("shs"),
+                                elem_year = reader.GetString("elem_year"),
+                                jhs_year = reader.GetString("jhs_year"),
+                                shs_year = reader.GetString("shs_year"),
+                                mother_name = reader.GetString("mother_name"),
+                                mother_no = reader.GetString("mother_no"),
+                                father_name = reader.GetString("father_name"),
+                                father_no = reader.GetString("father_no"),
+                                home_address = reader.GetString("home_address"),
+                                m_occupation = reader.GetString("m_occupation"),
+                                f_occupation = reader.GetString("f_occupation"),
+                                type_of_student = reader.GetString("type_of_student"),
+                                date_of_admission = reader.GetString("date_of_admission")
+                            };
+                        }
+
+                    }
+                }
+                await con.CloseAsync();
+                return student;
+            }
         }
 
         public async Task UpdateRecords(StudentAccount entity)
@@ -233,6 +297,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
             }
         }
 
+
         public async Task<IReadOnlyList<StudentAccountDto>> GetStudentAccountDtoAsync()
         {
             var _studentCourseRepo = new StudentCourseRepository();
@@ -249,9 +314,9 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                     id = studentNumber.id,
                     name = studentNumber.fullname,
                     gender = studentNumber.gender,
-                    course = studentCourses.FirstOrDefault(x => x.id_number == studentNumber.id_number).course,
-                    section = studentCourses.FirstOrDefault(x => x.id_number == studentNumber.id_number).section,
-                    year_level = studentCourses.FirstOrDefault(x => x.id_number == studentNumber.id_number).year_level
+                    course = studentCourses.SingleOrDefault(x => x.id_number == studentNumber.id_number).course,
+                    section = studentCourses.SingleOrDefault(x => x.id_number == studentNumber.id_number).section,
+                    year_level = studentCourses.SingleOrDefault(x => x.id_number == studentNumber.id_number).year_level
                 };
                 DtoList.Add(Dto);
             }
@@ -274,25 +339,57 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
 
             var studentCourse = await _studentCourseRepo.GetAllAsync();
 
-            var studentDetail = student.FirstOrDefault(x => x.id_number ==  id_number);
+            var studentDetail = student.SingleOrDefault(x => x.id_number == id_number);
 
             var studentDto = new StudentAccountDetailDto
             {
                 id = studentDetail.id,
                 name = studentDetail.fullname,
-                course = studentCourse.FirstOrDefault(x => x.id_number == id_number).course,
-                year_level = studentCourse.FirstOrDefault(x => x.id_number == id_number).year_level,
-                semester = studentCourse.FirstOrDefault(x => x.id_number == id_number).semester,
-                campus = studentCourse.FirstOrDefault(x => x.id_number == id_number).campus,
+                course = studentCourse.SingleOrDefault(x => x.id_number == id_number).course,
+                year_level = studentCourse.SingleOrDefault(x => x.id_number == id_number).year_level,
+                semester = studentCourse.SingleOrDefault(x => x.id_number == id_number).semester,
+                campus = studentCourse.SingleOrDefault(x => x.id_number == id_number).campus,
                 status = studentDetail.status
             };
 
             return studentDto;
         }
 
-        public async Task<IReadOnlyList<StudentAccountsMainDto>> GetStudentAccountsMainAsync(StudentAccountsMainSpecifications accountspec)
+        public async Task<IReadOnlyList<StudentAccountsMainDto>> GetStudentAccountsMain()
         {
-            
+            var studentCourses = new StudentCourseRepository();
+
+            var courses = await studentCourses.GetAllAsync();
+
+            var studentAccounts = await GetAllAsync();
+
+            var list = new List<StudentAccountsMainDto>();
+
+            foreach (var student in studentAccounts)
+            {
+                var dto = new StudentAccountsMainDto
+                {
+                    id = student.id,
+                    name = student.fullname,
+                    gender = student.gender,
+                    course = courses.SingleOrDefault(x => x.id_number == student.id_number).course,
+                    type_of_student = student.type_of_student,
+                    admission_date = student.date_of_admission,
+                    status = student.status
+                };
+                list.Add(dto);
+            }
+
+            return list.Select(x => new StudentAccountsMainDto
+            {
+                id = x.id,
+                name = x.name,
+                gender = x.gender,
+                course = x.course,
+                type_of_student = x.type_of_student,
+                admission_date = x.admission_date,
+                status = x.status
+            }).ToList();
         }
     }
 }

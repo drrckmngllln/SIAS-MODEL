@@ -285,6 +285,7 @@
     <Compile Include="Core\Dtos\StudentAccountDetailDto.cs" />
     <Compile Include="Core\Dtos\StudentAccountDto.cs" />
     <Compile Include="Core\Dtos\StudentAccountsMainDto.cs" />
+    <Compile Include="Core\Entities\BaseEntity.cs" />
     <Compile Include="Core\Entities\Settings\Campuses.cs" />
     <Compile Include="Core\Entities\Settings\Courses.cs" />
     <Compile Include="Core\Entities\Settings\Curriculums.cs" />
@@ -300,6 +301,7 @@
     <Compile Include="Classes\MainRegistrar.cs" />
     <Compile Include="Core\Entities\Transaction\NonAssessment.cs" />
     <Compile Include="Core\Entities\Transaction\StudentDiscount.cs" />
+    <Compile Include="Core\Entities\Transaction\StudentEnrollmentStudentDetails.cs" />
     <Compile Include="Core\Extensions\DataSetExtensions.cs" />
     <Compile Include="Core\Helpers\NumberToWords.cs" />
     <Compile Include="Core\Helpers\PaginationParams.cs" />
@@ -351,8 +353,27 @@
     <Compile Include="Forms\transactions\Collection\frm_non_assessed_collection.Designer.cs">
       <DependentUpon>frm_non_assessed_collection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frmStudentAccountModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frmStudentAccountModule.Designer.cs">
+      <DependentUpon>frmStudentAccountModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frmStudentAccountsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frmStudentAccountsList.Designer.cs">
+      <DependentUpon>frmStudentAccountsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_select_students.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentEnrollment\frm_select_students.Designer.cs">
+      <DependentUpon>frm_select_students.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Data\Interfaces\IGenericRepository.cs" />
     <Compile Include="Core\Extensions\DataTableExtensions.cs" />
+    <Compile Include="Infrastructure\Data\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\Data\Parameters\StudentAccountsMainParameters.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CampusRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Setings\CourseRepository.cs" />
@@ -380,6 +401,7 @@
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentAccountRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentAssessmentRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentDiscountRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentEnrollmentRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentSubjectRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\StudentCourseRepository.cs" />
     <Compile Include="Forms\settings\Curriculum\frm_edit_curriculum_subject.cs">
@@ -707,6 +729,7 @@
     <Compile Include="Forms\transactions\StudentDiscounts\frm_student_discounts.Designer.cs">
       <DependentUpon>frm_student_discounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Data\Repositories\UnitOfWork.cs" />
     <Compile Include="Infrastructure\Data\Specifications\BaseSpecification.cs" />
     <Compile Include="Infrastructure\Data\Specifications\ISpecification.cs" />
     <Compile Include="Infrastructure\Data\Specifications\StudentAccountsMainSpecifications.cs" />
@@ -953,6 +976,12 @@
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frm_view_subjects.resx">
       <DependentUpon>frm_view_subjects.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\frmStudentAccountModule.resx">
+      <DependentUpon>frmStudentAccountModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frmStudentAccountsList.resx">
+      <DependentUpon>frmStudentAccountsList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAssessment\frm_select_student.resx">
       <DependentUpon>frm_select_student.cs</DependentUpon>
     </EmbeddedResource>
@@ -967,6 +996,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_section.resx">
       <DependentUpon>frm_select_section.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_students.resx">
+      <DependentUpon>frm_select_students.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentEnrollment\frm_select_subject.resx">
       <DependentUpon>frm_select_subject.cs</DependentUpon>
@@ -1147,6 +1179,7 @@
     <None Include="Resources\information.png" />
     <None Include="Resources\check.png" />
     <None Include="Resources\1ICT LOGO black1.png" />
+    <None Include="Resources\file.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

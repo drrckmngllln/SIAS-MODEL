@@ -66,10 +66,40 @@ namespace school_management_system_model.Data.Repositories.Setings
             return list;
         }
 
+        public async Task<Departments> GetByIdAsync(int id)
+        {
+            var _campusRepo = new CampusRepository();
+            var dep = new Departments();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from departments where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var campus = await _campusRepo.GetByIdAsync(reader.GetInt32("id"));
+                            dep = new Departments
+                            {
+                                id = reader.GetInt32("id"),
+                                code = reader.GetString("code"),
+                                description = reader.GetString("description"),
+                                campus = campus.code,
+                            };
+                        }
+                    }
+                }
+            }
+            await con.CloseAsync();
+            return dep;
+        }
+
         public async Task UpdateRecords(Departments entity)
         {
             await con.OpenAsync();
-            var sql = "update departments set code=@1, description=@2, campus_id=@3 where id='"+ entity.id +"'";
+            var sql = "update departments set code=@1, description=@2, campus_id=@3 where id='" + entity.id + "'";
             using (var cmd = new MySqlCommand(sql, con))
             {
                 cmd.Parameters.AddWithValue("@1", entity.code);
