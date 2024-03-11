@@ -103,6 +103,47 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
                 }).ToList();
             }
         }
+
+        public async Task<SectionSubjects> GetByIdAsync(int id)
+        {
+            var sectionSubject = new SectionSubjects();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from section_subjects where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            sectionSubject = new SectionSubjects
+                            {
+                                id = reader.GetInt32("id"),
+                                unique_id = reader.GetString("unique_id"),
+                                section_code = reader.GetString("section_code"),
+                                curriculum = reader.GetString("curriculum_id"),
+                                year_level = reader.GetString("year_level"),
+                                semester = reader.GetString("semester"),
+                                subject_code = reader.GetString("subject_code"),
+                                descriptive_title = reader.GetString("descriptive_title"),
+                                total_units = reader.GetDecimal("total_units"),
+                                lecture_units = reader.GetDecimal("lecture_units"),
+                                lab_units = reader.GetDecimal("lab_units"),
+                                pre_requisite = reader.GetString("pre_requisite"),
+                                time = reader.GetString("time"),
+                                day = reader.GetString("day"),
+                                room = reader.GetString("room"),
+                                instructor = reader.GetString("instructor"),
+                            };
+                        }
+                    }
+                    await con.CloseAsync();
+                    return sectionSubject;
+                }
+            }
+        }
+
         public async Task UpdateRecords(SectionSubjects entity)
         {
             var con = new MySqlConnection(connection.con());

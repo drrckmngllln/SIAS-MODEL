@@ -57,7 +57,7 @@ namespace school_management_system_model.Forms.settings
                 var data = new Instructors
                 {
                     fullname = tFullname.Text,
-                    department_id = tDepartment.SelectedValue.ToString(),
+                    department = tDepartment.SelectedValue.ToString(),
                     position = tPosition.Text
                 };
                 await _instructorRepo.AddRecords(data);
@@ -74,7 +74,7 @@ namespace school_management_system_model.Forms.settings
                 {
                     id = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value),
                     fullname = tFullname.Text,
-                    department_id = tDepartment.SelectedValue.ToString(),
+                    department = tDepartment.SelectedValue.ToString(),
                     position = tPosition.Text
                 };
                 await _instructorRepo.UpdateRecords(data);

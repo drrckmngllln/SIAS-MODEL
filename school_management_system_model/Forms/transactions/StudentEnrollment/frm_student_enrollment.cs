@@ -483,6 +483,7 @@ namespace school_management_system_model.Forms.transactions
                 var studentDetails = await _studentEnrollmentRepo.GetStudentDetails(Id);
                 if (studentDetails != null)
                 {
+                    tIdNumber.Text = studentDetails.id_number;
                     tStudentName.Text = studentDetails.student_name;
                     tYearLevel.Text = studentDetails.year_level;
                     tCourse.Text = studentDetails.course;

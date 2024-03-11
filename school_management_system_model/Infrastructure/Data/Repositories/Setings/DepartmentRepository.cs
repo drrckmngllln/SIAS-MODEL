@@ -78,7 +78,7 @@ namespace school_management_system_model.Data.Repositories.Setings
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
                             var campus = await _campusRepo.GetByIdAsync(reader.GetInt32("id"));
                             dep = new Departments

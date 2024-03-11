@@ -13,7 +13,7 @@ namespace school_management_system_model.Data.Repositories.Setings
     internal class CurriculumRepository : IGenericRepository<Curriculums>
     {
         CourseRepository _coursesRepo = new CourseRepository();
-        CampusRepository _campusRepo = new CampusRepository();  
+        CampusRepository _campusRepo = new CampusRepository();
         MySqlConnection con = new MySqlConnection(connection.con());
         public async Task AddRecords(Curriculums entity)
         {
@@ -68,13 +68,14 @@ namespace school_management_system_model.Data.Repositories.Setings
                 };
                 list.Add(curriculum);
             }
-            
+
             await con.CloseAsync();
             return list;
         }
 
         public async Task<Curriculums> GetByIdAsync(int id)
         {
+            var curriculum = new Curriculums();
             using (var con = new MySqlConnection(connection.con()))
             {
                 await con.OpenAsync();
@@ -83,23 +84,27 @@ namespace school_management_system_model.Data.Repositories.Setings
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
-                        var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
-                        var course = await _coursesRepo.GetByIdAsync(reader.GetInt32("course_id"));
-                        var curriculum = new Curriculums
+                        if (reader.Read())
                         {
-                            id = reader.GetInt32("id"),
-                            code = reader.GetString("code"),
-                            description = reader.GetString("description"),
-                            campus = campuses.code,
-                            course = course.code,
-                            effective = reader.GetString("effective"),
-                            expires = reader.GetString("expires"),
-                            status = reader.GetString("status")
-                        };
-                        await con.CloseAsync();
-                        return curriculum;
+                            var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+                            var course = await _coursesRepo.GetByIdAsync(reader.GetInt32("course_id"));
+                            curriculum = new Curriculums
+                            {
+                                id = reader.GetInt32("id"),
+                                code = reader.GetString("code"),
+                                description = reader.GetString("description"),
+                                campus = campuses.code,
+                                course = course.code,
+                                effective = reader.GetString("effective"),
+                                expires = reader.GetString("expires"),
+                                status = reader.GetString("status")
+                            };
+                        }
+
                     }
                 }
+                await con.CloseAsync();
+                return curriculum;
             }
         }
 

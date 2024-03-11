@@ -8,9 +8,9 @@ namespace school_management_system_model.Data.Repositories.Setings
 {
     internal class LevelsRepository : IGenericRepository<Levels>
     {
-        MySqlConnection con = new MySqlConnection(connection.con());
         public async Task AddRecords(Levels entity)
         {
+            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var sql = "insert into levels(code, description, status) " +
                 "values(@1,@2,@3)";
@@ -26,6 +26,8 @@ namespace school_management_system_model.Data.Repositories.Setings
 
         public async Task DeleteRecords(Levels entity)
         {
+            var con = new MySqlConnection(connection.con());
+
             await con.OpenAsync();
             var cmd = new MySqlCommand("delete from levels where id='" + entity.id + "'", con);
             await cmd.ExecuteNonQueryAsync();
@@ -78,13 +80,14 @@ namespace school_management_system_model.Data.Repositories.Setings
                         }
                     }
                 }
-            }
             await con.CloseAsync();
             return level;
+            }
         }
 
         public async Task UpdateRecords(Levels entity)
         {
+            var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
             var sql = "update levels set code=@1, description=@2, status=@3 where id='" + entity.id + "'";
             using (var cmd = new MySqlCommand(sql, con))

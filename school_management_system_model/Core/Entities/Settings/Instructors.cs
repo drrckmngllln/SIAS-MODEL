@@ -12,7 +12,7 @@ namespace school_management_system_model.Core.Entities
     {
         public int id { get; set; }
         public string fullname { get; set; }
-        public string department_id { get; set; }
+        public string department { get; set; }
         public string position { get; set; }
     }
 }

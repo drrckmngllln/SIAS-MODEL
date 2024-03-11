@@ -68,7 +68,7 @@ namespace school_management_system_model.Data.Repositories.Setings
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
                             campuses = new Campuses
                             {

@@ -1,6 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Classes;
-using school_management_system_model.Core.Entities;
 using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
@@ -8,7 +6,6 @@ using school_management_system_model.Data.Repositories.Transaction.StudentAccoun
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Infrastructure.Data.Repositories.Transaction
@@ -59,12 +56,15 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
+                            var studentAccounts = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                            var schoolYears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+
 
                             var feeBreakdown = new FeeBreakdown
                             {
                                 id = reader.GetInt32("id"),
-                                id_number = reader.GetString("id_number_id"),
-                                school_year = reader.GetString("school_year_id"),
+                                id_number = studentAccounts.id_number,
+                                school_year = schoolYears.code,
                                 downpayment = reader.GetDecimal("downpayment"),
                                 prelim = reader.GetDecimal("prelim"),
                                 midterm = reader.GetDecimal("midterm"),
@@ -82,29 +82,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     }
                 }
                 await con.CloseAsync();
-
-                var studentAccounts = await _studentAccountRepo.GetAllAsync();
-
-                var schoolYears = await _schoolYearRepo.GetAllAsync();
-
-                return list.Select(x => new FeeBreakdown
-                {
-                    id = x.id,
-                    id_number = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
-                    school_year = schoolYears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year)).code,
-                    downpayment = x.downpayment,
-                    prelim = x.prelim,
-                    midterm = x.midterm,
-                    semi_finals = x.semi_finals,
-                    finals = x.finals,
-                    total = x.total,
-                    downpayment_original = x.downpayment_original,
-                    prelim_original = x.prelim_original,
-                    midterm_original = x.midterm_original,
-                    semi_finals_original = x.semi_finals_original,
-                    finals_original = x.finals_original,
-                    total_original = x.total_original
-                }).ToList();
+                return list;
             }
         }
 

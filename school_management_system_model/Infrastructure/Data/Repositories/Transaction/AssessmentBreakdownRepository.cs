@@ -1,17 +1,15 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Crypto.Prng;
-using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Core.Entities.Transaction;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
+using school_management_system_model.Reports.Datasets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace school_management_system_model.Infrastructure.Data.Repositories.Transaction
 {
@@ -45,9 +43,9 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             throw new NotImplementedException();
         }
 
-        public async Task<IReadOnlyList<AssessmentBreakdown>> GetAllAsync()
+        public async Task<IReadOnlyList<Core.Entities.Transaction.AssessmentBreakdown>> GetAllAsync()
         {
-            var list = new List<AssessmentBreakdown>();
+            var list = new List<Core.Entities.Transaction.AssessmentBreakdown>();
 
             using (var con = new MySqlConnection(connection.con()))
             {
@@ -59,13 +57,14 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
-                            
+                            var studentAccounts = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                            var schoolYears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
 
-                            var assessmentBreakdown = new AssessmentBreakdown
+                            var assessmentBreakdown = new Core.Entities.Transaction.AssessmentBreakdown
                             {
                                 id = reader.GetInt32("id"),
-                                id_number = reader.GetString("id_number_id"),
-                                school_year = reader.GetString("school_year_id"),
+                                id_number = studentAccounts.id_number,
+                                school_year = schoolYears.code,
                                 fee_type = reader.GetString("fee_type"),
                                 amount = reader.GetDecimal("amount")
                             };
@@ -73,23 +72,43 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                         }
                     }
                 }
-
-                var studentAccounts = await _studentAccountRepo.GetAllAsync();
-                var schoolYears = await _schoolYearRepo.GetAllAsync();
-
                 await con.CloseAsync();
-                return list.Select(x => new AssessmentBreakdown
-                {
-                    id = x.id,
-                    id_number = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
-                    school_year = schoolYears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year)).code,
-                    fee_type = x.fee_type,
-                    amount = x.amount
-                }).ToList();
+                return list;
             }
         }
 
-        public async Task UpdateRecords(AssessmentBreakdown entity)
+        public async Task<Core.Entities.Transaction.AssessmentBreakdown> GetByIdAsync(int id)
+        {
+            var assessmentBreakdown = new Core.Entities.Transaction.AssessmentBreakdown();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from assessment_breakdown where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var studentAccounts = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                            var schoolYears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+                            assessmentBreakdown = new Core.Entities.Transaction.AssessmentBreakdown
+                            {
+                                id = reader.GetInt32("id"),
+                                id_number = studentAccounts.id_number,
+                                school_year = schoolYears.code,
+                                fee_type = reader.GetString("fee_type"),
+                                amount = reader.GetDecimal("amount")
+                            };
+                        }
+                        await con.CloseAsync();
+                        return assessmentBreakdown;
+                    }
+                }
+            }
+        }
+
+        public async Task UpdateRecords(Core.Entities.Transaction.AssessmentBreakdown entity)
         {
             using (var con = new MySqlConnection(connection.con()))
             {
@@ -108,7 +127,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             }
         }
 
-        public async Task<IReadOnlyList<AssessmentBreakdown>> UpdateRecordsAsync(AssessmentBreakdown entity)
+        public async Task<IReadOnlyList<Core.Entities.Transaction.AssessmentBreakdown>> UpdateRecordsAsync(Core.Entities.Transaction.AssessmentBreakdown entity)
         {
             using (var con = new MySqlConnection(connection.con()))
             {

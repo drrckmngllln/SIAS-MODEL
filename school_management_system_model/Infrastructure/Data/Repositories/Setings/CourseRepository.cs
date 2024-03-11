@@ -93,7 +93,7 @@ namespace school_management_system_model.Data.Repositories.Setings
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
                             var level = await _levelsRepo.GetByIdAsync(reader.GetInt32("level_id"));
                             var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));

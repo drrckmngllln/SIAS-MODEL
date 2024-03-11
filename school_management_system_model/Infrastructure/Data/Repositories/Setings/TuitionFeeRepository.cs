@@ -1,12 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Classes;
-using school_management_system_model.Core.Entities;
 using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Data.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Data.Repositories.Setings
@@ -57,11 +53,10 @@ namespace school_management_system_model.Data.Repositories.Setings
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var a = await _campusRepo.GetAllAsync();
-                var campus_id = a.FirstOrDefault(x => x.id == reader.GetInt32("campus_id"));
+                var campus_id = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
 
-                var b = await _levelRepo.GetAllAsync();
-                var level_id = b.FirstOrDefault(x => x.id == reader.GetInt32("level_id"));
+                var level_id = await _levelRepo.GetByIdAsync(reader.GetInt32("level_id"));
+
                 var tfee = new TuitionFee
                 {
                     id = reader.GetInt32("id"),
@@ -78,6 +73,43 @@ namespace school_management_system_model.Data.Repositories.Setings
             }
             await con.CloseAsync();
             return list;
+        }
+
+        public async Task<TuitionFee> GetByIdAsync(int id)
+        {
+            var tuitionFee = new TuitionFee();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from tuition_fee_setup where id='"+ id +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var campus_id = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+
+                            var level_id = await _levelRepo.GetByIdAsync(reader.GetInt32("level_id"));
+
+                            tuitionFee = new TuitionFee
+                            {
+                                id = reader.GetInt32("id"),
+                                uid = reader.GetString("uid"),
+                                category = reader.GetString("category"),
+                                description = reader.GetString("description"),
+                                campus = campus_id.code,
+                                level = level_id.code,
+                                year_level = reader.GetString("year_level"),
+                                semester = reader.GetString("semester"),
+                                amount = reader.GetDecimal("amount")
+                            };
+                        }
+                    }
+                    await con.CloseAsync();
+                    return tuitionFee;
+                }
+            }
         }
 
         public async Task UpdateRecords(TuitionFee entity)

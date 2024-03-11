@@ -9,12 +9,13 @@ namespace school_management_system_model.Data.Repositories.Setings
 {
     internal class MiscFeeRepository : IGenericRepository<MiscellaneousFee>
     {
-        MySqlConnection con = new MySqlConnection(connection.con());
         LevelsRepository _levelRepo = new LevelsRepository();
         CampusRepository _campusRepo = new CampusRepository();
 
         public async Task AddRecords(MiscellaneousFee entity)
         {
+            MySqlConnection con = new MySqlConnection(connection.con());
+
             await con.OpenAsync();
             var cmd = new MySqlCommand("insert into miscellaneous_fee_setup(uid, category, description, campus_id, level_id, year_level, semester, amount) " +
                 "values(@1,@2,@3,@4,@5,@6,@7,@8)", con);
@@ -32,6 +33,8 @@ namespace school_management_system_model.Data.Repositories.Setings
 
         public async Task DeleteRecords(MiscellaneousFee entity)
         {
+            MySqlConnection con = new MySqlConnection(connection.con());
+
             await con.OpenAsync();
             var cmd = new MySqlCommand("delete from miscellaneous_fee_setup where id='" + entity.id + "'", con);
             await cmd.ExecuteNonQueryAsync();
@@ -47,11 +50,9 @@ namespace school_management_system_model.Data.Repositories.Setings
             var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                var a = await _campusRepo.GetAllAsync();
-                var campus_id = a.FirstOrDefault(x => x.id == reader.GetInt32("campus_id"));
+                var campus_id = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
 
-                var b = await _levelRepo.GetAllAsync();
-                var level_id = b.FirstOrDefault(x => x.id == reader.GetInt32("level_id"));
+                var level_id = await _levelRepo.GetByIdAsync(reader.GetInt32("level_id"));
                 var misc = new MiscellaneousFee
                 {
                     id = reader.GetInt32("id"),
@@ -70,8 +71,47 @@ namespace school_management_system_model.Data.Repositories.Setings
             return list;
         }
 
+        public async Task<MiscellaneousFee> GetByIdAsync(int id)
+        {
+            var miscFee = new MiscellaneousFee();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from miscellaneous_fee_setup where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var campus_id = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+
+                            var level_id = await _levelRepo.GetByIdAsync(reader.GetInt32("level_id"));
+
+                            miscFee = new MiscellaneousFee
+                            {
+                                id = reader.GetInt32("id"),
+                                uid = reader.GetString("uid"),
+                                category = reader.GetString("category"),
+                                description = reader.GetString("description"),
+                                campus = campus_id.code,
+                                level = level_id.code,
+                                year_level = reader.GetString("year_level"),
+                                semester = reader.GetString("semester"),
+                                amount = reader.GetDecimal("amount")
+                            };
+                        }
+                        await con.CloseAsync();
+                        return miscFee;
+                    }
+                }
+            }
+        }
+
         public async Task UpdateRecords(MiscellaneousFee entity)
         {
+            MySqlConnection con = new MySqlConnection(connection.con());
+
             await con.OpenAsync();
             var cmd = new MySqlCommand("update miscellaneous_fee_setup set uid=@1, category=@2, description=@3, campus_id=@4, level_id=@5, year_level=@6, " +
                 "semester=@7, amount=@8 where id='" + entity.id + "'", con);

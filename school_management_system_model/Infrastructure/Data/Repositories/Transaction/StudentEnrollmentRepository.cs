@@ -14,7 +14,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             var _studentCourseRepo = new StudentCourseRepository();
 
             var studentAccounts = await _studentAccountRepo.GetByIdAsync(id);
-            var studentCourse = await _studentCourseRepo.GetByIdNumberAsync(studentAccounts.id_number);
+            var studentCourse = await _studentCourseRepo.GetByIdNumberAsync(id.ToString());
 
             var studentEnrollmentStudentDetail = new StudentEnrollmentStudentDetails
             {

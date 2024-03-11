@@ -5,7 +5,6 @@ using school_management_system_model.Data.Repositories.Setings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Infrastructure.Data.Repositories.Transaction
@@ -55,6 +54,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
+                            var schoolYears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
                             var cashier = new CashierLog
                             {
                                 id = reader.GetInt32("id"),
@@ -62,7 +62,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                                 name = reader.GetString("name"),
                                 reference_no = reader.GetString("reference_no"),
                                 particulars = reader.GetString("particulars"),
-                                school_year = reader.GetString("school_year_id"),
+                                school_year = schoolYears.code,
                                 department = reader.GetString("department"),
                                 credit = reader.GetDecimal("credit"),
                                 debit = reader.GetDecimal("debit"),
@@ -74,22 +74,42 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                 }
                 await con.CloseAsync();
             }
+            return list;
+        }
 
-            var schoolYears = await _schoolYearRepo.GetAllAsync();
-
-            return list.Select(x => new CashierLog
+        public async Task<CashierLog> GetByIdAsync(int id)
+        {
+            var cashier = new CashierLog();
+            using (var con = new MySqlConnection(connection.con()))
             {
-                id = x.id,
-                date = x.date,
-                name = x.name,
-                reference_no = x.reference_no,
-                particulars = x.particulars,
-                school_year = schoolYears.FirstOrDefault(s => s.id == Convert.ToInt32(x.school_year)).code,
-                department = x.department,
-                credit = x.credit,
-                debit = x.debit,
-                balance = x.balance
-            }).ToList();
+                await con.OpenAsync();
+                var sql = "select * from cashier_log where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var schoolYears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+                            cashier = new CashierLog
+                            {
+                                id = reader.GetInt32("id"),
+                                date = reader.GetDateTime("date"),
+                                name = reader.GetString("name"),
+                                reference_no = reader.GetString("reference_no"),
+                                particulars = reader.GetString("particulars"),
+                                school_year = schoolYears.code,
+                                department = reader.GetString("department"),
+                                credit = reader.GetDecimal("credit"),
+                                debit = reader.GetDecimal("debit"),
+                                balance = reader.GetDecimal("balance")
+                            };
+                        }
+                        await con.CloseAsync();
+                        return cashier;
+                    }
+                }
+            }
         }
 
         public Task UpdateRecords(CashierLog entity)

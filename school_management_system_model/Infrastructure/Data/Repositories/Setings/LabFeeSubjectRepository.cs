@@ -1,11 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Core.Entities;
-using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Data.Repositories.Setings
@@ -56,15 +54,14 @@ namespace school_management_system_model.Data.Repositories.Setings
                     {
                         while (reader.Read())
                         {
-                            var lab_fee_id = await _labFeeRepo.GetAllAsync();
-                            var a = lab_fee_id
-                                .FirstOrDefault(x => x.id == reader.GetInt32("lab_fee_id"));
+                            var lab_fee_id = await _labFeeRepo.GetByIdAsync(reader.GetInt32("lab_fee_id"));
+
                             if (lab_fee_id != null)
                             {
                                 var labFeeSubjects = new LabFeeSubjects
                                 {
                                     id = reader.GetInt32("id"),
-                                    lab_fee = a.description,
+                                    lab_fee = lab_fee_id.description,
                                     subject_code = reader.GetString("subject_code"),
                                     descriptive_title = reader.GetString("descriptive_title")
                                 };
@@ -76,6 +73,36 @@ namespace school_management_system_model.Data.Repositories.Setings
                 }
                 await con.CloseAsync();
                 return list;
+            }
+        }
+
+        public async Task<LabFeeSubjects> GetByIdAsync(int id)
+        {
+            var labFeeSubject = new LabFeeSubjects();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from lab_fee_subjects where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var lab_fee_id = await _labFeeRepo.GetByIdAsync(reader.GetInt32("lab_fee_id"));
+
+                            labFeeSubject = new LabFeeSubjects
+                            {
+                                id = reader.GetInt32("id"),
+                                lab_fee = lab_fee_id.description,
+                                subject_code = reader.GetString("subject_code"),
+                                descriptive_title = reader.GetString("descriptive_title")
+                            };
+                        }
+                        await con.CloseAsync();
+                        return labFeeSubject;
+                    }
+                }
             }
         }
 

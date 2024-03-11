@@ -66,6 +66,37 @@ namespace school_management_system_model.Data.Repositories.Setings
             return list;
         }
 
+        public async Task<SchoolYear> GetByIdAsync(int id)
+        {
+            var schoolYear = new SchoolYear();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from school_year where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            schoolYear = new SchoolYear
+                            {
+                                id = reader.GetInt32("id"),
+                                code = reader.GetString("code"),
+                                description = reader.GetString("description"),
+                                school_year_from = reader.GetString("school_year_from"),
+                                school_year_to = reader.GetString("school_year_to"),
+                                semester = reader.GetString("semester"),
+                                is_current = reader.GetString("is_current")
+                            };
+                        }
+                    }
+                    await con.CloseAsync();
+                    return schoolYear;
+                }
+            }
+        }
+
         public async Task UpdateRecords(SchoolYear entity)
         {
             using (var con = new MySqlConnection(connection.con()))

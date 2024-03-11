@@ -78,6 +78,7 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
 
         public async Task<Sections> GetByIdAsync(int id)
         {
+            var section = new Sections();
             using (var con = new MySqlConnection(connection.con()))
             {
                 await con.OpenAsync();
@@ -86,20 +87,24 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
-                        var section = new Sections
+                        if (reader.Read())
                         {
-                            id = reader.GetInt32("Id"),
-                            unique_id = reader.GetString("unique_id"),
-                            section_code = reader.GetString("section_code"),
-                            course = reader.GetString("course"),
-                            year_level = reader.GetInt32("year_level"),
-                            section = reader.GetString("section"),
-                            semester = reader.GetString("semester"),
-                            number_of_students = reader.GetInt32("number_of_students"),
-                            max_number_of_students = reader.GetInt32("max_number_of_students"),
-                            status = reader.GetString("status"),
-                            remarks = reader.GetString("remarks")
-                        };
+                            section = new Sections
+                            {
+                                id = reader.GetInt32("Id"),
+                                unique_id = reader.GetString("unique_id"),
+                                section_code = reader.GetString("section_code"),
+                                course = reader.GetString("course"),
+                                year_level = reader.GetInt32("year_level"),
+                                section = reader.GetString("section"),
+                                semester = reader.GetString("semester"),
+                                number_of_students = reader.GetInt32("number_of_students"),
+                                max_number_of_students = reader.GetInt32("max_number_of_students"),
+                                status = reader.GetString("status"),
+                                remarks = reader.GetString("remarks")
+                            };
+                        }
+                        
                         await con.CloseAsync();
                         return section;
                     }

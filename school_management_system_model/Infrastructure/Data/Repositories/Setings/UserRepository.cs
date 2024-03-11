@@ -1,13 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Utilities.Zlib;
-using school_management_system_model.Classes;
-using school_management_system_model.Core.Entities;
 using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Data.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Data.Repositories.Setings
@@ -80,6 +74,44 @@ namespace school_management_system_model.Data.Repositories.Setings
             }
             await con.CloseAsync();
             return list;
+        }
+
+        public async Task<User> GetByIdAsync(int id)
+        {
+            var user = new User();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from users where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            user = new User
+                            {
+                                id = reader.GetInt32("id"),
+                                last_name = reader.GetString("last_name"),
+                                first_name = reader.GetString("first_name"),
+                                middle_name = reader.GetString("middle_name"),
+                                fullname = reader.GetString("fullname"),
+                                employee_id = reader.GetString("employee_id"),
+                                email = reader.GetString("email"),
+                                password = reader.GetString("password"),
+                                department = reader.GetString("department"),
+                                access_level = reader.GetString("access_level"),
+                                add = reader.GetInt32("is_add"),
+                                edit = reader.GetInt32("is_edit"),
+                                delete = reader.GetInt32("is_delete"),
+                                administrator = reader.GetInt32("is_administrator"),
+                            };
+                        }
+                        await con.CloseAsync();
+                        return user;
+                    }
+                }
+            }
         }
 
         public async Task UpdateRecords(User entity)
