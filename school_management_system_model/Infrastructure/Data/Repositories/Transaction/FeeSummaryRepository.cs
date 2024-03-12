@@ -1,15 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
-using school_management_system_model.Classes;
-using school_management_system_model.Core.Entities.Settings;
-using school_management_system_model.Core.Entities;
 using school_management_system_model.Core.Entities.Transaction;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
@@ -42,7 +37,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
 
         public async Task<IReadOnlyList<FeeSummary>> GetAllAsync()
         {
-            
+
             var list = new List<FeeSummary>();
             using (var con = new MySqlConnection(connection.con()))
             {
@@ -54,11 +49,10 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
-                            var a = await _studentAccountRepo.GetAllAsync();
-                            var id_number_id = a.FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+                            var id_number_id = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
 
-                            var c = await _schoolYearRepo.GetAllAsync();
-                            var school_year_id = c.FirstOrDefault(x => x.id == reader.GetInt32("school_year_id"));
+                            var school_year_id = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+
                             if (id_number_id != null && school_year_id != null)
                             {
                                 var feeSummary = new FeeSummary
@@ -78,6 +72,45 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                 }
                 await con.CloseAsync();
                 return list;
+            }
+        }
+
+        public async Task<FeeSummary> GetByIdAsync(int id)
+        {
+            var feeSummary = new FeeSummary();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from fee_summary where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var id_number_id = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+
+                            var school_year_id = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+
+                            if (id_number_id != null && school_year_id != null)
+                            {
+                                feeSummary = new FeeSummary
+                                {
+                                    id = reader.GetInt32("id"),
+                                    id_number = id_number_id.id_number,
+                                    school_year = school_year_id.code,
+                                    current_assessment = reader.GetDecimal("current_assessment"),
+                                    discounts = reader.GetDecimal("discounts"),
+                                    previous_balance = reader.GetDecimal("previous_balance"),
+                                    current_receivable = reader.GetDecimal("current_receivable")
+                                };
+                            }
+
+                        }
+                        await con.CloseAsync();
+                        return feeSummary;
+                    }
+                }
             }
         }
 

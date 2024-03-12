@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using MySql.Data.MySqlClient;
 using school_management_system_model.Core.Entities.Settings;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
@@ -83,6 +84,48 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                 }
                 await con.CloseAsync();
                 return list;
+            }
+        }
+
+        public async Task<FeeBreakdown> GetByIdAsync(int id)
+        {
+            var feeBreakdown = new FeeBreakdown();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from fee_breakdown where id='"+ id +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var studentAccounts = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                            var schoolYears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+
+
+                            feeBreakdown = new FeeBreakdown
+                            {
+                                id = reader.GetInt32("id"),
+                                id_number = studentAccounts.id_number,
+                                school_year = schoolYears.code,
+                                downpayment = reader.GetDecimal("downpayment"),
+                                prelim = reader.GetDecimal("prelim"),
+                                midterm = reader.GetDecimal("midterm"),
+                                semi_finals = reader.GetDecimal("semi_finals"),
+                                finals = reader.GetDecimal("finals"),
+                                downpayment_original = reader.GetDecimal("downpayment_original"),
+                                prelim_original = reader.GetDecimal("prelim_original"),
+                                midterm_original = reader.GetDecimal("midterm_original"),
+                                semi_finals_original = reader.GetDecimal("semi_finals_original"),
+                                finals_original = reader.GetDecimal("finals_original"),
+                                total_original = reader.GetDecimal("total_original")
+                            };
+                        }
+                        await con.CloseAsync();
+                        return feeBreakdown;
+                    }
+                }
             }
         }
 

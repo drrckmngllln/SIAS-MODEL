@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using MySql.Data.MySqlClient;
 using school_management_system_model.Core.Entities.Transaction;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
@@ -55,9 +56,8 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
-                            var a = await _studentAccountRepo.GetAllAsync();
-                            var id_number_id = a
-                                .FirstOrDefault(x => x.id == reader.GetInt32("id_number_id"));
+                            var id_number_id = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+
                             if (id_number_id != null)
                             {
                                 var discount = new StudentDiscount
@@ -77,6 +77,41 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                 }
                 await con.CloseAsync();
                 return list;
+            }
+        }
+
+        public async Task<StudentDiscount> GetByIdAsync(int id)
+        {
+            var studentDiscount = new StudentDiscount();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from student_discounts where id='"+ id +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var id_number_id = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+
+                            if (id_number_id != null)
+                            {
+                                studentDiscount = new StudentDiscount
+                                {
+                                    id = reader.GetInt32("id"),
+                                    id_number = id_number_id.id_number,
+                                    code = reader.GetString("code"),
+                                    discount_target = reader.GetString("discount_target"),
+                                    description = reader.GetString("description"),
+                                    discount_percentage = reader.GetInt32("discount_percentage")
+                                };
+                            }
+                        }
+                        await con.CloseAsync();
+                        return studentDiscount;
+                    }
+                }
             }
         }
 

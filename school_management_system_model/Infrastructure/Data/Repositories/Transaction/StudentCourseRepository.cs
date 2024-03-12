@@ -58,17 +58,21 @@ namespace school_management_system_model.Data.Repositories.Transaction
                     {
                         while (reader.Read())
                         {
-
+                            var studentAccounts = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                            var courses = await _courseRepo.GetByIdAsync(reader.GetInt32("course_id"));
+                            var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+                            var curriculums = await _curriculumRepo.GetByIdAsync(reader.GetInt32("curriculum_id"));
+                            var sections = await _sectionRepo.GetByIdAsync(reader.GetInt32("section_id"));
 
                             var studentCourse = new StudentCourses
                             {
                                 id = reader.GetInt32("id"),
-                                id_number = reader.GetString("id_number_id"),
-                                course = reader.GetString("course_id"),
-                                campus = reader.GetString("campus_id"),
-                                curriculum = reader.GetString("curriculum_id"),
+                                id_number = studentAccounts.id_number,
+                                course = courses.code,
+                                campus = campuses.code,
+                                curriculum = curriculums.code,
                                 year_level = reader.GetString("year_level"),
-                                section = reader.GetString("section_id"),
+                                section = sections.section_code,
                                 semester = reader.GetString("semester")
                             };
                             list.Add(studentCourse);
@@ -76,60 +80,7 @@ namespace school_management_system_model.Data.Repositories.Transaction
                     }
                 }
                 await con.CloseAsync();
-
-                var studentAccounts = await _studentAccountRepo.GetAllAsync();
-                var courses = await _courseRepo.GetAllAsync();
-                var campuses = await _campusRepo.GetAllAsync();
-                var curriculums = await _curriculumRepo.GetAllAsync();
-                var sections = await _sectionRepo.GetAllAsync();
-
-                var listDt = list.ToDataTable();
-
-                int lastRow = listDt.Rows.Count - 1;
-
-                if (listDt.Rows[lastRow]["curriculum"].ToString() == "Not Set" || listDt.Rows[lastRow]["section"].ToString() == "Not Set")
-                {
-                    return list.Select(x => new StudentCourses
-                    {
-                        id = x.id,
-                        id_number = studentAccounts.Single(s => s.id == Convert.ToInt32(x.id_number)).id_number,
-                        course = courses.SingleOrDefault(c => c.id == Convert.ToInt32(x.course)).code,
-                        campus = campuses.SingleOrDefault(campus => campus.id == Convert.ToInt32(x.campus)).code,
-                        curriculum = "Not Set",
-                        year_level = x.year_level,
-                        section = "Not Set",
-                        semester = x.semester
-                    }).ToList();
-                }
-                //else if (listDt.Rows[0]["section"].ToString() == "Not Set")
-                //{
-                //    return list.Select(x => new StudentCourses
-                //    {
-                //        id = x.id,
-                //        id_number = studentAccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
-                //        course = courses.FirstOrDefault(c => c.id == Convert.ToInt32(x.course)).code,
-                //        campus = campuses.FirstOrDefault(campus => campus.id == Convert.ToInt32(x.campus)).code,
-                //        curriculum = curriculums.FirstOrDefault(cur => cur.id == Convert.ToInt32(x.curriculum)).code,
-                //        year_level = x.year_level,
-                //        section = "Not Set",
-                //        semester = x.semester
-                //    }).ToList();
-                //}
-                else
-                {
-                    return list.Select(x => new StudentCourses
-                    {
-                        id = x.id,
-                        id_number = studentAccounts.SingleOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
-                        course = courses.SingleOrDefault(c => c.id == Convert.ToInt32(x.course)).code,
-                        campus = campuses.SingleOrDefault(campus => campus.id == Convert.ToInt32(x.campus)).code,
-                        year_level = x.year_level,
-                        curriculum = curriculums.SingleOrDefault(cur => cur.id == Convert.ToInt32(x.curriculum)).code,
-                        section = sections.SingleOrDefault(section => section.id == Convert.ToInt32(x.section)).section_code,
-                        semester = x.semester
-                    }).ToList();
-                }
-
+                return list;
             }
         }
 

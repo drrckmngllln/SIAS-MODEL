@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace school_management_system_model.Infrastructure.Data.Repositories.Transaction
 {
-    internal class AssessmentBreakdownRepository : IGenericRepository<AssessmentBreakdown>
+    internal class AssessmentBreakdownRepository : IGenericRepository<Core.Entities.Transaction.AssessmentBreakdown>
     {
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
 
 
-        public async Task AddRecords(AssessmentBreakdown entity)
+        public async Task AddRecords(Core.Entities.Transaction.AssessmentBreakdown entity)
         {
             using (var con = new MySqlConnection(connection.con()))
             {
@@ -38,7 +38,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             }
         }
 
-        public Task DeleteRecords(AssessmentBreakdown entity)
+        public Task DeleteRecords(Core.Entities.Transaction.AssessmentBreakdown entity)
         {
             throw new NotImplementedException();
         }

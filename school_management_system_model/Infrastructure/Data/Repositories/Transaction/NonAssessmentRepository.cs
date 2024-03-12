@@ -78,13 +78,17 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     {
                         while (reader.Read())
                         {
+                            var studentaccounts = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                            var schoolyears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+                            var courses = await _courseRepo.GetByIdAsync(reader.GetInt32("course_id"));
+
                             var soa = new NonAssessment
                             {
                                 id = reader.GetInt32("id"),
-                                id_number = reader.GetString("id_number_id"),
-                                school_year = reader.GetString("school_year_id"),
+                                id_number = studentaccounts.id_number,
+                                school_year = schoolyears.code,
                                 date = reader.GetString("date"),
-                                course_id = reader.GetString("course_id"),
+                                course_id = courses.code,
                                 year_level = reader.GetString("year_level"),
                                 semester = reader.GetString("semester"),
                                 reference_no = reader.GetInt32("reference_no"),
@@ -97,26 +101,46 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                     }
                 }
                 await con.CloseAsync();
+                return list;
+            }
+        }
 
-                var studentaccounts = await _studentAccountRepo.GetAllAsync();
-                var schoolyears = await _schoolYearRepo.GetAllAsync();
-                var courses = await _courseRepo.GetAllAsync();
-
-                return list.Select(x => new NonAssessment
+        public async Task<NonAssessment> GetByIdAsync(int id)
+        {
+            var nonAssessment = new NonAssessment();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from non_assessment_soa where id='" + id + "'";
+                using (var cmd = new MySqlCommand(sql, con))
                 {
-                    id = x.id,
-                    id_number = studentaccounts.FirstOrDefault(s => s.id == Convert.ToInt32(x.id_number)).id_number,
-                    school_year = schoolyears.FirstOrDefault(sy => sy.id == Convert.ToInt32(x.school_year)).code,
-                    date = x.date,
-                    course_id = courses.FirstOrDefault(c => c.id == Convert.ToInt32(x.course_id)).code,
-                    year_level = x.year_level,
-                    semester = x.semester,
-                    reference_no = x.reference_no,
-                    particulars = x.particulars,
-                    amount = x.amount,
-                    cashier_in_charge = x.cashier_in_charge
-                }).ToList();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var studentaccounts = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+                            var schoolyears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+                            var courses = await _courseRepo.GetByIdAsync(reader.GetInt32("course_id"));
 
+                            nonAssessment = new NonAssessment
+                            {
+                                id = reader.GetInt32("id"),
+                                id_number = studentaccounts.id_number,
+                                school_year = schoolyears.code,
+                                date = reader.GetString("date"),
+                                course_id = courses.code,
+                                year_level = reader.GetString("year_level"),
+                                semester = reader.GetString("semester"),
+                                reference_no = reader.GetInt32("reference_no"),
+                                particulars = reader.GetString("particulars"),
+                                amount = reader.GetDecimal("amount"),
+                                cashier_in_charge = reader.GetString("cashier_in_charge")
+                            };
+                        }
+                        await con.CloseAsync();
+                        return nonAssessment;
+                    }
+                }
             }
         }
     }
