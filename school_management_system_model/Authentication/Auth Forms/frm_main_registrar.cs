@@ -114,7 +114,7 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
             //frm.Show();
 
 
-            var frm = new frmStudentAccountModule();
+            var frm = new frmStudentAccountModule(email);
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);

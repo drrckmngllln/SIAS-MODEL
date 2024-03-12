@@ -4,7 +4,7 @@ namespace school_management_system_model.Classes.Parameters
 {
     internal class PaginationParams
     {
-        private int _pageSize = 2;
+        private int _pageSize = 30;
         public int PageSize 
         { 
             get => _pageSize; 
@@ -13,13 +13,5 @@ namespace school_management_system_model.Classes.Parameters
 
         int _pageNumber = 1;
         public int pageNumber { get => _pageNumber; set => _pageNumber = value; }
-
-
-
-
-
-
-        public int Skip { get => _pageSize * (_pageNumber - 1); }
-        public int Take { get => _pageNumber; }
     }
 }

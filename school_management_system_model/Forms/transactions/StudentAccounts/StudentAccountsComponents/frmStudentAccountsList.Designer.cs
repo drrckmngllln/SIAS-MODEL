@@ -56,7 +56,6 @@
             this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -186,6 +185,7 @@
             this.tSearch.Name = "tSearch";
             this.tSearch.Size = new System.Drawing.Size(300, 20);
             this.tSearch.TabIndex = 0;
+            this.tSearch.TextChanged += new System.EventHandler(this.tSearch_TextChanged);
             // 
             // frmStudentAccountsList
             // 

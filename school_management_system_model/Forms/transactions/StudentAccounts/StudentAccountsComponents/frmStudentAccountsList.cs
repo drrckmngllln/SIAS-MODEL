@@ -36,7 +36,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
             {
                 var items = students
                     .Skip(paging.PageSize * (paging.pageNumber - 1))
-                    .Take(paging.pageNumber)
+                    .Take(paging.PageSize)
                     .ToList();
                 dgv.DataSource = items;
             }
@@ -95,6 +95,18 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
+        }
+
+        private async void tSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (tSearch.Text.Length > 3)
+            {
+                await loadRecords(tSearch.Text);
+            }
+            else if (tSearch.Text.Length == 0)
+            {
+                await loadRecords(tSearch.Text);
+            }
         }
     }
 }

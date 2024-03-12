@@ -165,11 +165,11 @@ namespace school_management_system_model.Forms.main
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var frm = new frm_student_accounts(Email);
-            frm.TopLevel = false;
-            panelTask.Controls.Clear();
-            panelTask.Controls.Add(frm);
-            frm.Show();
+            //var frm = new frm_student_accounts(Email);
+            //frm.TopLevel = false;
+            //panelTask.Controls.Clear();
+            //panelTask.Controls.Add(frm);
+            //frm.Show();
         }
 
         private void button16_Click(object sender, EventArgs e)

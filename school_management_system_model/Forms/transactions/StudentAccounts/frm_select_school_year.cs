@@ -72,7 +72,7 @@ namespace school_management_system_model.Forms.transactions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                frm_student_accounts.instance.schoolYear = selectSchoolYear();
+                //frm_student_accounts.instance.schoolYear = selectSchoolYear();
                 Close();
             }
             else if (e.KeyCode == Keys.Escape)

@@ -28,8 +28,8 @@ namespace school_management_system_model.Forms.transactions
 
         public static frm_create_account instance;
 
-        public string Id_Number { get; set; }
-        public string School_Year { get; set; }
+        public int Id_Number { get; set; }
+        public int School_Year { get; set; }
         public string Semester { get; set; }
 
         public string course { get; set; }
@@ -52,11 +52,9 @@ namespace school_management_system_model.Forms.transactions
             {
 
                 tTitle.Text = this.Text;
-                var a = await _studentAccountRepo.GetAllAsync();
-                var update = a.FirstOrDefault(x => x.id_number == Id_Number.ToString());
+                var update = await _studentAccountRepo.GetByIdAsync(Id_Number);
 
-                var b = await _schoolYearRepo.GetAllAsync();
-                var school_year = b.FirstOrDefault(x => x.id.ToString() == School_Year);
+                var school_year = await _schoolYearRepo.GetByIdAsync(School_Year);
 
                 tIdNumber.Text = update.id_number;
                 tSchoolyear.Text = update.school_year_id;
@@ -103,14 +101,15 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
-        private void loadSchoolYear()
+        private async void loadSchoolYear()
         {
-            tSchoolyear.Text = School_Year;
+            var schoolYears = await _schoolYearRepo.GetByIdAsync(School_Year);
+            tSchoolyear.Text = schoolYears.code;
         }
         private async void loadIdNumber()
         {
             var a = await _studentAccountRepo.GetAllAsync();
-            var data = a.Where(x => x.sy_enrolled == School_Year).Count();
+            var data = a.Where(x => x.sy_enrolled == tSchoolyear.SelectedText).Count();
             int count = 0;
             count = data;
             var idNumber = DateTime.Now.Year.ToString();
@@ -150,8 +149,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 if (this.Text == "Create Account")
                 {
-                    var a = await _schoolYearRepo.GetAllAsync();
-                    var school_year = a.FirstOrDefault(x => x.code == School_Year);
+                    var school_year = await _schoolYearRepo.GetByIdAsync(School_Year);
                     var add = new StudentAccount
                     {
                         id_number = tIdNumber.Text,
@@ -210,10 +208,8 @@ namespace school_management_system_model.Forms.transactions
                 }
                 else if (this.Text == "Update Account")
                 {
-                    var a = await _schoolYearRepo.GetAllAsync();
-                    var studentAccounts = await _studentAccountRepo.GetAllAsync();
-                    var studentAccount = studentAccounts.FirstOrDefault(x => x.id_number == Id_Number);
-                    var school_year = a.FirstOrDefault(x => x.code == School_Year);
+                    var school_year = await _schoolYearRepo.GetByIdAsync(School_Year);
+                    var studentAccount = await _studentAccountRepo.GetByIdAsync(Id_Number);
                     var edit = new StudentAccount
                     {
                         id = studentAccount.id,

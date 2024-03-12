@@ -693,9 +693,7 @@
     <Compile Include="Forms\transactions\StudentEnrollment\frm_select_subject.Designer.cs">
       <DependentUpon>frm_select_subject.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\transactions\StudentAccounts\frm_student_accounts.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\frm_student_accounts.cs" />
     <Compile Include="Forms\transactions\StudentAccounts\frm_student_accounts.Designer.cs">
       <DependentUpon>frm_student_accounts.cs</DependentUpon>
     </Compile>

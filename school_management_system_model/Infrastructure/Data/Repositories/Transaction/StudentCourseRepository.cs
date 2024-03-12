@@ -23,18 +23,32 @@ namespace school_management_system_model.Data.Repositories.Transaction
         SectionRepository _sectionRepo = new SectionRepository();
 
 
+        //public async Task AddRecords(StudentCourses entity)
+        //{
+        //    var con = new MySqlConnection(connection.con());
+        //    await con.OpenAsync();
+        //    var cmd = new MySqlCommand("insert into student_course(id_number_id, course_id, campus_id, curriculum_id, year_level, section_id, semester) " +
+        //        "values(@1,@2,@3,@4,@5,@6,@7)", con);
+        //    cmd.Parameters.AddWithValue("@1", entity.id_number);
+        //    cmd.Parameters.AddWithValue("@2", entity.course);
+        //    cmd.Parameters.AddWithValue("@3", entity.campus);
+        //    cmd.Parameters.AddWithValue("@4", entity.curriculum);
+        //    cmd.Parameters.AddWithValue("@5", entity.year_level);
+        //    cmd.Parameters.AddWithValue("@6", entity.section);
+        //    cmd.Parameters.AddWithValue("@7", entity.semester);
+        //    await cmd.ExecuteNonQueryAsync();
+        //    await con.CloseAsync();
+        //}
+
         public async Task AddRecords(StudentCourses entity)
         {
             var con = new MySqlConnection(connection.con());
             await con.OpenAsync();
-            var cmd = new MySqlCommand("insert into student_course(id_number_id, course_id, campus_id, curriculum_id, year_level, section_id, semester) " +
-                "values(@1,@2,@3,@4,@5,@6,@7)", con);
+            var cmd = new MySqlCommand("insert into student_course(id_number_id, course_id, campus_id, semester) " +
+                "values(@1,@2,@3,@7)", con);
             cmd.Parameters.AddWithValue("@1", entity.id_number);
             cmd.Parameters.AddWithValue("@2", entity.course);
             cmd.Parameters.AddWithValue("@3", entity.campus);
-            cmd.Parameters.AddWithValue("@4", entity.curriculum);
-            cmd.Parameters.AddWithValue("@5", entity.year_level);
-            cmd.Parameters.AddWithValue("@6", entity.section);
             cmd.Parameters.AddWithValue("@7", entity.semester);
             await cmd.ExecuteNonQueryAsync();
             await con.CloseAsync();
