@@ -53,9 +53,7 @@ namespace school_management_system_model.Authentication.Login
         private async void loginAuthentication(string email, string password)
         {
 
-            var user = await _userRepo.GetAllAsync();
-
-            var loginAttempt = user.FirstOrDefault(x => x.email == email);
+            var loginAttempt = await _userRepo.GetByEmailAsync(email);
 
             if (loginAttempt != null)
             {

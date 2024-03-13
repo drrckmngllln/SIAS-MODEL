@@ -114,6 +114,45 @@ namespace school_management_system_model.Data.Repositories.Setings
             }
         }
 
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            var user = new User();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from users where email='"+ email +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            user = new User
+                            {
+                                id = reader.GetInt32("id"),
+                                last_name = reader.GetString("last_name"),
+                                first_name = reader.GetString("first_name"),
+                                middle_name = reader.GetString("middle_name"),
+                                fullname = reader.GetString("fullname"),
+                                employee_id = reader.GetString("employee_id"),
+                                email = reader.GetString("email"),
+                                password = reader.GetString("password"),
+                                department = reader.GetString("department"),
+                                access_level = reader.GetString("access_level"),
+                                add = reader.GetInt32("is_add"),
+                                edit = reader.GetInt32("is_edit"),
+                                delete = reader.GetInt32("is_delete"),
+                                administrator = reader.GetInt32("is_administrator"),
+                            };
+                        }
+
+                        await con.CloseAsync();
+                        return user;
+                    }
+                }
+            }
+        }
+
         public async Task UpdateRecords(User entity)
         {
             MySqlConnection con = new MySqlConnection(connection.con());

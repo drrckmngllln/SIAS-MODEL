@@ -101,24 +101,27 @@ namespace school_management_system_model.Authentication.Auth_Forms.Registrar
 
         private void btnStudentAccounts_Click(object sender, EventArgs e)
         {
-            //var frm = new frm_student_accounts(email)
-            //{
-            //    IsAdd = is_add,
-            //    IsEdit = is_edit,
-            //    IsDelete = is_delete,
-            //    IsAdministrator = isAdministrator
-            //};
-            //frm.TopLevel = false;
-            //panelTask.Controls.Clear();
-            //panelTask.Controls.Add(frm);
-            //frm.Show();
-
-
-            var frm = new frmStudentAccountModule(email);
+            var frm = new frmStudentAccountModule(email)
+            {
+                IsAdd = is_add,
+                IsEdit = is_edit,
+                IsDelete = is_delete,
+                IsAdministrator = isAdministrator
+            };
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
             frm.Show();
+
+
+            //var frm = new frmStudentAccountModule(email);
+            //{
+                
+            //}
+            //frm.TopLevel = false;
+            //panelTask.Controls.Clear();
+            //panelTask.Controls.Add(frm);
+            //frm.Show();
         }
 
         // Settings Menu

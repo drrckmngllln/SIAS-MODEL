@@ -285,6 +285,7 @@
     <Compile Include="Core\Dtos\StudentAccountDetailDto.cs" />
     <Compile Include="Core\Dtos\StudentAccountDto.cs" />
     <Compile Include="Core\Dtos\StudentAccountsMainDto.cs" />
+    <Compile Include="Core\Dtos\UserCredentialDto.cs" />
     <Compile Include="Core\Entities\BaseEntity.cs" />
     <Compile Include="Core\Entities\Settings\Campuses.cs" />
     <Compile Include="Core\Entities\Settings\Courses.cs" />
@@ -303,6 +304,7 @@
     <Compile Include="Core\Entities\Transaction\StudentDiscount.cs" />
     <Compile Include="Core\Entities\Transaction\StudentEnrollmentStudentDetails.cs" />
     <Compile Include="Core\Extensions\DataSetExtensions.cs" />
+    <Compile Include="Core\Helpers\AuthenticationEvaluator.cs" />
     <Compile Include="Core\Helpers\NumberToWords.cs" />
     <Compile Include="Core\Helpers\PaginationParams.cs" />
     <Compile Include="Core\Entities\Settings\LabFee.cs" />

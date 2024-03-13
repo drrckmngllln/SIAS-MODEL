@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
+using school_management_system_model.Core.Helpers;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Forms.transactions.StudentAccounts.StudentAccountsComponents;
 using System;
@@ -20,11 +21,23 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         public bool IsAdministrator { get; set; }
         public string schoolYear { get; set; }
         public bool AdmissionValidator { get; set; }
-        public string Email { get; }
+        public string Email { get; set; }
         public frmStudentAccountModule(string email)
         {
             Email = email;
             InitializeComponent();
+        }
+
+        private async Task UserCredentials(string email)
+        {
+            var creds = await new AuthenticationEvaluator().CheckUserCredential(email);
+            if (creds != null)
+            {
+                IsAdd = Convert.ToBoolean(creds.IsAdd);
+                IsEdit = Convert.ToBoolean(creds.IsEdit);
+                IsDelete = Convert.ToBoolean(creds.IsDelete);
+                IsAdministrator = Convert.ToBoolean(creds.IsAdministrator);
+            }
         }
 
         private async void frmStudentAccountModule_Load(object sender, EventArgs e)
@@ -32,6 +45,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             OpenStudentAccountMasterList();
             await loadSchoolYears();
             AdmissionScheduleChecker();
+            await UserCredentials(Email);
         }
 
         private void AdmissionScheduleChecker()
@@ -44,7 +58,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         }
 
-        private async void CreateAccount()
+        private void CreateAccount()
         {
             var school_year = await _schoolYearRepo.GetByIdAsync(Convert.ToInt32(tSchoolYear.SelectedValue));
             var frm = new frm_create_account
