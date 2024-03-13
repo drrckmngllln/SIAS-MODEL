@@ -108,9 +108,9 @@ namespace school_management_system_model.Forms.transactions
         }
         private async void loadIdNumber()
         {
-            var a = await _studentAccountRepo.GetAllAsync();
-            var data = a.Where(x => x.sy_enrolled == tSchoolyear.SelectedText).Count();
             int count = 0;
+            var a = await _studentAccountRepo.GetAllAsync();
+            var data = a.Where(x => x.sy_enrolled == tSchoolyear.Text).Count();
             count = data;
             var idNumber = DateTime.Now.Year.ToString();
 
@@ -145,113 +145,114 @@ namespace school_management_system_model.Forms.transactions
 
         private async void addRecord()
         {
+            if (this.Text == "Create Account")
+            {
+                var school_year = await _schoolYearRepo.GetByIdAsync(School_Year);
+                var add = new StudentAccount
+                {
+                    id_number = tIdNumber.Text,
+                    school_year_id = school_year.id.ToString(),
+                    fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
+                    last_name = tLastname.Text,
+                    first_name = tFirstname.Text,
+                    middle_name = tMiddlename.Text,
+                    gender = cmbgender.Text,
+                    civil_status = cmbcivilstat.Text,
+                    date_of_birth = tDateofBirth.Text,
+                    place_of_birth = tPlaceofBirth.Text,
+                    nationality = tNationality.Text,
+                    religion = tReligion.Text,
+                    contact_no = tcontact.Text,
+                    email = temail.Text,
+                    elem = telem.Text,
+                    elem_year = teyear.Text,
+                    jhs = tjhs.Text,
+                    jhs_year = tjyear.Text,
+                    shs = tshs.Text,
+                    shs_year = tsyear.Text,
+                    mother_name = tmother.Text,
+                    mother_no = tmcontact.Text,
+                    father_name = tfather.Text,
+                    father_no = tfcontact.Text,
+                    home_address = tadd.Text,
+                    m_occupation = tmoccupation.Text,
+                    f_occupation = tfoccupation.Text,
+                    type_of_student = ctype.Text,
+                    status = tStatus.Text,
+                    sy_enrolled = tSchoolyear.Text,
+                    date_of_admission = kryptonDateTimePicker1.Text,
+                };
+                await _studentAccountRepo.AddRecords(add);
+
+                var b = await _studentAccountRepo.GetAllAsync();
+                var id_number_id = b.FirstOrDefault(x => x.id_number == tIdNumber.Text);
+
+                var courses = await _courseRepo.GetByCodeAsync(tCourse.Text);
+                var campuses = await _campusRepo.GetByCodeAsync(tCampus.Text);
+                var course = new StudentCourses
+                {
+                    id_number = id_number_id.id.ToString(),
+                    course = courses.id.ToString(),
+                    campus = campuses.id.ToString(),
+                    curriculum = "0",
+                    year_level = "0",
+                    section = "0",
+                    semester = Semester
+                };
+                await _studentCoursesRepo.AddRecords(course);
+                new Classes.Toastr("Success", "Account Saved");
+                Close();
+
+            }
+            else if (this.Text == "Update Account")
+            {
+                var school_year = await _schoolYearRepo.GetByIdAsync(School_Year);
+                var studentAccount = await _studentAccountRepo.GetByIdAsync(Id_Number);
+                var edit = new StudentAccount
+                {
+                    id = studentAccount.id,
+                    id_number = tIdNumber.Text,
+                    school_year_id = school_year.id.ToString(),
+                    fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
+                    last_name = tLastname.Text,
+                    first_name = tFirstname.Text,
+                    middle_name = tMiddlename.Text,
+                    gender = cmbgender.Text,
+                    civil_status = cmbcivilstat.Text,
+                    date_of_birth = tDateofBirth.Text,
+                    place_of_birth = tPlaceofBirth.Text,
+                    nationality = tNationality.Text,
+                    religion = tReligion.Text,
+                    contact_no = tcontact.Text,
+                    email = temail.Text,
+                    elem = telem.Text,
+                    elem_year = teyear.Text,
+                    jhs = tjhs.Text,
+                    jhs_year = tjyear.Text,
+                    shs = tshs.Text,
+                    shs_year = tsyear.Text,
+                    mother_name = tmother.Text,
+                    mother_no = tmcontact.Text,
+                    father_name = tfather.Text,
+                    father_no = tfcontact.Text,
+                    home_address = tadd.Text,
+                    m_occupation = tmoccupation.Text,
+                    f_occupation = tfoccupation.Text,
+                    type_of_student = ctype.Text,
+                    status = tStatus.Text,
+                    sy_enrolled = tSchoolyear.Text,
+                    date_of_admission = kryptonDateTimePicker1.Text,
+
+                };
+                await _studentAccountRepo.UpdateRecords(edit);
+
+
+                new Classes.Toastr("Information", "Account Updated");
+                Close();
+            }
             try
             {
-                if (this.Text == "Create Account")
-                {
-                    var school_year = await _schoolYearRepo.GetByIdAsync(School_Year);
-                    var add = new StudentAccount
-                    {
-                        id_number = tIdNumber.Text,
-                        school_year_id = school_year.id.ToString(),
-                        fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
-                        last_name = tLastname.Text,
-                        first_name = tFirstname.Text,
-                        middle_name = tMiddlename.Text,
-                        gender = cmbgender.Text,
-                        civil_status = cmbcivilstat.Text,
-                        date_of_birth = tDateofBirth.Text,
-                        place_of_birth = tPlaceofBirth.Text,
-                        nationality = tNationality.Text,
-                        religion = tReligion.Text,
-                        contact_no = tcontact.Text,
-                        email = temail.Text,
-                        elem = telem.Text,
-                        elem_year = teyear.Text,
-                        jhs = tjhs.Text,
-                        jhs_year = tjyear.Text,
-                        shs = tshs.Text,
-                        shs_year = tsyear.Text,
-                        mother_name = tmother.Text,
-                        mother_no = tmcontact.Text,
-                        father_name = tfather.Text,
-                        father_no = tfcontact.Text,
-                        home_address = tadd.Text,
-                        m_occupation = tmoccupation.Text,
-                        f_occupation = tfoccupation.Text,
-                        type_of_student = ctype.Text,
-                        status = tStatus.Text,
-                        sy_enrolled = tSchoolyear.Text,
-                        date_of_admission = kryptonDateTimePicker1.Text,
-                    };
-                    await _studentAccountRepo.AddRecords(add);
-
-                    var b = await _studentAccountRepo.GetAllAsync();
-                    var id_number_id = b.FirstOrDefault(x => x.id_number == tIdNumber.Text);
-
-                    var c = await _courseRepo.GetAllAsync();
-                    var d  = await _campusRepo.GetAllAsync();
-                    var course = new StudentCourses
-                    {
-                        id_number = id_number_id.id.ToString(),
-                        course = c.FirstOrDefault(x => x.code == tCourse.Text).id.ToString(),
-                        campus = d.FirstOrDefault(x => x.code == tCampus.Text).id.ToString(),
-                        curriculum = "Not Set",
-                        year_level = "Not Set",
-                        section = "Not Set",
-                        semester = Semester
-                    };
-                    await _studentCoursesRepo.AddRecords(course);
-                    new Classes.Toastr("Success", "Account Saved");
-                    Close();
-
-                }
-                else if (this.Text == "Update Account")
-                {
-                    var school_year = await _schoolYearRepo.GetByIdAsync(School_Year);
-                    var studentAccount = await _studentAccountRepo.GetByIdAsync(Id_Number);
-                    var edit = new StudentAccount
-                    {
-                        id = studentAccount.id,
-                        id_number = tIdNumber.Text,
-                        school_year_id = school_year.id.ToString(),
-                        fullname = tLastname.Text + ", " + tFirstname.Text + " " + tMiddlename.Text,
-                        last_name = tLastname.Text,
-                        first_name = tFirstname.Text,
-                        middle_name = tMiddlename.Text,
-                        gender = cmbgender.Text,
-                        civil_status = cmbcivilstat.Text,
-                        date_of_birth = tDateofBirth.Text,
-                        place_of_birth = tPlaceofBirth.Text,
-                        nationality = tNationality.Text,
-                        religion = tReligion.Text,
-                        contact_no = tcontact.Text,
-                        email = temail.Text,
-                        elem = telem.Text,
-                        elem_year = teyear.Text,
-                        jhs = tjhs.Text,
-                        jhs_year = tjyear.Text,
-                        shs = tshs.Text,
-                        shs_year = tsyear.Text,
-                        mother_name = tmother.Text,
-                        mother_no = tmcontact.Text,
-                        father_name = tfather.Text,
-                        father_no = tfcontact.Text,
-                        home_address = tadd.Text,
-                        m_occupation = tmoccupation.Text,
-                        f_occupation = tfoccupation.Text,
-                        type_of_student = ctype.Text,
-                        status = tStatus.Text,
-                        sy_enrolled = tSchoolyear.Text,
-                        date_of_admission = kryptonDateTimePicker1.Text,
-
-                    };
-                    await _studentAccountRepo.UpdateRecords(edit);
-
-
-                    new Classes.Toastr("Information", "Account Updated");
-                    Close();
-                }
+               
 
             }
             catch (Exception ex)

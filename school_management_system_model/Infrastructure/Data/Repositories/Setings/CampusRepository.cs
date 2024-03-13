@@ -86,6 +86,35 @@ namespace school_management_system_model.Data.Repositories.Setings
             return campuses;
         }
 
+        public async Task<Campuses> GetByCodeAsync(string code)
+        {
+            var campuses = new Campuses();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from campuses where code='" + code + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            campuses = new Campuses
+                            {
+                                id = reader.GetInt32("id"),
+                                code = reader.GetString("code"),
+                                description = reader.GetString("description"),
+                                address = reader.GetString("address"),
+                                status = reader.GetString("status")
+                            };
+                        }
+                    }
+                }
+            }
+            await con.CloseAsync();
+            return campuses;
+        }
+
         public async Task UpdateRecords(Campuses entity)
         {
             await con.OpenAsync();

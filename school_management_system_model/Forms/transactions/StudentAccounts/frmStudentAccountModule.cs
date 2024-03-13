@@ -58,7 +58,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         }
 
-        private void CreateAccount()
+        private async Task CreateAccount()
         {
             var school_year = await _schoolYearRepo.GetByIdAsync(Convert.ToInt32(tSchoolYear.SelectedValue));
             var frm = new frm_create_account
@@ -108,15 +108,16 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             frm.Show();
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private async void btnCreate_Click(object sender, EventArgs e)
         {
-            if (btnCreate.Text == "Create Account")
+            
+            if (btnCreate.Text == " Create Account")
             {
                 if (IsAdd || IsAdministrator)
                 {
                     if (AdmissionValidator || IsAdministrator)
                     {
-                        CreateAccount();
+                        await CreateAccount();
                     }
                     else
                     {

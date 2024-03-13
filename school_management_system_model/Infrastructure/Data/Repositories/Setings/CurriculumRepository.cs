@@ -73,7 +73,7 @@ namespace school_management_system_model.Data.Repositories.Setings
             return list;
         }
 
-        public async Task<Curriculums> GetByIdAsync(int id)
+        public async Task<Curriculums> GetByIdAsync(int? id)
         {
             var curriculum = new Curriculums();
             using (var con = new MySqlConnection(connection.con()))
@@ -106,6 +106,15 @@ namespace school_management_system_model.Data.Repositories.Setings
                 await con.CloseAsync();
                 return curriculum;
             }
+        }
+
+        public Curriculums DefaultValue()
+        {
+            var curriculums = new Curriculums
+            {
+                code = "Not Set"
+            };
+            return curriculums;
         }
 
         public async Task UpdateRecords(Curriculums entity)
