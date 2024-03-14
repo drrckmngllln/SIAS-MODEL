@@ -3,6 +3,7 @@ using school_management_system_model.Classes;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Core.Helpers;
 using school_management_system_model.Data.Repositories.Setings;
+using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Forms.transactions.StudentAccounts.StudentAccountsComponents;
 using System;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
     public partial class frmStudentAccountModule : Form
     {
         SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
+        StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
 
         public bool IsAdd { get; set; }
         public bool IsEdit { get; set; }
@@ -22,6 +24,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         public string schoolYear { get; set; }
         public bool AdmissionValidator { get; set; }
         public string Email { get; set; }
+        public string id_number { get; set; }
+        public string fullname { get; set; }
         public frmStudentAccountModule(string email)
         {
             Email = email;
@@ -37,6 +41,27 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                 IsEdit = Convert.ToBoolean(creds.IsEdit);
                 IsDelete = Convert.ToBoolean(creds.IsDelete);
                 IsAdministrator = Convert.ToBoolean(creds.IsAdministrator);
+            }
+        }
+
+        private async Task GetStudentDetailsAndApprove()
+        {
+            var student = await _studentAccountRepo.GetByIdAsync(frmStudentAccountsList.instance.ID);
+            id_number = student.id.ToString();
+            fullname = student.fullname;
+
+            if (student.status == "Officially Enrolled for School Year: " + tSchoolYear.Text)
+            {
+                new Classes.Toastr("Warning", "Student Already Approved");
+            }
+            else if (id_number == null && fullname == null)
+            {
+                new Classes.Toastr("Warning", "No Account Selected");
+            }
+            else
+            {
+               
+                ApproveAccount(id_number, fullname);
             }
         }
 
@@ -90,6 +115,26 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             OpenStudentAccountMasterList();
         }
 
+        private void ApproveAccount(string id_number, string fullname)
+        {
+            if (AdmissionValidator)
+            {
+                var frm = new frm_approve_account
+                {
+                    id_number = id_number,
+                    fullname = fullname
+                };
+                frm.ShowDialog();
+                OpenStudentAccountMasterList();
+            }
+            else
+            {
+                new Classes.Toastr("Warning", "No Scheduled Enrollment or Adding Schedule");
+            }
+        }
+
+
+
         private async Task loadSchoolYears()
         {
             var schoolYears = await _schoolYearRepo.GetAllAsync();
@@ -110,7 +155,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private async void btnCreate_Click(object sender, EventArgs e)
         {
-            
+
             if (btnCreate.Text == " Create Account")
             {
                 if (IsAdd || IsAdministrator)
@@ -140,6 +185,12 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
                     new Classes.Toastr("Error", "Authorization Denied");
                 }
             }
+        }
+
+        private async void btnApprove_Click(object sender, EventArgs e)
+        {
+            await GetStudentDetailsAndApprove();
+            
         }
     }
 }

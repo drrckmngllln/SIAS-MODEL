@@ -158,6 +158,7 @@
             this.btnApprove.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnApprove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnApprove.UseVisualStyleBackColor = false;
+            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
             // 
             // btnCreate
             // 

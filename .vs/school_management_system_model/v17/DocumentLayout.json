@@ -1,30 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\",
+  "WorkspaceRootPath": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\forms\\settings\\sectionsetup\\frm_section_subjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\settings\\sectionsetup\\frm_section_subjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\frm_approve_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\frm_approve_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\ict-dev_temp_user\\documents\\github\\sias-model\\school_management_system_model\\infrastructure\\data\\repositories\\setings\\sectionsubjectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\infrastructure\\data\\repositories\\setings\\sectionsubjectrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\frm_approve_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\frm_approve_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\ict-dev_temp_user\\documents\\github\\sias-model\\school_management_system_model\\forms\\settings\\sectionsetup\\frm_select_instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\settings\\sectionsetup\\frm_select_instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\infrastructure\\data\\repositories\\setings\\curriculumrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\infrastructure\\data\\repositories\\setings\\curriculumrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\ict-dev_temp_user\\documents\\github\\sias-model\\school_management_system_model\\infrastructure\\data\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\infrastructure\\data\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\frmstudentaccountmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\frmstudentaccountmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\ict-dev_temp_user\\documents\\github\\sias-model\\school_management_system_model\\forms\\settings\\sectionsetup\\frm_select_instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\settings\\sectionsetup\\frm_select_instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\forms\\settings\\sectionsetup\\frm_section_subjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\settings\\sectionsetup\\frm_section_subjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\frmstudentaccountmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\frmstudentaccountmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,83 +30,70 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SectionSubjectRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\SectionSubjectRepository.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\SectionSubjectRepository.cs",
-              "ToolTip": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\SectionSubjectRepository.cs",
-              "RelativeToolTip": "school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\SectionSubjectRepository.cs",
-              "ViewState": "AQIAAGEAAAAAAAAAAIAywG0AAABoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T06:04:21.122Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "connection.cs",
-              "DocumentMoniker": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\connection.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Infrastructure\\Data\\connection.cs",
-              "ToolTip": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\connection.cs",
-              "RelativeToolTip": "school_management_system_model\\Infrastructure\\Data\\connection.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T05:45:11.462Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "frm_select_instructor.cs",
-              "DocumentMoniker": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\settings\\SectionSetup\\frm_select_instructor.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\settings\\SectionSetup\\frm_select_instructor.cs",
-              "ToolTip": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\settings\\SectionSetup\\frm_select_instructor.cs",
-              "RelativeToolTip": "school_management_system_model\\Forms\\settings\\SectionSetup\\frm_select_instructor.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAcwCQAAAA0AAAA",
+              "Title": "CurriculumRepository.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\CurriculumRepository.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\CurriculumRepository.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\CurriculumRepository.cs",
+              "RelativeToolTip": "school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\CurriculumRepository.cs",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAmwIsAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T05:41:47.666Z",
+              "WhenOpened": "2024-03-14T08:38:39.516Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frm_select_instructor.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\settings\\SectionSetup\\frm_select_instructor.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\settings\\SectionSetup\\frm_select_instructor.cs",
-              "ToolTip": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\settings\\SectionSetup\\frm_select_instructor.cs [Design]",
-              "RelativeToolTip": "school_management_system_model\\Forms\\settings\\SectionSetup\\frm_select_instructor.cs [Design]",
+              "DocumentIndex": 1,
+              "Title": "frm_approve_account.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs [Design]*",
+              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T05:30:31.649Z",
+              "WhenOpened": "2024-03-14T08:32:27.577Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frm_section_subjects.cs",
-              "DocumentMoniker": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\settings\\SectionSetup\\frm_section_subjects.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\settings\\SectionSetup\\frm_section_subjects.cs",
-              "ToolTip": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\settings\\SectionSetup\\frm_section_subjects.cs",
-              "RelativeToolTip": "school_management_system_model\\Forms\\settings\\SectionSetup\\frm_section_subjects.cs",
-              "ViewState": "AQIAAIUAAAAAAAAAAAAgwI4AAAAxAAAA",
+              "Title": "frm_approve_account.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs*",
+              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs*",
+              "ViewState": "AQIAAEMAAAAAAAAAAAApwGEAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T05:28:05.143Z",
+              "WhenOpened": "2024-03-14T07:21:16.016Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "frm_section_subjects.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\settings\\SectionSetup\\frm_section_subjects.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\settings\\SectionSetup\\frm_section_subjects.cs",
-              "ToolTip": "C:\\Users\\ICT-Dev_temp_user\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\settings\\SectionSetup\\frm_section_subjects.cs [Design]",
-              "RelativeToolTip": "school_management_system_model\\Forms\\settings\\SectionSetup\\frm_section_subjects.cs [Design]",
+              "DocumentIndex": 4,
+              "Title": "frmStudentAccountModule.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs [Design]",
+              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T05:27:56.546Z",
+              "WhenOpened": "2024-03-14T07:08:50.201Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmStudentAccountModule.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
+              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAIA9wDAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-14T07:07:36.749Z",
+              "EditorCaption": ""
             }
           ]
         }

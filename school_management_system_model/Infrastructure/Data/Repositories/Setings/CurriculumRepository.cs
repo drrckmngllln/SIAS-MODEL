@@ -108,6 +108,40 @@ namespace school_management_system_model.Data.Repositories.Setings
             }
         }
 
+        public async Task<Curriculums> GetByCodeAsync(string code)
+        {
+            var curriculum = new Curriculums();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from curriculums where code='"+ code +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader =  cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var campuses = await _campusRepo.GetByIdAsync(reader.GetInt32("campus_id"));
+                            var course = await _coursesRepo.GetByIdAsync(reader.GetInt32("course_id"));
+                            curriculum = new Curriculums
+                            {
+                                id = reader.GetInt32("id"),
+                                code = reader.GetString("code"),
+                                description = reader.GetString("description"),
+                                campus = campuses.code,
+                                course = course.code,
+                                effective = reader.GetString("effective"),
+                                expires = reader.GetString("expires"),
+                                status = reader.GetString("status")
+                            };
+                        }
+                    }
+                    await con.CloseAsync();
+                    return curriculum;
+                }
+            }
+        }
+
         public Curriculums DefaultValue()
         {
             var curriculums = new Curriculums

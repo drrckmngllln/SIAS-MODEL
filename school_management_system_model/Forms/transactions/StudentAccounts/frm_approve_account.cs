@@ -43,9 +43,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         private async Task loadRecords()
         {
             tName.Text = fullname;
-            var a = await _studentCourseRepo.GetAllAsync();
-            var studentCourse = a.FirstOrDefault(x => x.id_number.ToString() == id_number).course;
-            tCourse.Text = studentCourse;
+            var studentCourse = await _studentCourseRepo.GetByIdNumberAsync(id_number);
+            tCourse.Text = studentCourse.course;
         }
 
         private async Task LoadCurriculum()
@@ -95,13 +94,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
             else
             {
-                var studentAccounts = await _studentAccountRepo.GetAllAsync();
-                var curriculum = await _curriculumRepo.GetAllAsync();
-
-                var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == id_number).id;
-                var curriculum_id = curriculum.FirstOrDefault(x => x.code == tCurriculum.Text).id;
-
-                await approveStudent(id_number_id, curriculum_id);
+                var curriculum = await _curriculumRepo.GetByCodeAsync(tCurriculum.Text);
+                await approveStudent(Convert.ToInt32(id_number), curriculum.id);
             }
         }
     }
