@@ -24,7 +24,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         public string schoolYear { get; set; }
         public bool AdmissionValidator { get; set; }
         public string Email { get; set; }
-        public string id_number { get; set; }
+        public int id_number { get; set; }
         public string fullname { get; set; }
         public frmStudentAccountModule(string email)
         {
@@ -47,14 +47,14 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         private async Task GetStudentDetailsAndApprove()
         {
             var student = await _studentAccountRepo.GetByIdAsync(frmStudentAccountsList.instance.ID);
-            id_number = student.id.ToString();
+            id_number = student.id;
             fullname = student.fullname;
 
             if (student.status == "Officially Enrolled for School Year: " + tSchoolYear.Text)
             {
                 new Classes.Toastr("Warning", "Student Already Approved");
             }
-            else if (id_number == null && fullname == null)
+            else if (id_number == 0 && fullname == null)
             {
                 new Classes.Toastr("Warning", "No Account Selected");
             }
@@ -115,7 +115,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             OpenStudentAccountMasterList();
         }
 
-        private void ApproveAccount(string id_number, string fullname)
+        private void ApproveAccount(int id_number, string fullname)
         {
             if (AdmissionValidator)
             {
@@ -150,6 +150,16 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             frm.TopLevel = false;
             panelTask.Controls.Clear();
             panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void ViewStudentSubjects(int idNumberId, int schoolYearId)
+        {
+            var frm = new frm_view_subjects(idNumberId, schoolYearId);
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
 
@@ -191,6 +201,23 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         {
             await GetStudentDetailsAndApprove();
             
+        }
+
+        private void btnSubjects_Click(object sender, EventArgs e)
+        {
+            if (frmStudentAccountsList.instance.ID == 0)
+            {
+                new Classes.Toastr("Warning", "Please select a student");
+            }
+            else
+            {
+                ViewStudentSubjects(frmStudentAccountsList.instance.ID, Convert.ToInt32(tSchoolYear.SelectedValue));
+            }
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            OpenStudentAccountMasterList();
         }
     }
 }

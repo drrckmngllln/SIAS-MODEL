@@ -26,7 +26,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         public static frm_approve_account instance;
         public string course { get; set; }
-        public string id_number { get; set; }
+        public int id_number { get; set; }
         public string fullname { get; set; }
         public frm_approve_account()
         {

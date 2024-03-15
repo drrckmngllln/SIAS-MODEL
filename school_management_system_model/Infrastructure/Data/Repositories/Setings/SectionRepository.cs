@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using MySql.Data.MySqlClient;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using System.Collections.Generic;
@@ -105,6 +106,42 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
                             };
                         }
                         
+                        await con.CloseAsync();
+                        return section;
+                    }
+                }
+            }
+        }
+
+        public async Task<Sections> GetBySectionCodeAsync(string section_code)
+        {
+            var section = new Sections();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from sections where section_code='" + section_code + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            section = new Sections
+                            {
+                                id = reader.GetInt32("Id"),
+                                unique_id = reader.GetString("unique_id"),
+                                section_code = reader.GetString("section_code"),
+                                course = reader.GetString("course"),
+                                year_level = reader.GetInt32("year_level"),
+                                section = reader.GetString("section"),
+                                semester = reader.GetString("semester"),
+                                number_of_students = reader.GetInt32("number_of_students"),
+                                max_number_of_students = reader.GetInt32("max_number_of_students"),
+                                status = reader.GetString("status"),
+                                remarks = reader.GetString("remarks")
+                            };
+                        }
+
                         await con.CloseAsync();
                         return section;
                     }

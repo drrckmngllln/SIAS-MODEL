@@ -1,7 +1,6 @@
 ﻿using school_management_system_model.Core.Entities.Transaction;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Infrastructure.Data.Repositories.Transaction
@@ -14,7 +13,7 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
             var _studentCourseRepo = new StudentCourseRepository();
 
             var studentAccounts = await _studentAccountRepo.GetByIdAsync(id);
-            var studentCourse = await _studentCourseRepo.GetByIdNumberAsync(id.ToString());
+            var studentCourse = await _studentCourseRepo.GetByIdNumberAsync(id);
 
             var studentEnrollmentStudentDetail = new StudentEnrollmentStudentDetails
             {

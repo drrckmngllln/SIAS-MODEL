@@ -1,6 +1,4 @@
 ﻿using Krypton.Toolkit;
-using MySql.Data.MySqlClient;
-using school_management_system_model.Classes;
 using school_management_system_model.Classes.Parameters;
 using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Repositories.Setings;
@@ -8,12 +6,8 @@ using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,8 +21,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();  
 
 
-        public string idnumber { get; set; }
-        public string schoolyear { get; set; }
+        public int idnumber { get; set; }
+        public int schoolyear { get; set; }
 
         PaginationParams paging = new PaginationParams();
 
@@ -54,10 +48,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             sectionSubjects.Skip(paging.PageSize * (paging.pageNumber - 1))
             .Take(paging.PageSize).ToList();
 
-            //var con = new MySqlConnection(connection.con());
-            //var da = new MySqlDataAdapter("select * from section_subjects", con);
-            //var dt = new DataTable();
-            //da.Fill(dt);
+            
             dgv.DataSource = sectionSubjects;
             dgv.Columns["id"].Visible = false;
             dgv.Columns["unique_id"].Visible = false;
@@ -123,7 +114,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
         }
 
-        private async void addrecords(string idnumber, string schoolyear)
+        private async void addrecords(int idnumber, int schoolyear)
         {
             var subjectcode = dgv.CurrentRow.Cells["subject_code"].Value.ToString();
             var curriculum = dgv.CurrentRow.Cells["curriculum"].Value.ToString();
@@ -140,17 +131,15 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             var room = dgv.CurrentRow.Cells["room"].Value.ToString();
             var instructor = dgv.CurrentRow.Cells["instructor"].Value.ToString();
 
-            var studentAccounts = await _studentAccountRepo.GetAllAsync();
-            var id_number_id = studentAccounts.FirstOrDefault(x => x.id_number == idnumber).id.ToString();
+            var id_number_id = await _studentAccountRepo.GetByIdAsync(idnumber);
 
-            var schoolYears = await _schoolYearRepo.GetAllAsync();
-            var school_year_id = schoolYears.FirstOrDefault(x => x.code == schoolyear).id.ToString();
+            var school_year_id = await _schoolYearRepo.GetByIdAsync(schoolyear);
 
             var add = new StudentSubject
             {
-                id_number_id = id_number_id,
-                unique_id = id_number_id.ToString() + "-" + school_year_id.ToString() + "-" + subjectcode.ToString(),
-                school_year_id = school_year_id.ToString(),
+                id_number_id = id_number_id.id.ToString(),
+                unique_id = id_number_id.id.ToString() + "-" + school_year_id.id.ToString() + "-" + subjectcode.ToString(),
+                school_year_id = school_year_id.id.ToString(),
                 subject_code = subjectcode,
                 descriptive_title = descriptivetitle,
                 lecture_units = lectureunits.ToString(),

@@ -32,12 +32,12 @@ namespace school_management_system_model.Forms.transactions
 
 
         public int Id { get; set; }
-        public string id_number { get; set; }
+        public int id_number { get; set; }
         public string studentName { get; set; }
         public string course { get; set; }
         public string section { get; set; }
         public string section_code { get; set; }
-        public string school_year_id { get; set; }
+        public int school_year_id { get; set; }
         public string Email { get; }
 
         decimal totalUnits = 0;
@@ -114,27 +114,8 @@ namespace school_management_system_model.Forms.transactions
 
         private async Task loadRecords()
         {
-            //var schoolYears = await _schoolYearRepo.GetAllAsync();
-            //var sy = schoolYears.FirstOrDefault(x => x.code == school_year_id);
-
-
-            //var a = await _studentAccountRepo.GetAllAsync();
-            //var student_account = a.FirstOrDefault(x => x.id_number == id_number);
-            //var student_course = await _studentCourseRepo.GetAllAsync();
-            //var b = student_course.FirstOrDefault(x => x.id_number == id_number);
-            //tIdNumber.Text = student_account.id_number;
-            //tStudentName.Text = student_account.fullname;
-            //tCourse.Text = b.course;
-            //tCampus.Text = b.campus;
-            //tCurriculum.Text = b.curriculum;
-            //tSection.Text = b.section;
-            //tYearLevel.Text = b.year_level;
-            //tSemester.Text = sy.semester;
-            //tYearLevel.Select();
-
-            var students = await _studentAccountRepo.GetStudentAccountsMain();
-
-
+            var student = await _studentAccountRepo.GetByNameAsync(tStudentName.Text);
+            id_number = student.id;
 
 
             dgv.Columns.Add("subject_code", "Subject Code");
@@ -224,12 +205,10 @@ namespace school_management_system_model.Forms.transactions
 
         private async Task SaveStudentCourse()
         {
-            var id = await _studentCourseRepo.GetAllAsync();
-            var a = id.FirstOrDefault(x => x.id_number == tIdNumber.Text);
-            var section = await _sectionRepository.GetAllAsync();
-            var b = section.FirstOrDefault(x => x.section_code == tSection.Text);
+            var id = await _studentCourseRepo.GetByIdNumberAsync(id_number);
+            var section = await _sectionRepository.GetBySectionCodeAsync(tSection.Text);
             var enrollStudent = new StudentCourses();
-            await _studentCourseRepo.EnrolStudent(a.id, tYearLevel.Text, b.id.ToString());
+            await _studentCourseRepo.EnrolStudent(id.id, tYearLevel.Text, section.id.ToString());
         }
 
         private async Task IncrementingSectionNumber()
@@ -247,13 +226,12 @@ namespace school_management_system_model.Forms.transactions
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                var a = await _studentAccountRepo.GetAllAsync();
-                var id_number = a.FirstOrDefault(x => x.id_number == tIdNumber.Text).id;
+                var id_number_id = await _studentAccountRepo.GetByIdAsync(id_number);
 
-                var b = await _schoolYearRepo.GetAllAsync();
-                var school_year = b.FirstOrDefault(x => x.code == school_year_id).id;
+                var school_year = await _schoolYearRepo.GetByIdAsync(school_year_id);
+
                 var subject_code = row.Cells["subject_code"].Value.ToString();
-                var unique_id = id_number.ToString() + school_year.ToString() + subject_code.ToString();
+                var unique_id = id_number.ToString() + school_year.id.ToString() + subject_code.ToString();
                 var descriptive_title = row.Cells["descriptive_title"].Value.ToString();
                 var pre_requisite = row.Cells["pre_requisite"].Value.ToString();
                 var total_units = row.Cells["total_units"].Value.ToString();
@@ -305,12 +283,11 @@ namespace school_management_system_model.Forms.transactions
         {
             // INCREMENTING OF SECTIONS
 
-            var section = await _sectionRepository.GetAllAsync();
-            var a = section.FirstOrDefault(x => x.section_code == tSection.Text);
+            var section = await _sectionRepository.GetBySectionCodeAsync(tSection.Text);
             var studentCourse = await _studentCourseRepo.GetAllAsync();
             var b = studentCourse.FirstOrDefault(x => x.id_number == tIdNumber.Text);
 
-            if (a.number_of_students <= a.max_number_of_students)
+            if (section.number_of_students <= section.max_number_of_students)
             {
                 // STUDENT COURSE
                 await SaveStudentCourse();
@@ -328,9 +305,9 @@ namespace school_management_system_model.Forms.transactions
             else
             {
                 new Classes.Toastr("Warning", "Section is Full!");
-                var sections = await _sectionRepository.GetAllAsync();
-                var sectionId = sections.FirstOrDefault(x => x.section_code == tSection.Text).id;
-                _sectionRepository.FullStudent(sectionId);
+
+                var sections = await _sectionRepository.GetBySectionCodeAsync(tSection.Text);
+                _sectionRepository.FullStudent(sections.id);
             }
 
         }

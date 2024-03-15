@@ -318,30 +318,72 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
 
         public async Task<IReadOnlyList<StudentAccountsMainDto>> GetStudentAccountsMain()
         {
+            var _studentCourseRepo = new StudentCourseRepository();
+            var list = new List<StudentAccountsMainDto>();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from student_accounts";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var course = await _studentCourseRepo.GetByIdNumberAsync(reader.GetInt32("id_number"));
+
+                            var student = new StudentAccountsMainDto
+                            {
+                                id = reader.GetInt32("id"),
+                                name = reader.GetString("fullname"),
+                                gender = reader.GetString("gender"),
+                                course = course.course,
+                                type_of_student = reader.GetString("type_of_student"),
+                                admission_date = reader.GetString("date_of_admission"),
+                                status = reader.GetString("status")
+                            };
+                            list.Add(student);
+                        }
+                    }
+                    await con.CloseAsync();
+                    return list;
+                }
+            }
+        }
+
+        public async Task<StudentAccountsMainDto> GetByNameAsync(string fullname)
+        {
+            var student = new StudentAccountsMainDto();
             var studentCourses = new StudentCourseRepository();
 
-            var studentAccounts = await GetAllAsync();
-
-
-            var list = new List<StudentAccountsMainDto>();
-
-            foreach (var student in studentAccounts)
+            using (var con = new MySqlConnection(connection.con()))
             {
-                var course = await studentCourses.GetByIdNumberAsync(student.id.ToString());
-                var dto = new StudentAccountsMainDto
+                await con.OpenAsync();
+                var sql = "select * from student_accounts where fullname='" + fullname + "'";
+                using (var cmd = new MySqlCommand(sql, con))
                 {
-                    id = student.id,
-                    name = student.fullname,
-                    gender = student.gender,
-                    course = course.course,
-                    type_of_student = student.type_of_student,
-                    admission_date = student.date_of_admission,
-                    status = student.status
-                };
-                list.Add(dto);
-            }
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var course = await studentCourses.GetByIdNumberAsync(reader.GetInt32("id_number"));
 
-            return list;
+                            student = new StudentAccountsMainDto
+                            {
+                                id = reader.GetInt32("id"),
+                                name = reader.GetString("fullname"),
+                                gender = reader.GetString("gender"),
+                                course = course.course,
+                                type_of_student = reader.GetString("type_of_student"),
+                                admission_date = reader.GetString("admission_date"),
+                                status = reader.GetString("status")
+                            };
+                        }
+                        await con.CloseAsync();
+                        return student;
+                    }
+                }
+            }
         }
     }
 }

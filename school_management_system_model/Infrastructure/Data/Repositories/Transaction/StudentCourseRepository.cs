@@ -146,7 +146,7 @@ namespace school_management_system_model.Data.Repositories.Transaction
             }
         }
 
-        public async Task<StudentCourses> GetByIdNumberAsync(string id_number)
+        public async Task<StudentCourses> GetByIdNumberAsync(int id_number)
         {
             var _studentAccounRepo = new StudentAccountRepository();
             var _courseRepo = new CourseRepository();

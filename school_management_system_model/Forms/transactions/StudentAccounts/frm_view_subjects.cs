@@ -1,25 +1,17 @@
-﻿using Krypton.Toolkit;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using school_management_system_model.Classes;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
-using school_management_system_model.Reports.Accounting;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace school_management_system_model.Forms.transactions.StudentAccounts
 {
-    public partial class frm_view_subjects : KryptonForm
+    public partial class frm_view_subjects : Form
     {
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
         SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
@@ -28,67 +20,47 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         public static frm_view_subjects instance;
         public bool IsAdministrator { get; set; }
 
-        public string id_number { get; set; }
+        public int id_number { get; set; }
         public string fullname { get; set; }
-        public string school_year { get; set; }
+        public int school_year { get; set; }
 
         public string subjectCode { get; set; }
         public int Id { get; set; }
 
-        public frm_view_subjects()
+        public frm_view_subjects(int id_number_id, int school_year_id)
         {
+            id_number = id_number_id;
+            school_year = school_year_id;
             instance = this;
 
             InitializeComponent();
         }
 
-        private void AdmissionChecker()
-        {
-            var schedule = new MainRegistrar("Adding and Dropping").ScheduleChecker();
-            if (schedule || IsAdministrator)
-            {
-                btnAdd.Visible = true;
-                btnDrop.Visible = true;
-            }
-            else
-            {
-                btnAdd.Visible = false;
-                btnDrop.Visible = false;
-            }
-        }
 
-        private void frm_view_subjects_Load(object sender, EventArgs e)
+        private async void frm_view_subjects_Load(object sender, EventArgs e)
         {
-            tIdNumber.Text = id_number + " - " + fullname;
-            tSchoolYear.Text = school_year;
-            loadSchoolYear();
+            await loadSchoolYear();
+            await GetStudentDetails();
             loadRecords(id_number, school_year);
-            AdmissionChecker();
-        }
-        private void loadSchoolYear()
-        {
-            var con = new MySqlConnection(connection.con());
-            var da = new MySqlDataAdapter("select * from school_year", con);
-            var dt = new DataTable();
-            da.Fill(dt);
-            foreach (DataRow row in dt.Rows)
-            {
-                tSchoolYear.Items.Add(row["code"]);
-            }
         }
 
-        private async void loadRecords(string idNumber, string schoolYear)
+        private async Task GetStudentDetails()
         {
-            var a = await _studentAccountRepo.GetAllAsync();
-            var idnumber = a.FirstOrDefault(x => x.id_number == idNumber);
+            var student = await _studentAccountRepo.GetByIdAsync(id_number);
+            tIdNumber.Text = student.id_number + " - " + student.fullname;
+        }
+        private async Task loadSchoolYear()
+        {
+            var schoolYear = await _schoolYearRepo.GetAllAsync();
+            tSchoolYear.ValueMember = "id";
+            tSchoolYear.DisplayMember = "code";
+            tSchoolYear.DataSource = schoolYear;
+        }
 
-            var b = await _schoolYearRepo.GetAllAsync();
-            var schoolyear = b.FirstOrDefault(x => x.code == schoolYear);
+        private async void loadRecords(int idNumber, int schoolYear)
+        {
 
-            var studentSubjects = await _studentSubjectRepo.GetAllAsync();
-            var studentsubject = studentSubjects
-                .Where(x => x.id_number_id == idNumber && x.school_year_id == schoolYear)
-                .ToList();
+            var studentsubject = await _studentSubjectRepo.GetStudentSubjectsAsync(idNumber, schoolYear);
 
             dgv.Columns.Clear();
             dgv.Columns.Add("subject_code", "Subject Code");
@@ -141,18 +113,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void tSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadRecords(id_number, tSchoolYear.Text);
-        }
-
-        private void btnEnroll_Click(object sender, EventArgs e)
-        {
-            var frm = new frm_input_grade
-            {
-                id_number = id_number,
-                subject_code = dgv.CurrentRow.Cells["subject_code"].Value.ToString()
-            };
-            frm.ShowDialog();
-            loadRecords(id_number, school_year);
+            loadRecords(id_number, Convert.ToInt32(tSchoolYear.SelectedValue));
         }
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -198,24 +159,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             var data = addCustomSubject();
 
             loadRecords(id_number, school_year);
-        }
-
-        private async void kryptonButton2_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Are you sure you want to drop this subject!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                var studentAccounts = await _studentAccountRepo.GetAllAsync();
-                var idnumber = studentAccounts.FirstOrDefault(x => x.id_number == id_number).id;
-                string subjectcode = dgv.CurrentRow.Cells["subject_code"].Value.ToString();
-                var con = new MySqlConnection(connection.con());
-                con.Open();
-                var cmd = new MySqlCommand("delete from student_subjects where id_number_id='" + idnumber + "' and subject_code='" + dgv.CurrentRow.Cells["subject_code"].Value.ToString() + "'", con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Subject Dropped!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                loadRecords(id_number, tSchoolYear.Text);
-            }
-
         }
         public string studentCampus(string idNumber)
         {

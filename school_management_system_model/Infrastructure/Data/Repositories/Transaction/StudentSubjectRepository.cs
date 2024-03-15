@@ -3,10 +3,8 @@ using school_management_system_model.Core.Entities;
 using school_management_system_model.Data.Interfaces;
 using school_management_system_model.Data.Repositories.Setings;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
-using school_management_system_model.Infrastructure.Data.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace school_management_system_model.Data.Repositories.Transaction.StudentAssessment
@@ -67,9 +65,9 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                     var studentSubjects = new StudentSubject
                     {
                         id = reader.GetInt32("id"),
-                        id_number_id = reader.GetString("id_number_id"),
+                        id_number_id = studentAccounts.id_number,
                         unique_id = reader.GetString("unique_id"),
-                        school_year_id = reader.GetString("school_year_id"),
+                        school_year_id = schoolYears.code,
                         subject_code = reader.GetString("subject_code"),
                         descriptive_title = reader.GetString("descriptive_title"),
                         pre_requisite = reader.GetString("pre_requisite"),
@@ -79,7 +77,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
                         time = reader.GetString("time"),
                         day = reader.GetString("day"),
                         room = reader.GetString("room"),
-                        instructor_id = reader.GetString("instructor_id"),
+                        instructor_id = instructors.fullname,
                         grade = reader.GetString("grade"),
                         remarks = reader.GetString("remarks")
                     };
@@ -90,13 +88,60 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAs
             }
         }
 
+        public async Task<IReadOnlyList<StudentSubject>> GetStudentSubjectsAsync(int id_number, int school_year)
+        {
+            var list = new List<StudentSubject>();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from student_subjects where id_number_id='" + id_number + "' and school_year_id='" + school_year + "'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var studentAccounts = await _studentAccountRepo.GetByIdAsync(reader.GetInt32("id_number_id"));
+
+                            var schoolYears = await _schoolYearRepo.GetByIdAsync(reader.GetInt32("school_year_id"));
+
+                            var instructors = await _instructorRepo.GetByIdAsync(reader.GetInt32("instructor_id"));
+
+                            var studentSubjects = new StudentSubject
+                            {
+                                id = reader.GetInt32("id"),
+                                id_number_id = studentAccounts.id_number,
+                                unique_id = reader.GetString("unique_id"),
+                                school_year_id = schoolYears.code,
+                                subject_code = reader.GetString("subject_code"),
+                                descriptive_title = reader.GetString("descriptive_title"),
+                                pre_requisite = reader.GetString("pre_requisite"),
+                                total_units = reader.GetString("total_units"),
+                                lecture_units = reader.GetString("lecture_units"),
+                                lab_units = reader.GetString("lab_units"),
+                                time = reader.GetString("time"),
+                                day = reader.GetString("day"),
+                                room = reader.GetString("room"),
+                                instructor_id = instructors.fullname,
+                                grade = reader.GetString("grade"),
+                                remarks = reader.GetString("remarks")
+                            };
+                            list.Add(studentSubjects);
+                        }
+                    }
+                    await con.CloseAsync();
+                    return list;
+                }
+            }
+        }
+
         public async Task<StudentSubject> GetByIdAsync(int id)
         {
             var studentSubject = new StudentSubject();
             using (var con = new MySqlConnection(connection.con()))
             {
                 await con.OpenAsync();
-                var sql = "select * from student_subjects where id='"+ id +"'";
+                var sql = "select * from student_subjects where id='" + id + "'";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
                     using (var reader = cmd.ExecuteReader())
