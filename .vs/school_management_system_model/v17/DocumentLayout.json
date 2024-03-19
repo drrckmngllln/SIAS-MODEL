@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\frm_approve_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\frm_approve_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\infrastructure\\data\\repositories\\transaction\\externalcredentialsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\infrastructure\\data\\repositories\\transaction\\externalcredentialsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\frm_approve_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\frm_approve_account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\externalcredcomponent\\frmaddeditexternalcreds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\externalcredcomponent\\frmaddeditexternalcreds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\infrastructure\\data\\repositories\\setings\\curriculumrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\infrastructure\\data\\repositories\\setings\\curriculumrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\frm_student_external_cred.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\frm_student_external_cred.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\frmstudentaccountmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\frmstudentaccountmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\externalcredcomponent\\frmaddeditexternalcreds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\externalcredcomponent\\frmaddeditexternalcreds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\frmstudentaccountmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\frmstudentaccountmodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\frm_student_external_cred.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\frm_student_external_cred.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,66 +34,66 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CurriculumRepository.cs",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\CurriculumRepository.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\CurriculumRepository.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\CurriculumRepository.cs",
-              "RelativeToolTip": "school_management_system_model\\Infrastructure\\Data\\Repositories\\Setings\\CurriculumRepository.cs",
-              "ViewState": "AQIAAGUAAAAAAAAAAAAmwIsAAAAmAAAA",
+              "DocumentIndex": 1,
+              "Title": "frmAddEditExternalCreds.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\ExternalCredComponent\\frmAddEditExternalCreds.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\ExternalCredComponent\\frmAddEditExternalCreds.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\ExternalCredComponent\\frmAddEditExternalCreds.cs",
+              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\ExternalCredComponent\\frmAddEditExternalCreds.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAA9wDUAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T08:38:39.516Z",
+              "WhenOpened": "2024-03-19T08:03:21.861Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frm_approve_account.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs [Design]*",
-              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs [Design]*",
+              "DocumentIndex": 3,
+              "Title": "frmAddEditExternalCreds.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\ExternalCredComponent\\frmAddEditExternalCreds.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\ExternalCredComponent\\frmAddEditExternalCreds.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\ExternalCredComponent\\frmAddEditExternalCreds.cs [Design]",
+              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\ExternalCredComponent\\frmAddEditExternalCreds.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T08:32:27.577Z",
+              "WhenOpened": "2024-03-19T08:03:13.376Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frm_approve_account.cs",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs*",
-              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frm_approve_account.cs*",
-              "ViewState": "AQIAAEMAAAAAAAAAAAApwGEAAAAQAAAA",
+              "Title": "ExternalCredentialsRepository.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\Repositories\\Transaction\\ExternalCredentialsRepository.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Infrastructure\\Data\\Repositories\\Transaction\\ExternalCredentialsRepository.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Infrastructure\\Data\\Repositories\\Transaction\\ExternalCredentialsRepository.cs",
+              "RelativeToolTip": "school_management_system_model\\Infrastructure\\Data\\Repositories\\Transaction\\ExternalCredentialsRepository.cs",
+              "ViewState": "AQIAAIIAAAAAAAAAAAAMwKIAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T07:21:16.016Z",
+              "WhenOpened": "2024-03-19T07:43:08.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frm_student_external_cred.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frm_student_external_cred.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frm_student_external_cred.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frm_student_external_cred.cs",
+              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frm_student_external_cred.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAAMwD4AAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T03:30:07.514Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "frmStudentAccountModule.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs [Design]",
-              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs [Design]",
+              "Title": "frm_student_external_cred.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frm_student_external_cred.cs",
+              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frm_student_external_cred.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frm_student_external_cred.cs [Design]",
+              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frm_student_external_cred.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T07:08:50.201Z",
+              "WhenOpened": "2024-03-19T03:28:29.032Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frmStudentAccountModule.cs",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
-              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\frmStudentAccountModule.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAIA9wDAAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T07:07:36.749Z",
-              "EditorCaption": ""
             }
           ]
         }

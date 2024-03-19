@@ -200,6 +200,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "frm_login";
+            this.ShadowValues.BlurDistance = 10D;
+            this.ShadowValues.ExtraWidth = ((byte)(1));
+            this.ShadowValues.Offset = new System.Drawing.Point(1, 1);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 

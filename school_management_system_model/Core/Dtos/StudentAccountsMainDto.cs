@@ -3,6 +3,7 @@
     internal class StudentAccountsMainDto
     {
         public int id { get; set; }
+        public string id_number { get; set; }
         public string name { get; set; }
         public string gender { get; set; }
         public string course { get; set; }

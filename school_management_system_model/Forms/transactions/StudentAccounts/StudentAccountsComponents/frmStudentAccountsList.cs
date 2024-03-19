@@ -52,6 +52,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
             dgv.Columns["name"].HeaderText = "Student Name";
             dgv.Columns["gender"].HeaderText = "Gender";
             dgv.Columns["type_of_student"].HeaderText = "Type of Student";
+            dgv.Columns["course"].HeaderText = "Course";
             dgv.Columns["admission_date"].HeaderText = "Admission Date";
             dgv.Columns["status"].HeaderText = "Status";
             dgv.Columns["name"].Width = 350;
@@ -95,6 +96,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
+            frmStudentAccountModule.instance.ID = ID;
         }
 
         private async void tSearch_TextChanged(object sender, EventArgs e)

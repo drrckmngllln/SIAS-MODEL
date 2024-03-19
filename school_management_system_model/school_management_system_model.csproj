@@ -296,6 +296,7 @@
     <Compile Include="Core\Entities\Settings\Discount.cs" />
     <Compile Include="Core\Entities\Transaction\AssessmentBreakdown.cs" />
     <Compile Include="Core\Entities\Transaction\CashierLog.cs" />
+    <Compile Include="Core\Entities\Transaction\ExternalCredential.cs" />
     <Compile Include="Core\Entities\Transaction\FeeBreakdown.cs" />
     <Compile Include="Core\Entities\Settings\Instructors.cs" />
     <Compile Include="Core\Entities\Settings\LabFeeSubjects.cs" />
@@ -361,11 +362,23 @@
     <Compile Include="Forms\transactions\StudentAccounts\frmStudentAccountModule.Designer.cs">
       <DependentUpon>frmStudentAccountModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\ExternalCredComponent\frmAddEditExternalCreds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\ExternalCredComponent\frmAddEditExternalCreds.Designer.cs">
+      <DependentUpon>frmAddEditExternalCreds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frmStudentAccountsList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frmStudentAccountsList.Designer.cs">
       <DependentUpon>frmStudentAccountsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frm_student_external_cred.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frm_student_external_cred.Designer.cs">
+      <DependentUpon>frm_student_external_cred.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\transactions\StudentEnrollment\frm_select_students.cs">
       <SubType>Form</SubType>
@@ -396,6 +409,7 @@
     <Compile Include="Infrastructure\Data\Repositories\Setings\UserRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\AssessmentBreakdownRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\CashierLogRepository.cs" />
+    <Compile Include="Infrastructure\Data\Repositories\Transaction\ExternalCredentialsRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeBreakdownRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\FeeSummaryRepository.cs" />
     <Compile Include="Infrastructure\Data\Repositories\Transaction\NonAssessmentRepository.cs" />
@@ -979,8 +993,14 @@
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frmStudentAccountModule.resx">
       <DependentUpon>frmStudentAccountModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\ExternalCredComponent\frmAddEditExternalCreds.resx">
+      <DependentUpon>frmAddEditExternalCreds.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frmStudentAccountsList.resx">
       <DependentUpon>frmStudentAccountsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\frm_student_external_cred.resx">
+      <DependentUpon>frm_student_external_cred.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAssessment\frm_select_student.resx">
       <DependentUpon>frm_select_student.cs</DependentUpon>

@@ -17,6 +17,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         SchoolYearRepository _schoolYearRepo = new SchoolYearRepository();
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
 
+        public int ID { get; set; }
+
         public bool IsAdd { get; set; }
         public bool IsEdit { get; set; }
         public bool IsDelete { get; set; }
@@ -26,8 +28,11 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         public string Email { get; set; }
         public int id_number { get; set; }
         public string fullname { get; set; }
+
+        public static frmStudentAccountModule instance;
         public frmStudentAccountModule(string email)
         {
+            instance = this;
             Email = email;
             InitializeComponent();
         }
@@ -60,7 +65,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
             else
             {
-               
+
                 ApproveAccount(id_number, fullname);
             }
         }
@@ -163,6 +168,16 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             frm.Show();
         }
 
+        private void OpenStudentExternalCredentials()
+        {
+            var frm = new frm_student_external_cred();
+            frm_student_external_cred.instance.ID = ID;
+            frm.TopLevel = false;
+            panelTask.Controls.Clear();
+            panelTask.Controls.Add(frm);
+            frm.Show();
+        }
+
         private async void btnCreate_Click(object sender, EventArgs e)
         {
 
@@ -200,7 +215,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         private async void btnApprove_Click(object sender, EventArgs e)
         {
             await GetStudentDetailsAndApprove();
-            
+
         }
 
         private void btnSubjects_Click(object sender, EventArgs e)
@@ -218,6 +233,18 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
         private void btnHome_Click(object sender, EventArgs e)
         {
             OpenStudentAccountMasterList();
+        }
+
+        private void btnExternalCredentials_Click(object sender, EventArgs e)
+        {
+            if (ID == 0)
+            {
+                new Classes.Toastr("Warning", "Please select student");
+            }
+            else
+            {
+                OpenStudentExternalCredentials();
+            }
         }
     }
 }

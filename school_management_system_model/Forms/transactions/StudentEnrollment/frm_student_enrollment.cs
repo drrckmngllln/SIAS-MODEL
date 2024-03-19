@@ -60,12 +60,21 @@ namespace school_management_system_model.Forms.transactions
         {
             await loadRecords();
             await LoadingStudent();
+            await loadSchoolYear();
         }
 
         private async Task LoadingStudent()
         {
             await Task.Delay(500);
             tStudentLoading.Visible = false;
+        }
+
+        private async Task loadSchoolYear()
+        {
+            var schoolYears = await _schoolYearRepo.GetAllAsync();
+            tSchoolYear.ValueMember = "id";
+            tSchoolYear.DisplayMember = "code";
+            tSchoolYear.DataSource = schoolYears;
         }
 
         private async Task EnrollingStudent()
@@ -228,7 +237,7 @@ namespace school_management_system_model.Forms.transactions
             {
                 var id_number_id = await _studentAccountRepo.GetByIdAsync(id_number);
 
-                var school_year = await _schoolYearRepo.GetByIdAsync(school_year_id);
+                var school_year = await _schoolYearRepo.GetByIdAsync(Convert.ToInt32(tSchoolYear.SelectedValue));
 
                 var subject_code = row.Cells["subject_code"].Value.ToString();
                 var unique_id = id_number.ToString() + school_year.id.ToString() + subject_code.ToString();
@@ -256,7 +265,7 @@ namespace school_management_system_model.Forms.transactions
                 var studentSubject = new StudentSubject
                 {
                     id_number_id = id_number.ToString(),
-                    school_year_id = school_year.ToString(),
+                    school_year_id = school_year.id.ToString(),
                     subject_code = subject_code,
                     unique_id = unique_id,
                     descriptive_title = descriptive_title,

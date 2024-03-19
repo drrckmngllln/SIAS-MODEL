@@ -330,11 +330,12 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                     {
                         while (reader.Read())
                         {
-                            var course = await _studentCourseRepo.GetByIdNumberAsync(reader.GetInt32("id_number"));
+                            var course = await _studentCourseRepo.GetByIdNumberAsync(reader.GetInt32("id"));
 
                             var student = new StudentAccountsMainDto
                             {
                                 id = reader.GetInt32("id"),
+                                id_number = reader.GetString("id_number"),
                                 name = reader.GetString("fullname"),
                                 gender = reader.GetString("gender"),
                                 course = course.course,
@@ -347,6 +348,41 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                     }
                     await con.CloseAsync();
                     return list;
+                }
+            }
+        }
+
+        public async Task<StudentAccountsMainDto> GetMainByIdAsync(int id)
+        {
+            var _studentCourseRepo = new StudentCourseRepository();
+            var student = new StudentAccountsMainDto();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "select * from student_accounts where id='"+ id +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var course = await _studentCourseRepo.GetByIdNumberAsync(reader.GetInt32("id"));
+
+                            student = new StudentAccountsMainDto
+                            {
+                                id = reader.GetInt32("id"),
+                                id_number = reader.GetString("id_number"),
+                                name = reader.GetString("fullname"),
+                                gender = reader.GetString("gender"),
+                                course = course.course,
+                                type_of_student = reader.GetString("type_of_student"),
+                                admission_date = reader.GetString("date_of_admission"),
+                                status = reader.GetString("status")
+                            };
+                        }
+                    }
+                    await con.CloseAsync();
+                    return student;
                 }
             }
         }
@@ -366,7 +402,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                     {
                         if (reader.Read())
                         {
-                            var course = await studentCourses.GetByIdNumberAsync(reader.GetInt32("id_number"));
+                            var course = await studentCourses.GetByIdNumberAsync(reader.GetInt32("id"));
 
                             student = new StudentAccountsMainDto
                             {
