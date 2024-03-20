@@ -411,7 +411,7 @@ namespace school_management_system_model.Data.Repositories.Transaction.StudentAc
                                 gender = reader.GetString("gender"),
                                 course = course.course,
                                 type_of_student = reader.GetString("type_of_student"),
-                                admission_date = reader.GetString("admission_date"),
+                                admission_date = reader.GetString("date_of_admission"),
                                 status = reader.GetString("status")
                             };
                         }

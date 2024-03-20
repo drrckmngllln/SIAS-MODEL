@@ -149,16 +149,16 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
                 using (var cmd = new MySqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@1", entity.id_number);
-                    cmd.Parameters.AddWithValue("@1", entity.unique_id);
-                    cmd.Parameters.AddWithValue("@1", entity.school_year);
-                    cmd.Parameters.AddWithValue("@1", entity.subject_code);
-                    cmd.Parameters.AddWithValue("@1", entity.descriptive_title);
-                    cmd.Parameters.AddWithValue("@1", entity.pre_requisite);
-                    cmd.Parameters.AddWithValue("@1", entity.total_units);
-                    cmd.Parameters.AddWithValue("@1", entity.lecture_units);
-                    cmd.Parameters.AddWithValue("@1", entity.lab_units);
-                    cmd.Parameters.AddWithValue("@1", entity.grade);
-                    cmd.Parameters.AddWithValue("@1", entity.remarks);
+                    cmd.Parameters.AddWithValue("@2", entity.unique_id);
+                    cmd.Parameters.AddWithValue("@3", entity.school_year);
+                    cmd.Parameters.AddWithValue("@4", entity.subject_code);
+                    cmd.Parameters.AddWithValue("@5", entity.descriptive_title);
+                    cmd.Parameters.AddWithValue("@6", entity.pre_requisite);
+                    cmd.Parameters.AddWithValue("@7", entity.total_units);
+                    cmd.Parameters.AddWithValue("@8", entity.lecture_units);
+                    cmd.Parameters.AddWithValue("@9", entity.lab_units);
+                    cmd.Parameters.AddWithValue("@10", entity.grade);
+                    cmd.Parameters.AddWithValue("@11", entity.remarks);
                     await cmd.ExecuteNonQueryAsync();
                 }
             }
@@ -170,9 +170,29 @@ namespace school_management_system_model.Infrastructure.Data.Repositories.Transa
         }
 
 
-        public Task UpdateRecords(ExternalCredential entity)
+        public async Task UpdateRecords(ExternalCredential entity)
         {
-            throw new System.NotImplementedException();
+            using (var con = new MySqlConnection(connection.con()))
+            {
+                await con.OpenAsync();
+                var sql = "update external_credentials set id_number_id=@1, unique_id=@2, school_year=@3, subject_code=@4, descriptive_title=@5, pre_requisite=@6, " +
+                    "total_units=@7, lecture_units=@8, lab_units=@9, grade=@10, remarks=@11 where id='"+ entity.id +"'";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@1", entity.id_number);
+                    cmd.Parameters.AddWithValue("@2", entity.unique_id);
+                    cmd.Parameters.AddWithValue("@3", entity.school_year);
+                    cmd.Parameters.AddWithValue("@4", entity.subject_code);
+                    cmd.Parameters.AddWithValue("@5", entity.descriptive_title);
+                    cmd.Parameters.AddWithValue("@6", entity.pre_requisite);
+                    cmd.Parameters.AddWithValue("@7", entity.total_units);
+                    cmd.Parameters.AddWithValue("@8", entity.lecture_units);
+                    cmd.Parameters.AddWithValue("@9", entity.lab_units);
+                    cmd.Parameters.AddWithValue("@10", entity.grade);
+                    cmd.Parameters.AddWithValue("@11", entity.remarks);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
         }
 
         #endregion

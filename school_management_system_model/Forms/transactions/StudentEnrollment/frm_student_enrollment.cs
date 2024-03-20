@@ -6,6 +6,7 @@ using school_management_system_model.Data.Repositories.Setings.Section;
 using school_management_system_model.Data.Repositories.Transaction;
 using school_management_system_model.Data.Repositories.Transaction.StudentAccounts;
 using school_management_system_model.Data.Repositories.Transaction.StudentAssessment;
+using school_management_system_model.Forms.transactions.StudentAccounts.StudentAccountsComponents;
 using school_management_system_model.Forms.transactions.StudentEnrollment;
 using school_management_system_model.Infrastructure.Data.Repositories.Transaction;
 using school_management_system_model.Loggers;
@@ -19,6 +20,8 @@ namespace school_management_system_model.Forms.transactions
 {
     public partial class frm_student_enrollment : Form
     {
+        #region repositories
+
         SectionSubjectRepository _sectionSubjectRepo = new SectionSubjectRepository();
         SectionRepository _sectionRepository = new SectionRepository();
         StudentAccountRepository _studentAccountRepo = new StudentAccountRepository();
@@ -30,7 +33,10 @@ namespace school_management_system_model.Forms.transactions
 
         StudentEnrollmentRepository _studentEnrollmentRepo = new StudentEnrollmentRepository();
 
+        #endregion
 
+
+        #region properties
         public int Id { get; set; }
         public int id_number { get; set; }
         public string studentName { get; set; }
@@ -40,10 +46,12 @@ namespace school_management_system_model.Forms.transactions
         public int school_year_id { get; set; }
         public string Email { get; }
 
+
         decimal totalUnits = 0;
         decimal totalLectureUnits = 0;
         decimal totalLabUnits = 0;
 
+        #endregion
 
         public DataTable dt = new DataTable();
 
@@ -58,10 +66,11 @@ namespace school_management_system_model.Forms.transactions
 
         private async void frm_student_enrollment_Load(object sender, EventArgs e)
         {
-            await loadRecords();
             await LoadingStudent();
             await loadSchoolYear();
         }
+
+        #region data loading section
 
         private async Task LoadingStudent()
         {
@@ -126,7 +135,6 @@ namespace school_management_system_model.Forms.transactions
             var student = await _studentAccountRepo.GetByNameAsync(tStudentName.Text);
             id_number = student.id;
 
-
             dgv.Columns.Add("subject_code", "Subject Code");
             dgv.Columns.Add("descriptive_title", "Descriptive Title");
             dgv.Columns.Add("pre_requisite", "Pre Requisite");
@@ -180,37 +188,11 @@ namespace school_management_system_model.Forms.transactions
         }
 
 
-        private void kryptonTextBox1_TextChanged(object sender, EventArgs e)
-        {
+        #endregion
 
-        }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            var frm = new frm_add_courses();
-            frm.Text = "Add Course";
-            frm.ShowDialog();
-            tCourse.Text = course;
+        #region saving methods
 
-            var curriculum = new add_course
-            {
-                curriculum = course
-            };
-            curriculum.loadCurriculum();
-            foreach (DataRow item in dt.Rows)
-            {
-                tCurriculum.Items.Add(item["code"]);
-            }
-        }
-
-        private void tCurriculum_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void kryptonButton3_Click(object sender, EventArgs e)
-        {
-            dgv.Rows.Remove(dgv.CurrentRow);
-        }
 
         private async Task SaveStudentCourse()
         {
@@ -250,21 +232,21 @@ namespace school_management_system_model.Forms.transactions
                 var day = row.Cells["day"].Value.ToString();
                 var room = row.Cells["room"].Value.ToString();
 
-                var ins = await _instructorRepo.GetAllAsync();
+                var ins = await _instructorRepo.GetByIdAsync(Convert.ToInt32(row.Cells["instructor"].Value));
                 string instructor;
-                if (row.Cells["instructor"].Value.ToString() == "Not Set")
+
+                if (ins.fullname == null)
                 {
-                    instructor = "Not Set";
+                    instructor = "0";
                 }
                 else
                 {
-                    instructor = ins.FirstOrDefault(x => x.fullname == row.Cells["instructor"].Value.ToString()).fullname;
+                    instructor = ins.fullname;
                 }
-
 
                 var studentSubject = new StudentSubject
                 {
-                    id_number_id = id_number.ToString(),
+                    id_number_id = id_number_id.id.ToString(),
                     school_year_id = school_year.id.ToString(),
                     subject_code = subject_code,
                     unique_id = unique_id,
@@ -282,6 +264,8 @@ namespace school_management_system_model.Forms.transactions
 
             }
         }
+
+        
 
         private async Task ChangeStudentStatus()
         {
@@ -318,7 +302,38 @@ namespace school_management_system_model.Forms.transactions
                 var sections = await _sectionRepository.GetBySectionCodeAsync(tSection.Text);
                 _sectionRepository.FullStudent(sections.id);
             }
+            
+        }
+        #endregion
 
+
+        #region event handlers
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            var frm = new frm_add_courses();
+            frm.Text = "Add Course";
+            frm.ShowDialog();
+            tCourse.Text = course;
+
+            var curriculum = new add_course
+            {
+                curriculum = course
+            };
+            curriculum.loadCurriculum();
+            foreach (DataRow item in dt.Rows)
+            {
+                tCurriculum.Items.Add(item["code"]);
+            }
+        }
+
+        private void tCurriculum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            dgv.Rows.Remove(dgv.CurrentRow);
         }
 
         private async void kryptonButton4_Click(object sender, EventArgs e)
@@ -460,11 +475,23 @@ namespace school_management_system_model.Forms.transactions
             }
         }
 
+        private async Task<bool> CheckExistingSubjects(int id_number, int school_year)
+        {
+            var subjects = await _studentSubjectRepo.GetStudentSubjectsAsync(id_number, school_year);
+            if (subjects.Any())
+            {
+                return true;
+            }
+            return false;
+        }
+
         private async void button3_Click(object sender, EventArgs e)
         {
             var frm = new frm_select_students();
             frm.ShowDialog();
-            if (Id != 0)
+            Id = frmStudentAccountsList.instance.ID;
+            await loadRecords();
+            if (!await CheckExistingSubjects(Id, Convert.ToInt32(tSchoolYear.SelectedValue)))
             {
                 var studentDetails = await _studentEnrollmentRepo.GetStudentDetails(Id);
                 if (studentDetails != null)
@@ -479,6 +506,13 @@ namespace school_management_system_model.Forms.transactions
                     tSection.Text = studentDetails.section;
                 }
             }
+            else
+            {
+                new Classes.Toastr("Warning", "Student already enrolled this semester");
+            }
+
         }
+
+        #endregion
     }
 }

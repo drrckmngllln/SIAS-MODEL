@@ -96,7 +96,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value.ToString());
-            frmStudentAccountModule.instance.ID = ID;
+            
         }
 
         private async void tSearch_TextChanged(object sender, EventArgs e)

@@ -13,6 +13,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
         ExternalCredentialsRepository _externalCredRepo = new ExternalCredentialsRepository();
 
         public int ID { get; set; }
+        public int DataID { get; set; }
 
         public static frm_student_external_cred instance;
         public frm_student_external_cred()
@@ -37,6 +38,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
             dgv.Columns["school_year"].HeaderText = "School Year";
             dgv.Columns["subject_code"].HeaderText = "Subject Code";
             dgv.Columns["descriptive_title"].HeaderText = "Descriptive Title";
+            dgv.Columns["descriptive_title"].Width = 400;
             dgv.Columns["pre_requisite"].HeaderText = "Pre Requisite";
             dgv.Columns["total_units"].HeaderText = "Total Units";
             dgv.Columns["lecture_units"].HeaderText = "Lecture Units";
@@ -58,12 +60,28 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
             tStatus.Text = student.status;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private async void btnAdd_Click(object sender, EventArgs e)
         {
             var frm = new frmAddEditExternalCreds("Add");
             frmAddEditExternalCreds.instance.ID = ID;
             frm.Text = "Add New Subjects";
             frm.ShowDialog();
+            await loadRecords();
+        }
+
+        private async void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var frm = new frmAddEditExternalCreds("Update");
+            frmAddEditExternalCreds.instance.ID = ID;
+            frmAddEditExternalCreds.instance.DataId = DataID;
+            frm.Text = "Update Subject";
+            frm.ShowDialog();
+            await loadRecords();
+        }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataID = Convert.ToInt32(dgv.CurrentRow.Cells["id"].Value);
         }
     }
 }

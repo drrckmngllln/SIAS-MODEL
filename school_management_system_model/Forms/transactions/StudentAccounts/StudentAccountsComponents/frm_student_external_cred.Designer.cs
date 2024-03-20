@@ -55,6 +55,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.kryptonGroup2 = new Krypton.Toolkit.KryptonGroup();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.kryptonGroup3 = new Krypton.Toolkit.KryptonGroup();
+            this.btnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroupBox1.Panel)).BeginInit();
@@ -68,6 +70,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup2.Panel)).BeginInit();
             this.kryptonGroup2.Panel.SuspendLayout();
             this.kryptonGroup2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup3.Panel)).BeginInit();
+            this.kryptonGroup3.Panel.SuspendLayout();
+            this.kryptonGroup3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -124,6 +130,7 @@
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(671, 697);
             this.dgv.TabIndex = 106;
+            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // kryptonGroupBox1
             // 
@@ -330,7 +337,7 @@
             // 
             // kryptonGroup1
             // 
-            this.kryptonGroup1.Location = new System.Drawing.Point(66, 359);
+            this.kryptonGroup1.Location = new System.Drawing.Point(25, 359);
             this.kryptonGroup1.Name = "kryptonGroup1";
             // 
             // kryptonGroup1.Panel
@@ -369,10 +376,11 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "addition.png");
             this.imageList1.Images.SetKeyName(1, "trash-can.png");
+            this.imageList1.Images.SetKeyName(2, "edit.png");
             // 
             // kryptonGroup2
             // 
-            this.kryptonGroup2.Location = new System.Drawing.Point(173, 359);
+            this.kryptonGroup2.Location = new System.Drawing.Point(227, 359);
             this.kryptonGroup2.Name = "kryptonGroup2";
             // 
             // kryptonGroup2.Panel
@@ -404,11 +412,47 @@
             this.btnDelete.TabIndex = 0;
             this.btnDelete.UseVisualStyleBackColor = false;
             // 
+            // kryptonGroup3
+            // 
+            this.kryptonGroup3.Location = new System.Drawing.Point(126, 359);
+            this.kryptonGroup3.Name = "kryptonGroup3";
+            // 
+            // kryptonGroup3.Panel
+            // 
+            this.kryptonGroup3.Panel.Controls.Add(this.btnUpdate);
+            this.kryptonGroup3.Size = new System.Drawing.Size(95, 41);
+            this.kryptonGroup3.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.kryptonGroup3.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.kryptonGroup3.StateCommon.Border.ColorAngle = 10F;
+            this.kryptonGroup3.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonGroup3.StateCommon.Border.Rounding = 10F;
+            this.kryptonGroup3.TabIndex = 110;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnUpdate.ImageKey = "edit.png";
+            this.btnUpdate.ImageList = this.imageList1;
+            this.btnUpdate.Location = new System.Drawing.Point(0, 0);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(87, 33);
+            this.btnUpdate.TabIndex = 0;
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // frm_student_external_cred
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 767);
+            this.Controls.Add(this.kryptonGroup3);
             this.Controls.Add(this.kryptonGroup2);
             this.Controls.Add(this.kryptonGroup1);
             this.Controls.Add(this.kryptonGroupBox1);
@@ -433,6 +477,10 @@
             this.kryptonGroup2.Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup2)).EndInit();
             this.kryptonGroup2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup3.Panel)).EndInit();
+            this.kryptonGroup3.Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonGroup3)).EndInit();
+            this.kryptonGroup3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -462,5 +510,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private Krypton.Toolkit.KryptonGroup kryptonGroup2;
         private System.Windows.Forms.Button btnDelete;
+        private Krypton.Toolkit.KryptonGroup kryptonGroup3;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

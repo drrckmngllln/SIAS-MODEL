@@ -33,7 +33,7 @@ namespace school_management_system_model.Data.Repositories.Setings.Section
                 cmd.Parameters.AddWithValue("@11", "Not Set");
                 cmd.Parameters.AddWithValue("@12", "Not Set");
                 cmd.Parameters.AddWithValue("@13", "Not Set");
-                cmd.Parameters.AddWithValue("@14", "Not Set");
+                cmd.Parameters.AddWithValue("@14", 0);
                 cmd.Parameters.AddWithValue("@15", entity.curriculum);
                 await cmd.ExecuteNonQueryAsync();
                 await con.CloseAsync();
