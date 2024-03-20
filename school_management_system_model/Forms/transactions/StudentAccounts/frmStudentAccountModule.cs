@@ -65,7 +65,6 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
             }
             else
             {
-
                 ApproveAccount(id_number, fullname);
             }
         }
@@ -237,6 +236,8 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts
 
         private void btnExternalCredentials_Click(object sender, EventArgs e)
         {
+            ID = frmStudentAccountsList.instance.ID;
+
             if (ID == 0)
             {
                 new Classes.Toastr("Warning", "Please select student");
