@@ -13,5 +13,9 @@ namespace Core.Specifications.Settings
             AddOrderByDescending(x => x.Id);
             ApplyPaging(parameter.PageNumber * (parameter.PageSize - 1), parameter.PageNumber);
         }
+
+        public CampusesSpecifications(int id) : base (x => x.Id == id)
+        {
+        }
     }
 }
