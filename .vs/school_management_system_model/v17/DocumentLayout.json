@@ -1,86 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\frmstudentaccountslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\frmstudentaccountslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\cancelenrollment\\frmcancelenrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\cancelenrollment\\frmcancelenrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\cancelenrollment\\frmcancelenrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\cancelenrollment\\frmcancelenrollment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\frmstudentaccountslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{56FA6B1C-088D-46A2-8DDB-0350C8D7B68E}|school_management_system_model\\school_management_system_model.csproj|solutionrelative:school_management_system_model\\forms\\transactions\\studentaccounts\\studentaccountscomponents\\frmstudentaccountslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 3,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmCancelEnrollment.cs",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\CancelEnrollment\\frmCancelEnrollment.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\CancelEnrollment\\frmCancelEnrollment.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\CancelEnrollment\\frmCancelEnrollment.cs",
-              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\CancelEnrollment\\frmCancelEnrollment.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-21T06:25:24.669Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmCancelEnrollment.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\CancelEnrollment\\frmCancelEnrollment.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\CancelEnrollment\\frmCancelEnrollment.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\CancelEnrollment\\frmCancelEnrollment.cs [Design]",
-              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\CancelEnrollment\\frmCancelEnrollment.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-21T06:25:13.069Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frmStudentAccountsList.cs",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frmStudentAccountsList.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frmStudentAccountsList.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frmStudentAccountsList.cs",
-              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frmStudentAccountsList.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAowDMAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-21T06:20:05.11Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmStudentAccountsList.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frmStudentAccountsList.cs",
-              "RelativeDocumentMoniker": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frmStudentAccountsList.cs",
-              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frmStudentAccountsList.cs [Design]",
-              "RelativeToolTip": "school_management_system_model\\Forms\\transactions\\StudentAccounts\\StudentAccountsComponents\\frmStudentAccountsList.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-21T06:20:02.613Z",
-              "EditorCaption": " [Design]"
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
