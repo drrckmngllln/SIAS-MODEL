@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
@@ -16,6 +14,12 @@ namespace API.Extensions
             services.AddEndpointsApiExplorer();
 
             services.AddSwaggerGen();
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddDbContext<StoreContext>(opt =>
             {

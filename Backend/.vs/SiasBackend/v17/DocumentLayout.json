@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9AAD07BF-7726-4C4A-91C1-D913A9426526}|Core\\Core.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\backend\\core\\specifications\\settings\\campusesspecifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AAD07BF-7726-4C4A-91C1-D913A9426526}|Core\\Core.csproj|solutionrelative:core\\specifications\\settings\\campusesspecifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AAD07BF-7726-4C4A-91C1-D913A9426526}|Core\\Core.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\backend\\core\\parameters\\settings\\campusesparameters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AAD07BF-7726-4C4A-91C1-D913A9426526}|Core\\Core.csproj|solutionrelative:core\\parameters\\settings\\campusesparameters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52385A0-51AC-4EC4-A791-3ADD26BD6E4A}|API\\API.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\backend\\api\\controllers\\settings\\settingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52385A0-51AC-4EC4-A791-3ADD26BD6E4A}|API\\API.csproj|solutionrelative:api\\controllers\\settings\\settingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B52385A0-51AC-4EC4-A791-3ADD26BD6E4A}|API\\API.csproj|c:\\users\\mcnp-isap\\documents\\github\\sias-model\\backend\\api\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B52385A0-51AC-4EC4-A791-3ADD26BD6E4A}|API\\API.csproj|solutionrelative:api\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CampusesParameters.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\Core\\Parameters\\Settings\\CampusesParameters.cs",
+              "RelativeDocumentMoniker": "Core\\Parameters\\Settings\\CampusesParameters.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\Core\\Parameters\\Settings\\CampusesParameters.cs",
+              "RelativeToolTip": "Core\\Parameters\\Settings\\CampusesParameters.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T08:44:10.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CampusesSpecifications.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\Core\\Specifications\\Settings\\CampusesSpecifications.cs",
+              "RelativeDocumentMoniker": "Core\\Specifications\\Settings\\CampusesSpecifications.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\Core\\Specifications\\Settings\\CampusesSpecifications.cs",
+              "RelativeToolTip": "Core\\Specifications\\Settings\\CampusesSpecifications.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T08:43:16.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SettingsController.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\API\\Controllers\\Settings\\SettingsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\Settings\\SettingsController.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\API\\Controllers\\Settings\\SettingsController.cs",
+              "RelativeToolTip": "API\\Controllers\\Settings\\SettingsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T08:36:01.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BaseApiController.cs",
+              "DocumentMoniker": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\API\\Controllers\\BaseApiController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\BaseApiController.cs",
+              "ToolTip": "C:\\Users\\MCNP-ISAP\\Documents\\GitHub\\SIAS-MODEL\\Backend\\API\\Controllers\\BaseApiController.cs",
+              "RelativeToolTip": "API\\Controllers\\BaseApiController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T08:35:31.038Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
