@@ -362,6 +362,12 @@
     <Compile Include="Forms\transactions\StudentAccounts\frmStudentAccountModule.Designer.cs">
       <DependentUpon>frmStudentAccountModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\CancelEnrollment\frmCancelEnrollment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\CancelEnrollment\frmCancelEnrollment.Designer.cs">
+      <DependentUpon>frmCancelEnrollment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\ExternalCredComponent\frmAddEditExternalCreds.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -992,6 +998,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\frmStudentAccountModule.resx">
       <DependentUpon>frmStudentAccountModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\CancelEnrollment\frmCancelEnrollment.resx">
+      <DependentUpon>frmCancelEnrollment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\transactions\StudentAccounts\StudentAccountsComponents\ExternalCredComponent\frmAddEditExternalCreds.resx">
       <DependentUpon>frmAddEditExternalCreds.cs</DependentUpon>

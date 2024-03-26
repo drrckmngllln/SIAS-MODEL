@@ -49,6 +49,7 @@ namespace school_management_system_model.Forms.transactions.StudentAccounts.Stud
                 dgv.DataSource = items;
             }
             dgv.Columns["id"].Visible = false;
+            dgv.Columns["id_number"].HeaderText = "ID Number";
             dgv.Columns["name"].HeaderText = "Student Name";
             dgv.Columns["gender"].HeaderText = "Gender";
             dgv.Columns["type_of_student"].HeaderText = "Type of Student";
